@@ -1,0 +1,41 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/recommended",
+        "eslint-config-airbnb-base",
+        "airbnb-typescript/base",
+        "eslint-config-prettier",
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "project": "**/SUL/backend/tsconfig.json",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "prettier/prettier":[
+            "error", {"endOfLine": "auto"}
+        ],
+        "no-underscore-dangle": [
+            "error", {"allow": ["_id"]}
+        ]  },
+    "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".jsx", ".d.ts", ".ts", ".tsx"],
+            "moduleDirectory": ["node_modules", "src", "./"]
+          }
+        }
+      }
+}
