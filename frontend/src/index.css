@@ -1,3 +1,55 @@
+:root {
+  --brand-color: #eb1a2a;
+  --layout-borders-color: #f0f2f7;
+  --layout-background-color: #f9fafc;
+  --menu-background: #fff;
+}
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
+  background-color: var(--layout-background-color);
+}
+.header {
+  width: 100vw;
+  background-color: var(--menu-background);
+  border-bottom: 2px solid var(--layout-borders-color);
+}
+.brand-logo {
+  display: block;
+  height: 68px;
+  width: 300px;
+  font-size: 28px;
+  padding: 20px;
+  border-right: 2px solid var(--layout-borders-color);
+}
+.menu {
+  width: 300px;
+  height: 100vh;
+  background-color: var(--menu-background);
+  border-right: 2px solid var(--layout-borders-color);
+}
+.menu a {
+  text-decoration: none;
+  color: inherit;
+}
+.menu-tabs {
+  font-size: 24px;
+  margin: 10px 0px 20px 0px;
+}
+.menu-tab {
+  display: flex;
+  height: 60px;
+  padding: 14px 20px 18px 20px;
+  border-left: 3px solid var(--menu-background);
+}
+.menu-tab:hover {
+  color: var(--brand-color);
+  border-left: 3px solid var(--brand-color);
+}
+.menu-tab-name {
+  display: inline-block;
+  height: 24px;
+  padding: 4px 0px 0px 8px;
 }
