@@ -2,10 +2,10 @@
     "name": "backend",
     "version": "1.0.0",
     "description": "API of the SkillUpLevel",
-    "main": "dist/index.js",
+    "main": "dist/app.js",
     "scripts": {
-        "dev": "nodemon ./app.ts",
-        "start": "ts-node ./src/index.ts",
+        "dev": "nodemon ./src/app.ts",
+        "start": "ts-node ./src/app.ts",
         "test": "jest --coverage"
     },
     "license": "MIT",
