@@ -1,20 +1,29 @@
 import {createTheme} from "@mui/material";
 
-const primaryColor = '#d83938'
-const secondaryColor = '#ffffff'
+const colors = {
+    primaryColor: '#d83938',
+    secondaryColor: '#ffffff',
+    disabledTextColor: '#9b9b9b',
+    primaryTextColor: '#000000DE',
+    secondatyTextColor: '#ffffff'
+}
 
 const theme = createTheme({
     palette: {
         primary: {
-            main: primaryColor
+            main: colors.primaryColor
         },
         secondary: {
-            main: secondaryColor
+            main: colors.secondaryColor
         },
         text: {
-            primary: '#464646',
-            secondary: '#808080',
+            primary: colors.primaryTextColor,
+            secondary: colors.secondatyTextColor,
+            disabled: colors.disabledTextColor
         }
+    },
+    typography: {
+        fontFamily: "'Lato', sans-serif"
     }
 })
 
