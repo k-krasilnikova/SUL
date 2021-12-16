@@ -1,16 +1,13 @@
 import React from 'react';
-import { BrowserRouter } from "react-router-dom";
-import Header from "./components/Header"
-import Menu from "./components/Menu"
+import {ThemeProvider} from "@mui/material";
+import theme from "./themeSettings";
+import Layout from "./pages/Layout"
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <div className='menu'>
-        <Header />
-        <Menu /> 
-      </div> 
-    </BrowserRouter>  
+    <ThemeProvider theme={theme}>
+      <Layout/>
+    </ThemeProvider> 
   );
 }
 
