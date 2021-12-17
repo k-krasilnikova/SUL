@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { finished } from 'stream';
 import winston from 'winston';
-import { PROD, QA } from '../../config/constants';
+import { PROD, QA } from 'config/constants';
 
 const loggerMidleware = (req: Request, res: Response, next: () => void) => {
   const { ip, method, url } = req;
@@ -11,7 +11,7 @@ const loggerMidleware = (req: Request, res: Response, next: () => void) => {
 
   next();
   finished(res, () => {
-    if (process.env.NODE_ENV === 'qa' || process.env.NODE_ENV === 'prod') {
+    if (process.env.NODE_ENV === QA || process.env.NODE_ENV === PROD) {
       const ms = Date.now() - Number(startTime);
       const { statusCode } = res;
       logger.silly(
