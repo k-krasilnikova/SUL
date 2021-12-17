@@ -4,7 +4,7 @@
     "description": "API of the SkillUpLevel",
     "main": "dist/app.js",
     "scripts": {
-        "dev": "cross-env NODE_ENV=test nodemon ./src/app.ts",
+        "dev": "cross-env NODE_ENV=local nodemon ./src/app.ts",
         "build": "cross-env NODE_ENV=production tsc",
         "test": "cross-env NODE_ENV=test jest --coverage"
     },

@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import { finished } from 'stream';
 import winston from 'winston';
+
 import { PROD, QA } from 'config/constants';
 
-const loggerMidleware = (req: Request, res: Response, next: () => void) => {
+const loggerMiddleware = (req: Request, res: Response, next: () => void) => {
   const { ip, method, url } = req;
   const startTime = new Date();
 
@@ -15,10 +16,10 @@ const loggerMidleware = (req: Request, res: Response, next: () => void) => {
       const ms = Date.now() - Number(startTime);
       const { statusCode } = res;
       logger.silly(
-        `request from ${ip} method: ${method} url: ${url}  status:${statusCode} ${ms}ms\n`,
+        `request from ${ip} method: ${method} url: ${url} status:${statusCode} ${ms}ms\n`,
       );
     }
   });
 };
 
-export default loggerMidleware;
+export default loggerMiddleware;
