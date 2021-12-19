@@ -6,7 +6,11 @@
     "scripts": {
         "dev": "cross-env NODE_ENV=local nodemon ./src/app.ts",
         "build": "cross-env NODE_ENV=production tsc",
-        "test": "cross-env NODE_ENV=test jest --coverage"
+        "test": "cross-env NODE_ENV=test jest --coverage",
+        "migrate": "migrate-mongo up",
+        "migrate:undo-last": "migrate-mongo down",
+        "migrate:status": "migrate-mongo status",
+        "migrate:create": "migrate-mongo create"
     },
     "license": "MIT",
     "devDependencies": {
