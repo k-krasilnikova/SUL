@@ -1,3 +1,7 @@
-export const QA = 'test';
-export const PROD = 'production';
-export const LOCAL = 'local';
+const ENVIROMENTS = {
+  qa: 'test',
+  prod: 'production',
+  local: 'local',
+};
+
+export default ENVIROMENTS;
