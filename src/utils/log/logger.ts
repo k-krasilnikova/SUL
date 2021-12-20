@@ -1,6 +1,6 @@
 import winston from 'winston';
 
-import ENVIROMENTS from 'config/constants';
+import { ENVIROMENTS } from 'config/constants';
 
 const logFormat = winston.format.printf(
   ({ message, level, timestamp }) => `${level}:${timestamp}:${message}`,
