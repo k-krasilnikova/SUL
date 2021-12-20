@@ -6,7 +6,7 @@ import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
 import HelpIcon from '@mui/icons-material/Help';
 
 import PATHS from '../../constants/routes';
-import {MenuTabs, MenuTab, MenuTabName} from "./styled"
+import { MenuTabs, MenuTab, MenuTabName } from "./styled"
 
 const Menu: React.FC = () => (
   <MenuTabs>
@@ -35,6 +35,6 @@ const Menu: React.FC = () => (
       </MenuTab>
     </NavLink>
   </MenuTabs>
-)
+);
 
-export default Menu
+export default Menu;
