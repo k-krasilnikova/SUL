@@ -1,14 +1,9 @@
 import React from 'react';
-import {ThemeProvider} from "@mui/material";
-import theme from "./themeSettings";
-import Layout from "./pages/Layout"
+
+import Layout from './pages/Layout';
 
 const App: React.FC = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <Layout/>
-    </ThemeProvider> 
-  );
-}
+  return <Layout />;
+};
 
 export default App;
