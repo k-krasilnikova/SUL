@@ -1,12 +1,12 @@
 import winston from 'winston';
 
-import { PROD, QA } from 'config/constants';
+import ENVIROMENTS from 'config/constants';
 
 const logFormat = winston.format.printf(
   ({ message, level, timestamp }) => `${level}:${timestamp}:${message}`,
 );
 
-winston.loggers.add(QA, {
+winston.loggers.add(ENVIROMENTS.qa, {
   format: winston.format.combine(
     winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
     winston.format.colorize(),
@@ -15,7 +15,7 @@ winston.loggers.add(QA, {
   transports: [new winston.transports.Console()],
 });
 
-winston.loggers.add(PROD, {
+winston.loggers.add(ENVIROMENTS.prod, {
   format: winston.format.combine(
     winston.format.timestamp(),
     winston.format.uncolorize(),

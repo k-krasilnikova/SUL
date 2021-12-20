@@ -2,17 +2,20 @@ import { Request, Response } from 'express';
 import { finished } from 'stream';
 import winston from 'winston';
 
-import { PROD, QA } from 'config/constants';
+import ENVIROMENTS from 'config/constants';
 
 const loggerMiddleware = (req: Request, res: Response, next: () => void) => {
   const { ip, method, url } = req;
   const startTime = new Date();
 
-  const logger = process.env.NODE_ENV === QA ? winston.loggers.get(QA) : winston.loggers.get(PROD);
+  const logger =
+    process.env.NODE_ENV === ENVIROMENTS.qa
+      ? winston.loggers.get(ENVIROMENTS.qa)
+      : winston.loggers.get(ENVIROMENTS.prod);
 
   next();
   finished(res, () => {
-    if (process.env.NODE_ENV === QA || process.env.NODE_ENV === PROD) {
+    if (process.env.NODE_ENV === ENVIROMENTS.qa || process.env.NODE_ENV === ENVIROMENTS.prod) {
       const ms = Date.now() - Number(startTime);
       const { statusCode } = res;
       logger.silly(
