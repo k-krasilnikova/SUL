@@ -5,7 +5,7 @@ import { USER_ROLES } from 'config/constants';
 interface User {
   _id?: ObjectId;
   username: string;
-  password: string;
+  passwordHash: string;
   refreshToken?: string;
   role: UserRole;
   position: UserPosition;
