@@ -9,7 +9,8 @@ interface User {
   refreshToken?: string;
   role: UserRole;
   position: UserPosition;
-  fullName: string;
+  firstName: string;
+  lastName: string;
   skills: ObjectId[];
   courses: ObjectId[];
   employees: ObjectId[];
