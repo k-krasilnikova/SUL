@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import PATHS from '../constants/routes';
-import Header from "../components/layout/Header"
-import Menu from "../components/layout/Menu"
+import HeaderAuthorized from "../components/Layout/HeaderAuthorized"
+import Menu from "../components/Layout/Menu"
 
 const Layout: React.FC = () => (
   <BrowserRouter basename={PATHS.home}>
-    <Header />
+    <HeaderAuthorized />
     <Menu /> 
     <Routes>
       <Route path={PATHS.profile}>
@@ -22,4 +22,4 @@ const Layout: React.FC = () => (
   </BrowserRouter> 
 );
 
-export default Layout
+export default Layout;
