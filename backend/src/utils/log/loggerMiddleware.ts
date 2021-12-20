@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { finished } from 'stream';
 import winston from 'winston';
 
-import ENVIROMENTS from 'config/constants';
+import { ENVIROMENTS } from 'config/constants';
 
 const loggerMiddleware = (req: Request, res: Response, next: () => void) => {
   const { ip, method, url } = req;
