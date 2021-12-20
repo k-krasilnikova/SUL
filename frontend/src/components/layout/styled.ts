@@ -1,10 +1,10 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
-const LAYOUT_BORDER = "2px solid #f0f2f7";
+const LAYOUT_BORDER = '2px solid #f0f2f7';
 const LAYOUT_FONT = "'Lato', sans-serif";
-const MENU_BACKGROUND = "#ffffff";
-const MENU_FONT_COLOR = "#000000";
-const BRAND_COLOR = "#eb1a2a";
+const MENU_BACKGROUND = '#ffffff';
+const MENU_FONT_COLOR = '#000000';
+const BRAND_COLOR = '#eb1a2a';
 
 export const LayoutHeader = styled.div`
   width: 100vw;
@@ -14,7 +14,7 @@ export const LayoutHeader = styled.div`
   a {
     text-decoration: none;
   }
-`
+`;
 export const BrandLogo = styled.div`
   display: block;
   height: 68px;
@@ -23,7 +23,7 @@ export const BrandLogo = styled.div`
   padding: 20px 55px 20px 60px;
   border-right: ${LAYOUT_BORDER};
   color: ${BRAND_COLOR};
-`
+`;
 export const MenuTabs = styled.div`
   width: 300px;
   height: 100vh;
@@ -36,7 +36,7 @@ export const MenuTabs = styled.div`
   a {
     text-decoration: none;
   }
-`
+`;
 export const MenuTab = styled.div`
   display: flex;
   height: 60px;
@@ -46,10 +46,10 @@ export const MenuTab = styled.div`
   &:hover {
     color: ${BRAND_COLOR};
     border-left: 3px solid ${BRAND_COLOR};
-  };
-`
+  }
+`;
 export const MenuTabName = styled.span`
   display: inline-block;
   height: 24px;
   padding: 4px 0px 0px 8px;
-`
+`;
