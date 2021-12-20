@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
 
-const saltRounds = 10;
+const SALT_ROUNDS = 10;
 
 module.exports = {
   async up(db, client) {
     DEFAULT_USERS_DOCS.map(async (doc) => {
-      const salt = bcrypt.genSaltSync(saltRounds);
-      doc.password = bcrypt.hashSync(doc.password, salt);
+      const salt = bcrypt.genSaltSync(SALT_ROUNDS);
+      doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
       await db.collection('users').insertOne(doc);
     });
     // await db.collection('skills');
@@ -27,7 +27,7 @@ module.exports = {
 const DEFAULT_USERS_DOCS = [
   {
     name: 'admin',
-    password: 'admin',
+    passwordHash: 'admin',
     role: 'admin',
     fullName: 'Admin Admin',
     position: 'Software Engineer',
@@ -40,7 +40,7 @@ const DEFAULT_USERS_DOCS = [
   },
   {
     name: 'user',
-    password: 'user',
+    passwordHash: 'user',
     role: 'employee',
     fullName: 'User User',
     position: 'Software Engineer',
@@ -53,7 +53,7 @@ const DEFAULT_USERS_DOCS = [
   },
   {
     name: 'manager',
-    password: 'manager',
+    passwordHash: 'manager',
     role: 'manager',
     fullName: 'Manager Manager',
     position: 'Team Manager',

@@ -5,7 +5,7 @@ import { User } from 'interfaces/db/entities';
 const schema = new Schema<User>({
   _id: { type: Schema.Types.ObjectId, required: true },
   username: { type: String, required: true },
-  password: { type: String, required: true },
+  passwordHash: { type: String, required: true },
   refreshToken: { type: String, required: true },
   role: { type: String, required: true, default: 'employee' },
   position: { type: String, required: true, default: 'Software Engineer' },
