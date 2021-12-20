@@ -26,7 +26,7 @@ module.exports = {
 
 const DEFAULT_USERS_DOCS = [
   {
-    name: 'admin',
+    username: 'admin',
     passwordHash: 'admin',
     role: 'admin',
     firstName: 'Admin',
@@ -40,7 +40,7 @@ const DEFAULT_USERS_DOCS = [
     skype: 'admin',
   },
   {
-    name: 'user',
+    username: 'user',
     passwordHash: 'user',
     role: 'employee',
     firstName: 'User',
@@ -54,7 +54,7 @@ const DEFAULT_USERS_DOCS = [
     skype: 'user',
   },
   {
-    name: 'manager',
+    username: 'manager',
     passwordHash: 'manager',
     role: 'manager',
     firstName: 'Manager',
