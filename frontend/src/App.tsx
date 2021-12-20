@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { ThemeProvider } from '@mui/material';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface SignTypes {
   value?: string | number;
   fieldValue?: string | number;
