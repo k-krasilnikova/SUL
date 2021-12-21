@@ -6,6 +6,7 @@ interface User {
   _id?: ObjectId;
   username: string;
   passwordHash: string;
+  email: string;
   refreshToken?: string;
   role: UserRole;
   position: UserPosition;
