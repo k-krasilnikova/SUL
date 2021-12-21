@@ -28,6 +28,7 @@ const DEFAULT_USERS_DOCS = [
   {
     username: 'admin',
     passwordHash: 'admin',
+    email: 'admin@itechart-group.com',
     role: 'admin',
     firstName: 'Admin',
     lastName: 'Admin',
@@ -42,6 +43,7 @@ const DEFAULT_USERS_DOCS = [
   {
     username: 'user',
     passwordHash: 'user',
+    email: 'user@itechart-group.com',
     role: 'employee',
     firstName: 'User',
     lastName: 'User',
@@ -56,6 +58,7 @@ const DEFAULT_USERS_DOCS = [
   {
     username: 'manager',
     passwordHash: 'manager',
+    email: 'manager@itechart-group.com',
     role: 'manager',
     firstName: 'Manager',
     lastName: 'Manager',
