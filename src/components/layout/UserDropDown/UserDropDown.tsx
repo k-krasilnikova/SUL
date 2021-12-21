@@ -17,7 +17,7 @@ import {
 import { User } from 'types/user';
 
 interface PopperControl {
-  open: boolean;
+  isOpen: boolean;
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   anchorEl: HTMLElement | null;
 }
@@ -31,7 +31,7 @@ const DropDown: React.FC<Props> = ({
   userDepartment,
   userGroup,
   avatarUrl,
-  open,
+  isOpen,
   onClick,
   anchorEl,
 }) => (
@@ -39,24 +39,24 @@ const DropDown: React.FC<Props> = ({
     <UserInfo onClick={(event: React.MouseEvent<HTMLElement>) => onClick(event)}>
       <UserAvatar src={avatarUrl} />
       <UserName>{userName}</UserName>
-      {open ? <ArrowUp /> : <ArrowDown />}
+      {isOpen ? <ArrowUp /> : <ArrowDown />}
     </UserInfo>
-    <Popper open={open} anchorEl={anchorEl}>
+    <Popper open={isOpen} anchorEl={anchorEl}>
       <UserPopper>
         <FormControlLabel control={<Switch />} label="Autopass" />
         <DividerHorizontal />
         <List>
           <ListItem disablePadding>
-            <ListItemText primary={'Role: ' + userRole} />
+            <ListItemText primary={`Role: ${userRole}`} />
           </ListItem>
           <ListItem disablePadding>
-            <ListItemText primary={'Unit: ' + userUnit} />
+            <ListItemText primary={`Unit: ${userUnit}`} />
           </ListItem>
           <ListItem disablePadding>
-            <ListItemText primary={'Department: ' + userDepartment} />
+            <ListItemText primary={`Department: ${userDepartment}`} />
           </ListItem>
           <ListItem disablePadding>
-            <ListItemText primary={'Group: ' + userGroup} />
+            <ListItemText primary={`Group: ${userGroup}`} />
           </ListItem>
         </List>
         <DividerHorizontal />
