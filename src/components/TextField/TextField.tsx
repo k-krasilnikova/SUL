@@ -17,6 +17,7 @@ const TextField: React.FC<TextFieldProps> = ({
     defaultValue,
     helperText,
     onChange,
+    ...rest
 }) => (
     <MuiTextField
         onChange={onChange}
@@ -24,6 +25,7 @@ const TextField: React.FC<TextFieldProps> = ({
         label={label}
         defaultValue={defaultValue}
         helperText={helperText}
+        {...rest}
     >
         {children}
     </MuiTextField>

@@ -6,8 +6,8 @@ interface Props extends ButtonProps {
   children?: React.ReactNode;
 }
 
-const Button: React.FC<Props> = ({ onClick, children }) => (
-  <MuiButton onClick={onClick}>{children}</MuiButton>
+const Button: React.FC<Props> = ({ onClick, children, ...rest }) => (
+  <MuiButton onClick={onClick} {...rest}>{children}</MuiButton>
 );
 
 export default Button;
