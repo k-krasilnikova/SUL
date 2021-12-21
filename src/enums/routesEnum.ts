@@ -6,4 +6,5 @@ enum Routes {
 enum SubRoutes {
   login = '/login',
 }
+
 export { Routes, SubRoutes };
