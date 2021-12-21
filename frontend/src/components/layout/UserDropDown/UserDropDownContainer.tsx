@@ -27,7 +27,7 @@ const UserDropDown: React.FC<User> = ({
       userDepartment={userDepartment}
       userGroup={userGroup}
       avatarUrl={avatarUrl}
-      open={isDropdownOpen}
+      isOpen={isDropdownOpen}
       onClick={openUserInfo}
       anchorEl={anchorEl}
     />
