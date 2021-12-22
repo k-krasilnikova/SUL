@@ -1,28 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 10;
-
-module.exports = {
-  async up(db, client) {
-    DEFAULT_USERS_DOCS.map(async (doc) => {
-      const salt = bcrypt.genSaltSync(SALT_ROUNDS);
-      doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
-      await db.collection('users').insertOne(doc);
-    });
-    // await db.collection('skills');
-    // await db.collection('courses');
-    // await db.collection('userSkills');
-    // await db.collection('userCourses');
-  },
-
-  async down(db, client) {
-    await db.collection('users').drop();
-    // await db.collection('skills').drop();
-    // await db.collection('courses').drop();
-    // await db.collection('userSkills').drop();
-    // await db.collection('userCourses').drop();
-  },
-};
 
 const DEFAULT_USERS_DOCS = [
   {
@@ -71,3 +50,26 @@ const DEFAULT_USERS_DOCS = [
     skype: 'user',
   },
 ];
+
+module.exports = {
+  async up(db) {
+    DEFAULT_USERS_DOCS.map(async (doc) => {
+      const salt = bcrypt.genSaltSync(SALT_ROUNDS);
+      // eslint-disable-next-line no-param-reassign
+      doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
+      await db.collection('users').insertOne(doc);
+    });
+    // await db.collection('skills');
+    // await db.collection('courses');
+    // await db.collection('userSkills');
+    // await db.collection('userCourses');
+  },
+
+  async down(db) {
+    await db.collection('users').drop();
+    // await db.collection('skills').drop();
+    // await db.collection('courses').drop();
+    // await db.collection('userSkills').drop();
+    // await db.collection('userCourses').drop();
+  },
+};

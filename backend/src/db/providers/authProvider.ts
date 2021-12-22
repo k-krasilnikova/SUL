@@ -13,7 +13,9 @@ const saveTokenProvider = async (token: string, user: IUser) => {
   await UserModel.updateOne(
     { _id: user._id },
     {
-      $set: {},
+      $set: {
+        refreshToken: token,
+      },
     },
   );
 };
