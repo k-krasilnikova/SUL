@@ -1,8 +1,11 @@
 import { SubRoutes } from 'enums/routesEnum';
 import { Router } from 'express';
 
-const accRouters = Router();
+import { loginController, refreshController } from 'modules/controllers/authController';
 
-accRouters.use(`${SubRoutes.login}`);
+const accountRouters = Router();
 
-export default accRouters;
+accountRouters.post(`${SubRoutes.login}`, loginController);
+accountRouters.get(`${SubRoutes.refresh}`, refreshController);
+
+export default accountRouters;

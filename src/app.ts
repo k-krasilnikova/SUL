@@ -6,7 +6,7 @@ import { Routes } from 'enums/routesEnum';
 import routers from 'modules/routes/routes';
 import connectionMiddleware from 'db/connection/connectionMiddleware';
 
-import loggerMiddleware from './utils/log/loggerMiddleware';
+import loggerMiddleware from 'modules/middlewares/loggerMiddleware';
 
 dotenv.config();
 const app = express();

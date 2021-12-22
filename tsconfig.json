@@ -16,7 +16,7 @@
         ]
       }     
     },
-    "include": ["./src/**/*.ts"],
+    "include": ["./src/**/*.ts", "./*config.js", "migrations"],
     "exclude": ["node_modules", "dist"],
     "ts-node": {
       "require": ["tsconfig-paths/register"]

@@ -6,8 +6,8 @@ interface IUser {
   passwordHash: string;
   email: string;
   refreshToken?: string;
-  role: UserRole;
-  position: UserPosition;
+  role: TUserRole;
+  position: TUserPosition;
   firstName: string;
   lastName: string;
   skills: ObjectId[];
@@ -18,8 +18,8 @@ interface IUser {
   skype: string;
 }
 
-type UserRole = 'admin' | 'manager' | 'employee';
+type TUserRole = 'admin' | 'manager' | 'employee';
 
-type UserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
+type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { IUser, UserRole, UserPosition };
+export { IUser, TUserRole, TUserPosition };

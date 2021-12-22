@@ -1,5 +1,3 @@
-import { Request } from 'express';
+type TMiddlewareCall = <T>(error?: T) => void | T;
 
-type MiddlewareCall = (error?: unknown) => void;
-
-export { MiddlewareCall };
+export { TMiddlewareCall };
