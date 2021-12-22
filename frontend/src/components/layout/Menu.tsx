@@ -5,8 +5,8 @@ import ArticleIcon from '@mui/icons-material/Article';
 import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
 import HelpIcon from '@mui/icons-material/Help';
 
-import PATHS from '../../constants/routes';
-import { MenuTabs, MenuTab, MenuTabName } from './styled';
+import PATHS from 'constants/routes';
+import { MenuTabs, MenuTab, MenuTabName } from 'components/Layout/styled';
 
 const Menu: React.FC = () => (
   <MenuTabs>
