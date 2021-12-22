@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import DropDown from 'components/Layout/UserDropDown/UserDropDown';
 import { User } from 'types/user';
@@ -11,8 +11,8 @@ const UserDropDown: React.FC<User> = ({
   userGroup,
   avatarUrl,
 }) => {
-  const [isDropdownOpen, setDropdownState] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [isDropdownOpen, setDropdownState] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const openUserInfo = (event: React.MouseEvent<HTMLElement>) => {
     setDropdownState((currentState) => !currentState);
