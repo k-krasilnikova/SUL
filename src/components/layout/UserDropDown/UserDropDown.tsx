@@ -36,7 +36,7 @@ const DropDown: React.FC<Props> = ({
   anchorEl,
 }) => (
   <Box>
-    <UserInfo onClick={(event: React.MouseEvent<HTMLElement>) => onClick(event)}>
+    <UserInfo onClick={onClick}>
       <UserAvatar src={avatarUrl} />
       <UserName>{userName}</UserName>
       {isOpen ? <ArrowUp /> : <ArrowDown />}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import PATHS from '../constants/routes';
-import Header from '../components/Layout/Header';
-import Menu from '../components/Layout/Menu';
+import PATHS from 'constants/routes';
+import Header from 'components/Layout/Header';
+import Menu from 'components/Layout/Menu';
 
 const Layout: React.FC = () => (
   <BrowserRouter basename={PATHS.home}>
