@@ -1,13 +1,13 @@
 const PATHS: {
   home: string;
   profile: string;
-  allCourses: string;
+  coursesList: string;
   myCourses: string;
   help: string;
 } = {
   home: '/',
   profile: '/profile',
-  allCourses: '/possible-courses',
+  coursesList: '/courses-list',
   myCourses: '/my-courses',
   help: '/help',
 };

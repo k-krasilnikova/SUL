@@ -16,7 +16,7 @@ const Menu: React.FC = () => (
         <MenuTabName>Profile</MenuTabName>
       </MenuTab>
     </NavLink>
-    <NavLink to={PATHS.allCourses}>
+    <NavLink to={PATHS.coursesList}>
       <MenuTab>
         <ArticleIcon fontSize="large" color="inherit" />
         <MenuTabName>Possible courses</MenuTabName>
