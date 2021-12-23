@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import PATHS from 'constants/routes';
+import { User } from 'types/user';
 import {
   LayoutHeader,
   HeaderDivider,
@@ -11,8 +12,8 @@ import {
   LogOut,
 } from 'components/Layout/styled';
 import UserDropDown from 'components/Layout/UserDropDown';
-import MyCoursesCounter from 'components/Layout/MyCoursesCounter';
-import { User } from 'types/user';
+
+import MyCoursesCounter from './MyCoursesCounter';
 
 const Header: React.FC<User> = ({
   userName,
