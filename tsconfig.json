@@ -17,11 +17,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
   },
-<<<<<<< HEAD
   "include": [
     "src"
   ]
-=======
-  "include": ["src"]
->>>>>>> 335610a... feat: setup react-query.
 }
