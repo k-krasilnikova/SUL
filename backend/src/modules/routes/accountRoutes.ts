@@ -1,6 +1,6 @@
-import { SubRoutes } from 'enums/routesEnum';
 import { Router } from 'express';
 
+import { SubRoutes } from 'enums/routesEnum';
 import { loginController, refreshController } from 'modules/controllers/authController';
 
 const accountRouters = Router();

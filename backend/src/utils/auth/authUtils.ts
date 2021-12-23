@@ -22,7 +22,7 @@ const generateJWT = async (userData: IUser): Promise<ITokens> => {
       expiresIn: timeout,
     });
 
-    const refreshToken = await jwt.sign({ id }, `${process.env.JWT_REFRESH_TOKEN}`, {
+    const refreshToken = await jwt.sign({ id }, `${process.env.JWT_REFRESH_SECRET}`, {
       expiresIn: refreshTimeout,
     });
     return { accessToken, refreshToken };
@@ -34,15 +34,15 @@ const generateJWT = async (userData: IUser): Promise<ITokens> => {
 const verifyAccessToken = async (accessToken: string): Promise<IAccessJwtPayload> => {
   const secret = process.env.JWT_SECRET || DEFAULT_NO_SECRET;
 
-  const isValid = (await jwt.verify(accessToken, secret)) as IAccessJwtPayload;
-  return isValid;
+  const payload = (await jwt.verify(accessToken, secret)) as IAccessJwtPayload;
+  return payload;
 };
 
 const verifyRefreshToken = async (refreshToken: string): Promise<IRefreshJwtPayload> => {
   const secret = process.env.JWT_REFRESH_SECRET || DEFAULT_NO_SECRET;
 
-  const isValid = (await jwt.verify(refreshToken, secret)) as IRefreshJwtPayload;
-  return isValid;
+  const payload = (await jwt.verify(refreshToken, secret)) as IRefreshJwtPayload;
+  return payload;
 };
 
 export { generateJWT, verifyAccessToken, verifyRefreshToken };
