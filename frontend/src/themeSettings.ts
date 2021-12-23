@@ -1,30 +1,30 @@
-import {createTheme} from "@mui/material";
+import { createTheme } from '@mui/material';
 
-const colors = {
-    primaryColor: '#d83938',
-    secondaryColor: '#ffffff',
-    disabledTextColor: '#9b9b9b',
-    primaryTextColor: '#000000DE',
-    secondatyTextColor: '#ffffff'
-}
+const COLORS = {
+  primaryColor: '#d83938',
+  secondaryColor: '#ffffff',
+  disabledTextColor: '#9b9b9b',
+  primaryTextColor: '#000000DE',
+  secondatyTextColor: '#ffffff',
+};
 
 const theme = createTheme({
-    palette: {
-        primary: {
-            main: colors.primaryColor
-        },
-        secondary: {
-            main: colors.secondaryColor
-        },
-        text: {
-            primary: colors.primaryTextColor,
-            secondary: colors.secondatyTextColor,
-            disabled: colors.disabledTextColor
-        }
+  palette: {
+    primary: {
+      main: COLORS.primaryColor,
     },
-    typography: {
-        fontFamily: "'Lato', sans-serif"
-    }
-})
+    secondary: {
+      main: COLORS.secondaryColor,
+    },
+    text: {
+      primary: COLORS.primaryTextColor,
+      secondary: COLORS.secondatyTextColor,
+      disabled: COLORS.disabledTextColor,
+    },
+  },
+  typography: {
+    fontFamily: "'Lato', sans-serif",
+  },
+});
 
-export default theme
+export default theme;
