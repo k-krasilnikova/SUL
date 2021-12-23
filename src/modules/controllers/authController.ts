@@ -1,8 +1,8 @@
 import { compare } from 'bcrypt';
-import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
-import { getUserProvider } from 'db/providers/userProvider';
 import { Request, Response } from 'express';
 
+import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
+import { getUserProvider } from 'db/providers/userProvider';
 import { IUser } from 'interfaces/db/entities';
 import { TMiddlewareCall } from 'interfaces/middleware/common';
 import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';
