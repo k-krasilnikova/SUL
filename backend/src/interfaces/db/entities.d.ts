@@ -1,27 +1,25 @@
 import { ObjectId } from 'mongoose';
 
-import { USER_ROLES } from 'config/constants';
-
-interface User {
+interface IUser {
   _id?: ObjectId;
   username: string;
   passwordHash: string;
   email: string;
   refreshToken?: string;
-  role: UserRole;
-  position: UserPosition;
+  role: TUserRole;
+  position: TUserPosition;
   firstName: string;
   lastName: string;
   skills: ObjectId[];
   courses: ObjectId[];
   employees: ObjectId[];
-  avatar: String;
+  avatar: string;
   birthday: Date;
-  skype: String;
+  skype: string;
 }
 
-type UserRole = 'admin' | 'manager' | 'employee';
+type TUserRole = 'admin' | 'manager' | 'employee';
 
-type UserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
+type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { User, UserRole, UserPosition };
+export { IUser, TUserRole, TUserPosition };

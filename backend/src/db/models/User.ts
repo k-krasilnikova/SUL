@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose';
 
-import { User } from 'interfaces/db/entities';
+import { IUser } from 'interfaces/db/entities';
 
-const schema = new Schema<User>({
+const schema = new Schema<IUser>({
   _id: { type: Schema.Types.ObjectId, required: true },
   username: { type: String, required: true },
   passwordHash: { type: String, required: true },
@@ -20,6 +20,6 @@ const schema = new Schema<User>({
   skype: { type: String, required: true, default: 'not provided' },
 });
 
-const UserModel = model<User>('User', schema);
+const UserModel = model<IUser>('User', schema);
 
 export default UserModel;
