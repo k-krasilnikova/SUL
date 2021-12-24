@@ -13,10 +13,9 @@ const port = process.env.PORT;
 
 app.use(json());
 
+app.use(connectionMiddleware);
 app.use(loggerMiddleware);
 app.use(`${Routes.namespace}`, routers);
-
-app.use(connectionMiddleware);
 
 app.listen(port, () => {
   console.log(`SUL api started on port ${port}.`);
