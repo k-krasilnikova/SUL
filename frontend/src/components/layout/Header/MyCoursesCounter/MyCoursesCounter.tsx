@@ -4,14 +4,14 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import { Counter, MyCoursesCounterContent, MyCoursesCounterNumber } from 'components/Layout/styled';
 
 interface Props {
-  myCourses?: number;
+  myCoursesNumber?: number;
 }
 
-const MyCoursesCounter: React.FC<Props> = ({ myCourses }) => (
+const MyCoursesCounter: React.FC<Props> = ({ myCoursesNumber }) => (
   <Counter>
     <MyCoursesCounterContent>
       <VerifiedIcon fontSize="medium" color="secondary" />
-      <MyCoursesCounterNumber>{myCourses}</MyCoursesCounterNumber>
+      <MyCoursesCounterNumber>{myCoursesNumber}</MyCoursesCounterNumber>
     </MyCoursesCounterContent>
   </Counter>
 );
