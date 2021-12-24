@@ -14,11 +14,11 @@
         "prepare": "cd .. & husky install ./backend/.husky"
     },
     "lint-staged": {
-        "*.(ts,tsx)": [
+        "*.{ts,tsx}": [
             "prettier --write",
             "eslint --fix"
         ],
-        "*.(html,css)": [
+        "*.{html,css}": [
             "prettier --write"
         ]
     },
