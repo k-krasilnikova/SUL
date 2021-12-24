@@ -10,7 +10,17 @@
         "migrate": "migrate-mongo up",
         "migrate:undo-last": "migrate-mongo down",
         "migrate:status": "migrate-mongo status",
-        "migrate:create": "migrate-mongo create"
+        "migrate:create": "migrate-mongo create",
+        "prepare": "cd .. & husky install ./backend/.husky"
+    },
+    "lint-staged": {
+        "*.(ts,tsx)": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "*.(html,css)": [
+            "prettier --write"
+        ]
     },
     "license": "MIT",
     "devDependencies": {
@@ -30,6 +40,7 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.25.3",
         "eslint-plugin-prettier": "^4.0.0",
+        "husky": "^7.0.4",
         "nodemon": "^2.0.15",
         "prettier": "^2.5.1",
         "ts-node": "^10.4.0",
