@@ -7,7 +7,7 @@ import { isError } from 'utils/typeGuards/isError';
 
 const connectionMiddleware = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
-    const CONNECTION_STRING: string = process.env.DATABASE_URL || DEFAULT_CONNECTION_STRING;
+    const CONNECTION_STRING: string =  process.env.DATABASE_URL || DEFAULT_CONNECTION_STRING;
 
     await connect(CONNECTION_STRING);
 
