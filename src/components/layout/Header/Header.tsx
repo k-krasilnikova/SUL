@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
 
 import PATHS from 'constants/routes';
 import { User } from 'types/user';
@@ -20,27 +21,31 @@ const Header: React.FC<User> = ({
   userRole,
   userUnit,
   userDepartment,
-  myCourses,
+  myCoursesNumber,
   avatarUrl,
 }) => (
-  <LayoutHeader>
-    <NavLink to={PATHS.home}>
-      <BrandLogo>Skill Up Level</BrandLogo>
-    </NavLink>
-    <HeaderContent>
-      <SpaceHolder />
-      <MyCoursesCounter myCourses={myCourses} />
-      <HeaderDivider />
-      <UserDropDown
-        userName={userName}
-        userRole={userRole}
-        userUnit={userUnit}
-        userDepartment={userDepartment}
-        avatarUrl={avatarUrl}
-      />
-      <HeaderDivider />
-      <LogOut />
-    </HeaderContent>
+  <LayoutHeader container>
+    <Grid item xs={3}>
+      <NavLink to={PATHS.home}>
+        <BrandLogo>Skill Up Level</BrandLogo>
+      </NavLink>
+    </Grid>
+    <Grid item xs={9}>
+      <HeaderContent>
+        <SpaceHolder />
+        <MyCoursesCounter myCoursesNumber={myCoursesNumber} />
+        <HeaderDivider />
+        <UserDropDown
+          userName={userName}
+          userRole={userRole}
+          userUnit={userUnit}
+          userDepartment={userDepartment}
+          avatarUrl={avatarUrl}
+        />
+        <HeaderDivider />
+        <LogOut />
+      </HeaderContent>
+    </Grid>
   </LayoutHeader>
 );
 

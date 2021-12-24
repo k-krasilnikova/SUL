@@ -6,7 +6,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import {
   UserInfo,
-  UserAvatar,
   UserName,
   UserPopper,
   ArrowDown,
@@ -15,6 +14,7 @@ import {
   Link,
 } from 'components/Layout/UserDropDown/styled';
 import { User } from 'types/user';
+import { UserAvatar } from 'components/Avatar';
 
 interface PopperControl {
   isOpen: boolean;
@@ -37,7 +37,7 @@ const DropDown: React.FC<Props> = ({
 }) => (
   <Box>
     <UserInfo onClick={onClick}>
-      <UserAvatar src={avatarUrl} />
+      <UserAvatar avatarUrl={avatarUrl} size="small" />
       <UserName>{userName}</UserName>
       {isOpen ? <ArrowUp /> : <ArrowDown />}
     </UserInfo>
