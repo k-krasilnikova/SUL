@@ -10,6 +10,7 @@ const connectionMiddleware = async (req: Request, res: Response, next: TMiddlewa
     const CONNECTION_STRING: string = process.env.DATABASE_URL || DEFAULT_CONNECTION_STRING;
 
     await connect(CONNECTION_STRING);
+
     next();
   } catch (err) {
     if (isError(err)) {
