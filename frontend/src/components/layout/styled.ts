@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Box } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+const HEADER_HEIGHT = '70px';
+
 export const LayoutHeader = styled(Box)({
   display: 'flex',
   justifyContent: 'flex-start',
@@ -76,7 +78,7 @@ export const LogOut = styled(LogoutIcon)({
 });
 export const MenuTabs = styled('div')({
   width: '300px',
-  height: '100vh',
+  height: `calc(100vh - ${HEADER_HEIGHT})`,
   backgroundColor: 'white',
   borderRight: '2px solid #f0f2f7',
   fontSize: '24px',
