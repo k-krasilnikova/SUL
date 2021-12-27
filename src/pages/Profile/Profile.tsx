@@ -4,6 +4,7 @@ import ListItem from '@mui/material/ListItem';
 import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
+
 import {
   ProfileBox,
   UserInfoList,

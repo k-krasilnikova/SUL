@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { User } from 'types/user';
+import { avatarDefault } from 'icons';
 
 import { UserAvatarRounded } from './styled';
-import avatarDefault from './image/avatarDefault.svg';
 
 interface AvatarProps {
   size?: string;
