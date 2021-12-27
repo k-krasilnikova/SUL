@@ -1,40 +1,112 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ArticleIcon from '@mui/icons-material/Article';
-import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
-import HelpIcon from '@mui/icons-material/Help';
+import { Link } from 'react-router-dom';
+import {
+  AccountCircleOutlined,
+  ArticleOutlined,
+  FolderSpecialOutlined,
+  AddToQueueOutlined,
+  EmojiPeopleOutlined,
+  AssessmentOutlined,
+  QuizOutlined,
+} from '@mui/icons-material';
+import { ListItemIcon, ListItemText, ListItemButton } from '@mui/material';
 
 import PATHS from 'constants/routes';
-import { MenuTabs, MenuTab, MenuTabName } from 'components/Layout/styled';
+import { MenuTabs } from 'components/Layout/styled';
 
-const Menu: React.FC = () => (
-  <MenuTabs>
-    <NavLink to={PATHS.profile}>
-      <MenuTab>
-        <AccountCircleIcon fontSize="large" color="inherit" />
-        <MenuTabName>Profile</MenuTabName>
-      </MenuTab>
-    </NavLink>
-    <NavLink to={PATHS.coursesList}>
-      <MenuTab>
-        <ArticleIcon fontSize="large" color="inherit" />
-        <MenuTabName>Possible courses</MenuTabName>
-      </MenuTab>
-    </NavLink>
-    <NavLink to={PATHS.myCourses}>
-      <MenuTab>
-        <FolderSpecialIcon fontSize="large" color="inherit" />
-        <MenuTabName>My courses</MenuTabName>
-      </MenuTab>
-    </NavLink>
-    <NavLink to={PATHS.help}>
-      <MenuTab>
-        <HelpIcon fontSize="large" color="inherit" />
-        <MenuTabName>Help</MenuTabName>
-      </MenuTab>
-    </NavLink>
-  </MenuTabs>
-);
+const EMPLOYEE_MENU = [
+  {
+    path: PATHS.profile,
+    title: 'Profile',
+    icon: <AccountCircleOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.coursesList,
+    title: 'Courses List',
+    icon: <ArticleOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.myCourses,
+    title: 'My Courses',
+    icon: <AddToQueueOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.help,
+    title: 'Help',
+    icon: <QuizOutlined fontSize="large" />,
+  },
+];
+
+const MANAGER_MENU = [
+  {
+    path: PATHS.profile,
+    title: 'Profile',
+    icon: <AccountCircleOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.coursesList,
+    title: 'Courses List',
+    icon: <ArticleOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.myCourses,
+    title: 'My Courses',
+    icon: <FolderSpecialOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.requests,
+    title: 'Pending Requests',
+    icon: <AddToQueueOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.employees,
+    title: 'Employees',
+    icon: <EmojiPeopleOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.help,
+    title: 'Help',
+    icon: <QuizOutlined fontSize="large" />,
+  },
+];
+
+const ADMIN_MENU = [
+  {
+    path: PATHS.coursesList,
+    title: 'Courses List',
+    icon: <ArticleOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.skills,
+    title: 'Skills',
+    icon: <AssessmentOutlined fontSize="large" />,
+  },
+  {
+    path: PATHS.help,
+    title: 'Help',
+    icon: <QuizOutlined fontSize="large" />,
+  },
+];
+
+const ROLES_MENU = {
+  employee: EMPLOYEE_MENU,
+  manager: MANAGER_MENU,
+  admin: ADMIN_MENU,
+};
+
+const Menu: React.FC = () => {
+  const menuItems = ROLES_MENU['employee'];
+
+  return (
+    <MenuTabs>
+      {menuItems.map((item, key) => (
+        <ListItemButton key={key} component={Link} to={item.path}>
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.title} primaryTypographyProps={{ variant: 'h6' }} />
+        </ListItemButton>
+      ))}
+    </MenuTabs>
+  );
+};
 
 export default Menu;
