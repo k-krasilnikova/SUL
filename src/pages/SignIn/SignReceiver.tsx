@@ -4,7 +4,7 @@ import SignPresenter from 'components/SignForms/SignPresenter';
 import { authGreetings, authLabel } from 'constants/signConstants';
 import InputField from 'components/SignForms/InputField';
 import SignLabel from 'components/SignForms/SignLabel';
-import type { SignInFormik } from 'components/SignForms/SignInterfaces';
+import type { SignTypes } from 'components/SignForms/SignInterfaces';
 import {
   input_login,
   label_login,
@@ -24,7 +24,7 @@ export {
   SignLabel,
   InputField,
   Button,
-  SignInFormik,
+  SignTypes,
   input_login,
   label_login,
   autoComplete_login,

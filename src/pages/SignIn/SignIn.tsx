@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {
   Button,
-  SignInFormik,
+  SignTypes,
   input_login,
   label_login,
   autoComplete_login,
@@ -25,7 +25,7 @@ import {
   SignFormGrid,
 } from './styled';
 
-const SignIn = ({ formik, onChangeHandler }: SignInFormik): JSX.Element => {
+const SignIn = ({ formik, onChangeHandler }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
