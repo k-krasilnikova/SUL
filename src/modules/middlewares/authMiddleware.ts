@@ -7,7 +7,7 @@ import { isError } from 'utils/typeGuards/isError';
 const withAuth =
   (roles: Array<string>) => async (req: Request, res: Response, next: TMiddlewareCall) => {
     try {
-      const accessToken = req.headers.authorization;
+      const accessToken = req.headers.authorization?.split(' ')[1];
       if (!accessToken) {
         throw new Error('no access, invalid access params');
       }
