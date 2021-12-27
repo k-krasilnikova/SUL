@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface SignInFormik {
+interface SignTypes {
   value?: string | number;
   fieldValue?: string | number;
   login?: string;
@@ -48,4 +48,4 @@ interface InputFieldTypes {
   autoComplete?: string;
 }
 
-export { type SignInFormik, type InputFieldTypes, type SignLabelTypes };
+export { type SignTypes, type InputFieldTypes, type SignLabelTypes };
