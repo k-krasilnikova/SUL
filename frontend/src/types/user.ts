@@ -4,6 +4,11 @@ export interface User {
   userUnit?: string;
   userDepartment?: string;
   userGroup?: string;
-  myCourses?: number;
+  myCoursesNumber?: number;
   avatarUrl?: string;
+  userBirthday?: string;
+  userSkype?: string;
+  userPosition?: string;
+  userSkills?: string[];
+  userCourses?: string[];
 }
