@@ -1,6 +1,7 @@
 enum Routes {
   namespace = '/api',
   account = '/account',
+  users = 'users',
 }
 
 enum SubRoutes {
@@ -9,4 +10,8 @@ enum SubRoutes {
   profile = '/profile',
 }
 
-export { Routes, SubRoutes };
+enum Params {
+  id = '/:id',
+}
+
+export { Routes, SubRoutes, Params };
