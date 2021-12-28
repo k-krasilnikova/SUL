@@ -1,13 +1,11 @@
 import styled from 'styled-components';
-import { Box } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Grid from '@mui/material/Grid';
 
 const HEADER_HEIGHT = '70px';
 
-export const LayoutHeader = styled(Box)({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  width: '100vw',
+export const LayoutHeader = styled(Grid)({
+  width: 'calc(100vw-10px)',
   backgroundColor: 'white',
   borderBottom: '2px solid #f0f2f7',
   fontFamily: '"Lato", sans-serif',
@@ -21,19 +19,14 @@ export const HeaderDivider = styled('div')({
   marginBottom: '2px',
 });
 export const BrandLogo = styled('div')({
-  flexGrow: '3',
-  flexShrink: '1',
   display: 'block',
   height: '68px',
-  width: '300px',
   fontSize: '32px',
   padding: '15px 45px 20px 50px',
   borderRight: '2px solid #f0f2f7',
   color: '#d83938',
 });
 export const HeaderContent = styled('div')({
-  flexGrow: '1',
-  flexShrink: '3',
   display: 'grid',
   gridTemplateColumns: '1fr 130px 1px 340px 1px 100px',
   gridTemplateRows: '68px',
@@ -77,7 +70,7 @@ export const LogOut = styled(LogoutIcon)({
   },
 });
 export const MenuTabs = styled('div')({
-  width: '300px',
+  width: '100%',
   height: `calc(100vh - ${HEADER_HEIGHT})`,
   backgroundColor: 'white',
   borderRight: '2px solid #f0f2f7',
