@@ -1,13 +1,13 @@
-import { getUserProvider } from 'db/providers/userProvider';
 import { Request, Response } from 'express';
 
-import { TMiddlewareCall } from 'interfaces/middleware/common';
+import { getUserProvider } from 'db/providers/userProvider';
+import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { generateInitialDto } from 'utils/dto/dtoUtils';
 import { isError } from 'utils/typeGuards/isError';
 
-const getProfileController = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const getProfileInformation = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
-    const { id } = res.locals;
+    const { id } = req.params;
     const profileInfo = await getUserProvider(id);
     res.json(generateInitialDto(profileInfo));
   } catch (error) {
@@ -17,4 +17,4 @@ const getProfileController = async (req: Request, res: Response, next: TMiddlewa
   }
 };
 
-export { getProfileController };
+export { getProfileInformation };

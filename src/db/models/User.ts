@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { IUser } from 'interfaces/db/entities';
+import { IUser } from 'interfaces/entities/user';
 
 const schema = new Schema<IUser>({
   _id: { type: Schema.Types.ObjectId, required: true },

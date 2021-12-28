@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { TMiddlewareCall } from 'interfaces/middleware/common';
+import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { verifyAccessToken } from 'utils/auth/authUtils';
 import { isError } from 'utils/typeGuards/isError';
 
