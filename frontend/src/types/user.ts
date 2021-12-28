@@ -1,12 +1,13 @@
 export interface User {
-  userName?: string;
+  firstName?: string;
+  lastName?: string;
   userRole?: string;
   userUnit?: string;
   userDepartment?: string;
   userGroup?: string;
   myCoursesNumber?: number;
   avatarUrl?: string;
-  userBirthday?: string;
+  userBirthday?: Date;
   userSkype?: string;
   userPosition?: string;
   userSkills?: string[];
