@@ -1,1 +1,1 @@
-export { default as avatarDefault } from './image/avatarDefault.svg';
+export { default as avatarDefault } from './avatarDefault.svg';
