@@ -1,5 +1,4 @@
 import React from 'react';
-import PATHS from './routes';
 import {
   AccountCircleOutlined,
   ArticleOutlined,
@@ -9,6 +8,8 @@ import {
   AssessmentOutlined,
   QuizOutlined,
 } from '@mui/icons-material';
+
+import PATHS from './routes';
 
 const EMPLOYEE_MENU = [
   {
