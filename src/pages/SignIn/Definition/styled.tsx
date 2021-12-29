@@ -1,13 +1,7 @@
 import { styled } from '@mui/styles';
-import { TextField, Box, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
-const InputStyled = styled(TextField)({
-  '& *': {
-    color: '#000000DE !important',
-  },
-});
-
-const SignPresenterBox = styled(Box)({
+export const Wrapper = styled(Box)({
   marginTop: '50px',
   maxWidth: '500px',
   display: 'flex',
@@ -22,7 +16,7 @@ const SignPresenterBox = styled(Box)({
   },
 });
 
-const PresenterWrapper = styled(Box)({
+export const LogoBox = styled(Box)({
   display: 'flex',
   width: '100%',
   paddingLeft: '0px',
@@ -34,7 +28,7 @@ const PresenterWrapper = styled(Box)({
   },
 });
 
-const SignTechArtLabel = styled(Typography)({
+export const CompanyLogo = styled(Typography)({
   fontWeight: '600 !important',
   fontSize: '40px !important',
   '@media(max-width: 424px)': {
@@ -42,7 +36,7 @@ const SignTechArtLabel = styled(Typography)({
   },
 });
 
-const SignPresentSubtext = styled(Typography)({
+export const Instructions = styled(Typography)({
   fontSize: '25px !important',
   color: 'gray',
   '@media(max-width: 767px)': {
@@ -52,5 +46,3 @@ const SignPresentSubtext = styled(Typography)({
     fontSize: '20px !important',
   },
 });
-
-export { InputStyled, SignPresenterBox, PresenterWrapper, SignTechArtLabel, SignPresentSubtext };
