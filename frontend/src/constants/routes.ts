@@ -1,4 +1,4 @@
-const PATHS: {
+export const PATHS: {
   home: string;
   profile: string;
   coursesList: string;
@@ -20,4 +20,8 @@ const PATHS: {
   skills: '/skills',
 };
 
-export default PATHS;
+export const API: {
+  getProfile: string;
+} = {
+  getProfile: '/api/account/profile',
+};

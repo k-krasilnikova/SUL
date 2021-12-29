@@ -15,7 +15,8 @@ import {
 } from './styled';
 
 const Profile: React.FC<User> = ({
-  userName,
+  firstName,
+  lastName,
   avatarUrl,
   userBirthday,
   userSkype,
@@ -29,7 +30,9 @@ const Profile: React.FC<User> = ({
       <UserInfoList sx={{ marginLeft: 'auto', marginRight: 'auto' }}>
         <ListItem disablePadding>
           <UserInfoLabel>Full name:</UserInfoLabel>
-          <UserInfoText>{userName}</UserInfoText>
+          <UserInfoText>
+            {firstName} {lastName}
+          </UserInfoText>
         </ListItem>
         <ListItem disablePadding>
           <UserInfoLabel>Birthday:</UserInfoLabel>
