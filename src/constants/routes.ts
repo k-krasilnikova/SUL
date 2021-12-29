@@ -1,4 +1,4 @@
-const PATHS: {
+export const PATHS: {
   home: string;
   profile: string;
   coursesList: string;
@@ -12,4 +12,8 @@ const PATHS: {
   help: '/help',
 };
 
-export default PATHS;
+export const API: {
+  getProfile: string;
+} = {
+  getProfile: '/api/account/profile',
+};
