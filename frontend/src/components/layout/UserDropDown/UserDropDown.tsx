@@ -25,7 +25,8 @@ interface PopperControl {
 type Props = User & PopperControl;
 
 const DropDown: React.FC<Props> = ({
-  userName,
+  firstName,
+  lastName,
   userRole,
   userUnit,
   userDepartment,
@@ -38,7 +39,9 @@ const DropDown: React.FC<Props> = ({
   <Box>
     <UserInfo onClick={onClick}>
       <UserAvatar avatarUrl={avatarUrl} size="small" />
-      <UserName>{userName}</UserName>
+      <UserName>
+        {firstName} {lastName}
+      </UserName>
       {isOpen ? <ArrowUp /> : <ArrowDown />}
     </UserInfo>
     <Popper open={isOpen} anchorEl={anchorEl}>

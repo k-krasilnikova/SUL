@@ -14,7 +14,7 @@ import {
   UserListItem,
 } from './styled';
 
-const Profile: React.FC<User> = ({
+const ProfileContent: React.FC<User> = ({
   firstName,
   lastName,
   avatarUrl,
@@ -65,4 +65,4 @@ const Profile: React.FC<User> = ({
   </AuthorizedLayout>
 );
 
-export default Profile;
+export default ProfileContent;

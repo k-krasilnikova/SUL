@@ -4,7 +4,8 @@ import DropDown from 'components/Layout/UserDropDown/UserDropDown';
 import { User } from 'types/user';
 
 const UserDropDown: React.FC<User> = ({
-  userName,
+  firstName,
+  lastName,
   userRole,
   userUnit,
   userDepartment,
@@ -21,7 +22,8 @@ const UserDropDown: React.FC<User> = ({
 
   return (
     <DropDown
-      userName={userName}
+      firstName={firstName}
+      lastName={lastName}
       userRole={userRole}
       userUnit={userUnit}
       userDepartment={userDepartment}
