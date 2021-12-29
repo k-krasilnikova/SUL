@@ -1,18 +1,24 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { json } from 'body-parser';
+import cors from 'cors';
 
 import { Routes } from 'enums/routesEnum';
-import routers from 'modules/routes/routes';
-import connectionMiddleware from 'db/connection/connectionMiddleware';
-import loggerMiddleware from 'modules/middlewares/loggerMiddleware';
+import routers from 'routing/routes';
+import connectionMiddleware from 'middlewares/connectionMiddleware';
+import loggerMiddleware from 'middlewares/loggerMiddleware';
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
 
 app.use(json());
-
+app.use(
+  cors({
+    origin: '*',
+    credentials: true,
+  }),
+);
 app.use(connectionMiddleware);
 app.use(loggerMiddleware);
 app.use(`${Routes.namespace}`, routers);
