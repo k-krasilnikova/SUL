@@ -1,11 +1,12 @@
 import React from 'react';
 
 import useGetProfile from 'api/profile';
+import accessTokenGetter from 'utils';
 
 import Profile from './Profile';
 
 const ProfileContainer: React.FC = () => {
-  const accessToken = ''; //will be corrected when cookie setter with token is added
+  const accessToken = accessTokenGetter();
   const { data, isSuccess, isLoading, isError } = useGetProfile(accessToken);
   return (
     <Profile
