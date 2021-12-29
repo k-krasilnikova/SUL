@@ -3,8 +3,8 @@ import { Request, Response } from 'express';
 
 import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
 import { getUserProvider } from 'db/providers/userProvider';
-import { IUser } from 'interfaces/db/entities';
-import { TMiddlewareCall } from 'interfaces/middleware/common';
+import { IUser } from 'interfaces/entities/user';
+import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';
 import { generateInitialDto } from 'utils/dto/dtoUtils';
 import { isError } from 'utils/typeGuards/isError';
@@ -20,7 +20,7 @@ const loginController = async (req: Request, res: Response, next: TMiddlewareCal
     const tokens = await generateJWT(dbUser);
     await saveTokenProvider(tokens.refreshToken, dbUser);
 
-    res.json(generateInitialDto(tokens, dbUser));
+    res.json(generateInitialDto(dbUser, tokens));
   } catch (error) {
     if (isError(error)) {
       next(error);

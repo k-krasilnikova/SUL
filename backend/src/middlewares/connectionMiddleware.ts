@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { connect } from 'mongoose';
 
 import { DEFAULT_CONNECTION_STRING } from 'config/constants';
-import { TMiddlewareCall } from 'interfaces/middleware/common';
+import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { isError } from 'utils/typeGuards/isError';
 
 const connectionMiddleware = async (req: Request, res: Response, next: TMiddlewareCall) => {

@@ -5,6 +5,9 @@ export const PATHS: {
   myCourses: string;
   help: string;
   signIn: string;
+  requests: string;
+  employees: string;
+  skills: string;
 } = {
   home: '/',
   profile: '/profile',
@@ -12,6 +15,9 @@ export const PATHS: {
   myCourses: '/my-courses',
   help: '/help',
   signIn: '/signin',
+  requests: '/pending-requests',
+  employees: '/employees',
+  skills: '/skills',
 };
 
 export const API: {
