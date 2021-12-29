@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import PATHS from 'constants/routes';
-import { Profile, MyCourses, CoursesList, Help } from 'pages';
+import { Profile, MyCourses, CoursesList, Help, SignIn } from 'pages';
 
 import { queryClient } from 'api/base';
 
@@ -20,6 +20,7 @@ const App: React.FC = () => (
           <Route path={PATHS.myCourses} element={<MyCourses />} />
           <Route path={PATHS.coursesList} element={<CoursesList />} />
           <Route path={PATHS.help} element={<Help />} />
+          <Route path={PATHS.signIn} element={<SignIn />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
