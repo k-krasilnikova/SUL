@@ -1,8 +1,5 @@
 :root {
-  --brand-color: #eb1a2a;
-  --layout-borders-color: #f0f2f7;
   --layout-background-color: #f9fafc;
-  --menu-background: #fff;
 }
 * {
   box-sizing: border-box;
