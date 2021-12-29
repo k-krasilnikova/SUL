@@ -9,7 +9,7 @@ import {
   QuizOutlined,
 } from '@mui/icons-material';
 
-import PATHS from './routes';
+import { PATHS } from './routes';
 
 const EMPLOYEE_MENU = [
   {
