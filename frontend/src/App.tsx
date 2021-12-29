@@ -5,8 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import PATHS from 'constants/routes';
-import { Profile, MyCourses, CoursesList, Help, Employees, Requests, Skills } from 'pages';
-
+import { Profile, MyCourses, CoursesList, Help, Employees, Requests, Skills, SignIn } from 'pages';
 import { queryClient } from 'api/base';
 
 import theme from './themeSettings';
@@ -23,6 +22,7 @@ const App: React.FC = () => (
           <Route path={PATHS.employees} element={<Employees />} />
           <Route path={PATHS.requests} element={<Requests />} />
           <Route path={PATHS.skills} element={<Skills />} />
+          <Route path={PATHS.signIn} element={<SignIn />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
