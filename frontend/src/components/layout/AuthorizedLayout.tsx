@@ -19,10 +19,10 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, children }) => (
       <Grid item xs={12}>
         <Header />
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={3}>
         <Menu />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={9}>
         {children}
       </Grid>
     </Grid>

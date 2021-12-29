@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import Avatar from '@mui/material/Avatar';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
@@ -10,19 +9,13 @@ export const UserInfo = styled('div')({
   width: '280px',
   height: '58px',
   margin: '5px 10px 5px 30px',
-  padding: '3px',
+  padding: '6px',
   borderRadius: '3px',
   border: '1px solid #9b9b9b',
   '&:hover': {
     cursor: 'pointer',
     backgroundColor: '#f1f1f1',
   },
-});
-export const UserAvatar = styled(Avatar)({
-  display: 'inline-block',
-  width: '30px',
-  height: '30px',
-  margin: '5px 10px',
 });
 export const UserName = styled('span')({
   display: 'inline-block',
