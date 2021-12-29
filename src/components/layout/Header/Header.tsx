@@ -13,9 +13,7 @@ import {
   LogOut,
 } from 'components/Layout/styled';
 import UserDropDown from 'components/Layout/UserDropDown';
-
 import MyCoursesCounter from './MyCoursesCounter';
-
 const Header: React.FC<User> = ({
   firstName,
   lastName,
@@ -50,5 +48,4 @@ const Header: React.FC<User> = ({
     </Grid>
   </LayoutHeader>
 );
-
 export default Header;
