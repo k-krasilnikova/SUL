@@ -1,39 +1,28 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ArticleIcon from '@mui/icons-material/Article';
-import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
-import HelpIcon from '@mui/icons-material/Help';
+import { Link } from 'react-router-dom';
+import { ListItemIcon, ListItemText, ListItemButton } from '@mui/material';
 
-import PATHS from 'constants/routes';
-import { MenuTabs, MenuTab, MenuTabName } from 'components/Layout/styled';
+import { MenuTabs } from './styled';
 
-const Menu: React.FC = () => (
+interface MenuItemProps {
+  path: string;
+  title: string;
+  icon: React.ReactElement;
+}
+
+interface MenuProps {
+  menuList: MenuItemProps[];
+  children?: React.ReactNode;
+}
+
+const Menu: React.FC<MenuProps> = ({ menuList }) => (
   <MenuTabs>
-    <NavLink to={PATHS.profile}>
-      <MenuTab>
-        <AccountCircleIcon fontSize="large" color="inherit" />
-        <MenuTabName>Profile</MenuTabName>
-      </MenuTab>
-    </NavLink>
-    <NavLink to={PATHS.coursesList}>
-      <MenuTab>
-        <ArticleIcon fontSize="large" color="inherit" />
-        <MenuTabName>Possible courses</MenuTabName>
-      </MenuTab>
-    </NavLink>
-    <NavLink to={PATHS.myCourses}>
-      <MenuTab>
-        <FolderSpecialIcon fontSize="large" color="inherit" />
-        <MenuTabName>My courses</MenuTabName>
-      </MenuTab>
-    </NavLink>
-    <NavLink to={PATHS.help}>
-      <MenuTab>
-        <HelpIcon fontSize="large" color="inherit" />
-        <MenuTabName>Help</MenuTabName>
-      </MenuTab>
-    </NavLink>
+    {menuList.map((item, key) => (
+      <ListItemButton key={key} component={Link} to={item.path}>
+        <ListItemIcon>{item.icon}</ListItemIcon>
+        <ListItemText primary={item.title} primaryTypographyProps={{ variant: 'h6' }} />
+      </ListItemButton>
+    ))}
   </MenuTabs>
 );
 
