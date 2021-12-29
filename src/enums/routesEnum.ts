@@ -1,7 +1,7 @@
 enum Routes {
   namespace = '/api',
   account = '/account',
-  users = 'users',
+  users = '/users',
 }
 
 enum SubRoutes {
