@@ -1,13 +1,11 @@
 import React from 'react';
 
 import useGetProfile from 'api/profile';
-import accessTokenGetter from 'utils';
 
 import Profile from './Profile';
 
 const ProfileContainer: React.FC = () => {
-  const accessToken = accessTokenGetter();
-  const { data, isSuccess, isLoading, isError } = useGetProfile(accessToken);
+  const { data, isSuccess, isLoading, isError } = useGetProfile();
   return (
     <Profile
       firstName={data?.firstName}

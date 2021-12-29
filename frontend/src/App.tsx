@@ -4,7 +4,7 @@ import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import PATHS from 'constants/routes';
+import { PATHS } from 'constants/routes';
 import { Profile, MyCourses, CoursesList, Help } from 'pages';
 
 import { queryClient } from 'api/base';

@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query';
 
 import { apiClient } from 'api/base';
+import { API } from 'constants/routes';
 
-const useGetProfile = (accessToken: string | undefined) =>
+const useGetProfile = () =>
   useQuery('profile', async () => {
     let profileResponse: {
       position?: string;
@@ -16,11 +17,7 @@ const useGetProfile = (accessToken: string | undefined) =>
       error?: unknown;
     };
     try {
-      const response = await apiClient.get('/api/account/profile', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      const response = await apiClient.get(API.getProfile);
       profileResponse = response.data;
     } catch (error) {
       profileResponse = { error: error };
