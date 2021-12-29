@@ -1,4 +1,5 @@
 {
+
     "name": "backend",
     "version": "1.0.0",
     "description": "API of the SkillUpLevel",
@@ -63,4 +64,3 @@
         "tsconfig-paths": "^3.12.0",
         "winston": "^3.3.3"
     }
-}
