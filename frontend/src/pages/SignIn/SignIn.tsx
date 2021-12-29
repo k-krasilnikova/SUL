@@ -1,17 +1,11 @@
-import * as React from 'react';
+import React from 'react';
+import { Typography } from '@mui/material';
 
-import {
-  Button,
-  SignTypes,
-  input_login,
-  label_login,
-  autoComplete_login,
-  input_password,
-  label_password,
-  autoComplete_password,
-  authLabel,
-} from './SignReceiver';
-import { SignPresenter, SignLabel, InputField } from 'components/SignForms';
+import Button from 'components/Button';
+import TextField from 'components/TextField';
+import { SignTypes } from 'types/signIn';
+
+import Definition from './Definition';
 import {
   SignWrapper,
   FormBox,
@@ -25,50 +19,49 @@ import {
   SignFormGrid,
 } from './styled';
 
-const SignIn = ({ formik, onChangeHandler }: SignTypes): JSX.Element => {
+const SignIn = ({ formik }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
     touched,
     isValid,
-    handleBlur,
     handleSubmit,
+    handleChange,
   } = formik;
 
   return (
     <SignMain>
       <SignMainGrid justifyContent="space-between" container>
         <SignPresGrid item xs={12} sm={12} md={7} lg={8} alignItems="center">
-          <SignPresenter />
+          <Definition />
         </SignPresGrid>
         <SignFormGrid item xs={12} sm={12} md={5} lg={4} alignItems="center">
           <SignWrapper>
             <FormBox>
-              <SignLabel signLabel={authLabel} />
+              <Typography variant="h5" mb={3}>
+                Log In
+              </Typography>
               <ItemsBox component="form" onSubmit={handleSubmit}>
                 <GridWrapper container spacing={1}>
                   <GridSignInput item xs={12}>
-                    <InputField
-                      fieldValue={login}
+                    <TextField
+                      value={login}
                       touched={touched?.login}
-                      onChangeHandler={onChangeHandler}
-                      handleBlur={handleBlur}
-                      errors={errors?.login}
-                      id={input_login}
-                      label={label_login}
-                      autoComplete={autoComplete_login}
+                      onChange={handleChange}
+                      error={errors?.login}
+                      id="login"
+                      label="Login"
                     />
                   </GridSignInput>
                   <GridSignInput item xs={12}>
-                    <InputField
-                      fieldValue={password}
+                    <TextField
+                      value={password}
                       touched={touched?.password}
-                      onChangeHandler={onChangeHandler}
-                      handleBlur={handleBlur}
-                      errors={errors?.password}
-                      id={input_password}
-                      label={label_password}
-                      autoComplete={autoComplete_password}
+                      onChange={handleChange}
+                      error={errors?.password}
+                      id="password"
+                      label="Password"
+                      type="password"
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>
@@ -78,6 +71,9 @@ const SignIn = ({ formik, onChangeHandler }: SignTypes): JSX.Element => {
                       type="submit"
                       variant="contained"
                       color="primary"
+                      onClick={() => {
+                        console.log(123);
+                      }}
                     >
                       Sign In
                     </Button>
