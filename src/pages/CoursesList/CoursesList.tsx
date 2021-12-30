@@ -4,7 +4,7 @@ import { AuthorizedLayout } from 'components/Layout';
 
 const CoursesList: React.FC = () => (
   <AuthorizedLayout pageName="Courses List">
-    <div>Courses List should be here</div>
+    <div>Should be Courses List</div>
   </AuthorizedLayout>
 );
 

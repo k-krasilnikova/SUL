@@ -1,6 +1,7 @@
 export interface User {
   firstName?: string;
   lastName?: string;
+  userName?: string;
   userRole?: string;
   userUnit?: string;
   userDepartment?: string;
