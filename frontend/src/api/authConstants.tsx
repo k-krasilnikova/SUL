@@ -12,7 +12,6 @@ const REQUESTERRORS: requestErrors = {
 
 const COOKIESVALUES: cookiesTypes = {
   uniqAccessToken: 'accessToken',
-  uniqRefreshToken: 'refreshToken',
   uniqUserId: 'userId',
 };
 
@@ -20,13 +19,5 @@ const TOKEN_FETCH_URL = 'http://localhost:3001/api/account/login';
 const REACT_APP_BACKEND_URL = 'http://localhost:3001';
 
 const { getError, postError } = REQUESTERRORS;
-const { uniqAccessToken, uniqRefreshToken, uniqUserId } = COOKIESVALUES;
-export {
-  getError,
-  postError,
-  uniqAccessToken,
-  uniqRefreshToken,
-  uniqUserId,
-  TOKEN_FETCH_URL,
-  REACT_APP_BACKEND_URL,
-};
+const { uniqAccessToken, uniqUserId } = COOKIESVALUES;
+export { getError, postError, uniqAccessToken, uniqUserId, TOKEN_FETCH_URL, REACT_APP_BACKEND_URL };
