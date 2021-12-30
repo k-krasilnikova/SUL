@@ -1,11 +1,11 @@
 import React from 'react';
 
-import useGetProfile from 'api/profile';
+import { useGetProfile } from 'api/profile';
 
 import Profile from './Profile';
 
 const ProfileContainer: React.FC = () => {
-  const { data, isSuccess, isLoading, isError } = useGetProfile();
+  const { data } = useGetProfile();
   return (
     <Profile
       firstName={data?.firstName}

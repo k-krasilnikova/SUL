@@ -1,5 +1,8 @@
 import Cookies from 'js-cookie';
+import { uniqAccessToken } from 'api/authConstants';
 
-const accessToken = Cookies.get('accessToken');
+const token = Cookies.get(uniqAccessToken);
+let accessToken = '';
+token ? (accessToken = JSON.parse(token)) : (accessToken = '');
 
 export default accessToken;
