@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
-
+import useGetToken from 'api/profile/getToken';
 import SignIn from './SignIn';
-
+import { TOKEN_FETCH_URL } from 'api/authConstants';
+import { PATHS } from 'constants/routes';
 interface SignInFields {
   login: string;
   password: string;
@@ -14,29 +16,18 @@ const initSignInvalue: SignInFields = {
   login: '',
   password: '',
 };
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-
-import { signInSchema, initSignInvalue, usePostWrapper } from './SignReceiver';
-import SignIn from './SignIn';
 
 const SignInContainer: React.FC = () => {
-  const TOUCHED_STATUS = { isTouchedStatus: true, shouldValidateStatus: false };
-  const [userCreds, setUserCreds] = useState({});
+  const navToAuth = useNavigate();
+  const auth = useGetToken(TOKEN_FETCH_URL);
 
-  const auth = usePostWrapper(
-    'https://jsonplaceholder.typicode.com/users',
-    JSON.stringify(userCreds),
-  );
-
-const SignInContainer: React.FC = () => {
   const formik = useFormik({
     initialValues: initSignInvalue,
     validationSchema: signInSchema,
     onSubmit: (values, { resetForm }): void => {
-      setUserCreds(values);
-      auth.mutateAsync();
+      auth.mutateAsync(values);
       resetForm();
+      navToAuth(PATHS.profile);
     },
   });
 
