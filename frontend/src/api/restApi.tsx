@@ -10,7 +10,6 @@ const putUserToken = async (
   try {
     const response = await axios.post(baseUrl, initialData);
     const responseData = await response.data;
-    console.log(`object`, response);
     const resAccess = JSON.stringify(responseData.accessToken);
     const resUserId = JSON.stringify(responseData._id);
     Cookies.set(uniqAccessToken, resAccess, { secure: true });
