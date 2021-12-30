@@ -1,14 +1,13 @@
 import React from 'react';
 
 import Image from 'components/Image';
-import CourseInfo from 'components/CourseInfo';
+import CourseInfo from './CourseInfo';
 
 import {
   CourseContainer,
   ImageWrapper,
   CourseTitle,
   CourseDescription,
-  CourseButton,
   ButtonsContainer,
   Divider,
 } from './styled';
@@ -22,22 +21,25 @@ interface Props {
   link: string;
 }
 
-const CourseItem: React.FC<Props> = ({ title, description, language, duration, lessons, link }) => (
+const CourseItem: React.FC<Props> = ({
+  title,
+  description,
+  language,
+  duration,
+  lessons,
+  link,
+  children,
+}) => (
   <CourseContainer>
     <ImageWrapper>
-      <Image size="large" />
+      <Image width={300} height={200} />
     </ImageWrapper>
     <CourseTitle>{title}</CourseTitle>
     <CourseDescription>{description}</CourseDescription>
     <ButtonsContainer>
       <CourseInfo duration={duration} language={language} link={link} lessons={lessons} />
       <Divider />
-      <CourseButton color="primary" variant="contained">
-        Start the test
-      </CourseButton>
-      <CourseButton color="primary" variant="contained">
-        Details
-      </CourseButton>
+      {children}
     </ButtonsContainer>
   </CourseContainer>
 );
