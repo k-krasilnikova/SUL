@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
+import ListItem from 'components/ListItem';
 
 const CoursesList: React.FC = () => (
   <AuthorizedLayout pageName="Courses List">
-    <div>Courses List should be here</div>
+    <ListItem />
   </AuthorizedLayout>
 );
 

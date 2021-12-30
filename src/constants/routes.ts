@@ -1,3 +1,5 @@
+import userId from './userId';
+
 export const PATHS: {
   home: string;
   profile: string;
@@ -23,5 +25,5 @@ export const PATHS: {
 export const API: {
   getProfile: string;
 } = {
-  getProfile: '/api/account/profile',
+  getProfile: `/api/users/${userId}`,
 };
