@@ -8,6 +8,7 @@ import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';
 import { generateInitialDto } from 'utils/dto/dtoUtils';
 import { isError } from 'utils/typeGuards/isError';
+import { TIME_30D_SEC } from 'config/constants';
 
 const loginController = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
@@ -20,6 +21,7 @@ const loginController = async (req: Request, res: Response, next: TMiddlewareCal
     const tokens = await generateJWT(dbUser);
     await saveTokenProvider(tokens.refreshToken, dbUser);
 
+    res.cookie('refreshToken', tokens.refreshToken, {maxAge: TIME_30D_SEC, httpOnly: true});
     res.json(generateInitialDto(dbUser, tokens));
   } catch (error) {
     if (isError(error)) {
@@ -30,7 +32,7 @@ const loginController = async (req: Request, res: Response, next: TMiddlewareCal
 
 const refreshController = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
-    const refreshToken = req.headers.authorization;
+    const refreshToken = req.cookies;
     if (!refreshToken) {
       throw new Error('no access');
     }
@@ -45,6 +47,7 @@ const refreshController = async (req: Request, res: Response, next: TMiddlewareC
     }
 
     const newTokens = await generateJWT(dbUser);
+    res.cookie('refreshToken', newTokens.refreshToken, {maxAge: TIME_30D_SEC});
     await saveTokenProvider(newTokens.refreshToken, dbUser);
 
     res.json({ ...newTokens });

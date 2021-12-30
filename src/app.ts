@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { json } from 'body-parser';
 import cors from 'cors';
+import cookieParser from 'cookie-parser'
 
 import { Routes } from 'enums/routesEnum';
 import routers from 'routing/routes';
@@ -13,6 +14,7 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(json());
+app.use(cookieParser());
 app.use(
   cors({
     origin: '*',
