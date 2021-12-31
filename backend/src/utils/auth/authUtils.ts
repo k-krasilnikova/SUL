@@ -6,7 +6,7 @@ import {
   DEFAULT_REFRESH_TIMEOUT,
 } from 'config/constants';
 import { IAccessJwtPayload, IRefreshJwtPayload, ITokens } from 'interfaces/auth/authInterfaces';
-import { IUser } from 'interfaces/entities/user';
+import { IUser } from 'interfaces/entities/Iusers';
 
 const generateJWT = async (userData: IUser): Promise<ITokens> => {
   try {
