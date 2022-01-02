@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
-import useGetToken from 'api/profile/getToken';
+import useGetAuth from 'api/auth/getAuth';
 import SignIn from './SignIn';
-import { TOKEN_FETCH_URL } from 'api/authConstants';
 import { PATHS } from 'constants/routes';
 interface SignInFields {
   login: string;
@@ -18,8 +17,8 @@ const initSignInvalue: SignInFields = {
 };
 
 const SignInContainer: React.FC = () => {
-  const navToAuth = useNavigate();
-  const auth = useGetToken(TOKEN_FETCH_URL);
+  const goToProfile = useNavigate();
+  const auth = useGetAuth();
 
   const formik = useFormik({
     initialValues: initSignInvalue,
@@ -27,7 +26,7 @@ const SignInContainer: React.FC = () => {
     onSubmit: (values, { resetForm }): void => {
       auth.mutateAsync(values);
       resetForm();
-      navToAuth(PATHS.profile);
+      goToProfile(PATHS.profile);
     },
   });
 

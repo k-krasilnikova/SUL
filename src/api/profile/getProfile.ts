@@ -1,7 +1,8 @@
 import { useQuery } from 'react-query';
 
-import { apiClient } from 'api/base';
+import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
+import { COOKIE_VALUES } from 'constants/authConstants';
 
 const useGetProfile = () =>
   useQuery('profile', async () => {
@@ -16,6 +17,7 @@ const useGetProfile = () =>
       skype?: string;
       error?: unknown;
     };
+    const apiClient = apiClientWrapper(COOKIE_VALUES?.uniqAccessToken);
     try {
       const response = await apiClient.get(API.getProfile);
       profileResponse = response.data;
