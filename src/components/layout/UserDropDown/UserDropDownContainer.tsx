@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-
 import DropDown from 'components/Layout/UserDropDown/UserDropDown';
 import { User } from 'types/user';
-
 const UserDropDown: React.FC<User> = ({
-  userName,
+  firstName,
+  lastName,
   userRole,
   userUnit,
   userDepartment,
@@ -13,15 +12,14 @@ const UserDropDown: React.FC<User> = ({
 }) => {
   const [isDropdownOpen, setDropdownState] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
   const openUserInfo = (event: React.MouseEvent<HTMLElement>) => {
     setDropdownState((currentState) => !currentState);
     setAnchorEl(event.currentTarget);
   };
-
   return (
     <DropDown
-      userName={userName}
+      firstName={firstName}
+      lastName={lastName}
       userRole={userRole}
       userUnit={userUnit}
       userDepartment={userDepartment}
@@ -33,5 +31,4 @@ const UserDropDown: React.FC<User> = ({
     />
   );
 };
-
 export default UserDropDown;
