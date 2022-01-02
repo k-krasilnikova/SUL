@@ -1,4 +1,6 @@
-import userId from './userId';
+import { getAuthResponseData } from 'utils/Helpers/getAuthResponseData';
+import { COOKIE_VALUES } from 'constants/authConstants';
+const userId = getAuthResponseData(COOKIE_VALUES?.uniqUserId);
 
 export const PATHS: {
   home: string;
@@ -24,6 +26,8 @@ export const PATHS: {
 
 export const API: {
   getProfile: string;
+  getToken: string;
 } = {
   getProfile: `/api/users/${userId}`,
+  getToken: `/api/account/login`,
 };
