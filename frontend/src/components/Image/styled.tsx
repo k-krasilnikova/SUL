@@ -20,13 +20,3 @@ export const ImageContainer = styled('div')<SizeProps>(({ width, height }) => ({
     height: `${height}px`,
   }),
 }));
-
-/*export const ImageContainer = styled.div<{ width: number; height: number }>`
-  width: ${(props) => props.width} px;
-  height: ${(props) => props.height} px;
-  overflow: hidden;
-  border-radius: 10px;
-  text-align: center;
-  margin: 5px;
-  float: left;
-`;*/
