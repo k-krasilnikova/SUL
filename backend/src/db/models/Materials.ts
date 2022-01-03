@@ -4,7 +4,9 @@ import { IMaterial } from 'interfaces/entities/Imaterials';
 
 const materialSchema = new Schema<IMaterial>({
   _id: { type: Schema.Types.ObjectId },
-  content: [{ stage: { type: Number }, content: [{ type: String }] }],
+  content: [
+    { stage: { type: Number }, content: [{ type: String }], isCompleted: { type: Boolean } },
+  ],
   technology: [{ types: String }],
 });
 

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { SubRoutes } from 'enums/routesEnum';
-import { loginController, refreshController } from 'modules/auth/authController';
+import { loginController, refreshController } from 'controllers/auth/authController';
 
 const accountRouter = Router();
 

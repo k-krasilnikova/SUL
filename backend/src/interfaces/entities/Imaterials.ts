@@ -3,6 +3,7 @@ interface IMaterial {
   content: {
     stage: string;
     content: Array<string>;
+    isCompleted: boolean;
   };
   technology: Array<string>;
 }
