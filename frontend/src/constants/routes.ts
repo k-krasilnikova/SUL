@@ -1,4 +1,4 @@
-import { getAuthResponseData } from 'utils/Helpers/getAuthResponseData';
+import { getAuthResponseData } from 'utils/helpers/getAuthResponseData';
 import { COOKIE_VALUES } from 'constants/authConstants';
 const userId = getAuthResponseData(COOKIE_VALUES?.uniqUserId);
 

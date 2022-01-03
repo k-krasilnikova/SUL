@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { PATHS } from 'constants/routes';
-import { getAuthResponseData } from 'utils/Helpers/getAuthResponseData';
+import { getAuthResponseData } from 'utils/helpers/getAuthResponseData';
 import { COOKIE_VALUES } from 'constants/authConstants';
 
 const PrivateRoute = () => {

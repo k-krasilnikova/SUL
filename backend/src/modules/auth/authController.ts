@@ -47,7 +47,7 @@ const refreshController = async (req: Request, res: Response, next: TMiddlewareC
     }
 
     const newTokens = await generateJWT(dbUser);
-    res.cookie('refreshToken', newTokens.refreshToken, {maxAge: TIME_30D_SEC});
+    res.cookie('refreshToken', newTokens.refreshToken, {maxAge: TIME_30D_SEC, httpOnly: true});
     await saveTokenProvider(newTokens.refreshToken, dbUser);
 
     res.json({ ...newTokens });

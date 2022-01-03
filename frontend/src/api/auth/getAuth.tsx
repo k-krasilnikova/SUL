@@ -1,11 +1,11 @@
-import { useMutation } from 'react-query';
+import { useMutation, UseMutationResult } from 'react-query';
 import Cookies from 'js-cookie';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { COOKIE_VALUES } from 'constants/authConstants';
+import { COOKIE_VALUES, REQUEST_ERRORS } from 'constants/authConstants';
 
-const useGetAuth = () =>
+const useGetAuth = (): UseMutationResult =>
   useMutation(async (initialData: string | unknown) => {
     let tokenResponse: {
       accessToken?: string;
@@ -16,15 +16,15 @@ const useGetAuth = () =>
 
     try {
       const response = await apiClient.post(API.getToken, initialData);
-      tokenResponse = await response.data;
+      tokenResponse = response.data;
       const resAccess = JSON.stringify(tokenResponse.accessToken);
       const resUserId = JSON.stringify(tokenResponse._id);
       Cookies.set(COOKIE_VALUES.uniqAccessToken, resAccess, { secure: true });
       Cookies.set(COOKIE_VALUES.uniqUserId, resUserId, { secure: true });
+      return tokenResponse;
     } catch (error) {
-      tokenResponse = { error: error };
+      throw new Error(`${REQUEST_ERRORS.postError}`);
     }
-    return tokenResponse;
   });
 
 export default useGetAuth;

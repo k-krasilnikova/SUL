@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { COOKIE_VALUES } from 'constants/authConstants';
+import { COOKIE_VALUES, REQUEST_ERRORS } from 'constants/authConstants';
 
 const useGetProfile = () =>
   useQuery('profile', async () => {
@@ -21,10 +21,10 @@ const useGetProfile = () =>
     try {
       const response = await apiClient.get(API.getProfile);
       profileResponse = response.data;
+      return profileResponse;
     } catch (error) {
-      profileResponse = { error: error };
+      throw new Error(`${REQUEST_ERRORS.getError}`);
     }
-    return profileResponse;
   });
 
 export default useGetProfile;
