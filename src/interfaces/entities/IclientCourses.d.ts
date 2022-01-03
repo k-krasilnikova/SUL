@@ -1,6 +1,8 @@
-import { ICourse } from './Icourses';
+import { ObjectId } from 'mongoose';
 
-interface IClientCourses extends ICourse {
+interface IClientCourses {
+  _id?: string;
+  coursesList: ObjectId;
   status: CourseStatus;
 }
 
