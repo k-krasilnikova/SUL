@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { QueryClient } from 'react-query';
 
-import { getAuthResponseData } from 'utils/Helpers/getAuthResponseData';
+import { getAuthResponseData } from 'utils/helpers/getAuthResponseData';
 
 export const queryClient = new QueryClient();
 
-export const apiClientWrapper = (cookieName: string) => {
+export const apiClientWrapper = (cookieName: string): AxiosInstance => {
   const parseToken: string | undefined = getAuthResponseData(cookieName);
   const apiClient = parseToken
     ? axios.create({
