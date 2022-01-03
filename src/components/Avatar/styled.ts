@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Avatar from '@mui/material/Avatar';
 
+import { SIZE } from 'constants/sizes';
+
 interface Size {
   size?: string;
 }
@@ -10,11 +12,11 @@ export const UserAvatarRounded = styled(Avatar)<Size>(({ size }) => ({
   margin: '1% auto',
   width: '100px',
   height: '100px',
-  ...(size === 'large' && {
+  ...(size === SIZE.large && {
     width: '100px',
     height: '100px',
   }),
-  ...(size === 'small' && {
+  ...(size === SIZE.small && {
     width: '40px',
     height: '40px',
   }),
