@@ -1,13 +1,14 @@
 import { Schema, model } from 'mongoose';
 
-import { IClientCourses } from 'interfaces/entities/IclientCourses';
+import { IClientCourse } from 'interfaces/entities/IclientCourses';
 
-const clientCoursesSchema = new Schema<IClientCourses>({
+const clientCourseSchema = new Schema<IClientCourse>({
   _id: { type: Schema.Types.ObjectId },
-  coursesList: [{ type: Schema.Types.ObjectId, ref: 'Courses' }],
   status: { type: String },
+  progress: { type: Number },
+  canceled: { type: Boolean },
 });
 
-const ClientCourseModel = model<IClientCourses>('ClientCourses', clientCoursesSchema);
+const ClientCourseModel = model<IClientCourse>('ClientCourse', clientCourseSchema);
 
 export default ClientCourseModel;
