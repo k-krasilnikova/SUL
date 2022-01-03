@@ -5,9 +5,9 @@ import { imageDefault } from 'icons';
 import { ImageContainer } from './styled';
 
 interface Props {
-  imageUrl?: string;
   width: number;
   height: number;
+  imageUrl?: string;
 }
 
 const Image: React.FC<Props> = ({ imageUrl, width, height }) => (
