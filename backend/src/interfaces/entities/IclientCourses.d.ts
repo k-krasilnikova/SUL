@@ -1,13 +1,10 @@
-import { ObjectId } from 'mongoose';
-
-interface IClientCourses {
+interface IClientCourse {
   _id?: string;
-  coursesList: ObjectId;
-  status: CourseStatus;
+  status: TCourseStatus;
+  progress: number;
+  canceled: boolean;
 }
-
-type TClientCourses = Array<IClientCourses>;
 
 type TCourseStatus = 'pending' | 'approved' | 'started' | 'completed' | 'failed';
 
-export { IClientCourses, TClientCourses };
+export { IClientCourse };
