@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Typography, Box } from '@mui/material';
 
 import theme from 'themeSettings';
+import { SIZE } from 'constants/sizes';
 
 interface Size {
   size?: string;
@@ -14,15 +15,15 @@ export const CourseContainer = styled(Box)<Size>(({ size }) => ({
   padding: '10px',
   borderRadius: '10px',
   fontFamily: '"Lato", sans-serif',
-  ...(size === 'large' && {
+  ...(size === SIZE.large && {
     width: 'calc(100%-40px)',
     margin: '20px',
   }),
-  ...(size === 'medium' && {
+  ...(size === SIZE.medium && {
     width: 'calc(50%-20px)',
     margin: '10px',
   }),
-  ...(size === 'small' && {
+  ...(size === SIZE.small && {
     width: 'calc(30%-10px)',
     margin: '5px',
   }),

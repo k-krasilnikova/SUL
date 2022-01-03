@@ -1,11 +1,11 @@
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 
 import { apiClient } from 'api/base';
 import { API } from 'constants/routes';
 
 import { User } from 'types/user';
 
-const useGetProfile = () =>
+const useGetProfile = (): UseQueryResult<User, unknown> =>
   useQuery('profile', async (): Promise<User> => {
     let profileResponse: {
       position?: string;
