@@ -4,16 +4,10 @@ import { IClientCourses } from 'interfaces/entities/IclientCourses';
 
 const clientCoursesSchema = new Schema<IClientCourses>({
   _id: { type: Schema.Types.ObjectId },
-  title: { type: String, required: true },
-  description: { type: String },
-  technology: { type: String },
-  requiredSkills: [{ type: String }],
-  duration: { type: Number },
-  materials: [{ type: Schema.Types.ObjectId, ref: 'Materials' }],
-  testLink: { type: String },
+  coursesList: [{ type: Schema.Types.ObjectId, ref: 'Courses' }],
   status: { type: String },
 });
 
-const ClientCourseModel = model<IClientCourses>('ClientCourse', clientCoursesSchema);
+const ClientCourseModel = model<IClientCourses>('ClientCourses', clientCoursesSchema);
 
 export default ClientCourseModel;
