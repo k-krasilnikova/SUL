@@ -2,12 +2,12 @@ import React from 'react';
 
 import { useGetProfile } from 'api/profile';
 
-import Profile from './Profile';
+import ProfileContent from './Profile';
 
 const ProfileContainer: React.FC = () => {
   const { data } = useGetProfile();
   return (
-    <Profile
+    <ProfileContent
       firstName={data?.firstName}
       lastName={data?.lastName}
       avatarUrl={data?.avatar}
