@@ -5,14 +5,20 @@ interface SizeProps {
   height: number;
 }
 
-export const ImageContainer = styled('div')(({ width, height }: SizeProps) => ({
+export const ImageContainer = styled('div')<SizeProps>(({ width, height }) => ({
   overflow: 'hidden',
   borderRadius: '10px',
   textAlign: 'center',
   margin: '5px',
   float: 'left',
-  width: width ? width + 'px' : '150px',
-  height: height ? height + 'px' : '100px',
+  width: '150px',
+  height: '100px',
+  ...(width && {
+    width: `${width}px`,
+  }),
+  ...(height && {
+    height: `${height}px`,
+  }),
 }));
 
 /*export const ImageContainer = styled.div<{ width: number; height: number }>`
