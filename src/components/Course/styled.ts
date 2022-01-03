@@ -2,31 +2,31 @@ import styled from 'styled-components';
 import { Typography, Box } from '@mui/material';
 
 import theme from 'themeSettings';
-import Button from 'components/Button';
 
-export const PageContainer = styled('div')({
-  [theme.breakpoints.up('lg')]: {
-    maxHeight: '500px',
-    maxWidth: '800px',
-    overflowY: 'scroll',
-  },
-  [theme.breakpoints.up('xl')]: {
-    maxHeight: '600px',
-    maxWidth: '1150px',
-    overflowY: 'scroll',
-  },
-  margin: '10px auto 10px auto',
-  border: '1px solid #ebebeb',
-  borderRadius: '10px',
-});
-export const CourseContainer = styled(Box)({
+interface Size {
+  size?: string;
+}
+
+export const CourseContainer = styled(Box)<Size>(({ size }) => ({
   width: 'calc(100%-40px)',
+  margin: '20px',
   backgroundColor: '#ebebeb',
   padding: '10px',
   borderRadius: '10px',
   fontFamily: '"Lato", sans-serif',
-  margin: '20px',
-});
+  ...(size === 'large' && {
+    width: 'calc(100%-40px)',
+    margin: '20px',
+  }),
+  ...(size === 'medium' && {
+    width: 'calc(50%-20px)',
+    margin: '10px',
+  }),
+  ...(size === 'small' && {
+    width: 'calc(30%-10px)',
+    margin: '5px',
+  }),
+}));
 export const ImageWrapper = styled('div')({
   [theme.breakpoints.up('xs')]: {
     float: 'none',

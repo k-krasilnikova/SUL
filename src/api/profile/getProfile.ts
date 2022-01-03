@@ -3,8 +3,10 @@ import { useQuery } from 'react-query';
 import { apiClient } from 'api/base';
 import { API } from 'constants/routes';
 
+import { User } from 'types/user';
+
 const useGetProfile = () =>
-  useQuery('profile', async () => {
+  useQuery('profile', async (): Promise<User> => {
     let profileResponse: {
       position?: string;
       firstName?: string;
@@ -24,5 +26,4 @@ const useGetProfile = () =>
     }
     return profileResponse;
   });
-
 export default useGetProfile;
