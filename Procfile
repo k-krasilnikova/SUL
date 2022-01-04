@@ -1,0 +1,1 @@
+worker: node src/index.js --port $0.0.0.0
