@@ -1,8 +1,10 @@
+import { ObjectId } from 'mongoose';
+
 interface IClientCourse {
   _id?: string;
+  course: ObjectId;
   status: TCourseStatus;
-  progress: number;
-  canceled: boolean;
+  currentStage: number;
 }
 
 type TCourseStatus = 'pending' | 'approved' | 'started' | 'completed' | 'failed';
