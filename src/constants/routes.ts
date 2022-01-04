@@ -1,6 +1,3 @@
-// import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
-// const userId = getUserIdCookie();
-
 export const PATHS: {
   home: string;
   profile: string;
@@ -27,6 +24,6 @@ export const API: {
   getProfile: string;
   getToken: string;
 } = {
-  getProfile: `/api/users/`,
-  getToken: `/api/account/login`,
+  getProfile: '/api/users',
+  getToken: '/api/account/login',
 };
