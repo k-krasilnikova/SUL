@@ -1,14 +1,14 @@
-import { SIZE } from 'constants/sizes';
 import styled from 'styled-components';
 import { Typography, Box } from '@mui/material';
 
 import theme from 'themeSettings';
+import { SIZE } from 'constants/sizes';
+
 interface InfoContainerTypes {
   color?: string;
   fontSize?: number;
   lineHeight?: number;
 }
-
 interface Size {
   size?: string;
 }
