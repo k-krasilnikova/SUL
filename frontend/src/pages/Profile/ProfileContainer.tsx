@@ -2,22 +2,22 @@ import React from 'react';
 
 import useGetProfile from 'api/profile';
 
-import Profile from './Profile';
+import ProfileContent from './Profile';
 
-const ProfileContainer: React.FC = () => {
-  const { data, isSuccess, isLoading, isError } = useGetProfile();
+const Profile: React.FC = () => {
+  const { data } = useGetProfile();
   return (
-    <Profile
+    <ProfileContent
       firstName={data?.firstName}
       lastName={data?.lastName}
-      avatarUrl={data?.avatar}
-      userBirthday={data?.birthday}
-      userSkype={data?.skype}
-      userPosition={data?.position}
-      userSkills={data?.skills}
-      userCourses={data?.courses}
+      avatar={data?.avatar}
+      birthday={data?.birthday}
+      skype={data?.skype}
+      position={data?.position}
+      skills={data?.skills}
+      courses={data?.courses}
     />
   );
 };
 
-export default ProfileContainer;
+export default Profile;
