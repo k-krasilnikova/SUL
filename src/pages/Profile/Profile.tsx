@@ -17,16 +17,16 @@ import {
 const ProfileContent: React.FC<User> = ({
   firstName,
   lastName,
-  avatarUrl,
-  userBirthday,
-  userSkype,
-  userPosition,
-  userSkills,
-  userCourses,
+  avatar,
+  birthday,
+  skype,
+  position,
+  skills,
+  courses,
 }) => (
   <AuthorizedLayout pageName="Profile">
     <ProfileBox>
-      <UserAvatar avatarUrl={avatarUrl} size="large" />
+      <UserAvatar avatar={avatar} size="large" />
       <UserInfoList sx={{ marginLeft: 'auto', marginRight: 'auto' }}>
         <ListItem disablePadding>
           <UserInfoLabel>Full name:</UserInfoLabel>
@@ -36,26 +36,26 @@ const ProfileContent: React.FC<User> = ({
         </ListItem>
         <ListItem disablePadding>
           <UserInfoLabel>Birthday:</UserInfoLabel>
-          <UserInfoText>{userBirthday}</UserInfoText>
+          <UserInfoText>{birthday}</UserInfoText>
         </ListItem>
         <ListItem disablePadding>
           <UserInfoLabel>Skype:</UserInfoLabel>
-          <UserInfoText>{userSkype}</UserInfoText>
+          <UserInfoText>{skype}</UserInfoText>
         </ListItem>
         <ListItem disablePadding>
           <UserInfoLabel>Position:</UserInfoLabel>
-          <UserInfoText>{userPosition}</UserInfoText>
+          <UserInfoText>{position}</UserInfoText>
         </ListItem>
       </UserInfoList>
       <UserInfoList subheader={<UserListSubheader>Skills</UserListSubheader>}>
-        {userSkills?.map((skill, id) => (
+        {skills?.map((skill, id) => (
           <ListItem key={id}>
             <UserListItem>{skill}</UserListItem>
           </ListItem>
         ))}
       </UserInfoList>
       <UserInfoList subheader={<UserListSubheader>Applied courses</UserListSubheader>}>
-        {userCourses?.map((course, id) => (
+        {courses?.map((course, id: number) => (
           <ListItem key={id}>
             <UserListItem>{course}</UserListItem>
           </ListItem>

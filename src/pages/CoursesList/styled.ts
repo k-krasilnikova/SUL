@@ -30,13 +30,20 @@ export const CourseButton = styled(Button)({
     alignSelf: 'center',
     height: '40px',
     width: '120px',
-    marginRight: '20px',
+    lineHeight: '10px',
   },
   [theme.breakpoints.up('lg')]: {
     margin: '0px',
     height: '40px',
     fontSize: '10px',
     alignSelf: 'center',
-    marginLeft: '20px',
+    lineHeight: '10px',
   },
+});
+
+export const CourseActions = styled('div')({
+  display: 'flex',
+  justifyContent: 'space-between',
+  margin: '0px',
+  minWidth: '250px',
 });

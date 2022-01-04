@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Grid } from '@material-ui/core';
 import { AuthorizedLayout } from 'components/Layout';
-import { PageContainer, CourseButton } from './styled';
+import { PageContainer, CourseButton, CourseActions } from './styled';
 import { CourseItem } from 'components/Course';
 
 const INITIAL_COURSES = [
@@ -37,26 +37,18 @@ const INITIAL_COURSES = [
 ];
 
 export interface CourseStyleTypes {
-  width: number;
-  height: number;
-  backgroundColor?: string;
-  color?: string;
   fontSize?: number;
   lineHeight?: number;
 }
 
 const styleProps: CourseStyleTypes = {
-  width: 200,
-  height: 140,
-  backgroundColor: 'none',
-  color: 'black',
   fontSize: 14,
   lineHeight: 18,
 };
 
 const CoursesList: React.FC = () => (
   <AuthorizedLayout pageName="Courses List">
-    <PageContainer container spacing={2}>
+    <PageContainer container spacing={0.5}>
       {INITIAL_COURSES.map((course, id) => (
         <Grid key={id} item lg={6}>
           <CourseItem
@@ -67,12 +59,14 @@ const CoursesList: React.FC = () => (
             lessons={course.lessons}
             styleProps={styleProps}
           >
-            <CourseButton color="primary" variant="contained">
-              Details
-            </CourseButton>
-            <CourseButton color="primary" variant="contained">
-              Start the course
-            </CourseButton>
+            <CourseActions>
+              <CourseButton color="primary" variant="contained">
+                Details
+              </CourseButton>
+              <CourseButton color="primary" variant="contained">
+                Start the course
+              </CourseButton>
+            </CourseActions>
           </CourseItem>
         </Grid>
       ))}

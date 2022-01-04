@@ -17,11 +17,12 @@ import MyCoursesCounter from './MyCoursesCounter';
 const Header: React.FC<User> = ({
   firstName,
   lastName,
-  userRole,
-  userUnit,
-  userDepartment,
+  role,
+  unit,
+  department,
+  group,
   myCoursesNumber,
-  avatarUrl,
+  avatar,
 }) => (
   <LayoutHeader container>
     <Grid item xs={3}>
@@ -37,10 +38,11 @@ const Header: React.FC<User> = ({
         <UserDropDown
           firstName={firstName}
           lastName={lastName}
-          userRole={userRole}
-          userUnit={userUnit}
-          userDepartment={userDepartment}
-          avatarUrl={avatarUrl}
+          role={role}
+          unit={unit}
+          department={department}
+          group={group}
+          avatar={avatar}
         />
         <HeaderDivider />
         <LogOut />
