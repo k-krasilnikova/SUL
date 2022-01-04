@@ -5,8 +5,8 @@ import { getAuthResponseData } from 'utils/helpers/getAuthResponseData';
 
 export const queryClient = new QueryClient();
 
-export const apiClientWrapper = (cookieName: string): AxiosInstance => {
-  const parseToken: string | undefined = getAuthResponseData(cookieName);
+export const apiClientWrapper = (): AxiosInstance => {
+  const parseToken: string | undefined = getAuthResponseData();
   const apiClient = parseToken
     ? axios.create({
         baseURL: process.env.REACT_APP_BACKEND_URL,
