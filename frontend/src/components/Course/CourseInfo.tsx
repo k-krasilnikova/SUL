@@ -9,29 +9,47 @@ import { InfoContainer, InfoItem } from './styled';
 interface Props {
   duration: string;
   lessons: string;
-  language: string;
-  link: string;
+  language?: string | undefined;
+  link?: string | undefined;
+  backgroundColor?: string;
+  color?: string;
+  styleProps?: {
+    backgroundColor?: string | undefined;
+    color?: string | undefined;
+    fontSize?: number | undefined;
+  };
 }
 
-const CourseInfo: React.FC<Props> = ({ duration, lessons, language, link }) => (
-  <InfoContainer>
-    <InfoItem>
-      <AccessTimeIcon />
-      {duration}
-    </InfoItem>
-    <InfoItem>
-      <PlayCircleOutlineIcon />
-      {`${lessons} lessons`}
-    </InfoItem>
-    <InfoItem>
-      <LanguageIcon />
-      {language}
-    </InfoItem>
-    <InfoItem>
-      <CollectionsBookmarkIcon />
-      {link}
-    </InfoItem>
-  </InfoContainer>
-);
+const CourseInfo: React.FC<Props> = ({ duration, lessons, language, link, styleProps }) => {
+  console.log(styleProps);
+  return (
+    <InfoContainer
+      backgroundColor={styleProps?.backgroundColor}
+      color={styleProps?.color}
+      fontSize={styleProps?.fontSize}
+    >
+      <InfoItem>
+        <AccessTimeIcon />
+        {duration}
+      </InfoItem>
+      <InfoItem>
+        <PlayCircleOutlineIcon />
+        {`${lessons} lessons`}
+      </InfoItem>
+      {language && (
+        <InfoItem>
+          <LanguageIcon />
+          {language}
+        </InfoItem>
+      )}
+      {link && (
+        <InfoItem>
+          <CollectionsBookmarkIcon />
+          {link}
+        </InfoItem>
+      )}
+    </InfoContainer>
+  );
+};
 
 export default CourseInfo;
