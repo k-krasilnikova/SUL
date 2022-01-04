@@ -1,5 +1,5 @@
 import UserModel from 'db/models/User';
-import { IUser } from 'interfaces/entities/user';
+import { IUser } from 'interfaces/entities/Iusers';
 
 const authProvider = async (login: string) => {
   const dbUser = await UserModel.findOne({ username: login }).lean();

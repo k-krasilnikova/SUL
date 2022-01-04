@@ -23,18 +23,18 @@ type Props = User & PopperControl;
 const DropDown: React.FC<Props> = ({
   firstName,
   lastName,
-  userRole,
-  userUnit,
-  userDepartment,
-  userGroup,
-  avatarUrl,
+  role,
+  unit,
+  department,
+  group,
+  avatar,
   isOpen,
   onClick,
   anchorEl,
 }) => (
   <Box>
     <UserInfo onClick={onClick}>
-      <UserAvatar avatarUrl={avatarUrl} size="small" />
+      <UserAvatar avatar={avatar} size="small" />
       <UserName>
         {firstName} {lastName}
       </UserName>
@@ -46,16 +46,16 @@ const DropDown: React.FC<Props> = ({
         <DividerHorizontal />
         <List>
           <ListItem disablePadding>
-            <ListItemText primary={`Role: ${userRole}`} />
+            <ListItemText primary={`Role: ${role}`} />
           </ListItem>
           <ListItem disablePadding>
-            <ListItemText primary={`Unit: ${userUnit}`} />
+            <ListItemText primary={`Unit: ${unit}`} />
           </ListItem>
           <ListItem disablePadding>
-            <ListItemText primary={`Department: ${userDepartment}`} />
+            <ListItemText primary={`Department: ${department}`} />
           </ListItem>
           <ListItem disablePadding>
-            <ListItemText primary={`Group: ${userGroup}`} />
+            <ListItemText primary={`Group: ${group}`} />
           </ListItem>
         </List>
         <DividerHorizontal />
