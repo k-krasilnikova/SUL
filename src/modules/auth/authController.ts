@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 
 import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
 import { getUserProvider } from 'db/providers/userProvider';
-import { IUser } from 'interfaces/entities/user';
+import { IUser } from 'interfaces/entities/Iusers';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';
 import { generateInitialDto } from 'utils/dto/dtoUtils';
