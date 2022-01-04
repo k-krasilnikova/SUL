@@ -1,11 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
 import useGetAuth from 'api/auth/getAuth';
 import SignIn from './SignIn';
-import { PATHS } from 'constants/routes';
+
 interface SignInFields {
   login: string;
   password: string;
@@ -17,16 +16,14 @@ const initSignInvalue: SignInFields = {
 };
 
 const SignInContainer: React.FC = () => {
-  const goToProfile = useNavigate();
-  const auth = useGetAuth();
+  const { mutateAsync } = useGetAuth();
 
   const formik = useFormik({
     initialValues: initSignInvalue,
     validationSchema: signInSchema,
     onSubmit: (values, { resetForm }): void => {
-      auth.mutateAsync(values);
+      mutateAsync(values);
       resetForm();
-      goToProfile(PATHS.profile);
     },
   });
 
