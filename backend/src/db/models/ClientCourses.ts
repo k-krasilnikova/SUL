@@ -4,9 +4,9 @@ import { IClientCourse } from 'interfaces/entities/IclientCourses';
 
 const clientCourseSchema = new Schema<IClientCourse>({
   _id: { type: Schema.Types.ObjectId },
+  course: { type: Schema.Types.ObjectId, ref: 'Courses' },
   status: { type: String },
-  progress: { type: Number },
-  canceled: { type: Boolean },
+  currentStage: { type: Number },
 });
 
 const ClientCourseModel = model<IClientCourse>('ClientCourse', clientCourseSchema);
