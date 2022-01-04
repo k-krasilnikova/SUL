@@ -15,10 +15,18 @@ import {
 interface Props {
   title: string;
   description: string;
-  language: string;
+  language?: string | undefined;
   duration: string;
   lessons: string;
-  link: string;
+  link?: string | undefined;
+  styleProps?: {
+    width: number;
+    height: number;
+    backgroundColor?: string | undefined;
+    color?: string | undefined;
+    fontSize?: number;
+    lineHeight?: number;
+  };
 }
 
 const CourseItem: React.FC<Props> = ({
@@ -28,6 +36,7 @@ const CourseItem: React.FC<Props> = ({
   duration,
   lessons,
   link,
+  styleProps,
   children,
 }) => (
   <CourseContainer>
@@ -35,9 +44,17 @@ const CourseItem: React.FC<Props> = ({
       <Image width={300} height={200} />
     </ImageWrapper>
     <CourseTitle>{title}</CourseTitle>
-    <CourseDescription>{description}</CourseDescription>
+    <CourseDescription lineHeight={styleProps?.lineHeight} fontSize={styleProps?.fontSize}>
+      {description}
+    </CourseDescription>
     <ButtonsContainer>
-      <CourseInfo duration={duration} language={language} link={link} lessons={lessons} />
+      <CourseInfo
+        duration={duration}
+        language={language}
+        link={link}
+        lessons={lessons}
+        styleProps={styleProps}
+      />
       <Divider />
       {children}
     </ButtonsContainer>

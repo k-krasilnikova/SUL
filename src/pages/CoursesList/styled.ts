@@ -6,27 +6,37 @@ import Button from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.up('lg')]: {
-    maxHeight: '100%',
+    maxHeight: '100vh',
     maxWidth: '100%',
     overflowY: 'scroll',
+    margin: '0px !important',
+    marginTop: '25px !important',
   },
   [theme.breakpoints.up('xl')]: {
-    maxHeight: '600px',
-    maxWidth: '1150px',
+    maxHeight: '100vh',
+    maxWidth: '100%',
     overflowY: 'scroll',
+    margin: '0px !important',
+    marginTop: '25px !important',
   },
-  margin: '10px auto 10px auto',
   border: '1px solid #ebebeb',
   borderRadius: '10px',
 });
+
 export const CourseButton = styled(Button)({
   [theme.breakpoints.up('xs')]: {
-    height: '30px',
-    margin: '10px',
+    margin: '0px',
     fontSize: '10px',
+    alignSelf: 'center',
+    height: '40px',
+    width: '120px',
+    marginRight: '20px',
   },
   [theme.breakpoints.up('lg')]: {
-    margin: '30px 10px 30px 10px',
+    margin: '0px',
+    height: '40px',
     fontSize: '10px',
+    alignSelf: 'center',
+    marginLeft: '20px',
   },
 });

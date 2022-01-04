@@ -3,6 +3,13 @@ import { Typography, Box } from '@mui/material';
 
 import theme from 'themeSettings';
 
+interface InfoContainerTypes {
+  backgroundColor?: string;
+  color?: string;
+  fontSize?: number;
+  lineHeight?: number;
+}
+
 export const PageContainer = styled('div')({
   [theme.breakpoints.up('lg')]: {
     maxHeight: '500px',
@@ -37,7 +44,7 @@ export const ImageWrapper = styled('div')({
     margin: '0px 25px 5px 0px',
   },
 });
-export const CourseTitle = styled('p')({
+export const CourseTitle = styled('p')<InfoContainerTypes>(({ fontSize }) => ({
   [theme.breakpoints.up('xs')]: {
     clear: 'both',
     fontSize: '16px',
@@ -55,30 +62,55 @@ export const CourseTitle = styled('p')({
   color: 'black',
   textAlign: 'justify',
   margin: '0px',
-});
-export const CourseDescription = styled('p')({
+  ...(fontSize && {
+    fontSize: fontSize,
+  }),
+}));
+
+export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, lineHeight }) => ({
   [theme.breakpoints.up('xs')]: {
     fontSize: '12px',
     lineHeight: '22px',
     padding: '5px',
     marginTop: '3px',
+    ...(fontSize && {
+      fontSize: `${fontSize}px`,
+    }),
+    ...(lineHeight && {
+      lineHeight: `${lineHeight}px`,
+    }),
   },
   [theme.breakpoints.up('lg')]: {
     fontSize: '20px',
     lineHeight: '30px',
     padding: '5px',
     marginTop: '5px',
+    ...(fontSize && {
+      fontSize: `${fontSize}px`,
+    }),
+    ...(lineHeight && {
+      lineHeight: `${lineHeight}px`,
+    }),
   },
   color: 'black',
   textAlign: 'justify',
   margin: '0px',
-});
+  ...(fontSize && {
+    fontSize: `${fontSize}px`,
+  }),
+  ...(lineHeight && {
+    lineHeight: `${lineHeight}px`,
+  }),
+}));
+
 export const ButtonsContainer = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    display: 'block',
+    // display: 'block',
+    display: 'flex',
     height: '90px',
     margin: '10px',
-    fontSize: '10px',
+    fontSize: '8px',
+    justifyContent: 'space-between',
   },
   [theme.breakpoints.up('lg')]: {
     height: '50px',
@@ -94,23 +126,34 @@ export const Divider = styled('div')({
     flex: '1 2 auto',
   },
 });
-export const InfoContainer = styled(Box)({
+export const InfoContainer = styled(Box)<InfoContainerTypes>(({ backgroundColor }) => ({
   [theme.breakpoints.up('xs')]: {
-    minWidth: '326px',
-    margin: '10px',
-    height: '30px',
+    // minWidth: '326px',
+    minWidth: 'fit-content',
+    // margin: '10px',
+    margin: '0px',
+    // height: '30px',
+    height: '100%',
     padding: '0px',
   },
   [theme.breakpoints.up('lg')]: {
-    minWidth: '410px',
-    margin: '20px 10px',
-    height: '50px',
+    // minWidth: '410px',
+    minWidth: 'fit-content',
+    // margin: '20px 10px',
+    margin: '0px',
+    // height: '50px',
+    height: '100%',
     padding: '10px 5px 10px 5px',
   },
-  display: 'inline-block',
+  // display: 'inline-block',
+  display: 'flex',
+  alignItems: 'center',
   backgroundColor: 'white',
-});
-export const InfoItem = styled(Typography)({
+  ...(backgroundColor && {
+    backgroundColor: backgroundColor,
+  }),
+}));
+export const InfoItem = styled(Typography)<InfoContainerTypes>(({ color }) => ({
   [theme.breakpoints.up('xs')]: {
     width: '80px',
     padding: '5px',
@@ -126,4 +169,7 @@ export const InfoItem = styled(Typography)({
   display: 'inline-flex',
   verticalAlign: 'middle',
   color: 'grey',
-});
+  ...(color && {
+    color: `${color}`,
+  }),
+}));
