@@ -20,36 +20,33 @@ interface Props {
   };
 }
 
-const CourseInfo: React.FC<Props> = ({ duration, lessons, language, link, styleProps }) => {
-  console.log(styleProps);
-  return (
-    <InfoContainer
-      backgroundColor={styleProps?.backgroundColor}
-      color={styleProps?.color}
-      fontSize={styleProps?.fontSize}
-    >
+const CourseInfo: React.FC<Props> = ({ duration, lessons, language, link, styleProps }) => (
+  <InfoContainer
+    backgroundColor={styleProps?.backgroundColor}
+    color={styleProps?.color}
+    fontSize={styleProps?.fontSize}
+  >
+    <InfoItem>
+      <AccessTimeIcon />
+      {duration}
+    </InfoItem>
+    <InfoItem>
+      <PlayCircleOutlineIcon />
+      {`${lessons} lessons`}
+    </InfoItem>
+    {language && (
       <InfoItem>
-        <AccessTimeIcon />
-        {duration}
+        <LanguageIcon />
+        {language}
       </InfoItem>
+    )}
+    {link && (
       <InfoItem>
-        <PlayCircleOutlineIcon />
-        {`${lessons} lessons`}
+        <CollectionsBookmarkIcon />
+        {link}
       </InfoItem>
-      {language && (
-        <InfoItem>
-          <LanguageIcon />
-          {language}
-        </InfoItem>
-      )}
-      {link && (
-        <InfoItem>
-          <CollectionsBookmarkIcon />
-          {link}
-        </InfoItem>
-      )}
-    </InfoContainer>
-  );
-};
+    )}
+  </InfoContainer>
+);
 
 export default CourseInfo;
