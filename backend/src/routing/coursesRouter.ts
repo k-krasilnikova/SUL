@@ -1,9 +1,10 @@
 import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
-import withAuth from 'middlewares/authMiddleware';
-import { getAllCourses, getCourseById } from 'controllers/courses/courseController';
 import { Params } from 'enums/routesEnum';
+import withAuth from 'middlewares/authMiddleware';
+import getAllCourses from 'controllers/courses/getAllCourses';
+import getCourseById from 'controllers/courses/getCourse';
 
 const coursesRouter = Router();
 coursesRouter.get(
