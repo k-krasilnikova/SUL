@@ -14,10 +14,8 @@ import {
 interface Props {
   title: string;
   description: string;
-  language?: string | undefined;
   duration: string;
   lessons: string;
-  link?: string | undefined;
   styleProps?: {
     fontSize?: number;
     lineHeight?: number;
