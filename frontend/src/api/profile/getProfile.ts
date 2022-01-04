@@ -21,7 +21,7 @@ const useGetProfile = () =>
     const apiClient = apiClientWrapper();
     const userId = getUserIdCookie();
     try {
-      const response = await apiClient.get(`${API.getProfile}${userId}`);
+      const response = await apiClient.get(`${API.getProfile}/${userId}`);
       profileResponse = response.data;
       return profileResponse;
     } catch (error) {
