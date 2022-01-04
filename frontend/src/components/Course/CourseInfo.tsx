@@ -11,21 +11,10 @@ interface Props {
   lessons: string;
   language?: string | undefined;
   link?: string | undefined;
-  backgroundColor?: string;
-  color?: string;
-  styleProps?: {
-    backgroundColor?: string | undefined;
-    color?: string | undefined;
-    fontSize?: number | undefined;
-  };
 }
 
-const CourseInfo: React.FC<Props> = ({ duration, lessons, language, link, styleProps }) => (
-  <InfoContainer
-    backgroundColor={styleProps?.backgroundColor}
-    color={styleProps?.color}
-    fontSize={styleProps?.fontSize}
-  >
+const CourseInfo: React.FC<Props> = ({ duration, lessons, language, link }) => (
+  <InfoContainer>
     <InfoItem>
       <AccessTimeIcon />
       {duration}

@@ -4,6 +4,9 @@
     "version": "1.0.0",
     "description": "API of the SkillUpLevel",
     "main": "dist/app.js",
+    "engines": {
+        "node": "15.x"
+    },
     "scripts": {
         "dev": "cross-env NODE_ENV=local nodemon ./src/app.ts",
         "build": "cross-env NODE_ENV=production tsc",
@@ -64,4 +67,4 @@
         "tsconfig-paths": "^3.12.0",
         "winston": "^3.3.3"
     }
-  }
+}

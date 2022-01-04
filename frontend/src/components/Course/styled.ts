@@ -1,38 +1,38 @@
+import { SIZE } from 'constants/sizes';
 import styled from 'styled-components';
 import { Typography, Box } from '@mui/material';
 
 import theme from 'themeSettings';
-
 interface InfoContainerTypes {
-  backgroundColor?: string;
   color?: string;
   fontSize?: number;
   lineHeight?: number;
 }
 
-export const PageContainer = styled('div')({
-  [theme.breakpoints.up('lg')]: {
-    maxHeight: '500px',
-    maxWidth: '800px',
-    overflowY: 'scroll',
-  },
-  [theme.breakpoints.up('xl')]: {
-    maxHeight: '600px',
-    maxWidth: '1150px',
-    overflowY: 'scroll',
-  },
-  margin: '10px auto 10px auto',
-  border: '1px solid #ebebeb',
-  borderRadius: '10px',
-});
-export const CourseContainer = styled(Box)({
+interface Size {
+  size?: string;
+}
+
+export const CourseContainer = styled(Box)<Size>(({ size }) => ({
   width: 'calc(100%-40px)',
+  margin: '20px',
   backgroundColor: '#ebebeb',
   padding: '10px',
   borderRadius: '10px',
   fontFamily: '"Lato", sans-serif',
-  margin: '20px',
-});
+  ...(size === SIZE.large && {
+    width: 'calc(100%-40px)',
+    margin: '20px',
+  }),
+  ...(size === SIZE.medium && {
+    width: 'calc(50%-20px)',
+    margin: '10px',
+  }),
+  ...(size === SIZE.small && {
+    width: 'calc(30%-10px)',
+    margin: '5px',
+  }),
+}));
 export const ImageWrapper = styled('div')({
   [theme.breakpoints.up('xs')]: {
     float: 'none',
@@ -103,57 +103,54 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
   }),
 }));
 
+// Враппер над нижним блоком
 export const ButtonsContainer = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    // display: 'block',
-    display: 'flex',
-    height: '90px',
-    margin: '10px',
-    fontSize: '8px',
-    justifyContent: 'space-between',
-  },
   [theme.breakpoints.up('lg')]: {
-    height: '50px',
-    margin: '20px',
     fontSize: '12px',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-});
-export const Divider = styled('div')({
-  [theme.breakpoints.up('lg')]: {
-    flex: '1 2 auto',
-  },
-});
-export const InfoContainer = styled(Box)<InfoContainerTypes>(({ backgroundColor }) => ({
-  [theme.breakpoints.up('xs')]: {
-    // minWidth: '326px',
-    minWidth: 'fit-content',
-    // margin: '10px',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    width: '100%',
+    height: 'fit-content',
     margin: '0px',
-    // height: '30px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    fontSize: '12px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    width: '100%',
+    height: 'fit-content',
+    margin: '0px',
+  },
+  display: 'flex',
+  flexDirection: 'row',
+  border: 'red 1px solid',
+  justifyContent: 'space-between',
+});
+
+export const InfoContainer = styled(Box)({
+  [theme.breakpoints.up('xs')]: {
+    minWidth: 'fit-content',
+    margin: '0px',
     height: '100%',
     padding: '0px',
   },
   [theme.breakpoints.up('lg')]: {
-    // minWidth: '410px',
     minWidth: 'fit-content',
-    // margin: '20px 10px',
     margin: '0px',
-    // height: '50px',
     height: '100%',
-    padding: '10px 5px 10px 5px',
   },
-  // display: 'inline-block',
+  height: 'fit-content',
   display: 'flex',
   alignItems: 'center',
+  alignSelf: 'center',
   backgroundColor: 'white',
-  ...(backgroundColor && {
-    backgroundColor: backgroundColor,
-  }),
-}));
-export const InfoItem = styled(Typography)<InfoContainerTypes>(({ color }) => ({
+});
+
+export const InfoItem = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
     width: '80px',
     padding: '5px',
@@ -169,7 +166,4 @@ export const InfoItem = styled(Typography)<InfoContainerTypes>(({ color }) => ({
   display: 'inline-flex',
   verticalAlign: 'middle',
   color: 'grey',
-  ...(color && {
-    color: `${color}`,
-  }),
-}));
+});

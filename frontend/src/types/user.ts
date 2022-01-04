@@ -1,16 +1,15 @@
 export interface User {
   firstName?: string;
   lastName?: string;
-  userName?: string;
-  userRole?: string;
-  userUnit?: string;
-  userDepartment?: string;
-  userGroup?: string;
+  role?: string;
+  unit?: string;
+  department?: string;
+  group?: string;
   myCoursesNumber?: number;
-  avatarUrl?: string;
-  userBirthday?: Date;
-  userSkype?: string;
-  userPosition?: string;
-  userSkills?: string[];
-  userCourses?: string[];
+  avatar?: string;
+  birthday?: Date;
+  skype?: string;
+  position?: string;
+  skills?: string[];
+  courses?: string[];
 }

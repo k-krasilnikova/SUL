@@ -9,7 +9,6 @@ import {
   CourseTitle,
   CourseDescription,
   ButtonsContainer,
-  Divider,
 } from './styled';
 
 interface Props {
@@ -20,10 +19,6 @@ interface Props {
   lessons: string;
   link?: string | undefined;
   styleProps?: {
-    width: number;
-    height: number;
-    backgroundColor?: string | undefined;
-    color?: string | undefined;
     fontSize?: number;
     lineHeight?: number;
   };
@@ -48,14 +43,7 @@ const CourseItem: React.FC<Props> = ({
       {description}
     </CourseDescription>
     <ButtonsContainer>
-      <CourseInfo
-        duration={duration}
-        language={language}
-        link={link}
-        lessons={lessons}
-        styleProps={styleProps}
-      />
-      <Divider />
+      <CourseInfo duration={duration} language={language} link={link} lessons={lessons} />
       {children}
     </ButtonsContainer>
   </CourseContainer>
