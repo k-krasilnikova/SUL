@@ -12,4 +12,4 @@ const materialSchema = new Schema<IMaterial>({
 
 const MaterialModel = model<IMaterial>('Materials', materialSchema);
 
-export default MaterialModel;
+export { MaterialModel, materialSchema };

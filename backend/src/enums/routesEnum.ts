@@ -12,7 +12,7 @@ enum SubRoutes {
 }
 
 enum Params {
-  noParams = '/',
+  noParams = '',
   id = '/:id',
 }
 
