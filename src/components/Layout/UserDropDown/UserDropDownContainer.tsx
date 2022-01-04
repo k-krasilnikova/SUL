@@ -4,11 +4,11 @@ import { User } from 'types/user';
 const UserDropDown: React.FC<User> = ({
   firstName,
   lastName,
-  userRole,
-  userUnit,
-  userDepartment,
-  userGroup,
-  avatarUrl,
+  role,
+  unit,
+  department,
+  group,
+  avatar,
 }) => {
   const [isDropdownOpen, setDropdownState] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -20,11 +20,11 @@ const UserDropDown: React.FC<User> = ({
     <DropDown
       firstName={firstName}
       lastName={lastName}
-      userRole={userRole}
-      userUnit={userUnit}
-      userDepartment={userDepartment}
-      userGroup={userGroup}
-      avatarUrl={avatarUrl}
+      role={role}
+      unit={unit}
+      department={department}
+      group={group}
+      avatar={avatar}
       isOpen={isDropdownOpen}
       onClick={openUserInfo}
       anchorEl={anchorEl}
