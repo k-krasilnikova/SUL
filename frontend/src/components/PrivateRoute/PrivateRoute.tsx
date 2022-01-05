@@ -4,7 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { PATHS } from 'constants/routes';
 import { getAuthResponseData } from 'utils/helpers/getAuthResponseData';
 
-const PrivateRoute = () => {
+const PrivateRoute: React.FC<React.ReactNode> = () => {
   const accessToken = getAuthResponseData();
   return accessToken ? <Outlet /> : <Navigate to={PATHS.signIn} />;
 };

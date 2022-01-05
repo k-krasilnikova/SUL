@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import { pdfjs } from 'react-pdf';
 
@@ -13,16 +14,16 @@ interface IPDFViewerContainer {
 }
 
 const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [numPages, setNumPages] = useState(null);
+  const [currenctPageNumber, setCurrentPageNumber] = useState(1);
 
-  const onDocumentLoadSuccess = (pdf: any) => {
-    setNumPages(pdf.numPages);
-    setPageNumber(pageNumber);
+  const onDocumentLoadSuccess = (/*pdf: any*/) => {
+    // setNumPages(pdf.numPages);
+    setCurrentPageNumber(currenctPageNumber);
   };
 
   const changePage = (offset: number) => {
-    setPageNumber((prevPageNumber) => prevPageNumber + offset);
+    setCurrentPageNumber((prevPageNumber) => prevPageNumber + offset);
   };
 
   const previousPage = () => {
@@ -37,7 +38,7 @@ const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
     <PDFViewer
       src={src}
       onDocumentLoadSuccess={onDocumentLoadSuccess}
-      pageNumber={pageNumber}
+      pageNumber={currenctPageNumber}
       nextPage={nextPage}
       previousPage={previousPage}
     />
