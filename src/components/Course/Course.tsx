@@ -16,31 +16,16 @@ interface Props {
   description: string;
   duration: string;
   lessons: string;
-  styleProps?: {
-    fontSize?: number;
-    lineHeight?: number;
-    size?: string;
-    imgWidth?: number;
-    imgHeight?: number;
-  };
+  size?: string;
 }
 
-const CourseItem: React.FC<Props> = ({
-  title,
-  description,
-  duration,
-  lessons,
-  styleProps,
-  children,
-}) => (
-  <CourseContainer size={styleProps?.size}>
+const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, size, children }) => (
+  <CourseContainer size={size}>
     <ImageWrapper>
-      <Image width={styleProps?.imgWidth} height={styleProps?.imgHeight} />
+      <Image size={size} />
     </ImageWrapper>
     <CourseTitle>{title}</CourseTitle>
-    <CourseDescription lineHeight={styleProps?.lineHeight} fontSize={styleProps?.fontSize}>
-      {description}
-    </CourseDescription>
+    <CourseDescription size={size}>{description}</CourseDescription>
     <ButtonsContainer>
       <CourseInfo duration={duration} lessons={lessons} />
       {children}
