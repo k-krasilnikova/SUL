@@ -53,23 +53,17 @@ const DEFAULT_USERS_DOCS = [
 
 module.exports = {
   async up(db) {
-    DEFAULT_USERS_DOCS.map(async (doc) => {
-      const salt = bcrypt.genSaltSync(SALT_ROUNDS);
-      // eslint-disable-next-line no-param-reassign
-      doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
-      await db.collection('users').insertOne(doc);
-    });
-    // await db.collection('skills');
-    // await db.collection('courses');
-    // await db.collection('userSkills');
-    // await db.collection('userCourses');
+    await Promise.all(
+      DEFAULT_USERS_DOCS.map((doc) => {
+        const salt = bcrypt.genSaltSync(SALT_ROUNDS);
+        // eslint-disable-next-line no-param-reassign
+        doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
+        return db.collection('users').insertOne(doc);
+      }),
+    );
   },
 
   async down(db) {
     await db.collection('users').drop();
-    // await db.collection('skills').drop();
-    // await db.collection('courses').drop();
-    // await db.collection('userSkills').drop();
-    // await db.collection('userCourses').drop();
   },
 };
