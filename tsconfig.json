@@ -1,27 +1,27 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "target": "es6",
-      "rootDir": "src",
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "strict": true,
-      "forceConsistentCasingInFileNames": true,
-      "outDir": "dist",
-      "moduleResolution": "node",
-      "baseUrl": "src",
-      "paths": {
-        "src/*": [
-          "./src/*"
-        ]
-      }     
-    },
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true, 
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "rootDir": "src",
     "esModuleInterop": true,
-    "include": ["src", "./*config.js", "migrations"],
-    "exclude": ["node_modules", "dist"],
-    "ts-node": {
-      "require": ["tsconfig-paths/register"]
-    }
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "src/*": [
+        "./src/*"
+      ]
+    }     
+  },
+  "moduleResolution": "node",
+  "allowSyntheticDefaultImports": true, 
+  "esModuleInterop": true,
+  "include": ["src", "./*config.js", "migrations"],
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
   }
+}
