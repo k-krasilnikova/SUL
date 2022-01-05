@@ -3,7 +3,7 @@ import React from 'react';
 import { AuthorizedLayout } from 'components/Layout';
 import pdf from 'docs/sul.pdf';
 
-import PDFViewer from './PDFViewer';
+import PDFViewer from 'components/PDFViewer';
 
 const Help: React.FC = () => (
   <AuthorizedLayout pageName="Help">
