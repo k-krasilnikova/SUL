@@ -52,7 +52,7 @@ const styleProps: CourseStyleTypes = {
 };
 
 const MyCourses: React.FC = () => (
-  <AuthorizedLayout pageName="Courses List">
+  <AuthorizedLayout pageName="My Courses">
     <PageContainer>
       {INITIAL_COURSES.map((course, id) => (
         <CourseItem
