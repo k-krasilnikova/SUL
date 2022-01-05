@@ -17,4 +17,4 @@ const getProfileInformation = async (req: Request, res: Response, next: TMiddlew
   }
 };
 
-export { getProfileInformation };
+export default getProfileInformation;

@@ -1,9 +1,10 @@
 interface IMaterial {
   _id?: string;
   content: {
-    stage: string;
+    stage: number;
     content: Array<string>;
-  };
+    isCompleted: boolean;
+  }[];
   technology: Array<string>;
 }
 
