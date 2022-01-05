@@ -20,6 +20,8 @@ interface Props {
     fontSize?: number;
     lineHeight?: number;
     size?: string;
+    imgWidth?: number;
+    imgHeight?: number;
   };
 }
 
@@ -33,7 +35,7 @@ const CourseItem: React.FC<Props> = ({
 }) => (
   <CourseContainer size={styleProps?.size}>
     <ImageWrapper>
-      <Image width={300} height={200} />
+      <Image width={styleProps?.imgWidth} height={styleProps?.imgHeight} />
     </ImageWrapper>
     <CourseTitle>{title}</CourseTitle>
     <CourseDescription lineHeight={styleProps?.lineHeight} fontSize={styleProps?.fontSize}>

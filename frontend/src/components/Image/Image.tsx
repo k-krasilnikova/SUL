@@ -5,8 +5,8 @@ import { imageDefault } from 'icons';
 import { ImageContainer } from './styled';
 
 interface Props {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   imageUrl?: string;
 }
 
