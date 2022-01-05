@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { PageContainer, CourseButton, CourseActions } from './styled';
 import { CourseItem } from 'components/Course';
+
+import { PageContainer, CourseButton, CourseActions } from './styled';
 
 const INITIAL_COURSES = [
   {
