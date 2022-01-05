@@ -17,7 +17,6 @@ const useGetAuth = (): UseMutationResult => {
         error?: unknown;
       };
       const apiClient = apiClientWrapper();
-
       try {
         const response = await apiClient.post(API.getToken, initialData);
         tokenResponse = response.data;
