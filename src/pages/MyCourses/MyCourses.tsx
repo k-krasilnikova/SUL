@@ -39,12 +39,16 @@ export interface CourseStyleTypes {
   fontSize?: number;
   lineHeight?: number;
   size?: string;
+  imgWidth?: number;
+  imgHeight?: number;
 }
 
 const styleProps: CourseStyleTypes = {
   fontSize: 14,
   lineHeight: 18,
   size: 'medium',
+  imgWidth: 300,
+  imgHeight: 200,
 };
 
 const MyCourses: React.FC = () => (
