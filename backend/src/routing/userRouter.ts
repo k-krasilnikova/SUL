@@ -3,7 +3,7 @@ import { Router } from 'express';
 import { USER_ROLES } from 'config/constants';
 import { Params } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
-import { getProfileInformation } from 'modules/user/userController';
+import getProfileInformation from 'controllers/user/getProfileInfo';
 
 const userRouter = Router();
 
