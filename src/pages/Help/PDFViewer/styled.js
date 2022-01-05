@@ -7,10 +7,7 @@ export const PDFWrapper = styled(Box)({
   flexDirection: 'column',
   display: 'flex',
   width: 'calc(100%-40px)',
-  margin: '35px',
-  padding: '10px',
-  borderRadius: '10px',
-  backgroundColor: '#ebebeb',
+  marginTop: '30px',
 });
 
 export const ButtonBox = styled(Box)({
@@ -22,21 +19,21 @@ export const ButtonBox = styled(Box)({
 export const DocumentBox = styled(Box)({
   display: 'flex',
   justifySelf: 'center',
-  alignSelf: 'center',
+  alignSelf: 'flex-start',
   width: 'fit-content',
   maxWidth: 'inherit',
   overflowY: 'scroll',
   overflowX: 'hidden',
-  height: '55vh',
+  height: '75vh',
   '&::-webkit-scrollbar': {
     display: 'none',
   },
 });
 
 export const PageNumberText = styled(Typography)({
-  margin: '10px',
+  margin: '2vh',
 });
 
 export const StyledPage = styled(Page)({
-  width: '65vw',
+  width: '75vw',
 });

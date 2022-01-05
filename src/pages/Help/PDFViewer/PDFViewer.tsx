@@ -24,7 +24,7 @@ const PDFViewer: React.FC<IPDFViewer> = ({
   <PDFWrapper>
     <DocumentBox>
       <Document file={src} onLoadSuccess={onDocumentLoadSuccess}>
-        <StyledPage pageNumber={pageNumber} scale={1.5} />
+        <StyledPage pageNumber={pageNumber} scale={1.7} />
       </Document>
     </DocumentBox>
     <ButtonBox>
