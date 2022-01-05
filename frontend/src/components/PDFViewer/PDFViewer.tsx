@@ -11,7 +11,7 @@ interface IPDFViewer {
   pageNumber: number;
   previousPage: () => void;
   nextPage: () => void;
-  onDocumentLoadSuccess: (pdf: any) => void;
+  onDocumentLoadSuccess?: (pdf: any) => void;
 }
 
 const PDFViewer: React.FC<IPDFViewer> = ({

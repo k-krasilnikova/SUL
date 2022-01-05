@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { pdfjs } from 'react-pdf';
 
-import { PDF_WORKER_SRC } from 'constants/pdfViewer';
+import { OFFSET_NEXT, OFFSET_PREVIOUS, PDF_WORKER_SRC } from 'constants/pdfViewer';
 
 import PDFViewer from './PDFViewer';
 
@@ -26,11 +26,11 @@ const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
   };
 
   const previousPage = () => {
-    changePage(-1);
+    changePage(OFFSET_PREVIOUS);
   };
 
   const nextPage = () => {
-    changePage(1);
+    changePage(OFFSET_NEXT);
   };
 
   return (
