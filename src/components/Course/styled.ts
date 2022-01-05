@@ -1,14 +1,14 @@
-import { SIZE } from 'constants/sizes';
 import styled from 'styled-components';
 import { Typography, Box } from '@mui/material';
 
 import theme from 'themeSettings';
+import { SIZE } from 'constants/sizes';
+
 interface InfoContainerTypes {
   color?: string;
   fontSize?: number;
   lineHeight?: number;
 }
-
 interface Size {
   size?: string;
 }
@@ -25,8 +25,9 @@ export const CourseContainer = styled(Box)<Size>(({ size }) => ({
     margin: '20px',
   }),
   ...(size === SIZE.medium && {
-    width: 'calc(50%-20px)',
-    margin: '10px',
+    width: '45%',
+    display: 'inline-block',
+    margin: '2.5%',
   }),
   ...(size === SIZE.small && {
     width: 'calc(30%-10px)',
@@ -127,43 +128,42 @@ export const ButtonsContainer = styled('div')({
   },
   display: 'flex',
   flexDirection: 'row',
-  border: 'red 1px solid',
   justifyContent: 'space-between',
 });
 
 export const InfoContainer = styled(Box)({
   [theme.breakpoints.up('xs')]: {
-    minWidth: 'fit-content',
     margin: '0px',
     height: '100%',
     padding: '0px',
+    flexDirection: 'column',
   },
   [theme.breakpoints.up('lg')]: {
-    minWidth: 'fit-content',
     margin: '0px',
     height: '100%',
+    flexDirection: 'row',
   },
   height: 'fit-content',
   display: 'flex',
   alignItems: 'center',
   alignSelf: 'center',
-  backgroundColor: 'white',
+  backgroundColor: 'none',
 });
 
 export const InfoItem = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
-    width: '80px',
+    width: '70px',
     padding: '5px',
-    fontSize: '10px',
+    fontSize: '8px',
     lineHeight: '24px',
   },
   [theme.breakpoints.up('lg')]: {
-    width: '100px',
+    width: '90px',
     padding: '5px',
-    fontSize: '14px',
+    fontSize: '12px',
     lineHeight: '24px',
   },
   display: 'inline-flex',
   verticalAlign: 'middle',
-  color: 'grey',
+  color: 'black',
 });

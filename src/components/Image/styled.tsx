@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 interface SizeProps {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 export const ImageContainer = styled('div')<SizeProps>(({ width, height }) => ({

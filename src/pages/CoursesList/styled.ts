@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { Grid } from '@mui/material';
 
 import theme from 'themeSettings';
 import Button from 'components/Button';
 
-export const PageContainer = styled(Grid)({
+export const PageContainer = styled('div')({
   [theme.breakpoints.up('lg')]: {
     maxHeight: '100vh',
     maxWidth: '100%',
@@ -25,7 +24,7 @@ export const PageContainer = styled(Grid)({
 
 export const CourseButton = styled(Button)({
   [theme.breakpoints.up('xs')]: {
-    margin: '0px',
+    margin: '3px',
     fontSize: '10px',
     alignSelf: 'center',
     height: '40px',
@@ -33,7 +32,8 @@ export const CourseButton = styled(Button)({
     lineHeight: '10px',
   },
   [theme.breakpoints.up('lg')]: {
-    margin: '0px',
+    width: '140px',
+    marginLeft: '5px',
     height: '40px',
     fontSize: '10px',
     alignSelf: 'center',
@@ -42,8 +42,13 @@ export const CourseButton = styled(Button)({
 });
 
 export const CourseActions = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-between',
-  margin: '0px',
-  minWidth: '250px',
+  [theme.breakpoints.up('xs')]: {
+    display: 'block',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '0px',
+    minWidth: '250px',
+  },
 });

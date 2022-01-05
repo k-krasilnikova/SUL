@@ -14,36 +14,35 @@ import {
 interface Props {
   title: string;
   description: string;
-  language?: string | undefined;
   duration: string;
   lessons: string;
-  link?: string | undefined;
   styleProps?: {
     fontSize?: number;
     lineHeight?: number;
+    size?: string;
+    imgWidth?: number;
+    imgHeight?: number;
   };
 }
 
 const CourseItem: React.FC<Props> = ({
   title,
   description,
-  language,
   duration,
   lessons,
-  link,
   styleProps,
   children,
 }) => (
-  <CourseContainer>
+  <CourseContainer size={styleProps?.size}>
     <ImageWrapper>
-      <Image width={300} height={200} />
+      <Image width={styleProps?.imgWidth} height={styleProps?.imgHeight} />
     </ImageWrapper>
     <CourseTitle>{title}</CourseTitle>
     <CourseDescription lineHeight={styleProps?.lineHeight} fontSize={styleProps?.fontSize}>
       {description}
     </CourseDescription>
     <ButtonsContainer>
-      <CourseInfo duration={duration} language={language} link={link} lessons={lessons} />
+      <CourseInfo duration={duration} lessons={lessons} />
       {children}
     </ButtonsContainer>
   </CourseContainer>
