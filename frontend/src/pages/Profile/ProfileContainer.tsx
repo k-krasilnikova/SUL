@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useGetProfile from 'api/profile';
+import { useGetProfile } from 'api/profile';
 
 import ProfileContent from './Profile';
 
