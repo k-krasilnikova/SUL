@@ -1,1 +1,2 @@
-worker: node src/index.js --port $0.0.0.0
+web: node dist/app.js
+worker: node dist/app.js --port $0.0.0.0
