@@ -104,7 +104,6 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
   }),
 }));
 
-// Враппер над нижним блоком
 export const ButtonsContainer = styled('div')({
   [theme.breakpoints.up('lg')]: {
     fontSize: '12px',
