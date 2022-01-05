@@ -2,6 +2,8 @@ enum Routes {
   namespace = '/api',
   account = '/account',
   users = '/users',
+  courses = '/courses',
+  clientCourses = '/clientCourses',
 }
 
 enum SubRoutes {
@@ -11,6 +13,7 @@ enum SubRoutes {
 }
 
 enum Params {
+  noParams = '',
   id = '/:id',
 }
 

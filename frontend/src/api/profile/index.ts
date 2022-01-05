@@ -1,1 +1,1 @@
-export { default } from './getProfile';
+export { default as useGetProfile } from './getProfile';

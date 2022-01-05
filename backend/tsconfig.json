@@ -2,7 +2,7 @@
     "compilerOptions": {
       "module": "commonjs",
       "target": "es6",
-      "rootDir": "./",
+      "rootDir": "src",
       "esModuleInterop": true,
       "skipLibCheck": true,
       "strict": true,
@@ -16,7 +16,10 @@
         ]
       }     
     },
-    "include": ["./src/**/*.ts", "./*config.js", "migrations"],
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true, 
+    "esModuleInterop": true,
+    "include": ["src", "./*config.js", "migrations"],
     "exclude": ["node_modules", "dist"],
     "ts-node": {
       "require": ["tsconfig-paths/register"]

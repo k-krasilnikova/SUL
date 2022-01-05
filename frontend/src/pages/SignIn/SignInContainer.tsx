@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
-
+import useGetAuth from 'api/auth/getAuth';
 import SignIn from './SignIn';
 
 interface SignInFields {
@@ -16,10 +16,13 @@ const initSignInvalue: SignInFields = {
 };
 
 const SignInContainer: React.FC = () => {
+  const { mutateAsync } = useGetAuth();
+
   const formik = useFormik({
     initialValues: initSignInvalue,
     validationSchema: signInSchema,
     onSubmit: (values, { resetForm }): void => {
+      mutateAsync(values);
       resetForm();
     },
   });

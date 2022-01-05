@@ -4,10 +4,14 @@ import { Routes } from 'enums/routesEnum';
 
 import accountRouter from './accountRouter';
 import userRouter from './userRouter';
+import coursesRouter from './coursesRouter';
+import clientCoursesRouter from './clientCoursesRouter';
 
 const routers = Router();
 
 routers.use(`${Routes.account}`, accountRouter);
 routers.use(`${Routes.users}`, userRouter);
+routers.use(`${Routes.courses}`, coursesRouter);
+routers.use(`${Routes.clientCourses}`, clientCoursesRouter);
 
 export default routers;
