@@ -15,7 +15,7 @@ const USER_ROLES = {
   EMPLOYEE: 'employee',
 };
 
-const TIME_30D_SEC = 2592000000
+const TIME_30D_SEC = 2592000000;
 
 const SALT_ROUNDS = 10;
 
@@ -27,5 +27,5 @@ export {
   USER_ROLES,
   SALT_ROUNDS,
   ENVIROMENTS,
-  TIME_30D_SEC
+  TIME_30D_SEC,
 };
