@@ -5,27 +5,50 @@ import Button from 'components/Button';
 
 export const PageContainer = styled('div')({
   [theme.breakpoints.up('lg')]: {
-    maxHeight: '500px',
-    maxWidth: '800px',
+    maxHeight: '100vh',
+    maxWidth: '100%',
     overflowY: 'scroll',
+    margin: '0px !important',
+    marginTop: '25px !important',
   },
   [theme.breakpoints.up('xl')]: {
-    maxHeight: '600px',
-    maxWidth: '1150px',
+    maxHeight: '100vh',
+    maxWidth: '100%',
     overflowY: 'scroll',
+    margin: '0px !important',
+    marginTop: '25px !important',
   },
-  margin: '10px auto 10px auto',
   border: '1px solid #ebebeb',
   borderRadius: '10px',
 });
+
 export const CourseButton = styled(Button)({
   [theme.breakpoints.up('xs')]: {
-    height: '30px',
-    margin: '10px',
+    margin: '3px',
     fontSize: '10px',
+    alignSelf: 'center',
+    height: '40px',
+    width: '120px',
+    lineHeight: '10px',
   },
   [theme.breakpoints.up('lg')]: {
-    margin: '30px 10px 30px 10px',
+    width: '140px',
+    marginLeft: '5px',
+    height: '40px',
     fontSize: '10px',
+    alignSelf: 'center',
+    lineHeight: '10px',
+  },
+});
+
+export const CourseActions = styled('div')({
+  [theme.breakpoints.up('xs')]: {
+    display: 'block',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '0px',
+    minWidth: '250px',
   },
 });

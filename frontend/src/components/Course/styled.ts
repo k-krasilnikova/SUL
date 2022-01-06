@@ -20,8 +20,9 @@ export const CourseContainer = styled(Box)<Size>(({ size }) => ({
     margin: '20px',
   }),
   ...(size === SIZE.medium && {
-    width: 'calc(50%-20px)',
-    margin: '10px',
+    width: '45%',
+    display: 'inline-block',
+    margin: '2.5%',
   }),
   ...(size === SIZE.small && {
     width: 'calc(30%-10px)',
@@ -39,7 +40,7 @@ export const ImageWrapper = styled('div')({
     margin: '0px 25px 5px 0px',
   },
 });
-export const CourseTitle = styled('p')({
+export const CourseTitle = styled('p')<Size>(({ size }) => ({
   [theme.breakpoints.up('xs')]: {
     clear: 'both',
     fontSize: '16px',
@@ -57,8 +58,18 @@ export const CourseTitle = styled('p')({
   color: 'black',
   textAlign: 'justify',
   margin: '0px',
-});
-export const CourseDescription = styled('p')({
+  ...(size === SIZE.large && {
+    fontSize: '18px',
+  }),
+  ...(size === SIZE.medium && {
+    fontSize: '16px',
+  }),
+  ...(size === SIZE.small && {
+    fontSize: '14px',
+  }),
+}));
+
+export const CourseDescription = styled('p')<Size>(({ size }) => ({
   [theme.breakpoints.up('xs')]: {
     fontSize: '12px',
     lineHeight: '22px',
@@ -66,66 +77,87 @@ export const CourseDescription = styled('p')({
     marginTop: '3px',
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '20px',
-    lineHeight: '30px',
+    fontSize: '14px',
+    lineHeight: '18px',
     padding: '5px',
     marginTop: '5px',
+    ...(size === SIZE.large && {
+      fontSize: '16px',
+      lineHeight: '20px',
+    }),
+    ...(size === SIZE.medium && {
+      fontSize: '14px',
+      lineHeight: '18px',
+    }),
+    ...(size === SIZE.small && {
+      fontSize: '12px',
+      lineHeight: '14px',
+    }),
   },
   color: 'black',
   textAlign: 'justify',
   margin: '0px',
-});
+}));
+
 export const ButtonsContainer = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    display: 'block',
-    height: '90px',
-    margin: '10px',
-    fontSize: '10px',
-  },
   [theme.breakpoints.up('lg')]: {
-    height: '50px',
-    margin: '20px',
     fontSize: '12px',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    width: '100%',
+    height: 'fit-content',
+    margin: '0px',
   },
-});
-export const Divider = styled('div')({
-  [theme.breakpoints.up('lg')]: {
-    flex: '1 2 auto',
+  [theme.breakpoints.up('xl')]: {
+    fontSize: '12px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    width: '100%',
+    height: 'fit-content',
+    margin: '0px',
   },
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
 });
+
 export const InfoContainer = styled(Box)({
   [theme.breakpoints.up('xs')]: {
-    minWidth: '326px',
-    margin: '10px',
-    height: '30px',
+    margin: '0px',
+    height: '100%',
     padding: '0px',
+    flexDirection: 'column',
   },
   [theme.breakpoints.up('lg')]: {
-    minWidth: '410px',
-    margin: '20px 10px',
-    height: '50px',
-    padding: '10px 5px 10px 5px',
+    margin: '0px',
+    height: '100%',
+    flexDirection: 'row',
   },
-  display: 'inline-block',
-  backgroundColor: 'white',
+  height: 'fit-content',
+  display: 'flex',
+  alignItems: 'center',
+  alignSelf: 'center',
+  backgroundColor: 'none',
 });
+
 export const InfoItem = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
-    width: '80px',
+    width: '70px',
     padding: '5px',
-    fontSize: '10px',
+    fontSize: '8px',
     lineHeight: '24px',
   },
   [theme.breakpoints.up('lg')]: {
-    width: '100px',
+    width: '90px',
     padding: '5px',
-    fontSize: '14px',
+    fontSize: '12px',
     lineHeight: '24px',
   },
   display: 'inline-flex',
   verticalAlign: 'middle',
-  color: 'grey',
+  color: 'black',
 });
