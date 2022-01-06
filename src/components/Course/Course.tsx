@@ -9,36 +9,25 @@ import {
   CourseTitle,
   CourseDescription,
   ButtonsContainer,
-  Divider,
 } from './styled';
 
 interface Props {
   title: string;
   description: string;
-  language: string;
   duration: string;
   lessons: string;
-  link: string;
+  size?: string;
 }
 
-const CourseItem: React.FC<Props> = ({
-  title,
-  description,
-  language,
-  duration,
-  lessons,
-  link,
-  children,
-}) => (
-  <CourseContainer>
+const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, size, children }) => (
+  <CourseContainer size={size}>
     <ImageWrapper>
-      <Image width={300} height={200} />
+      <Image size={size} />
     </ImageWrapper>
     <CourseTitle>{title}</CourseTitle>
-    <CourseDescription>{description}</CourseDescription>
+    <CourseDescription size={size}>{description}</CourseDescription>
     <ButtonsContainer>
-      <CourseInfo duration={duration} language={language} link={link} lessons={lessons} />
-      <Divider />
+      <CourseInfo duration={duration} lessons={lessons} />
       {children}
     </ButtonsContainer>
   </CourseContainer>
