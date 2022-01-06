@@ -3,7 +3,6 @@ import { Schema, model } from 'mongoose';
 import { IUser } from 'interfaces/entities/Iusers';
 
 const schema = new Schema<IUser>({
-  _id: { type: Schema.Types.ObjectId, required: true },
   username: { type: String, required: true },
   passwordHash: { type: String, required: true },
   email: { type: String, required: true },
