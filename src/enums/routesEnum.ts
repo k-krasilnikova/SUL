@@ -3,6 +3,7 @@ enum Routes {
   account = '/account',
   users = '/users',
   courses = '/courses',
+  clientCourses = '/clientCourses',
 }
 
 enum SubRoutes {
