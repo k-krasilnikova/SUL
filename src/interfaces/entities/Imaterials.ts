@@ -1,5 +1,8 @@
+import { ObjectId } from 'mongoose';
+
 interface IMaterial {
   _id?: string;
+  courseId?: ObjectId;
   content: {
     stage: number;
     content: Array<string>;
