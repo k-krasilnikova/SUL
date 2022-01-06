@@ -5,20 +5,11 @@ import { apiClientWrapper } from 'api/base';
 import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
+import { Course } from 'types/course';
 
-interface CourseObject {
-  title: string;
-  description: string;
-  technology: Array<string>;
-  requiredSkills: Array<string>;
-  duration: string;
-  testLink: string;
-  lessons: number;
-}
-
-const useGetMyCourses = () =>
+const useGetMyCourses = (): UseQueryResult<Array<Course>, AxiosError> =>
   useQuery('myCourses', async () => {
-    let myCoursesResponse: Array<CourseObject>;
+    let myCoursesResponse: Array<Course>;
     const apiClient = apiClientWrapper();
     const userId = getUserIdCookie();
     try {
