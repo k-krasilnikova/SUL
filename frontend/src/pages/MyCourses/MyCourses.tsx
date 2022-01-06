@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { PageContainer, CourseButton, CourseActions } from './styled';
 import { CourseItem } from 'components/Course';
+
+import { PageContainer, CourseButton, CourseActions } from './styled';
 
 const INITIAL_COURSES = [
   {
@@ -35,7 +36,7 @@ const INITIAL_COURSES = [
   },
 ];
 
-const size = 'medium';
+const SIZE = 'medium';
 
 const MyCourses: React.FC = () => (
   <AuthorizedLayout pageName="My Courses">
@@ -47,7 +48,7 @@ const MyCourses: React.FC = () => (
           description={course.description}
           duration={course.duration}
           lessons={course.lessons}
-          size={size}
+          size={SIZE}
         >
           <CourseActions>
             <CourseButton color="primary" variant="contained">

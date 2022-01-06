@@ -35,7 +35,7 @@ const INITIAL_COURSES = [
   },
 ];
 
-const size = 'medium';
+const SIZE = 'medium';
 
 const CoursesList: React.FC = () => (
   <AuthorizedLayout pageName="Courses List">
@@ -47,7 +47,7 @@ const CoursesList: React.FC = () => (
           description={course.description}
           duration={course.duration}
           lessons={course.lessons}
-          size={size}
+          size={SIZE}
         >
           <CourseActions>
             <CourseButton color="primary" variant="contained">
