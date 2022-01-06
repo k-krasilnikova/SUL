@@ -15,7 +15,7 @@ interface Props {
   title: string;
   description: string;
   duration: string;
-  lessons: string;
+  lessons: number;
   size?: string;
 }
 
