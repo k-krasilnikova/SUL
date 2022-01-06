@@ -4,11 +4,6 @@ import { Typography, Box } from '@mui/material';
 import theme from 'themeSettings';
 import { SIZE } from 'constants/sizes';
 
-interface InfoContainerTypes {
-  color?: string;
-  fontSize?: number;
-  lineHeight?: number;
-}
 interface Size {
   size?: string;
 }
@@ -45,7 +40,7 @@ export const ImageWrapper = styled('div')({
     margin: '0px 25px 5px 0px',
   },
 });
-export const CourseTitle = styled('p')<InfoContainerTypes>(({ fontSize }) => ({
+export const CourseTitle = styled('p')<Size>(({ size }) => ({
   [theme.breakpoints.up('xs')]: {
     clear: 'both',
     fontSize: '16px',
@@ -63,45 +58,45 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ fontSize }) => ({
   color: 'black',
   textAlign: 'justify',
   margin: '0px',
-  ...(fontSize && {
-    fontSize: fontSize,
+  ...(size === SIZE.large && {
+    fontSize: '18px',
+  }),
+  ...(size === SIZE.medium && {
+    fontSize: '16px',
+  }),
+  ...(size === SIZE.small && {
+    fontSize: '14px',
   }),
 }));
 
-export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, lineHeight }) => ({
+export const CourseDescription = styled('p')<Size>(({ size }) => ({
   [theme.breakpoints.up('xs')]: {
     fontSize: '12px',
     lineHeight: '22px',
     padding: '5px',
     marginTop: '3px',
-    ...(fontSize && {
-      fontSize: `${fontSize}px`,
-    }),
-    ...(lineHeight && {
-      lineHeight: `${lineHeight}px`,
-    }),
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '20px',
-    lineHeight: '30px',
+    fontSize: '14px',
+    lineHeight: '18px',
     padding: '5px',
     marginTop: '5px',
-    ...(fontSize && {
-      fontSize: `${fontSize}px`,
+    ...(size === SIZE.large && {
+      fontSize: '16px',
+      lineHeight: '20px',
     }),
-    ...(lineHeight && {
-      lineHeight: `${lineHeight}px`,
+    ...(size === SIZE.medium && {
+      fontSize: '14px',
+      lineHeight: '18px',
+    }),
+    ...(size === SIZE.small && {
+      fontSize: '12px',
+      lineHeight: '14px',
     }),
   },
   color: 'black',
   textAlign: 'justify',
   margin: '0px',
-  ...(fontSize && {
-    fontSize: `${fontSize}px`,
-  }),
-  ...(lineHeight && {
-    lineHeight: `${lineHeight}px`,
-  }),
 }));
 
 export const ButtonsContainer = styled('div')({

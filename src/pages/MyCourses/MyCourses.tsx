@@ -35,33 +35,19 @@ const INITIAL_COURSES = [
   },
 ];
 
-export interface CourseStyleTypes {
-  fontSize?: number;
-  lineHeight?: number;
-  size?: string;
-  imgWidth?: number;
-  imgHeight?: number;
-}
-
-const styleProps: CourseStyleTypes = {
-  fontSize: 14,
-  lineHeight: 18,
-  size: 'medium',
-  imgWidth: 300,
-  imgHeight: 200,
-};
+const size = 'medium';
 
 const MyCourses: React.FC = () => (
   <AuthorizedLayout pageName="My Courses">
     <PageContainer>
-      {INITIAL_COURSES.map((course, id: number) => (
+      {INITIAL_COURSES.map((course, id) => (
         <CourseItem
           key={id}
           title={course.title}
           description={course.description}
           duration={course.duration}
           lessons={course.lessons}
-          styleProps={styleProps}
+          size={size}
         >
           <CourseActions>
             <CourseButton color="primary" variant="contained">
