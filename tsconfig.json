@@ -20,7 +20,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "outDir": "dist"
+    "outDir": "dist",
+    "typeRoots": [
+      "./src/types"
+    ]
   },
   "include": [
     "src"

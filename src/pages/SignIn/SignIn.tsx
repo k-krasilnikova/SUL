@@ -71,9 +71,6 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
                       type="submit"
                       variant="contained"
                       color="primary"
-                      onClick={() => {
-                        console.log(123);
-                      }}
                     >
                       Sign In
                     </Button>
