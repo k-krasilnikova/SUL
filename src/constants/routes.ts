@@ -23,7 +23,9 @@ export const PATHS: {
 export const API: {
   getProfile: string;
   getToken: string;
+  getMyCourses: string;
 } = {
   getProfile: '/api/users',
   getToken: '/api/account/login',
+  getMyCourses: '/api/clientCourses',
 };
