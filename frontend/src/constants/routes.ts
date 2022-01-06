@@ -1,5 +1,3 @@
-import userId from './userId';
-
 export const PATHS: {
   home: string;
   profile: string;
@@ -24,6 +22,8 @@ export const PATHS: {
 
 export const API: {
   getProfile: string;
+  getToken: string;
 } = {
-  getProfile: `/api/users/${userId}`,
+  getProfile: '/api/users',
+  getToken: '/api/account/login',
 };

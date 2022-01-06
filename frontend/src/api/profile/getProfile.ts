@@ -1,29 +1,35 @@
 import { useQuery, UseQueryResult } from 'react-query';
+import { AxiosError } from 'axios';
 
-import { apiClient } from 'api/base';
+import { apiClientWrapper } from 'api/base';
+import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
+import { REQUEST_ERRORS } from 'constants/authConstants';
 
-import { User } from 'types/user';
+interface ProfileResponse {
+  position?: string;
+  firstName?: string;
+  lastName?: string;
+  skills?: Array<string>;
+  courses?: Array<string>;
+  avatar?: string;
+  birthday?: Date;
+  skype?: string;
+  error?: unknown;
+}
 
-const useGetProfile = (): UseQueryResult<User, unknown> =>
-  useQuery('profile', async (): Promise<User> => {
-    let profileResponse: {
-      position?: string;
-      firstName?: string;
-      lastName?: string;
-      skills?: Array<string>;
-      courses?: Array<string>;
-      avatar?: string;
-      birthday?: Date;
-      skype?: string;
-      error?: unknown;
-    };
+const useGetProfile = (): UseQueryResult<ProfileResponse, AxiosError> =>
+  useQuery('profile', async () => {
+    let profileResponse: ProfileResponse;
+    const apiClient = apiClientWrapper();
+    const userId = getUserIdCookie();
     try {
-      const response = await apiClient.get(API.getProfile);
+      const response = await apiClient.get(`${API.getProfile}/${userId}`);
       profileResponse = response.data;
+      return profileResponse;
     } catch (error) {
-      profileResponse = { error: error };
+      throw new Error(`${REQUEST_ERRORS.getError}`);
     }
-    return profileResponse;
   });
+
 export default useGetProfile;

@@ -1,1 +1,1 @@
-import { apiClient } from 'api/base';
+export { default as useGetAuth } from './getAuth';
