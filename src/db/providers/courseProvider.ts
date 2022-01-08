@@ -26,11 +26,11 @@ const getMaterialsProvider = async () => {
 };
 
 const getMaterialProvider = async (id: string) => {
-  const materials = await MaterialModel.find({ _id: id });
-  if (!materials) {
+  const material = await MaterialModel.find({ _id: id });
+  if (!material) {
     throw new Error('materials not found');
   }
-  return materials;
+  return material;
 };
 
 export { getCoursesProvider, getCourseProvider, getMaterialsProvider, getMaterialProvider };
