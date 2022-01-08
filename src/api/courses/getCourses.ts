@@ -4,22 +4,11 @@ import { AxiosError } from 'axios';
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
+import { Course } from 'types/course';
 
-interface CoursesResponse {
-  position?: string;
-  firstName?: string;
-  lastName?: string;
-  skills?: Array<string>;
-  courses?: Array<string>;
-  avatar?: string;
-  birthday?: Date;
-  skype?: string;
-  error?: unknown;
-}
-
-const useGetCourses = (): UseQueryResult<CoursesResponse, AxiosError> =>
+const useGetCourses = (): UseQueryResult<Course, AxiosError> =>
   useQuery('courses', async () => {
-    let coursesResponse: Array<any>;
+    let coursesResponse: Array<Course>;
     const apiClient = apiClientWrapper();
     try {
       const response = await apiClient.get(`${API.getCourses}`);
