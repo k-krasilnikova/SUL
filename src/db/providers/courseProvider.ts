@@ -1,5 +1,5 @@
 import CourseModel from 'db/models/Course';
-import { MaterialModel } from 'db/models/Materials';
+import MaterialModel from 'db/models/Materials';
 
 const getCoursesProvider = async () => {
   const courses = await CourseModel.find().lean();
@@ -18,12 +18,19 @@ const getCourseProvider = async (courseId: string) => {
 };
 
 const getMaterialsProvider = async () => {
-  const materials = await MaterialModel.find().lean();
-  console.log('in provider', materials);
+  const materials = await MaterialModel.find();
   if (!materials) {
-    throw new Error('materialss not found');
+    throw new Error('materials not found');
   }
   return materials;
 };
 
-export { getCoursesProvider, getCourseProvider, getMaterialsProvider };
+const getMaterialProvider = async (id: string) => {
+  const materials = await MaterialModel.find({ _id: id });
+  if (!materials) {
+    throw new Error('materials not found');
+  }
+  return materials;
+};
+
+export { getCoursesProvider, getCourseProvider, getMaterialsProvider, getMaterialProvider };
