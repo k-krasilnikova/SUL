@@ -20,12 +20,12 @@ coursesRouter.get(
   getCourseById,
 );
 coursesRouter.get(
-  `${SubRoutes.materials}`,
+  `${Params.id}${SubRoutes.materials}`,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getAllMaterials,
 );
 coursesRouter.get(
-  `${SubRoutes.materials}${Params.id}`,
+  `${Params.id}${SubRoutes.materials}${Params.id}`,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getMaterial,
 );
