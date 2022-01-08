@@ -84,7 +84,7 @@ const MATERIALS = [
         isCompleted: false,
       },
     ],
-    technology: ['java'],
+    technology: ['python'],
   },
 ];
 

@@ -10,9 +10,14 @@ import getMaterial from 'controllers/courses/getMaterial';
 
 const coursesRouter = Router();
 coursesRouter.get(
-  `${Params.noParams}`,
+  `${Params.id}${SubRoutes.materials}${Params.id}`,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
-  getAllCourses,
+  getMaterial,
+);
+coursesRouter.get(
+  `${SubRoutes.materials}`,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
+  getAllMaterials,
 );
 coursesRouter.get(
   `${Params.id}`,
@@ -20,14 +25,9 @@ coursesRouter.get(
   getCourseById,
 );
 coursesRouter.get(
-  `${Params.id}${SubRoutes.materials}`,
+  `${Params.noParams}`,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
-  getAllMaterials,
-);
-coursesRouter.get(
-  `${Params.id}${SubRoutes.materials}${Params.id}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
-  getMaterial,
+  getAllCourses,
 );
 
 export default coursesRouter;
