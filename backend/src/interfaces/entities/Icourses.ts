@@ -1,13 +1,14 @@
-import { TMaterials } from './Imaterials';
+import { ObjectId } from 'mongoose';
 
 interface ICourse {
-  _id?: string;
+  _id?: ObjectId;
   title: string;
   technology: string;
   requiredSkills?: Array<string>;
   description: string;
   duration: number;
-  materials: TMaterials;
+  materials: Array<ObjectId>;
+  lessons: number;
   testLink: string;
 }
 
