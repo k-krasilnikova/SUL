@@ -8,5 +8,4 @@ export interface Course {
   lessons: number;
   _id?: string;
   materials?: Array<string>;
-  map?: any;
 }

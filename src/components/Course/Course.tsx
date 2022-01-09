@@ -25,7 +25,7 @@ const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, si
       <Image size={size} />
     </ImageWrapper>
     <CourseTitle>{title}</CourseTitle>
-    <CourseDescription size={size}>{description}</CourseDescription>
+    <CourseDescription>{description}</CourseDescription>
     <ButtonsContainer>
       <CourseInfo duration={duration} lessons={lessons} />
       {children}
