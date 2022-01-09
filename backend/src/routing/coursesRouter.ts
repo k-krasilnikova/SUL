@@ -1,21 +1,33 @@
 import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
-import { Params } from 'enums/routesEnum';
+import { Params, SubRoutes } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
 import getAllCourses from 'controllers/courses/getAllCourses';
 import getCourseById from 'controllers/courses/getCourse';
+import getAllMaterials from 'controllers/courses/getAllMaterials';
+import getMaterial from 'controllers/courses/getMaterial';
 
 const coursesRouter = Router();
 coursesRouter.get(
-  `${Params.noParams}`,
+  `${Params.id}${SubRoutes.materials}${Params.id}`,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
-  getAllCourses,
+  getMaterial,
+);
+coursesRouter.get(
+  `${SubRoutes.materials}`,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
+  getAllMaterials,
 );
 coursesRouter.get(
   `${Params.id}`,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getCourseById,
+);
+coursesRouter.get(
+  `${Params.noParams}`,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
+  getAllCourses,
 );
 
 export default coursesRouter;
