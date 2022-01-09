@@ -4,11 +4,16 @@ import { IMaterial } from 'interfaces/entities/Imaterials';
 
 const materialSchema = new Schema<IMaterial>({
   content: [
-    { stage: { type: Number }, content: [{ type: String }], isCompleted: { type: Boolean } },
+    {
+      _id: { type: String },
+      stage: { type: Number },
+      content: [{ type: String }],
+      isCompleted: Boolean,
+    },
   ],
   technology: [{ type: String }],
 });
 
-const MaterialModel = model<IMaterial>('Materials', materialSchema);
+const MaterialModel = model('materials', materialSchema);
 
-export { MaterialModel, materialSchema };
+export default MaterialModel;
