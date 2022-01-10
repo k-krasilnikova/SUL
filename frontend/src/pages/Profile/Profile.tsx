@@ -4,64 +4,54 @@ import ListItem from '@mui/material/ListItem';
 import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
+import INITIAL_COURSES from 'constants/coursesList';
 
-import {
-  ProfileBox,
-  UserInfoList,
-  UserInfoText,
-  UserInfoLabel,
-  UserListSubheader,
-  UserListItem,
-} from './styled';
+import UserCourses from './UserCourses/UserCourses';
+import { ProfileBox, AvatarWrapper, UserInfoList, UserInfoText, UserInfoLabel } from './styled';
 
 const ProfileContent: React.FC<User> = ({
+  avatar,
   firstName,
   lastName,
-  avatar,
-  birthday,
-  skype,
   position,
-  skills,
+  group,
+  phone,
+  skype,
   courses,
 }) => (
   <AuthorizedLayout pageName="Profile">
     <ProfileBox>
-      <UserAvatar avatar={avatar} size="large" />
-      <UserInfoList sx={{ marginLeft: 'auto', marginRight: 'auto' }}>
+      <AvatarWrapper>
+        <UserAvatar avatar={avatar} size="large" />
+      </AvatarWrapper>
+      <UserInfoList>
         <ListItem disablePadding>
-          <UserInfoLabel>Full name:</UserInfoLabel>
-          <UserInfoText>
-            {firstName} {lastName}
-          </UserInfoText>
+          <UserInfoLabel>Name:</UserInfoLabel>
+          <UserInfoText>{firstName}</UserInfoText>
         </ListItem>
         <ListItem disablePadding>
-          <UserInfoLabel>Birthday:</UserInfoLabel>
-          <UserInfoText>{birthday}</UserInfoText>
-        </ListItem>
-        <ListItem disablePadding>
-          <UserInfoLabel>Skype:</UserInfoLabel>
-          <UserInfoText>{skype}</UserInfoText>
+          <UserInfoLabel>Surname:</UserInfoLabel>
+          <UserInfoText>{lastName}</UserInfoText>
         </ListItem>
         <ListItem disablePadding>
           <UserInfoLabel>Position:</UserInfoLabel>
           <UserInfoText>{position}</UserInfoText>
         </ListItem>
-      </UserInfoList>
-      <UserInfoList subheader={<UserListSubheader>Skills</UserListSubheader>}>
-        {skills?.map((skill, id) => (
-          <ListItem key={id}>
-            <UserListItem>{skill}</UserListItem>
-          </ListItem>
-        ))}
-      </UserInfoList>
-      <UserInfoList subheader={<UserListSubheader>Applied courses</UserListSubheader>}>
-        {courses?.map((course, id: number) => (
-          <ListItem key={id}>
-            <UserListItem>{course}</UserListItem>
-          </ListItem>
-        ))}
+        <ListItem disablePadding>
+          <UserInfoLabel>Group:</UserInfoLabel>
+          <UserInfoText>{group}</UserInfoText>
+        </ListItem>
+        <ListItem disablePadding>
+          <UserInfoLabel>Phone:</UserInfoLabel>
+          <UserInfoText>{phone}</UserInfoText>
+        </ListItem>
+        <ListItem disablePadding>
+          <UserInfoLabel>Skype:</UserInfoLabel>
+          <UserInfoText>{skype}</UserInfoText>
+        </ListItem>
       </UserInfoList>
     </ProfileBox>
+    <UserCourses courses={INITIAL_COURSES} />
   </AuthorizedLayout>
 );
 
