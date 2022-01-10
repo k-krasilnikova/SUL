@@ -12,9 +12,9 @@ const MyCourses: React.FC = () => {
   return (
     <AuthorizedLayout pageName="My Courses">
       <PageContainer>
-        {data?.map((course, id) => (
+        {data?.map((course) => (
           <CourseItem
-            key={id}
+            key={course._id}
             title={course.title}
             description={course.description}
             duration={course.duration}
