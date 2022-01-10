@@ -11,9 +11,9 @@ const size = 'medium';
 const CoursesList: React.FC = () => (
   <AuthorizedLayout pageName="Courses List">
     <PageContainer>
-      {INITIAL_COURSES.map((course, id) => (
+      {INITIAL_COURSES.map((course) => (
         <CourseItem
-          key={id}
+          key={course._id}
           title={course.title}
           description={course.description}
           duration={course.duration}
