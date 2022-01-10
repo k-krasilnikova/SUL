@@ -14,7 +14,14 @@ export const PageContainer = styled(Grid)({
   },
   border: '1px solid #ebebeb',
   borderRadius: '10px',
+  width: '100%',
+  margin: '0px !important',
   marginTop: '25px !important',
+});
+
+export const GridItem = styled(Grid)({
+  padding: '15px',
+  overflow: 'scroll',
 });
 
 export const CourseButton = styled(Button)({
@@ -57,7 +64,7 @@ export const CourseActions = styled('div')({
     margin: '0px',
     minWidth: '250px',
   },
-  '@media(max-width: 575px)': {
+  '@media(max-width: 580px)': {
     display: 'flex',
     justifyContent: 'center',
   },
