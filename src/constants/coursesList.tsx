@@ -1,35 +1,107 @@
 const INITIAL_COURSES = [
   {
     _id: '123',
-    title: 'What',
-    description:
-      'To Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    duration: '23:40:00',
-    lessons: 20,
+    lessons: 5,
+    title: 'JS for begginers',
+    description: 'basic course for biginers',
+    technology: ['js', 'html', 'css'],
+    requiredSkills: ['learn to read'],
+    duration: '123124679',
+    materials: [
+      {
+        content: [
+          {
+            stage: 1,
+            content:
+              'https://www.youtube.com/watch?v=VuN8qwZoego&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=1&ab_channel=WesBos',
+            isCompleted: true,
+          },
+          {
+            stage: 2,
+            content:
+              'https://www.youtube.com/watch?v=xu87YWbr4X0&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=2&ab_channel=WesBos',
+            isCompleted: true,
+          },
+        ],
+        technology: 'HTML',
+      },
+      {
+        content: [
+          {
+            stage: 1,
+            content:
+              'https://www.youtube.com/watch?v=VuN8qwZoego&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=1&ab_channel=WesBos',
+            isCompleted: true,
+          },
+          {
+            stage: 2,
+            content:
+              'https://www.youtube.com/watch?v=xu87YWbr4X0&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=2&ab_channel=WesBos',
+            isCompleted: false,
+          },
+        ],
+        technology: 'CSS',
+      },
+      {
+        content: [
+          {
+            stage: 1,
+            content:
+              'https://www.youtube.com/watch?v=VuN8qwZoego&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=1&ab_channel=WesBos',
+            isCompleted: true,
+          },
+          {
+            stage: 2,
+            content:
+              'https://www.youtube.com/watch?v=xu87YWbr4X0&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=2&ab_channel=WesBos',
+            isCompleted: false,
+          },
+          {
+            stage: 3,
+            content:
+              'https://www.youtube.com/watch?v=AHLNzv13c2I&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=3&ab_channel=WesBos',
+            isCompleted: false,
+          },
+        ],
+        technology: 'JavaScript',
+      },
+    ],
+    testLink: 'https://www.idrlabs.com/hogwarts-house/test.php',
   },
   {
     _id: '124',
-    title: 'Is',
-    description:
-      'Serv Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    duration: '02:40:00',
-    lessons: 10,
-  },
-  {
-    _id: '125',
-    title: 'You',
-    description:
-      'Imperos Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    duration: '04:20:00',
-    lessons: 15,
-  },
-  {
-    _id: '126',
-    title: 'Duty?',
-    description:
-      'Will Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    duration: '14:58:00',
-    lessons: 18,
+    lessons: 6,
+    title: 'Java for Profi ',
+    description: 'basic course for biginers',
+    technology: ['java', 'sql'],
+    requiredSkills: ['java for begginers'],
+    duration: '123124679',
+    materials: [
+      {
+        content: [
+          {
+            stage: 1,
+            content:
+              'https://www.youtube.com/watch?v=ntLJmHOJ0ME&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&ab_channel=CodeWithHarry',
+            isCompleted: true,
+          },
+          {
+            stage: 2,
+            content:
+              'https://www.youtube.com/watch?v=zIdg7hkqNE0&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&index=2&ab_channel=CodeWithHarry',
+            isCompleted: true,
+          },
+          {
+            stage: 3,
+            content:
+              'https://www.youtube.com/watch?v=X0zdAG7gfgs&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&index=3&ab_channel=CodeWithHarry',
+            isCompleted: true,
+          },
+        ],
+        technology: 'Java',
+      },
+    ],
+    testLink: 'https://www.idrlabs.com/ru/libertarian/test.php',
   },
 ];
 

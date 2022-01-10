@@ -1,5 +1,15 @@
+export interface Content {
+  stage: number;
+  content: string;
+  isCompleted: boolean;
+}
+
+export interface Material {
+  content: Array<Content>;
+  technology: string;
+}
+
 export interface Course {
-  _id?: string;
   title: string;
   description: string;
   technology: Array<string>;
@@ -7,5 +17,6 @@ export interface Course {
   duration: string;
   testLink: string;
   lessons: number;
-  materials: Array<string>;
+  materials: Array<Material>;
+  _id: string;
 }
