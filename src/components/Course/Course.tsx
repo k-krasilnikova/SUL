@@ -8,6 +8,7 @@ import {
   ImageWrapper,
   CourseTitle,
   CourseDescription,
+  AboutCourseContainer,
   ButtonsContainer,
 } from './styled';
 
@@ -16,16 +17,17 @@ interface Props {
   description: string;
   duration: string;
   lessons: number;
-  size?: string;
 }
 
-const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, size, children }) => (
-  <CourseContainer size={size}>
-    <ImageWrapper>
-      <Image size={size} />
-    </ImageWrapper>
-    <CourseTitle>{title}</CourseTitle>
-    <CourseDescription>{description}</CourseDescription>
+const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, children }) => (
+  <CourseContainer>
+    <AboutCourseContainer>
+      <ImageWrapper>
+        <Image />
+      </ImageWrapper>
+      <CourseTitle>{title}</CourseTitle>
+      <CourseDescription>{description}</CourseDescription>
+    </AboutCourseContainer>
     <ButtonsContainer>
       <CourseInfo duration={duration} lessons={lessons} />
       {children}
