@@ -16,7 +16,6 @@ const CourseMaterialInfo: React.FC<MaterialProps> = ({ material }) => {
     if (stage.isCompleted) stagesCompleted++;
   });
   const progress = (stagesCompleted / stages) * 100;
-
   return (
     <MaterialInfo>
       <CourseProgress variant="determinate" value={progress} />
