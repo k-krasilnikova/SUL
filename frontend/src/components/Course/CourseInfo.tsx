@@ -6,7 +6,7 @@ import { InfoContainer, InfoItem } from './styled';
 
 interface Props {
   duration: string;
-  lessons: string;
+  lessons: number;
 }
 
 const CourseInfo: React.FC<Props> = ({ duration, lessons }) => (
