@@ -18,7 +18,8 @@ const CoursesList: React.FC = () => {
         {isLoading ? (
           <Typography>...Loading</Typography>
         ) : (
-          data?.data?.map((course: Course, id: number) => (
+          data instanceof Array &&
+          data?.map((course: Course, id: number) => (
             <GridItem key={id} item xl={6} lg={6} md={12} sm={12}>
               <CourseItem
                 key={id}

@@ -48,24 +48,10 @@ export const CourseActions = styled('div')({
     display: 'flex',
     flexDirection: 'column',
   },
-  [theme.breakpoints.up('lg')]: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '0px',
-    minWidth: '250px',
-  },
-  '@media(max-width: 1230px)': {
-    display: 'flex',
-    justifyContent: 'center',
-  },
   [theme.breakpoints.down('lg')]: {
     display: 'flex',
     justifyContent: 'space-between',
     margin: '0px',
     minWidth: '250px',
-  },
-  '@media(max-width: 580px)': {
-    display: 'flex',
-    justifyContent: 'center',
   },
 });
