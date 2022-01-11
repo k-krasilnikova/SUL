@@ -10,15 +10,15 @@ import { PageContainer, CourseButton, CourseActions, GridItem } from './styled';
 import { useGetCourses } from 'api/courses';
 
 const CoursesList: React.FC = () => {
-  const { data, isLoading, isFetching } = useGetCourses();
+  const { data, isLoading } = useGetCourses();
+
   return (
     <AuthorizedLayout pageName="Courses List">
       <PageContainer container>
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <Typography>...Loading</Typography>
         ) : (
-          data instanceof Array &&
-          data.map((course: Course, id: number) => (
+          data?.data?.map((course: Course, id: number) => (
             <GridItem key={id} item xl={6} lg={6} md={12} sm={12}>
               <CourseItem
                 key={id}

@@ -4,18 +4,16 @@ import { AxiosError } from 'axios';
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
-import { Course } from 'types/course';
+import { CourseResponse } from 'types/course';
 
-const useGetCourses = (): UseQueryResult<Course, AxiosError> =>
+const useGetCourses = (): UseQueryResult<CourseResponse, AxiosError> =>
   useQuery(
     'Courses',
     async () => {
-      let coursesResponse: Array<Course>;
       const apiClient = apiClientWrapper();
       try {
-        const response = await apiClient.get(`${API.getCourses}`);
-        coursesResponse = response.data;
-        return coursesResponse;
+        const response: CourseResponse = await apiClient.get(`${API.getCourses}`);
+        return response;
       } catch (error) {
         throw new Error(`${REQUEST_ERRORS.getError}`);
       }
