@@ -1,4 +1,5 @@
 export interface Course {
+  _id?: string;
   title: string;
   description: string;
   technology: Array<string>;
@@ -6,6 +7,5 @@ export interface Course {
   duration: string;
   testLink: string;
   lessons: number;
-  _id?: string;
-  materials?: Array<string>;
+  materials: Array<string>;
 }
