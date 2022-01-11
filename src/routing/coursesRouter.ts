@@ -11,12 +11,12 @@ import getMaterial from 'controllers/courses/getMaterial';
 const coursesRouter = Router();
 coursesRouter.get(
   `${Params.id}${SubRoutes.materials}${Params.id}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
+ withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getMaterial,
 );
 coursesRouter.get(
   `${SubRoutes.materials}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
+ withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getAllMaterials,
 );
 coursesRouter.get(

@@ -26,5 +26,8 @@ app.use(loggerMiddleware);
 app.use(`${Routes.namespace}`, routers);
 
 app.listen(port, () => {
-  console.log(`SUL api started on port ${port}.`);
+  if (port) {
+    console.log(`SUL api started on port ${port}.`);
+  }
+
 });
