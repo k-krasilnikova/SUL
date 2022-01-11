@@ -4,7 +4,6 @@ import ListItem from '@mui/material/ListItem';
 import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
-import INITIAL_COURSES from 'constants/coursesList';
 
 import UserCourses from './UserCourses/UserCourses';
 import { ProfileBox, AvatarWrapper, UserInfoList, UserInfoText, UserInfoLabel } from './styled';
@@ -51,7 +50,7 @@ const ProfileContent: React.FC<User> = ({
         </ListItem>
       </UserInfoList>
     </ProfileBox>
-    <UserCourses courses={INITIAL_COURSES} />
+    <UserCourses courses={courses} />
   </AuthorizedLayout>
 );
 

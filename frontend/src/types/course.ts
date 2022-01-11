@@ -6,7 +6,7 @@ export interface Content {
 
 export interface Material {
   content: Array<Content>;
-  technology: string;
+  technology: Array<string>;
 }
 
 export interface Course {
