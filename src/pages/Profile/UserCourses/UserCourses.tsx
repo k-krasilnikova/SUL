@@ -7,7 +7,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { Course } from 'types/course';
 import isCourseCompleted from 'utils/helpers/isCourseCompleted';
 
-import CourseMaterialInfo from 'pages/Profile/UserCourses/CourseMaterialInfo';
+import CourseMaterialInfoContainer from 'pages/Profile/UserCourses/CourseMaterialInfoContainer';
 import {
   CoursesBox,
   CoursesList,
@@ -23,7 +23,10 @@ interface CoursesProps {
 
 const UserCourses: React.FC<CoursesProps> = ({ courses }) => {
   const [searchCourse, setSearchCourse] = useState('');
-  return (
+  console.log(courses);
+  return courses?.length === 0 ? (
+    <div>No courses chosen</div>
+  ) : (
     <>
       <CoursesBox>
         <Input
@@ -60,7 +63,7 @@ const UserCourses: React.FC<CoursesProps> = ({ courses }) => {
                   </CourseTitle>
                   <MaterialsList>
                     {course.materials.map((material, id) => (
-                      <CourseMaterialInfo key={id} material={material} />
+                      <CourseMaterialInfoContainer key={id} material={material} />
                     ))}
                   </MaterialsList>
                 </CoursesListItem>

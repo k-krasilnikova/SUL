@@ -1,34 +1,31 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
 
-import { Material } from 'types/course';
+import { MaterialInfo, CourseProgress, MaterialInfoText } from './styled';
 
-import { MaterialInfo, CourseProgress } from './styled';
-
-interface MaterialProps {
-  material: Material;
+interface Props {
+  materialTitle: string;
+  stages: number;
+  stagesCompleted: number;
+  progress: number;
 }
 
-const CourseMaterialInfo: React.FC<MaterialProps> = ({ material }) => {
-  const stages = material.content.length;
-  let stagesCompleted = 0;
-  material.content.forEach((stage) => {
-    if (stage.isCompleted) stagesCompleted++;
-  });
-  const progress = (stagesCompleted / stages) * 100;
-  return (
-    <MaterialInfo>
-      <CourseProgress variant="determinate" value={progress} />
-      <div>
-        <Typography variant="body1" gutterBottom component="div">
-          {material.technology}
-        </Typography>
-        <Typography variant="body2" gutterBottom>
-          {stagesCompleted}/{stages}
-        </Typography>
-      </div>
-    </MaterialInfo>
-  );
-};
+const CourseMaterialInfo: React.FC<Props> = ({
+  materialTitle,
+  stages,
+  stagesCompleted,
+  progress,
+}) => (
+  <MaterialInfo>
+    <CourseProgress variant="determinate" value={progress} />
+    <div>
+      <MaterialInfoText variant="body1" gutterBottom>
+        {materialTitle}
+      </MaterialInfoText>
+      <MaterialInfoText variant="body2" gutterBottom>
+        {stagesCompleted}/{stages}
+      </MaterialInfoText>
+    </div>
+  </MaterialInfo>
+);
 
 export default CourseMaterialInfo;

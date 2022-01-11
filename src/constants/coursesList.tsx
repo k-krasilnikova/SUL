@@ -22,25 +22,20 @@ const INITIAL_COURSES = [
               'https://www.youtube.com/watch?v=xu87YWbr4X0&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=2&ab_channel=WesBos',
             isCompleted: true,
           },
-        ],
-        technology: 'HTML',
-      },
-      {
-        content: [
           {
-            stage: 1,
+            stage: 3,
             content:
-              'https://www.youtube.com/watch?v=VuN8qwZoego&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=1&ab_channel=WesBos',
+              'https://www.youtube.com/watch?v=xu87YWbr4X0&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=2&ab_channel=WesBos',
             isCompleted: true,
           },
           {
-            stage: 2,
+            stage: 4,
             content:
               'https://www.youtube.com/watch?v=xu87YWbr4X0&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=2&ab_channel=WesBos',
-            isCompleted: false,
+            isCompleted: true,
           },
         ],
-        technology: 'CSS',
+        technology: ['HTML', 'CSS'],
       },
       {
         content: [
@@ -63,7 +58,7 @@ const INITIAL_COURSES = [
             isCompleted: false,
           },
         ],
-        technology: 'JavaScript',
+        technology: ['JavaScript'],
       },
     ],
     testLink: 'https://www.idrlabs.com/hogwarts-house/test.php',
@@ -98,7 +93,7 @@ const INITIAL_COURSES = [
             isCompleted: true,
           },
         ],
-        technology: 'Java',
+        technology: ['Java'],
       },
     ],
     testLink: 'https://www.idrlabs.com/ru/libertarian/test.php',

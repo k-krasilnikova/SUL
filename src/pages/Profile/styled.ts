@@ -3,30 +3,49 @@ import List from '@mui/material/List';
 import theme from 'themeSettings';
 
 export const ProfileBox = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-between',
+  [theme.breakpoints.up('xs')]: {
+    display: 'block',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+
   width: '95%',
   marginRight: '5%',
   padding: '10px',
 });
 export const AvatarWrapper = styled('div')({
+  [theme.breakpoints.up('xs')]: {
+    display: 'block',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'inline-block',
+  },
   flex: '1 1 240px',
-  display: 'inline-block',
   textAlign: 'center',
 });
 export const UserInfoList = styled(List)({
-  flex: '2 2 600px',
-  display: 'inline-block',
-  margin: '10px 0px 0px 50px',
+  [theme.breakpoints.up('xs')]: {
+    display: 'block',
+    width: '200px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  [theme.breakpoints.up('lg')]: {
+    flex: '2 2 600px',
+    display: 'inline-block',
+    margin: '10px 0px 0px 50px',
+  },
 });
 export const UserInfoLabel = styled('span')({
   [theme.breakpoints.up('xs')]: {
     width: '80px',
     display: 'inline-block',
-    fontSize: '14px',
-    lineHeight: '14px',
+    fontSize: '12px',
+    lineHeight: '12px',
     padding: '5px',
-    height: '24px',
+    height: '22px',
     margin: '2px 0px',
   },
   [theme.breakpoints.up('lg')]: {
@@ -43,12 +62,12 @@ export const UserInfoLabel = styled('span')({
 });
 export const UserInfoText = styled('span')({
   [theme.breakpoints.up('xs')]: {
-    width: '160px',
+    width: '120px',
     display: 'inline-block',
-    fontSize: '14px',
-    lineHeight: '14px',
+    fontSize: '12px',
+    lineHeight: '12px',
     padding: '5px',
-    height: '24px',
+    height: '22px',
     margin: '2px 0px',
   },
   [theme.breakpoints.up('lg')]: {
