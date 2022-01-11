@@ -2,6 +2,8 @@ import React from 'react';
 import { TextField as MuiTextField } from '@mui/material';
 import { Field } from 'formik';
 
+import WarningHelper from './styled';
+
 interface TextFieldProps {
   id: string;
   label: string;
@@ -42,7 +44,7 @@ const TextField: React.FC<TextFieldProps> = ({
     >
       {children}
     </Field>
-    {error}
+    {error && <WarningHelper>{error}</WarningHelper>}
   </>
 );
 
