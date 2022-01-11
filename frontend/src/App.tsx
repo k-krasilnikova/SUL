@@ -7,8 +7,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PATHS } from 'constants/routes';
 import { Profile, MyCourses, CoursesList, Help, Employees, Requests, Skills, SignIn } from 'pages';
 import { queryClient } from 'api/base';
-import theme from './themeSettings';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
+
+import theme from './themeSettings';
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
