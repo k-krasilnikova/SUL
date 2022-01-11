@@ -3,9 +3,8 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router';
 
 import { apiClientWrapper } from 'api/base';
-import { API } from 'constants/routes';
+import { API, PATHS } from 'constants/routes';
 import { COOKIE_VALUES, REQUEST_ERRORS } from 'constants/authConstants';
-import { PATHS } from 'constants/routes';
 
 const useGetAuth = (): UseMutationResult => {
   const navigateTo = useNavigate();
