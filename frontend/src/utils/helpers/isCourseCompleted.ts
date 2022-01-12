@@ -1,15 +1,12 @@
 import { Course } from 'types/course';
 
 const isCourseCompleted = (course: Course): boolean => {
-  let completed = true;
-  for (let material = 0; material < course.materials.length; material++) {
-    const content = course.materials[material].content;
-    for (let stage = 0; stage < content.length; stage++) {
-      if (!content[stage].isCompleted) {
-        completed = false;
-        break;
-      }
-    }
+  let completed = false;
+  const lastMaterial = course.materials.length - 1;
+  const content = course.materials[lastMaterial].content;
+  const lastContent = content.length - 1;
+  if (content[lastContent].isCompleted) {
+    completed = true;
   }
   return completed;
 };

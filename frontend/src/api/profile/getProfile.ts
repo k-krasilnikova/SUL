@@ -6,12 +6,9 @@ import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
 import { User } from 'types/user';
+import { ResponseError } from 'types/serverError';
 
-interface Response {
-  error?: unknown;
-}
-
-type ProfileResponse = User & Response;
+type ProfileResponse = User & ResponseError;
 
 const useGetProfile = (): UseQueryResult<ProfileResponse, AxiosError> =>
   useQuery('profile', async () => {
