@@ -43,14 +43,15 @@ export const CourseButton = styled(Button)({
 });
 
 export const CourseActions = styled('div')({
-  [theme.breakpoints.down('sm')]: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
   [theme.breakpoints.down('lg')]: {
     display: 'flex',
     justifyContent: 'space-between',
     margin: '0px',
     minWidth: '250px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    display: 'flex',
+    flexDirection: 'column',
+    minWidth: 'auto',
   },
 });

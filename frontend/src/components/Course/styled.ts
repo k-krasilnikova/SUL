@@ -36,18 +36,41 @@ export const AboutCourseContainer = styled('div')({
 
 export const ImageWrapper = styled('div')({
   float: 'left',
-  width: '250px',
-  height: '150px',
   margin: '0px',
   marginRight: '10px',
   overflow: 'hidden',
   borderRadius: '10px',
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.up('xl')]: {
+    width: '250px',
+    height: '150px',
     alignItems: 'center',
     alignSelf: 'center',
     marginRight: '10px',
   },
+  [theme.breakpoints.down('xl')]: {
+    width: '50%',
+    height: 'auto',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginRight: '10px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    width: '250px',
+    height: 'auto',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginRight: '10px',
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '175px',
+    height: 'auto',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginRight: '5px',
+  },
   [theme.breakpoints.down('sm')]: {
+    width: '85%',
+    height: 'auto',
     alignItems: 'center',
     alignSelf: 'center',
     marginRight: '0px',
