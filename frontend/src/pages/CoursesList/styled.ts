@@ -21,7 +21,6 @@ export const PageContainer = styled(Grid)({
 
 export const GridItem = styled(Grid)({
   padding: '15px',
-  overflow: 'scroll',
 });
 
 export const CourseButton = styled(Button)({
