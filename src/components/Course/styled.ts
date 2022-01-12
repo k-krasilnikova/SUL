@@ -24,9 +24,8 @@ export const CourseContainer = styled(Grid)({
 });
 
 export const AboutCourseContainer = styled('div')({
-  height: '220px',
+  minHeight: '220px',
   padding: '10px',
-  overflow: 'hidden',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     flexDirection: 'column',
