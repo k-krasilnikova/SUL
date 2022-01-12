@@ -52,7 +52,6 @@ export const ImageWrapper = styled('div')({
     alignItems: 'center',
     alignSelf: 'center',
     marginRight: '0px',
-    width: '100%',
   },
 });
 
