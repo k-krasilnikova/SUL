@@ -5,8 +5,8 @@ import { clock, videoPlayer } from 'icons';
 import { InfoContainer, InfoItem, InfoItemText } from './styled';
 
 interface Props {
-  duration: string;
-  lessons: number;
+  duration: string | undefined;
+  lessons: number | undefined;
 }
 
 const CourseInfo: React.FC<Props> = ({ duration, lessons }) => (

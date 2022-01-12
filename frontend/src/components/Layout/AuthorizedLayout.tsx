@@ -6,7 +6,7 @@ import { Header } from './Header';
 import Menu from './Menu';
 
 interface Props {
-  pageName: string;
+  pageName: string | undefined;
   children: React.ReactNode;
   firstName?: string;
   lastName?: string;
