@@ -7,7 +7,8 @@ import { getMaterialProvider } from 'db/providers/materialProvider';
 const getMaterials = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
     const { id } = req.params;
-    const material = await getMaterialProvider(id);
+    const params = req.query;
+    const material = await getMaterialProvider({ id, ...params });
     res.json(material);
   } catch (error) {
     if (isError(error)) {
