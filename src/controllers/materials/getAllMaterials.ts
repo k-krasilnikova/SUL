@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { getMaterialsProvider } from 'db/providers/courseProvider';
+import { getMaterialsProvider } from 'db/providers/materialProvider';
 import { isError } from 'utils/typeGuards/isError';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 

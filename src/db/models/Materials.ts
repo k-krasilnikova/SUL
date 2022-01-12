@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { IMaterial } from 'interfaces/entities/Imaterials';
+import { IMaterial } from 'interfaces/Ientities/Imaterials';
 
 const materialSchema = new Schema<IMaterial>({
   content: [
