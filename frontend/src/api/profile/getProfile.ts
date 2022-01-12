@@ -7,6 +7,7 @@ import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
 
 interface ProfileResponse {
+  role: string;
   position?: string;
   firstName?: string;
   lastName?: string;
