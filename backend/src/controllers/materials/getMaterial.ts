@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { isError } from 'utils/typeGuards/isError';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { getMaterialProvider } from 'db/providers/courseProvider';
+import { getMaterialProvider } from 'db/providers/materialProvider';
 
 const getMaterials = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {

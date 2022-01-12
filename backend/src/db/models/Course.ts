@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { ICourse } from 'interfaces/entities/Icourses';
+import { ICourse } from 'interfaces/Ientities/Icourses';
 
 const courseSchema = new Schema<ICourse>({
   title: { type: String, required: true, unique: true },
