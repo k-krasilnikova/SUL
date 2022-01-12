@@ -5,7 +5,7 @@ import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
 
-import UserCourses from './UserCourses/UserCourses';
+import { UserCourses } from './UserCourses';
 import { ProfileBox, AvatarWrapper, UserInfoList, UserInfoText, UserInfoLabel } from './styled';
 
 const ProfileContent: React.FC<User> = ({

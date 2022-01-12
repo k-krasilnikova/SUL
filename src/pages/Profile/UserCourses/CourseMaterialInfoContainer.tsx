@@ -8,23 +8,18 @@ interface MaterialProps {
   material: Material;
 }
 
+const PERCENTAGE = 100;
+
 const CourseMaterialInfoContainer: React.FC<MaterialProps> = ({ material }) => {
-  let materialTitle = '';
-  material.technology.forEach((technology, id) => {
-    if (id < material.technology.length - 1) {
-      materialTitle += `${technology}, `;
-      return;
-    } else {
-      materialTitle += technology;
-      return;
-    }
-  });
+  const materialTitle = material.technology.join(', ');
   const stages = material.content.length;
   let stagesCompleted = 0;
   material.content.forEach((stage) => {
-    if (stage.isCompleted) stagesCompleted++;
+    if (stage.isCompleted) {
+      stagesCompleted++;
+    }
   });
-  const progress = (stagesCompleted / stages) * 100;
+  const progress = (stagesCompleted / stages) * PERCENTAGE;
   return (
     <CourseMaterialInfo
       materialTitle={materialTitle}
