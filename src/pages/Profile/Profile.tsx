@@ -24,7 +24,7 @@ const ProfileContent: React.FC<User> = ({
   skills,
   courses,
 }) => (
-  <AuthorizedLayout pageName="Profile">
+  <AuthorizedLayout pageName="Profile" firstName={firstName} lastName={lastName} avatar={avatar}>
     <ProfileBox>
       <UserAvatar avatar={avatar} size="large" />
       <UserInfoList sx={{ marginLeft: 'auto', marginRight: 'auto' }}>
