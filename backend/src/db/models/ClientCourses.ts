@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { IClientCourse } from 'interfaces/entities/IclientCourses';
+import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 
 const clientCourseSchema = new Schema<IClientCourse>({
   _id: { type: Schema.Types.ObjectId },

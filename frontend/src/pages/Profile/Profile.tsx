@@ -48,15 +48,16 @@ const ProfileContent: React.FC<User> = ({
         </ListItem>
       </UserInfoList>
       <UserInfoList subheader={<UserListSubheader>Skills</UserListSubheader>}>
-        {skills?.map((skill, id) => (
-          <ListItem key={id}>
+        {skills?.map((skill) => (
+          <ListItem key={skill}>
             <UserListItem>{skill}</UserListItem>
           </ListItem>
         ))}
       </UserInfoList>
       <UserInfoList subheader={<UserListSubheader>Applied courses</UserListSubheader>}>
-        {courses?.map((course, id: number) => (
-          <ListItem key={id}>
+        {courses?.map((course, indx) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <ListItem key={indx}>
             <UserListItem>{course}</UserListItem>
           </ListItem>
         ))}
