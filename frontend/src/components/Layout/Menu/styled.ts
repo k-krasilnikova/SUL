@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { HEADER_HEIGHT } from '../styled';
+import { HEADER_HEIGHT } from '../Header/styled';
 
 export const MenuTabs = styled('div')({
   width: '300px',
