@@ -14,7 +14,6 @@ routers.use(`${Routes.account}`, accountRouter);
 routers.use(`${Routes.clientCourses}`, clientCoursesRouter);
 routers.use(`${Routes.users}`, userRouter);
 routers.use(`${Routes.courses}`, coursesRouter);
-routers.use(`${Routes.clientCourses}`, clientCoursesRouter);
 routers.use(`${Routes.materials}`, materialsRouter);
 
 export default routers;
