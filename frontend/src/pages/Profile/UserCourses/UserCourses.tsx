@@ -28,7 +28,7 @@ const UserCourses: React.FC<CoursesProps> = ({ userCourses, setSearchCourse }) =
   return (
     <>
       <CoursesBox>
-        {userCourses ? (
+        {userCourses?.length ? (
           <div>
             <Input
               disableUnderline={true}
