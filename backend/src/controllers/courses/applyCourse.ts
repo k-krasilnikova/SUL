@@ -6,7 +6,7 @@ import { applyCourseProvider } from 'db/providers/courseProvider';
 
 const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
-    const { id: courseId } = req.params;
+    const { id: courseId } = req.body;
     const courses = await applyCourseProvider(courseId);
     res.json(courses);
   } catch (err) {
@@ -15,3 +15,5 @@ const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) =
     }
   }
 };
+
+export default applyCourse;
