@@ -8,6 +8,10 @@ const clientCourseSchema = new Schema<IClientCourse>({
   currentStage: { type: Number },
 });
 
-const ClientCourseModel = model<IClientCourse>('clientCourses', clientCourseSchema);
+const ClientCourseModel = model<IClientCourse>(
+  'clientCourses',
+  clientCourseSchema,
+  'clientCourses',
+);
 
 export default ClientCourseModel;

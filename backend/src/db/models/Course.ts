@@ -13,6 +13,6 @@ const courseSchema = new Schema<ICourse>({
   testLink: { type: String },
 });
 
-const CourseModel = model<ICourse>('courses', courseSchema);
+const CourseModel = model<ICourse>('Courses', courseSchema, 'Courses');
 
 export default CourseModel;

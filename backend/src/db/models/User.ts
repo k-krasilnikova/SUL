@@ -19,6 +19,6 @@ const schema = new Schema<IUser>({
   skype: { type: String, required: true, default: 'not provided' },
 });
 
-const UserModel = model<IUser>('User', schema);
+const UserModel = model<IUser>('User', schema, 'User');
 
 export default UserModel;
