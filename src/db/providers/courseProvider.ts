@@ -7,6 +7,7 @@ import {
   ORDER_TYPE,
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
+import ClientCourseModel from '../models/ClientCourses';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 
 const getCoursesProvider = async ({
@@ -38,4 +39,13 @@ const getCourseProvider = async (courseId: string) => {
   return course;
 };
 
-export { getCoursesProvider, getCourseProvider };
+const applyCourseProvider = async (courseId: string) => {
+  const course = await CourseModel.findById(courseId).lean();
+  await ClientCourseModel.updateOne(
+    { _id: courseId },
+    { $set: { course, status: 'approved', currentStage: 1 } },
+  );
+  return course;
+};
+
+export { getCoursesProvider, getCourseProvider, applyCourseProvider };

@@ -1,11 +1,12 @@
 import ClientCourseModel from '../models/ClientCourses';
 
-const getClientCoursesProvider = async (id: string) => {
-  const courses = await ClientCourseModel.findById(id).lean();
-  if (!courses) {
-    return [];
+const getClientCoursesProvider = async () => {
+  try {
+    const courses = await ClientCourseModel.find().lean();
+    return courses;
+  } catch (e) {
+    throw new Error();
   }
-  return courses;
 };
 
 export { getClientCoursesProvider };

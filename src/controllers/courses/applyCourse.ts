@@ -1,12 +1,13 @@
 import { Request, Response } from 'express';
 
-import { getClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { isError } from 'utils/typeGuards/isError';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
+import { applyCourseProvider } from 'db/providers/courseProvider';
 
-const getClientCoursesById = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
-    const courses = await getClientCoursesProvider();
+    const { id: courseId } = req.params;
+    const courses = await applyCourseProvider(courseId);
     res.json(courses);
   } catch (err) {
     if (isError(err)) {
@@ -14,5 +15,3 @@ const getClientCoursesById = async (req: Request, res: Response, next: TMiddlewa
     }
   }
 };
-
-export default getClientCoursesById;
