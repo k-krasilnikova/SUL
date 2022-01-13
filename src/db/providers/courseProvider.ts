@@ -40,12 +40,12 @@ const getCourseProvider = async (courseId: string) => {
 };
 
 const applyCourseProvider = async (courseId: string) => {
-  const course = await CourseModel.findById(courseId).lean();
-  await ClientCourseModel.updateOne(
-    { _id: courseId },
-    { $set: { course, status: 'approved', currentStage: 1 } },
-  );
-  return course;
+  const applyedCourse = await ClientCourseModel.insertMany({
+    course: courseId,
+    status: 'approved',
+    currentStage: 1,
+  });
+  return applyedCourse;
 };
 
 export { getCoursesProvider, getCourseProvider, applyCourseProvider };
