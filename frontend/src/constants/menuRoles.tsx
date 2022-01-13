@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  AccountCircleOutlined,
   ArticleOutlined,
   FolderSpecialOutlined,
   AddToQueueOutlined,
@@ -9,14 +8,11 @@ import {
   QuizOutlined,
 } from '@mui/icons-material';
 
+import { IRolesMenu, MenuItemProps } from 'types/menu';
+
 import { PATHS } from './routes';
 
-const EMPLOYEE_MENU = [
-  {
-    path: PATHS.profile,
-    title: 'Profile',
-    icon: <AccountCircleOutlined fontSize="large" />,
-  },
+const EMPLOYEE_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
     title: 'Courses List',
@@ -34,12 +30,7 @@ const EMPLOYEE_MENU = [
   },
 ];
 
-const MANAGER_MENU = [
-  {
-    path: PATHS.profile,
-    title: 'Profile',
-    icon: <AccountCircleOutlined fontSize="large" />,
-  },
+const MANAGER_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
     title: 'Courses List',
@@ -67,7 +58,7 @@ const MANAGER_MENU = [
   },
 ];
 
-const ADMIN_MENU = [
+const ADMIN_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
     title: 'Courses List',
@@ -85,7 +76,7 @@ const ADMIN_MENU = [
   },
 ];
 
-export const ROLES_MENU = {
+export const ROLES_MENU: IRolesMenu = {
   employee: EMPLOYEE_MENU,
   manager: MANAGER_MENU,
   admin: ADMIN_MENU,
