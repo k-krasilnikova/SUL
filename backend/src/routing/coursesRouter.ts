@@ -6,6 +6,7 @@ import withAuth from 'middlewares/authMiddleware';
 import getAllCourses from 'controllers/courses/getAllCourses';
 import getCourseById from 'controllers/courses/getCourse';
 import getMaterial from 'controllers/materials/getMaterial';
+import applyCourse from 'controllers/courses/applyCourse';
 
 const coursesRouter = Router();
 coursesRouter.get(
