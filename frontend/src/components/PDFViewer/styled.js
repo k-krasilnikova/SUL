@@ -16,13 +16,13 @@ export const ButtonBox = styled(Box)({
   display: 'flex',
   justifyContent: 'flex-start',
   alignSelf: 'flex-end',
-  marginRight: "4em"
+  marginRight: '4em',
 });
 
 export const StyledButton = styled(Button)({
   color: '#000000',
-  minWidth: "25px",
-})
+  minWidth: '25px',
+});
 
 export const DocumentBox = styled(Box)({
   display: 'flex',
@@ -36,7 +36,7 @@ export const DocumentBox = styled(Box)({
   '&::-webkit-scrollbar': {
     display: 'none',
   },
-  "scrollbar-width": "none",
+  'scrollbar-width': 'none',
 });
 
 export const PageNumberText = styled(Typography)({
