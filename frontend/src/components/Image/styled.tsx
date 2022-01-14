@@ -12,18 +12,10 @@ export const ImageContainer = styled('div')<Size>(({ size }) => ({
   textAlign: 'center',
   margin: '5px',
   float: 'left',
-  width: '150px',
-  height: '100px',
-  ...(size === SIZE.large && {
-    width: '450px',
-    height: '300px',
-  }),
-  ...(size === SIZE.medium && {
-    width: '300px',
-    height: '200px',
-  }),
-  ...(size === SIZE.small && {
-    width: '150px',
-    height: '100px',
-  }),
 }));
+
+export const CurrentImage = styled('img')({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+});

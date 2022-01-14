@@ -22,4 +22,5 @@ export interface SignTypes {
       password: string | number;
     };
   };
+  imageUrl?: string;
 }

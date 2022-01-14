@@ -4,8 +4,10 @@ import { Typography } from '@mui/material';
 import Button from 'components/Button';
 import TextField from 'components/TextField';
 import { SignTypes } from 'types/signIn';
+import { signInImage } from 'icons';
 
 import Definition from './Definition';
+import Image from 'components/Image';
 import {
   SignWrapper,
   FormBox,
@@ -17,6 +19,8 @@ import {
   SignMainGrid,
   SignPresGrid,
   SignFormGrid,
+  DefinitionWrapper,
+  ImageWrapper,
 } from './styled';
 
 const SignIn = ({ formik }: SignTypes): JSX.Element => {
@@ -32,15 +36,20 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
   return (
     <SignMain>
       <SignMainGrid justifyContent="space-between" container>
-        <SignPresGrid item xs={12} sm={12} md={7} lg={8} alignItems="center">
-          <Definition />
+        <SignPresGrid item xs={12} sm={12} md={7} lg={8} xl={6} alignItems="center">
+          <ImageWrapper>
+            <Image imageUrl={signInImage} />
+          </ImageWrapper>
         </SignPresGrid>
-        <SignFormGrid item xs={12} sm={12} md={5} lg={4} alignItems="center">
+        <SignFormGrid item xs={12} sm={12} md={5} lg={4} xl={6} alignItems="center">
+          <DefinitionWrapper>
+            <Definition />
+          </DefinitionWrapper>
           <SignWrapper>
             <FormBox>
-              <Typography variant="h5" mb={3}>
+              {/* <Typography variant="h5" mb={3}>
                 Log In
-              </Typography>
+              </Typography> */}
               <ItemsBox component="form" onSubmit={handleSubmit}>
                 <GridWrapper container spacing={1}>
                   <GridSignInput item xs={12}>
@@ -50,7 +59,6 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
                       onChange={handleChange}
                       error={errors?.login}
                       id="login"
-                      label="Login"
                     />
                   </GridSignInput>
                   <GridSignInput item xs={12}>
@@ -60,7 +68,6 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
                       onChange={handleChange}
                       error={errors?.password}
                       id="password"
-                      label="Password"
                       type="password"
                     />
                   </GridSignInput>

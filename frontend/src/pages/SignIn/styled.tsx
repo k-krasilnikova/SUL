@@ -11,6 +11,7 @@ const SignMain = styled(Box)({
   },
 });
 
+//Материнский блок
 const SignMainGrid = styled(Grid)({
   height: '100%',
   width: '100%',
@@ -18,28 +19,53 @@ const SignMainGrid = styled(Grid)({
   padding: '0px !important',
 });
 
+//Левый блок
 const SignPresGrid = styled(Grid)({
   padding: '0px 5px!important',
   margin: '0px !important',
+  border: '1px solid red',
+  display: 'grid',
   '@media(max-width: 767px)': {
     minHeight: '220px',
   },
 });
 
+const ImageWrapper = styled(Box)({
+  width: '100%',
+  maxWidth: '717px',
+  justifySelf: 'center',
+  alignSelf: 'center',
+});
+
+//Правый блок
 const SignFormGrid = styled(Grid)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  padding: '0px 5px!important',
-  margin: '0px !important',
+  background: '#E0FFFF',
+  display: 'grid',
+  gridTemplateRows: '30% 70%',
+  '@media(max-width: 767px)': {
+    padding: '20px 5px!important',
+  },
+});
+
+const DefinitionWrapper = styled(Box)({
+  alignSelf: 'start',
+  justifySelf: 'center',
+  width: '100%',
+  marginTop: '130px',
+  marginRight: '45px',
   '@media(max-width: 767px)': {
     padding: '20px 5px!important',
   },
 });
 
 const SignWrapper = styled(Box)({
-  maxWidth: '350px',
+  marginRight: '45px',
+  alignSelf: 'start',
+  justifySelf: 'center',
+  maxWidth: '320px',
   boxShadow: '0px 0px 10px 5px gray',
+  background: 'gray',
+  marginTop: '100px',
 });
 
 const FormBox = styled(Box)({
@@ -83,4 +109,6 @@ export {
   GridSignInput,
   ItemsBox,
   GridButton,
+  DefinitionWrapper,
+  ImageWrapper,
 };

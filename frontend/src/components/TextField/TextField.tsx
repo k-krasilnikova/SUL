@@ -6,7 +6,7 @@ import WarningHelper from './styled';
 
 interface TextFieldProps {
   id: string;
-  label: string;
+  label?: string;
   children?: React.ReactNode;
   defaultValue?: string;
   helperText?: string;
