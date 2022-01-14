@@ -1,12 +1,12 @@
 import { Schema, model } from 'mongoose';
 
-import { IMaterial } from 'interfaces/entities/Imaterials';
+import { IMaterial } from 'interfaces/Ientities/Imaterials';
 
 const materialSchema = new Schema<IMaterial>({
   content: [
     {
       _id: { type: String },
-      stage: { type: Number },
+      stage: { type: Number, unique: true },
       content: [{ type: String }],
       isCompleted: Boolean,
     },
