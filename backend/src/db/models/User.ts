@@ -1,9 +1,8 @@
 import { Schema, model } from 'mongoose';
 
-import { IUser } from 'interfaces/entities/Iusers';
+import { IUser } from 'interfaces/Ientities/Iusers';
 
 const schema = new Schema<IUser>({
-  _id: { type: Schema.Types.ObjectId, required: true },
   username: { type: String, required: true },
   passwordHash: { type: String, required: true },
   email: { type: String, required: true },
@@ -20,6 +19,6 @@ const schema = new Schema<IUser>({
   skype: { type: String, required: true, default: 'not provided' },
 });
 
-const UserModel = model<IUser>('User', schema);
+const UserModel = model<IUser>('User', schema, 'users');
 
 export default UserModel;

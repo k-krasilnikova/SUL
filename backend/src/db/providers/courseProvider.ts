@@ -1,7 +1,31 @@
+import {
+  DEFAULT_N_PER_PAGE,
+  DEFAULT_ORDER_FIELD,
+  FIRST_PAGE,
+  NOTHING,
+  NO_FILTER,
+  ORDER_TYPE,
+} from 'config/constants';
 import CourseModel from 'db/models/Course';
+import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import ClientCourseModel from '../models/ClientCourses';
+import UserModel from '../models/User';
 
-const getCoursesProvider = async () => {
-  const courses = await CourseModel.find().lean();
+const getCoursesProvider = async ({
+  pageN,
+  title,
+  orderField = DEFAULT_ORDER_FIELD,
+  order = ORDER_TYPE.asc,
+  nPerPage = DEFAULT_N_PER_PAGE,
+}: IQueryCourses) => {
+  const sortingField = { [orderField]: order };
+  const courses = await CourseModel.find(
+    title ? { title: { $regex: new RegExp(title), $options: 'i' } } : NO_FILTER,
+  )
+    .sort(sortingField)
+    .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
+    .limit(nPerPage)
+    .lean();
   if (!courses) {
     throw new Error('courses not found');
   }
@@ -16,4 +40,14 @@ const getCourseProvider = async (courseId: string) => {
   return course;
 };
 
-export { getCoursesProvider, getCourseProvider };
+const applyCourseProvider = async (courseId: string, userId: string) => {
+  const applyedCourse = await ClientCourseModel.create({
+    course: courseId,
+    status: 'approved',
+    currentStage: 1,
+  });
+  await UserModel.updateOne({ _id: userId }, { $push: { courses: applyedCourse.course } });
+  return applyedCourse;
+};
+
+export { getCoursesProvider, getCourseProvider, applyCourseProvider };

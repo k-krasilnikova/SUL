@@ -5,10 +5,21 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { PATHS } from 'constants/routes';
-import { Profile, MyCourses, CoursesList, Help, Employees, Requests, Skills, SignIn } from 'pages';
-import { queryClient } from 'api/base';
-import theme from './themeSettings';
+import {
+  Profile,
+  MyCourses,
+  CoursesList,
+  Help,
+  Employees,
+  Requests,
+  Skills,
+  SignIn,
+  NotFound,
+} from 'pages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
+import { queryClient } from 'api/base';
+
+import theme from './themeSettings';
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
@@ -25,6 +36,7 @@ const App: React.FC = () => (
             <Route path={PATHS.skills} element={<Skills />} />
           </Route>
           <Route path={PATHS.signIn} element={<SignIn />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { json } from 'body-parser';
 import cors from 'cors';
-import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser';
 
 import { Routes } from 'enums/routesEnum';
 import routers from 'routing/routes';
@@ -26,5 +26,8 @@ app.use(loggerMiddleware);
 app.use(`${Routes.namespace}`, routers);
 
 app.listen(port, () => {
-  console.log(`SUL api started on port ${port}.`);
+  if (port) {
+    console.log(`SUL api started on port ${port}.`);
+  }
+
 });

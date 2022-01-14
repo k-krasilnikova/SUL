@@ -7,7 +7,7 @@ import getClientCoursesById from 'controllers/clientCourses/clientCourses';
 
 const clientCoursesRouter = Router();
 clientCoursesRouter.get(
-  `${Params.id}`,
+  `${Params.noParams}`,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getClientCoursesById,
 );
