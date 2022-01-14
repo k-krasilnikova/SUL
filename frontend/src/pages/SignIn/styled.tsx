@@ -3,7 +3,7 @@ import { Grid, Box } from '@mui/material';
 
 const SignMain = styled(Box)({
   height: '95vh',
-  width: '90%',
+  width: '95%',
   margin: '0 auto',
   padding: '0',
   '@media(max-width: 767px)': {
@@ -11,7 +11,7 @@ const SignMain = styled(Box)({
   },
 });
 
-//Материнский блок
+/*  Материнский блок  */
 const SignMainGrid = styled(Grid)({
   height: '100%',
   width: '100%',
@@ -19,7 +19,7 @@ const SignMainGrid = styled(Grid)({
   padding: '0px !important',
 });
 
-//Левый блок
+/*  Левый блок  */
 const SignPresGrid = styled(Grid)({
   padding: '0px 5px!important',
   margin: '0px !important',
@@ -32,12 +32,12 @@ const SignPresGrid = styled(Grid)({
 
 const ImageWrapper = styled(Box)({
   width: '100%',
-  maxWidth: '717px',
+  maxWidth: '716px',
   justifySelf: 'center',
   alignSelf: 'center',
 });
 
-//Правый блок
+/*  Правый блок  */
 const SignFormGrid = styled(Grid)({
   background: '#E0FFFF',
   display: 'grid',
@@ -50,26 +50,29 @@ const SignFormGrid = styled(Grid)({
 const DefinitionWrapper = styled(Box)({
   alignSelf: 'start',
   justifySelf: 'center',
-  width: '100%',
+  maxWidth: '100%',
+  marginRight: '100px',
   marginTop: '130px',
-  marginRight: '45px',
   '@media(max-width: 767px)': {
     padding: '20px 5px!important',
   },
 });
 
 const SignWrapper = styled(Box)({
-  marginRight: '45px',
   alignSelf: 'start',
   justifySelf: 'center',
   maxWidth: '320px',
+  minHeight: '335px',
   boxShadow: '0px 0px 10px 5px gray',
-  background: 'gray',
+  background: 'green',
   marginTop: '100px',
+  marginRight: '100px',
 });
 
 const FormBox = styled(Box)({
-  margin: '30px',
+  marginTop: '40px',
+  marginRight: '20px',
+  marginLeft: '20px',
 });
 
 const ItemsBox = styled(Box)({
@@ -77,24 +80,28 @@ const ItemsBox = styled(Box)({
   padding: '0px !important',
   width: '100%',
 });
-
+// Тут прописать нужно отсутпы и сазы для блока путем использования грит атрибутов //
 const GridWrapper = styled(Grid)({
   width: '100% !important',
+  minHeight: '250px',
   margin: '0px !important ',
   padding: '0px !important',
+  maxHeight: '300px',
+  border: '1px solid white',
 });
 
 const GridSignInput = styled(Grid)({
-  margin: '10px 0px !important ',
+  margin: '0 !important ',
   padding: '0px !important',
   boxSizing: 'border-box',
 });
 
 const GridButton = styled(Grid)({
   display: 'flex',
+  maxHeight: '45px',
   justifyContent: 'center',
   boxSizing: 'border-box',
-  margin: '5px 0px!important ',
+  margin: '0 !important ',
   padding: '0px !important',
 });
 

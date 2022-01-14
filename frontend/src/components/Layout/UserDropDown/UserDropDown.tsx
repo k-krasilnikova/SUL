@@ -1,8 +1,10 @@
 import React from 'react';
 import { Popper, Box, List, ListItem, ListItemText } from '@mui/material';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+
+import FormControlLabel from '@mui/material/FormControlLabel';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 import {
   UserInfo,
   UserName,
@@ -14,12 +16,14 @@ import {
 } from 'components/Layout/UserDropDown/styled';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
+
 interface PopperControl {
   isOpen: boolean;
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   anchorEl: HTMLElement | null;
 }
 type Props = User & PopperControl;
+
 const DropDown: React.FC<Props> = ({
   firstName,
   lastName,
@@ -59,7 +63,7 @@ const DropDown: React.FC<Props> = ({
           </ListItem>
         </List>
         <DividerHorizontal />
-        <Link href="#">
+        <Link href="#emplty-link">
           Delegation <ArrowForwardIcon fontSize="small" />
         </Link>
       </UserPopper>

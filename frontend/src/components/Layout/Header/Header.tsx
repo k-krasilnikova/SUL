@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
+import { useLogOut } from 'api/logOut';
 import {
   LayoutHeader,
   HeaderDivider,
@@ -14,8 +15,6 @@ import {
 } from 'components/Layout/styled';
 import UserDropDown from 'components/Layout/UserDropDown';
 import MyCoursesCounter from './MyCoursesCounter';
-
-import { useLogOut } from 'api/logOut';
 
 const Header: React.FC<User> = ({
   firstName,

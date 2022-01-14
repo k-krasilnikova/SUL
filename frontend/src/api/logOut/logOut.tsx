@@ -2,9 +2,8 @@ import { useMutation, UseMutationResult } from 'react-query';
 import { useNavigate } from 'react-router';
 
 import { apiClientWrapper } from 'api/base';
-import { API } from 'constants/routes';
+import { API, PATHS } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
-import { PATHS } from 'constants/routes';
 
 import { logOutHandler } from 'utils/helpers/logOutHandler';
 

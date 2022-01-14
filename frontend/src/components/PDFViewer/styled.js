@@ -3,17 +3,25 @@ import { Box } from '@mui/system';
 import { Page } from 'react-pdf';
 import styled from 'styled-components';
 
+import Button from 'components/Button';
+
 export const PDFWrapper = styled(Box)({
-  flexDirection: 'column',
   display: 'flex',
+  flexDirection: 'column',
   width: 'calc(100%-40px)',
   marginTop: '30px',
 });
 
 export const ButtonBox = styled(Box)({
   display: 'flex',
-  justifyContent: 'center',
-  alignSelf: 'center',
+  justifyContent: 'flex-start',
+  alignSelf: 'flex-end',
+  marginRight: '4em',
+});
+
+export const StyledButton = styled(Button)({
+  color: '#000000',
+  minWidth: '25px',
 });
 
 export const DocumentBox = styled(Box)({
@@ -28,10 +36,11 @@ export const DocumentBox = styled(Box)({
   '&::-webkit-scrollbar': {
     display: 'none',
   },
+  'scrollbar-width': 'none',
 });
 
 export const PageNumberText = styled(Typography)({
-  margin: '2vh',
+  marginTop: '1vh',
 });
 
 export const StyledPage = styled(Page)({

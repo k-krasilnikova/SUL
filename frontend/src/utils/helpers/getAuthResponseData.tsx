@@ -6,4 +6,5 @@ export const getAuthResponseData = (): string | undefined => {
   if (backendData) {
     return JSON.parse(backendData);
   }
+  return undefined;
 };
