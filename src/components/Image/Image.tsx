@@ -2,7 +2,7 @@ import React from 'react';
 
 import { imageDefault } from 'icons';
 
-import { ImageContainer } from './styled';
+import { ImageContainer, CurrentImage } from './styled';
 
 interface Props {
   size?: string;
@@ -11,7 +11,7 @@ interface Props {
 
 const Image: React.FC<Props> = ({ imageUrl, size }) => (
   <ImageContainer size={size}>
-    <img src={imageUrl || imageDefault} />
+    <CurrentImage src={imageUrl || imageDefault} />
   </ImageContainer>
 );
 
