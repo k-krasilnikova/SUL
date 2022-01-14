@@ -4,7 +4,6 @@ import { useGetMyCourses } from 'api/myCourses';
 import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
 import NoContent from 'components/NoContent';
-import { SIZE } from 'constants/sizes';
 import { NO_COURSES } from 'constants/messages';
 
 import { PageContainer, CourseButton, CourseActions } from './styled';
@@ -22,7 +21,6 @@ const MyCourses: React.FC = () => {
               description={course.description}
               duration={course.duration}
               lessons={course.lessons}
-              size={SIZE.medium}
             >
               <CourseActions>
                 <CourseButton color="primary" variant="contained">

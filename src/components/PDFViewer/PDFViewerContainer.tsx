@@ -9,7 +9,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = PDF_WORKER_SRC;
 
 interface IPDFViewerContainer {
   src: string;
-  children?: React.FC;
 }
 
 const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
@@ -18,7 +17,6 @@ const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
   const onDocumentLoadSuccess = () => {
     setCurrentPageNumber(currentPageNumber);
   };
-
   const changePage = (offset: number) => {
     setCurrentPageNumber((prevPageNumber) => prevPageNumber + offset);
   };

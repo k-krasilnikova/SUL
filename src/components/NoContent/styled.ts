@@ -17,6 +17,7 @@ export const MessageWrapper = styled(Box)({
   alignItems: 'center',
   justifyContent: 'center',
 });
+
 export const Message = styled(Typography)<Size>(({ size }) => ({
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: 'bold',
