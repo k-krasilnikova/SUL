@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Typography, Box, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
+
 interface InfoContainerTypes {
   color?: string;
   fontSize?: number;

@@ -5,9 +5,9 @@ import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
 import { Course } from 'types/course';
 
-import { PageContainer, CourseButton, CourseActions, GridItem } from './styled';
-
 import { useGetCourses } from 'api/courses';
+
+import { PageContainer, CourseButton, CourseActions, GridItem } from './styled';
 
 const CoursesList: React.FC = () => {
   const { data, isLoading } = useGetCourses();
@@ -19,10 +19,10 @@ const CoursesList: React.FC = () => {
           <Typography>...Loading</Typography>
         ) : (
           data instanceof Array &&
-          data?.map((course: Course, id: number) => (
-            <GridItem key={id} item xl={6} lg={6} md={12} sm={12}>
+          data?.map((course: Course) => (
+            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
               <CourseItem
-                key={id}
+                key={course._id}
                 title={course?.title}
                 description={course?.description}
                 duration={course?.duration}

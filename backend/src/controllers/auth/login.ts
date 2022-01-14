@@ -2,7 +2,7 @@ import { compare } from 'bcrypt';
 import { Request, Response } from 'express';
 
 import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
-import { IUser } from 'interfaces/entities/Iusers';
+import { IUser } from 'interfaces/Ientities/Iusers';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { generateJWT } from 'utils/auth/authUtils';
 import { generateInitialDto } from 'utils/dto/dtoUtils';

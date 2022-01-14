@@ -6,7 +6,7 @@ import { avatarDefault } from 'icons';
 import { UserAvatarRounded } from './styled';
 
 interface AvatarProps {
-  size?: string;
+  size: string;
 }
 type Props = User & AvatarProps;
 

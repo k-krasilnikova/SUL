@@ -8,6 +8,7 @@ export const PATHS: {
   requests: string;
   employees: string;
   skills: string;
+  notFound: string;
 } = {
   home: '/',
   profile: '/profile',
@@ -18,6 +19,7 @@ export const PATHS: {
   requests: '/pending-requests',
   employees: '/employees',
   skills: '/skills',
+  notFound: '/not-found',
 };
 
 export const API: {

@@ -10,11 +10,10 @@ const useGetCourses = (): UseQueryResult<Course, AxiosError> =>
   useQuery(
     'Courses',
     async () => {
-      let coursesResponse: Array<Course>;
       const apiClient = apiClientWrapper();
       try {
         const response = await apiClient.get(`${API.getCourses}`);
-        coursesResponse = response.data;
+        const coursesResponse: Array<Course> = response.data;
         return coursesResponse;
       } catch (error) {
         throw new Error(`${REQUEST_ERRORS.getError}`);

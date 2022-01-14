@@ -9,9 +9,9 @@ import { TIME_30D_SEC } from 'config/constants';
 
 const refresh = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
-    const refreshToken = req.cookies;
+    const { refreshToken } = req.cookies;
     if (!refreshToken) {
-      throw new Error('no access');
+      throw new Error('no refresh');
     }
 
     const decodeRefreshToken = await verifyRefreshToken(refreshToken);
@@ -20,7 +20,7 @@ const refresh = async (req: Request, res: Response, next: TMiddlewareCall) => {
 
     const isValidToken = refreshToken === dbUser?.refreshToken;
     if (!isValidToken) {
-      throw new Error('access time expired');
+      throw new Error('refresh time expired');
     }
 
     const newTokens = await generateJWT(dbUser);

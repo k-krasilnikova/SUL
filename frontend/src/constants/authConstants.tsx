@@ -1,16 +1,16 @@
-interface requestErrors {
+interface IRequestErrors {
   readonly [key: string]: string;
 }
-interface cookiesTypes {
+interface ICookiesTypes {
   readonly [key: string]: string;
 }
 
-const REQUEST_ERRORS: requestErrors = {
+const REQUEST_ERRORS: IRequestErrors = {
   getError: 'Smth went wrong - 404',
   postError: 'Smth went wrong - 500',
 };
 
-const COOKIE_VALUES: cookiesTypes = {
+const COOKIE_VALUES: ICookiesTypes = {
   uniqAccessToken: 'accessToken',
   uniqUserId: 'userId',
 };
