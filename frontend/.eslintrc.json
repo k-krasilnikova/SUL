@@ -37,6 +37,7 @@
     ],
     "no-restricted-exports": "off",
     "import/prefer-default-export": "off",
+    "no-nested-ternary": "off",
     "no-underscore-dangle": [
       "error", {"allow": ["_id"]}
   ],

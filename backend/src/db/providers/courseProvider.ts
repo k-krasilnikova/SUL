@@ -8,6 +8,8 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import ClientCourseModel from '../models/ClientCourses';
+import UserModel from '../models/User';
 
 const getCoursesProvider = async ({
   pageN,
@@ -38,4 +40,14 @@ const getCourseProvider = async (courseId: string) => {
   return course;
 };
 
-export { getCoursesProvider, getCourseProvider };
+const applyCourseProvider = async (courseId: string, userId: string) => {
+  const applyedCourse = await ClientCourseModel.create({
+    course: courseId,
+    status: 'approved',
+    currentStage: 1,
+  });
+  await UserModel.updateOne({ _id: userId }, { $push: { courses: applyedCourse.course } });
+  return applyedCourse;
+};
+
+export { getCoursesProvider, getCourseProvider, applyCourseProvider };
