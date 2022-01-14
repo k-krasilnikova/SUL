@@ -14,6 +14,7 @@ import {
 } from 'components/Layout/UserDropDown/styled';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
+
 interface PopperControl {
   isOpen: boolean;
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
@@ -59,7 +60,7 @@ const DropDown: React.FC<Props> = ({
           </ListItem>
         </List>
         <DividerHorizontal />
-        <Link href="#">
+        <Link href="#emplty-link">
           Delegation <ArrowForwardIcon fontSize="small" />
         </Link>
       </UserPopper>
