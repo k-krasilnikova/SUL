@@ -14,6 +14,6 @@ const materialSchema = new Schema<IMaterial>({
   technology: [{ type: String }],
 });
 
-const MaterialModel = model<IMaterial>('Materials', materialSchema, 'Materials');
+const MaterialModel = model<IMaterial>('Materials', materialSchema, 'materials');
 
 export default MaterialModel;

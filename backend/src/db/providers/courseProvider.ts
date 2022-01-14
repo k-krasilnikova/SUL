@@ -7,8 +7,9 @@ import {
   ORDER_TYPE,
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
-import ClientCourseModel from '../models/ClientCourses';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import ClientCourseModel from '../models/ClientCourses';
+import UserModel from '../models/User';
 
 const getCoursesProvider = async ({
   pageN,
@@ -39,12 +40,13 @@ const getCourseProvider = async (courseId: string) => {
   return course;
 };
 
-const applyCourseProvider = async (courseId: string) => {
-  const applyedCourse = await ClientCourseModel.insertMany({
+const applyCourseProvider = async (courseId: string, userId: string) => {
+  const applyedCourse = await ClientCourseModel.create({
     course: courseId,
     status: 'approved',
     currentStage: 1,
   });
+  await UserModel.updateOne({ _id: userId }, { $push: { courses: applyedCourse.course } });
   return applyedCourse;
 };
 
