@@ -19,8 +19,9 @@ export const BrandLogo = styled('div')({
   display: 'block',
   height: HEADER_HEIGHT,
   fontSize: '32px',
+  lineHeight: '32px',
   fontWeight: 'bold',
-  padding: '20px 45px 20px 50px',
+  padding: '22px 45px 20px 40px',
   color: '#D43E41',
 });
 export const BrandLogoBlack = styled('span')({
@@ -44,7 +45,7 @@ export const SpaceHolder = styled('div')({
 export const Search = styled(Input)({
   flexGrow: '1',
   flexShrink: '3',
-  maxWidth: '500px',
+  maxWidth: '730px',
   height: '50px',
   borderRadius: '3px',
   margin: '15px 20px 15px 20px',
