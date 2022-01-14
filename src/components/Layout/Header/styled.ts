@@ -19,8 +19,9 @@ export const BrandLogo = styled('div')({
   display: 'block',
   height: HEADER_HEIGHT,
   fontSize: '32px',
+  lineHeight: '32px',
   fontWeight: 'bold',
-  padding: '20px 45px 20px 50px',
+  padding: '22px 45px 20px 40px',
   color: '#D43E41',
 });
 export const BrandLogoBlack = styled('span')({
@@ -29,25 +30,25 @@ export const BrandLogoBlack = styled('span')({
 export const HeaderContent = styled('div')({
   flexGrow: '2',
   flexShrink: '2',
-  maxWidth: '1200px',
+
   display: 'flex',
   justifyContent: 'flex-end',
   height: HEADER_HEIGHT,
   textAlign: 'right',
 });
 export const SpaceHolder = styled('div')({
-  flexGrow: '2',
+  flexGrow: '1',
   flexShrink: '3',
-  maxWidth: '400px',
+  maxWidth: '1000px',
   height: HEADER_HEIGHT,
 });
 export const Search = styled(Input)({
   flexGrow: '1',
   flexShrink: '3',
-  maxWidth: '500px',
+  maxWidth: '730px',
   height: '50px',
   borderRadius: '3px',
-  margin: '15px 10px 15px 10px',
+  margin: '15px 20px 15px 20px',
   padding: '10px',
   fontSize: '24px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
@@ -60,7 +61,7 @@ export const NotificationsButton = styled('div')({
   height: '50px',
   borderRadius: '3px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
-  margin: '15px 10px',
+  margin: '15px 10px 15px 0px',
   padding: '10px',
   '&:hover': {
     cursor: 'pointer',
@@ -98,13 +99,12 @@ export const UserBlock = styled('div')({
   width: '300',
   height: '60px',
   padding: '0px',
-  margin: '10px 5px 10px 20px',
+  margin: '10px 45px 10px 20px',
 });
 export const UserName = styled('div')({
-  width: '300',
   height: '60px',
-  padding: '15px 10px 10px 20px',
-  fontWeight: 'bold',
+  padding: '15px 10px 10px 0px',
+  marginLeft: '22px',
   fontSize: '24px',
   color: 'black',
 });
@@ -113,7 +113,7 @@ export const LogOut = styled('div')({
   flexShrink: '0',
   width: '50px',
   height: '50px',
-  margin: '15px 20px 15px 10px',
+  margin: '15px 20px 15px 0px',
   padding: '10px',
   '&:hover': {
     cursor: 'pointer',
