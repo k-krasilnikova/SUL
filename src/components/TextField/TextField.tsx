@@ -36,7 +36,7 @@ const TextField: React.FC<TextFieldProps> = ({
       label={label}
       defaultValue={defaultValue}
       helperText={helperText}
-      size="small"
+      size="medium"
       required
       fullWidth
       error={touched && Boolean(error)}

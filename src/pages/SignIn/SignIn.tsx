@@ -1,13 +1,13 @@
 import React from 'react';
-import { Typography } from '@mui/material';
 
 import Button from 'components/Button';
 import TextField from 'components/TextField';
 import { SignTypes } from 'types/signIn';
 import { signInImage } from 'icons';
 
-import Definition from './Definition';
 import Image from 'components/Image';
+import Definition from './Definition';
+
 import {
   SignWrapper,
   FormBox,
@@ -79,7 +79,7 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
                       variant="contained"
                       color="primary"
                     >
-                      Sign In
+                      Log In
                     </Button>
                   </GridButton>
                 </GridWrapper>

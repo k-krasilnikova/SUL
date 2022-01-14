@@ -5,12 +5,11 @@ import { imageDefault } from 'icons';
 import { ImageContainer, CurrentImage } from './styled';
 
 interface Props {
-  size?: string;
   imageUrl?: string;
 }
 
-const Image: React.FC<Props> = ({ imageUrl, size }) => (
-  <ImageContainer size={size}>
+const Image: React.FC<Props> = ({ imageUrl }) => (
+  <ImageContainer>
     <CurrentImage src={imageUrl || imageDefault} />
   </ImageContainer>
 );

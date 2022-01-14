@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+
 import DropDown from 'components/Layout/UserDropDown/UserDropDown';
 import { User } from 'types/user';
+
 const UserDropDown: React.FC<User> = ({
   firstName,
   lastName,
