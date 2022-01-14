@@ -58,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({
       </NavLink>
       <HeaderContent>
         <Search
-          disableUnderline={true}
+          disableUnderline
           placeholder="Search"
           startAdornment={
             <InputAdornment position="start">
@@ -67,13 +67,13 @@ const Header: React.FC<HeaderProps> = ({
           }
         />
         <NotificationsButton onClick={handleNotificationsOpen}>
-          <img src={alertIcon} />
+          <img alt="notifications" src={alertIcon} />
         </NotificationsButton>
         <Popper open={isNotificationsOpen} anchorEl={notificationsAnchor}>
           <Notifications>Notifications here</Notifications>
         </Popper>
         <FilterButton onClick={handleFilterOpen}>
-          <img src={filterIcon} />
+          <img alt="filter" src={filterIcon} />
         </FilterButton>
         <Popper open={isFilterOpen} anchorEl={filterAnchor}>
           <Filter>
@@ -99,7 +99,7 @@ const Header: React.FC<HeaderProps> = ({
           </UserBlock>
         </NavLink>
         <LogOut>
-          <img src={logOutIcon} />
+          <img alt="log_out" src={logOutIcon} />
         </LogOut>
       </HeaderContent>
     </LayoutHeader>
