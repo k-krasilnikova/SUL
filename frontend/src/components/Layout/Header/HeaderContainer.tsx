@@ -6,25 +6,29 @@ import { User } from 'types/user';
 import Header from './Header';
 
 const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
-  const [anchorElNotifications, setAnchorElNotifications] = useState<null | HTMLElement>(null);
+  const [notificationsAnchor, setNotificationsAnchor] = useState<null | HTMLElement>(null);
+  const [filterAnchor, setFilterAnchor] = useState<null | HTMLElement>(null);
+
   const handleNotificationsOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNotifications(anchorElNotifications ? null : event.currentTarget);
+    setNotificationsAnchor(notificationsAnchor ? null : event.currentTarget);
   };
-  const openNotifications = Boolean(anchorElNotifications);
-  const [anchorElFilter, setAnchorElFilter] = useState<null | HTMLElement>(null);
+
   const handleFilterOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElFilter(anchorElFilter ? null : event.currentTarget);
+    setFilterAnchor(filterAnchor ? null : event.currentTarget);
   };
-  const openFilter = Boolean(anchorElFilter);
+
+  const isNotificationsOpen = Boolean(notificationsAnchor);
+  const isFilterOpen = Boolean(filterAnchor);
+
   return (
     <Header
       firstName={firstName}
       lastName={lastName}
       avatar={avatar}
-      openNotifications={openNotifications}
-      openFilter={openFilter}
-      anchorElNotifications={anchorElNotifications}
-      anchorElFilter={anchorElFilter}
+      isNotificationsOpen={isNotificationsOpen}
+      isFilterOpen={isFilterOpen}
+      notificationsAnchor={notificationsAnchor}
+      filterAnchor={filterAnchor}
       handleNotificationsOpen={handleNotificationsOpen}
       handleFilterOpen={handleFilterOpen}
     />

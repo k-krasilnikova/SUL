@@ -29,10 +29,10 @@ interface Props {
   firstName?: string;
   lastName?: string;
   avatar?: string;
-  openNotifications: boolean;
-  openFilter: boolean;
-  anchorElNotifications: HTMLElement | null;
-  anchorElFilter: HTMLElement | null;
+  isNotificationsOpen: boolean;
+  isFilterOpen: boolean;
+  notificationsAnchor: HTMLElement | null;
+  filterAnchor: HTMLElement | null;
   handleNotificationsOpen: (event: React.MouseEvent<HTMLElement>) => void;
   handleFilterOpen: (event: React.MouseEvent<HTMLElement>) => void;
 }
@@ -42,10 +42,10 @@ const Header: React.FC<HeaderProps> = ({
   firstName,
   lastName,
   avatar,
-  openNotifications,
-  openFilter,
-  anchorElNotifications,
-  anchorElFilter,
+  isNotificationsOpen,
+  isFilterOpen,
+  notificationsAnchor,
+  filterAnchor,
   handleNotificationsOpen,
   handleFilterOpen,
 }) => {
@@ -69,13 +69,13 @@ const Header: React.FC<HeaderProps> = ({
         <NotificationsButton onClick={handleNotificationsOpen}>
           <img src={alertIcon} />
         </NotificationsButton>
-        <Popper open={openNotifications} anchorEl={anchorElNotifications}>
+        <Popper open={isNotificationsOpen} anchorEl={notificationsAnchor}>
           <Notifications>Notifications here</Notifications>
         </Popper>
         <FilterButton onClick={handleFilterOpen}>
           <img src={filterIcon} />
         </FilterButton>
-        <Popper open={openFilter} anchorEl={anchorElFilter}>
+        <Popper open={isFilterOpen} anchorEl={filterAnchor}>
           <Filter>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
