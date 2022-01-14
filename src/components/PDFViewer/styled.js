@@ -8,13 +8,14 @@ import Button from 'components/Button';
 export const PDFWrapper = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
+  margin: '0 2vw',
   width: 'calc(100%-40px)',
   marginTop: '30px',
 });
 
 export const ButtonBox = styled(Box)({
   display: 'flex',
-  justifyContent: 'flex-start',
+  justifyContent: 'baseline',
   alignSelf: 'flex-end',
   marginRight: '4em',
 });
@@ -40,7 +41,8 @@ export const DocumentBox = styled(Box)({
 });
 
 export const PageNumberText = styled(Typography)({
-  marginTop: '1vh',
+  fontSize: '18px',
+  padding: '6px 0',
 });
 
 export const StyledPage = styled(Page)({
