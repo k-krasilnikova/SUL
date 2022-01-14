@@ -92,10 +92,12 @@ const Header: React.FC<HeaderProps> = ({
           </Filter>
         </Popper>
         <SpaceHolder />
-        <UserBlock>
-          <UserAvatar avatar={avatar} size="small" />
-          <UserName>{`${firstName} ${lastName}`}</UserName>
-        </UserBlock>
+        <NavLink to={PATHS.profile}>
+          <UserBlock>
+            <UserAvatar avatar={avatar} size="small" />
+            <UserName>{`${firstName} ${lastName}`}</UserName>
+          </UserBlock>
+        </NavLink>
         <LogOut>
           <img src={logOutIcon} />
         </LogOut>
