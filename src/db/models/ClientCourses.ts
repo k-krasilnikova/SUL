@@ -3,12 +3,15 @@ import { Schema, model } from 'mongoose';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 
 const clientCourseSchema = new Schema<IClientCourse>({
-  _id: { type: Schema.Types.ObjectId },
-  course: { type: Schema.Types.ObjectId, ref: 'Courses' },
+  course: { type: Schema.Types.ObjectId, ref: 'courses' },
   status: { type: String },
   currentStage: { type: Number },
 });
 
-const ClientCourseModel = model<IClientCourse>('ClientCourse', clientCourseSchema);
+const ClientCourseModel = model<IClientCourse>(
+  'clientCourses',
+  clientCourseSchema,
+  'clientCourses',
+);
 
 export default ClientCourseModel;
