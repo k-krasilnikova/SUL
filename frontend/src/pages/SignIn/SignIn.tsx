@@ -58,6 +58,7 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
                       touched={touched?.login}
                       onChange={handleChange}
                       error={errors?.login}
+                      placeholder="Login"
                       id="login"
                     />
                   </GridSignInput>
@@ -69,6 +70,7 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
                       error={errors?.password}
                       id="password"
                       type="password"
+                      placeholder="Password"
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>
