@@ -15,6 +15,7 @@ interface TextFieldProps {
   error?: string;
   value?: unknown;
   type?: string;
+  placeholder?: string;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -26,6 +27,7 @@ const TextField: React.FC<TextFieldProps> = ({
   onChange,
   error,
   touched,
+  placeholder,
   ...rest
 }) => (
   <>
@@ -40,6 +42,7 @@ const TextField: React.FC<TextFieldProps> = ({
       required
       fullWidth
       error={touched && Boolean(error)}
+      placeholder={placeholder}
       {...rest}
     >
       {children}

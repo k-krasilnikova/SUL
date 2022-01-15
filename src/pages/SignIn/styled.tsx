@@ -39,7 +39,6 @@ const ImageWrapper = styled(Box)({
 
 /*  Правый блок  */
 const SignFormGrid = styled(Grid)({
-  background: '#E0FFFF',
   display: 'grid',
   gridTemplateRows: '30% 70%',
   '@media(max-width: 767px)': {
@@ -61,16 +60,15 @@ const DefinitionWrapper = styled(Box)({
 const SignWrapper = styled(Box)({
   alignSelf: 'start',
   justifySelf: 'center',
-  maxWidth: '320px',
+  width: '325px',
   minHeight: '335px',
-  boxShadow: '0px 0px 10px 5px gray',
-  background: 'green',
+  boxShadow: '5px 5px 7px 3px rgb(0 0 0 / 10%)',
   marginTop: '100px',
   marginRight: '100px',
 });
 
 const FormBox = styled(Box)({
-  marginTop: '40px',
+  marginTop: '50px',
   marginRight: '20px',
   marginLeft: '20px',
 });
@@ -83,26 +81,39 @@ const ItemsBox = styled(Box)({
 // Тут прописать нужно отсутпы и сазы для блока путем использования грит атрибутов //
 const GridWrapper = styled(Grid)({
   width: '100% !important',
-  minHeight: '250px',
   margin: '0px !important ',
   padding: '0px !important',
   maxHeight: '300px',
-  border: '1px solid white',
+  height: 'fit-content',
 });
 
 const GridSignInput = styled(Grid)({
   margin: '0 !important ',
   padding: '0px !important',
   boxSizing: 'border-box',
+  height: 'fit-content',
+  marginBottom: '20px !important',
+  '& input': {
+    fontSize: '18px',
+    fontWeight: 600,
+    fontFamily: '"Ubuntu", sans-serif',
+    padding: '15px 14px',
+  },
 });
 
 const GridButton = styled(Grid)({
   display: 'flex',
-  maxHeight: '45px',
+  height: '43px',
   justifyContent: 'center',
   boxSizing: 'border-box',
   margin: '0 !important ',
   padding: '0px !important',
+  marginTop: '20px !important',
+  '& button': {
+    fontSize: '18px',
+    fontWeight: 600,
+    letterSpacing: '0.2px',
+  },
 });
 
 export {
