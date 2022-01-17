@@ -17,6 +17,7 @@ import {
   NotFound,
 } from 'pages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
+import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
 import { queryClient } from 'api/base';
 
 import theme from './themeSettings';
@@ -35,7 +36,14 @@ const App: React.FC = () => (
             <Route path={PATHS.requests} element={<Requests />} />
             <Route path={PATHS.skills} element={<Skills />} />
           </Route>
-          <Route path={PATHS.signIn} element={<SignIn />} />
+          <Route
+            path={PATHS.signIn}
+            element={
+              <AnonymousRoute>
+                <SignIn />
+              </AnonymousRoute>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
