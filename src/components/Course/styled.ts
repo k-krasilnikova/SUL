@@ -13,10 +13,10 @@ export const CourseContainer = styled(Grid)({
   backgroundColor: '#ebebeb',
   borderRadius: '10px',
   fontFamily: '"Lato", sans-serif',
-  height: '100%',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  minHeight: '100%',
   [theme.breakpoints.down('lg')]: {
     display: 'flex',
     flexDirection: 'column',
@@ -25,33 +25,56 @@ export const CourseContainer = styled(Grid)({
 });
 
 export const AboutCourseContainer = styled('div')({
-  minHeight: '200px',
+  minHeight: '220px',
   padding: '10px',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    height: 'fit-content',
   },
 });
 
 export const ImageWrapper = styled('div')({
   float: 'left',
-  width: '250px',
-  height: '150px',
   margin: '0px',
   marginRight: '10px',
   overflow: 'hidden',
   borderRadius: '10px',
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.up('xl')]: {
+    width: '250px',
+    height: '150px',
     alignItems: 'center',
     alignSelf: 'center',
     marginRight: '10px',
   },
+  [theme.breakpoints.down('xl')]: {
+    width: '50%',
+    height: 'auto',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginRight: '10px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    width: '250px',
+    height: 'auto',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginRight: '10px',
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '175px',
+    height: 'auto',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginRight: '5px',
+  },
   [theme.breakpoints.down('sm')]: {
+    width: '85%',
+    height: 'auto',
     alignItems: 'center',
     alignSelf: 'center',
     marginRight: '0px',
-    width: '100%',
   },
 });
 
@@ -119,41 +142,24 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
 
 export const ButtonsContainer = styled('div')({
   [theme.breakpoints.down('xl')]: {
-    fontSize: '12px',
-    display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'center',
-    width: '100%',
-    height: 'fit-content',
-    margin: '0px',
-    padding: '10px',
   },
   [theme.breakpoints.down('lg')]: {
-    fontSize: '12px',
-    display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
-    height: 'fit-content',
-    margin: '0px',
-    padding: '10px',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
   },
   display: 'flex',
+  flexWrap: 'wrap',
   flexDirection: 'row',
+  height: 'fit-content',
+  width: '100%',
+  fontSize: '12px',
   justifyContent: 'space-between',
   padding: '10px',
-  '@media(max-width: 1230px)': {
-    flexDirection: 'column',
-    display: 'flex',
-  },
-  '@media(max-width: 1023px)': {
-    flexDirection: 'row',
-    display: 'flex',
-  },
-  '@media(max-width: 580px)': {
-    flexDirection: 'column',
-    display: 'flex',
-  },
+  margin: '0px',
 });
 
 export const InfoContainer = styled(Box)({
