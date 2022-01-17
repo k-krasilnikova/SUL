@@ -1,1 +1,1 @@
-export { default } from './DetailedCourse';
+export { default } from './DetailedCourseContainer';

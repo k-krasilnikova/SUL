@@ -1,25 +1,18 @@
 import styled from 'styled-components';
 import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
+import Button from 'components/Button';
 import theme from 'themeSettings';
-import { CircularProgressbar } from 'react-circular-progressbar';
 
 export const DetailedCourseWrapper = styled(Box)({
   margin: '40px 0 40px 40px',
 });
 
-export const ProgressBarBox = styled(Box)({
-  float: 'right',
-  width: '141px',
-  height: '141px',
-  margin: '5%',
-});
-
 export const ImageWrapper = styled('div')({
   float: 'left',
-  width: '460px',
-  height: '268px',
-  margin: '40px 5px 50px 0',
+  width: '350px',
+  height: '248px',
+  margin: '0 20px 30px 0',
   overflow: 'hidden',
   borderRadius: '10px',
   [theme.breakpoints.down('md')]: {
@@ -69,9 +62,25 @@ export const DetailedCourseTitle = styled(Typography)({
 export const DetailedCourseActionsBox = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
-  marginTop: '10%',
+  marginTop: '171px',
 });
 
-export const StyledCircularProgressbar = styled(CircularProgressbar)({
-  textColor: '#f88',
+export const StyledButton = styled(Button)({
+  marginLeft: '15px',
+});
+
+export const SimilarCoursesWrapper = styled(Grid)({
+  marginTop: '171px',
+  marginBottom: '171px',
+});
+
+export const SimilarCoursesItemWrapper = styled(Grid)({
+  height: '300px',
+  width: '600px',
+});
+
+export const SimilarCoursesTitle = styled(Typography)({
+  fontSize: '40px',
+  fontWeight: 'bold',
+  marginBottom: '20px',
 });

@@ -15,6 +15,7 @@ export const CourseContainer = styled(Grid)({
   fontFamily: '"Lato", sans-serif',
   display: 'flex',
   flexDirection: 'column',
+  height: '360px',
   justifyContent: 'space-between',
   minHeight: '100%',
   [theme.breakpoints.down('lg')]: {
@@ -26,7 +27,10 @@ export const CourseContainer = styled(Grid)({
 
 export const AboutCourseContainer = styled('div')({
   minHeight: '220px',
-  padding: '16px',
+  padding: '10px',
+  marginBottom: '30px',
+  textOverflow: 'ellipse',
+  overflow: 'hidden',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     flexDirection: 'column',
