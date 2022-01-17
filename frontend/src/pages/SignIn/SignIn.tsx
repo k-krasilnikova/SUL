@@ -23,7 +23,7 @@ import {
   ImageWrapper,
 } from './styled';
 
-const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
+const SignIn = ({ formik }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
@@ -32,7 +32,6 @@ const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
     handleSubmit,
     handleChange,
     handleBlur,
-    setFieldTouched,
   } = formik;
 
   return (
@@ -58,8 +57,6 @@ const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
                       handleChange={handleChange}
                       handleBlur={handleBlur}
                       error={errors}
-                      setFieldTouched={setFieldTouched}
-                      warningHandler={warningHandler}
                       placeholder="Login"
                       id="login"
                     />
@@ -71,8 +68,6 @@ const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
                       handleChange={handleChange}
                       handleBlur={handleBlur}
                       error={errors}
-                      setFieldTouched={setFieldTouched}
-                      warningHandler={warningHandler}
                       id="password"
                       type="password"
                       placeholder="Password"

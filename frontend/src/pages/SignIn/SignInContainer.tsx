@@ -27,14 +27,9 @@ const SignInContainer: React.FC = () => {
     },
   });
 
-  const warningHandler = (name: string, e: string) => {
-    formik.handleChange(e);
-    formik.setFieldTouched(name, true, false);
-  };
-
   return (
     <FormikProvider value={formik}>
-      <SignIn formik={formik} warningHandler={warningHandler} />
+      <SignIn formik={formik} />
     </FormikProvider>
   );
 };

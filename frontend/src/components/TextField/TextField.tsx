@@ -19,7 +19,6 @@ interface TextFieldProps {
   onChange?: (e: string) => void;
   handleBlur?: (e: React.FocusEvent) => void;
   handleChange: (e: string) => void;
-  setFieldTouched: (name: string, value?: boolean, isValidate?: boolean) => void;
   value?: unknown;
   type?: string;
   placeholder?: string;
@@ -37,7 +36,6 @@ const TextField: React.FC<TextFieldProps> = ({
   onChange,
   handleBlur,
   handleChange,
-  setFieldTouched,
   warningHandler,
   ...rest
 }) => {
@@ -46,7 +44,6 @@ const TextField: React.FC<TextFieldProps> = ({
       <Field
         component={MuiTextField}
         onChange={handleChange}
-        // onChange={warningHandler?.bind(null, id)}
         id={id}
         label={label}
         defaultValue={defaultValue}
