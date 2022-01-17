@@ -16,7 +16,7 @@ const useLogOut = (): UseMutationResult => {
         const logOutResponse = await apiClient.post(API.getToken, initialData);
         return logOutResponse;
       } catch (error) {
-        throw new Error(`${REQUEST_ERRORS.logOutError}`);
+        throw new Error(`${REQUEST_ERRORS.getError}`);
       }
     },
     {
