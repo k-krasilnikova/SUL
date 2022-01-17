@@ -1,54 +1,108 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
+import { Search as SearchIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { Popper, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
+import { UserAvatar } from 'components/Avatar';
+import { alertIcon, filterIcon, logOutIcon } from 'icons';
+
 import {
   LayoutHeader,
-  HeaderDivider,
   SpaceHolder,
   BrandLogo,
+  BrandLogoBlack,
   HeaderContent,
+  Search,
+  NotificationsButton,
+  FilterButton,
+  Notifications,
+  Filter,
+  UserBlock,
+  UserName,
   LogOut,
-} from 'components/Layout/styled';
-import UserDropDown from 'components/Layout/UserDropDown';
-import MyCoursesCounter from './MyCoursesCounter';
+} from './styled';
 
-const Header: React.FC<User> = ({
+interface Props {
+  firstName?: string;
+  lastName?: string;
+  avatar?: string;
+  isNotificationsOpen: boolean;
+  isFilterOpen: boolean;
+  notificationsAnchor: HTMLElement | null;
+  filterAnchor: HTMLElement | null;
+  handleNotificationsOpen: (event: React.MouseEvent<HTMLElement>) => void;
+  handleFilterOpen: (event: React.MouseEvent<HTMLElement>) => void;
+}
+type HeaderProps = User & Props;
+
+const Header: React.FC<HeaderProps> = ({
   firstName,
   lastName,
-  role,
-  unit,
-  department,
-  group,
-  myCoursesNumber,
   avatar,
-}) => (
-  <LayoutHeader container>
-    <Grid item xs={3}>
+  isNotificationsOpen,
+  isFilterOpen,
+  notificationsAnchor,
+  filterAnchor,
+  handleNotificationsOpen,
+  handleFilterOpen,
+}) => {
+  return (
+    <LayoutHeader container>
       <NavLink to={PATHS.home}>
-        <BrandLogo>Skill Up Level</BrandLogo>
+        <BrandLogo>
+          :i<BrandLogoBlack>Tech</BrandLogoBlack>Art
+        </BrandLogo>
       </NavLink>
-    </Grid>
-    <Grid item xs={9}>
       <HeaderContent>
-        <SpaceHolder />
-        <MyCoursesCounter myCoursesNumber={myCoursesNumber} />
-        <HeaderDivider />
-        <UserDropDown
-          firstName={firstName}
-          lastName={lastName}
-          role={role}
-          unit={unit}
-          department={department}
-          group={group}
-          avatar={avatar}
+        <Search
+          disableUnderline
+          placeholder="Search"
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon color="disabled" />
+            </InputAdornment>
+          }
         />
-        <HeaderDivider />
-        <LogOut />
+        <NotificationsButton onClick={handleNotificationsOpen}>
+          <img alt="notifications" src={alertIcon} />
+        </NotificationsButton>
+        <Popper open={isNotificationsOpen} anchorEl={notificationsAnchor}>
+          <Notifications>Notifications here</Notifications>
+        </Popper>
+        <FilterButton onClick={handleFilterOpen}>
+          <img alt="filter" src={filterIcon} />
+        </FilterButton>
+        <Popper open={isFilterOpen} anchorEl={filterAnchor}>
+          <Filter>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Status</Typography>
+              </AccordionSummary>
+              <AccordionDetails>Statuses here</AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Technology</Typography>
+              </AccordionSummary>
+              <AccordionDetails>Technologies here</AccordionDetails>
+            </Accordion>
+          </Filter>
+        </Popper>
+        <SpaceHolder />
+        <NavLink to={PATHS.profile}>
+          <UserBlock>
+            <UserAvatar avatar={avatar} size="small" />
+            <UserName>{`${firstName} ${lastName}`}</UserName>
+          </UserBlock>
+        </NavLink>
+        <LogOut>
+          <img alt="log_out" src={logOutIcon} />
+        </LogOut>
       </HeaderContent>
-    </Grid>
-  </LayoutHeader>
-);
+    </LayoutHeader>
+  );
+};
 export default Header;
