@@ -2,12 +2,12 @@ import React from 'react';
 
 import Button from 'components/Button';
 import TextField from 'components/TextField';
+
 import { SignTypes } from 'types/signIn';
 import { signInImage } from 'icons';
-
 import Image from 'components/Image';
-import Definition from './Definition';
 
+import Definition from './Definition';
 import {
   SignWrapper,
   FormBox,
@@ -23,7 +23,7 @@ import {
   ImageWrapper,
 } from './styled';
 
-const SignIn = ({ formik }: SignTypes): JSX.Element => {
+const SignIn = ({ formik, isFieldTouched }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
@@ -32,6 +32,7 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
     handleSubmit,
     handleChange,
     handleBlur,
+    setFieldTouched,
   } = formik;
 
   return (
@@ -55,10 +56,12 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
                       value={login}
                       touched={touched.login}
                       handleChange={handleChange}
+                      setFieldTouched={setFieldTouched}
                       handleBlur={handleBlur}
                       error={errors}
                       placeholder="Login"
                       id="login"
+                      isFieldTouched={isFieldTouched}
                     />
                   </GridSignInput>
                   <GridSignInput item xs={12}>
@@ -66,11 +69,13 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
                       value={password}
                       touched={touched.password}
                       handleChange={handleChange}
+                      setFieldTouched={setFieldTouched}
                       handleBlur={handleBlur}
                       error={errors}
                       id="password"
                       type="password"
                       placeholder="Password"
+                      isFieldTouched={isFieldTouched}
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>
