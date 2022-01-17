@@ -16,6 +16,7 @@ import {
   Skills,
   SignIn,
   NotFound,
+  DetailedCourse,
 } from 'pages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
