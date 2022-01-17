@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import { TextField as MuiTextField } from '@mui/material';
-import { Field } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 
 import WarningHelper from './styled';
 
@@ -11,11 +12,18 @@ interface TextFieldProps {
   defaultValue?: string;
   helperText?: string;
   touched?: boolean;
+  error?: {
+    login?: string;
+    password?: string;
+  };
   onChange?: (e: string) => void;
-  error?: string;
+  handleBlur?: (e: React.FocusEvent) => void;
+  handleChange: (e: string) => void;
+  setFieldTouched: (name: string, value?: boolean, isValidate?: boolean) => void;
   value?: unknown;
   type?: string;
   placeholder?: string;
+  warningHandler?: (name: string, e: string) => void;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -24,31 +32,36 @@ const TextField: React.FC<TextFieldProps> = ({
   children,
   defaultValue,
   helperText,
-  onChange,
-  error,
   touched,
-  placeholder,
+  error,
+  onChange,
+  handleBlur,
+  handleChange,
+  setFieldTouched,
+  warningHandler,
   ...rest
-}) => (
-  <>
-    <Field
-      component={MuiTextField}
-      onChange={onChange}
-      id={id}
-      label={label}
-      defaultValue={defaultValue}
-      helperText={helperText}
-      size="medium"
-      required
-      fullWidth
-      error={touched && Boolean(error)}
-      placeholder={placeholder}
-      {...rest}
-    >
-      {children}
-    </Field>
-    {error && <WarningHelper>{error}</WarningHelper>}
-  </>
-);
+}) => {
+  return (
+    <>
+      <Field
+        component={MuiTextField}
+        onChange={handleChange}
+        // onChange={warningHandler?.bind(null, id)}
+        id={id}
+        label={label}
+        defaultValue={defaultValue}
+        helperText={helperText}
+        onBlur={handleBlur}
+        size="medium"
+        required
+        fullWidth
+        {...rest}
+      >
+        {children}
+      </Field>
+      <ErrorMessage component={WarningHelper} name={id} />
+    </>
+  );
+};
 
 export default TextField;

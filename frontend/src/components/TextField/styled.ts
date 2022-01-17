@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
 
+import theme from 'themeSettings';
+
 const WarningHelper = styled(Typography)({
-  lineHeight: '14px',
-  fontSize: '12px',
+  fontSize: '14px',
   margin: '0px',
+  marginTop: '15px',
+  textAlign: 'center',
+  fontFamily: '"Ubuntu", sans-serif',
+  color: theme.palette.primary.main,
 });
 
 export default WarningHelper;

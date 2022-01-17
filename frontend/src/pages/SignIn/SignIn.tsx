@@ -23,7 +23,7 @@ import {
   ImageWrapper,
 } from './styled';
 
-const SignIn = ({ formik }: SignTypes): JSX.Element => {
+const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
@@ -31,33 +31,35 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
     isValid,
     handleSubmit,
     handleChange,
+    handleBlur,
+    setFieldTouched,
   } = formik;
 
   return (
     <SignMain>
-      <SignMainGrid justifyContent="space-between" container>
-        <SignPresGrid item xs={12} sm={12} md={7} lg={8} xl={6} alignItems="center">
+      <SignMainGrid justifyContent="space-between" container spacing={{ xl: 2, lg: 2 }}>
+        <SignPresGrid item xs={12} sm={12} md={6} lg={7} xl={6} alignItems="center">
           <ImageWrapper>
             <Image imageUrl={signInImage} />
           </ImageWrapper>
         </SignPresGrid>
-        <SignFormGrid item xs={12} sm={12} md={5} lg={4} xl={6} alignItems="center">
+        <SignFormGrid item xs={12} sm={12} md={6} lg={5} xl={6} alignItems="center">
           <DefinitionWrapper>
             <Definition />
           </DefinitionWrapper>
           <SignWrapper>
             <FormBox>
-              {/* <Typography variant="h5" mb={3}>
-                Log In
-              </Typography> */}
               <ItemsBox component="form" onSubmit={handleSubmit}>
                 <GridWrapper container spacing={1}>
                   <GridSignInput item xs={12}>
                     <TextField
                       value={login}
-                      touched={touched?.login}
-                      onChange={handleChange}
-                      error={errors?.login}
+                      touched={touched.login}
+                      handleChange={handleChange}
+                      handleBlur={handleBlur}
+                      error={errors}
+                      setFieldTouched={setFieldTouched}
+                      warningHandler={warningHandler}
                       placeholder="Login"
                       id="login"
                     />
@@ -65,9 +67,12 @@ const SignIn = ({ formik }: SignTypes): JSX.Element => {
                   <GridSignInput item xs={12}>
                     <TextField
                       value={password}
-                      touched={touched?.password}
-                      onChange={handleChange}
-                      error={errors?.password}
+                      touched={touched.password}
+                      handleChange={handleChange}
+                      handleBlur={handleBlur}
+                      error={errors}
+                      setFieldTouched={setFieldTouched}
+                      warningHandler={warningHandler}
                       id="password"
                       type="password"
                       placeholder="Password"

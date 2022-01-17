@@ -9,11 +9,10 @@ export const Wrapper = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   padding: 0,
-  '@media(max-width: 767px)': {
+  [theme.breakpoints.down('md')]: {
     width: '100%',
     margin: '0px !important',
     justifyContent: 'center',
-    marginTop: '20px',
     maxWidth: '100%',
   },
 });
@@ -23,20 +22,22 @@ export const LogoBox = styled(Box)({
   width: '100%',
   paddingLeft: '0px',
   justifyContent: 'center',
-  '@media(max-width: 767px)': {
+  [theme.breakpoints.down('md')]: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '20px',
   },
 });
 
 export const CompanyLogo = styled(Typography)({
   fontFamily: '"Ubuntu", sans-serif !important',
+  marginLeft: '10px !important',
   fontSize: '42px !important',
-  letterSpacing: 0.5,
   fontWeight: '600 !important',
   textAlign: 'center',
-  '@media(max-width: 424px)': {
+  [theme.breakpoints.down('lg')]: {
+    marginLeft: '0px !important',
+  },
+  [theme.breakpoints.down('sm')]: {
     fontSize: '35px !important',
   },
   '& span': {
@@ -47,13 +48,12 @@ export const CompanyLogo = styled(Typography)({
 export const Instructions = styled(Typography)({
   fontFamily: '"Ubuntu", sans-serif !important',
   fontSize: '48px !important',
-  letterSpacing: 0.5,
   fontWeight: '600 !important',
   textAlign: 'center',
-  '@media(max-width: 767px)': {
+  [theme.breakpoints.down('md')]: {
     textAlign: 'center',
   },
-  '@media(max-width: 424px)': {
+  [theme.breakpoints.down('sm')]: {
     fontSize: '20px !important',
   },
   '& span': {

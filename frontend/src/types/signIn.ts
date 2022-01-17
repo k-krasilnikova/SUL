@@ -23,4 +23,5 @@ export interface SignTypes {
     };
   };
   imageUrl?: string;
+  warningHandler?: (name: string, e: string) => void;
 }

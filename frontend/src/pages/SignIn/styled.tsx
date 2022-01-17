@@ -1,32 +1,45 @@
 import { styled } from '@mui/styles';
 import { Grid, Box } from '@mui/material';
 
+import theme from 'themeSettings';
+
 const SignMain = styled(Box)({
-  height: '95vh',
-  width: '95%',
-  margin: '0 auto',
+  height: '100% !important',
+  minHeight: '100vh',
+  width: '100% !important',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
   padding: '0',
-  '@media(max-width: 767px)': {
-    height: '100%',
+  background: theme.palette.secondary.main,
+});
+
+const SignMainGrid = styled(Grid)({
+  height: '100% !important',
+  minHeight: '100vh',
+  width: '85% !important',
+  margin: '0 auto !important',
+  padding: '0px !important',
+  [theme.breakpoints.down('xl')]: {
+    width: '90% !important',
+    justifyContent: 'center !important',
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '95% !important',
+    justifyContent: 'center !important',
   },
 });
 
-/*  Материнский блок  */
-const SignMainGrid = styled(Grid)({
-  height: '100%',
-  width: '100%',
-  margin: '0px !important',
-  padding: '0px !important',
-});
-
-/*  Левый блок  */
 const SignPresGrid = styled(Grid)({
   padding: '0px 5px!important',
   margin: '0px !important',
-  border: '1px solid red',
   display: 'grid',
-  '@media(max-width: 767px)': {
+  [theme.breakpoints.down('md')]: {
     minHeight: '220px',
+    maxWidth: '400px !important',
+  },
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
   },
 });
 
@@ -35,14 +48,25 @@ const ImageWrapper = styled(Box)({
   maxWidth: '716px',
   justifySelf: 'center',
   alignSelf: 'center',
+  marginBottom: '20px',
+  marginLeft: '10px',
+  [theme.breakpoints.down('lg')]: {
+    marginBottom: '0px !important',
+    marginLeft: '0px !important',
+  },
 });
 
-/*  Правый блок  */
 const SignFormGrid = styled(Grid)({
   display: 'grid',
   gridTemplateRows: '30% 70%',
-  '@media(max-width: 767px)': {
-    padding: '20px 5px!important',
+  [theme.breakpoints.down('lg')]: {
+    gridTemplateRows: '40% 60% !important',
+  },
+  [theme.breakpoints.down('md')]: {
+    gridTemplateRows: '30% 70% !important',
+  },
+  [theme.breakpoints.down('sm')]: {
+    gridTemplateRows: '20% 80% !important',
   },
 });
 
@@ -50,10 +74,18 @@ const DefinitionWrapper = styled(Box)({
   alignSelf: 'start',
   justifySelf: 'center',
   maxWidth: '100%',
-  marginRight: '100px',
-  marginTop: '130px',
-  '@media(max-width: 767px)': {
-    padding: '20px 5px!important',
+  marginRight: '18px',
+  marginTop: '115px',
+  [theme.breakpoints.down('xl')]: {
+    marginRight: '0px !important',
+  },
+  [theme.breakpoints.down('lg')]: {
+    alignSelf: 'center',
+    justifySelf: 'end',
+  },
+  [theme.breakpoints.down('md')]: {
+    marginTop: '0px !important',
+    justifySelf: 'center',
   },
 });
 
@@ -63,8 +95,18 @@ const SignWrapper = styled(Box)({
   width: '325px',
   minHeight: '335px',
   boxShadow: '5px 5px 7px 3px rgb(0 0 0 / 10%)',
-  marginTop: '100px',
-  marginRight: '100px',
+  marginTop: '65px',
+  marginRight: '18px',
+  [theme.breakpoints.down('xl')]: {
+    marginRight: '0px !important',
+  },
+  [theme.breakpoints.down('lg')]: {
+    marginTop: '0px',
+    justifySelf: 'end',
+  },
+  [theme.breakpoints.down('md')]: {
+    justifySelf: 'center',
+  },
 });
 
 const FormBox = styled(Box)({
@@ -78,13 +120,14 @@ const ItemsBox = styled(Box)({
   padding: '0px !important',
   width: '100%',
 });
-// Тут прописать нужно отсутпы и сазы для блока путем использования грит атрибутов //
+
 const GridWrapper = styled(Grid)({
   width: '100% !important',
   margin: '0px !important ',
   padding: '0px !important',
-  maxHeight: '300px',
-  height: 'fit-content',
+  maxHeight: 'fit-content !important',
+  marginBottom: '25px !important',
+  alignContent: 'start',
 });
 
 const GridSignInput = styled(Grid)({
@@ -98,6 +141,12 @@ const GridSignInput = styled(Grid)({
     fontWeight: 600,
     fontFamily: '"Ubuntu", sans-serif',
     padding: '15px 14px',
+    '&::placeholder': {
+      color: '#C6C6C9',
+      fontSize: '18px !important',
+      fontFamily: '"Ubuntu", sans-serif',
+      fontWeight: 400,
+    },
   },
 });
 
