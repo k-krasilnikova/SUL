@@ -1,25 +1,26 @@
+import { Grid } from '@mui/material';
+
 import styled from 'styled-components';
 
 import theme from 'themeSettings';
 import Button from 'components/Button';
 
-export const PageContainer = styled('div')({
-  [theme.breakpoints.up('lg')]: {
+export const PageContainer = styled(Grid)({
+  [theme.breakpoints.down('xl')]: {
     maxHeight: '100vh',
     maxWidth: '100%',
     overflowY: 'scroll',
     margin: '0px !important',
-    marginTop: '25px !important',
-  },
-  [theme.breakpoints.up('xl')]: {
-    maxHeight: '100vh',
-    maxWidth: '100%',
-    overflowY: 'scroll',
-    margin: '0px !important',
-    marginTop: '25px !important',
   },
   border: '1px solid #ebebeb',
   borderRadius: '10px',
+  width: '100%',
+  margin: '0px !important',
+  marginTop: '25px !important',
+});
+
+export const GridItem = styled(Grid)({
+  padding: '15px',
 });
 
 export const CourseButton = styled(Button)({
@@ -42,13 +43,15 @@ export const CourseButton = styled(Button)({
 });
 
 export const CourseActions = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    display: 'block',
-  },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.down('lg')]: {
     display: 'flex',
     justifyContent: 'space-between',
     margin: '0px',
     minWidth: '250px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    display: 'flex',
+    flexDirection: 'column',
+    minWidth: 'auto',
   },
 });
