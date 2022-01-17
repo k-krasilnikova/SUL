@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { isError } from 'utils/typeGuards/isError';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { applyCourseProvider } from 'db/providers/courseProvider';
+import { applyCourseProvider } from 'db/providers/clientCourseProvider';
 
 const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {

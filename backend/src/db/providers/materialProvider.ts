@@ -1,19 +1,11 @@
-import MaterialModel from 'db/models/Materials';
+import CourseModel from 'db/models/Course';
 
-const getMaterialsProvider = async () => {
-  const materials = await MaterialModel.find().lean();
-  if (!materials) {
-    throw new Error('materials not found');
-  }
-  return materials;
-};
-
-const getMaterialProvider = async ({ id, stage }: { id: string; stage?: string }) => {
-  const material = await MaterialModel.find(
+const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {
+  const material = await CourseModel.find(
     {
-      $and: [{ _id: id }, stage?.length ? { 'content.stage': Number(stage) } : {}],
+      $and: [{ _id: courseId }, stage?.length ? { 'materials.stage': Number(stage) } : {}],
     },
-    stage?.length ? { 'content.$': 1 } : {},
+    stage?.length ? { 'materials.$': 1 } : { materials: 1 },
   ).lean();
   if (!material) {
     throw new Error('materials not found');
@@ -21,4 +13,4 @@ const getMaterialProvider = async ({ id, stage }: { id: string; stage?: string }
   return material;
 };
 
-export { getMaterialsProvider, getMaterialProvider };
+export { getMaterialsProvider };

@@ -22,6 +22,7 @@ const SALT_ROUNDS = 10;
 const DEFAULT_N_PER_PAGE = 10;
 const FIRST_PAGE = 1;
 const NOTHING = 0;
+const INITIAL_INDX = 0;
 const NO_FILTER = {};
 const DEFAULT_ORDER_FIELD = '_id';
 const ORDER_TYPE = {
@@ -44,4 +45,5 @@ export {
   NOTHING,
   ORDER_TYPE,
   NO_FILTER,
+  INITIAL_INDX,
 };
