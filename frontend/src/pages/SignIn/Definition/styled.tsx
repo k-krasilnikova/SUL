@@ -22,6 +22,7 @@ export const LogoBox = styled(Box)({
   width: '100%',
   paddingLeft: '0px',
   justifyContent: 'center',
+  marginTop: '8px',
   [theme.breakpoints.down('md')]: {
     display: 'flex',
     justifyContent: 'center',

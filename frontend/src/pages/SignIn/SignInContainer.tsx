@@ -26,10 +26,11 @@ const SignInContainer: React.FC = () => {
       resetForm();
     },
   });
+  const FIELD_TOUCHED = true;
 
   return (
     <FormikProvider value={formik}>
-      <SignIn formik={formik} />
+      <SignIn formik={formik} isFieldTouched={FIELD_TOUCHED} />
     </FormikProvider>
   );
 };

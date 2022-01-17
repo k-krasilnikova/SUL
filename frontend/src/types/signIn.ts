@@ -1,4 +1,5 @@
 export interface SignTypes {
+  isFieldTouched: boolean;
   value?: string | number;
   fieldValue?: string | number;
   login?: string;
@@ -23,5 +24,4 @@ export interface SignTypes {
     };
   };
   imageUrl?: string;
-  warningHandler?: (name: string, e: string) => void;
 }
