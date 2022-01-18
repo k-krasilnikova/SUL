@@ -41,13 +41,19 @@ const getCourseProvider = async (courseId: string) => {
 };
 
 const applyCourseProvider = async (courseId: string, userId: string) => {
-  const applyedCourse = await ClientCourseModel.create({
-    course: courseId,
-    status: 'approved',
-    currentStage: 1,
-  });
-  await UserModel.updateOne({ _id: userId }, { $push: { courses: applyedCourse.course } });
-  return applyedCourse;
+  const clientCourse = await ClientCourseModel.findOne({ course: courseId });
+  if (!clientCourse) {
+    const applyedCourse = await ClientCourseModel.create({
+      course: courseId,
+      status: 'approved',
+      currentStage: 1,
+    });
+    await UserModel.updateOne({ _id: userId }, { $push: { courses: applyedCourse.course } });
+    return applyedCourse;
+  }
+  return {
+    message: 'This course already applied',
+  };
 };
 
 export { getCoursesProvider, getCourseProvider, applyCourseProvider };
