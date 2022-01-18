@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 
-import { INITIAL_INDX } from 'config/constants';
 import CourseModel from 'db/models/Course';
-import { generateProgressDto } from 'utils/dto/dtoUtils';
+import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 
 import ClientCourseModel from '../models/ClientCourses';
 import UserModel from '../models/User';
@@ -16,7 +15,7 @@ const getClientCoursesProvider = async () => {
   }
 };
 
-const applyCourseProvider = async (courseId: string, userId: string) => {
+const materialsCounterProvider = async (courseId: string) => {
   const materialsCount = await CourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
@@ -25,7 +24,10 @@ const applyCourseProvider = async (courseId: string, userId: string) => {
       },
     },
   ]);
-  const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
+  return materialsCount;
+};
+
+const applyCourseProvider = async (courseId: string, userId: string, progressDto: IProgress[]) => {
   const applyedCourse = await ClientCourseModel.create({
     course: courseId,
     status: 'approved',
@@ -36,4 +38,4 @@ const applyCourseProvider = async (courseId: string, userId: string) => {
   return applyedCourse;
 };
 
-export { getClientCoursesProvider, applyCourseProvider };
+export { getClientCoursesProvider, applyCourseProvider, materialsCounterProvider };

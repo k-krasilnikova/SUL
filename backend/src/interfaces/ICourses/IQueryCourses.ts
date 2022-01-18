@@ -6,4 +6,9 @@ interface IQueryCourses {
   nPerPage?: number;
 }
 
-export { IQueryCourses };
+interface IProgress {
+  stage: number;
+  isCompleted: boolean;
+}
+
+export { IQueryCourses, IProgress };
