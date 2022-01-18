@@ -8,6 +8,7 @@ import { PATHS } from 'constants/routes';
 import {
   Profile,
   MyCourses,
+  LearningCourse,
   CoursesList,
   Help,
   Employees,
@@ -29,7 +30,10 @@ const App: React.FC = () => (
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
             <Route path={PATHS.profile} element={<Profile />} />
-            <Route path={PATHS.myCourses} element={<MyCourses />} />
+            <Route path={PATHS.myCourses}>
+              <Route index element={<MyCourses />} />
+              <Route path=":courseId" element={<LearningCourse />} />
+            </Route>
             <Route path={PATHS.coursesList} element={<CoursesList />} />
             <Route path={PATHS.help} element={<Help />} />
             <Route path={PATHS.employees} element={<Employees />} />

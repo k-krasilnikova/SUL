@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { useGetMyCourses } from 'api/myCourses';
 import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
 import NoContent from 'components/NoContent';
 import { NO_COURSES } from 'constants/messages';
+import { PATHS } from 'constants/routes';
 
 import { PageContainer, CourseButton, CourseActions } from './styled';
 
@@ -26,9 +28,11 @@ const MyCourses: React.FC = () => {
                 <CourseButton color="primary" variant="contained">
                   Details
                 </CourseButton>
-                <CourseButton color="primary" variant="contained">
-                  Start the course
-                </CourseButton>
+                <Link to={`${PATHS.myCourses}/${course._id}`}>
+                  <CourseButton color="primary" variant="contained">
+                    Start the course
+                  </CourseButton>
+                </Link>
               </CourseActions>
             </CourseItem>
           ))}

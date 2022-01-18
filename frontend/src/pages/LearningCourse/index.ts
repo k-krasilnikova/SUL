@@ -1,1 +1,1 @@
-export { default } from './LearningCourse';
+export { default } from './LearningCourseContainer';
