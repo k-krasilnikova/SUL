@@ -6,13 +6,13 @@ import { AccordionSummary, AccordionDetails, Typography, Menu } from '@mui/mater
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
+import Logo from 'components/BrandLogo';
 import { alertIcon, filterIcon, logOutIcon } from 'icons';
 
 import {
   LayoutHeader,
   SpaceHolder,
-  BrandLogo,
-  BrandLogoBlack,
+  BrandLogoLink,
   HeaderContent,
   Search,
   NotificationsButton,
@@ -55,9 +55,9 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <LayoutHeader container>
-      <BrandLogo to={PATHS.profile}>
-        :i<BrandLogoBlack>Tech</BrandLogoBlack>Art
-      </BrandLogo>
+      <BrandLogoLink to={PATHS.profile}>
+        <Logo />
+      </BrandLogoLink>
       <HeaderContent>
         <Search
           disableUnderline
