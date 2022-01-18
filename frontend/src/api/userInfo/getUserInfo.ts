@@ -34,7 +34,7 @@ const useGetUserInfo = (): UseQueryResult<UserResponse, AxiosError> =>
       }
     },
     {
-      cacheTime: 10000,
+      cacheTime: 600000,
     },
   );
 
