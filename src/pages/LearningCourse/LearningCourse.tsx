@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { COURSE_TEXT, COURSE_DESCRIPTION } from 'constants/courseText';
 import { arrowBack, arrowForward } from 'icons';
+import { PATHS } from 'constants/routes';
 
 import {
   LearningPageContainer,
@@ -17,24 +19,53 @@ import {
   StartTestButton,
 } from './styled';
 
-const LearningCourse: React.FC = () => (
+interface LearningProps {
+  stage: number;
+  maxStage: number;
+  stageBack: () => void;
+  stageForward: () => void;
+  courseText: Array<string>;
+  courseDescription: {
+    title: string;
+    info: string;
+  };
+  testEnabled: boolean;
+}
+
+const LearningCourse: React.FC<LearningProps> = ({
+  stage,
+  maxStage,
+  stageBack,
+  stageForward,
+  courseText,
+  courseDescription,
+  testEnabled,
+}) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
-      <BackButton variant="contained">Back</BackButton>
+      <Link to={PATHS.myCourses}>
+        <BackButton variant="contained">Back</BackButton>
+      </Link>
       <LearningWrapper>
         <StepperController>
-          <img alt="back" src={arrowBack} />
-          <Step>2/7</Step>
-          <img alt="forward" src={arrowForward} />
+          <IconButton onClick={stageBack}>
+            <img alt="back" src={arrowBack} />
+          </IconButton>
+          <Step>
+            {stage}/{maxStage}
+          </Step>
+          <IconButton onClick={stageForward}>
+            <img alt="forward" src={arrowForward} />
+          </IconButton>
         </StepperController>
-        <TextWrapper>{COURSE_TEXT[1]}</TextWrapper>
-        {COURSE_DESCRIPTION && (
+        <TextWrapper>{courseText[stage - 1]}</TextWrapper>
+        {courseDescription && (
           <Description>
-            <DescriptionTitle>{COURSE_DESCRIPTION.title}</DescriptionTitle>
-            <DescriptionText>{COURSE_DESCRIPTION.info}</DescriptionText>
+            <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
+            <DescriptionText>{courseDescription.info}</DescriptionText>
           </Description>
         )}
-        <StartTestButton disabled>Start the test</StartTestButton>
+        <StartTestButton disabled={!testEnabled}>Start the test</StartTestButton>
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>
