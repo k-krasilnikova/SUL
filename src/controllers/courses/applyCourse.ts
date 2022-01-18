@@ -8,7 +8,9 @@ const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) =
   try {
     const { id: courseId } = req.body;
     const { id: userId } = res.locals;
-    const courses = await applyCourseProvider(courseId, userId);
+    const materialsCount = await materialsCounterProvider(courseId);
+    const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
+    const courses = await applyCourseProvider(courseId, userId, progressDto);
     res.json(courses);
   } catch (err) {
     if (isError(err)) {
