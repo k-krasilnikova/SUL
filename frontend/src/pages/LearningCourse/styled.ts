@@ -3,6 +3,10 @@ import { Box, Typography } from '@mui/material';
 
 import Button from 'components/Button';
 
+interface ButtonProps {
+  disabled: boolean;
+}
+
 export const LearningPageContainer = styled('div')({
   width: '100%',
   padding: '40px',
@@ -57,7 +61,7 @@ export const Description = styled('div')({
   display: 'inline-block',
   maxWidth: 'calc(100% - 155px - 41px)',
   maxHeight: '418px',
-  padding: '31px 238.33px 139px 53.86px',
+  padding: '31px 238.33px 31px 53.86px',
   textAlign: 'left',
   color: 'black',
   border: '1px solid #E0E0E3',
@@ -81,13 +85,12 @@ export const DescriptionText = styled(Typography)({
   lineHeight: '31px',
   letterSpacing: '-0.4050024747848511px',
 });
-export const StartTestButton = styled(Button)({
+export const StartTestButton = styled(Button)<ButtonProps>(({ disabled }) => ({
   display: 'inline-block',
   verticalAlign: 'top',
   width: '155px',
   height: '50px',
   marginLeft: '40px',
-  background: '#E19697',
   color: 'white!important',
   textTransform: 'none',
   fontSize: '18px',
@@ -97,8 +100,12 @@ export const StartTestButton = styled(Button)({
   letterSpacing: '-0.40px',
   textAlign: 'center',
   boxShadow: '0px 1px 2px 1px #919191',
+  background: '#D43E41',
+  ...(disabled && {
+    background: '#E19697',
+  }),
   '&:hover': {
     background: '#E19697',
     boxShadow: '0px 2px 4px 2px #919191',
   },
-});
+}));
