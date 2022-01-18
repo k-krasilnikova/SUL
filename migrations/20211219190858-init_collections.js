@@ -32,10 +32,12 @@ const DEFAULT_USERS_DOCS = [
     position: 'Software Engineer',
     skills: [],
     courses: [],
+    group: '',
     employees: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
     skype: 'admin',
+    phone: '+375(33)1235363',
   },
   {
     username: 'user',
@@ -47,10 +49,12 @@ const DEFAULT_USERS_DOCS = [
     position: 'Software Engineer',
     skills: [],
     courses: [],
+    group: '',
     employees: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
     skype: 'user',
+    phone: '+375(33)2635213',
   },
   {
     username: 'manager',
@@ -62,10 +66,12 @@ const DEFAULT_USERS_DOCS = [
     position: 'Team Manager',
     skills: [],
     courses: [],
+    group: '',
     employees: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
     skype: 'user',
+    phone: '+375(29)8001190',
   },
 ];
 
