@@ -1,5 +1,5 @@
 export interface SignTypes {
-  isFieldTouched: boolean;
+  warningHandler: (name: string, e: string) => void;
   value?: string | number;
   fieldValue?: string | number;
   login?: string;

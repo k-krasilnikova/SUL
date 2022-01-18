@@ -22,16 +22,13 @@ import {
   ImageWrapper,
 } from './styled';
 
-const SignIn = ({ formik, isFieldTouched }: SignTypes): JSX.Element => {
+const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
-    touched,
     isValid,
     handleSubmit,
-    handleChange,
     handleBlur,
-    setFieldTouched,
   } = formik;
 
   return (
@@ -53,28 +50,22 @@ const SignIn = ({ formik, isFieldTouched }: SignTypes): JSX.Element => {
                   <GridSignInput item xs={12}>
                     <TextField
                       value={login}
-                      touched={touched.login}
-                      handleChange={handleChange}
-                      setFieldTouched={setFieldTouched}
+                      warningHandler={warningHandler}
                       handleBlur={handleBlur}
                       error={errors}
                       placeholder="Login"
                       id="login"
-                      isFieldTouched={isFieldTouched}
                     />
                   </GridSignInput>
                   <GridSignInput item xs={12}>
                     <TextField
                       value={password}
-                      touched={touched.password}
-                      handleChange={handleChange}
-                      setFieldTouched={setFieldTouched}
+                      warningHandler={warningHandler}
                       handleBlur={handleBlur}
                       error={errors}
                       id="password"
                       type="password"
                       placeholder="Password"
-                      isFieldTouched={isFieldTouched}
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>

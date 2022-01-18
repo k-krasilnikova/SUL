@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Search as SearchIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
@@ -8,6 +9,7 @@ import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
 import { alertIcon, filterIcon, logOutIcon } from 'icons';
+import { useLogOut } from 'api/logOut';
 
 import {
   LayoutHeader,
@@ -49,6 +51,8 @@ const Header: React.FC<HeaderProps> = ({
   handleNotificationsOpen,
   handleFilterOpen,
 }) => {
+  const { mutateAsync } = useLogOut();
+
   return (
     <LayoutHeader container>
       <NavLink to={PATHS.home}>
@@ -98,7 +102,7 @@ const Header: React.FC<HeaderProps> = ({
             <UserName>{`${firstName} ${lastName}`}</UserName>
           </UserBlock>
         </NavLink>
-        <LogOut>
+        <LogOut onClick={() => mutateAsync({ login: 'user', password: 'user' })}>
           <img alt="log_out" src={logOutIcon} />
         </LogOut>
       </HeaderContent>
