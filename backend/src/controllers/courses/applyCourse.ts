@@ -2,7 +2,9 @@ import { Request, Response } from 'express';
 
 import { isError } from 'utils/typeGuards/isError';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { applyCourseProvider } from 'db/providers/clientCourseProvider';
+import { applyCourseProvider, materialsCounterProvider } from 'db/providers/clientCourseProvider';
+import { generateProgressDto } from 'utils/dto/dtoUtils';
+import { INITIAL_INDX } from 'config/constants';
 
 const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
