@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useGetMyCourses } from 'api/myCourses';
+
 import MyCoursesList from './MyCoursesList';
 
 const MyCoursesContainer: React.FC = () => {
