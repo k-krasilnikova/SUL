@@ -13,20 +13,9 @@ export const LayoutHeader = styled(Grid)({
   borderBottom: '2px solid #f0f2f7',
   fontFamily: '"Ubuntu", sans-serif',
 });
-export const BrandLogo = styled(Link)({
+export const BrandLogoLink = styled(Link)({
   flexGrow: '0',
   flexShrink: '0',
-  width: '139px',
-  display: 'block',
-  height: '38px',
-  fontSize: '32px',
-  lineHeight: '32px',
-  fontWeight: 'bold',
-  margin: '22px 163px 20px 40px',
-  color: '#D43E41',
-});
-export const BrandLogoBlack = styled('span')({
-  color: 'black',
 });
 export const HeaderContent = styled('div')({
   flexGrow: '2',
