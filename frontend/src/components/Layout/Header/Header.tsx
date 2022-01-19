@@ -1,54 +1,112 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
+import { Search as SearchIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { AccordionSummary, AccordionDetails, Typography, Menu } from '@mui/material';
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
+import { UserAvatar } from 'components/Avatar';
+import Logo from 'components/BrandLogo';
+import { alertIcon, filterIcon, logOutIcon } from 'icons';
+
 import {
   LayoutHeader,
-  HeaderDivider,
   SpaceHolder,
-  BrandLogo,
+  BrandLogoLink,
   HeaderContent,
+  Search,
+  NotificationsButton,
+  FilterButton,
+  Notifications,
+  Filter,
+  FilterAccordion,
+  UserBlock,
+  UserName,
   LogOut,
-} from 'components/Layout/styled';
-import UserDropDown from 'components/Layout/UserDropDown';
-import MyCoursesCounter from './MyCoursesCounter';
+} from './styled';
 
-const Header: React.FC<User> = ({
+interface Props {
+  firstName?: string;
+  lastName?: string;
+  avatar?: string;
+  isNotificationsOpen: boolean;
+  isFilterOpen: boolean;
+  notificationsAnchor: HTMLElement | null;
+  filterAnchor: HTMLElement | null;
+  handleNotificationsOpen: (event: React.MouseEvent<HTMLElement>) => void;
+  handleFilterOpen: (event: React.MouseEvent<HTMLElement>) => void;
+  handleNotificationsClose: () => void;
+  handleFilterClose: () => void;
+}
+type HeaderProps = User & Props;
+
+const Header: React.FC<HeaderProps> = ({
   firstName,
   lastName,
-  role,
-  unit,
-  department,
-  group,
-  myCoursesNumber,
   avatar,
-}) => (
-  <LayoutHeader container>
-    <Grid item xs={3}>
-      <NavLink to={PATHS.home}>
-        <BrandLogo>Skill Up Level</BrandLogo>
-      </NavLink>
-    </Grid>
-    <Grid item xs={9}>
+  isNotificationsOpen,
+  isFilterOpen,
+  notificationsAnchor,
+  filterAnchor,
+  handleNotificationsOpen,
+  handleFilterOpen,
+  handleNotificationsClose,
+  handleFilterClose,
+}) => {
+  return (
+    <LayoutHeader container>
+      <BrandLogoLink to={PATHS.profile}>
+        <Logo />
+      </BrandLogoLink>
       <HeaderContent>
-        <SpaceHolder />
-        <MyCoursesCounter myCoursesNumber={myCoursesNumber} />
-        <HeaderDivider />
-        <UserDropDown
-          firstName={firstName}
-          lastName={lastName}
-          role={role}
-          unit={unit}
-          department={department}
-          group={group}
-          avatar={avatar}
+        <Search
+          disableUnderline
+          placeholder="Search"
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon color="disabled" />
+            </InputAdornment>
+          }
         />
-        <HeaderDivider />
-        <LogOut />
+        <NotificationsButton onClick={handleNotificationsOpen}>
+          <img alt="notifications" src={alertIcon} />
+        </NotificationsButton>
+        <Menu
+          open={isNotificationsOpen}
+          anchorEl={notificationsAnchor}
+          onClose={handleNotificationsClose}
+        >
+          <Notifications>Notifications here</Notifications>
+        </Menu>
+        <FilterButton onClick={handleFilterOpen}>
+          <img alt="filter" src={filterIcon} />
+        </FilterButton>
+        <Menu open={isFilterOpen} anchorEl={filterAnchor} onClose={handleFilterClose}>
+          <Filter>
+            <FilterAccordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Status</Typography>
+              </AccordionSummary>
+              <AccordionDetails>Statuses here</AccordionDetails>
+            </FilterAccordion>
+            <FilterAccordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Technology</Typography>
+              </AccordionSummary>
+              <AccordionDetails>Technologies here</AccordionDetails>
+            </FilterAccordion>
+          </Filter>
+        </Menu>
+        <SpaceHolder />
+        <UserBlock to={PATHS.profile}>
+          <UserAvatar avatar={avatar} size="small" />
+          <UserName>{`${firstName} ${lastName}`}</UserName>
+        </UserBlock>
+        <LogOut>
+          <img alt="log_out" src={logOutIcon} />
+        </LogOut>
       </HeaderContent>
-    </Grid>
-  </LayoutHeader>
-);
+    </LayoutHeader>
+  );
+};
 export default Header;

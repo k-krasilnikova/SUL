@@ -5,12 +5,12 @@ import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
 import NoContent from 'components/NoContent';
 import { NO_COURSES } from 'constants/messages';
-import { ResponeDataType } from '../../types/responseData';
+import { ResponeDataType } from 'types/responseData';
 
 import { PageContainer, CourseButton, CourseActions, GridItem } from './styled';
 
-const CoursesList: React.FC<ResponeDataType> = ({ data, isLoading }) => (
-  <AuthorizedLayout pageName="Courses List">
+const MyCoursesList: React.FC<ResponeDataType> = ({ data, isLoading }) => (
+  <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Typography>...Loading</Typography>
     ) : data?.length ? (
@@ -42,4 +42,4 @@ const CoursesList: React.FC<ResponeDataType> = ({ data, isLoading }) => (
   </AuthorizedLayout>
 );
 
-export default CoursesList;
+export default MyCoursesList;
