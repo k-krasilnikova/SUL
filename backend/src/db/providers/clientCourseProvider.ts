@@ -2,8 +2,7 @@ import ClientCourseModel from '../models/ClientCourses';
 
 const getClientCoursesProvider = async () => {
   try {
-    const courses = await ClientCourseModel.find().lean();
-    return courses;
+    return await ClientCourseModel.find().populate('course');
   } catch (e) {
     throw new Error();
   }
