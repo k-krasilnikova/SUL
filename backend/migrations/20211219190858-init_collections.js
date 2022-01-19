@@ -5,16 +5,19 @@ const SALT_ROUNDS = 10;
 
 const CLIENT_COURSES = [
   {
+    user: '',
     course: '',
     status: 'approved',
     currentStage: 1,
   },
   {
+    user: '',
     course: '',
     status: 'approved',
     currentStage: 1,
   },
   {
+    user: '',
     course: '',
     status: 'approved',
     currentStage: 1,
@@ -64,7 +67,6 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Admin',
     position: 'Software Engineer',
     skills: [],
-    courses: [],
     employees: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
@@ -79,7 +81,6 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'User',
     position: 'Software Engineer',
     skills: [],
-    courses: [],
     employees: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
@@ -94,7 +95,6 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Manager',
     position: 'Team Manager',
     skills: [],
-    courses: [],
     employees: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
@@ -203,21 +203,21 @@ module.exports = {
         return db.collection('courses').insertOne(course);
       }),
     );
-    const clientCourses = await Promise.all(
-      CLIENT_COURSES.map((course, index) => {
-        // eslint-disable-next-line no-param-reassign
-        course.course = courses[index].insertedId;
-        return db.collection('clientCourses').insertOne(course);
-      }),
-    );
-    await Promise.all(
-      DEFAULT_USERS_DOCS.map((doc, index) => {
+    const users = await Promise.all(
+      DEFAULT_USERS_DOCS.map((doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
-        // eslint-disable-next-line no-param-reassign
-        doc.courses.push(clientCourses[index].insertedId);
         // eslint-disable-next-line no-param-reassign
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
         return db.collection('users').insertOne(doc);
+      }),
+    );
+    await Promise.all(
+      CLIENT_COURSES.map((course, index) => {
+        // eslint-disable-next-line no-param-reassign
+        course.course = courses[index].insertedId;
+        // eslint-disable-next-line no-param-reassign
+        course.user = users[index].insertedId;
+        return db.collection('clientCourses').insertOne(course);
       }),
     );
   },
