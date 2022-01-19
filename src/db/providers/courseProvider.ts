@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 import {
   DEFAULT_N_PER_PAGE,
   DEFAULT_ORDER_FIELD,
@@ -39,4 +41,29 @@ const getCourseProvider = async (courseId: string) => {
   return course;
 };
 
-export { getCoursesProvider, getCourseProvider };
+const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {
+  const material = await CourseModel.find(
+    {
+      $and: [{ _id: courseId }, stage?.length ? { 'materials.stage': Number(stage) } : {}],
+    },
+    stage?.length ? { 'materials.$': 1 } : { materials: 1 },
+  ).lean();
+  if (!material) {
+    throw new Error('materials not found');
+  }
+  return material;
+};
+
+const materialsCounterProvider = async (courseId: string) => {
+  const materialsCount = await CourseModel.aggregate([
+    { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
+    {
+      $project: {
+        total: { $size: '$materials' },
+      },
+    },
+  ]);
+  return materialsCount;
+};
+
+export { getCoursesProvider, getCourseProvider, materialsCounterProvider, getMaterialsProvider };
