@@ -5,19 +5,10 @@ import { apiClientWrapper } from 'api/base';
 import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
+import { User } from 'types/user';
+import { ResponseError } from 'types/serverError';
 
-interface ProfileResponse {
-  role: string;
-  position?: string;
-  firstName?: string;
-  lastName?: string;
-  skills?: Array<string>;
-  courses?: Array<string>;
-  avatar?: string;
-  birthday?: Date;
-  skype?: string;
-  error?: unknown;
-}
+type ProfileResponse = User & ResponseError;
 
 const useGetProfile = (): UseQueryResult<ProfileResponse, AxiosError> =>
   useQuery('profile', async () => {
