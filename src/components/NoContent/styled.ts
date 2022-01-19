@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';
 

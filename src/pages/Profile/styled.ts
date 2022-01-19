@@ -3,17 +3,8 @@ import List from '@mui/material/List';
 import theme from 'themeSettings';
 
 export const ProfileBox = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    display: 'block',
-  },
-  [theme.breakpoints.up('lg')]: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-
-  width: '95%',
-  marginRight: '5%',
-  padding: '10px',
+  width: '90%',
+  margin: '88px 0px 113px 122px',
 });
 export const AvatarWrapper = styled('div')({
   [theme.breakpoints.up('xs')]: {
@@ -22,8 +13,9 @@ export const AvatarWrapper = styled('div')({
   [theme.breakpoints.up('lg')]: {
     display: 'inline-block',
   },
-  flex: '1 1 240px',
+  width: '219px',
   textAlign: 'center',
+  marginRight: '234px',
 });
 export const UserInfoList = styled(List)({
   [theme.breakpoints.up('xs')]: {
@@ -33,10 +25,12 @@ export const UserInfoList = styled(List)({
     marginRight: 'auto',
   },
   [theme.breakpoints.up('lg')]: {
-    flex: '2 2 600px',
     display: 'inline-block',
-    margin: '10px 0px 0px 50px',
+    verticalAlign: 'top',
+    width: '400px',
   },
+  fontFamily: '"Ubuntu", sans-serif',
+  fontWeight: '400',
 });
 export const UserInfoLabel = styled('span')({
   [theme.breakpoints.up('xs')]: {
@@ -49,16 +43,14 @@ export const UserInfoLabel = styled('span')({
     margin: '2px 0px',
   },
   [theme.breakpoints.up('lg')]: {
-    width: '200px',
+    width: '132px',
     display: 'inline-block',
-    fontSize: '16px',
-    lineHeight: '16px',
-    padding: '4px',
+    fontSize: '18px',
+    lineHeight: '21px',
     height: '24px',
-    margin: '4px 0px',
+    marginBottom: '24px',
+    padding: '0px',
   },
-  color: 'black',
-  fontFamily: '"Lato", sans-serif',
 });
 export const UserInfoText = styled('span')({
   [theme.breakpoints.up('xs')]: {
@@ -73,12 +65,10 @@ export const UserInfoText = styled('span')({
   [theme.breakpoints.up('lg')]: {
     width: '400px',
     display: 'inline-block',
-    fontSize: '16px',
-    lineHeight: '16px',
-    padding: '4px',
+    fontSize: '18px',
+    lineHeight: '21px',
+    padding: '0px 0px 0px 40px',
     height: '24px',
-    margin: '4px 0px',
+    marginBottom: '24px',
   },
-  color: 'black',
-  fontFamily: '"Lato", sans-serif',
 });

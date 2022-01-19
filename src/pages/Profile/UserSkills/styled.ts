@@ -1,23 +1,29 @@
 import styled from 'styled-components';
-import { List, Typography } from '@mui/material';
+import { List, Typography, Input } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import theme from 'themeSettings';
 
-export const CoursesBox = styled('div')({
+export const SearchWrapper = styled('div')({
+  marginLeft: '48px',
+});
+export const SearchSkill = styled(Input)({
+  fontSize: '18px',
+  lineHeight: '33.61px',
+});
+export const SkillsBox = styled('div')({
   width: '95%',
-  marginRight: '5%',
-  padding: '10px',
 });
-export const CoursesList = styled(List)({
-  width: '100%',
+export const SkillsList = styled(List)({
+  marginTop: '20px',
 });
-export const CoursesListItem = styled('div')({
-  fontFamily: '"Lato", sans-serif',
+export const SkillsListItem = styled('div')({
+  fontFamily: '"Ubuntu", sans-serif',
   color: 'black',
   fontWeight: 'bold',
-  padding: '10px',
+  paddingTop: '24px',
+  marginLeft: '63px',
 });
-export const CourseTitle = styled('div')({
+export const SkillTitle = styled('div')({
   display: 'flex',
   width: '100%',
 });
@@ -31,10 +37,10 @@ export const Title = styled('div')({
     fontSize: '16px',
   },
 });
-export const MaterialsList = styled('div')({
-  padding: '10px',
+export const SkillsInfoList = styled('div')({
+  padding: '17px',
 });
-export const MaterialInfo = styled('div')({
+export const SkillInfo = styled('div')({
   [theme.breakpoints.up('xs')]: {
     width: '160px',
     height: '70px',
@@ -47,11 +53,11 @@ export const MaterialInfo = styled('div')({
   },
   display: 'inline-flex',
   backgroundColor: '#f5f5f5',
-  margin: '5px',
+  marginRight: '64px',
   border: '1px solid #efefef',
   borderRadius: '5px',
 });
-export const CourseProgress = styled(CircularProgress)({
+export const SkillProgress = styled(CircularProgress)({
   [theme.breakpoints.up('xs')]: {
     margin: '2px 10px 5px 3px',
   },
@@ -60,7 +66,7 @@ export const CourseProgress = styled(CircularProgress)({
   },
   color: '#1bc02c',
 });
-export const MaterialInfoText = styled(Typography)({
+export const SkillInfoText = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
     fontSize: '12px',
   },
