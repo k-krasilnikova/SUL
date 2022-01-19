@@ -7,7 +7,7 @@ import MyCoursesList from './MyCoursesList';
 const MyCoursesContainer: React.FC = () => {
   const { data, isLoading } = useGetMyCourses();
 
-  return <MyCoursesList data={data} isLoading={isLoading} />;
+  return <MyCoursesList data={data?.filter((item) => item.course)} isLoading={isLoading} />;
 };
 
 export default MyCoursesContainer;
