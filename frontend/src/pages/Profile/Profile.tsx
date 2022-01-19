@@ -4,8 +4,9 @@ import ListItem from '@mui/material/ListItem';
 import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
+import { SKILLS } from 'constants/skills';
 
-import { UserCourses } from './UserCourses';
+import { UserSkills } from './UserSkills';
 import { ProfileBox, AvatarWrapper, UserInfoList, UserInfoText, UserInfoLabel } from './styled';
 
 const ProfileContent: React.FC<User> = ({
@@ -16,7 +17,6 @@ const ProfileContent: React.FC<User> = ({
   group,
   phone,
   skype,
-  courses,
 }) => (
   <AuthorizedLayout pageName="Profile">
     <ProfileBox>
@@ -26,11 +26,9 @@ const ProfileContent: React.FC<User> = ({
       <UserInfoList>
         <ListItem disablePadding>
           <UserInfoLabel>Name:</UserInfoLabel>
-          <UserInfoText>{firstName}</UserInfoText>
-        </ListItem>
-        <ListItem disablePadding>
-          <UserInfoLabel>Surname:</UserInfoLabel>
-          <UserInfoText>{lastName}</UserInfoText>
+          <UserInfoText>
+            {firstName} {lastName}
+          </UserInfoText>
         </ListItem>
         <ListItem disablePadding>
           <UserInfoLabel>Position:</UserInfoLabel>
@@ -50,7 +48,7 @@ const ProfileContent: React.FC<User> = ({
         </ListItem>
       </UserInfoList>
     </ProfileBox>
-    <UserCourses courses={courses} />
+    <UserSkills skills={SKILLS} />
   </AuthorizedLayout>
 );
 
