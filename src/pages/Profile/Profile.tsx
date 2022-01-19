@@ -5,6 +5,7 @@ import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
 import { SKILLS } from 'constants/skills';
+import { SIZE } from 'constants/sizes';
 
 import { UserSkills } from './UserSkills';
 import { ProfileBox, AvatarWrapper, UserInfoList, UserInfoText, UserInfoLabel } from './styled';
@@ -21,7 +22,7 @@ const ProfileContent: React.FC<User> = ({
   <AuthorizedLayout pageName="Profile" firstName={firstName} lastName={lastName} avatar={avatar}>
     <ProfileBox>
       <AvatarWrapper>
-        <UserAvatar avatar={avatar} size="large" />
+        <UserAvatar avatar={avatar} size={SIZE.large} />
       </AvatarWrapper>
       <UserInfoList>
         <ListItem disablePadding>
