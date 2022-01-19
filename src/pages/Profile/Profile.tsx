@@ -18,7 +18,7 @@ const ProfileContent: React.FC<User> = ({
   phone,
   skype,
 }) => (
-  <AuthorizedLayout pageName="Profile">
+  <AuthorizedLayout pageName="Profile" firstName={firstName} lastName={lastName} avatar={avatar}>
     <ProfileBox>
       <AvatarWrapper>
         <UserAvatar avatar={avatar} size="large" />
