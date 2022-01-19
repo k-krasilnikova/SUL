@@ -4,7 +4,7 @@ import { getClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { isError } from 'utils/typeGuards/isError';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 
-const getClientCoursesById = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const getClientCourses = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
     const courses = await getClientCoursesProvider();
     res.json(courses);
@@ -15,4 +15,4 @@ const getClientCoursesById = async (req: Request, res: Response, next: TMiddlewa
   }
 };
 
-export default getClientCoursesById;
+export default getClientCourses;
