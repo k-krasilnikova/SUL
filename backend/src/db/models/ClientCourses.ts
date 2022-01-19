@@ -7,6 +7,7 @@ const clientCourseSchema = new Schema<IClientCourse>({
   course: { type: Schema.Types.ObjectId, ref: 'Courses' },
   status: { type: String },
   currentStage: { type: Number },
+  progress: [{ stage: { type: String }, isCompleted: { type: Boolean } }],
 });
 
 const ClientCourseModel = model<IClientCourse>(

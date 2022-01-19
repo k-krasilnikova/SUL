@@ -8,7 +8,6 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
-import ClientCourseModel from '../models/ClientCourses';
 
 const getCoursesProvider = async ({
   pageN,
@@ -20,6 +19,7 @@ const getCoursesProvider = async ({
   const sortingField = { [orderField]: order };
   const courses = await CourseModel.find(
     title ? { title: { $regex: new RegExp(title), $options: 'i' } } : NO_FILTER,
+    { materials: 0 },
   )
     .sort(sortingField)
     .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
@@ -32,28 +32,11 @@ const getCoursesProvider = async ({
 };
 
 const getCourseProvider = async (courseId: string) => {
-  const course = await CourseModel.findById(courseId).lean();
+  const course = await CourseModel.find({ _id: courseId }, { materials: 0 }).lean();
   if (!course) {
     throw new Error('course not found');
   }
   return course;
 };
 
-const applyCourseProvider = async (courseId: string, userId: string) => {
-  const applyedCourses = await ClientCourseModel.find({ user: userId });
-  const alreadyApplied = applyedCourses.find(
-    (clientCourse) => clientCourse.course.toString() === courseId,
-  );
-  if (!alreadyApplied) {
-    const applyedCourse = await ClientCourseModel.create({
-      user: userId,
-      course: courseId,
-      status: 'approved',
-      currentStage: 1,
-    });
-    return applyedCourse;
-  }
-  return { message: 'This course already applied' };
-};
-
-export { getCoursesProvider, getCourseProvider, applyCourseProvider };
+export { getCoursesProvider, getCourseProvider };

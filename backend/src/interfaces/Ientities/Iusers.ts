@@ -12,10 +12,12 @@ interface IUser {
   lastName: string;
   skills: ObjectId[];
   courses: ObjectId[];
+  group: string;
   employees: ObjectId[];
   avatar: string;
   birthday: Date;
   skype: string;
+  phone: string;
 }
 
 type TUserRole = 'admin' | 'manager' | 'employee';
