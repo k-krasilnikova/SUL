@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import { Header } from './Header';
 import Menu from './Menu';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avatar, children }) => (
-  <>
+  <HelmetProvider>
     <Helmet>
       <title>{pageName}</title>
     </Helmet>
@@ -29,7 +29,7 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avat
         {children}
       </Grid>
     </Grid>
-  </>
+  </HelmetProvider>
 );
 
 export default AuthorizedLayout;
