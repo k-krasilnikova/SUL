@@ -9,7 +9,6 @@ import {
 import CourseModel from 'db/models/Course';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import ClientCourseModel from '../models/ClientCourses';
-import UserModel from '../models/User';
 
 const getCoursesProvider = async ({
   pageN,
@@ -41,19 +40,20 @@ const getCourseProvider = async (courseId: string) => {
 };
 
 const applyCourseProvider = async (courseId: string, userId: string) => {
-  const clientCourse = await ClientCourseModel.findOne({ course: courseId });
-  if (!clientCourse) {
+  const applyedCourses = await ClientCourseModel.find({ user: userId });
+  const alreadyApplied = applyedCourses.find(
+    (clientCourse) => clientCourse.course.toString() === courseId,
+  );
+  if (!alreadyApplied) {
     const applyedCourse = await ClientCourseModel.create({
+      user: userId,
       course: courseId,
       status: 'approved',
       currentStage: 1,
     });
-    await UserModel.updateOne({ _id: userId }, { $push: { courses: applyedCourse.course } });
     return applyedCourse;
   }
-  return {
-    message: 'This course already applied',
-  };
+  return { message: 'This course already applied' };
 };
 
 export { getCoursesProvider, getCourseProvider, applyCourseProvider };
