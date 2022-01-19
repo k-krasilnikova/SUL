@@ -8,10 +8,10 @@ import DetailedCourse from './DetailedCourse';
 
 const DetailedCourseContainer: React.FC = () => {
   const params = useParams();
-  const { data } = useGetCourseInfo(params._id);
-  const mutation = useApplyCourse();
+  const { data } = useGetCourseInfo(params.courseId);
+  const { mutate } = useApplyCourse();
   const handleApplyCourse = () => {
-    mutation.mutate(params._id);
+    mutate(params.courseId);
   };
 
   return data ? <DetailedCourse data={data} handleApplyCourse={handleApplyCourse} /> : null;

@@ -40,7 +40,7 @@ const App: React.FC = () => (
             <Route path={PATHS.employees} element={<Employees />} />
             <Route path={PATHS.requests} element={<Requests />} />
             <Route path={PATHS.skills} element={<Skills />} />
-            <Route path={`${PATHS.coursesList}/:_id`} element={<DetailedCourse />} />
+            <Route path={`${PATHS.coursesList}/:courseId`} element={<DetailedCourse />} />
           </Route>
           <Route
             path={PATHS.signIn}
