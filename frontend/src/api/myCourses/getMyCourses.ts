@@ -2,7 +2,6 @@ import { useQuery, UseQueryResult } from 'react-query';
 import { AxiosError } from 'axios';
 
 import { apiClientWrapper } from 'api/base';
-import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
 import { Course } from 'types/course';
@@ -10,9 +9,8 @@ import { Course } from 'types/course';
 const useGetMyCourses = (): UseQueryResult<Array<Course>, AxiosError> =>
   useQuery('myCourses', async () => {
     const apiClient = apiClientWrapper();
-    const userId = getUserIdCookie();
     try {
-      const response = await apiClient.get(`${API.getMyCourses}/${userId}`);
+      const response = await apiClient.get(`${API.getMyCourses}`);
       const myCoursesResponse = response.data;
       return myCoursesResponse;
     } catch (error) {
