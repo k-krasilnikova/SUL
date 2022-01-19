@@ -1,25 +1,25 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { Search as SearchIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { Popper, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import { AccordionSummary, AccordionDetails, Typography, Menu } from '@mui/material';
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
+import Logo from 'components/BrandLogo';
 import { alertIcon, filterIcon, logOutIcon } from 'icons';
 
 import {
   LayoutHeader,
   SpaceHolder,
-  BrandLogo,
-  BrandLogoBlack,
+  BrandLogoLink,
   HeaderContent,
   Search,
   NotificationsButton,
   FilterButton,
   Notifications,
   Filter,
+  FilterAccordion,
   UserBlock,
   UserName,
   LogOut,
@@ -35,6 +35,8 @@ interface Props {
   filterAnchor: HTMLElement | null;
   handleNotificationsOpen: (event: React.MouseEvent<HTMLElement>) => void;
   handleFilterOpen: (event: React.MouseEvent<HTMLElement>) => void;
+  handleNotificationsClose: () => void;
+  handleFilterClose: () => void;
 }
 type HeaderProps = User & Props;
 
@@ -48,14 +50,14 @@ const Header: React.FC<HeaderProps> = ({
   filterAnchor,
   handleNotificationsOpen,
   handleFilterOpen,
+  handleNotificationsClose,
+  handleFilterClose,
 }) => {
   return (
     <LayoutHeader container>
-      <NavLink to={PATHS.home}>
-        <BrandLogo>
-          :i<BrandLogoBlack>Tech</BrandLogoBlack>Art
-        </BrandLogo>
-      </NavLink>
+      <BrandLogoLink to={PATHS.profile}>
+        <Logo />
+      </BrandLogoLink>
       <HeaderContent>
         <Search
           disableUnderline
@@ -69,35 +71,37 @@ const Header: React.FC<HeaderProps> = ({
         <NotificationsButton onClick={handleNotificationsOpen}>
           <img alt="notifications" src={alertIcon} />
         </NotificationsButton>
-        <Popper open={isNotificationsOpen} anchorEl={notificationsAnchor}>
+        <Menu
+          open={isNotificationsOpen}
+          anchorEl={notificationsAnchor}
+          onClose={handleNotificationsClose}
+        >
           <Notifications>Notifications here</Notifications>
-        </Popper>
+        </Menu>
         <FilterButton onClick={handleFilterOpen}>
           <img alt="filter" src={filterIcon} />
         </FilterButton>
-        <Popper open={isFilterOpen} anchorEl={filterAnchor}>
+        <Menu open={isFilterOpen} anchorEl={filterAnchor} onClose={handleFilterClose}>
           <Filter>
-            <Accordion>
+            <FilterAccordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Status</Typography>
               </AccordionSummary>
               <AccordionDetails>Statuses here</AccordionDetails>
-            </Accordion>
-            <Accordion>
+            </FilterAccordion>
+            <FilterAccordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Technology</Typography>
               </AccordionSummary>
               <AccordionDetails>Technologies here</AccordionDetails>
-            </Accordion>
+            </FilterAccordion>
           </Filter>
-        </Popper>
+        </Menu>
         <SpaceHolder />
-        <NavLink to={PATHS.profile}>
-          <UserBlock>
-            <UserAvatar avatar={avatar} size="small" />
-            <UserName>{`${firstName} ${lastName}`}</UserName>
-          </UserBlock>
-        </NavLink>
+        <UserBlock to={PATHS.profile}>
+          <UserAvatar avatar={avatar} size="small" />
+          <UserName>{`${firstName} ${lastName}`}</UserName>
+        </UserBlock>
         <LogOut>
           <img alt="log_out" src={logOutIcon} />
         </LogOut>
