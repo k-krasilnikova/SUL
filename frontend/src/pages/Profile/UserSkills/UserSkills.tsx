@@ -36,8 +36,7 @@ interface Props {
   setSearchSkill: (value: string) => void;
 }
 
-const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill }) => {
-  return (
+const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill }) => (
     <>
       <SkillsBox>
         {userSkills?.length ? (
@@ -85,6 +84,5 @@ const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill }) => {
       </SkillsBox>
     </>
   );
-};
 
 export default UserSkills;
