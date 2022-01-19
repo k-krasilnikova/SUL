@@ -37,49 +37,47 @@ interface Props {
 }
 
 const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill }) => (
-  <>
-    <SkillsBox>
-      {userSkills?.length ? (
-        <div>
-          <SearchWrapper>
-            <SearchSkill
-              disableUnderline
-              placeholder="Search"
-              startAdornment={
-                <InputAdornment position="start">
-                  <SearchIcon color="disabled" />
-                </InputAdornment>
-              }
-              onChange={(event) => {
-                setSearchSkill(event.target.value);
-              }}
-            />
-            <Divider />
-          </SearchWrapper>
-          <SkillsList>
-            {userSkills?.map((skill) => (
-              <>
-                <SkillsListItem key={skill.id}>
-                  <SkillTitle>
-                    <StarIcon fontSize="small" color={skill.isCompleted ? 'primary' : 'disabled'} />
-                    <Title>{skill.title}</Title>
-                  </SkillTitle>
-                  <SkillsInfoList>
-                    {skill.technologies.map((skillItem) => (
-                      <SkillInfoContainer key={skillItem.id} skillItem={skillItem} />
-                    ))}
-                  </SkillsInfoList>
-                </SkillsListItem>
-                {skill !== userSkills[userSkills.length - 1] && <Divider />}
-              </>
-            ))}
-          </SkillsList>
-        </div>
-      ) : (
-        <NoContent message={NO_COURSES} size={SIZE.medium} />
-      )}
-    </SkillsBox>
-  </>
+  <SkillsBox>
+    {userSkills?.length ? (
+      <div>
+        <SearchWrapper>
+          <SearchSkill
+            disableUnderline
+            placeholder="Search"
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon color="disabled" />
+              </InputAdornment>
+            }
+            onChange={(event) => {
+              setSearchSkill(event.target.value);
+            }}
+          />
+          <Divider />
+        </SearchWrapper>
+        <SkillsList>
+          {userSkills?.map((skill) => (
+            <div key={skill.id}>
+              <SkillsListItem>
+                <SkillTitle>
+                  <StarIcon fontSize="small" color={skill.isCompleted ? 'primary' : 'disabled'} />
+                  <Title>{skill.title}</Title>
+                </SkillTitle>
+                <SkillsInfoList>
+                  {skill.technologies.map((skillItem) => (
+                    <SkillInfoContainer key={skillItem.id} skillItem={skillItem} />
+                  ))}
+                </SkillsInfoList>
+              </SkillsListItem>
+              {skill !== userSkills[userSkills.length - 1] && <Divider />}
+            </div>
+          ))}
+        </SkillsList>
+      </div>
+    ) : (
+      <NoContent message={NO_COURSES} size={SIZE.medium} />
+    )}
+  </SkillsBox>
 );
 
 export default UserSkills;
