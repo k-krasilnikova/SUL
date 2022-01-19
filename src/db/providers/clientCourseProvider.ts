@@ -13,6 +13,13 @@ const getClientCoursesProvider = async () => {
   }
 };
 
+const getClientCourseProvider = async (clientCourseId: string) => {
+  const clientCourse = await ClientCourseModel.findOne({ _id: clientCourseId })
+    .populate('course')
+    .lean();
+  return clientCourse;
+};
+
 const applyCourseProvider = async (courseId: string, userId: string, progressDto: IProgress[]) => {
   const applyedCourse = await ClientCourseModel.create({
     course: courseId,
@@ -51,6 +58,7 @@ const updateCourseStatus = async (courseId: string, status: string) => {
 
 export {
   getClientCoursesProvider,
+  getClientCourseProvider,
   getStatusProvider,
   updateCourseStatus,
   applyCourseProvider,

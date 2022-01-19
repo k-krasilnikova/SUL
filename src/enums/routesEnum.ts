@@ -12,6 +12,8 @@ enum SubRoutes {
   refresh = '/refresh',
   profile = '/profile',
   materials = '/materials',
+  start = '/start',
+  finish = '/finish',
 }
 
 enum Params {
