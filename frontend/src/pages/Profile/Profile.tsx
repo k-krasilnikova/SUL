@@ -4,65 +4,52 @@ import ListItem from '@mui/material/ListItem';
 import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
+import { SKILLS } from 'constants/skills';
+import { SIZE } from 'constants/sizes';
 
-import {
-  ProfileBox,
-  UserInfoList,
-  UserInfoText,
-  UserInfoLabel,
-  UserListSubheader,
-  UserListItem,
-} from './styled';
+import { UserSkills } from './UserSkills';
+import { ProfileBox, AvatarWrapper, UserInfoList, UserInfoText, UserInfoLabel } from './styled';
 
 const ProfileContent: React.FC<User> = ({
+  avatar,
   firstName,
   lastName,
-  avatar,
-  birthday,
-  skype,
   position,
-  skills,
-  courses,
+  group,
+  phone,
+  skype,
 }) => (
   <AuthorizedLayout pageName="Profile">
     <ProfileBox>
-      <UserAvatar avatar={avatar} size="large" />
-      <UserInfoList sx={{ marginLeft: 'auto', marginRight: 'auto' }}>
+      <AvatarWrapper>
+        <UserAvatar avatar={avatar} size={SIZE.large} />
+      </AvatarWrapper>
+      <UserInfoList>
         <ListItem disablePadding>
-          <UserInfoLabel>Full name:</UserInfoLabel>
+          <UserInfoLabel>Name:</UserInfoLabel>
           <UserInfoText>
             {firstName} {lastName}
           </UserInfoText>
         </ListItem>
         <ListItem disablePadding>
-          <UserInfoLabel>Birthday:</UserInfoLabel>
-          <UserInfoText>{birthday}</UserInfoText>
+          <UserInfoLabel>Position:</UserInfoLabel>
+          <UserInfoText>{position}</UserInfoText>
+        </ListItem>
+        <ListItem disablePadding>
+          <UserInfoLabel>Group:</UserInfoLabel>
+          <UserInfoText>{group}</UserInfoText>
+        </ListItem>
+        <ListItem disablePadding>
+          <UserInfoLabel>Phone:</UserInfoLabel>
+          <UserInfoText>{phone}</UserInfoText>
         </ListItem>
         <ListItem disablePadding>
           <UserInfoLabel>Skype:</UserInfoLabel>
           <UserInfoText>{skype}</UserInfoText>
         </ListItem>
-        <ListItem disablePadding>
-          <UserInfoLabel>Position:</UserInfoLabel>
-          <UserInfoText>{position}</UserInfoText>
-        </ListItem>
-      </UserInfoList>
-      <UserInfoList subheader={<UserListSubheader>Skills</UserListSubheader>}>
-        {skills?.map((skill) => (
-          <ListItem key={skill}>
-            <UserListItem>{skill}</UserListItem>
-          </ListItem>
-        ))}
-      </UserInfoList>
-      <UserInfoList subheader={<UserListSubheader>Applied courses</UserListSubheader>}>
-        {courses?.map((course, indx) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <ListItem key={indx}>
-            <UserListItem>{course}</UserListItem>
-          </ListItem>
-        ))}
       </UserInfoList>
     </ProfileBox>
+    <UserSkills skills={SKILLS} />
   </AuthorizedLayout>
 );
 

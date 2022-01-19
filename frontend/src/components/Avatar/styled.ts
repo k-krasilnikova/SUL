@@ -37,8 +37,8 @@ export const UserAvatarRounded = styled(Avatar)<Size>(({ size }) => ({
       height: '100px',
     }),
     ...(size === SIZE.small && {
-      width: '50px',
-      height: '50px',
+      width: '40px',
+      height: '40px',
     }),
   },
 }));
