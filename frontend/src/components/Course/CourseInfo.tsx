@@ -1,8 +1,8 @@
 import React from 'react';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
-import { InfoContainer, InfoItem } from './styled';
+import { clock, videoPlayer } from 'icons';
+
+import { InfoContainer, InfoItem, InfoItemText } from './styled';
 
 interface Props {
   duration: string;
@@ -12,12 +12,12 @@ interface Props {
 const CourseInfo: React.FC<Props> = ({ duration, lessons }) => (
   <InfoContainer>
     <InfoItem>
-      <AccessTimeIcon />
-      {duration}
+      <img alt="duration" src={clock} />
+      <InfoItemText>{duration}</InfoItemText>
     </InfoItem>
     <InfoItem>
-      <PlayCircleOutlineIcon />
-      {`${lessons} lessons`}
+      <img alt="lessons" src={videoPlayer} />
+      <InfoItemText>{`${lessons} lessons`}</InfoItemText>
     </InfoItem>
   </InfoContainer>
 );
