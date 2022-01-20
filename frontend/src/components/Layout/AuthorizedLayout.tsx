@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 
 import { Header } from './Header';
 import Menu from './Menu';
+import { GridHeader } from './styled';
 
 interface Props {
   pageName: string;
@@ -19,9 +20,9 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avat
       <title>{pageName}</title>
     </Helmet>
     <Grid container>
-      <Grid item xs={12}>
+      <GridHeader item xs={12}>
         <Header firstName={firstName} lastName={lastName} avatar={avatar} />
-      </Grid>
+      </GridHeader>
       <Grid item xs={3}>
         <Menu />
       </Grid>

@@ -10,7 +10,6 @@ export const LayoutHeader = styled(Grid)({
   display: 'flex',
   justifyContent: 'flex-start',
   backgroundColor: 'white',
-  borderBottom: '2px solid #f0f2f7',
   fontFamily: '"Ubuntu", sans-serif',
 });
 export const BrandLogoLink = styled(Link)({
