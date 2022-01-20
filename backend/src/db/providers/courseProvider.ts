@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 import {
   DEFAULT_N_PER_PAGE,
   DEFAULT_ORDER_FIELD,
@@ -41,21 +43,29 @@ const getCourseProvider = async (courseId: string) => {
   return course;
 };
 
-const applyCourseProvider = async (courseId: string, userId: string) => {
-  const applyedCourses = await ClientCourseModel.find({ user: userId });
-  const alreadyApplied = applyedCourses.find(
-    (clientCourse) => clientCourse.course.toString() === courseId,
-  );
-  if (!alreadyApplied) {
-    const applyedCourse = await ClientCourseModel.create({
-      user: new mongoose.Types.ObjectId(userId),
-      course: new mongoose.Types.ObjectId(courseId),
-      status: 'approved',
-      currentStage: 1,
-    });
-    return applyedCourse;
+const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {
+  const material = await CourseModel.find(
+    {
+      $and: [{ _id: courseId }, stage?.length ? { 'materials.stage': Number(stage) } : {}],
+    },
+    stage?.length ? { 'materials.$': 1 } : { materials: 1 },
+  ).lean();
+  if (!material) {
+    throw new Error('materials not found');
   }
-  return { message: 'This course already applied' };
+  return material;
 };
 
-export { getCoursesProvider, getCourseProvider, applyCourseProvider };
+const materialsCounterProvider = async (courseId: string) => {
+  const materialsCount = await CourseModel.aggregate([
+    { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
+    {
+      $project: {
+        total: { $size: '$materials' },
+      },
+    },
+  ]);
+  return materialsCount;
+};
+
+export { getCoursesProvider, getCourseProvider, materialsCounterProvider, getMaterialsProvider };
