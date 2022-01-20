@@ -8,7 +8,6 @@ import Button from 'components/Button';
 export const PDFWrapper = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
-  margin: '0 2vw',
   width: 'calc(100%-40px)',
   marginTop: '30px',
 });
