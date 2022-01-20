@@ -6,21 +6,12 @@ import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
 import NoContent from 'components/NoContent';
 import { NO_COURSES } from 'constants/messages';
-import { ClientCourse } from 'types/clientCourse';
 import { PATHS } from 'constants/routes';
+import { ResponseDataMyCourses } from 'types/responseDataMyCourses';
 
-import { PageContainer, CourseButton, CourseActions, GridItem } from './styled';
+import { PageContainer, CourseButton, DetailsButton, CourseActions, GridItem } from './styled';
 
-export interface ResponeDataType {
-  data?: Array<ClientCourse>;
-  isLoading?: boolean;
-  isError?: boolean;
-  isFetching?: boolean;
-  isFetched?: boolean;
-  error?: string | unknown;
-}
-
-const MyCoursesList: React.FC<ResponeDataType> = ({ data, isLoading }) => (
+const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Typography>...Loading</Typography>
@@ -36,9 +27,7 @@ const MyCoursesList: React.FC<ResponeDataType> = ({ data, isLoading }) => (
               lessons={object.course.lessons}
             >
               <CourseActions>
-                <CourseButton color="primary" variant="contained">
-                  Details
-                </CourseButton>
+                <DetailsButton>Details</DetailsButton>
                 <Link to={`${PATHS.myCourses}/${object.course._id}`}>
                   <CourseButton color="primary" variant="contained">
                     Start the course
@@ -54,5 +43,4 @@ const MyCoursesList: React.FC<ResponeDataType> = ({ data, isLoading }) => (
     )}
   </AuthorizedLayout>
 );
-
 export default MyCoursesList;

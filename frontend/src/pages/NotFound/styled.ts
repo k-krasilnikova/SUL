@@ -1,16 +1,17 @@
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import styled from 'styled-components';
 
 import theme from 'themeSettings';
 
-export const NotFoundWrapper = styled(Box)({
+export const NotFoundWrapper = styled(Grid)({
   height: '100%',
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
   justifyContent: 'center',
+  alignItems: 'center',
+});
+
+export const DefaultWrapper = styled(Box)({
+  height: '100vh',
 });
 
 export const ErrorText = styled(Typography)({
