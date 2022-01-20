@@ -41,21 +41,4 @@ const getCourseProvider = async (courseId: string) => {
   return course;
 };
 
-const applyCourseProvider = async (courseId: string, userId: string) => {
-  const applyedCourses = await ClientCourseModel.find({ user: userId });
-  const alreadyApplied = applyedCourses.find(
-    (clientCourse) => clientCourse.course.toString() === courseId,
-  );
-  if (!alreadyApplied) {
-    const applyedCourse = await ClientCourseModel.create({
-      user: new mongoose.Types.ObjectId(userId),
-      course: new mongoose.Types.ObjectId(courseId),
-      status: 'approved',
-      currentStage: 1,
-    });
-    return applyedCourse;
-  }
-  return { message: 'This course already applied' };
-};
-
-export { getCoursesProvider, getCourseProvider, applyCourseProvider };
+export { getCoursesProvider, getCourseProvider };
