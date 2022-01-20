@@ -1,6 +1,15 @@
 import styled from 'styled-components';
+import { ListItemButton } from '@mui/material';
+import { ReactFragment } from 'react';
+
+import theme from 'themeSettings';
 
 import { HEADER_HEIGHT } from '../Header/styled';
+
+interface ListItemButtonTypes {
+  component?: ReactFragment;
+  to?: string;
+}
 
 export const MenuTabs = styled('div')({
   width: '100%',
@@ -12,3 +21,9 @@ export const MenuTabs = styled('div')({
   margin: '0px',
   paddingTop: '20px',
 });
+
+export const ListItemWraper = styled(ListItemButton)<ListItemButtonTypes>(() => ({
+  '& .Mui-selected': {
+    background: theme.palette.secondary.main,
+  },
+}));

@@ -9,8 +9,9 @@ const MenuContainer: React.FC = () => {
   const { data } = useGetProfile();
   const menuRole = data?.role;
   const menuItems = menuRole ? ROLES_MENU[menuRole] : [];
+  const { pathname } = window.location;
 
-  return <Menu menuList={menuItems} />;
+  return <Menu menuList={menuItems} toggleTab={pathname} />;
 };
 
 export default MenuContainer;
