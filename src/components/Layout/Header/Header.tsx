@@ -9,8 +9,8 @@ import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
 import Logo from 'components/BrandLogo';
 import { alertIcon, filterIcon, logOutIcon } from 'icons';
-import { useLogOut } from 'api/logOut';
 
+import { UseMutationResult } from 'react-query';
 import {
   LayoutHeader,
   SpaceHolder,
@@ -39,6 +39,7 @@ interface Props {
   handleFilterOpen: (event: React.MouseEvent<HTMLElement>) => void;
   handleNotificationsClose: () => void;
   handleFilterClose: () => void;
+  handleLogOut: () => void;
 }
 type HeaderProps = User & Props;
 
@@ -54,9 +55,8 @@ const Header: React.FC<HeaderProps> = ({
   handleFilterOpen,
   handleNotificationsClose,
   handleFilterClose,
+  handleLogOut,
 }) => {
-  const { mutateAsync } = useLogOut();
-
   return (
     <LayoutHeader container>
       <BrandLogoLink to={PATHS.profile}>
@@ -106,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({
           <UserAvatar avatar={avatar} size="small" />
           <UserName>{`${firstName} ${lastName}`}</UserName>
         </UserBlock>
-        <LogOut onClick={() => mutateAsync()}>
+        <LogOut onClick={() => handleLogOut()}>
           <img alt="log_out" src={logOutIcon} />
         </LogOut>
       </HeaderContent>
