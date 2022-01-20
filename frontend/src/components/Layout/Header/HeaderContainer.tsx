@@ -20,6 +20,16 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
     setFilterOpen(!isFilterOpen);
   };
 
+  const handleNotificationsClose = () => {
+    setNotificationsOpen(!isNotificationsOpen);
+    setNotificationsAnchor(null);
+  };
+
+  const handleFilterClose = () => {
+    setFilterOpen(!isFilterOpen);
+    setFilterAnchor(null);
+  };
+
   return (
     <Header
       firstName={firstName}
@@ -31,6 +41,8 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
       filterAnchor={filterAnchor}
       handleNotificationsOpen={handleNotificationsOpen}
       handleFilterOpen={handleFilterOpen}
+      handleNotificationsClose={handleNotificationsClose}
+      handleFilterClose={handleFilterClose}
     />
   );
 };
