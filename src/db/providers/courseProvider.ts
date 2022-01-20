@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 import {
   DEFAULT_N_PER_PAGE,
   DEFAULT_ORDER_FIELD,
@@ -9,7 +11,6 @@ import {
 import CourseModel from 'db/models/Course';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import ClientCourseModel from '../models/ClientCourses';
-import UserModel from '../models/User';
 
 const getCoursesProvider = async ({
   pageN,
@@ -21,6 +22,7 @@ const getCoursesProvider = async ({
   const sortingField = { [orderField]: order };
   const courses = await CourseModel.find(
     title ? { title: { $regex: new RegExp(title), $options: 'i' } } : NO_FILTER,
+    { materials: 0 },
   )
     .sort(sortingField)
     .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
@@ -33,21 +35,36 @@ const getCoursesProvider = async ({
 };
 
 const getCourseProvider = async (courseId: string) => {
-  const course = await CourseModel.findById(courseId).lean();
+  const course = await CourseModel.find({ _id: courseId }, { materials: 0 }).lean();
   if (!course) {
     throw new Error('course not found');
   }
   return course;
 };
 
-const applyCourseProvider = async (courseId: string, userId: string) => {
-  const applyedCourse = await ClientCourseModel.create({
-    course: courseId,
-    status: 'approved',
-    currentStage: 1,
-  });
-  await UserModel.updateOne({ _id: userId }, { $push: { courses: applyedCourse.course } });
-  return applyedCourse;
+const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {
+  const material = await CourseModel.find(
+    {
+      $and: [{ _id: courseId }, stage?.length ? { 'materials.stage': Number(stage) } : {}],
+    },
+    stage?.length ? { 'materials.$': 1 } : { materials: 1 },
+  ).lean();
+  if (!material) {
+    throw new Error('materials not found');
+  }
+  return material;
 };
 
-export { getCoursesProvider, getCourseProvider, applyCourseProvider };
+const materialsCounterProvider = async (courseId: string) => {
+  const materialsCount = await CourseModel.aggregate([
+    { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
+    {
+      $project: {
+        total: { $size: '$materials' },
+      },
+    },
+  ]);
+  return materialsCount;
+};
+
+export { getCoursesProvider, getCourseProvider, materialsCounterProvider, getMaterialsProvider };

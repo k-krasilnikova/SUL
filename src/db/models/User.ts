@@ -12,7 +12,6 @@ const schema = new Schema<IUser>({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   skills: [{ type: Schema.Types.ObjectId, ref: 'UserSkill' }],
-  courses: [{ type: Schema.Types.ObjectId, ref: 'UserCourse' }],
   employees: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   avatar: { data: Buffer, contentType: String, required: false },
   birthday: { type: Date, required: true },
