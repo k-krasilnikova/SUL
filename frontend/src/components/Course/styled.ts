@@ -26,7 +26,7 @@ export const CourseContainer = styled(Grid)({
 
 export const AboutCourseContainer = styled('div')({
   minHeight: '220px',
-  padding: '10px',
+  padding: '16px',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     flexDirection: 'column',
@@ -37,23 +37,22 @@ export const AboutCourseContainer = styled('div')({
 
 export const ImageWrapper = styled('div')({
   float: 'left',
-  margin: '0px',
-  marginRight: '10px',
+  margin: '0px 8px 0px 0px',
   overflow: 'hidden',
   borderRadius: '10px',
   [theme.breakpoints.up('xl')]: {
-    width: '250px',
+    width: '230px',
     height: '150px',
     alignItems: 'center',
     alignSelf: 'center',
-    marginRight: '10px',
+    margin: '0px 24px 16px 0px',
   },
   [theme.breakpoints.down('xl')]: {
     width: '50%',
     height: 'auto',
     alignItems: 'center',
     alignSelf: 'center',
-    marginRight: '10px',
+    margin: '0px 24px 16px 0px',
   },
   [theme.breakpoints.down('lg')]: {
     width: '250px',
@@ -96,11 +95,14 @@ export const CourseTitle = styled('p')({
   },
   [theme.breakpoints.up('lg')]: {
     fontSize: '24px',
-    lineHeight: '34px',
-    padding: '5px',
+    fontWeight: '500',
+    lineHeight: '31px',
+    letterSpacing: '-0.40px',
+    textAlign: 'left',
+    padding: '0px',
   },
-  color: 'black',
-  textAlign: 'justify',
+  fontFamily: '"Ubuntu", sans-serif',
+  color: ' #2C2525',
   margin: '0px',
 });
 
@@ -118,19 +120,21 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
     }),
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '20px',
-    lineHeight: '30px',
-    padding: '5px',
-    marginTop: '5px',
+    fontSize: '18px',
+    fontWeight: '400',
+    lineHeight: '22px',
+    letterSpacing: '-0.40px',
+    textAlign: 'left',
     ...(fontSize && {
       fontSize: `${fontSize}px`,
     }),
     ...(lineHeight && {
       lineHeight: `${lineHeight}px`,
     }),
+    padding: '0px',
   },
-  color: 'black',
-  textAlign: 'justify',
+  color: '#131313',
+  fontFamily: '"SF Pro Text", sans-serif',
   margin: '0px',
   ...(fontSize && {
     fontSize: `${fontSize}px`,
@@ -181,7 +185,19 @@ export const InfoContainer = styled(Box)({
   backgroundColor: 'none',
 });
 
-export const InfoItem = styled(Typography)({
+export const InfoItem = styled('div')({
+  [theme.breakpoints.up('xs')]: {
+    padding: '5px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    padding: '0px',
+    margin: '0px 2px 0px 22px',
+  },
+  display: 'inline-flex',
+  verticalAlign: 'middle',
+  color: 'black',
+});
+export const InfoItemText = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
     width: '70px',
     padding: '5px',
@@ -190,11 +206,15 @@ export const InfoItem = styled(Typography)({
   },
   [theme.breakpoints.up('lg')]: {
     width: '90px',
-    padding: '5px',
-    fontSize: '12px',
-    lineHeight: '24px',
+    padding: '0px',
+    marginLeft: '8px',
+    fontFamily: '"SF Pro Text", sans-serif',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '18px',
+    letterSpacing: '-0.40px',
+    textAlign: 'left',
   },
-  display: 'inline-flex',
   verticalAlign: 'middle',
   color: 'black',
 });
