@@ -8,6 +8,8 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import mongoose from 'mongoose';
+import ClientCourseModel from '../models/ClientCourses';
 
 const getCoursesProvider = async ({
   pageN,
@@ -39,4 +41,21 @@ const getCourseProvider = async (courseId: string) => {
   return course;
 };
 
-export { getCoursesProvider, getCourseProvider };
+const applyCourseProvider = async (courseId: string, userId: string) => {
+  const applyedCourses = await ClientCourseModel.find({ user: userId });
+  const alreadyApplied = applyedCourses.find(
+    (clientCourse) => clientCourse.course.toString() === courseId,
+  );
+  if (!alreadyApplied) {
+    const applyedCourse = await ClientCourseModel.create({
+      user: userId,
+      course: new mongoose.Types.ObjectId(courseId),
+      status: 'approved',
+      currentStage: 1,
+    });
+    return applyedCourse;
+  }
+  return { message: 'This course already applied' };
+};
+
+export { getCoursesProvider, getCourseProvider, applyCourseProvider };
