@@ -7,7 +7,6 @@ export const BrandLogo = styled('div')({
   fontSize: '32px',
   lineHeight: '32px',
   fontWeight: 'bold',
-  margin: '22px 163px 20px 40px',
   color: '#D43E41',
 });
 export const BrandLogoBlack = styled('span')({
