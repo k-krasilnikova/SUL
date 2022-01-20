@@ -48,7 +48,7 @@ const applyCourseProvider = async (courseId: string, userId: string) => {
   );
   if (!alreadyApplied) {
     const applyedCourse = await ClientCourseModel.create({
-      user: userId,
+      user: new mongoose.Types.ObjectId(userId),
       course: new mongoose.Types.ObjectId(courseId),
       status: 'approved',
       currentStage: 1,
