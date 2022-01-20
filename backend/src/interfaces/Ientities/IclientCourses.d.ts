@@ -4,6 +4,7 @@ type TCourseStatus = 'pending' | 'approved' | 'started' | 'completed' | 'rejecte
 
 interface IClientCourse {
   _id?: string;
+  user: ObjectId;
   course: ObjectId;
   status: TCourseStatus;
   currentStage: number;
