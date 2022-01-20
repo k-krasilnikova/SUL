@@ -9,13 +9,10 @@ import { logOutHandler } from 'utils/helpers/logOutHandler';
 const useLogOut = (): UseMutationResult => {
   const navigateTo = useNavigate();
   return useMutation(
-    async () => {
+    async (initialData: string | unknown) => {
       const apiClient = apiClientWrapper();
       try {
-        const logOutResponse = await apiClient.post(API.getToken, {
-          login: 'user',
-          password: 'user',
-        });
+        const logOutResponse = await apiClient.post(API.getToken, initialData);
         return logOutResponse;
       } catch (error) {
         throw new Error(`${REQUEST_ERRORS.logOutError}`);
