@@ -13,10 +13,10 @@ import {
 } from './styled';
 
 interface Props {
-  title: string;
-  description: string;
-  duration: string;
-  lessons: number;
+  title: string | undefined;
+  description: string | undefined;
+  duration: string | undefined;
+  lessons: number | undefined;
 }
 
 const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, children }) => (
