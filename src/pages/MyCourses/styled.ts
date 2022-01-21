@@ -6,9 +6,7 @@ import theme from 'themeSettings';
 import Button from 'components/Button';
 
 export const PageContainer = styled(Grid)({
-  height: 'calc(100vh - 90px)',
   width: '100%',
-  overflowY: 'scroll',
   margin: '0px',
 });
 
