@@ -1,19 +1,18 @@
+import { Grid } from '@mui/material';
 import React from 'react';
-
-import { AuthorizedLayout } from 'components/Layout';
 
 import { ErrorText, NotFoundWrapper, StyledText, UnderErrorText } from './styled';
 
 const NotFound: React.FC = () => (
-  <AuthorizedLayout pageName="Not Found">
-    <NotFoundWrapper>
-      <ErrorText>
+  <NotFoundWrapper container>
+    <Grid item>
+      <ErrorText align="center">
         <StyledText>404 </StyledText>
         Error
       </ErrorText>
       <UnderErrorText>Page not found</UnderErrorText>
-    </NotFoundWrapper>
-  </AuthorizedLayout>
+    </Grid>
+  </NotFoundWrapper>
 );
 
 export default NotFound;

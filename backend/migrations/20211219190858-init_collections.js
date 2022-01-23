@@ -5,52 +5,22 @@ const SALT_ROUNDS = 10;
 
 const CLIENT_COURSES = [
   {
+    user: '',
     course: '',
     status: 'approved',
     currentStage: 1,
   },
   {
+    user: '',
     course: '',
     status: 'approved',
     currentStage: 1,
   },
   {
+    user: '',
     course: '',
     status: 'approved',
     currentStage: 1,
-  },
-];
-
-const MOCKED_COURSES = [
-  {
-    title: 'JS for begginers',
-    description: 'basic course for begginers',
-    technology: ['js', 'html', 'css'],
-    requiredSkills: ['html', 'css'],
-    duration: '123124679',
-    materials: [],
-    lessons: 0,
-    testLink: 'https://www.idrlabs.com/hogwarts-house/test.php',
-  },
-  {
-    title: 'Java for Profi ',
-    description: 'course for people who want rise their level in java',
-    technology: ['java', 'sql'],
-    requiredSkills: ['java for begginers'],
-    duration: '123124679',
-    materials: [],
-    lessons: 0,
-    testLink: 'https://www.idrlabs.com/ru/libertarian/test.php',
-  },
-  {
-    title: 'Python for kids',
-    description: 'school level of python programming',
-    technology: ['python', 'pandas', 'django'],
-    requiredSkills: ['math', 'english'],
-    duration: '12312679',
-    materials: [],
-    lessons: 0,
-    testLink: 'https://www.idrlabs.com/cat-personality/test.php',
   },
 ];
 
@@ -65,10 +35,12 @@ const DEFAULT_USERS_DOCS = [
     position: 'Software Engineer',
     skills: [],
     courses: [],
+    group: 'U4.D4.mocked',
     employees: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
     skype: 'admin',
+    phone: '+375(33)1235363',
   },
   {
     username: 'user',
@@ -80,10 +52,12 @@ const DEFAULT_USERS_DOCS = [
     position: 'Software Engineer',
     skills: [],
     courses: [],
+    group: 'U4.D4.mocked',
     employees: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
     skype: 'user',
+    phone: '+375(33)2635213',
   },
   {
     username: 'manager',
@@ -95,10 +69,12 @@ const DEFAULT_USERS_DOCS = [
     position: 'Team Manager',
     skills: [],
     courses: [],
+    group: 'U4.D4.mocked',
     employees: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
     skype: 'user',
+    phone: '+375(29)8001190',
   },
 ];
 
@@ -179,52 +155,72 @@ const MATERIALS = [
         ],
         isCompleted: false,
       },
-      {
-        _id: '9',
-        stage: 3,
-        content: [
-          'https://www.youtube.com/watch?v=fF1ZqTKMR6I&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&index=3&ab_channel=egoroff_channel',
-        ],
-        isCompleted: false,
-      },
     ],
     technology: ['python'],
   },
 ];
 
+const MOCKED_COURSES = [
+  {
+    title: 'JS for begginers',
+    description: 'basic course for begginers',
+    technology: ['js', 'html', 'css'],
+    requiredSkills: ['html', 'css'],
+    duration: '123124679',
+    materials: MATERIALS[0].content,
+    lessons: 0,
+    testLink: 'https://www.idrlabs.com/hogwarts-house/test.php',
+  },
+  {
+    title: 'Java for Profi ',
+    description: 'course for people who want rise their level in java',
+    technology: ['java', 'sql'],
+    requiredSkills: ['java for begginers'],
+    duration: '123124679',
+    materials: MATERIALS[1].content,
+    lessons: 0,
+    testLink: 'https://www.idrlabs.com/ru/libertarian/test.php',
+  },
+  {
+    title: 'Python for kids',
+    description: 'school level of python programming',
+    technology: ['python', 'pandas', 'django'],
+    requiredSkills: ['math', 'english'],
+    duration: '12312679',
+    materials: MATERIALS[2].content,
+    lessons: 0,
+    testLink: 'https://www.idrlabs.com/cat-personality/test.php',
+  },
+];
+
 module.exports = {
   async up(db) {
-    const materials = await Promise.all(
-      MATERIALS.map((material) => db.collection('materials').insertOne(material)),
-    );
     const courses = await Promise.all(
-      MOCKED_COURSES.map((course, index) => {
-        course.materials.push(materials[index].insertedId);
+      MOCKED_COURSES.map((course) => {
         return db.collection('courses').insertOne(course);
       }),
     );
-    const clientCourses = await Promise.all(
-      CLIENT_COURSES.map((course, index) => {
-        // eslint-disable-next-line no-param-reassign
-        course.course = courses[index].insertedId;
-        return db.collection('clientCourses').insertOne(course);
-      }),
-    );
-    await Promise.all(
-      DEFAULT_USERS_DOCS.map((doc, index) => {
+    const users = await Promise.all(
+      DEFAULT_USERS_DOCS.map((doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
-        // eslint-disable-next-line no-param-reassign
-        doc.courses.push(clientCourses[index].insertedId);
         // eslint-disable-next-line no-param-reassign
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
         return db.collection('users').insertOne(doc);
+      }),
+    );
+    await Promise.all(
+      CLIENT_COURSES.map((course, index) => {
+        // eslint-disable-next-line no-param-reassign
+        course.course = courses[index].insertedId;
+        // eslint-disable-next-line no-param-reassign
+        course.user = users[index].insertedId;
+        return db.collection('clientCourses').insertOne(course);
       }),
     );
   },
 
   async down(db) {
     await db.collection('courses').drop();
-    await db.collection('materials').drop();
     await db.collection('clientCourses').drop();
     await db.collection('users').drop();
   },

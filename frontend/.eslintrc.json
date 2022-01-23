@@ -18,7 +18,6 @@
     "airbnb-typescript",
     "eslint-config-prettier",
     "plugin:prettier/recommended"
-
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -27,22 +26,22 @@
     },
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project":"./tsconfig.json"
-
+    "project": "**/tsconfig.json"
   },
-  "plugins": ["react", "react-hooks","@typescript-eslint"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "rules": {
-    "prettier/prettier": ["error",{
-      "endOfLine": "auto"}
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
     ],
     "no-restricted-exports": "off",
     "import/prefer-default-export": "off",
     "no-nested-ternary": "off",
-    "no-underscore-dangle": [
-      "error", {"allow": ["_id"]}
-  ],
-  "react/jsx-props-no-spreading": "off",
-  "react/require-default-props":"off"
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off"
   },
   "settings": {
     "import/resolver": {
