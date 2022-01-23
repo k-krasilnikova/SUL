@@ -106,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({
           <UserAvatar avatar={avatar} size="small" />
           <UserName>{`${firstName} ${lastName}`}</UserName>
         </UserBlock>
-        <LogOut onClick={() => handleLogOut()}>
+        <LogOut onClick={handleLogOut}>
           <img alt="log_out" src={logOutIcon} />
         </LogOut>
       </HeaderContent>
