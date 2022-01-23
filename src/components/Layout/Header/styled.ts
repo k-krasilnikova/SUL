@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Input, Grid } from '@mui/material';
+import { Input, Grid, Accordion } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const HEADER_HEIGHT = '80px';
 
@@ -12,20 +13,9 @@ export const LayoutHeader = styled(Grid)({
   borderBottom: '2px solid #f0f2f7',
   fontFamily: '"Ubuntu", sans-serif',
 });
-export const BrandLogo = styled('div')({
+export const BrandLogoLink = styled(Link)({
   flexGrow: '0',
   flexShrink: '0',
-  width: '320px',
-  display: 'block',
-  height: HEADER_HEIGHT,
-  fontSize: '32px',
-  lineHeight: '32px',
-  fontWeight: 'bold',
-  padding: '22px 45px 20px 40px',
-  color: '#D43E41',
-});
-export const BrandLogoBlack = styled('span')({
-  color: 'black',
 });
 export const HeaderContent = styled('div')({
   flexGrow: '2',
@@ -48,7 +38,7 @@ export const Search = styled(Input)({
   maxWidth: '730px',
   height: '50px',
   borderRadius: '3px',
-  margin: '15px 20px 15px 20px',
+  margin: '15px 20px 15px 0px',
   padding: '10px',
   fontSize: '24px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
@@ -83,20 +73,19 @@ export const FilterButton = styled('div')({
 export const Filter = styled('div')({
   width: '334px',
   backgroundColor: '#FFFFFF',
-  borderRadius: '5px',
-  boxShadow: '0px 2px 2px 1px #919191',
+});
+export const FilterAccordion = styled(Accordion)({
+  border: 'none',
+  boxShadow: 'none',
 });
 export const Notifications = styled('div')({
   width: '572px',
   backgroundColor: '#FFFFFF',
-  borderRadius: '5px',
-  boxShadow: '0px 2px 2px 1px #919191',
   padding: '10px',
 });
-export const UserBlock = styled('div')({
+export const UserBlock = styled(Link)({
   display: 'flex',
   justifyContent: 'flex-start',
-  width: '300',
   height: '60px',
   padding: '0px',
   margin: '10px 45px 10px 20px',

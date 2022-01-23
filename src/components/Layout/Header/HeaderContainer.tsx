@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { User } from 'types/user';
-import { useLogOut } from 'api/logOut';
 
 import Header from './Header';
 
@@ -21,7 +20,15 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
     setFilterOpen(!isFilterOpen);
   };
 
-  const { mutate } = useLogOut();
+  const handleNotificationsClose = () => {
+    setNotificationsOpen(!isNotificationsOpen);
+    setNotificationsAnchor(null);
+  };
+
+  const handleFilterClose = () => {
+    setFilterOpen(!isFilterOpen);
+    setFilterAnchor(null);
+  };
 
   return (
     <Header
@@ -34,7 +41,8 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
       filterAnchor={filterAnchor}
       handleNotificationsOpen={handleNotificationsOpen}
       handleFilterOpen={handleFilterOpen}
-      mutateAsync={mutate}
+      handleNotificationsClose={handleNotificationsClose}
+      handleFilterClose={handleFilterClose}
     />
   );
 };

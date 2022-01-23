@@ -1,4 +1,4 @@
-import { UseMutationResult } from 'react-query';
+import { Course } from './course';
 
 export interface User {
   firstName?: string;
@@ -10,9 +10,8 @@ export interface User {
   myCoursesNumber?: number;
   avatar?: string;
   birthday?: Date;
+  phone?: string;
   skype?: string;
   position?: string;
-  skills?: string[];
-  courses?: string[];
-  mutateAsync?: () => UseMutationResult;
+  courses?: Array<Course>;
 }

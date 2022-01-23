@@ -7,9 +7,10 @@ export interface MenuItemProps {
 export interface MenuProps {
   menuList: MenuItemProps[];
   children?: React.ReactNode;
-  toggleTab?: string;
-  // toggleHandler: (e: any, path: any) => any;
-  // toggleLoader: (path: any) => any;
+  menuItem?: string;
+  setCurrentMenuPath: (e: string) => void;
+  getCurrentMenuPath?: () => string | undefined;
+  path?: string;
 }
 
 export interface IRolesMenu {
