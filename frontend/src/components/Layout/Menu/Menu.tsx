@@ -1,27 +1,41 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ListItemIcon, ListItemText } from '@mui/material';
+import { ListItemIcon, ListItemText, ListItemButton } from '@mui/material';
 
 import { MenuProps } from 'types/menu';
 
-import { MenuTabs, ListItemWraper } from './styled';
+import { MenuTabs } from './styled';
 
-const Menu: React.FC<MenuProps> = ({ menuList, menuItem, setCurrentMenuPath }) => {
+const Menu: React.FC<MenuProps> = ({ menuList, menuItem, setCurrentMenuPath, classes }) => {
   return (
     <MenuTabs>
       {menuList.map((item) => (
-        <ListItemWraper
+        <ListItemButton
           id={item.path}
           key={item.title}
           component={Link}
+          classes={menuItem === item.path ? { root: classes.selected } : { root: classes.default }}
           to={item.path}
-          selected={menuItem === item.path}
-          onClick={(e) => setCurrentMenuPath(e.currentTarget.id)}
+          onClick={(e: any) => setCurrentMenuPath(e.currentTarget.id)}
         >
-          <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.title} primaryTypographyProps={{ variant: 'h6' }} />
-        </ListItemWraper>
+          <ListItemIcon
+            classes={
+              menuItem === item.path
+                ? { root: classes.selectedLogo }
+                : { root: classes.defaultLogo }
+            }
+          >
+            {item.icon}
+          </ListItemIcon>
+          <ListItemText
+            primary={item.title}
+            primaryTypographyProps={{ variant: 'h6' }}
+            classes={
+              menuItem === item.path ? { root: classes.selectedText } : { root: classes.default }
+            }
+          />
+        </ListItemButton>
       ))}
     </MenuTabs>
   );
