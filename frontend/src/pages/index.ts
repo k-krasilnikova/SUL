@@ -8,3 +8,4 @@ export { default as Employees } from './Employees';
 export { default as Requests } from './Requests';
 export { default as Skills } from './Skills';
 export { default as NotFound } from './NotFound';
+export { default as DetailedCourse } from './DetailedCourse';

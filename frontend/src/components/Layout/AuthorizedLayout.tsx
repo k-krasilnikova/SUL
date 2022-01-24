@@ -4,10 +4,10 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import { Header } from './Header';
 import Menu from './Menu';
-import { GridHeader } from './styled';
+import { GridHeader, PageWrapper } from './styled';
 
 interface Props {
-  pageName: string;
+  pageName: string | undefined;
   children: React.ReactNode;
   firstName?: string;
   lastName?: string;
@@ -26,9 +26,9 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avat
       <Grid item xs={3}>
         <Menu />
       </Grid>
-      <Grid item xs={9}>
+      <PageWrapper item xs={9}>
         {children}
-      </Grid>
+      </PageWrapper>
     </Grid>
   </HelmetProvider>
 );

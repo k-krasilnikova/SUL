@@ -5,8 +5,8 @@ import { Params, SubRoutes } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
 import getAllCourses from 'controllers/courses/getAllCourses';
 import getCourseById from 'controllers/courses/getCourse';
-import getMaterials from 'controllers/materials/getMaterials';
-import applyCourse from 'controllers/courses/applyCourse';
+import getMaterials from 'controllers/courses/getMaterials';
+import applyCourse from 'controllers/clientCourses/applyCourse';
 
 const coursesRouter = Router();
 coursesRouter.get(
