@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from '@mui/material';
 import {
   ArticleOutlined,
   FolderSpecialOutlined,
@@ -9,6 +10,7 @@ import {
 } from '@mui/icons-material';
 
 import { IRolesMenu, MenuItemProps } from 'types/menu';
+import { coursesListIcon, myCoursesIcon, helpIcon } from 'icons/menuIcons';
 
 import { PATHS } from './routes';
 
@@ -16,17 +18,17 @@ const EMPLOYEE_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
     title: 'Courses List',
-    icon: <ArticleOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={coursesListIcon} />,
   },
   {
     path: PATHS.myCourses,
     title: 'My Courses',
-    icon: <AddToQueueOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={myCoursesIcon} />,
   },
   {
     path: PATHS.help,
     title: 'Help',
-    icon: <QuizOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={helpIcon} />,
   },
 ];
 

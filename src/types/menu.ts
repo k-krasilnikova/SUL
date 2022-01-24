@@ -11,6 +11,7 @@ export interface MenuProps {
   setCurrentMenuPath: (e: string) => void;
   getCurrentMenuPath?: () => string | undefined;
   path?: string;
+  classes?: any;
 }
 
 export interface IRolesMenu {
