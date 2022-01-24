@@ -23,7 +23,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Ubuntu', sans-serif",
+    fontFamily: "'Ubuntu',sans-serif",
   },
   breakpoints: {
     values: {
