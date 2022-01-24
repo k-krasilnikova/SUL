@@ -1,8 +1,8 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 
-import Button from 'components/Button';
-import TextField from 'components/TextField';
+import { Button } from 'components/Button';
+import { TextField } from 'components/TextField';
 import { SignTypes } from 'types/signIn';
 
 import Definition from './Definition';

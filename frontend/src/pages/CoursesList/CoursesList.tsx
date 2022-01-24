@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
-import NoContent from 'components/NoContent';
+import { NoContent } from 'components/NoContent';
 import { NO_COURSES } from 'constants/messages';
 import { ResponseDataType } from 'types/responseData';
 import { PATHS } from 'constants/routes';

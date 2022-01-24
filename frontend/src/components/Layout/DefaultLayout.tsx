@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Grid from '@mui/material/Grid';
 import { Helmet } from 'react-helmet';
+
+import Loader from 'components/Loader';
 
 interface Props {
   pageName: string;
@@ -14,7 +16,7 @@ const DefaultLayout: React.FC<Props> = ({ pageName, children }) => (
     </Helmet>
     <Grid container>
       <Grid item xs={12}>
-        {children}
+        <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
       </Grid>
     </Grid>
   </>
