@@ -22,7 +22,7 @@ export const LogoBox = styled(Box)({
   width: '100%',
   paddingLeft: '0px',
   justifyContent: 'center',
-  marginTop: '8px',
+  paddingTop: '8px',
   [theme.breakpoints.down('md')]: {
     display: 'flex',
     justifyContent: 'center',
@@ -49,6 +49,7 @@ export const CompanyLogo = styled(Typography)({
 export const Instructions = styled(Typography)({
   fontFamily: '"Ubuntu", sans-serif !important',
   fontSize: '48px !important',
+  paddingTop: '8px',
   fontWeight: '600 !important',
   textAlign: 'center',
   [theme.breakpoints.down('md')]: {
