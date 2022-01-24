@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ListItem from '@mui/material/ListItem';
 
 import { User } from 'types/user';
@@ -6,6 +6,7 @@ import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
 import { SKILLS } from 'constants/skills';
 import { SIZE } from 'constants/sizes';
+import Loader from 'components/Loader';
 
 import { UserSkills } from './UserSkills';
 import { ProfileBox, AvatarWrapper, UserInfoList, UserInfoText, UserInfoLabel } from './styled';
@@ -49,7 +50,9 @@ const ProfileContent: React.FC<User> = ({
         </ListItem>
       </UserInfoList>
     </ProfileBox>
-    <UserSkills skills={SKILLS} />
+    <Suspense fallback={<Loader color="primary" />}>
+      <UserSkills skills={SKILLS} />
+    </Suspense>
   </AuthorizedLayout>
 );
 
