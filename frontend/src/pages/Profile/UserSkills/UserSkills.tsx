@@ -4,7 +4,7 @@ import { Star as StarIcon, Search as SearchIcon } from '@mui/icons-material';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
-import NoContent from 'components/NoContent';
+import { NoContent } from 'components/NoContent';
 import { NO_COURSES } from 'constants/messages';
 import { SIZE } from 'constants/sizes';
 
