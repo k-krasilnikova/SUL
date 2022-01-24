@@ -1,7 +1,5 @@
-import mongoose from 'mongoose';
-
-import CourseModel from 'db/models/Course';
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
+import CourseStatus from 'enums/coursesEnums';
 
 import ClientCourseModel from '../models/ClientCourses';
 import UserModel from '../models/User';
@@ -14,22 +12,17 @@ const getClientCoursesProvider = async () => {
   }
 };
 
-const materialsCounterProvider = async (courseId: string) => {
-  const materialsCount = await CourseModel.aggregate([
-    { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
-    {
-      $project: {
-        total: { $size: '$materials' },
-      },
-    },
-  ]);
-  return materialsCount;
+const getClientCourseProvider = async (clientCourseId: string) => {
+  const clientCourse = await ClientCourseModel.findOne({ _id: clientCourseId })
+    .populate('course')
+    .lean();
+  return clientCourse;
 };
 
 const applyCourseProvider = async (courseId: string, userId: string, progressDto: IProgress[]) => {
   const applyedCourse = await ClientCourseModel.create({
     course: courseId,
-    status: 'approved',
+    status: CourseStatus.approved,
     currentStage: 1,
     progress: progressDto,
   });
@@ -37,4 +30,36 @@ const applyCourseProvider = async (courseId: string, userId: string, progressDto
   return applyedCourse;
 };
 
-export { getClientCoursesProvider, applyCourseProvider, materialsCounterProvider };
+const updateCourseProgress = async (courseId: string, stage: string) => {
+  const updatedProgress = await ClientCourseModel.findOneAndUpdate(
+    { _id: courseId },
+    { $set: { 'progress.$[elem].isCompleted': true } },
+    { arrayFilters: [{ 'elem.stage': { $eq: stage } }] },
+  );
+  return updatedProgress;
+};
+
+const getStatusProvider = async (courseId: string) => {
+  const currStatus = await ClientCourseModel.findOne(
+    { _id: courseId },
+    { status: 1, id: 0 },
+  ).lean();
+  return currStatus;
+};
+
+const updateCourseStatus = async (courseId: string, status: string) => {
+  const updatedCourse = await ClientCourseModel.findOneAndUpdate(
+    { _id: courseId },
+    { $set: { status } },
+  );
+  return updatedCourse;
+};
+
+export {
+  getClientCoursesProvider,
+  getClientCourseProvider,
+  getStatusProvider,
+  updateCourseStatus,
+  applyCourseProvider,
+  updateCourseProgress,
+};
