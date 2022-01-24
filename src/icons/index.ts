@@ -5,3 +5,4 @@ export { default as filterIcon } from './filter.svg';
 export { default as logOutIcon } from './logOut.svg';
 export { default as arrowBack } from './arrowBack.svg';
 export { default as arrowForward } from './arrowForward.svg';
+export { default as brandLogo } from './logo_black.png';
