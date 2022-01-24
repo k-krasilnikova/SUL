@@ -16,7 +16,10 @@ export const BrandLogoLink = styled(Link)({
   flexGrow: '0',
   flexShrink: '0',
   width: '140px',
-  margin: '22px 163px 20px 40px',
+  margin: '24px 163px 0px 40px',
+});
+export const BrandLogo = styled('img')({
+  width: '139px',
 });
 export const HeaderContent = styled('div')({
   flexGrow: '2',
