@@ -86,6 +86,7 @@ export const Notifications = styled('div')({
   width: '572px',
   backgroundColor: '#FFFFFF',
   padding: '10px',
+  fontFamily: '"Ubuntu", sans-serif',
 });
 export const UserBlock = styled(Link)({
   display: 'flex',

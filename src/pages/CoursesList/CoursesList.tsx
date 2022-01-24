@@ -1,15 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
 import NoContent from 'components/NoContent';
 import { NO_COURSES } from 'constants/messages';
-import { ResponeDataType } from '../../types/responseData';
+import { ResponseDataType } from 'types/responseData';
+import { PATHS } from 'constants/routes';
 
 import { PageContainer, CourseButton, CourseActions, GridItem } from './styled';
 
-const CoursesList: React.FC<ResponeDataType> = ({ data, isLoading }) => (
+const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyCourse }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
       <Typography>...Loading</Typography>
@@ -25,10 +27,12 @@ const CoursesList: React.FC<ResponeDataType> = ({ data, isLoading }) => (
               lessons={course?.lessons}
             >
               <CourseActions>
-                <CourseButton color="primary" variant="contained">
-                  Details
-                </CourseButton>
-                <CourseButton color="primary" variant="contained">
+                <Link to={`${PATHS.coursesList}/${course._id}`}>
+                  <CourseButton color="primary" variant="contained">
+                    Details
+                  </CourseButton>
+                </Link>
+                <CourseButton onClick={handleApplyCourse} color="primary" variant="contained">
                   Start the course
                 </CourseButton>
               </CourseActions>
