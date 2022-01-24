@@ -30,9 +30,9 @@ export const DocumentBox = styled(Box)({
   alignSelf: 'flex-start',
   width: '1000px',
   maxWidth: 'inherit',
-  overflowY: 'hidden',
+  overflowY: 'scroll',
   overflowX: 'hidden',
-  height: '100%',
+  height: '75vh',
   '&::-webkit-scrollbar': {
     display: 'none',
   },
