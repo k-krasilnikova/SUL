@@ -16,6 +16,7 @@ import {
   Skills,
   SignIn,
   NotFound,
+  DetailedCourse,
 } from 'pages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
@@ -39,6 +40,7 @@ const App: React.FC = () => (
             <Route path={PATHS.employees} element={<Employees />} />
             <Route path={PATHS.requests} element={<Requests />} />
             <Route path={PATHS.skills} element={<Skills />} />
+            <Route path={`${PATHS.coursesList}/:courseId`} element={<DetailedCourse />} />
           </Route>
           <Route
             path={PATHS.signIn}

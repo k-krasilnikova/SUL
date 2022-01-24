@@ -1,5 +1,6 @@
 import React from 'react';
 import ListItem from '@mui/material/ListItem';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
@@ -8,7 +9,14 @@ import { SKILLS } from 'constants/skills';
 import { SIZE } from 'constants/sizes';
 
 import { UserSkills } from './UserSkills';
-import { ProfileBox, AvatarWrapper, UserInfoList, UserInfoText, UserInfoLabel } from './styled';
+import {
+  ProfileBox,
+  AvatarWrapper,
+  UserInfoList,
+  UserInfoText,
+  UserInfoLabel,
+  CopyIcon,
+} from './styled';
 
 const ProfileContent: React.FC<User> = ({
   avatar,
@@ -28,7 +36,10 @@ const ProfileContent: React.FC<User> = ({
         <ListItem disablePadding>
           <UserInfoLabel>Name:</UserInfoLabel>
           <UserInfoText>
-            {firstName} {lastName}
+            {`${firstName} ${lastName} `}
+            <CopyToClipboard text={`${firstName} ${lastName}`}>
+              <CopyIcon color="disabled" />
+            </CopyToClipboard>
           </UserInfoText>
         </ListItem>
         <ListItem disablePadding>

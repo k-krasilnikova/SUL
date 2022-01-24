@@ -1,10 +1,11 @@
 import { Course } from './course';
 
-export interface ResponeDataType {
+export interface ResponseDataType {
   data?: Array<Course>;
   isLoading?: boolean;
   isError?: boolean;
   isFetching?: boolean;
   isFetched?: boolean;
   error?: string | unknown;
+  handleApplyCourse?: () => void;
 }

@@ -4,9 +4,9 @@ import { AxiosError } from 'axios';
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
-import { Course } from 'types/course';
+import { ClientCourse } from 'types/clientCourse';
 
-const useGetMyCourses = (): UseQueryResult<Array<Course>, AxiosError> =>
+const useGetMyCourses = (): UseQueryResult<Array<ClientCourse>, AxiosError> =>
   useQuery('myCourses', async () => {
     const apiClient = apiClientWrapper();
     try {

@@ -1,12 +1,13 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import { Header } from './Header';
 import Menu from './Menu';
+import { GridHeader, PageWrapper } from './styled';
 
 interface Props {
-  pageName: string;
+  pageName: string | undefined;
   children: React.ReactNode;
   firstName?: string;
   lastName?: string;
@@ -14,22 +15,22 @@ interface Props {
 }
 
 const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avatar, children }) => (
-  <>
+  <HelmetProvider>
     <Helmet>
       <title>{pageName}</title>
     </Helmet>
     <Grid container>
-      <Grid item xs={12}>
+      <GridHeader item xs={12}>
         <Header firstName={firstName} lastName={lastName} avatar={avatar} />
-      </Grid>
+      </GridHeader>
       <Grid item xs={3}>
         <Menu />
       </Grid>
-      <Grid item xs={9}>
+      <PageWrapper item xs={9}>
         {children}
-      </Grid>
+      </PageWrapper>
     </Grid>
-  </>
+  </HelmetProvider>
 );
 
 export default AuthorizedLayout;
