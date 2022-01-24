@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ListItemIcon, ListItemText, ListItemButton } from '@mui/material';
