@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Search as SearchIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -10,7 +9,6 @@ import { UserAvatar } from 'components/Avatar';
 import Logo from 'components/BrandLogo';
 import { alertIcon, filterIcon, logOutIcon } from 'icons';
 
-import { UseMutationResult } from 'react-query';
 import {
   LayoutHeader,
   SpaceHolder,
