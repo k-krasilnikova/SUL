@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Typography } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
@@ -15,7 +14,7 @@ import { PageContainer, CourseButton, CourseActions, GridItem } from './styled';
 const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyCourse }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
-      <Typography>...Loading</Typography>
+      <Loader color="primary" />
     ) : data?.length ? (
       <PageContainer container>
         {data?.map((course) => (
