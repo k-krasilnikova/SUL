@@ -7,3 +7,5 @@ export { default as arrowBack } from './arrowBack.svg';
 export { default as arrowForward } from './arrowForward.svg';
 export { default as clock } from './clock.svg';
 export { default as videoPlayer } from './video-player.svg';
+export { default as starEmpty } from './star-empty.svg';
+export { default as starContained } from './star-contained.svg';

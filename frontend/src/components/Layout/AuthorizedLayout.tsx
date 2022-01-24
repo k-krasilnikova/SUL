@@ -6,6 +6,7 @@ import Loader from 'components/Loader';
 
 import { Header } from './Header';
 import Menu from './Menu';
+import { GridHeader, PageWrapper } from './styled';
 
 interface Props {
   pageName: string | undefined;
@@ -21,14 +22,18 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avat
       <title>{pageName}</title>
     </Helmet>
     <Grid container>
-      <Grid item xs={12}>
+      <GridHeader item xs={12}>
         <Header firstName={firstName} lastName={lastName} avatar={avatar} />
-      </Grid>
+      </GridHeader>
       <Grid item xs={3}>
         <Menu />
       </Grid>
       <Grid item xs={9}>
-        <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
+        <PageWrapper item xs={9}>
+          <Suspense fallback={<Loader color="primary" />}>      
+            {children}
+          </Suspense>
+        </PageWrapper>
       </Grid>
     </Grid>
   </HelmetProvider>

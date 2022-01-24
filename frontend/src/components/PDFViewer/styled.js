@@ -28,15 +28,17 @@ export const DocumentBox = styled(Box)({
   display: 'flex',
   justifySelf: 'center',
   alignSelf: 'flex-start',
-  width: 'fit-content',
+  width: '1000px',
   maxWidth: 'inherit',
-  overflowY: 'scroll',
+  overflowY: 'hidden',
   overflowX: 'hidden',
-  height: '75vh',
+  height: '100%',
   '&::-webkit-scrollbar': {
     display: 'none',
   },
   'scrollbar-width': 'none',
+  marginLeft: 'auto',
+  marginRight: 'auto',
 });
 
 export const PageNumberText = styled(Typography)({
