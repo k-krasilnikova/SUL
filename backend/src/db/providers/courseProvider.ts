@@ -10,7 +10,6 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
-import mongoose from 'mongoose';
 import ClientCourseModel from '../models/ClientCourses';
 
 const getCoursesProvider = async ({
