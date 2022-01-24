@@ -1,1 +1,3 @@
-export { default as UserSkills } from './UserSkillsContainer';
+import React from 'react';
+
+export const UserSkills = React.lazy(() => import('./UserSkillsContainer'));
