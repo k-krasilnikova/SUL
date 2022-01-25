@@ -7,7 +7,7 @@ export const ImageContainer = styled('div')({
 });
 
 export const CurrentImage = styled('img')({
-  objectFit: 'contain',
   width: '100%',
   height: '100%',
+  objectFit: 'cover',
 });

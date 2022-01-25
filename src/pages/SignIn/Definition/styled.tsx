@@ -1,18 +1,19 @@
 import { styled } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
 
+import theme from 'themeSettings';
+
 export const Wrapper = styled(Box)({
-  marginTop: '50px',
-  maxWidth: '500px',
+  margin: '0px !important',
+  maxWidth: '100%',
   display: 'flex',
   flexDirection: 'column',
   padding: 0,
-  '@media(max-width: 767px)': {
+  [theme.breakpoints.down('md')]: {
     width: '100%',
-    margin: '0 auto',
+    margin: '0px !important',
     justifyContent: 'center',
-    marginTop: '20px',
-    maxWidth: '500px',
+    maxWidth: '100%',
   },
 });
 
@@ -20,29 +21,44 @@ export const LogoBox = styled(Box)({
   display: 'flex',
   width: '100%',
   paddingLeft: '0px',
-  '@media(max-width: 767px)': {
+  justifyContent: 'center',
+  paddingTop: '8px',
+  [theme.breakpoints.down('md')]: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '20px',
-    maxWidth: '500px',
   },
 });
 
 export const CompanyLogo = styled(Typography)({
+  fontFamily: '"Ubuntu", sans-serif !important',
+  marginLeft: '10px !important',
+  fontSize: '42px !important',
   fontWeight: '600 !important',
-  fontSize: '40px !important',
-  '@media(max-width: 424px)': {
+  textAlign: 'center',
+  [theme.breakpoints.down('lg')]: {
+    marginLeft: '0px !important',
+  },
+  [theme.breakpoints.down('sm')]: {
     fontSize: '35px !important',
+  },
+  '& span': {
+    color: theme.palette.primary.main,
   },
 });
 
 export const Instructions = styled(Typography)({
-  fontSize: '25px !important',
-  color: 'gray',
-  '@media(max-width: 767px)': {
+  fontFamily: '"Ubuntu", sans-serif !important',
+  fontSize: '48px !important',
+  paddingTop: '8px',
+  fontWeight: '600 !important',
+  textAlign: 'center',
+  [theme.breakpoints.down('md')]: {
     textAlign: 'center',
   },
-  '@media(max-width: 424px)': {
+  [theme.breakpoints.down('sm')]: {
     fontSize: '20px !important',
+  },
+  '& span': {
+    color: theme.palette.primary.main,
   },
 });
