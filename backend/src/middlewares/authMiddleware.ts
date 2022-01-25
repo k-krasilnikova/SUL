@@ -9,17 +9,17 @@ const withAuth =
     try {
       const accessToken = req.headers.authorization?.split(' ')[1];
       if (!accessToken) {
-        throw new Error('no access, invalid access params');
+        res.status(401);
+        throw new Error('Unauthorized');
+      } else {
+        const decodedToken = await verifyAccessToken(accessToken);
+        res.locals = decodedToken;
+        const compare = roles.some((role) => role === decodedToken.role);
+        if (!compare) {
+          throw new Error('no access permision');
+        }
+        next();
       }
-
-      const decodedToken = await verifyAccessToken(accessToken);
-      res.locals = decodedToken;
-      const compare = roles.some((role) => role === decodedToken.role);
-      if (!compare) {
-        throw new Error('no access permision');
-      }
-
-      next();
     } catch (error) {
       if (isError(error)) {
         next(error);
