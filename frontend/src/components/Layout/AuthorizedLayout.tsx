@@ -23,7 +23,7 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avat
       <GridHeader item xs={12}>
         <Header firstName={firstName} lastName={lastName} avatar={avatar} />
       </GridHeader>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <Menu />
       </Grid>
       <PageWrapper item xs={9}>
