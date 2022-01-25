@@ -260,7 +260,7 @@ const DEFAULT_USERS_DOCS = [
       { name: 'react', image: '', score: 1 },
       { name: 'git', image: '', score: 1 },
       { name: 'html', image: '', score: 1 },
-      { name: 'html', image: '', score: 1 },
+      { name: 'css', image: '', score: 1 },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -430,5 +430,6 @@ module.exports = {
     await db.collection('courses').drop();
     await db.collection('clientCourses').drop();
     await db.collection('users').drop();
+    await db.collection('test').drop();
   },
 };
