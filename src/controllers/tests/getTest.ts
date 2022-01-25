@@ -1,4 +1,3 @@
-import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import { getTestProvider } from 'db/providers/testProvider';
 import { Request, Response } from 'express';
 
@@ -8,8 +7,6 @@ import { isError } from 'utils/typeGuards/isError';
 const getTest = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
     const { id: clientCourseId } = req.params;
-    const course = await getClientCourseProvider(clientCourseId);
-    console.log('in upper', course);
     const test = await getTestProvider(clientCourseId);
     res.json(test);
   } catch (err) {
