@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import styled from 'styled-components';
 
 import theme from 'themeSettings';
-import Button from 'components/Button';
+import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   width: '100%',

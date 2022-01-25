@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Button from 'components/Button';
-import TextField from 'components/TextField';
+import { Button } from 'components/Button';
+import { TextField } from 'components/TextField';
 import Image from 'components/Image';
 import { SignTypes } from 'types/signIn';
 import { signInImage } from 'icons';
