@@ -13,6 +13,6 @@ const testSchema = new Schema<ITest>({
   timeout: { type: Number, required: true },
 });
 
-const CourseModel = model<ITest>('Test', testSchema, 'tests');
+const TestModel = model<ITest>('Test', testSchema, 'tests');
 
-export default CourseModel;
+export default TestModel;
