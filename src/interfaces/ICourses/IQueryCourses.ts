@@ -2,7 +2,7 @@ interface IQueryCourses {
   pageN?: number;
   title?: string;
   orderField?: string;
-  order?: number;
+  order?: number | string;
   nPerPage?: number;
 }
 
