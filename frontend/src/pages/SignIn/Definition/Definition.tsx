@@ -1,18 +1,19 @@
 import React from 'react';
-import { Box } from '@mui/material';
 
 import { Wrapper, LogoBox, CompanyLogo, Instructions } from './styled';
 
 const Definition = (): JSX.Element => (
   <Wrapper>
     <LogoBox>
-      <CompanyLogo>:iTechArt LogIn</CompanyLogo>
+      <CompanyLogo>
+        <span>:i</span>Tech<span>Art</span>
+      </CompanyLogo>
     </LogoBox>
-    <Box sx={{ mt: 2 }}>
+    <LogoBox>
       <Instructions>
-        Log in with your corporate account to access internal applications and services
+        Skill<span>Up</span> Level
       </Instructions>
-    </Box>
+    </LogoBox>
   </Wrapper>
 );
 

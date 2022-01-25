@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { User } from 'types/user';
+import { useLogOut } from 'api/logOut';
 
 import Header from './Header';
 
@@ -30,6 +31,14 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
     setFilterAnchor(null);
   };
 
+  const { mutateAsync } = useLogOut();
+  const handleLogOut = (): void => {
+    mutateAsync({
+      login: 'user',
+      password: 'user',
+    });
+  };
+
   return (
     <Header
       firstName={firstName}
@@ -43,6 +52,7 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
       handleFilterOpen={handleFilterOpen}
       handleNotificationsClose={handleNotificationsClose}
       handleFilterClose={handleFilterClose}
+      handleLogOut={handleLogOut}
     />
   );
 };
