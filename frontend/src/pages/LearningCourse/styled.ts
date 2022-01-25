@@ -69,7 +69,7 @@ export const Description = styled('div')({
   overflowY: 'scroll',
 });
 export const DescriptionTitle = styled(Typography)({
-  fontFamily: '"Roboto", sans-serif',
+  fontFamily: '"Ubuntu", sans-serif',
   fontSize: '32px',
   fontStyle: 'normal',
   fontWeight: '700',
@@ -78,7 +78,7 @@ export const DescriptionTitle = styled(Typography)({
   marginBottom: '24px',
 });
 export const DescriptionText = styled(Typography)({
-  fontFamily: '"SF Pro Text", sans-serif',
+  fontFamily: '"Ubuntu", sans-serif',
   fontSize: '24px',
   fontStyle: 'normal',
   fontWeight: '400',

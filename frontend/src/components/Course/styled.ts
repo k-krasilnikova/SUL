@@ -12,7 +12,7 @@ interface InfoContainerTypes {
 export const CourseContainer = styled(Grid)({
   backgroundColor: '#ebebeb',
   borderRadius: '10px',
-  fontFamily: '"Lato", sans-serif',
+  fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
   flexDirection: 'column',
   height: '360px',
@@ -138,7 +138,7 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
     padding: '0px',
   },
   color: '#131313',
-  fontFamily: '"SF Pro Text", sans-serif',
+  fontFamily: '"Ubuntu", sans-serif',
   margin: '0px',
   ...(fontSize && {
     fontSize: `${fontSize}px`,
@@ -212,7 +212,7 @@ export const InfoItemText = styled(Typography)({
     width: '90px',
     padding: '0px',
     marginLeft: '8px',
-    fontFamily: '"SF Pro Text", sans-serif',
+    fontFamily: '"Ubuntu", sans-serif',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '18px',

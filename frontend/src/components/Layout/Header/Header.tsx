@@ -6,13 +6,13 @@ import { AccordionSummary, AccordionDetails, Typography, Menu } from '@mui/mater
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
-import Logo from 'components/BrandLogo';
-import { alertIcon, filterIcon, logOutIcon } from 'icons';
+import { alertIcon, filterIcon, logOutIcon, brandLogo } from 'icons';
 
 import {
   LayoutHeader,
   SpaceHolder,
   BrandLogoLink,
+  BrandLogo,
   HeaderContent,
   Search,
   NotificationsButton,
@@ -37,6 +37,7 @@ interface Props {
   handleFilterOpen: (event: React.MouseEvent<HTMLElement>) => void;
   handleNotificationsClose: () => void;
   handleFilterClose: () => void;
+  handleLogOut: () => void;
 }
 type HeaderProps = User & Props;
 
@@ -52,11 +53,12 @@ const Header: React.FC<HeaderProps> = ({
   handleFilterOpen,
   handleNotificationsClose,
   handleFilterClose,
+  handleLogOut,
 }) => {
   return (
     <LayoutHeader container>
       <BrandLogoLink to={PATHS.profile}>
-        <Logo />
+        <BrandLogo alt=":iTechArt" src={brandLogo} />
       </BrandLogoLink>
       <HeaderContent>
         <Search
@@ -102,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({
           <UserAvatar avatar={avatar} size="small" />
           <UserName>{`${firstName} ${lastName}`}</UserName>
         </UserBlock>
-        <LogOut>
+        <LogOut onClick={handleLogOut}>
           <img alt="log_out" src={logOutIcon} />
         </LogOut>
       </HeaderContent>

@@ -7,16 +7,10 @@ import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.down('xl')]: {
-    maxHeight: '100vh',
     maxWidth: '100%',
-    overflowY: 'scroll',
     margin: '0px !important',
   },
-  border: '1px solid #ebebeb',
-  borderRadius: '10px',
   width: '100%',
-  margin: '0px !important',
-  marginTop: '25px !important',
 });
 
 export const GridItem = styled(Grid)({
