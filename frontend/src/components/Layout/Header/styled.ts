@@ -10,12 +10,16 @@ export const LayoutHeader = styled(Grid)({
   display: 'flex',
   justifyContent: 'flex-start',
   backgroundColor: 'white',
-  borderBottom: '2px solid #f0f2f7',
   fontFamily: '"Ubuntu", sans-serif',
 });
 export const BrandLogoLink = styled(Link)({
   flexGrow: '0',
   flexShrink: '0',
+  width: '140px',
+  margin: '24px 163px 0px 40px',
+});
+export const BrandLogo = styled('img')({
+  width: '139px',
 });
 export const HeaderContent = styled('div')({
   flexGrow: '2',
@@ -33,9 +37,9 @@ export const SpaceHolder = styled('div')({
   height: HEADER_HEIGHT,
 });
 export const Search = styled(Input)({
-  flexGrow: '1',
+  flexGrow: '0',
   flexShrink: '3',
-  maxWidth: '730px',
+  width: '730px',
   height: '50px',
   borderRadius: '3px',
   margin: '15px 20px 15px 0px',
@@ -82,6 +86,7 @@ export const Notifications = styled('div')({
   width: '572px',
   backgroundColor: '#FFFFFF',
   padding: '10px',
+  fontFamily: '"Ubuntu", sans-serif',
 });
 export const UserBlock = styled(Link)({
   display: 'flex',
@@ -92,7 +97,7 @@ export const UserBlock = styled(Link)({
 });
 export const UserName = styled('div')({
   height: '60px',
-  padding: '15px 10px 10px 0px',
+  padding: '12px 10px 13px 0px',
   marginLeft: '22px',
   fontSize: '24px',
   color: 'black',
