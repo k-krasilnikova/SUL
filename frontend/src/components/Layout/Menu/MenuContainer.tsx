@@ -27,14 +27,7 @@ const MenuContainer: React.FC = () => {
   }, [pathname]);
   const classes = useListStyles();
 
-  return (
-    <Menu
-      menuList={menuItems}
-      menuItem={menuItem}
-      setCurrentMenuPath={setCurrentMenuPath}
-      classes={classes}
-    />
-  );
+  return <Menu menuList={menuItems} menuItem={menuItem} classes={classes} />;
 };
 
 export default MenuContainer;

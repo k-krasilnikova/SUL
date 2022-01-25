@@ -1,41 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ListItemIcon, ListItemText, ListItemButton } from '@mui/material';
+import { ListItemIcon, ListItemText } from '@mui/material';
 
-import { MenuProps } from 'types/menu';
+import { IMenuProps } from 'types/menu';
 
-import { MenuTabs } from './styled';
+import { MenuTabs, MenuTabsWrapper, TabWrapper } from './styled';
 
-const Menu: React.FC<MenuProps> = ({ menuList, menuItem, setCurrentMenuPath, classes }) => {
+const Menu: React.FC<IMenuProps> = ({ menuList, menuItem, classes }) => {
   return (
     <MenuTabs>
-      {menuList.map((item) => (
-        <ListItemButton
-          id={item.path}
-          key={item.title}
-          component={Link}
-          classes={menuItem === item.path ? { root: classes.selected } : { root: classes.default }}
-          to={item.path}
-          onClick={(e: any) => setCurrentMenuPath(e.currentTarget.id)}
-        >
-          <ListItemIcon
+      <MenuTabsWrapper>
+        {menuList.map((item) => (
+          <TabWrapper
+            id={item.path}
+            key={item.title}
+            component={Link}
             classes={
-              menuItem === item.path
-                ? { root: classes.selectedLogo }
-                : { root: classes.defaultLogo }
+              menuItem === item.path ? { root: classes.selected } : { root: classes.default }
             }
+            to={item.path}
           >
-            {item.icon}
-          </ListItemIcon>
-          <ListItemText
-            primary={item.title}
-            primaryTypographyProps={{ variant: 'h6' }}
-            classes={
-              menuItem === item.path ? { root: classes.selectedText } : { root: classes.default }
-            }
-          />
-        </ListItemButton>
-      ))}
+            <ListItemIcon
+              classes={
+                menuItem === item.path ? { root: classes.selectedLogo } : { root: classes.default }
+              }
+            >
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText
+              primary={item.title}
+              primaryTypographyProps={{ variant: 'h6' }}
+              classes={
+                menuItem === item.path ? { root: classes.selectedText } : { root: classes.default }
+              }
+            />
+          </TabWrapper>
+        ))}
+      </MenuTabsWrapper>
     </MenuTabs>
   );
 };
