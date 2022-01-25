@@ -5,7 +5,7 @@ const COLORS = {
   secondaryColor: '#ffffff',
   disabledTextColor: '#9b9b9b',
   primaryTextColor: '#000000DE',
-  secondatyTextColor: '#ffffff',
+  secondaryTextColor: '#ffffff',
 };
 
 const theme = createTheme({
@@ -18,7 +18,7 @@ const theme = createTheme({
     },
     text: {
       primary: COLORS.primaryTextColor,
-      secondary: COLORS.secondatyTextColor,
+      secondary: COLORS.secondaryTextColor,
       disabled: COLORS.disabledTextColor,
     },
   },

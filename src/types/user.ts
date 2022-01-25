@@ -14,4 +14,5 @@ export interface User {
   skype?: string;
   position?: string;
   courses?: Array<Course>;
+  handleLogOut?: () => void;
 }
