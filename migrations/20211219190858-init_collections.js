@@ -76,50 +76,6 @@ const TESTS = [
     timeout: 900000,
   },
   {
-    title: 'test for course "Python for kids" ',
-    questions: [
-      {
-        question: 'i = 1/n while True:/n if(1%2==0):/n break/n print(i)/n i += 2',
-        answers: [
-          { variant: '1 3 5', isCorrect: false },
-          { variant: '1', isCorrect: false },
-          { variant: '1 3 5 7 9 ...', isCorrect: true },
-        ],
-      },
-      {
-        question: 'List Comprehension is',
-        answers: [
-          { variant: 'new_list = [for member in iterable]', isCorrect: false },
-          { variant: 'new_list = [members]', isCorrect: false },
-          {
-            variant: 'new_list = [expression for member in iterable (if conditional)]',
-            isCorrect: true,
-          },
-        ],
-      },
-      {
-        question: 'Which of the following are true of Python lists?',
-        answers: [
-          { variant: 'A given object may appear in a list more than once', isCorrect: true },
-          { variant: 'All elements in a list must be of the same type', isCorrect: false },
-          {
-            variant: 'A list may contain any type of object except another list',
-            isCorrect: false,
-          },
-        ],
-      },
-      {
-        question: "a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']/b print(a[4::-2])",
-        answers: [
-          { variant: "['quux']", isCorrect: true },
-          { variant: "['quux', 'qux', 'baz', 'foo']", isCorrect: false },
-          { variant: "['quux', 'baz', 'foo']", isCorrect: false },
-        ],
-      },
-    ],
-    timeout: 90000,
-  },
-  {
     title: 'test for course "Java for profi" ',
     questions: [
       {
@@ -202,6 +158,50 @@ const TESTS = [
       },
     ],
     timeout: 450000,
+  },
+  {
+    title: 'test for course "Python for kids" ',
+    questions: [
+      {
+        question: 'i = 1/n while True:/n if(1%2==0):/n break/n print(i)/n i += 2',
+        answers: [
+          { variant: '1 3 5', isCorrect: false },
+          { variant: '1', isCorrect: false },
+          { variant: '1 3 5 7 9 ...', isCorrect: true },
+        ],
+      },
+      {
+        question: 'List Comprehension is',
+        answers: [
+          { variant: 'new_list = [for member in iterable]', isCorrect: false },
+          { variant: 'new_list = [members]', isCorrect: false },
+          {
+            variant: 'new_list = [expression for member in iterable (if conditional)]',
+            isCorrect: true,
+          },
+        ],
+      },
+      {
+        question: 'Which of the following are true of Python lists?',
+        answers: [
+          { variant: 'A given object may appear in a list more than once', isCorrect: true },
+          { variant: 'All elements in a list must be of the same type', isCorrect: false },
+          {
+            variant: 'A list may contain any type of object except another list',
+            isCorrect: false,
+          },
+        ],
+      },
+      {
+        question: "a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']/b print(a[4::-2])",
+        answers: [
+          { variant: "['quux']", isCorrect: true },
+          { variant: "['quux', 'qux', 'baz', 'foo']", isCorrect: false },
+          { variant: "['quux', 'baz', 'foo']", isCorrect: false },
+        ],
+      },
+    ],
+    timeout: 90000,
   },
 ];
 
