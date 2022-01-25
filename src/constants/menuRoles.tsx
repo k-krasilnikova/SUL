@@ -1,14 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Icon } from '@mui/material';
-import {
-  ArticleOutlined,
-  FolderSpecialOutlined,
-  AddToQueueOutlined,
-  EmojiPeopleOutlined,
-  AssessmentOutlined,
-  QuizOutlined,
-} from '@mui/icons-material';
 
 import { IRolesMenu, MenuItemProps } from 'types/menu';
 import {
@@ -17,6 +8,7 @@ import {
   helpIcon,
   pendingIcon,
   employeeIcon,
+  skillsIcon,
 } from 'icons/menuIcons';
 
 import { PATHS } from './routes';
@@ -24,12 +16,12 @@ import { PATHS } from './routes';
 const EMPLOYEE_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
-    title: 'Courses List',
+    title: 'Courses list',
     icon: <Icon fontSize="large" component={coursesListIcon} />,
   },
   {
     path: PATHS.myCourses,
-    title: 'My Courses',
+    title: 'My courses',
     icon: <Icon fontSize="large" component={myCoursesIcon} />,
   },
   {
@@ -42,12 +34,12 @@ const EMPLOYEE_MENU: Array<MenuItemProps> = [
 const MANAGER_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
-    title: 'Courses List',
+    title: 'Courses list',
     icon: <Icon fontSize="large" component={coursesListIcon} />,
   },
   {
     path: PATHS.myCourses,
-    title: 'My Courses',
+    title: 'My courses',
     icon: <Icon fontSize="large" component={myCoursesIcon} />,
   },
   {
@@ -70,13 +62,13 @@ const MANAGER_MENU: Array<MenuItemProps> = [
 const ADMIN_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
-    title: 'Courses List',
+    title: 'Courses list',
     icon: <Icon fontSize="large" component={coursesListIcon} />,
   },
   {
     path: PATHS.skills,
     title: 'Skills',
-    icon: <AssessmentOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={skillsIcon} />,
   },
   {
     path: PATHS.help,
