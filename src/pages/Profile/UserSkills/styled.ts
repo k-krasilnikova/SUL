@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { List, Typography, Input } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
+
 import theme from 'themeSettings';
+
+interface SkillProps {
+  completed?: boolean;
+}
 
 export const SearchWrapper = styled('div')({
   marginLeft: '48px',
@@ -11,20 +15,23 @@ export const SearchSkill = styled(Input)({
   lineHeight: '33.61px',
 });
 export const SkillsBox = styled('div')({
-  width: '95%',
+  width: '100%',
 });
 export const SkillsList = styled(List)({
   marginTop: '20px',
 });
 export const SkillsListItem = styled('div')({
   fontFamily: '"Ubuntu", sans-serif',
-  color: 'black',
   fontWeight: 'bold',
   paddingTop: '24px',
   marginLeft: '63px',
+  color: '#2C2525',
 });
 export const SkillTitle = styled('div')({
   display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
   width: '100%',
 });
 export const Title = styled('div')({
@@ -35,12 +42,16 @@ export const Title = styled('div')({
   },
   [theme.breakpoints.up('md')]: {
     fontSize: '16px',
+    paddingTop: '3px',
   },
 });
 export const SkillsInfoList = styled('div')({
   padding: '17px',
 });
-export const SkillInfo = styled('div')({
+export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
+  display: 'inline-flex',
+  marginRight: '64px',
+  borderRadius: '5px',
   [theme.breakpoints.up('xs')]: {
     width: '160px',
     height: '70px',
@@ -51,20 +62,22 @@ export const SkillInfo = styled('div')({
     height: '100px',
     padding: '20px',
   },
-  display: 'inline-flex',
-  backgroundColor: '#f5f5f5',
-  marginRight: '64px',
-  border: '1px solid #efefef',
-  borderRadius: '5px',
-});
-export const SkillProgress = styled(CircularProgress)({
+  background: '#EAEAEA',
+  border: '1px solid rgba(0, 0, 0, 0.2)',
+  ...(completed && {
+    backgroundColor: '#f5f5f5',
+    border: '1px solid #efefef',
+  }),
+}));
+export const SkillProgress = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    margin: '2px 10px 5px 3px',
+    margin: '0px 10px 5px 3px',
   },
   [theme.breakpoints.up('md')]: {
-    margin: '10px 20px 10px 5px',
+    margin: '0px 20px 10px 5px',
   },
-  color: '#1bc02c',
+  width: '50px',
+  marginRight: '20px',
 });
 export const SkillInfoText = styled(Typography)({
   [theme.breakpoints.up('xs')]: {

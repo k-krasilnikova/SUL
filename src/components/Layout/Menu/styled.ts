@@ -8,7 +8,7 @@ export const MenuTabs = styled('div')({
   backgroundColor: 'white',
   borderRight: '2px solid #f0f2f7',
   fontSize: '24px',
-  fontFamily: '"Lato", sans-serif',
+  fontFamily: '"Ubuntu", sans-serif',
   margin: '0px',
   paddingTop: '20px',
 });

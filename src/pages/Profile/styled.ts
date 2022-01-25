@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import List from '@mui/material/List';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+
 import theme from 'themeSettings';
 
 export const ProfileBox = styled('div')({
@@ -64,11 +66,17 @@ export const UserInfoText = styled('span')({
   },
   [theme.breakpoints.up('lg')]: {
     width: '400px',
-    display: 'inline-block',
+    display: 'inline-flex',
     fontSize: '18px',
     lineHeight: '21px',
     padding: '0px 0px 0px 40px',
     height: '24px',
     marginBottom: '24px',
+  },
+});
+export const CopyIcon = styled(ContentCopyIcon)({
+  marginLeft: '10px',
+  '&:hover': {
+    cursor: 'pointer',
   },
 });
