@@ -37,6 +37,7 @@ interface Props {
   handleFilterOpen: (event: React.MouseEvent<HTMLElement>) => void;
   handleNotificationsClose: () => void;
   handleFilterClose: () => void;
+  handleLogOut: () => void;
 }
 type HeaderProps = User & Props;
 
@@ -52,6 +53,7 @@ const Header: React.FC<HeaderProps> = ({
   handleFilterOpen,
   handleNotificationsClose,
   handleFilterClose,
+  handleLogOut,
 }) => {
   return (
     <LayoutHeader container>
@@ -102,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({
           <UserAvatar avatar={avatar} size="small" />
           <UserName>{`${firstName} ${lastName}`}</UserName>
         </UserBlock>
-        <LogOut>
+        <LogOut onClick={handleLogOut}>
           <img alt="log_out" src={logOutIcon} />
         </LogOut>
       </HeaderContent>
