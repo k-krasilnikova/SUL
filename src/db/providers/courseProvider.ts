@@ -18,19 +18,23 @@ const getCoursesProvider = async ({
   order = ORDER_TYPE.asc,
   nPerPage = DEFAULT_N_PER_PAGE,
 }: IQueryCourses) => {
-  const sortingField = { [orderField]: order };
-  const courses = await CourseModel.find(
-    title ? { title: { $regex: new RegExp(title), $options: 'i' } } : NO_FILTER,
-    { materials: 0 },
-  )
-    .sort(sortingField)
-    .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
-    .limit(nPerPage)
-    .lean();
-  if (!courses) {
-    throw new Error('courses not found');
+  try {
+    const sortingField = { [orderField]: order };
+    const courses = await CourseModel.find(
+      title ? { title: { $regex: new RegExp(title), $options: 'i' } } : NO_FILTER,
+      { materials: 0 },
+    )
+      .sort(sortingField)
+      .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
+      .limit(nPerPage)
+      .lean();
+    if (!courses) {
+      throw new Error('courses not found');
+    }
+    return courses;
+  } catch (error) {
+    throw new Error('invalid query');
   }
-  return courses;
 };
 
 const getCourseProvider = async (courseId: string) => {
