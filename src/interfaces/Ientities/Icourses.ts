@@ -9,7 +9,7 @@ interface ICourse {
   duration: number;
   materials: { stage: string; content: Array<string> }[];
   lessons: number;
-  testLink: string;
+  test: ObjectId;
 }
 
 type TCourses = Array<ICourse>;

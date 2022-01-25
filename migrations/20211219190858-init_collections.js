@@ -73,7 +73,7 @@ const TESTS = [
         ],
       },
     ],
-    timeout: 1800000,
+    timeout: 900000,
   },
   {
     title: 'test for course "Python for kids" ',
@@ -117,7 +117,91 @@ const TESTS = [
         ],
       },
     ],
-    timeout: 1800000,
+    timeout: 90000,
+  },
+  {
+    title: 'test for course "Java for profi" ',
+    questions: [
+      {
+        question: 'Which of the following stands true about default modifier of class members?',
+        answers: [
+          {
+            variant:
+              'By default, variables, methods and constructors can be accessed by subclass only.',
+            isCorrect: false,
+          },
+          {
+            variant:
+              'By default, variables, methods and constructors can be accessed by any class lying in any package.',
+            isCorrect: false,
+          },
+          {
+            variant:
+              'By default, variables, methods and constructors can be accessed by any class lying in the same package.',
+            isCorrect: true,
+          },
+        ],
+      },
+      {
+        question: 'Can be constructor be made private?',
+        answers: [
+          { variant: 'true', isCorrect: true },
+          { variant: 'false', isCorrect: false },
+        ],
+      },
+      {
+        question: 'What is polymorphism?',
+        answers: [
+          {
+            variant: 'Polymorphism is a technique to define different objects of same type.',
+            isCorrect: false,
+          },
+          {
+            variant: ' Polymorphism is the ability of an object to take on many forms.',
+            isCorrect: true,
+          },
+          {
+            variant: 'Polymorphism is a technique to define different methods of same type.',
+            isCorrect: false,
+          },
+        ],
+      },
+      {
+        question: 'Which of the following is true about String?',
+        answers: [
+          { variant: 'String is mutable', isCorrect: false },
+          { variant: 'String is immutable', isCorrect: true },
+          { variant: 'String is a data type', isCorrect: false },
+        ],
+      },
+      {
+        question: ' What is Encapsulation?',
+        answers: [
+          {
+            variant: 'Encapsulation is a technique to define different methods of same type.',
+            isCorrect: false,
+          },
+          {
+            variant: 'Encapsulation is the ability of an object to take on many forms.',
+            isCorrect: false,
+          },
+          {
+            variant:
+              'Encapsulation is the technique of making the fields in a class private and providing access to the fields via public methods.',
+            isCorrect: true,
+          },
+        ],
+      },
+      {
+        question: 'What of the following is the default value of an instance variable?',
+        answers: [
+          { variant: 'Depends upon the type variable', isCorrect: true },
+          { variant: 'null', isCorrect: true },
+          { variant: '0', isCorrect: false },
+        ],
+      },
+    ],
+    timeout: 450000,
   },
 ];
 
