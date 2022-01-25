@@ -1,7 +1,125 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 10;
+
+const TESTS = [
+  {
+    title: 'test for course "JS for begginers" ',
+    questions: [
+      {
+        question: 'choose type that does not exist in JavaScript',
+        answers: [
+          { variant: 'boolean', isCorrect: false },
+          { variant: 'integer', isCorrect: true },
+          { variant: 'undefined', isCorrect: false },
+        ],
+      },
+      {
+        question: 'choose falsy type',
+        answers: [
+          { variant: '{}', isCorrect: false },
+          { variant: '[]', isCorrect: false },
+          { variant: '0', isCorrect: true },
+        ],
+      },
+      {
+        question: 'typeof "null" is',
+        answers: [
+          { variant: 'string', isCorrect: false },
+          { variant: 'object', isCorrect: true },
+          { variant: 'null', isCorrect: false },
+        ],
+      },
+      {
+        question: '1/"a" === 1/"a" ?',
+        answers: [
+          { variant: 'false', isCorrect: true },
+          { variant: 'true', isCorrect: false },
+          { variant: 'undefined', isCorrect: false },
+        ],
+      },
+      {
+        question: '[] + 0 = ?',
+        answers: [
+          { variant: '[object Object]', isCorrect: false },
+          { variant: '[]', isCorrect: false },
+          { variant: '0', isCorrect: true },
+        ],
+      },
+      {
+        question: 'null == undefined',
+        answers: [
+          { variant: 'true', isCorrect: true },
+          { variant: 'false', isCorrect: false },
+          { variant: 'undefined', isCorrect: false },
+        ],
+      },
+      {
+        question: 'null >= 0 ',
+        answers: [
+          { variant: 'false', isCorrect: false },
+          { variant: 'true', isCorrect: true },
+          { variant: 'undefined', isCorrect: false },
+        ],
+      },
+      {
+        question: '!!false + !false + [1, "2"] + null',
+        answers: [
+          { variant: '11,20', isCorrect: true },
+          { variant: '11.20', isCorrect: false },
+          { variant: '11,2null', isCorrect: false },
+        ],
+      },
+    ],
+    timeout: 1800000,
+  },
+  {
+    title: 'test for course "Python for kids" ',
+    questions: [
+      {
+        question: 'i = 1/n while True:/n if(1%2==0):/n break/n print(i)/n i += 2',
+        answers: [
+          { variant: '1 3 5', isCorrect: false },
+          { variant: '1', isCorrect: false },
+          { variant: '1 3 5 7 9 ...', isCorrect: true },
+        ],
+      },
+      {
+        question: 'List Comprehension is',
+        answers: [
+          { variant: 'new_list = [for member in iterable]', isCorrect: false },
+          { variant: 'new_list = [members]', isCorrect: false },
+          {
+            variant: 'new_list = [expression for member in iterable (if conditional)]',
+            isCorrect: true,
+          },
+        ],
+      },
+      {
+        question: 'Which of the following are true of Python lists?',
+        answers: [
+          { variant: 'A given object may appear in a list more than once', isCorrect: true },
+          { variant: 'All elements in a list must be of the same type', isCorrect: false },
+          {
+            variant: 'A list may contain any type of object except another list',
+            isCorrect: false,
+          },
+        ],
+      },
+      {
+        question: "a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']/b print(a[4::-2])",
+        answers: [
+          { variant: "['quux']", isCorrect: true },
+          { variant: "['quux', 'qux', 'baz', 'foo']", isCorrect: false },
+          { variant: "['quux', 'baz', 'foo']", isCorrect: false },
+        ],
+      },
+    ],
+    timeout: 1800000,
+  },
+];
 
 const CLIENT_COURSES = [
   {
@@ -169,7 +287,7 @@ const MOCKED_COURSES = [
     duration: '123124679',
     materials: MATERIALS[0].content,
     lessons: 0,
-    testLink: 'https://www.idrlabs.com/hogwarts-house/test.php',
+    test: '',
   },
   {
     title: 'Java for Profi ',
@@ -179,7 +297,7 @@ const MOCKED_COURSES = [
     duration: '123124679',
     materials: MATERIALS[1].content,
     lessons: 0,
-    testLink: 'https://www.idrlabs.com/ru/libertarian/test.php',
+    test: '',
   },
   {
     title: 'Python for kids',
@@ -189,30 +307,33 @@ const MOCKED_COURSES = [
     duration: '12312679',
     materials: MATERIALS[2].content,
     lessons: 0,
-    testLink: 'https://www.idrlabs.com/cat-personality/test.php',
+    test: '',
   },
 ];
 
 module.exports = {
   async up(db) {
+    const tests = await Promise.all(
+      TESTS.map((test) => {
+        return db.collection('tests').insertOne(test);
+      }),
+    );
     const courses = await Promise.all(
-      MOCKED_COURSES.map((course) => {
+      MOCKED_COURSES.map((course, index) => {
+        course.test = tests[index].insertedId;
         return db.collection('courses').insertOne(course);
       }),
     );
     const users = await Promise.all(
       DEFAULT_USERS_DOCS.map((doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
-        // eslint-disable-next-line no-param-reassign
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
         return db.collection('users').insertOne(doc);
       }),
     );
     await Promise.all(
       CLIENT_COURSES.map((course, index) => {
-        // eslint-disable-next-line no-param-reassign
         course.course = courses[index].insertedId;
-        // eslint-disable-next-line no-param-reassign
         course.user = users[index].insertedId;
         return db.collection('clientCourses').insertOne(course);
       }),
