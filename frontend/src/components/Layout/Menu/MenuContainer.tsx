@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { PATHS } from 'constants/routes';
-import { useGetProfile } from 'api/profile';
 import { ROLES_MENU } from 'constants/menuRoles';
+import { useGetProfile } from 'api/profile';
 import { setCurrentMenuPath, getCurrentMenuPath } from 'utils/helpers/selectMenuHelpers';
 
 import Menu from './Menu';

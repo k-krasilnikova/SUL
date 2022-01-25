@@ -43,7 +43,7 @@ export const useListStyles = makeStyles({
   default: {
     background: 'none',
     color: 'black',
-    paddingLeft: '22px',
+    paddingLeft: '22px !important',
     '& span': {
       fontFamily: 'Ubuntu, sans-serif',
       fontWeight: 400,
@@ -55,7 +55,7 @@ export const useListStyles = makeStyles({
   },
   selected: {
     width: `calc(100% + ${BORDER_CANCELER}px)`,
-    paddingLeft: '45px',
+    paddingLeft: '45px !important',
     background: theme.palette.secondary.main,
     boxShadow: '-2px -4px 15px rgba(0, 0, 0, 0.05)',
     '&:hover': {
