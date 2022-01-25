@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import ClientCourseModel from 'db/models/ClientCourses';
 
 const getTestProvider = async (courseId: string) => {
-  const test = await ClientCourseModel.aggregate([
+  const myTest = await ClientCourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
       $lookup: {
@@ -23,7 +23,7 @@ const getTestProvider = async (courseId: string) => {
     },
     { $project: { myTest: 1, _id: 0 } },
   ]);
-  return test;
+  return myTest;
 };
 
 export { getTestProvider };
