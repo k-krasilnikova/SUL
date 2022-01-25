@@ -8,8 +8,8 @@ export const LearningPageContainer = styled('div')({
   padding: '40px',
 });
 export const BackButton = styled(Button)({
-  height: '39.59px',
-  width: '84.64px',
+  height: '40px',
+  width: '85px',
   borderRadius: '4px',
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '16px',
@@ -59,7 +59,7 @@ export const Description = styled('div')({
   display: 'inline-block',
   maxWidth: 'calc(100% - 155px - 41px)',
   height: '418px',
-  padding: '31px 238.33px 31px 53.86px',
+  padding: '31px 238px 31px 54px',
   textAlign: 'left',
   color: 'black',
   border: '1px solid #E0E0E3',
@@ -81,7 +81,7 @@ export const DescriptionText = styled(Typography)({
   fontStyle: 'normal',
   fontWeight: '400',
   lineHeight: '31px',
-  letterSpacing: '-0.4050024747848511px',
+  letterSpacing: '-0.40px',
 });
 export const StartTestButton = styled(Button)({
   display: 'inline-block',
@@ -89,7 +89,7 @@ export const StartTestButton = styled(Button)({
   width: '155px',
   height: '50px',
   marginLeft: '40px',
-  color: 'white!important',
+  color: 'white',
   textTransform: 'none',
   fontSize: '18px',
   fontStyle: 'normal',
@@ -99,7 +99,7 @@ export const StartTestButton = styled(Button)({
   textAlign: 'center',
   background: '#D43E41',
   '&hover': {
-    background: '#D43E41!important',
+    background: '#D43E41',
   },
 });
 export const NextButtonWrapper = styled('div')({
@@ -111,7 +111,7 @@ export const NextButtonWrapper = styled('div')({
 export const NextButton = styled(Button)({
   width: '86px',
   height: '50px',
-  color: 'white!important',
+  color: 'white',
   textTransform: 'none',
   fontSize: '18px',
   fontStyle: 'normal',
@@ -121,6 +121,6 @@ export const NextButton = styled(Button)({
   textAlign: 'center',
   background: '#D43E41',
   '&hover': {
-    backgroundColor: '#D43E41!important',
+    background: '#D43E41',
   },
 });
