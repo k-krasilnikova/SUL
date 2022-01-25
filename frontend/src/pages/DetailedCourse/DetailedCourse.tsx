@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
 
 import { AuthorizedLayout } from 'components/Layout';
-import Button from 'components/Button';
-import Image from 'components/Image';
+import { Button } from 'components/Button';
+import { Image } from 'components/Image';
 import CourseInfo from 'components/Course/CourseInfo';
 import { CourseItem } from 'components/Course';
-import ProgressBar from 'components/ProgressBar';
+import { ProgressBar } from 'components/ProgressBar';
 import { CourseActions } from 'pages/CoursesList/styled';
 import { PATHS } from 'constants/routes';
 import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';

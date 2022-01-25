@@ -1,1 +1,3 @@
-export { default as UserAvatar } from './Avatar';
+import React from 'react';
+
+export const UserAvatar = React.lazy(() => import('./Avatar'));
