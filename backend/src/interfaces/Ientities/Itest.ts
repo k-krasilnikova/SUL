@@ -7,4 +7,4 @@ interface ITest {
   timeout: number;
 }
 
-export default ITest;
+export { ITest };

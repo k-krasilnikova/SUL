@@ -1,5 +1,6 @@
-import ITest from 'interfaces/Ientities/Itest';
 import { Schema, model } from 'mongoose';
+
+import { ITest } from 'interfaces/Ientities/Itest';
 
 const testSchema = new Schema<ITest>({
   title: { type: String, required: true, unique: true },
