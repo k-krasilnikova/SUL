@@ -27,9 +27,11 @@ export const API: {
   getToken: string;
   getCourses: string;
   getMyCourses: string;
+  logOut: string;
 } = {
   getProfile: '/api/users',
   getToken: '/api/account/login',
   getCourses: 'api/courses',
   getMyCourses: '/api/clientCourses',
+  logOut: '/api/logOut',
 };

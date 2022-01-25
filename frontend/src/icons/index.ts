@@ -10,3 +10,4 @@ export { default as videoPlayer } from './video-player.svg';
 export { default as starEmpty } from './star-empty.svg';
 export { default as starContained } from './star-contained.svg';
 export { default as brandLogo } from './logo_black.png';
+export { default as signInImage } from './signInImage.jpeg';
