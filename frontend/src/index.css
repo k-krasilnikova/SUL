@@ -12,6 +12,7 @@ body {
 }
 body:hover {
   scrollbar-color: #7e7e7e;
+  font-family: 'Ubuntu';
 }
 a {
   text-decoration: none;
