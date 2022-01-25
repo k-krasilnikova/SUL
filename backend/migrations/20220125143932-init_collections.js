@@ -430,6 +430,6 @@ module.exports = {
     await db.collection('courses').drop();
     await db.collection('clientCourses').drop();
     await db.collection('users').drop();
-    await db.collection('test').drop();
+    await db.collection('tests').drop();
   },
 };
