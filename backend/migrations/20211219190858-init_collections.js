@@ -8,19 +8,16 @@ const CLIENT_COURSES = [
     user: '',
     course: '',
     status: 'approved',
-    currentStage: 1,
   },
   {
     user: '',
     course: '',
     status: 'approved',
-    currentStage: 1,
   },
   {
     user: '',
     course: '',
     status: 'approved',
-    currentStage: 1,
   },
 ];
 
@@ -34,7 +31,6 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Admin',
     position: 'Software Engineer',
     skills: [],
-    courses: [],
     group: 'U4.D4.mocked',
     employees: [],
     avatar: '',
@@ -51,7 +47,6 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'User',
     position: 'Software Engineer',
     skills: [],
-    courses: [],
     group: 'U4.D4.mocked',
     employees: [],
     avatar: '',
@@ -68,7 +63,6 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Manager',
     position: 'Team Manager',
     skills: [],
-    courses: [],
     group: 'U4.D4.mocked',
     employees: [],
     avatar: '',
@@ -87,7 +81,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=VuN8qwZoego&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=1&ab_channel=WesBos',
         ],
-        isCompleted: false,
       },
       {
         _id: '2',
@@ -95,7 +88,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=xu87YWbr4X0&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=2&ab_channel=WesBos',
         ],
-        isCompleted: false,
       },
       {
         _id: '3',
@@ -103,7 +95,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=AHLNzv13c2I&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=3&ab_channel=WesBos',
         ],
-        isCompleted: false,
       },
     ],
     technology: ['js', 'html', 'css'],
@@ -116,7 +107,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=ntLJmHOJ0ME&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&ab_channel=CodeWithHarry',
         ],
-        isCompleted: false,
       },
       {
         _id: '5',
@@ -124,7 +114,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=zIdg7hkqNE0&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&index=2&ab_channel=CodeWithHarry',
         ],
-        isCompleted: false,
       },
       {
         _id: '6',
@@ -132,7 +121,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=X0zdAG7gfgs&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&index=3&ab_channel=CodeWithHarry',
         ],
-        isCompleted: false,
       },
     ],
     technology: ['java'],
@@ -145,7 +133,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=IU4-19ofajg&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&ab_channel=egoroff_channel',
         ],
-        isCompleted: false,
       },
       {
         _id: '8',
@@ -153,7 +140,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=mOQBZq9WCCY&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&index=2&ab_channel=egoroff_channel',
         ],
-        isCompleted: false,
       },
     ],
     technology: ['python'],

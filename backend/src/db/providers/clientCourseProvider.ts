@@ -2,11 +2,10 @@ import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
 
 import ClientCourseModel from '../models/ClientCourses';
-import UserModel from '../models/User';
 
-const getClientCoursesProvider = async () => {
+const getClientCoursesProvider = async (userId: string) => {
   try {
-    return await ClientCourseModel.find().populate('course');
+    return await ClientCourseModel.find({ user: userId }).populate('course');
   } catch (e) {
     throw new Error();
   }
@@ -21,20 +20,19 @@ const getClientCourseProvider = async (clientCourseId: string) => {
 
 const applyCourseProvider = async (courseId: string, userId: string, progressDto: IProgress[]) => {
   const applyedCourse = await ClientCourseModel.create({
+    user: userId,
     course: courseId,
     status: CourseStatus.approved,
-    currentStage: 1,
     progress: progressDto,
   });
-  await UserModel.updateOne({ _id: userId }, { $push: { courses: applyedCourse.course } });
   return applyedCourse;
 };
 
 const updateCourseProgress = async (courseId: string, stage: string) => {
-  const updatedProgress = await ClientCourseModel.findOneAndUpdate(
+  const updatedProgress = await ClientCourseModel.updateOne(
     { _id: courseId },
     { $set: { 'progress.$[elem].isCompleted': true } },
-    { arrayFilters: [{ 'elem.stage': { $eq: stage } }] },
+    { arrayFilters: [{ 'elem.stage': stage }] },
   );
   return updatedProgress;
 };
@@ -42,15 +40,15 @@ const updateCourseProgress = async (courseId: string, stage: string) => {
 const getStatusProvider = async (courseId: string) => {
   const currStatus = await ClientCourseModel.findOne(
     { _id: courseId },
-    { status: 1, id: 0 },
+    { status: 1, _id: 0 },
   ).lean();
   return currStatus;
 };
 
-const updateCourseStatus = async (courseId: string, status: string) => {
+const updateCourseStatus = async (courseId: string, courseStatus: string) => {
   const updatedCourse = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
-    { $set: { status } },
+    { $set: { status: courseStatus } },
   );
   return updatedCourse;
 };
