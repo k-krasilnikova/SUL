@@ -33,6 +33,7 @@ export const UserInfoList = styled(List)({
   },
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: '400',
+  color: '#2C2525',
 });
 export const UserInfoLabel = styled('span')({
   [theme.breakpoints.up('xs')]: {
