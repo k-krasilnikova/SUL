@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Image } from 'components/Image';
+import textLimiter from 'utils/helpers/textLimiter';
 import CourseInfo from './CourseInfo';
 
 import {
@@ -17,16 +18,24 @@ interface Props {
   description: string | undefined;
   duration: string | undefined;
   lessons: number | undefined;
+  descriptionLimit?: number | undefined;
 }
 
-const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, children }) => (
+const CourseItem: React.FC<Props> = ({
+  title,
+  description,
+  duration,
+  lessons,
+  descriptionLimit,
+  children,
+}) => (
   <CourseContainer>
     <AboutCourseContainer>
       <ImageWrapper>
         <Image />
       </ImageWrapper>
       <CourseTitle>{title}</CourseTitle>
-      <CourseDescription>{description}</CourseDescription>
+      <CourseDescription>{textLimiter(description, descriptionLimit)}</CourseDescription>
     </AboutCourseContainer>
     <ButtonsContainer>
       <CourseInfo duration={duration} lessons={lessons} />
