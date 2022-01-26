@@ -21,9 +21,13 @@ interface SkillsProps {
 const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
   const [searchSkill, setSearchSkill] = useState('');
   const userSkills = skills?.filter(
-    (skill) => !searchSkill || skill.title.toLowerCase().includes(searchSkill.toLowerCase()),
+    (skill) =>
+      !searchSkill.trimEnd() ||
+      skill.title.toLowerCase().includes(searchSkill.trimEnd().toLowerCase()),
   );
-  return <UserSkills userSkills={userSkills} setSearchSkill={setSearchSkill} />;
+  return (
+    <UserSkills userSkills={userSkills} setSearchSkill={setSearchSkill} searchSkill={searchSkill} />
+  );
 };
 
 export default UserSkillsContainer;
