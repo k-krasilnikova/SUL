@@ -26,6 +26,7 @@ import {
 } from './styled';
 
 interface IProps {
+  descriptionLimit: number;
   data?: {
     _id?: string;
     title?: string;
@@ -36,7 +37,7 @@ interface IProps {
   handleApplyCourse?: () => void;
 }
 
-const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, data }) => (
+const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, data, descriptionLimit }) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
       <Link to={PATHS.coursesList}>
@@ -68,6 +69,7 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, data }) => (
               description={INITIAL_DETAILED_COURSE.description}
               duration={data?.duration}
               lessons={data?.lessons}
+              descriptionLimit={descriptionLimit}
             >
               <CourseActions>
                 <Link to={`${PATHS.coursesList}/${data?._id}`}>

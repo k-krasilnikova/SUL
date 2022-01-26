@@ -18,7 +18,7 @@ interface Props {
   description: string | undefined;
   duration: string | undefined;
   lessons: number | undefined;
-  descriptionLimit?: number | undefined;
+  descriptionLimit: number;
 }
 
 const CourseItem: React.FC<Props> = ({

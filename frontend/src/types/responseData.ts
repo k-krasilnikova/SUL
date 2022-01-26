@@ -8,5 +8,5 @@ export interface ResponseDataType {
   isFetched?: boolean;
   error?: string | unknown;
   handleApplyCourse?: () => void;
-  descriptionLimit?: number;
+  descriptionLimit: number;
 }
