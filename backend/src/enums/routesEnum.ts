@@ -14,6 +14,7 @@ enum SubRoutes {
   materials = '/materials',
   start = '/start',
   finish = '/finish',
+  test = '/test',
 }
 
 enum Params {

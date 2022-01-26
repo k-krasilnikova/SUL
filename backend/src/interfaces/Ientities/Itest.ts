@@ -1,4 +1,5 @@
 interface ITest {
+  _id?: string;
   title: string;
   questions: Array<{
     question: string;
@@ -7,4 +8,6 @@ interface ITest {
   timeout: number;
 }
 
-export { ITest };
+type TestDb = { test: ITest };
+
+export { ITest, TestDb };
