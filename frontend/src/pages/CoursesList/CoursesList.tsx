@@ -11,7 +11,12 @@ import Loader from 'components/Loader';
 
 import { PageContainer, CourseButton, CourseActions, GridItem } from './styled';
 
-const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyCourse }) => (
+const CoursesList: React.FC<ResponseDataType> = ({
+  data,
+  isLoading,
+  handleApplyCourse,
+  descriptionLimit,
+}) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
       <Loader color="primary" />
@@ -26,6 +31,7 @@ const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyC
                 description={course?.description}
                 duration={course?.duration}
                 lessons={course?.lessons}
+                descriptionLimit={descriptionLimit}
               >
                 <CourseActions>
                   <Link to={`${PATHS.coursesList}/${course._id}`}>
