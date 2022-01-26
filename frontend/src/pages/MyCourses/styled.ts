@@ -7,11 +7,15 @@ import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   width: '100%',
-  margin: '0px',
+  margin: '28px 0px 0px 9px',
 });
 
 export const GridItem = styled(Grid)({
-  padding: '15px',
+  padding: '12px 15px',
+  [theme.breakpoints.up('lg')]: {
+    maxWidth: '741px',
+    height: '391px',
+  },
 });
 
 export const CourseButton = styled(Button)({
@@ -24,6 +28,7 @@ export const CourseButton = styled(Button)({
     lineHeight: '10px',
   },
   [theme.breakpoints.up('lg')]: {
+    margin: '0px 30px 6px 0px',
     width: '150px',
     height: '50px',
     fontFamily: '"Ubuntu", sans-serif',
@@ -32,7 +37,6 @@ export const CourseButton = styled(Button)({
     lineHeight: '22px',
     letterSpacing: '-0.40px',
     textAlign: 'center',
-    marginRight: '30px',
   },
   background: '#D43E41',
   textTransform: 'none',
@@ -47,9 +51,8 @@ export const DetailsButton = styled(Button)({
     lineHeight: '10px',
   },
   [theme.breakpoints.up('lg')]: {
+    margin: '0px 16px 6px 0px',
     width: '150px',
-    marginLeft: '5px',
-    marginRight: '16px',
     height: '50px',
     fontFamily: '"Ubuntu", sans-serif',
     fontSize: '16px',
