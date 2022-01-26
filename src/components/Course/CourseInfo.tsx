@@ -2,7 +2,7 @@ import React from 'react';
 
 import { clock, videoPlayer } from 'icons';
 
-import { InfoContainer, InfoItem, InfoItemText } from './styled';
+import { InfoContainer, InfoItem, InfoItemText, InfoItemTextBox } from './styled';
 
 interface Props {
   duration: string | undefined;
@@ -13,11 +13,15 @@ const CourseInfo: React.FC<Props> = ({ duration, lessons }) => (
   <InfoContainer>
     <InfoItem>
       <img alt="duration" src={clock} />
-      <InfoItemText>{duration}</InfoItemText>
+      <InfoItemTextBox>
+        <InfoItemText>{duration}</InfoItemText>
+      </InfoItemTextBox>
     </InfoItem>
     <InfoItem>
       <img alt="lessons" src={videoPlayer} />
-      <InfoItemText>{`${lessons} lessons`}</InfoItemText>
+      <InfoItemTextBox>
+        <InfoItemText>{`${lessons} lessons`}</InfoItemText>
+      </InfoItemTextBox>
     </InfoItem>
   </InfoContainer>
 );

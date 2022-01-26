@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Image } from 'components/Image';
-import CourseInfo from './CourseInfo';
 
+import CourseInfo from './CourseInfo';
 import {
   CourseContainer,
   ImageWrapper,
@@ -10,6 +10,7 @@ import {
   CourseDescription,
   AboutCourseContainer,
   ButtonsContainer,
+  CourseDescriptionWrapper,
 } from './styled';
 
 interface Props {
@@ -20,13 +21,15 @@ interface Props {
 }
 
 const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, children }) => (
-  <CourseContainer>
+  <CourseContainer direction="column">
     <AboutCourseContainer>
       <ImageWrapper>
         <Image />
       </ImageWrapper>
       <CourseTitle>{title}</CourseTitle>
-      <CourseDescription>{description}</CourseDescription>
+      <CourseDescriptionWrapper>
+        <CourseDescription>{description}</CourseDescription>
+      </CourseDescriptionWrapper>
     </AboutCourseContainer>
     <ButtonsContainer>
       <CourseInfo duration={duration} lessons={lessons} />
