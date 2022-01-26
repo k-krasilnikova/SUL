@@ -14,9 +14,9 @@ export const CourseContainer = styled(Grid)({
   borderRadius: '10px',
   fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
-  flexDirection: 'column',
   height: '360px',
   justifyContent: 'space-between',
+  flexDirection: 'column',
   minHeight: '100%',
   [theme.breakpoints.down('lg')]: {
     display: 'flex',
@@ -54,7 +54,7 @@ export const ImageWrapper = styled('div')({
   [theme.breakpoints.down('xl')]: {
     width: '50%',
     height: 'auto',
-    alignItems: 'center',
+    alignItems: 'center !important',
     alignSelf: 'center',
     margin: '0px 24px 16px 0px',
   },

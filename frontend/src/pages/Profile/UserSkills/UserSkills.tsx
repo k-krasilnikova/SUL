@@ -5,7 +5,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import { NoContent } from 'components/NoContent';
-import { NO_COURSES } from 'constants/messages';
 import { NO_SKILLS } from 'constants/messages';
 import { SIZE } from 'constants/sizes';
 import { starEmpty, starContained } from 'icons';
