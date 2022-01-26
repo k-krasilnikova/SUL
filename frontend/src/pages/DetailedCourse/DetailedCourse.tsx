@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
@@ -46,10 +45,8 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
           <Image />
         </ImageWrapper>
         <ProgressBar />
-        <Box>
-          <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title} </DetailedCourseTitle>
-          <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
-        </Box>
+        <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title} </DetailedCourseTitle>
+        <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
           <CourseInfo
             duration={INITIAL_DETAILED_COURSE.duration}
