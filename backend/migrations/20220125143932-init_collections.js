@@ -152,7 +152,7 @@ const TESTS = [
         question: 'What of the following is the default value of an instance variable?',
         answers: [
           { variant: 'Depends upon the type variable', isCorrect: true },
-          { variant: 'null', isCorrect: true },
+          { variant: 'null', isCorrect: false },
           { variant: '0', isCorrect: false },
         ],
       },
