@@ -12,7 +12,7 @@ export const ImageWrapper = styled('div')({
   float: 'left',
   width: '479px',
   height: '268px',
-  margin: '0 20px 30px 0',
+  margin: '0 30px 30px 0',
   overflow: 'hidden',
   borderRadius: '10px',
   [theme.breakpoints.down('md')]: {
@@ -35,7 +35,8 @@ export const InnerWrapper = styled(Box)({
 
 export const DetailedCourseText = styled(Typography)({
   fontWeight: 'normal',
-  letterSpacing: '-0.41px',
+  letterSpacing: '-0.4px',
+  color: '#131313',
   [theme.breakpoints.up('xs')]: {
     fontSize: '18px',
     lineHeight: '32px',
@@ -64,47 +65,47 @@ export const DetailedCourseActionsBox = styled(Box)({
   marginTop: '171px',
 });
 
-export const StyledButton = styled(Button)({
-  marginLeft: '15px',
-});
-
 export const SimilarCoursesWrapper = styled(Grid)({
-  marginTop: '171px',
+  marginTop: '156px',
   marginBottom: '171px',
 });
 
 export const SimilarCoursesItemWrapper = styled(Grid)({
-  height: '300px',
-  width: '600px',
+  height: '361px',
+  width: '711px',
+  marginTop: '40px',
 });
 
 export const SimilarCoursesTitle = styled(Typography)({
-  fontSize: '40px',
-  fontWeight: 'bold',
-  marginBottom: '20px',
+  fontSize: '40px !important',
+  fontWeight: 'bold !important',
+  color: '#2C2525',
+  lineHeight: '52px !important',
+  letterSpacing: '-0.4px !important',
 });
 
 export const BackButton = styled(Button)({
   height: '39px',
   width: '84px',
-  borderRadius: '4px',
-  fontSize: '16px !important',
-  fontWeight: '500',
-  lineHeight: '22px',
-  letterSpacing: '-0.4px',
-  textAlign: 'center',
-  boxShadow: 'none !important',
-  backgroundColor: '#d43e41 !important',
 });
 
 export const StartButton = styled(Button)({
   height: '50px',
   width: '155px',
-  borderRadius: '4px',
-  fontSize: '16px !important',
-  fontWeight: 'bold',
-  lineHeight: '22px',
-  letterSpacing: '-0.4px',
-  boxShadow: 'none !important',
-  backgroundColor: '#d43e41 !important',
+});
+
+export const DetailsButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '16px !important',
+});
+
+export const StartCourseButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '40px !important',
+});
+
+export const CourseActionsBox = styled(Box)({
+  marginLeft: '16px !important',
 });

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
+import { Grid } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { Button } from 'components/Button';
 import { Image } from 'components/Image';
 import CourseInfo from 'components/Course/CourseInfo';
 import { CourseItem } from 'components/Course';
@@ -14,35 +14,32 @@ import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 
 import {
   BackButton,
+  CourseActionsBox,
   DetailedCourseActionsBox,
   DetailedCourseText,
   DetailedCourseTitle,
   DetailedCourseWrapper,
+  DetailsButton,
   ImageWrapper,
   InnerWrapper,
   SimilarCoursesItemWrapper,
   SimilarCoursesTitle,
   SimilarCoursesWrapper,
   StartButton,
-  StyledButton,
+  StartCourseButton,
 } from './styled';
 
 interface IProps {
-  data?: {
-    _id?: string;
-    title?: string;
-    description?: string;
-    duration?: string;
-    lessons?: number;
-  };
   handleApplyCourse?: () => void;
 }
 
-const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, data }) => (
+const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
       <Link to={PATHS.coursesList}>
-        <BackButton variant="contained">Back</BackButton>
+        <BackButton variant="medium" color="primary">
+          Back
+        </BackButton>
       </Link>
       <InnerWrapper>
         <ImageWrapper>
@@ -58,31 +55,33 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, data }) => (
             duration={INITIAL_DETAILED_COURSE.duration}
             lessons={INITIAL_DETAILED_COURSE.lessons}
           />
-          <StartButton variant="contained" onClick={handleApplyCourse}>
+          <StartButton variant="large" color="primary" onClick={handleApplyCourse}>
             Start
           </StartButton>
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
-          <SimilarCoursesItemWrapper item xs={8}>
-            <SimilarCoursesTitle>Similar Courses</SimilarCoursesTitle>
-            <CourseItem
-              title={data?.title}
-              description={INITIAL_DETAILED_COURSE.description}
-              duration={data?.duration}
-              lessons={data?.lessons}
-            >
-              <CourseActions>
-                <Link to={`${PATHS.coursesList}/${data?._id}`}>
-                  <Button color="primary" variant="outlined">
-                    Details
-                  </Button>
-                </Link>
-                <StyledButton onClick={handleApplyCourse} color="primary" variant="contained">
-                  Start the course
-                </StyledButton>
-              </CourseActions>
-            </CourseItem>
-          </SimilarCoursesItemWrapper>
+          <Grid item xs={8}>
+            <SimilarCoursesTitle>Similar courses</SimilarCoursesTitle>
+            <SimilarCoursesItemWrapper>
+              <CourseItem
+                title={INITIAL_DETAILED_COURSE.title}
+                description={`${INITIAL_DETAILED_COURSE.description.slice(0, 420)}...`}
+                duration={INITIAL_DETAILED_COURSE.duration}
+                lessons={INITIAL_DETAILED_COURSE.lessons}
+              >
+                <CourseActionsBox>
+                  <CourseActions>
+                    <DetailsButton color="primary" variant="mediumOutlined">
+                      Details
+                    </DetailsButton>
+                    <StartCourseButton onClick={handleApplyCourse} variant="mediumContained">
+                      Start the course
+                    </StartCourseButton>
+                  </CourseActions>
+                </CourseActionsBox>
+              </CourseItem>
+            </SimilarCoursesItemWrapper>
+          </Grid>
         </SimilarCoursesWrapper>
       </InnerWrapper>
     </DetailedCourseWrapper>

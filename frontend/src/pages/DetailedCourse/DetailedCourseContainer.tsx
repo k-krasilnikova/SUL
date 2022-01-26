@@ -14,7 +14,7 @@ const DetailedCourseContainer: React.FC = () => {
     mutate(params.courseId);
   };
 
-  return data ? <DetailedCourse data={data} handleApplyCourse={handleApplyCourse} /> : null;
+  return data ? <DetailedCourse handleApplyCourse={handleApplyCourse} /> : null;
 };
 
 export default DetailedCourseContainer;

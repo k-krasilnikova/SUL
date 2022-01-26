@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Input, Grid, Accordion } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import theme from 'themeSettings';
+
 export const HEADER_HEIGHT = '80px';
 
 export const LayoutHeader = styled(Grid)({
@@ -9,7 +11,7 @@ export const LayoutHeader = styled(Grid)({
   height: HEADER_HEIGHT,
   display: 'flex',
   justifyContent: 'flex-start',
-  backgroundColor: 'white',
+  backgroundColor: theme.palette.secondary.main,
   fontFamily: '"Ubuntu", sans-serif',
 });
 export const BrandLogoLink = styled(Link)({
