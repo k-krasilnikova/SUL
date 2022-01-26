@@ -24,6 +24,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "'Ubuntu', sans-serif",
+    allVariants: {
+      textTransform: 'none',
+    },
   },
   breakpoints: {
     values: {

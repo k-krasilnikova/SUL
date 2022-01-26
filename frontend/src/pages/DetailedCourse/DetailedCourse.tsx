@@ -13,6 +13,7 @@ import { PATHS } from 'constants/routes';
 import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 
 import {
+  BackButton,
   DetailedCourseActionsBox,
   DetailedCourseText,
   DetailedCourseTitle,
@@ -22,6 +23,7 @@ import {
   SimilarCoursesItemWrapper,
   SimilarCoursesTitle,
   SimilarCoursesWrapper,
+  StartButton,
   StyledButton,
 } from './styled';
 
@@ -40,7 +42,7 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, data }) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
       <Link to={PATHS.coursesList}>
-        <Button variant="contained">Back</Button>
+        <BackButton variant="contained">Back</BackButton>
       </Link>
       <InnerWrapper>
         <ImageWrapper>
@@ -56,9 +58,9 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, data }) => (
             duration={INITIAL_DETAILED_COURSE.duration}
             lessons={INITIAL_DETAILED_COURSE.lessons}
           />
-          <Button variant="contained" onClick={handleApplyCourse}>
+          <StartButton variant="contained" onClick={handleApplyCourse}>
             Start
-          </Button>
+          </StartButton>
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
           <SimilarCoursesItemWrapper item xs={8}>
