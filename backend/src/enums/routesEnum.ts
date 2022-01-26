@@ -9,6 +9,7 @@ enum Routes {
 
 enum SubRoutes {
   login = '/login',
+  logout = '/logout',
   refresh = '/refresh',
   profile = '/profile',
   materials = '/materials',

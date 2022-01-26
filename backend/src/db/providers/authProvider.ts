@@ -20,4 +20,15 @@ const saveTokenProvider = async (token: string, user: IUser) => {
   );
 };
 
-export { authProvider, saveTokenProvider };
+const clearTokenProvider = async (userId: string) => {
+  await UserModel.updateOne(
+    { _id: userId },
+    {
+      $unset: {
+        refreshToken: '',
+      },
+    },
+  );
+};
+
+export { authProvider, saveTokenProvider, clearTokenProvider };
