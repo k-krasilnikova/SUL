@@ -65,7 +65,7 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
             <SimilarCoursesItemWrapper>
               <CourseItem
                 title={INITIAL_DETAILED_COURSE.title}
-                description={`${INITIAL_DETAILED_COURSE.description.slice(0, 420)}...`}
+                description={INITIAL_DETAILED_COURSE.description}
                 duration={INITIAL_DETAILED_COURSE.duration}
                 lessons={INITIAL_DETAILED_COURSE.lessons}
               >
