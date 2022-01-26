@@ -46,16 +46,18 @@ export const DetailedCourseText = styled(Typography)({
     lineHeight: '35px',
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '24px',
-    lineHeight: '37px',
+    fontSize: '24px !important',
+    lineHeight: '37px !important',
+    letterSpacing: '-0.4px !important',
   },
 });
 
 export const DetailedCourseTitle = styled(Typography)({
   fontSize: '42px !important',
   fontWeight: 'bold !important',
-  lineHeight: '55px',
-  marginBottom: '13px',
+  lineHeight: '55px !important',
+  letterSpacing: '-0.4px !important',
+  marginBottom: '13px !important',
   color: '#2c2525',
 });
 
