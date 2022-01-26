@@ -14,7 +14,15 @@ const DetailedCourseContainer: React.FC = () => {
     mutate(params.courseId);
   };
 
-  return data ? <DetailedCourse data={data} handleApplyCourse={handleApplyCourse} /> : null;
+  const TEXT_LIMIT = 400;
+
+  return data ? (
+    <DetailedCourse
+      data={data}
+      handleApplyCourse={handleApplyCourse}
+      descriptionLimit={TEXT_LIMIT}
+    />
+  ) : null;
 };
 
 export default DetailedCourseContainer;

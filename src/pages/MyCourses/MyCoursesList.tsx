@@ -11,7 +11,7 @@ import Loader from 'components/Loader';
 
 import { PageContainer, CourseButton, DetailsButton, CourseActions, GridItem } from './styled';
 
-const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => (
+const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading, descriptionLimit }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Loader color="primary" />
@@ -26,6 +26,7 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
                 description={object.course.description}
                 duration={object.course.duration}
                 lessons={object.course.lessons}
+                descriptionLimit={descriptionLimit}
               >
                 <CourseActions>
                   <DetailsButton>Details</DetailsButton>

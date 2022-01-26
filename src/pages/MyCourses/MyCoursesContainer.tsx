@@ -7,7 +7,15 @@ import MyCoursesList from './MyCoursesList';
 const MyCoursesContainer: React.FC = () => {
   const { data, isLoading } = useGetMyCourses();
 
-  return <MyCoursesList data={data?.filter((item) => item.course)} isLoading={isLoading} />;
+  const TEXT_LIMIT = 500;
+
+  return (
+    <MyCoursesList
+      data={data?.filter((item) => item.course)}
+      isLoading={isLoading}
+      descriptionLimit={TEXT_LIMIT}
+    />
+  );
 };
 
 export default MyCoursesContainer;

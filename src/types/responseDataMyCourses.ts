@@ -7,4 +7,5 @@ export interface ResponseDataMyCourses {
   isFetching?: boolean;
   isFetched?: boolean;
   error?: string | unknown;
+  descriptionLimit: number;
 }
