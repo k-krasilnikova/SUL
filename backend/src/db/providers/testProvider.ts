@@ -25,13 +25,11 @@ const getTestProvider = async (courseId: string) => {
     { $unwind: { path: '$test', preserveNullAndEmptyArrays: true } },
     {
       $project: {
-        'test.questions.answers.isCorrect': 0,
+        'test.questions.answers.variant': 1,
+        'test.questions.question': 1,
+        'test.title': 1,
+        'test.timeout': 1,
         _id: 0,
-        user: 0,
-        course: 0,
-        status: 0,
-        testResult: 0,
-        nestedCourse: 0,
       },
     },
   ]);
