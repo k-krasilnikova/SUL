@@ -1,10 +1,12 @@
 import React from 'react';
+import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { Back, Forward } from 'components/Arrows';
 import { PATHS } from 'constants/routes';
+import { playVideo } from 'icons';
 
 import {
   LearningPageContainer,
@@ -12,7 +14,7 @@ import {
   LearningWrapper,
   StepperController,
   Step,
-  TextWrapper,
+  MaterialWrapper,
   Description,
   DescriptionTitle,
   DescriptionText,
@@ -26,14 +28,14 @@ interface LearningProps {
   maxStage: number;
   stageBack: () => void;
   stageForward: () => void;
-  courseText: Array<string>;
-  courseDescription: {
+  courseDescription?: {
     title: string;
     info: string;
   };
   testEnabled: boolean;
   backDisabled: boolean;
   forwardDisabled: boolean;
+  material: string;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -41,48 +43,60 @@ const LearningCourse: React.FC<LearningProps> = ({
   maxStage,
   stageBack,
   stageForward,
-  courseText,
   courseDescription,
   testEnabled,
   backDisabled,
   forwardDisabled,
-}) => (
-  <AuthorizedLayout pageName="Learning course">
-    <LearningPageContainer>
-      <Link to={PATHS.myCourses}>
-        <BackButton variant="contained">Back</BackButton>
-      </Link>
-      <LearningWrapper>
-        <StepperController>
-          <IconButton onClick={stageBack} disabled={backDisabled}>
-            <Back arrowDisabled={backDisabled} />
-          </IconButton>
-          <Step>
-            {stage}/{maxStage}
-          </Step>
-          <IconButton onClick={stageForward} disabled={forwardDisabled}>
-            <Forward arrowDisabled={forwardDisabled} />
-          </IconButton>
-        </StepperController>
-        <TextWrapper>{courseText[stage - 1]}</TextWrapper>
-        {courseDescription && (
-          <Description>
-            <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
-            <DescriptionText>{courseDescription.info}</DescriptionText>
-          </Description>
-        )}
-        {testEnabled ? (
-          <StartTestButton variant="contained">Start the Test</StartTestButton>
-        ) : (
-          <NextButtonWrapper>
-            <NextButton variant="contained" onClick={stageForward}>
-              Next
-            </NextButton>
-          </NextButtonWrapper>
-        )}
-      </LearningWrapper>
-    </LearningPageContainer>
-  </AuthorizedLayout>
-);
+  material,
+}) => {
+  return (
+    <AuthorizedLayout pageName="Learning course">
+      <LearningPageContainer>
+        <Link to={PATHS.myCourses}>
+          <BackButton variant="contained">Back</BackButton>
+        </Link>
+        <LearningWrapper>
+          <StepperController>
+            <IconButton onClick={stageBack} disabled={backDisabled}>
+              <Back arrowDisabled={backDisabled} />
+            </IconButton>
+            <Step>
+              {stage}/{maxStage}
+            </Step>
+            <IconButton onClick={stageForward} disabled={forwardDisabled}>
+              <Forward arrowDisabled={forwardDisabled} />
+            </IconButton>
+          </StepperController>
+          <MaterialWrapper>
+            <ReactPlayer
+              url={material}
+              height="100%"
+              width="100%"
+              playIcon={<img src={playVideo} alt="play" />}
+              light
+              playing
+              controls
+            />
+          </MaterialWrapper>
+          {courseDescription && (
+            <Description>
+              <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
+              <DescriptionText>{courseDescription.info}</DescriptionText>
+            </Description>
+          )}
+          {testEnabled ? (
+            <StartTestButton variant="contained">Start the Test</StartTestButton>
+          ) : (
+            <NextButtonWrapper>
+              <NextButton variant="contained" onClick={stageForward}>
+                Next
+              </NextButton>
+            </NextButtonWrapper>
+          )}
+        </LearningWrapper>
+      </LearningPageContainer>
+    </AuthorizedLayout>
+  );
+};
 
 export default LearningCourse;
