@@ -36,10 +36,10 @@ interface Props {
     }>;
   }>;
   setSearchSkill: (value: string) => void;
-  searchSkill: string;
+  checkSpace: (event: React.KeyboardEvent) => void;
 }
 
-const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, searchSkill }) => (
+const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace }) => (
   <SkillsBox>
     <SearchWrapper>
       <SearchSkill
@@ -53,10 +53,7 @@ const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, searchSkill }
           </InputAdornment>
         }
         onKeyDown={(event) => {
-          const { key } = event;
-          if (key === ' ' && searchSkill.length === 0) {
-            event.preventDefault();
-          }
+          checkSpace(event);
         }}
         onChange={(event) => {
           setSearchSkill(event.target.value);

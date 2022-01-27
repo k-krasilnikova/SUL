@@ -25,8 +25,15 @@ const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
       !searchSkill.trimEnd() ||
       skill.title.toLowerCase().includes(searchSkill.trimEnd().toLowerCase()),
   );
+  const checkSpace = (event: React.KeyboardEvent) => {
+    let { key } = event;
+    key = key.trim();
+    if (!key && searchSkill.length === 0) {
+      event.preventDefault();
+    }
+  };
   return (
-    <UserSkills userSkills={userSkills} setSearchSkill={setSearchSkill} searchSkill={searchSkill} />
+    <UserSkills userSkills={userSkills} setSearchSkill={setSearchSkill} checkSpace={checkSpace} />
   );
 };
 
