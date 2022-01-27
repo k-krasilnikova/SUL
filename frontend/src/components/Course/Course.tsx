@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { Image } from 'components/Image';
-import CourseInfo from './CourseInfo';
+import { shortify } from 'utils/helpers/shortify';
 
+import CourseInfo from './CourseInfo';
 import {
   CourseContainer,
   ImageWrapper,
@@ -10,11 +11,12 @@ import {
   CourseDescription,
   AboutCourseContainer,
   ButtonsContainer,
+  CourseDescriptionWrapper,
 } from './styled';
 
 interface Props {
   title: string | undefined;
-  description: string | undefined;
+  description: string;
   duration: string | undefined;
   lessons: number | undefined;
 }
@@ -26,7 +28,9 @@ const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, ch
         <Image />
       </ImageWrapper>
       <CourseTitle>{title}</CourseTitle>
-      <CourseDescription>{description}</CourseDescription>
+      <CourseDescriptionWrapper>
+        <CourseDescription>{shortify(description)}</CourseDescription>
+      </CourseDescriptionWrapper>
     </AboutCourseContainer>
     <ButtonsContainer>
       <CourseInfo duration={duration} lessons={lessons} />
