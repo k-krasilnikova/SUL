@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material';
 const COLORS = {
   primaryColor: '#d43e41',
   secondaryColor: '#ffffff',
+  darkColor: '#942b2d',
   disabledTextColor: '#9b9b9b',
   primaryTextColor: '#000000',
   secondaryTextColor: '#ffffff',
@@ -12,6 +13,7 @@ const globalTheme = createTheme({
   palette: {
     primary: {
       main: COLORS.primaryColor,
+      dark: COLORS.darkColor,
     },
     secondary: {
       main: COLORS.secondaryColor,
@@ -56,11 +58,11 @@ const theme = createTheme(
               textAlign: 'center',
               boxShadow: 'none',
               '&:hover': {
-                backgroundColor: globalTheme.palette.primary.main,
+                backgroundColor: globalTheme.palette.primary.dark,
                 color: globalTheme.palette.text.secondary,
               },
               '&:active': {
-                backgroundColor: globalTheme.palette.primary.main,
+                backgroundColor: globalTheme.palette.primary.dark,
                 color: globalTheme.palette.text.secondary,
               },
             },
@@ -96,6 +98,14 @@ const theme = createTheme(
               letterSpacing: '-0.4px',
               textAlign: 'center',
               boxShadow: 'none',
+              '&:hover': {
+                backgroundColor: globalTheme.palette.primary.dark,
+                color: globalTheme.palette.text.secondary,
+              },
+              '&:active': {
+                backgroundColor: globalTheme.palette.primary.dark,
+                color: globalTheme.palette.text.secondary,
+              },
             },
           },
           {
@@ -112,6 +122,14 @@ const theme = createTheme(
               letterSpacing: '-0.4px',
               textAlign: 'center',
               boxShadow: 'none',
+              '&:hover': {
+                backgroundColor: globalTheme.palette.primary.dark,
+                color: globalTheme.palette.text.secondary,
+              },
+              '&:active': {
+                backgroundColor: globalTheme.palette.primary.dark,
+                color: globalTheme.palette.text.secondary,
+              },
             },
           },
         ],
