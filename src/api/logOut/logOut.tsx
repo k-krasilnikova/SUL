@@ -4,16 +4,15 @@ import { useNavigate } from 'react-router';
 import { apiClientWrapper } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
-
 import { logOutHandler } from 'utils/helpers/logOutHandler';
 
 const useLogOut = (): UseMutationResult => {
   const navigateTo = useNavigate();
   return useMutation(
-    async (initialData: string | unknown) => {
+    async () => {
       const apiClient = apiClientWrapper();
       try {
-        const logOutResponse = await apiClient.post(API.getToken, initialData);
+        const logOutResponse = await apiClient.get(API.logOut);
         return logOutResponse;
       } catch (error) {
         throw new Error(`${REQUEST_ERRORS.getError}`);

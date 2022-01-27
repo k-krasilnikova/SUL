@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import { TextField as MuiTextField } from '@mui/material';
@@ -7,6 +8,9 @@ import WarningHelper from './styled';
 
 interface TextFieldProps {
   id: string;
+  warningHandler: (name: string, e: string) => void;
+  handleChange?: (e: string) => void;
+  setFieldTouched?: (name: string, value?: boolean, isValidate?: boolean) => void;
   label?: string;
   children?: React.ReactNode;
   defaultValue?: string;
@@ -18,16 +22,14 @@ interface TextFieldProps {
   };
   onChange?: (e: string) => void;
   handleBlur?: (e: React.FocusEvent) => void;
-  handleChange: (e: string) => void;
-  setFieldTouched: (name: string, value?: boolean, isValidate?: boolean) => void;
   value?: unknown;
   type?: string;
   placeholder?: string;
-  warningHandler?: (name: string, e: string) => void;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
   id,
+  warningHandler,
   label,
   children,
   defaultValue,
@@ -36,32 +38,26 @@ const TextField: React.FC<TextFieldProps> = ({
   error,
   onChange,
   handleBlur,
-  handleChange,
-  setFieldTouched,
-  warningHandler,
   ...rest
-}) => {
-  return (
-    <>
-      <Field
-        component={MuiTextField}
-        onChange={handleChange}
-        // onChange={warningHandler?.bind(null, id)}
-        id={id}
-        label={label}
-        defaultValue={defaultValue}
-        helperText={helperText}
-        onBlur={handleBlur}
-        size="medium"
-        required
-        fullWidth
-        {...rest}
-      >
-        {children}
-      </Field>
-      <ErrorMessage component={WarningHelper} name={id} />
-    </>
-  );
-};
+}) => (
+  <>
+    <Field
+      component={MuiTextField}
+      onChange={warningHandler.bind(null, id)}
+      id={id}
+      label={label}
+      defaultValue={defaultValue}
+      helperText={helperText}
+      onBlur={handleBlur}
+      size="medium"
+      required
+      fullWidth
+      {...rest}
+    >
+      {children}
+    </Field>
+    <ErrorMessage component={WarningHelper} name={id} />
+  </>
+);
 
 export default TextField;

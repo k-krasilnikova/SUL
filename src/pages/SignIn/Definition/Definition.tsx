@@ -9,7 +9,7 @@ const Definition = (): JSX.Element => (
         <span>:i</span>Tech<span>Art</span>
       </CompanyLogo>
     </LogoBox>
-    <LogoBox sx={{ mt: 2 }}>
+    <LogoBox>
       <Instructions>
         Skill<span>Up</span> Level
       </Instructions>

@@ -8,14 +8,13 @@ const Profile: React.FC = () => {
   const { data } = useGetProfile();
   return (
     <ProfileContent
+      avatar={data?.avatar}
       firstName={data?.firstName}
       lastName={data?.lastName}
-      avatar={data?.avatar}
-      birthday={data?.birthday}
-      skype={data?.skype}
       position={data?.position}
-      skills={data?.skills}
-      courses={data?.courses}
+      group={data?.group}
+      phone={data?.phone}
+      skype={data?.skype}
     />
   );
 };

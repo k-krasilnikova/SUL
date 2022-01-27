@@ -1,68 +1,69 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ListItem from '@mui/material/ListItem';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
+import { SKILLS } from 'constants/skills';
+import { SIZE } from 'constants/sizes';
+import Loader from 'components/Loader';
 
+import { UserSkills } from './UserSkills';
 import {
   ProfileBox,
+  AvatarWrapper,
   UserInfoList,
   UserInfoText,
   UserInfoLabel,
-  UserListSubheader,
-  UserListItem,
+  CopyIcon,
 } from './styled';
 
 const ProfileContent: React.FC<User> = ({
+  avatar,
   firstName,
   lastName,
-  avatar,
-  birthday,
-  skype,
   position,
-  skills,
-  courses,
+  group,
+  phone,
+  skype,
 }) => (
   <AuthorizedLayout pageName="Profile">
     <ProfileBox>
-      <UserAvatar avatar={avatar} size="large" />
-      <UserInfoList sx={{ marginLeft: 'auto', marginRight: 'auto' }}>
+      <AvatarWrapper>
+        <UserAvatar avatar={avatar} size={SIZE.large} />
+      </AvatarWrapper>
+      <UserInfoList>
         <ListItem disablePadding>
-          <UserInfoLabel>Full name:</UserInfoLabel>
+          <UserInfoLabel>Name:</UserInfoLabel>
           <UserInfoText>
-            {firstName} {lastName}
+            {`${firstName} ${lastName} `}
+            <CopyToClipboard text={`${firstName} ${lastName}`}>
+              <CopyIcon color="disabled" />
+            </CopyToClipboard>
           </UserInfoText>
-        </ListItem>
-        <ListItem disablePadding>
-          <UserInfoLabel>Birthday:</UserInfoLabel>
-          <UserInfoText>{birthday}</UserInfoText>
-        </ListItem>
-        <ListItem disablePadding>
-          <UserInfoLabel>Skype:</UserInfoLabel>
-          <UserInfoText>{skype}</UserInfoText>
         </ListItem>
         <ListItem disablePadding>
           <UserInfoLabel>Position:</UserInfoLabel>
           <UserInfoText>{position}</UserInfoText>
         </ListItem>
-      </UserInfoList>
-      <UserInfoList subheader={<UserListSubheader>Skills</UserListSubheader>}>
-        {skills?.map((skill) => (
-          <ListItem key={skill}>
-            <UserListItem>{skill}</UserListItem>
-          </ListItem>
-        ))}
-      </UserInfoList>
-      <UserInfoList subheader={<UserListSubheader>Applied courses</UserListSubheader>}>
-        {courses?.map((course, indx) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <ListItem key={indx}>
-            <UserListItem>{course}</UserListItem>
-          </ListItem>
-        ))}
+        <ListItem disablePadding>
+          <UserInfoLabel>Group:</UserInfoLabel>
+          <UserInfoText>{group}</UserInfoText>
+        </ListItem>
+        <ListItem disablePadding>
+          <UserInfoLabel>Phone:</UserInfoLabel>
+          <UserInfoText>{phone}</UserInfoText>
+        </ListItem>
+        <ListItem disablePadding>
+          <UserInfoLabel>Skype:</UserInfoLabel>
+          <UserInfoText>{skype}</UserInfoText>
+        </ListItem>
       </UserInfoList>
     </ProfileBox>
+    <Suspense fallback={<Loader color="primary" />}>
+      <UserSkills skills={SKILLS} />
+    </Suspense>
   </AuthorizedLayout>
 );
 

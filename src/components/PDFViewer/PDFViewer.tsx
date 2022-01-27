@@ -4,6 +4,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 import { FIRST_PAGE_INDEX, LAST_PAGE_INDEX } from 'constants/pdfViewer';
+import Loader from 'components/Loader';
 
 import {
   ButtonBox,
@@ -49,7 +50,11 @@ const PDFViewer: React.FC<IPDFViewer> = ({
         </StyledButton>
       </ButtonBox>
       <DocumentBox ref={documentBoxRef}>
-        <Document file={src} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document
+          file={src}
+          onLoadSuccess={onDocumentLoadSuccess}
+          loading={<Loader color="primary" />}
+        >
           <StyledPage pageNumber={pageNumber} scale={1.7} />
         </Document>
       </DocumentBox>
