@@ -10,12 +10,13 @@ interface InfoContainerTypes {
 }
 
 export const CourseContainer = styled(Grid)({
-  backgroundColor: '#ebebeb',
-  borderRadius: '10px',
+  backgroundColor: 'rgba(118, 118, 128, 0.12);',
+  borderRadius: '16px',
   fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
   flexDirection: 'column',
-  height: '360px',
+  width: '100%',
+  height: '100%',
   justifyContent: 'space-between',
   minHeight: '100%',
   [theme.breakpoints.down('lg')]: {
@@ -27,10 +28,11 @@ export const CourseContainer = styled(Grid)({
 
 export const AboutCourseContainer = styled('div')({
   minHeight: '220px',
-  padding: '10px',
+  padding: '16px',
   marginBottom: '30px',
   textOverflow: 'ellipse',
   overflow: 'hidden',
+  width: '100%',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     flexDirection: 'column',
@@ -45,8 +47,8 @@ export const ImageWrapper = styled('div')({
   overflow: 'hidden',
   borderRadius: '10px',
   [theme.breakpoints.up('xl')]: {
-    width: '230px',
-    height: '150px',
+    width: '346px',
+    height: '191px',
     alignItems: 'center',
     alignSelf: 'center',
     margin: '0px 24px 16px 0px',
@@ -107,7 +109,7 @@ export const CourseTitle = styled('p')({
   },
   fontFamily: '"Ubuntu", sans-serif',
   color: ' #2C2525',
-  margin: '0px',
+  margin: '14px 43px 16px 0px',
 });
 
 export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, lineHeight }) => ({
@@ -115,7 +117,6 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
     fontSize: '12px',
     lineHeight: '22px',
     padding: '5px',
-    marginTop: '3px',
     ...(fontSize && {
       fontSize: `${fontSize}px`,
     }),
@@ -124,11 +125,12 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
     }),
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '18px',
+    fontSize: '16px',
     fontWeight: '400',
-    lineHeight: '22px',
+    lineHeight: '21px',
     letterSpacing: '-0.40px',
     textAlign: 'left',
+    margin: '0px 43px 14px 0px',
     ...(fontSize && {
       fontSize: `${fontSize}px`,
     }),
@@ -139,7 +141,6 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
   },
   color: '#131313',
   fontFamily: '"Ubuntu", sans-serif',
-  margin: '0px',
   ...(fontSize && {
     fontSize: `${fontSize}px`,
   }),

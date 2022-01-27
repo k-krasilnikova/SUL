@@ -48,6 +48,11 @@ export const useListStyles = makeStyles({
       fontFamily: 'Ubuntu, sans-serif',
       fontWeight: 400,
       fontSize: '22px',
+      paddingLeft: '-10px !important',
+    },
+    '& svg': {
+      width: '39px',
+      height: '39px',
     },
     '&:hover': {
       background: theme.palette.secondary.main,
@@ -55,16 +60,22 @@ export const useListStyles = makeStyles({
   },
   selected: {
     width: `calc(100% + ${BORDER_CANCELER}px)`,
-    paddingLeft: '45px !important',
+    paddingLeft: '43px !important',
     background: theme.palette.secondary.main,
     boxShadow: '-2px -4px 15px rgba(0, 0, 0, 0.05)',
+    '& span': {
+      paddingLeft: '5px !important',
+    },
     '&:hover': {
       background: theme.palette.secondary.main,
     },
   },
   selectedLogo: {
     color: `${theme.palette.primary.main} !important`,
-    fontSize: '5rem',
+    '& svg': {
+      width: '39px',
+      height: '39px',
+    },
   },
   selectedText: {
     '& span': {

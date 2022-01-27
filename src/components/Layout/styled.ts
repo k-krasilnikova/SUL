@@ -7,6 +7,6 @@ export const GridHeader = styled(Grid)({
 });
 
 export const PageWrapper = styled(Grid)({
-  overflowY: 'scroll',
+  overflowY: 'auto',
   height: 'calc(100vh - 80px)',
 });

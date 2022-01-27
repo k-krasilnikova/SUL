@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Box } from '@mui/system';
 import { Grid, Typography } from '@mui/material';
-import Button from 'components/Button';
+import { Button } from 'components/Button';
 import theme from 'themeSettings';
 
 export const DetailedCourseWrapper = styled(Box)({
