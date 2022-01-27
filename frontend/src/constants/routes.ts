@@ -33,5 +33,5 @@ export const API: {
   getToken: '/api/account/login',
   getCourses: 'api/courses',
   getMyCourses: '/api/clientCourses',
-  logOut: '/api/logOut',
+  logOut: 'api/account/logout',
 };

@@ -8,11 +8,11 @@ const courseSchema = new Schema<ICourse>({
   technology: [{ type: String, required: true }],
   requiredSkills: [{ type: String }],
   duration: { type: Number, required: true },
-  materials: [{ type: Schema.Types.ObjectId, ref: 'materials' }],
+  materials: [{ stage: { type: Number }, content: [{ type: String }] }],
   lessons: { type: Number },
-  testLink: { type: String },
+  test: { type: Schema.Types.ObjectId, ref: 'Test' },
 });
 
-const CourseModel = model<ICourse>('courses', courseSchema);
+const CourseModel = model<ICourse>('Courses', courseSchema, 'courses');
 
 export default CourseModel;

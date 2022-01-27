@@ -11,14 +11,15 @@ const schema = new Schema<IUser>({
   position: { type: String, required: true, default: 'Software Engineer' },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  skills: [{ type: Schema.Types.ObjectId, ref: 'UserSkill' }],
-  courses: [{ type: Schema.Types.ObjectId, ref: 'UserCourse' }],
+  skills: [
+    { name: { type: String, unique: true }, image: { type: String }, score: { type: Number } },
+  ],
   employees: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   avatar: { data: Buffer, contentType: String, required: false },
   birthday: { type: Date, required: true },
   skype: { type: String, required: true, default: 'not provided' },
 });
 
-const UserModel = model<IUser>('User', schema);
+const UserModel = model<IUser>('User', schema, 'users');
 
 export default UserModel;

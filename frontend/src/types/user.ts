@@ -1,3 +1,5 @@
+import { Course } from './course';
+
 export interface User {
   firstName?: string;
   lastName?: string;
@@ -8,8 +10,9 @@ export interface User {
   myCoursesNumber?: number;
   avatar?: string;
   birthday?: Date;
+  phone?: string;
   skype?: string;
   position?: string;
-  skills?: string[];
-  courses?: string[];
+  courses?: Array<Course>;
+  handleLogOut?: () => void;
 }

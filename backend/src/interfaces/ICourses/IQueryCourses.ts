@@ -2,8 +2,13 @@ interface IQueryCourses {
   pageN?: number;
   title?: string;
   orderField?: string;
-  order?: number;
+  order?: number | string;
   nPerPage?: number;
 }
 
-export { IQueryCourses };
+interface IProgress {
+  stage: number;
+  isCompleted: boolean;
+}
+
+export { IQueryCourses, IProgress };

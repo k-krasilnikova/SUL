@@ -3,12 +3,17 @@ import { Schema, model } from 'mongoose';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 
 const clientCourseSchema = new Schema<IClientCourse>({
-  _id: { type: Schema.Types.ObjectId },
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
   course: { type: Schema.Types.ObjectId, ref: 'Courses' },
   status: { type: String },
-  currentStage: { type: Number },
+  testResult: { type: String },
+  progress: [{ stage: { type: String }, isCompleted: { type: Boolean } }],
 });
 
-const ClientCourseModel = model<IClientCourse>('ClientCourse', clientCourseSchema);
+const ClientCourseModel = model<IClientCourse>(
+  'clientCourses',
+  clientCourseSchema,
+  'clientCourses',
+);
 
 export default ClientCourseModel;

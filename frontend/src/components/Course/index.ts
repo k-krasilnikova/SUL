@@ -1,1 +1,3 @@
-export { default as CourseItem } from './Course';
+import React from 'react';
+
+export const CourseItem = React.lazy(() => import('./Course'));

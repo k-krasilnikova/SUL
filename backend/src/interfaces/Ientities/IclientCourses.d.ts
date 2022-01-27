@@ -1,12 +1,20 @@
 import { ObjectId } from 'mongoose';
+import { ICourse } from './Icourses';
+
+type TCourseStatus = 'pending' | 'approved' | 'started' | 'completed' | 'rejected';
 
 interface IClientCourse {
   _id?: string;
-  course: ObjectId;
+  user: ObjectId;
+  course: ObjectId | ICourse;
   status: TCourseStatus;
-  currentStage: number;
+  testResult: string;
+  progress: [
+    {
+      stage: string;
+      isCompleted: boolean;
+    },
+  ];
 }
-
-type TCourseStatus = 'pending' | 'approved' | 'started' | 'completed' | 'failed';
 
 export { IClientCourse };

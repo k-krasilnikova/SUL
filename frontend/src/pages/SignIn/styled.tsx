@@ -75,7 +75,7 @@ const DefinitionWrapper = styled(Box)({
   justifySelf: 'center',
   maxWidth: '100%',
   marginRight: '18px',
-  marginTop: '115px',
+  marginTop: '13.5%',
   [theme.breakpoints.down('xl')]: {
     marginRight: '0px !important',
   },
@@ -95,7 +95,7 @@ const SignWrapper = styled(Box)({
   width: '325px',
   minHeight: '335px',
   boxShadow: '5px 5px 7px 3px rgb(0 0 0 / 10%)',
-  marginTop: '65px',
+  marginTop: '8%',
   marginRight: '18px',
   [theme.breakpoints.down('xl')]: {
     marginRight: '0px !important',

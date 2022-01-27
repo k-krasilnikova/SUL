@@ -3,13 +3,33 @@
 }
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
 }
 body {
   margin: 0;
   background-color: var(--layout-background-color);
+  scrollbar-color: #b6b6b6 #f1f1f1;
+}
+body:hover {
+  scrollbar-color: #7e7e7e;
   font-family: 'Ubuntu';
 }
 a {
   text-decoration: none;
   color: inherit;
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  width: 7px;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7e7e7e;
 }

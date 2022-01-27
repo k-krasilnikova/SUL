@@ -1,16 +1,17 @@
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import styled from 'styled-components';
 
 import theme from 'themeSettings';
 
-export const NotFoundWrapper = styled(Box)({
+export const NotFoundWrapper = styled(Grid)({
   height: '100%',
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
   justifyContent: 'center',
+  alignItems: 'center',
+});
+
+export const DefaultWrapper = styled(Box)({
+  height: '100vh',
 });
 
 export const ErrorText = styled(Typography)({
@@ -18,7 +19,7 @@ export const ErrorText = styled(Typography)({
   fontWeight: 'bold',
   color: '#8b8b8b',
   margin: '0.5em auto',
-  letterSpacing: '-0.41px',
+  letterSpacing: '-0.4px',
   lineHeight: '83.88px',
   [theme.breakpoints.up('xs')]: {
     fontSize: '30px',
@@ -43,7 +44,7 @@ export const UnderErrorText = styled(Typography)({
   fontWeight: 'medium',
   color: '#8b8b8b',
   lineHeight: '68.94px',
-  letterSpacing: '-0.41px',
+  letterSpacing: '-0.4px',
   [theme.breakpoints.up('xs')]: {
     fontSize: '20px',
     lineHeight: '20px',

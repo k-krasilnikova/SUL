@@ -1,104 +1,82 @@
 import styled from 'styled-components';
-import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+
 import theme from 'themeSettings';
 
 export const ProfileBox = styled('div')({
+  width: '90%',
+  margin: '88px 0px 113px 122px',
+});
+export const AvatarWrapper = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    width: '320px',
-    margin: '5px auto',
-    padding: '15px',
+    display: 'block',
   },
   [theme.breakpoints.up('lg')]: {
-    width: '440px',
-    margin: '10px auto',
-    padding: '30px',
+    display: 'inline-block',
   },
-  verticalAlign: 'top',
-  fontFamily: '"Lato", sans-serif',
+  width: '219px',
   textAlign: 'center',
-});
-export const UserAvatar = styled(Avatar)({
-  margin: '20px auto 20px auto',
+  marginRight: '234px',
 });
 export const UserInfoList = styled(List)({
-  paddingTop: '10px',
-  width: '100%',
+  [theme.breakpoints.up('xs')]: {
+    display: 'block',
+    width: '200px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'inline-block',
+    verticalAlign: 'top',
+    width: '400px',
+  },
+  fontFamily: '"Ubuntu", sans-serif',
+  fontWeight: '400',
 });
 export const UserInfoLabel = styled('span')({
   [theme.breakpoints.up('xs')]: {
+    width: '80px',
     display: 'inline-block',
-    fontSize: '14px',
-    lineHeight: '14px',
+    fontSize: '12px',
+    lineHeight: '12px',
     padding: '5px',
-    height: '24px',
+    height: '22px',
     margin: '2px 0px',
   },
   [theme.breakpoints.up('lg')]: {
+    width: '132px',
     display: 'inline-block',
-    fontSize: '20px',
-    lineHeight: '20px',
-    padding: '8px',
-    height: '36px',
-    margin: '4px 0px',
+    fontSize: '18px',
+    lineHeight: '21px',
+    height: '24px',
+    marginBottom: '24px',
+    padding: '0px',
   },
-  backgroundColor: 'white',
-  color: 'black',
-  width: '30%',
 });
 export const UserInfoText = styled('span')({
   [theme.breakpoints.up('xs')]: {
+    width: '120px',
     display: 'inline-block',
-    fontSize: '14px',
-    lineHeight: '14px',
+    fontSize: '12px',
+    lineHeight: '12px',
     padding: '5px',
-    height: '24px',
+    height: '22px',
     margin: '2px 0px',
   },
   [theme.breakpoints.up('lg')]: {
-    display: 'inline-block',
-    fontSize: '20px',
-    lineHeight: '20px',
-    padding: '8px',
-    height: '36px',
-    margin: '4px 0px',
-  },
-  backgroundColor: 'white',
-  color: 'black',
-  width: '70%',
-  textAlign: 'right',
-});
-export const UserListSubheader = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '24px',
-    lineHeight: '24px',
-    padding: '3px',
-    height: '30px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    fontSize: '28px',
-    lineHeight: '28px',
-    padding: '5px',
-    height: '38px',
-  },
-  backgroundColor: '#d83938',
-  color: 'white',
-  width: '100%',
-});
-export const UserListItem = styled('span')({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '14px',
-    lineHeight: '14px',
-    padding: '5px',
+    width: '400px',
+    display: 'inline-flex',
+    fontSize: '18px',
+    lineHeight: '21px',
+    padding: '0px 0px 0px 40px',
     height: '24px',
+    marginBottom: '24px',
   },
-  [theme.breakpoints.up('lg')]: {
-    fontSize: '20px',
-    lineHeight: '20px',
-    padding: '5px',
-    height: '30px',
+});
+export const CopyIcon = styled(ContentCopyIcon)({
+  marginLeft: '10px',
+  '&:hover': {
+    cursor: 'pointer',
   },
-  backgroundColor: 'white',
-  color: 'black',
-  width: '100%',
 });

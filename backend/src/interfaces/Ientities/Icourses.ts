@@ -7,9 +7,9 @@ interface ICourse {
   requiredSkills?: Array<string>;
   description: string;
   duration: number;
-  materials: Array<ObjectId>;
+  materials: { stage: string; content: Array<string> }[];
   lessons: number;
-  testLink: string;
+  test: ObjectId;
 }
 
 type TCourses = Array<ICourse>;

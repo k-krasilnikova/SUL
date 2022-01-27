@@ -13,6 +13,7 @@ const REQUEST_ERRORS: IRequestErrors = {
 const COOKIE_VALUES: ICookiesTypes = {
   uniqAccessToken: 'accessToken',
   uniqUserId: 'userId',
+  isLogOut: 'islogOut',
 };
 
 export { REQUEST_ERRORS, COOKIE_VALUES };

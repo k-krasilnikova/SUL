@@ -1,58 +1,112 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
-
+import { Search as SearchIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { AccordionSummary, AccordionDetails, Typography, ClickAwayListener } from '@mui/material';
+import { useLogOut } from 'api/logOut';
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
-import { useLogOut } from 'api/logOut';
+import { UserAvatar } from 'components/Avatar';
+import { alertIcon, filterIcon, logOutIcon, brandLogo } from 'icons';
+
 import {
   LayoutHeader,
-  HeaderDivider,
   SpaceHolder,
+  BrandLogoLink,
   BrandLogo,
   HeaderContent,
+  Search,
+  NotificationsButton,
+  FilterButton,
+  Notifications,
+  Filter,
+  FilterAccordion,
+  UserBlock,
+  UserName,
   LogOut,
-} from 'components/Layout/styled';
-import UserDropDown from 'components/Layout/UserDropDown';
-import MyCoursesCounter from './MyCoursesCounter';
+  RelativeWrapper,
+} from './styled';
 
-const Header: React.FC<User> = ({
+interface Props {
+  firstName?: string;
+  lastName?: string;
+  avatar?: string;
+  isNotificationsOpen: boolean;
+  isFilterOpen: boolean;
+  handleNotificationsOpen: () => void;
+  handleFilterOpen: () => void;
+  handleNotificationsClose: () => void;
+  handleFilterClose: () => void;
+  handleLogOut: () => void;
+}
+type HeaderProps = User & Props;
+
+const Header: React.FC<HeaderProps> = ({
   firstName,
   lastName,
-  role,
-  unit,
-  department,
-  group,
-  myCoursesNumber,
   avatar,
-}) => {
-  const { mutateAsync } = useLogOut();
-  return (
-    <LayoutHeader container>
-      <Grid item xs={3}>
-        <NavLink to={PATHS.home}>
-          <BrandLogo>Skill Up Level</BrandLogo>
-        </NavLink>
-      </Grid>
-      <Grid item xs={9}>
-        <HeaderContent>
-          <SpaceHolder />
-          <MyCoursesCounter myCoursesNumber={myCoursesNumber} />
-          <HeaderDivider />
-          <UserDropDown
-            firstName={firstName}
-            lastName={lastName}
-            role={role}
-            unit={unit}
-            department={department}
-            group={group}
-            avatar={avatar}
-          />
-          <HeaderDivider />
-          <LogOut onClick={() => mutateAsync({ login: 'user', password: 'user' })} />
-        </HeaderContent>
-      </Grid>
-    </LayoutHeader>
-  );
-};
+  isNotificationsOpen,
+  isFilterOpen,
+  handleNotificationsOpen,
+  handleFilterOpen,
+  handleNotificationsClose,
+  handleFilterClose,
+  handleLogOut,
+}) => (
+  <LayoutHeader container>
+    <BrandLogoLink to={PATHS.profile}>
+      <BrandLogo alt=":iTechArt" src={brandLogo} />
+    </BrandLogoLink>
+    <HeaderContent>
+      <Search
+        disableUnderline
+        placeholder="Search"
+        startAdornment={
+          <InputAdornment position="start">
+            <SearchIcon color="disabled" />
+          </InputAdornment>
+        }
+      />
+      <ClickAwayListener onClickAway={handleNotificationsClose}>
+        <RelativeWrapper>
+          <NotificationsButton onClick={handleNotificationsOpen}>
+            <img alt="notifications" src={alertIcon} />
+          </NotificationsButton>
+          {isNotificationsOpen ? <Notifications>Notifications here</Notifications> : null}
+        </RelativeWrapper>
+      </ClickAwayListener>
+      <ClickAwayListener onClickAway={handleFilterClose}>
+        <RelativeWrapper>
+          <FilterButton onClick={handleFilterOpen}>
+            <img alt="filter" src={filterIcon} />
+          </FilterButton>
+          {isFilterOpen ? (
+            <Filter>
+              <FilterAccordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography>Status</Typography>
+                </AccordionSummary>
+                <AccordionDetails>Statuses here</AccordionDetails>
+              </FilterAccordion>
+              <FilterAccordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography>Technology</Typography>
+                </AccordionSummary>
+                <AccordionDetails>Technologies here</AccordionDetails>
+              </FilterAccordion>
+            </Filter>
+          ) : null}
+        </RelativeWrapper>
+      </ClickAwayListener>
+      <SpaceHolder />
+      <UserBlock to={PATHS.profile}>
+        <UserAvatar avatar={avatar} size="small" />
+        <UserName>{`${firstName} ${lastName}`}</UserName>
+      </UserBlock>
+      <LogOut onClick={handleLogOut}>
+        <img alt="log_out" src={logOutIcon} />
+      </LogOut>
+    </HeaderContent>
+  </LayoutHeader>
+);
 export default Header;
