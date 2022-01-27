@@ -81,7 +81,7 @@ export const DescriptionText = styled(Typography)({
   fontStyle: 'normal',
   fontWeight: '400',
   lineHeight: '31px',
-  letterSpacing: '-0.40px',
+  letterSpacing: '-0.4px',
 });
 export const StartTestButton = styled(Button)({
   display: 'inline-block',
@@ -95,7 +95,7 @@ export const StartTestButton = styled(Button)({
   fontStyle: 'normal',
   fontWeight: '500',
   lineHeight: '22px',
-  letterSpacing: '-0.40px',
+  letterSpacing: '-0.4px',
   textAlign: 'center',
   background: '#D43E41',
   '&hover': {
@@ -117,7 +117,7 @@ export const NextButton = styled(Button)({
   fontStyle: 'normal',
   fontWeight: '500',
   lineHeight: '22px',
-  letterSpacing: '-0.40px',
+  letterSpacing: '-0.4px',
   textAlign: 'center',
   background: '#D43E41',
   '&hover': {

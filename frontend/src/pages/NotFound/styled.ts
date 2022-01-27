@@ -19,7 +19,7 @@ export const ErrorText = styled(Typography)({
   fontWeight: 'bold',
   color: '#8b8b8b',
   margin: '0.5em auto',
-  letterSpacing: '-0.41px',
+  letterSpacing: '-0.4px',
   lineHeight: '83.88px',
   [theme.breakpoints.up('xs')]: {
     fontSize: '30px',
@@ -44,7 +44,7 @@ export const UnderErrorText = styled(Typography)({
   fontWeight: 'medium',
   color: '#8b8b8b',
   lineHeight: '68.94px',
-  letterSpacing: '-0.41px',
+  letterSpacing: '-0.4px',
   [theme.breakpoints.up('xs')]: {
     fontSize: '20px',
     lineHeight: '20px',
