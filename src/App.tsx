@@ -37,12 +37,14 @@ const App: React.FC = () => (
                 <Route index element={<MyCourses />} />
                 <Route path=":courseId" element={<LearningCourse />} />
               </Route>
-              <Route path={PATHS.coursesList} element={<CoursesList />} />
+              <Route path={PATHS.coursesList}>
+                <Route index element={<CoursesList />} />
+                <Route path=":courseId" element={<DetailedCourse />} />
+              </Route>
               <Route path={PATHS.help} element={<Help />} />
               <Route path={PATHS.employees} element={<Employees />} />
               <Route path={PATHS.requests} element={<Requests />} />
               <Route path={PATHS.skills} element={<Skills />} />
-              <Route path={`${PATHS.coursesList}/:courseId`} element={<DetailedCourse />} />
             </Route>
             <Route
               path={PATHS.signIn}
