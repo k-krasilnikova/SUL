@@ -43,17 +43,16 @@ export const Step = styled('p')({
   fontWeight: '400',
   lineHeight: '22px',
 });
-export const TextWrapper = styled(Box)({
+export const MaterialWrapper = styled(Box)({
   width: '100%',
   height: '615px',
-  padding: '20px',
   marginBottom: '40px',
   background: 'rgba(30, 30, 30, 0.12)',
   borderRadius: '5px',
-  textAlign: 'justify',
+  overflow: 'hidden',
+  /* textAlign: 'justify',
   fontFamily: '"Ubuntu", sans-serif',
-  fontSize: '24px',
-  overflowY: 'auto',
+  fontSize: '24px', */
 });
 export const Description = styled('div')({
   display: 'inline-block',

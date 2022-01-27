@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
-import { COURSE_TEXT, COURSE_DESCRIPTION } from 'constants/courseText';
+import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
+import { optimizeLink } from 'utils/helpers/videoLink';
 
 import LearningCourse from './LearningCourse';
 
-const maxStage = COURSE_TEXT.length;
 const minStage = 1;
 const stageChange = 1;
 
@@ -13,6 +14,11 @@ const LearningCourseContainer: React.FC = () => {
   const [testEnabled, setTestEnabled] = useState(false);
   const [backDisabled, setBackDisabled] = useState(true);
   const [forwardDisabled, setForwardDisabled] = useState(false);
+
+  const params = useParams();
+  const { data } = useGetClientCourseInfo(params.courseId);
+
+  const maxStage = data?.course.materials.length || 1;
 
   useEffect(() => {
     if (stage > minStage) {
@@ -25,7 +31,8 @@ const LearningCourseContainer: React.FC = () => {
     } else {
       setForwardDisabled(true);
     }
-  }, [stage]);
+  }, [stage, maxStage]);
+
   const stageForward = () => {
     if (stage < maxStage) {
       if (stage + stageChange === maxStage && !testEnabled) {
@@ -40,19 +47,20 @@ const LearningCourseContainer: React.FC = () => {
     }
   };
 
-  return (
+  return data ? (
     <LearningCourse
+      key={data.course.materials[stage - 1]._id}
       stage={stage}
       maxStage={maxStage}
       stageBack={stageBack}
       stageForward={stageForward}
-      courseText={COURSE_TEXT}
-      courseDescription={COURSE_DESCRIPTION}
+      courseDescription={{ title: data?.course.title, info: data?.course.description }}
       testEnabled={testEnabled}
       backDisabled={backDisabled}
       forwardDisabled={forwardDisabled}
+      material={optimizeLink(data.course.materials[stage - 1].content[0])}
     />
-  );
+  ) : null;
 };
 
 export default LearningCourseContainer;
