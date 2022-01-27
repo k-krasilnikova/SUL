@@ -14,7 +14,6 @@ export const CourseContainer = styled(Grid)({
   borderRadius: '16px',
   fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
-  flexDirection: 'column',
   width: '100%',
   height: '100%',
   justifyContent: 'space-between',
@@ -28,7 +27,7 @@ export const CourseContainer = styled(Grid)({
 
 export const AboutCourseContainer = styled('div')({
   minHeight: '220px',
-  padding: '16px',
+  padding: '16px 0 16px 16px',
   marginBottom: '30px',
   textOverflow: 'ellipse',
   overflow: 'hidden',
@@ -103,13 +102,13 @@ export const CourseTitle = styled('p')({
     fontSize: '24px',
     fontWeight: '500',
     lineHeight: '31px',
-    letterSpacing: '-0.40px',
+    letterSpacing: '-0.4px',
     textAlign: 'left',
     padding: '0px',
   },
   fontFamily: '"Ubuntu", sans-serif',
   color: ' #2C2525',
-  margin: '14px 43px 16px 0px',
+  margin: '15px 31px 16px 0px',
 });
 
 export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, lineHeight }) => ({
@@ -126,11 +125,10 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
   },
   [theme.breakpoints.up('lg')]: {
     fontSize: '16px',
-    fontWeight: '400',
+    fontWeight: 'normal',
     lineHeight: '21px',
-    letterSpacing: '-0.40px',
+    letterSpacing: '-0.4px !important',
     textAlign: 'left',
-    margin: '0px 43px 14px 0px',
     ...(fontSize && {
       fontSize: `${fontSize}px`,
     }),
@@ -167,8 +165,8 @@ export const ButtonsContainer = styled('div')({
   width: '100%',
   fontSize: '12px',
   justifyContent: 'space-between',
-  padding: '10px',
-  margin: '0px',
+  padding: '16px',
+  margin: '0 0 0 16px',
 });
 
 export const InfoContainer = styled(Box)({
@@ -196,7 +194,6 @@ export const InfoItem = styled('div')({
   },
   [theme.breakpoints.up('lg')]: {
     padding: '0px',
-    margin: '0px 2px 0px 22px',
   },
   display: 'inline-flex',
   verticalAlign: 'middle',
@@ -212,14 +209,21 @@ export const InfoItemText = styled(Typography)({
   [theme.breakpoints.up('lg')]: {
     width: '90px',
     padding: '0px',
-    marginLeft: '8px',
     fontFamily: '"Ubuntu", sans-serif',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '18px',
-    letterSpacing: '-0.40px',
+    letterSpacing: '-0.4px',
     textAlign: 'left',
   },
   verticalAlign: 'middle',
-  color: 'black',
+  color: theme.palette.text.primary,
+});
+
+export const InfoItemTextBox = styled(Box)({
+  marginLeft: '8px',
+});
+
+export const CourseDescriptionWrapper = styled(Box)({
+  margin: '0px 45px 14px 16px',
 });
