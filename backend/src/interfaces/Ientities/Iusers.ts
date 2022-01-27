@@ -14,6 +14,7 @@ interface IUser {
   courses: ObjectId[];
   group: string;
   employees: ObjectId[];
+  pendingCourses: ObjectId[];
   avatar: string;
   birthday: Date;
   skype: string;
