@@ -11,6 +11,8 @@ export const PageContainer = styled(Grid)({
     margin: '0px !important',
   },
   width: '100%',
+  paddingRight: '125px',
+  paddingTop: '30px',
 });
 
 export const GridItem = styled(Grid)({

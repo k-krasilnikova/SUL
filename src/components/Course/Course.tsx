@@ -29,7 +29,7 @@ const CourseItem: React.FC<Props> = ({
   descriptionLimit,
   children,
 }) => (
-  <CourseContainer>
+  <CourseContainer style={{ flexDirection: 'column' }}>
     <AboutCourseContainer>
       <ImageWrapper>
         <Image />

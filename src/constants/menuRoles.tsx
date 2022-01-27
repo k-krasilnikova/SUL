@@ -1,78 +1,79 @@
 import React from 'react';
-import {
-  ArticleOutlined,
-  FolderSpecialOutlined,
-  AddToQueueOutlined,
-  EmojiPeopleOutlined,
-  AssessmentOutlined,
-  QuizOutlined,
-} from '@mui/icons-material';
+import { Icon } from '@mui/material';
 
 import { IRolesMenu, MenuItemProps } from 'types/menu';
+import {
+  coursesListIcon,
+  myCoursesIcon,
+  helpIcon,
+  pendingIcon,
+  employeeIcon,
+  skillsIcon,
+} from 'icons/menuIcons';
 
 import { PATHS } from './routes';
 
 const EMPLOYEE_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
-    title: 'Courses List',
-    icon: <ArticleOutlined fontSize="large" />,
+    title: 'Courses list',
+    icon: <Icon fontSize="large" component={coursesListIcon} />,
   },
   {
     path: PATHS.myCourses,
-    title: 'My Courses',
-    icon: <AddToQueueOutlined fontSize="large" />,
+    title: 'My courses',
+    icon: <Icon fontSize="large" component={myCoursesIcon} />,
   },
   {
     path: PATHS.help,
     title: 'Help',
-    icon: <QuizOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={helpIcon} />,
   },
 ];
 
 const MANAGER_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
-    title: 'Courses List',
-    icon: <ArticleOutlined fontSize="large" />,
+    title: 'Courses list',
+    icon: <Icon fontSize="large" component={coursesListIcon} />,
   },
   {
     path: PATHS.myCourses,
-    title: 'My Courses',
-    icon: <FolderSpecialOutlined fontSize="large" />,
+    title: 'My courses',
+    icon: <Icon fontSize="large" component={myCoursesIcon} />,
   },
   {
     path: PATHS.requests,
     title: 'Pending Requests',
-    icon: <AddToQueueOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={pendingIcon} />,
   },
   {
     path: PATHS.employees,
     title: 'Employees',
-    icon: <EmojiPeopleOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={employeeIcon} />,
   },
   {
     path: PATHS.help,
     title: 'Help',
-    icon: <QuizOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={helpIcon} />,
   },
 ];
 
 const ADMIN_MENU: Array<MenuItemProps> = [
   {
     path: PATHS.coursesList,
-    title: 'Courses List',
-    icon: <ArticleOutlined fontSize="large" />,
+    title: 'Courses list',
+    icon: <Icon fontSize="large" component={coursesListIcon} />,
   },
   {
     path: PATHS.skills,
     title: 'Skills',
-    icon: <AssessmentOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={skillsIcon} />,
   },
   {
     path: PATHS.help,
     title: 'Help',
-    icon: <QuizOutlined fontSize="large" />,
+    icon: <Icon fontSize="large" component={helpIcon} />,
   },
 ];
 

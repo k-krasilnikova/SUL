@@ -31,6 +31,7 @@ export const AboutCourseContainer = styled('div')({
   marginBottom: '30px',
   textOverflow: 'ellipse',
   overflow: 'hidden',
+  border: '1px solid red',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     flexDirection: 'column',
@@ -168,6 +169,7 @@ export const ButtonsContainer = styled('div')({
   justifyContent: 'space-between',
   padding: '10px',
   margin: '0px',
+  border: '1px solid green',
 });
 
 export const InfoContainer = styled(Box)({
