@@ -10,7 +10,7 @@ const courseSchema = new Schema<ICourse>({
   duration: { type: Number, required: true },
   materials: [{ stage: { type: Number }, content: [{ type: String }] }],
   lessons: { type: Number },
-  testLink: { type: String },
+  test: { type: Schema.Types.ObjectId, ref: 'Test' },
 });
 
 const CourseModel = model<ICourse>('Courses', courseSchema, 'courses');

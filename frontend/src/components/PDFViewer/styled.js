@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import { Page } from 'react-pdf';
 import styled from 'styled-components';
 
-import Button from 'components/Button';
+import { Button } from 'components/Button';
 
 export const PDFWrapper = styled(Box)({
   display: 'flex',

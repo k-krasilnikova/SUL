@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Image from 'components/Image';
+import { Image } from 'components/Image';
 import CourseInfo from './CourseInfo';
 
 import {
@@ -20,7 +20,7 @@ interface Props {
 }
 
 const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, children }) => (
-  <CourseContainer>
+  <CourseContainer container>
     <AboutCourseContainer>
       <ImageWrapper>
         <Image />

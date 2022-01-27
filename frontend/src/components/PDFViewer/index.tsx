@@ -1,1 +1,3 @@
-export { default } from './PDFViewerContainer';
+import React from 'react';
+
+export const PDFViewer = React.lazy(() => import('./PDFViewerContainer'));

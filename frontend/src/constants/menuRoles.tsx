@@ -44,7 +44,7 @@ const MANAGER_MENU: Array<MenuItemProps> = [
   },
   {
     path: PATHS.requests,
-    title: 'Pending Requests',
+    title: 'Pending requests',
     icon: <Icon fontSize="large" component={pendingIcon} />,
   },
   {
