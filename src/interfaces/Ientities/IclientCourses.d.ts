@@ -8,6 +8,7 @@ interface IClientCourse {
   user: ObjectId;
   course: ObjectId | ICourse;
   status: TCourseStatus;
+  testResult: string;
   progress: [
     {
       stage: string;

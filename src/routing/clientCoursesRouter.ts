@@ -8,8 +8,14 @@ import passCourse from 'controllers/clientCourses/passCourse';
 import startCourse from 'controllers/clientCourses/startCourse';
 import finishCourse from 'controllers/clientCourses/finishCourse';
 import getClientCourseById from 'controllers/clientCourses/getClientCourse';
+import getTest from 'controllers/tests/getTest';
 
 const clientCoursesRouter = Router();
+clientCoursesRouter.get(
+  `${Params.id}${SubRoutes.test}`,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
+  getTest,
+);
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.start}`,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
