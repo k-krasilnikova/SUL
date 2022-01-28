@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Grid from '@mui/material/Grid';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+
+import Loader from 'components/Loader';
 
 import { Header } from './Header';
 import Menu from './Menu';
@@ -23,11 +25,11 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avat
       <GridHeader item xs={12}>
         <Header firstName={firstName} lastName={lastName} avatar={avatar} />
       </GridHeader>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <Menu />
       </Grid>
-      <PageWrapper item xs={9}>
-        {children}
+      <PageWrapper item xs={9} xl={10}>
+        <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
       </PageWrapper>
     </Grid>
   </HelmetProvider>

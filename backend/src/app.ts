@@ -29,5 +29,4 @@ app.listen(port, () => {
   if (port) {
     console.log(`SUL api started on port ${port}.`);
   }
-
 });

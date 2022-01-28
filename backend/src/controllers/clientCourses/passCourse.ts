@@ -6,10 +6,14 @@ import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 
 const passCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
-    const { stage } = req.params;
+    const { stage } = req.query;
+    if (typeof stage !== 'string') {
+      res.json({ message: 'invalid query params' });
+      return;
+    }
     const { id: clientCourseId } = req.params;
-    const updatedCourse = await updateCourseProgress(clientCourseId, stage);
-    res.json(updatedCourse);
+    await updateCourseProgress(clientCourseId, stage);
+    res.json({ pass: true });
   } catch (err) {
     if (isError(err)) {
       next(err);

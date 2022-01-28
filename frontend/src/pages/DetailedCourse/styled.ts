@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Box } from '@mui/system';
 import { Grid, Typography } from '@mui/material';
-import Button from 'components/Button';
 import theme from 'themeSettings';
+import { Button } from 'components/Button';
 
 export const DetailedCourseWrapper = styled(Box)({
   margin: '40px 0 40px 40px',
@@ -10,9 +10,9 @@ export const DetailedCourseWrapper = styled(Box)({
 
 export const ImageWrapper = styled('div')({
   float: 'left',
-  width: '350px',
-  height: '248px',
-  margin: '0 20px 30px 0',
+  width: '479px',
+  height: '268px',
+  margin: '0 30px 30px 0',
   overflow: 'hidden',
   borderRadius: '10px',
   [theme.breakpoints.down('md')]: {
@@ -35,7 +35,8 @@ export const InnerWrapper = styled(Box)({
 
 export const DetailedCourseText = styled(Typography)({
   fontWeight: 'normal',
-  letterSpacing: '-0.41px',
+  letterSpacing: '-0.4px',
+  color: '#131313',
   [theme.breakpoints.up('xs')]: {
     fontSize: '18px',
     lineHeight: '32px',
@@ -45,18 +46,19 @@ export const DetailedCourseText = styled(Typography)({
     lineHeight: '35px',
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '24px',
-    lineHeight: '37px',
+    fontSize: '24px !important',
+    lineHeight: '37px !important',
+    letterSpacing: '-0.4px !important',
   },
 });
 
 export const DetailedCourseTitle = styled(Typography)({
-  fontSize: '42px',
-  fontWeight: 'bold',
-  minWidth: '100px',
-  lineHeight: '34px',
-  marginBottom: '13px',
-  marginTop: '20px',
+  fontSize: '42px !important',
+  fontWeight: 'bold !important',
+  lineHeight: '55px !important',
+  letterSpacing: '-0.4px !important',
+  marginBottom: '13px !important',
+  color: '#2c2525',
 });
 
 export const DetailedCourseActionsBox = styled(Box)({
@@ -65,22 +67,47 @@ export const DetailedCourseActionsBox = styled(Box)({
   marginTop: '171px',
 });
 
-export const StyledButton = styled(Button)({
-  marginLeft: '15px',
-});
-
 export const SimilarCoursesWrapper = styled(Grid)({
-  marginTop: '171px',
+  marginTop: '156px',
   marginBottom: '171px',
 });
 
 export const SimilarCoursesItemWrapper = styled(Grid)({
-  height: '300px',
-  width: '600px',
+  height: '361px',
+  width: '711px',
+  marginTop: '40px',
 });
 
 export const SimilarCoursesTitle = styled(Typography)({
-  fontSize: '40px',
-  fontWeight: 'bold',
-  marginBottom: '20px',
+  fontSize: '40px !important',
+  fontWeight: 'bold !important',
+  color: '#2C2525',
+  lineHeight: '52px !important',
+  letterSpacing: '-0.4px !important',
+});
+
+export const BackButton = styled(Button)({
+  height: '39px',
+  width: '84px',
+});
+
+export const StartButton = styled(Button)({
+  height: '50px',
+  width: '155px',
+});
+
+export const DetailsButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '16px !important',
+});
+
+export const StartCourseButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '40px !important',
+});
+
+export const CourseActionsBox = styled(Box)({
+  marginLeft: '16px !important',
 });

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { List, Typography, Input } from '@mui/material';
+import { List, Input } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -49,7 +49,7 @@ export const SkillsInfoList = styled('div')({
   padding: '17px',
 });
 export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
-  display: 'inline-flex',
+  display: 'inline-block',
   marginRight: '64px',
   borderRadius: '5px',
   [theme.breakpoints.up('xs')]: {
@@ -60,7 +60,7 @@ export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
   [theme.breakpoints.up('md')]: {
     width: '200px',
     height: '100px',
-    padding: '20px',
+    padding: '16px',
   },
   background: '#EAEAEA',
   border: '1px solid rgba(0, 0, 0, 0.2)',
@@ -68,22 +68,43 @@ export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
     backgroundColor: '#f5f5f5',
     border: '1px solid #efefef',
   }),
+  fontWeight: 'normal',
 }));
+export const SkillInfoFlex = styled('div')({
+  display: 'flex-block',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  height: '41px',
+});
 export const SkillProgress = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    margin: '0px 10px 5px 3px',
+    marginRight: '10px',
   },
   [theme.breakpoints.up('md')]: {
-    margin: '0px 20px 10px 5px',
+    marginRight: '16px',
   },
-  width: '50px',
-  marginRight: '20px',
+  width: '41px',
 });
-export const SkillInfoText = styled(Typography)({
+export const SkillInfoText = styled('span')({
   [theme.breakpoints.up('xs')]: {
     fontSize: '12px',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '14px',
+    fontSize: '16px',
+    lineHeight: '120%',
   },
+});
+export const SkillInfoStage = styled('div')({
+  [theme.breakpoints.up('xs')]: {
+    fontSize: '12px',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '13px',
+    lineHeight: '15px',
+  },
+  marginLeft: '57px',
+});
+export const NoSkills = styled('div')({
+  marginTop: '80px',
 });

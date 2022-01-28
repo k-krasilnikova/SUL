@@ -4,9 +4,16 @@ export interface MenuItemProps {
   icon: React.ReactElement;
 }
 
-export interface MenuProps {
+export interface IMenuProps {
   menuList: MenuItemProps[];
   children?: React.ReactNode;
+  menuItem?: string;
+  setCurrentMenuPath?: (e: string) => void;
+  getCurrentMenuPath?: () => string | undefined;
+  path?: string;
+  classes: {
+    [key: string]: string | undefined;
+  };
 }
 
 export interface IRolesMenu {
