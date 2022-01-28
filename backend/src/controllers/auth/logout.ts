@@ -9,7 +9,7 @@ const logout = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
     const accessToken = req.headers.authorization?.split(' ')[1];
     if (accessToken) {
-      const decodetToken = await verifyAccessToken(accessToken);
+      const decodetToken = verifyAccessToken(accessToken);
       await clearTokenProvider(decodetToken.id);
       res.clearCookie('refreshToken');
       res.json({ message: 'Logout is successful' });

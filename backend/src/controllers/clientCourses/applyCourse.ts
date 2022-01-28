@@ -8,7 +8,11 @@ import { INITIAL_INDX } from 'config/constants';
 import { materialsCounterProvider } from 'db/providers/courseProvider';
 import { checkCourseDuplicates } from 'utils/validation/checkDuplicates';
 
-const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const applyCourse = async (
+  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
+  res: Response<{ message: string } | { status: string }, { id: string }>,
+  next: TMiddlewareCall,
+) => {
   try {
     const { id: courseId } = req.body;
     const { id: userId } = res.locals;

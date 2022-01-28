@@ -10,7 +10,7 @@
         "plugin:import/warnings",
         "plugin:import/recommended",
         "eslint-config-airbnb-base",
-        //"plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "airbnb-typescript/base",
         "eslint-config-prettier",
         "plugin:prettier/recommended"
@@ -31,7 +31,13 @@
         "no-underscore-dangle": [
             "error", {"allow": ["_id"]}
         ],
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/no-misused-promises": [
+            "error",
+            {
+              "checksVoidReturn": false
+            }
+          ]
         
       },
     "settings": {

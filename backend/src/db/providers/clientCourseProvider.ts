@@ -4,11 +4,8 @@ import CourseStatus from 'enums/coursesEnums';
 import ClientCourseModel from '../models/ClientCourses';
 
 const getClientCoursesProvider = async (userId: string) => {
-  try {
-    return await ClientCourseModel.find({ user: userId }).populate('course');
-  } catch (e) {
-    throw new Error();
-  }
+  const clientCourses = await ClientCourseModel.find({ user: userId }).populate('course');
+  return clientCourses;
 };
 
 const getClientCourseProvider = async (clientCourseId: string) => {
@@ -19,13 +16,13 @@ const getClientCourseProvider = async (clientCourseId: string) => {
 };
 
 const applyCourseProvider = async (courseId: string, userId: string, progressDto: IProgress[]) => {
-  const applyedCourse = await ClientCourseModel.create({
+  await ClientCourseModel.create({
     user: userId,
     course: courseId,
     status: CourseStatus.approved,
     progress: progressDto,
   });
-  return applyedCourse;
+  return { status: 'applyed successful' };
 };
 
 const updateCourseProgress = async (courseId: string, stage: string) => {

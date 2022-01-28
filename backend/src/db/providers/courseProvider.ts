@@ -59,7 +59,7 @@ const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; sta
 };
 
 const materialsCounterProvider = async (courseId: string) => {
-  const materialsCount = await CourseModel.aggregate([
+  const materialsCount: { _id: string; total: number }[] = await CourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
       $project: {
