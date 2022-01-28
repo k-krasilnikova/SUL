@@ -35,11 +35,17 @@ interface Props {
       }>;
     }>;
   }>;
-  setSearchSkill: (value: string) => void;
+  searchSkillInList: (value: string) => void;
   checkSpace: (event: React.KeyboardEvent) => void;
+  searchSkill: string;
 }
 
-const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace }) => (
+const UserSkills: React.FC<Props> = ({
+  userSkills,
+  searchSkillInList,
+  checkSpace,
+  searchSkill,
+}) => (
   <SkillsBox>
     <SearchWrapper>
       <SearchSkill
@@ -56,8 +62,9 @@ const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace })
           checkSpace(event);
         }}
         onChange={(event) => {
-          setSearchSkill(event.target.value);
+          searchSkillInList(event.target.value);
         }}
+        value={searchSkill}
       />
       <Divider />
     </SearchWrapper>
