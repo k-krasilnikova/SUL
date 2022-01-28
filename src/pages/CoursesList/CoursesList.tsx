@@ -28,7 +28,7 @@ const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyC
                 lessons={course?.lessons}
               >
                 <CourseActions>
-                  <Link to={`${PATHS.coursesList}/61f2c1de34177dc43970ead7`}>
+                  <Link to={`${PATHS.coursesList}/${course._id}`}>
                     <CourseButton color="primary" variant="contained">
                       Details
                     </CourseButton>
