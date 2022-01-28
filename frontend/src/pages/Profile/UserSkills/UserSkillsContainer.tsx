@@ -24,6 +24,10 @@ const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
     const formattedValue = value.split(/\s+/).join(' ').trimStart();
     setSearchSkill(formattedValue);
   };
+  const checkPastedValue = (value: string) => {
+    const formattedValue = value.split(/\s+/).join(' ').trimStart().trimEnd();
+    setSearchSkill(formattedValue);
+  };
   const checkSpace = (event: React.KeyboardEvent) => {
     const { key } = event;
     const formattedKey = key.trim();
@@ -33,14 +37,14 @@ const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
   };
   const userSkills = skills?.filter(
     (skill) =>
-      !searchSkill.trimEnd() ||
-      skill.title.toLowerCase().includes(searchSkill.toLowerCase().trimEnd()),
+      !searchSkill.trimEnd() || skill.title.toLowerCase().includes(searchSkill.toLowerCase()),
   );
   return (
     <UserSkills
       userSkills={userSkills}
       searchSkillInList={searchSkillInList}
       checkSpace={checkSpace}
+      checkPastedValue={checkPastedValue}
       searchSkill={searchSkill}
     />
   );
