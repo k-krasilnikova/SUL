@@ -26,16 +26,41 @@ export const CourseContainer = styled(Grid)({
   },
 });
 
+// Верхний контейнер
 export const AboutCourseContainer = styled('div')({
-  minHeight: '220px',
+  minHeight: '295px',
   padding: '16px 0 16px 16px',
-  marginBottom: '30px',
+  textOverflow: 'ellipse',
+  overflow: 'hidden',
+  width: '100%',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     height: 'fit-content',
   },
+});
+
+// Нижний контейнер
+export const ButtonsContainer = styled('div')({
+  [theme.breakpoints.down('xl')]: {
+    justifyContent: 'center',
+  },
+  [theme.breakpoints.down('lg')]: {
+    justifyContent: 'space-between',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  height: 'fit-content',
+  width: '100%',
+  fontSize: '12px',
+  justifyContent: 'space-between',
+  paddingBottom: '16px',
 });
 
 export const ImageWrapper = styled('div')({
@@ -145,28 +170,7 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
   }),
 }));
 
-export const ButtonsContainer = styled('div')({
-  [theme.breakpoints.down('xl')]: {
-    justifyContent: 'center',
-  },
-  [theme.breakpoints.down('lg')]: {
-    justifyContent: 'space-between',
-  },
-  [theme.breakpoints.down('md')]: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
-  display: 'flex',
-  flexWrap: 'wrap',
-  flexDirection: 'row',
-  height: 'fit-content',
-  width: '100%',
-  fontSize: '12px',
-  justifyContent: 'space-between',
-  padding: '16px',
-  margin: '0 0 0 16px',
-});
-
+// Блок с описанием
 export const InfoContainer = styled(Box)({
   [theme.breakpoints.up('xs')]: {
     margin: '0px',
@@ -182,8 +186,9 @@ export const InfoContainer = styled(Box)({
   height: 'fit-content',
   display: 'flex',
   alignItems: 'center',
-  alignSelf: 'center',
-  backgroundColor: 'none',
+  alignSelf: 'end',
+  paddingLeft: '30px !important',
+  paddingBottom: '7px !important',
 });
 
 export const InfoItem = styled('div')({

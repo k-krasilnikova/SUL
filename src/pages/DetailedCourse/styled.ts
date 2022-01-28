@@ -73,7 +73,7 @@ export const SimilarCoursesWrapper = styled(Grid)({
 });
 
 export const SimilarCoursesItemWrapper = styled(Grid)({
-  height: '361px',
+  // height: '361px',
   width: '711px',
   marginTop: '40px',
 });

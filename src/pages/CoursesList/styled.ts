@@ -1,7 +1,6 @@
-import { Grid } from '@mui/material';
-
 import styled from 'styled-components';
 
+import { Grid, Box } from '@mui/material';
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
@@ -11,12 +10,14 @@ export const PageContainer = styled(Grid)({
     margin: '0px !important',
   },
   width: '100%',
-  paddingRight: '125px',
-  paddingTop: '30px',
+  paddingRight: '135px',
+  paddingTop: '40px',
+  paddingLeft: '5px',
 });
 
+// Родительский блок
 export const GridItem = styled(Grid)({
-  padding: '15px',
+  height: 'fit-content',
 });
 
 export const CourseButton = styled(Button)({
@@ -36,6 +37,7 @@ export const CourseButton = styled(Button)({
     alignSelf: 'center',
     lineHeight: '10px',
   },
+  marginRight: '20px',
 });
 
 export const CourseActions = styled('div')({
@@ -50,4 +52,22 @@ export const CourseActions = styled('div')({
     flexDirection: 'column',
     minWidth: 'auto',
   },
+});
+// Блок с Кнопками
+export const CourseActionsBox = styled(Box)({
+  marginLeft: '16px !important',
+});
+
+// Кнопка раз
+export const DetailsButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '16px !important',
+});
+
+// Кнопка два
+export const StartCourseButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '40px !important',
 });
