@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Box, Typography } from '@mui/material';
+import ReactPlayer from 'react-player';
 
 import { Button } from 'components/Button';
 
@@ -50,13 +51,22 @@ export const MaterialWrapper = styled(Box)({
   background: 'rgba(30, 30, 30, 0.12)',
   borderRadius: '5px',
   overflow: 'hidden',
-  /* textAlign: 'justify',
+});
+export const MaterialText = styled('div')({
+  height: '100%',
+  textAlign: 'justify',
+  padding: '20px',
   fontFamily: '"Ubuntu", sans-serif',
-  fontSize: '24px', */
+  fontSize: '24px',
+  overflowY: 'auto',
+});
+export const MaterialVideo = styled(ReactPlayer)({
+  height: '100%',
+  width: '100%',
 });
 export const Description = styled('div')({
   display: 'inline-block',
-  maxWidth: 'calc(100% - 155px - 41px)',
+  width: 'calc(100% - 196px)',
   height: '418px',
   padding: '31px 238px 31px 54px',
   textAlign: 'left',

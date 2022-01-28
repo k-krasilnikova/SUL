@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 
@@ -7,6 +6,7 @@ import { AuthorizedLayout } from 'components/Layout';
 import { Back, Forward } from 'components/Arrows';
 import { PATHS } from 'constants/routes';
 import { playVideo } from 'icons';
+import { MATERIAL } from 'constants/materials';
 
 import {
   LearningPageContainer,
@@ -15,6 +15,8 @@ import {
   StepperController,
   Step,
   MaterialWrapper,
+  MaterialText,
+  MaterialVideo,
   Description,
   DescriptionTitle,
   DescriptionText,
@@ -28,14 +30,12 @@ interface LearningProps {
   maxStage: number;
   stageBack: () => void;
   stageForward: () => void;
-  courseDescription?: {
-    title: string;
-    info: string;
-  };
+  courseDescription?: { title: string; info: string } | null;
   testEnabled: boolean;
   backDisabled: boolean;
   forwardDisabled: boolean;
   material: string;
+  materialType: string;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -48,6 +48,7 @@ const LearningCourse: React.FC<LearningProps> = ({
   backDisabled,
   forwardDisabled,
   material,
+  materialType,
 }) => {
   return (
     <AuthorizedLayout pageName="Learning course">
@@ -68,15 +69,17 @@ const LearningCourse: React.FC<LearningProps> = ({
             </IconButton>
           </StepperController>
           <MaterialWrapper>
-            <ReactPlayer
-              url={material}
-              height="100%"
-              width="100%"
-              playIcon={<img src={playVideo} alt="play" />}
-              light
-              playing
-              controls
-            />
+            {materialType === MATERIAL.video ? (
+              <MaterialVideo
+                url={material}
+                playIcon={<img src={playVideo} alt="play" />}
+                light
+                playing
+                controls
+              />
+            ) : (
+              <MaterialText>{material}</MaterialText>
+            )}
           </MaterialWrapper>
           {courseDescription && (
             <Description>
