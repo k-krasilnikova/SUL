@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 
 import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
 import { optimizeLink } from 'utils/helpers/videoLink';
+import { MATERIAL } from 'constants/materials';
+import { defineMaterialType } from 'utils/helpers/defineMaterialType';
 
 import LearningCourse from './LearningCourse';
 
@@ -18,7 +20,7 @@ const LearningCourseContainer: React.FC = () => {
   const params = useParams();
   const { data } = useGetClientCourseInfo(params.courseId);
 
-  const maxStage = data?.course.materials.length || 1;
+  const maxStage = data ? data.course.materials.length : 1;
 
   useEffect(() => {
     if (stage > minStage) {
@@ -47,6 +49,18 @@ const LearningCourseContainer: React.FC = () => {
     }
   };
 
+  const courseDescription = data?.course.description
+    ? { title: data?.course.title, info: data?.course.description }
+    : null;
+
+  const materialType = data
+    ? defineMaterialType(data.course.materials[stage - 1].content[0])
+    : MATERIAL.text;
+  const material =
+    materialType === MATERIAL.video && data
+      ? optimizeLink(data.course.materials[stage - 1].content[0])
+      : MATERIAL.text;
+
   return data ? (
     <LearningCourse
       key={data.course.materials[stage - 1]._id}
@@ -54,11 +68,12 @@ const LearningCourseContainer: React.FC = () => {
       maxStage={maxStage}
       stageBack={stageBack}
       stageForward={stageForward}
-      courseDescription={{ title: data?.course.title, info: data?.course.description }}
+      courseDescription={courseDescription}
       testEnabled={testEnabled}
       backDisabled={backDisabled}
       forwardDisabled={forwardDisabled}
-      material={optimizeLink(data.course.materials[stage - 1].content[0])}
+      material={material}
+      materialType={materialType}
     />
   ) : null;
 };
