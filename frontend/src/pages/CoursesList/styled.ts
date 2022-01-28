@@ -10,8 +10,8 @@ export const PageContainer = styled(Grid)({
     margin: '0px !important',
   },
   width: '100%',
-  paddingRight: '135px',
-  paddingTop: '40px',
+  paddingRight: '8.3%',
+  paddingTop: '2.5%',
   paddingLeft: '5px',
 });
 
