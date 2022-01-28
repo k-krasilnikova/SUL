@@ -18,6 +18,7 @@ import {
   SkillTitle,
   Title,
   SkillsInfoList,
+  NoSkills,
 } from './styled';
 
 interface Props {
@@ -35,19 +36,25 @@ interface Props {
     }>;
   }>;
   setSearchSkill: (value: string) => void;
+  checkSpace: (event: React.KeyboardEvent) => void;
 }
 
-const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill }) => (
+const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace }) => (
   <SkillsBox>
     <SearchWrapper>
       <SearchSkill
         disableUnderline
         placeholder="Search"
+        inputProps={{ maxLength: 100 }}
+        fullWidth
         startAdornment={
           <InputAdornment position="start">
             <SearchIcon color="disabled" />
           </InputAdornment>
         }
+        onKeyDown={(event) => {
+          checkSpace(event);
+        }}
         onChange={(event) => {
           setSearchSkill(event.target.value);
         }}
@@ -73,7 +80,9 @@ const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill }) => (
           </div>
         ))
       ) : (
-        <NoContent message={NO_SKILLS} size={SIZE.medium} />
+        <NoSkills>
+          <NoContent message={NO_SKILLS} size={SIZE.medium} />
+        </NoSkills>
       )}
     </SkillsList>
   </SkillsBox>
