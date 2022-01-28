@@ -4,7 +4,7 @@ import ClientCourseModel from 'db/models/ClientCourses';
 import { TestDb } from 'interfaces/Ientities/Itest';
 
 const getTestProvider = async (courseId: string) => {
-  const test: TestDb[] = await ClientCourseModel.aggregate([
+  const test: Promise<TestDb>[] = await ClientCourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
       $lookup: {

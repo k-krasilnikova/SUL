@@ -7,7 +7,7 @@ const ENVIROMENTS = {
 const DEFAULT_ACCESS_TIMEOUT = '1d';
 const DEFAULT_REFRESH_TIMEOUT = '7d';
 const DEFAULT_CONNECTION_STRING = 'CONN_STRING_NOT_SET';
-const DEFAULT_NO_SECRET = '';
+const DEFAULT_NO_SECRET = 'undefined';
 
 const USER_ROLES = {
   ADMIN: 'admin',

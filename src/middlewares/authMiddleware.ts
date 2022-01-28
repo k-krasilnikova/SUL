@@ -12,7 +12,7 @@ const withAuth =
         res.status(401);
         throw new Error('Unauthorized');
       } else {
-        const decodedToken = await verifyAccessToken(accessToken);
+        const decodedToken = verifyAccessToken(accessToken);
         res.locals = decodedToken;
         const compare = roles.some((role) => role === decodedToken.role);
         if (!compare) {

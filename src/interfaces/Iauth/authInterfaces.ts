@@ -1,5 +1,10 @@
 import { JwtPayload } from 'jsonwebtoken';
 
+interface ILoginPayload {
+  login: string;
+  password: string;
+}
+
 interface IAccessJwtPayload extends JwtPayload {
   id: string;
   role: string;
@@ -14,4 +19,4 @@ interface ITokens {
   refreshToken: string;
 }
 
-export { IAccessJwtPayload, IRefreshJwtPayload, ITokens };
+export { ILoginPayload, IAccessJwtPayload, IRefreshJwtPayload, ITokens };
