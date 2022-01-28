@@ -1,6 +1,9 @@
 import React from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import { SkillInfo, SkillInfoText, SkillProgress } from './styled';
+
+import ProgressBar from 'components/ProgressBar/ProgressBar';
+import { SIZE } from 'constants/sizes';
+
+import { SkillInfo, SkillInfoFlex, SkillInfoText, SkillProgress, SkillInfoStage } from './styled';
 
 interface Props {
   technologyTitle: string;
@@ -16,27 +19,15 @@ const CourseMaterialInfo: React.FC<Props> = ({
   progress,
 }) => (
   <SkillInfo completed={stages === stagesCompleted}>
-    <SkillProgress style={{}}>
-      <CircularProgressbar
-        value={progress}
-        styles={{ path: { stroke: '#1BC02C' }, trail: { stroke: '#d6d6d6' } }}
-      />
-    </SkillProgress>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        height: '58px',
-      }}
-    >
-      <SkillInfoText variant="body1" gutterBottom>
-        {technologyTitle}
-      </SkillInfoText>
-      <SkillInfoText variant="body2" gutterBottom>
-        {stagesCompleted}/{stages}
-      </SkillInfoText>
-    </div>
+    <SkillInfoFlex>
+      <SkillProgress>
+        <ProgressBar value={progress} size={SIZE.small} />
+      </SkillProgress>
+      <SkillInfoText>{technologyTitle}</SkillInfoText>
+    </SkillInfoFlex>
+    <SkillInfoStage>
+      {stagesCompleted}/{stages}
+    </SkillInfoStage>
   </SkillInfo>
 );
 
