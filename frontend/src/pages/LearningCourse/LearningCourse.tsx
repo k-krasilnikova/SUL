@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { arrowBack, arrowForward } from 'icons';
+import { Back, Forward } from 'components/Arrows';
 import { PATHS } from 'constants/routes';
 
 import {
@@ -17,6 +17,8 @@ import {
   DescriptionTitle,
   DescriptionText,
   StartTestButton,
+  NextButton,
+  NextButtonWrapper,
 } from './styled';
 
 interface LearningProps {
@@ -30,6 +32,8 @@ interface LearningProps {
     info: string;
   };
   testEnabled: boolean;
+  backDisabled: boolean;
+  forwardDisabled: boolean;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -40,6 +44,8 @@ const LearningCourse: React.FC<LearningProps> = ({
   courseText,
   courseDescription,
   testEnabled,
+  backDisabled,
+  forwardDisabled,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -48,14 +54,14 @@ const LearningCourse: React.FC<LearningProps> = ({
       </Link>
       <LearningWrapper>
         <StepperController>
-          <IconButton onClick={stageBack}>
-            <img alt="back" src={arrowBack} />
+          <IconButton onClick={stageBack} disabled={backDisabled}>
+            <Back arrowDisabled={backDisabled} />
           </IconButton>
           <Step>
             {stage}/{maxStage}
           </Step>
-          <IconButton onClick={stageForward}>
-            <img alt="forward" src={arrowForward} />
+          <IconButton onClick={stageForward} disabled={forwardDisabled}>
+            <Forward arrowDisabled={forwardDisabled} />
           </IconButton>
         </StepperController>
         <TextWrapper>{courseText[stage - 1]}</TextWrapper>
@@ -65,7 +71,15 @@ const LearningCourse: React.FC<LearningProps> = ({
             <DescriptionText>{courseDescription.info}</DescriptionText>
           </Description>
         )}
-        <StartTestButton disabled={!testEnabled}>Start the test</StartTestButton>
+        {testEnabled ? (
+          <StartTestButton variant="contained">Start the Test</StartTestButton>
+        ) : (
+          <NextButtonWrapper>
+            <NextButton variant="contained" onClick={stageForward}>
+              Next
+            </NextButton>
+          </NextButtonWrapper>
+        )}
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>

@@ -9,11 +9,13 @@ enum Routes {
 
 enum SubRoutes {
   login = '/login',
+  logout = '/logout',
   refresh = '/refresh',
   profile = '/profile',
   materials = '/materials',
   start = '/start',
   finish = '/finish',
+  test = '/test',
 }
 
 enum Params {
