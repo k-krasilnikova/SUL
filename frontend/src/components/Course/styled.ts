@@ -29,6 +29,9 @@ export const AboutCourseContainer = styled('div')({
   minHeight: '220px',
   padding: '16px 0 16px 16px',
   marginBottom: '30px',
+  textOverflow: 'ellipse',
+  overflow: 'hidden',
+  width: '100%',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     flexDirection: 'column',

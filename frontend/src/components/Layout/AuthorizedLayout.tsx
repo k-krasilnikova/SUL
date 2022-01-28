@@ -28,7 +28,7 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avat
       <Grid item xs={2}>
         <Menu />
       </Grid>
-      <PageWrapper item xs={9}>
+      <PageWrapper item xs={9} xl={10}>
         <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
       </PageWrapper>
     </Grid>
