@@ -8,8 +8,10 @@ import { defineMaterialType } from 'utils/helpers/defineMaterialType';
 
 import LearningCourse from './LearningCourse';
 
-const minStage = 1;
-const stageChange = 1;
+const MIN_STAGE = 1;
+const STAGE_CHANGE = 1;
+const MAX_STAGE_INITIAL = 1;
+const CONTENT_ELEMENT = 0;
 
 const LearningCourseContainer: React.FC = () => {
   const [stage, setStage] = useState(1);
@@ -20,10 +22,10 @@ const LearningCourseContainer: React.FC = () => {
   const params = useParams();
   const { data } = useGetClientCourseInfo(params.courseId);
 
-  const maxStage = data ? data.course.materials.length : 1;
+  const maxStage = data ? data.course.materials.length : MAX_STAGE_INITIAL;
 
   useEffect(() => {
-    if (stage > minStage) {
+    if (stage > MIN_STAGE) {
       setBackDisabled(false);
     } else {
       setBackDisabled(true);
@@ -37,15 +39,15 @@ const LearningCourseContainer: React.FC = () => {
 
   const stageForward = () => {
     if (stage < maxStage) {
-      if (stage + stageChange === maxStage && !testEnabled) {
+      if (stage + STAGE_CHANGE === maxStage && !testEnabled) {
         setTestEnabled(true);
       }
-      setStage(stage + stageChange);
+      setStage(stage + STAGE_CHANGE);
     }
   };
   const stageBack = () => {
-    if (stage > minStage) {
-      setStage(stage - stageChange);
+    if (stage > MIN_STAGE) {
+      setStage(stage - STAGE_CHANGE);
     }
   };
 
@@ -54,11 +56,11 @@ const LearningCourseContainer: React.FC = () => {
     : null;
 
   const materialType = data
-    ? defineMaterialType(data.course.materials[stage - 1].content[0])
+    ? defineMaterialType(data.course.materials[stage - 1].content[CONTENT_ELEMENT])
     : MATERIAL.text;
   const material =
     materialType === MATERIAL.video && data
-      ? optimizeLink(data.course.materials[stage - 1].content[0])
+      ? optimizeLink(data.course.materials[stage - 1].content[CONTENT_ELEMENT])
       : MATERIAL.text;
 
   return data ? (
