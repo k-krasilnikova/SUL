@@ -15,16 +15,7 @@ const CoursesContainer: React.FC = () => {
     mutate(params.courseId);
   };
 
-  const TEXT_LIMIT = 500;
-
-  return (
-    <CoursesList
-      data={data}
-      isLoading={isLoading}
-      handleApplyCourse={handleApplyCourse}
-      descriptionLimit={TEXT_LIMIT}
-    />
-  );
+  return <CoursesList data={data} isLoading={isLoading} handleApplyCourse={handleApplyCourse} />;
 };
 
 export default CoursesContainer;
