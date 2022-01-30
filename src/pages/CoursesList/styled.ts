@@ -15,7 +15,6 @@ export const PageContainer = styled(Grid)({
   paddingLeft: '5px',
 });
 
-// Родительский блок
 export const GridItem = styled(Grid)({
   height: 'fit-content',
 });
@@ -53,19 +52,17 @@ export const CourseActions = styled('div')({
     minWidth: 'auto',
   },
 });
-// Блок с Кнопками
+
 export const CourseActionsBox = styled(Box)({
   marginLeft: '16px !important',
 });
 
-// Кнопка раз
 export const DetailsButton = styled(Button)({
   height: '50px',
   width: '150px',
   marginRight: '16px !important',
 });
 
-// Кнопка два
 export const StartCourseButton = styled(Button)({
   height: '50px',
   width: '150px',

@@ -26,7 +26,6 @@ export const CourseContainer = styled(Grid)({
   },
 });
 
-// Верхний контейнер
 export const AboutCourseContainer = styled('div')({
   minHeight: '295px',
   padding: '16px 0 16px 16px',
@@ -41,7 +40,6 @@ export const AboutCourseContainer = styled('div')({
   },
 });
 
-// Нижний контейнер
 export const ButtonsContainer = styled('div')({
   [theme.breakpoints.down('xl')]: {
     justifyContent: 'center',
@@ -170,7 +168,6 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
   }),
 }));
 
-// Блок с описанием
 export const InfoContainer = styled(Box)({
   [theme.breakpoints.up('xs')]: {
     margin: '0px',
