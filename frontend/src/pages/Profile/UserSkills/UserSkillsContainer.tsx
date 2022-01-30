@@ -21,9 +21,20 @@ interface SkillsProps {
 const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
   const [searchSkill, setSearchSkill] = useState('');
   const userSkills = skills?.filter(
-    (skill) => !searchSkill || skill.title.toLowerCase().includes(searchSkill.toLowerCase()),
+    (skill) =>
+      !searchSkill.trimEnd() ||
+      skill.title.toLowerCase().includes(searchSkill.trimEnd().toLowerCase()),
   );
-  return <UserSkills userSkills={userSkills} setSearchSkill={setSearchSkill} />;
+  const checkSpace = (event: React.KeyboardEvent) => {
+    const { key } = event;
+    const formattedKey = key.trim();
+    if (!formattedKey && !searchSkill.length) {
+      event.preventDefault();
+    }
+  };
+  return (
+    <UserSkills userSkills={userSkills} setSearchSkill={setSearchSkill} checkSpace={checkSpace} />
+  );
 };
 
 export default UserSkillsContainer;
