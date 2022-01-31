@@ -1,24 +1,7 @@
 import UserModel from 'db/models/User';
 
 const getUserProvider = async (userId: string) => {
-  const dbUser = await UserModel.findById(userId)
-    .populate({
-      path: 'pendingCourses',
-      select: 'user course status',
-      populate: [
-        {
-          path: 'course',
-          model: 'Courses',
-          select: 'title',
-        },
-        {
-          path: 'user',
-          model: 'User',
-          select: 'firstName lastName position avatar',
-        },
-      ],
-    })
-    .lean();
+  const dbUser = await UserModel.findById(userId).lean();
   if (!dbUser) {
     throw new Error('user not found');
   }

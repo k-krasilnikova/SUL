@@ -19,6 +19,7 @@ interface IUser {
   birthday: Date;
   skype: string;
   phone: string;
+  managerId: ObjectId;
 }
 
 type TUserRole = 'admin' | 'manager' | 'employee';
