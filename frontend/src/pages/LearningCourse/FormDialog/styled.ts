@@ -1,8 +1,9 @@
-import { Button, Dialog, DialogContentText, DialogTitle } from '@mui/material';
+import { DialogContentText, DialogTitle } from '@mui/material';
 import { Box } from '@mui/system';
 import styled from 'styled-components';
 
 import theme from 'themeSettings';
+import { Button } from 'components/Button';
 
 export const MainDialogContentText = styled(DialogContentText)({
   textAlign: 'center',
@@ -48,15 +49,6 @@ export const StyledButton = styled(Button)({
   marginTop: '16px !important',
   letterSpacing: '-0.4px !important',
   lineHeight: '21px !important',
-});
-
-export const StyledDialog = styled(Dialog)({
-  '& .MuiDialog-paper': {
-    borderRadius: '5px',
-    boxShadow: 'none',
-    minWidth: '660px !important',
-    maxHeight: '335px !important',
-  },
 });
 
 export const CloseButton = styled('div')({

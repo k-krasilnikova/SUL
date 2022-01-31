@@ -3,9 +3,9 @@ import Countdown from 'react-countdown';
 
 import { countdownRenderer } from 'utils/helpers/countdownRenderer';
 import { close } from 'icons';
+import { ConfirmDialog } from 'components/ConfirmDialog';
 
 import {
-  StyledDialog,
   MainDialogContentText,
   SecondaryDialogContentText,
   StyledButton,
@@ -26,7 +26,7 @@ const TEST_DATE = Date.now() + TEST_TIME_REMAINS_IN_SECONDS;
 
 const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) => {
   return (
-    <StyledDialog open={dialogOpen} onClose={handleDialogClose}>
+    <ConfirmDialog open={dialogOpen} onClose={handleDialogClose}>
       <CloseButtonBox>
         <CloseButton onClick={handleDialogClose}>
           <img alt="close" src={close} />
@@ -43,11 +43,9 @@ const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) =>
         It will be impossible to return <br /> to the course materials
       </SecondaryDialogContentText>
       <StyledButtonBox>
-        <StyledButton variant="medium" onClick={handleDialogClose}>
-          Start the Test
-        </StyledButton>
+        <StyledButton variant="medium">Start the Test</StyledButton>
       </StyledButtonBox>
-    </StyledDialog>
+    </ConfirmDialog>
   );
 };
 
