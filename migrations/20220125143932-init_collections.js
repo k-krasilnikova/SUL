@@ -293,39 +293,6 @@ const TESTS = [
   },
 ];
 
-const CLIENT_COURSES = [
-  {
-    user: '',
-    course: '',
-    status: 'approved',
-    testResult: '',
-  },
-  {
-    user: '',
-    course: '',
-    status: 'approved',
-    testResult: '',
-  },
-  {
-    user: '',
-    course: '',
-    status: 'approved',
-    tetsResult: '',
-  },
-  {
-    user: '',
-    course: '',
-    status: 'approved',
-    tetsResult: '',
-  },
-  {
-    user: '',
-    course: '',
-    status: 'approved',
-    tetsResult: '',
-  },
-];
-
 const DEFAULT_USERS_DOCS = [
   {
     username: 'admin',
@@ -619,7 +586,7 @@ module.exports = {
         return db.collection('tests').insertOne(test);
       }),
     );
-    const courses = await Promise.all(
+    await Promise.all(
       MOCKED_COURSES.map((course, index) => {
         course.test = tests[index].insertedId;
         return db.collection('courses').insertOne(course);
