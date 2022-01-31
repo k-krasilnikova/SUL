@@ -6,18 +6,28 @@ import theme from 'themeSettings';
 
 export const ProfileBox = styled('div')({
   width: '90%',
-  margin: '88px 0px 113px 122px',
+  [theme.breakpoints.up('md')]: {
+    margin: '40px 0px 50px 54px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    margin: '88px 0px 113px 122px',
+  },
 });
 export const AvatarWrapper = styled('div')({
   [theme.breakpoints.up('xs')]: {
     display: 'block',
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('md')]: {
     display: 'inline-block',
+    marginRight: '80px',
+    marginLeft: '19px',
+    width: '132px',
   },
-  width: '219px',
+  [theme.breakpoints.up('xl')]: {
+    marginRight: '234px',
+    width: '219px',
+  },
   textAlign: 'center',
-  marginRight: '234px',
 });
 export const UserInfoList = styled(List)({
   [theme.breakpoints.up('xs')]: {

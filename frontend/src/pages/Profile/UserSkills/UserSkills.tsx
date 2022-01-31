@@ -15,6 +15,7 @@ import {
   SkillsBox,
   SkillsList,
   SkillsListItem,
+  Star,
   SkillTitle,
   Title,
   SkillsInfoList,
@@ -80,7 +81,7 @@ const UserSkills: React.FC<Props> = ({
           <div key={skill.id}>
             <SkillsListItem>
               <SkillTitle>
-                <img alt="skill" src={skill.isCompleted ? starContained : starEmpty} />
+                <Star alt="skill" src={skill.isCompleted ? starContained : starEmpty} />
                 <Title>{skill.title}</Title>
               </SkillTitle>
               <SkillsInfoList>
