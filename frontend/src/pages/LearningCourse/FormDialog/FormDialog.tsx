@@ -2,16 +2,18 @@ import React from 'react';
 import Countdown from 'react-countdown';
 
 import { countdownRenderer } from 'utils/helpers/countdownRenderer';
+import { close } from 'icons';
 
 import {
   StyledDialog,
   MainDialogContentText,
   SecondaryDialogContentText,
   StyledButton,
-  StyledDialogActions,
-  StyledDialogContent,
   StyledDialogTitle,
   WarningDialogContentText,
+  CloseButton,
+  CloseButtonBox,
+  StyledButtonBox,
 } from './styled';
 
 interface IFormDialog {
@@ -20,27 +22,31 @@ interface IFormDialog {
 }
 
 const TEST_TIME_REMAINS_IN_SECONDS = 9150000;
+const TEST_DATE = Date.now() + TEST_TIME_REMAINS_IN_SECONDS;
 
 const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) => {
   return (
     <StyledDialog open={dialogOpen} onClose={handleDialogClose}>
+      <CloseButtonBox>
+        <CloseButton onClick={handleDialogClose}>
+          <img alt="close" src={close} />
+        </CloseButton>
+      </CloseButtonBox>
       <StyledDialogTitle>
-        <Countdown date={Date.now() + TEST_TIME_REMAINS_IN_SECONDS} renderer={countdownRenderer} />
+        <Countdown date={TEST_DATE} renderer={countdownRenderer} />
       </StyledDialogTitle>
-      <StyledDialogContent>
-        <MainDialogContentText>
-          By clicking on the button, you confirm <br /> the end of the course and proceed to testing
-        </MainDialogContentText>
-        <WarningDialogContentText>WARNING</WarningDialogContentText>
-        <SecondaryDialogContentText>
-          It will be impossible to return <br /> to the course materials
-        </SecondaryDialogContentText>
-      </StyledDialogContent>
-      <StyledDialogActions>
+      <MainDialogContentText>
+        By clicking on the button, you confirm <br /> the end of the course and proceed to testing
+      </MainDialogContentText>
+      <WarningDialogContentText>WARNING</WarningDialogContentText>
+      <SecondaryDialogContentText>
+        It will be impossible to return <br /> to the course materials
+      </SecondaryDialogContentText>
+      <StyledButtonBox>
         <StyledButton variant="medium" onClick={handleDialogClose}>
           Start the Test
         </StyledButton>
-      </StyledDialogActions>
+      </StyledButtonBox>
     </StyledDialog>
   );
 };
