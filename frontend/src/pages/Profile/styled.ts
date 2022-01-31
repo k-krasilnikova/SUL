@@ -55,7 +55,16 @@ export const UserInfoLabel = styled('span')({
     height: '22px',
     margin: '2px 0px',
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('md')]: {
+    width: '115px',
+    display: 'inline-block',
+    fontSize: '18px',
+    lineHeight: '21px',
+    marginTop: '4px',
+    marginBottom: '0px',
+    padding: '0px',
+  },
+  [theme.breakpoints.up('xl')]: {
     width: '132px',
     display: 'inline-block',
     fontSize: '18px',
@@ -75,7 +84,16 @@ export const UserInfoText = styled('span')({
     height: '22px',
     margin: '2px 0px',
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('md')]: {
+    width: '300px',
+    display: 'inline-flex',
+    fontSize: '18px',
+    lineHeight: '21px',
+    marginTop: '4px',
+    marginBottom: '0px',
+    padding: '0px',
+  },
+  [theme.breakpoints.up('xl')]: {
     width: '400px',
     display: 'inline-flex',
     fontSize: '18px',
