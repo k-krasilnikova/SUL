@@ -50,7 +50,7 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
         handleFilterClose={handleFilterClose}
         handleConfirm={handleConfirm}
       />
-      {showConfirm && <Confirm handleLogOut={handleLogOut} cancelLogOut={cancelLogOut} />}
+      <Confirm handleLogOut={handleLogOut} showConfirm={showConfirm} cancelLogOut={cancelLogOut} />
     </>
   );
 };
