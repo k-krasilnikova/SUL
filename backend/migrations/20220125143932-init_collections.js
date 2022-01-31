@@ -203,6 +203,94 @@ const TESTS = [
     ],
     timeout: 90000,
   },
+  {
+    title: 'test for course "Python for kids" ',
+    questions: [
+      {
+        question: 'i = 1/n while True:/n if(1%2==0):/n break/n print(i)/n i += 2',
+        answers: [
+          { variant: '1 3 5', isCorrect: false },
+          { variant: '1', isCorrect: false },
+          { variant: '1 3 5 7 9 ...', isCorrect: true },
+        ],
+      },
+      {
+        question: 'List Comprehension is',
+        answers: [
+          { variant: 'new_list = [for member in iterable]', isCorrect: false },
+          { variant: 'new_list = [members]', isCorrect: false },
+          {
+            variant: 'new_list = [expression for member in iterable (if conditional)]',
+            isCorrect: true,
+          },
+        ],
+      },
+      {
+        question: 'Which of the following are true of Python lists?',
+        answers: [
+          { variant: 'A given object may appear in a list more than once', isCorrect: true },
+          { variant: 'All elements in a list must be of the same type', isCorrect: false },
+          {
+            variant: 'A list may contain any type of object except another list',
+            isCorrect: false,
+          },
+        ],
+      },
+      {
+        question: "a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']/b print(a[4::-2])",
+        answers: [
+          { variant: "['quux']", isCorrect: true },
+          { variant: "['quux', 'qux', 'baz', 'foo']", isCorrect: false },
+          { variant: "['quux', 'baz', 'foo']", isCorrect: false },
+        ],
+      },
+    ],
+    timeout: 90000,
+  },
+  {
+    title: 'test for course "Python for kids" ',
+    questions: [
+      {
+        question: 'i = 1/n while True:/n if(1%2==0):/n break/n print(i)/n i += 2',
+        answers: [
+          { variant: '1 3 5', isCorrect: false },
+          { variant: '1', isCorrect: false },
+          { variant: '1 3 5 7 9 ...', isCorrect: true },
+        ],
+      },
+      {
+        question: 'List Comprehension is',
+        answers: [
+          { variant: 'new_list = [for member in iterable]', isCorrect: false },
+          { variant: 'new_list = [members]', isCorrect: false },
+          {
+            variant: 'new_list = [expression for member in iterable (if conditional)]',
+            isCorrect: true,
+          },
+        ],
+      },
+      {
+        question: 'Which of the following are true of Python lists?',
+        answers: [
+          { variant: 'A given object may appear in a list more than once', isCorrect: true },
+          { variant: 'All elements in a list must be of the same type', isCorrect: false },
+          {
+            variant: 'A list may contain any type of object except another list',
+            isCorrect: false,
+          },
+        ],
+      },
+      {
+        question: "a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']/b print(a[4::-2])",
+        answers: [
+          { variant: "['quux']", isCorrect: true },
+          { variant: "['quux', 'qux', 'baz', 'foo']", isCorrect: false },
+          { variant: "['quux', 'baz', 'foo']", isCorrect: false },
+        ],
+      },
+    ],
+    timeout: 90000,
+  },
 ];
 
 const CLIENT_COURSES = [
@@ -217,6 +305,18 @@ const CLIENT_COURSES = [
     course: '',
     status: 'approved',
     testResult: '',
+  },
+  {
+    user: '',
+    course: '',
+    status: 'approved',
+    tetsResult: '',
+  },
+  {
+    user: '',
+    course: '',
+    status: 'approved',
+    tetsResult: '',
   },
   {
     user: '',
@@ -419,6 +519,44 @@ const MATERIALS = [
     ],
     technology: ['python'],
   },
+  {
+    content: [
+      {
+        _id: '7',
+        stage: 1,
+        content: [
+          'https://www.youtube.com/watch?v=IU4-19ofajg&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&ab_channel=egoroff_channel',
+        ],
+      },
+      {
+        _id: '8',
+        stage: 2,
+        content: [
+          'https://www.youtube.com/watch?v=mOQBZq9WCCY&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&index=2&ab_channel=egoroff_channel',
+        ],
+      },
+    ],
+    technology: ['python'],
+  },
+  {
+    content: [
+      {
+        _id: '7',
+        stage: 1,
+        content: [
+          'https://www.youtube.com/watch?v=IU4-19ofajg&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&ab_channel=egoroff_channel',
+        ],
+      },
+      {
+        _id: '8',
+        stage: 2,
+        content: [
+          'https://www.youtube.com/watch?v=mOQBZq9WCCY&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&index=2&ab_channel=egoroff_channel',
+        ],
+      },
+    ],
+    technology: ['python'],
+  },
 ];
 
 const MOCKED_COURSES = [
@@ -452,6 +590,26 @@ const MOCKED_COURSES = [
     lessons: 0,
     test: '',
   },
+  {
+    title: 'Kotlin',
+    description: 'Kotlin programming',
+    technology: ['kotlin', 'java'],
+    requiredSkills: ['math', 'english'],
+    duration: '12312679',
+    materials: MATERIALS[3].content,
+    lessons: 0,
+    test: '',
+  },
+  {
+    title: 'Scala',
+    description: 'school level of Scala programming',
+    technology: ['scala'],
+    requiredSkills: ['math', 'english'],
+    duration: '12312679',
+    materials: MATERIALS[4].content,
+    lessons: 0,
+    test: '',
+  },
 ];
 
 module.exports = {
@@ -474,7 +632,7 @@ module.exports = {
         return db.collection('users').insertOne(doc);
       }),
     );
-    await Promise.all(
+    const employees = await Promise.all(
       DEFAULT_EMPLOYEES.map((doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
@@ -485,7 +643,7 @@ module.exports = {
     await Promise.all(
       CLIENT_COURSES.map((course, index) => {
         course.course = courses[index].insertedId;
-        course.user = users[index].insertedId;
+        course.user = employees[0].insertedId;
         return db.collection('clientCourses').insertOne(course);
       }),
     );
