@@ -9,16 +9,23 @@ import { ResponseDataType } from 'types/responseData';
 import { PATHS } from 'constants/routes';
 import Loader from 'components/Loader';
 
-import { PageContainer, CourseButton, CourseActions, GridItem } from './styled';
+import {
+  PageContainer,
+  CourseActions,
+  GridItem,
+  CourseActionsBox,
+  DetailsButton,
+  StartCourseButton,
+} from './styled';
 
 const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyCourse }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
       <Loader color="primary" />
     ) : data?.length ? (
-      <PageContainer container>
+      <PageContainer container rowSpacing={3} columnSpacing={5}>
         {data?.map((course) => (
-          <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
+          <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12} container>
             <Suspense fallback={<Loader color="primary" />}>
               <CourseItem
                 key={course._id}
@@ -27,16 +34,18 @@ const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyC
                 duration={course?.duration}
                 lessons={course?.lessons}
               >
-                <CourseActions>
-                  <Link to={`${PATHS.coursesList}/${course._id}`}>
-                    <CourseButton color="primary" variant="contained">
-                      Details
-                    </CourseButton>
-                  </Link>
-                  <CourseButton onClick={handleApplyCourse} color="primary" variant="contained">
-                    Start the course
-                  </CourseButton>
-                </CourseActions>
+                <CourseActionsBox>
+                  <CourseActions>
+                    <Link to={`${PATHS.coursesList}/${course._id}`}>
+                      <DetailsButton color="primary" variant="mediumOutlined">
+                        Details
+                      </DetailsButton>
+                    </Link>
+                    <StartCourseButton onClick={handleApplyCourse} variant="mediumContained">
+                      Start the course
+                    </StartCourseButton>
+                  </CourseActions>
+                </CourseActionsBox>
               </CourseItem>
             </Suspense>
           </GridItem>
