@@ -1,33 +1,22 @@
 import styled from 'styled-components';
 import { Button } from 'components/Button';
+import { Dialog, DialogTitle } from '@mui/material';
 
 import theme from 'themeSettings';
 
-export const ComfirmWrapper = styled('div')({
-  minHeight: '120vh',
-  width: '100%',
-  height: '100%',
-  marginTop: '-7%',
-  background: 'rgb(125, 125, 125, 0.30)',
-  position: 'fixed',
-  display: 'grid',
-  alignItems: 'center',
-  justifyContent: 'center',
-  zIndex: 16,
-  overflow: 'hidden',
+export const ComfirmBox = styled(Dialog)({
+  '& .MuiDialog-paper': {
+    minWidth: '660px',
+    minHeight: '335px',
+    background: `${theme.palette.secondary.main} !important`,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'start',
+    borderRadius: '5px',
+  },
 });
 
-export const ComfirmBox = styled('div')({
-  minWidth: '660px',
-  minHeight: '335px',
-  background: `${theme.palette.secondary.main} !important`,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'start',
-  borderRadius: '5px',
-});
-
-export const ComfirmMessage = styled('p')({
+export const ComfirmMessage = styled(DialogTitle)({
   display: 'inline-block',
   width: '100%',
   textAlign: 'center',
