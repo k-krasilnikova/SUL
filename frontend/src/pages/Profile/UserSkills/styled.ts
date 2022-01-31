@@ -71,11 +71,12 @@ export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
   fontWeight: 'normal',
 }));
 export const SkillInfoFlex = styled('div')({
-  display: 'flex-block',
+  display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'center',
   height: '41px',
+  width: '168px',
 });
 export const SkillProgress = styled('div')({
   [theme.breakpoints.up('xs')]: {
@@ -86,7 +87,7 @@ export const SkillProgress = styled('div')({
   },
   width: '41px',
 });
-export const SkillInfoText = styled('span')({
+export const SkillInfoText = styled('div')({
   [theme.breakpoints.up('xs')]: {
     fontSize: '12px',
   },

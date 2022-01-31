@@ -20,20 +20,33 @@ interface SkillsProps {
 
 const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
   const [searchSkill, setSearchSkill] = useState('');
-  const userSkills = skills?.filter(
-    (skill) =>
-      !searchSkill.trimEnd() ||
-      skill.title.toLowerCase().includes(searchSkill.trimEnd().toLowerCase()),
-  );
+  const searchSkillInList = (value: string) => {
+    const formattedValue = value.split(/\s+/).join(' ').trimStart();
+    setSearchSkill(formattedValue);
+  };
+  const checkPastedValue = (value: string) => {
+    const formattedValue = value.split(/\s+/).join(' ').trimStart().trimEnd();
+    setSearchSkill(formattedValue);
+  };
   const checkSpace = (event: React.KeyboardEvent) => {
     const { key } = event;
     const formattedKey = key.trim();
-    if (!formattedKey && !searchSkill.length) {
+    if (!formattedKey && searchSkill.length === 0) {
       event.preventDefault();
     }
   };
+  const userSkills = skills?.filter(
+    (skill) =>
+      !searchSkill.trimEnd() || skill.title.toLowerCase().includes(searchSkill.toLowerCase()),
+  );
   return (
-    <UserSkills userSkills={userSkills} setSearchSkill={setSearchSkill} checkSpace={checkSpace} />
+    <UserSkills
+      userSkills={userSkills}
+      searchSkillInList={searchSkillInList}
+      checkSpace={checkSpace}
+      checkPastedValue={checkPastedValue}
+      searchSkill={searchSkill}
+    />
   );
 };
 
