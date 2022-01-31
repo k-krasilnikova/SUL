@@ -4,6 +4,7 @@
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
+  text-transform: none !important;
 }
 body {
   margin: 0;
