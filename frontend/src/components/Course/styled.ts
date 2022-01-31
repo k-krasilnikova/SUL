@@ -17,6 +17,7 @@ export const CourseContainer = styled(Grid)({
   width: '100%',
   height: '100%',
   justifyContent: 'space-between',
+  flexDirection: 'column',
   minHeight: '100%',
   [theme.breakpoints.down('lg')]: {
     display: 'flex',
@@ -26,9 +27,8 @@ export const CourseContainer = styled(Grid)({
 });
 
 export const AboutCourseContainer = styled('div')({
-  minHeight: '220px',
+  minHeight: '295px',
   padding: '16px 0 16px 16px',
-  marginBottom: '30px',
   textOverflow: 'ellipse',
   overflow: 'hidden',
   width: '100%',
@@ -38,6 +38,27 @@ export const AboutCourseContainer = styled('div')({
     justifyContent: 'center',
     height: 'fit-content',
   },
+});
+
+export const ButtonsContainer = styled('div')({
+  [theme.breakpoints.down('xl')]: {
+    justifyContent: 'center',
+  },
+  [theme.breakpoints.down('lg')]: {
+    justifyContent: 'space-between',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  height: 'fit-content',
+  width: '100%',
+  fontSize: '12px',
+  justifyContent: 'space-between',
+  paddingBottom: '16px',
 });
 
 export const ImageWrapper = styled('div')({
@@ -55,7 +76,7 @@ export const ImageWrapper = styled('div')({
   [theme.breakpoints.down('xl')]: {
     width: '50%',
     height: 'auto',
-    alignItems: 'center',
+    alignItems: 'center !important',
     alignSelf: 'center',
     margin: '0px 24px 16px 0px',
   },
@@ -147,28 +168,6 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
   }),
 }));
 
-export const ButtonsContainer = styled('div')({
-  [theme.breakpoints.down('xl')]: {
-    justifyContent: 'center',
-  },
-  [theme.breakpoints.down('lg')]: {
-    justifyContent: 'space-between',
-  },
-  [theme.breakpoints.down('md')]: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
-  display: 'flex',
-  flexWrap: 'wrap',
-  flexDirection: 'row',
-  height: 'fit-content',
-  width: '100%',
-  fontSize: '12px',
-  justifyContent: 'space-between',
-  padding: '16px',
-  margin: '0 0 0 16px',
-});
-
 export const InfoContainer = styled(Box)({
   [theme.breakpoints.up('xs')]: {
     margin: '0px',
@@ -184,8 +183,9 @@ export const InfoContainer = styled(Box)({
   height: 'fit-content',
   display: 'flex',
   alignItems: 'center',
-  alignSelf: 'center',
-  backgroundColor: 'none',
+  alignSelf: 'end',
+  paddingLeft: '30px !important',
+  paddingBottom: '7px !important',
 });
 
 export const InfoItem = styled('div')({

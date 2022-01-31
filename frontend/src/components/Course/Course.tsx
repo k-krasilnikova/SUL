@@ -22,7 +22,7 @@ interface Props {
 }
 
 const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, children }) => (
-  <CourseContainer container>
+  <CourseContainer container direction="column">
     <AboutCourseContainer>
       <ImageWrapper>
         <Image />

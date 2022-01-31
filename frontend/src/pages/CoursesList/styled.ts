@@ -1,7 +1,6 @@
-import { Grid } from '@mui/material';
-
 import styled from 'styled-components';
 
+import { Grid, Box } from '@mui/material';
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
@@ -11,10 +10,13 @@ export const PageContainer = styled(Grid)({
     margin: '0px !important',
   },
   width: '100%',
+  paddingRight: '8.3%',
+  paddingTop: '2.5%',
+  paddingLeft: '5px',
 });
 
 export const GridItem = styled(Grid)({
-  padding: '15px',
+  height: 'fit-content',
 });
 
 export const CourseButton = styled(Button)({
@@ -34,6 +36,7 @@ export const CourseButton = styled(Button)({
     alignSelf: 'center',
     lineHeight: '10px',
   },
+  marginRight: '20px',
 });
 
 export const CourseActions = styled('div')({
@@ -48,4 +51,20 @@ export const CourseActions = styled('div')({
     flexDirection: 'column',
     minWidth: 'auto',
   },
+});
+
+export const CourseActionsBox = styled(Box)({
+  marginLeft: '16px !important',
+});
+
+export const DetailsButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '16px !important',
+});
+
+export const StartCourseButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '40px !important',
 });
