@@ -247,7 +247,56 @@ const DEFAULT_USERS_DOCS = [
     birthday: '1970-01-01T00:00:00Z',
     skype: 'admin',
     phone: '+375(33)1235363',
+    managerId: '',
   },
+  {
+    username: 'manager1',
+    passwordHash: 'manager1',
+    email: 'user@itechart-group.com',
+    role: 'employee',
+    firstName: 'manager1',
+    lastName: 'manager1',
+    position: 'Software Engineer',
+    skills: [
+      { name: 'js', image: '', score: 1 },
+      { name: 'react', image: '', score: 1 },
+      { name: 'git', image: '', score: 1 },
+      { name: 'html', image: '', score: 1 },
+      { name: 'css', image: '', score: 1 },
+    ],
+    group: 'U4.D4.mocked',
+    employees: [],
+    pendingCourses: [],
+    avatar: '',
+    birthday: '1970-01-01T00:00:00Z',
+    skype: 'manager1',
+    phone: '+375(33)2635213',
+    managerId: '',
+  },
+  {
+    username: 'manager',
+    passwordHash: 'manager',
+    email: 'manager@itechart-group.com',
+    role: 'manager',
+    firstName: 'Manager',
+    lastName: 'Manager',
+    position: 'Team Manager',
+    skills: [
+      { name: 'jira', image: '', score: 1 },
+      { name: 'figma', image: '', score: 1 },
+    ],
+    group: 'U4.D4.mocked',
+    employees: [],
+    pendingCourses: [],
+    avatar: '',
+    birthday: '1970-01-01T00:00:00Z',
+    skype: 'user',
+    phone: '+375(29)8001190',
+    managerId: '',
+  },
+];
+
+const DEFAULT_EMPLOYEES = [
   {
     username: 'user',
     passwordHash: 'user',
@@ -270,26 +319,31 @@ const DEFAULT_USERS_DOCS = [
     birthday: '1970-01-01T00:00:00Z',
     skype: 'user',
     phone: '+375(33)2635213',
+    managerId: '',
   },
   {
-    username: 'manager',
-    passwordHash: 'manager',
-    email: 'manager@itechart-group.com',
-    role: 'manager',
-    firstName: 'Manager',
-    lastName: 'Manager',
-    position: 'Team Manager',
+    username: 'user1',
+    passwordHash: 'user1',
+    email: 'user@itechart-group.com',
+    role: 'employee',
+    firstName: 'User1',
+    lastName: 'User1',
+    position: 'Software Engineer',
     skills: [
-      { name: 'jira', image: '', score: 1 },
-      { name: 'figma', image: '', score: 1 },
+      { name: 'js', image: '', score: 1 },
+      { name: 'react', image: '', score: 1 },
+      { name: 'git', image: '', score: 1 },
+      { name: 'html', image: '', score: 1 },
+      { name: 'css', image: '', score: 1 },
     ],
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
     avatar: '',
     birthday: '1970-01-01T00:00:00Z',
-    skype: 'user',
-    phone: '+375(29)8001190',
+    skype: 'user1',
+    phone: '+375(33)2635213',
+    managerId: '',
   },
 ];
 
@@ -417,6 +471,14 @@ module.exports = {
       DEFAULT_USERS_DOCS.map((doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
+        return db.collection('users').insertOne(doc);
+      }),
+    );
+    await Promise.all(
+      DEFAULT_EMPLOYEES.map((doc) => {
+        const salt = bcrypt.genSaltSync(SALT_ROUNDS);
+        doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
+        doc.managerId = users[2].insertedId;
         return db.collection('users').insertOne(doc);
       }),
     );

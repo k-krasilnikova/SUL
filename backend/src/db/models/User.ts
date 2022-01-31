@@ -19,6 +19,7 @@ const schema = new Schema<IUser>({
   avatar: { data: Buffer, contentType: String, required: false },
   birthday: { type: Date, required: true },
   skype: { type: String, required: true, default: 'not provided' },
+  managerId: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
 const UserModel = model<IUser>('User', schema, 'users');
