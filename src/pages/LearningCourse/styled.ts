@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import ReactPlayer from 'react-player';
 
 import { Button } from 'components/Button';
@@ -19,11 +19,10 @@ export const BackButton = styled(Button)({
   lineHeight: '22px',
   letterSpacing: '-0.4px',
   textAlign: 'center',
-  textTransform: 'none',
   boxShadow: 'none',
 });
 export const LearningWrapper = styled('div')({
-  maxWidth: '1388px',
+  width: '1388px',
   color: '#131313',
   textAlign: 'right',
   padding: '0px 85px',
@@ -75,31 +74,33 @@ export const Description = styled('div')({
   borderRadius: '8px',
   overflowY: 'auto',
 });
-export const DescriptionTitle = styled(Typography)({
+export const DescriptionTitle = styled('span')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '32px',
   fontStyle: 'normal',
   fontWeight: '700',
   lineHeight: '38px',
   letterSpacing: '0em',
-  marginBottom: '24px',
 });
-export const DescriptionText = styled(Typography)({
+export const DescriptionText = styled('p')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '24px',
   fontStyle: 'normal',
   fontWeight: '400',
   lineHeight: '31px',
   letterSpacing: '-0.4px',
+  margin: '24px 0px 0px 0px',
 });
-export const StartTestButton = styled(Button)({
+export const ButtonWrapper = styled('div')({
   display: 'inline-block',
   verticalAlign: 'top',
   width: '155px',
-  height: '50px',
   marginLeft: '40px',
+});
+export const StartTestButton = styled(Button)({
+  width: '155px',
+  height: '50px',
   color: 'white',
-  textTransform: 'none',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: '500',
@@ -110,18 +111,12 @@ export const StartTestButton = styled(Button)({
   '&hover': {
     background: '#D43E41',
   },
-});
-export const NextButtonWrapper = styled('div')({
-  display: 'inline-block',
-  verticalAlign: 'top',
-  width: '155px',
-  marginLeft: '40px',
+  paddingTop: '8px!important',
 });
 export const NextButton = styled(Button)({
   width: '86px',
   height: '50px',
   color: 'white',
-  textTransform: 'none',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: '500',
@@ -132,4 +127,5 @@ export const NextButton = styled(Button)({
   '&hover': {
     background: '#D43E41',
   },
+  paddingTop: '8px!important',
 });

@@ -22,7 +22,7 @@ import {
   DescriptionText,
   StartTestButton,
   NextButton,
-  NextButtonWrapper,
+  ButtonWrapper,
 } from './styled';
 
 interface LearningProps {
@@ -49,57 +49,61 @@ const LearningCourse: React.FC<LearningProps> = ({
   forwardDisabled,
   material,
   materialType,
-}) => {
-  return (
-    <AuthorizedLayout pageName="Learning course">
-      <LearningPageContainer>
-        <Link to={PATHS.myCourses}>
-          <BackButton variant="contained">Back</BackButton>
-        </Link>
-        <LearningWrapper>
-          <StepperController>
-            <IconButton onClick={stageBack} disabled={backDisabled}>
-              <Back arrowDisabled={backDisabled} />
-            </IconButton>
-            <Step>
-              {stage}/{maxStage}
-            </Step>
-            <IconButton onClick={stageForward} disabled={forwardDisabled}>
-              <Forward arrowDisabled={forwardDisabled} />
-            </IconButton>
-          </StepperController>
-          <MaterialWrapper>
-            {materialType === MATERIAL.video ? (
-              <MaterialVideo
-                url={material}
-                playIcon={<img src={playVideo} alt="play" />}
-                light
-                playing
-                controls
-              />
-            ) : (
-              <MaterialText>{material}</MaterialText>
-            )}
-          </MaterialWrapper>
-          {courseDescription && (
-            <Description>
-              <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
-              <DescriptionText>{courseDescription.info}</DescriptionText>
-            </Description>
-          )}
-          {testEnabled ? (
-            <StartTestButton variant="contained">Start the Test</StartTestButton>
+}) => (
+  <AuthorizedLayout pageName="Learning course">
+    <LearningPageContainer>
+      <Link to={PATHS.myCourses}>
+        <BackButton disableElevation variant="contained">
+          Back
+        </BackButton>
+      </Link>
+      <LearningWrapper>
+        <StepperController>
+          <IconButton onClick={stageBack} disabled={backDisabled}>
+            <Back arrowDisabled={backDisabled} />
+          </IconButton>
+          <Step>
+            {stage}/{maxStage}
+          </Step>
+          <IconButton onClick={stageForward} disabled={forwardDisabled}>
+            <Forward arrowDisabled={forwardDisabled} />
+          </IconButton>
+        </StepperController>
+        <MaterialWrapper>
+          {materialType === MATERIAL.video ? (
+            <MaterialVideo
+              url={material}
+              playIcon={<img src={playVideo} alt="play" />}
+              light
+              playing
+              controls
+              width="100%"
+              height="100%"
+            />
           ) : (
-            <NextButtonWrapper>
-              <NextButton variant="contained" onClick={stageForward}>
-                Next
-              </NextButton>
-            </NextButtonWrapper>
+            <MaterialText>{material}</MaterialText>
           )}
-        </LearningWrapper>
-      </LearningPageContainer>
-    </AuthorizedLayout>
-  );
-};
+        </MaterialWrapper>
+        {courseDescription && (
+          <Description>
+            <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
+            <DescriptionText>{courseDescription.info}</DescriptionText>
+          </Description>
+        )}
+        <ButtonWrapper>
+          {testEnabled ? (
+            <StartTestButton disableElevation variant="contained">
+              Start the Test
+            </StartTestButton>
+          ) : (
+            <NextButton disableElevation variant="contained" onClick={stageForward}>
+              Next
+            </NextButton>
+          )}
+        </ButtonWrapper>
+      </LearningWrapper>
+    </LearningPageContainer>
+  </AuthorizedLayout>
+);
 
 export default LearningCourse;
