@@ -6,9 +6,7 @@ import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
 import { ClientCourse } from 'types/clientCourse';
 
-const useGetClientCourseInfo = (
-  _id: string | undefined,
-): UseQueryResult<ClientCourse, AxiosError> =>
+const useGetClientCourseInfo = (_id?: string): UseQueryResult<ClientCourse, AxiosError> =>
   useQuery(
     ['ClientCourseInfo', _id],
     async () => {

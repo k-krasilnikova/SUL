@@ -63,21 +63,25 @@ const LearningCourseContainer: React.FC = () => {
       ? optimizeLink(data.course.materials[stage - 1].content[CONTENT_ELEMENT])
       : MATERIAL.text;
 
-  return data ? (
-    <LearningCourse
-      key={data.course.materials[stage - 1]._id}
-      stage={stage}
-      maxStage={maxStage}
-      stageBack={stageBack}
-      stageForward={stageForward}
-      courseDescription={courseDescription}
-      testEnabled={testEnabled}
-      backDisabled={backDisabled}
-      forwardDisabled={forwardDisabled}
-      material={material}
-      materialType={materialType}
-    />
-  ) : null;
+  return (
+    <>
+      {data && (
+        <LearningCourse
+          key={data.course.materials[stage - 1]._id}
+          stage={stage}
+          maxStage={maxStage}
+          stageBack={stageBack}
+          stageForward={stageForward}
+          courseDescription={courseDescription}
+          testEnabled={testEnabled}
+          backDisabled={backDisabled}
+          forwardDisabled={forwardDisabled}
+          material={material}
+          materialType={materialType}
+        />
+      )}
+    </>
+  );
 };
 
 export default LearningCourseContainer;
