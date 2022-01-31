@@ -632,19 +632,12 @@ module.exports = {
         return db.collection('users').insertOne(doc);
       }),
     );
-    const employees = await Promise.all(
+    await Promise.all(
       DEFAULT_EMPLOYEES.map((doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
         doc.managerId = users[2].insertedId;
         return db.collection('users').insertOne(doc);
-      }),
-    );
-    await Promise.all(
-      CLIENT_COURSES.map((course, index) => {
-        course.course = courses[index].insertedId;
-        course.user = employees[0].insertedId;
-        return db.collection('clientCourses').insertOne(course);
       }),
     );
   },
