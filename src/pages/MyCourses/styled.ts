@@ -17,6 +17,9 @@ export const PageContainer = styled(Grid)({
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
+  maxWidth: '711px!important',
+  flexBasis: '711px!important',
+  margin: '0px 30px 30px 0px !important',
 });
 
 export const CourseButton = styled(Button)({
