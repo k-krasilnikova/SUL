@@ -1,7 +1,7 @@
 import React from 'react';
-import { Divider } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { Divider } from '@mui/material';
 
 import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import { NoContent } from 'components/NoContent';
@@ -15,9 +15,11 @@ import {
   SkillsBox,
   SkillsList,
   SkillsListItem,
+  Star,
   SkillTitle,
   Title,
   SkillsInfoList,
+  SkillsDivider,
   NoSkills,
 } from './styled';
 
@@ -80,7 +82,7 @@ const UserSkills: React.FC<Props> = ({
           <div key={skill.id}>
             <SkillsListItem>
               <SkillTitle>
-                <img alt="skill" src={skill.isCompleted ? starContained : starEmpty} />
+                <Star alt="skill" src={skill.isCompleted ? starContained : starEmpty} />
                 <Title>{skill.title}</Title>
               </SkillTitle>
               <SkillsInfoList>
@@ -89,7 +91,7 @@ const UserSkills: React.FC<Props> = ({
                 ))}
               </SkillsInfoList>
             </SkillsListItem>
-            {skill !== userSkills[userSkills.length - 1] && <Divider />}
+            {skill !== userSkills[userSkills.length - 1] && <SkillsDivider />}
           </div>
         ))
       ) : (

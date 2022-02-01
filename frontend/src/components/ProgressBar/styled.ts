@@ -2,6 +2,7 @@ import { Box } from '@mui/system';
 import styled from 'styled-components';
 
 import { SIZE } from 'constants/sizes';
+import theme from 'themeSettings';
 
 interface Size {
   size?: string;
@@ -24,5 +25,13 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
     width: '41px',
     height: '41px',
     margin: '0px',
+    [theme.breakpoints.up('xs')]: {
+      width: '24px',
+      height: '24px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '41px',
+      height: '41px',
+    },
   }),
 }));
