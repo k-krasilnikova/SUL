@@ -63,6 +63,16 @@ const LearningCourseContainer: React.FC = () => {
       ? optimizeLink(data.course.materials[stage - 1].content[CONTENT_ELEMENT])
       : MATERIAL.text;
 
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  const handleClickDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
   return (
     <>
       {data && (

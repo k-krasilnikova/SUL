@@ -34,7 +34,7 @@ interface LearningProps {
   stageForward: () => void;
   handleClickDialogOpen: () => void;
   handleDialogClose: () => void;
-  courseDescription: {
+  courseDescription?: {
     title: string;
     info: string;
   };
