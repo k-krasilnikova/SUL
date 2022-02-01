@@ -8,6 +8,8 @@ import { INITIAL_INDX } from 'config/constants';
 import { materialsCounterProvider } from 'db/providers/courseProvider';
 import { checkCourseDuplicates } from 'utils/validation/checkDuplicates';
 import { getPendingCoursesProvider } from 'db/providers/pendingCoursesProvider';
+import { IUser } from '../../interfaces/Ientities/Iusers';
+import { IClientCourse } from '../../interfaces/Ientities/IclientCourses';
 
 const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
@@ -21,8 +23,13 @@ const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) =
     }
     const materialsCount = await materialsCounterProvider(courseId);
     const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
-    const user = await getPendingCoursesProvider(userId);
-    const courses = await applyCourseProvider(courseId, userId, progressDto, user.managerId);
+    const user: IUser = await getPendingCoursesProvider(userId);
+    const courses: IClientCourse = await applyCourseProvider(
+      courseId,
+      userId,
+      progressDto,
+      user.managerId,
+    );
     res.json(courses);
   } catch (err) {
     if (isError(err)) {

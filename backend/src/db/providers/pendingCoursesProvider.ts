@@ -1,4 +1,4 @@
-import UserModel from 'db/models/User';
+import UserModel from '../models/User';
 
 const getPendingCoursesProvider = async (userId: string) => {
   const dbUser = await UserModel.findById(userId)
