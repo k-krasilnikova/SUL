@@ -23,6 +23,7 @@ const applyCourseProvider = async (courseId: string, userId: string, progressDto
     course: courseId,
     status: CourseStatus.pending,
     progress: progressDto,
+    date: new Date(),
   });
   return applyedCourse;
 };

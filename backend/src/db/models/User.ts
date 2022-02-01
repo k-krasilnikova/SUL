@@ -12,7 +12,17 @@ const schema = new Schema<IUser>({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   skills: [
-    { name: { type: String, unique: true }, image: { type: String }, score: { type: Number } },
+    {
+      skillGroup: { type: String },
+      skillList: [
+        {
+          name: { type: String, unique: true },
+          image: { type: String },
+          score: { type: Number },
+          maxScore: { type: Number },
+        },
+      ],
+    },
   ],
   employees: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   pendingCourses: [{ type: Schema.Types.ObjectId, ref: 'clientCourses' }],
