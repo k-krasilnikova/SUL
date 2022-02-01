@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
-
 import ClientCourseModel from '../models/ClientCourses';
 
 const getClientCoursesProvider = async (userId: string) => {
@@ -24,8 +23,9 @@ const applyCourseProvider = async (courseId: string, userId: string, progressDto
   await ClientCourseModel.create({
     user: userId,
     course: courseId,
-    status: CourseStatus.approved,
+    status: CourseStatus.pending,
     progress: progressDto,
+    date: new Date(),
   });
   return { status: 'applyed successful' };
 };

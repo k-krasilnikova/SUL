@@ -23,11 +23,13 @@ const CourseMaterialInfo: React.FC<Props> = ({
       <SkillProgress>
         <ProgressBar value={progress} size={SIZE.small} />
       </SkillProgress>
-      <SkillInfoText>{technologyTitle}</SkillInfoText>
+      <div style={{ width: 'fit-content' }}>
+        <SkillInfoText>{technologyTitle}</SkillInfoText>
+        <SkillInfoStage>
+          {stagesCompleted}/{stages}
+        </SkillInfoStage>
+      </div>
     </SkillInfoFlex>
-    <SkillInfoStage>
-      {stagesCompleted}/{stages}
-    </SkillInfoStage>
   </SkillInfo>
 );
 

@@ -22,7 +22,7 @@ export const BackButton = styled(Button)({
   boxShadow: 'none',
 });
 export const LearningWrapper = styled('div')({
-  width: '1388px',
+  width: '1218px',
   color: '#131313',
   textAlign: 'right',
   padding: '0px 85px',
@@ -112,6 +112,7 @@ export const StartTestButton = styled(Button)({
     background: '#D43E41',
   },
   paddingTop: '8px!important',
+  boxShadow: 'none!important',
 });
 export const NextButton = styled(Button)({
   width: '86px',
@@ -128,4 +129,5 @@ export const NextButton = styled(Button)({
     background: '#D43E41',
   },
   paddingTop: '8px!important',
+  boxShadow: 'none!important',
 });

@@ -100,20 +100,20 @@ const LearningCourse: React.FC<LearningProps> = ({
             <DescriptionText>{courseDescription.info}</DescriptionText>
           </Description>
         )}
-        {testEnabled ? (
-          <>
-            <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
-              Start the Test
-            </StartTestButton>
-            <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
-          </>
-        ) : (
-          <ButtonWrapper>
+        <ButtonWrapper>
+          {testEnabled ? (
+            <>
+              <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
+                Start the Test
+              </StartTestButton>
+              <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
+            </>
+          ) : (
             <NextButton variant="contained" onClick={stageForward}>
               Next
             </NextButton>
-          </ButtonWrapper>
-        )}
+          )}
+        </ButtonWrapper>
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>
