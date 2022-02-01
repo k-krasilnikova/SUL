@@ -15,12 +15,12 @@ export const UserAvatarRounded = styled(Avatar)<Size>(({ size }) => ({
   height: '100px',
   [theme.breakpoints.up('xs')]: {
     ...(size === SIZE.large && {
-      width: '120px',
-      height: '120px',
-    }),
-    ...(size === SIZE.medium && {
       width: '80px',
       height: '80px',
+    }),
+    ...(size === SIZE.medium && {
+      width: '60px',
+      height: '60px',
     }),
     ...(size === SIZE.small && {
       width: '40px',
