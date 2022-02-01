@@ -13,8 +13,8 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
   height: '218px',
   margin: '5%',
   ...(size === SIZE.large && {
-    width: '141px',
-    height: '141px',
+    width: '218px',
+    height: '218px',
   }),
   ...(size === SIZE.medium && {
     width: '80px',
