@@ -62,7 +62,7 @@ const LearningCourseContainer: React.FC = () => {
 
   const courseDescription = data?.course.description
     ? { title: data?.course.title, info: data?.course.description }
-    : null;
+    : undefined;
 
   const materialType = data
     ? defineMaterialType(data.course.materials[stage - 1].content[CONTENT_ELEMENT])
@@ -87,6 +87,9 @@ const LearningCourseContainer: React.FC = () => {
           forwardDisabled={forwardDisabled}
           material={material}
           materialType={materialType}
+          dialogOpen={dialogOpen}
+          handleClickDialogOpen={handleClickDialogOpen}
+          handleDialogClose={handleDialogClose}
         />
       )}
     </>

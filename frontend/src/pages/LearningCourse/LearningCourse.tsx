@@ -34,8 +34,7 @@ interface LearningProps {
   stageForward: () => void;
   handleClickDialogOpen: () => void;
   handleDialogClose: () => void;
-  courseText: Array<string>;
-  courseDescription: {
+  courseDescription?: {
     title: string;
     info: string;
   };
@@ -101,23 +100,23 @@ const LearningCourse: React.FC<LearningProps> = ({
             <DescriptionText>{courseDescription.info}</DescriptionText>
           </Description>
         )}
-        {testEnabled ? (
-          <>
-            <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
-              Start the Test
-            </StartTestButton>
-            <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
-          </>
-        ) : (
-          <NextButtonWrapper>
+        <ButtonWrapper>
+          {testEnabled ? (
+            <>
+              <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
+                Start the Test
+              </StartTestButton>
+              <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
+            </>
+          ) : (
             <NextButton variant="contained" onClick={stageForward}>
               Next
             </NextButton>
           )}
-          </ButtonWrapper>
+        </ButtonWrapper>
       </LearningWrapper>
     </LearningPageContainer>
-  </AuthorizedLayout >
+  </AuthorizedLayout>
 );
 
 export default LearningCourse;
