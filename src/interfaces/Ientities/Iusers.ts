@@ -1,4 +1,21 @@
 import { ObjectId } from 'mongoose';
+import { ICourse } from './Icourses';
+import { TCourseStatus } from './IclientCourses';
+
+interface ISkills {
+  skillGroup: string;
+  skillList: [{ name: string; image: string; score: number; maxScore: number }];
+}
+
+type TUserForPendingCourses = Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
+type TCourseForPendingCourses = Pick<ICourse, 'title'>;
+
+interface IPendingCourses {
+  user: TUserForPendingCourses;
+  course: TCourseForPendingCourses;
+  status: TCourseStatus;
+  date: Date;
+}
 
 interface IUser {
   _id?: ObjectId;
@@ -10,11 +27,11 @@ interface IUser {
   position: TUserPosition;
   firstName: string;
   lastName: string;
-  skills: ObjectId[];
+  skills: ISkills[];
   courses: ObjectId[];
   group: string;
   employees: ObjectId[];
-  pendingCourses: ObjectId[];
+  pendingCourses: ObjectId[] | IPendingCourses;
   avatar: string;
   birthday: Date;
   skype: string;

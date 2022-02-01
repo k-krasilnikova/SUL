@@ -303,9 +303,14 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Admin',
     position: 'Software Engineer',
     skills: [
-      { name: 'php', image: '', score: 1 },
-      { name: 'python', image: '', score: 1 },
-      { name: 'MySQL', image: '', score: 1 },
+      {
+        skillGroup: 'skill group 1',
+        skillList: [
+          { name: 'php', image: '', score: 1 },
+          { name: 'js', image: '', score: 1 },
+          { name: 'html', image: '', score: 1 },
+        ],
+      },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -325,8 +330,14 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Manager',
     position: 'Team Manager',
     skills: [
-      { name: 'jira', image: '', score: 1 },
-      { name: 'figma', image: '', score: 1 },
+      {
+        skillGroup: 'skill group 1',
+        skillList: [
+          { name: 'php', image: '', score: 1 },
+          { name: 'js', image: '', score: 1 },
+          { name: 'html', image: '', score: 1 },
+        ],
+      },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -349,11 +360,14 @@ const DEFAULT_EMPLOYEES = [
     lastName: 'User',
     position: 'Software Engineer',
     skills: [
-      { name: 'js', image: '', score: 1 },
-      { name: 'react', image: '', score: 1 },
-      { name: 'git', image: '', score: 1 },
-      { name: 'html', image: '', score: 1 },
-      { name: 'css', image: '', score: 1 },
+      {
+        skillGroup: 'skill group 1',
+        skillList: [
+          { name: 'php', image: '', score: 1 },
+          { name: 'js', image: '', score: 1 },
+          { name: 'html', image: '', score: 1 },
+        ],
+      },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -373,11 +387,14 @@ const DEFAULT_EMPLOYEES = [
     lastName: 'User1',
     position: 'Software Engineer',
     skills: [
-      { name: 'js', image: '', score: 1 },
-      { name: 'react', image: '', score: 1 },
-      { name: 'git', image: '', score: 1 },
-      { name: 'html', image: '', score: 1 },
-      { name: 'css', image: '', score: 1 },
+      {
+        skillGroup: 'skill group 1',
+        skillList: [
+          { name: 'php', image: '', score: 1 },
+          { name: 'js', image: '', score: 1 },
+          { name: 'html', image: '', score: 1 },
+        ],
+      },
     ],
     group: 'U4.D4.mocked',
     employees: [],
