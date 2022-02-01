@@ -20,14 +20,14 @@ const getClientCourseProvider = async (clientCourseId: string) => {
 };
 
 const applyCourseProvider = async (courseId: string, userId: string, progressDto: IProgress[]) => {
-  await ClientCourseModel.create({
+  const applyedCourse = await ClientCourseModel.create({
     user: userId,
     course: courseId,
     status: CourseStatus.pending,
     progress: progressDto,
     date: new Date(),
   });
-  return { status: 'applyed successful' };
+  return applyedCourse;
 };
 
 const updateCourseProgress = async (courseId: string, stage: string) => {
