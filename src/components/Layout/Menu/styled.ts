@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core';
-import { ListItemButton } from '@mui/material';
+import { ListItemButton, ListItemText } from '@mui/material';
 import { ReactFragment } from 'react';
+import { leftArrow, rightArrow } from 'icons/menuIcons';
 
 import theme from 'themeSettings';
 
@@ -10,18 +11,44 @@ import { HEADER_HEIGHT } from '../Header/styled';
 interface TabWrapperTypes {
   component?: ReactFragment;
   to?: string;
+  isSqueeze?: boolean;
 }
 
 const BORDER_CANCELER = 7;
 
-export const MenuTabs = styled('div')({
+export const MenuTabs = styled('div')<TabWrapperTypes>(({ isSqueeze }) => ({
   maxWidth: '303px',
+  ...(isSqueeze && {
+    maxWidth: '129px',
+  }),
   height: `calc(100vh - ${HEADER_HEIGHT})`,
   backgroundColor: theme.palette.secondary.main,
-  borderRight: '2px solid #f0f2f7',
+  borderRight: '1px solid rgba(0, 0, 0, 0.39)',
+  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
   fontSize: '24px',
   fontFamily: '"Ubuntu", sans-serif',
   margin: '0px',
+  position: 'relative',
+}));
+
+export const LeftArrow = styled(leftArrow)({
+  display: 'block',
+  position: 'absolute',
+  right: '5%',
+  top: '75.5%',
+  width: '40px !important',
+  heigth: '40px !important',
+  cursor: 'pointer',
+});
+
+export const RightArrow = styled(rightArrow)({
+  display: 'block',
+  position: 'absolute',
+  right: '5%',
+  top: '75.5%',
+  width: '40px !important',
+  heigth: '40px !important',
+  cursor: 'pointer',
 });
 
 export const MenuTabsWrapper = styled('div')({
@@ -38,6 +65,17 @@ export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({
   height: '56px',
   marginBottom: '12px !important',
 });
+
+export const ItemText = styled(ListItemText)<TabWrapperTypes>(({ isSqueeze }) => ({
+  '& span': {
+    display: 'block !important',
+  },
+  ...(isSqueeze && {
+    '& span': {
+      display: 'none !important',
+    },
+  }),
+}));
 
 export const useListStyles = makeStyles({
   default: {

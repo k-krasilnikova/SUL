@@ -6,14 +6,14 @@ export interface MenuItemProps {
 
 export interface IMenuProps {
   menuList: MenuItemProps[];
-  children?: React.ReactNode;
-  menuItem?: string;
-  setCurrentMenuPath?: (e: string) => void;
-  getCurrentMenuPath?: () => string | undefined;
-  path?: string;
+  isSqueeze?: boolean;
+  handleSqueeze?: () => void;
   classes: {
     [key: string]: string | undefined;
   };
+  children?: React.ReactNode;
+  menuItem?: string;
+  pathname?: string;
 }
 
 export interface IRolesMenu {

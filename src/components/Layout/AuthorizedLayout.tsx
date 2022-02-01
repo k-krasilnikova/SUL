@@ -6,7 +6,7 @@ import Loader from 'components/Loader';
 
 import { Header } from './Header';
 import Menu from './Menu';
-import { GridHeader, PageWrapper } from './styled';
+import { GridHeader, PageWrapper, GridMenu } from './styled';
 
 interface Props {
   pageName: string | undefined;
@@ -14,9 +14,19 @@ interface Props {
   firstName?: string;
   lastName?: string;
   avatar?: string;
+  isSqueeze?: boolean;
+  handleSqueeze?: () => void;
 }
 
-const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avatar, children }) => (
+const AuthorizedLayout: React.FC<Props> = ({
+  pageName,
+  firstName,
+  lastName,
+  avatar,
+  isSqueeze,
+  handleSqueeze,
+  children,
+}) => (
   <HelmetProvider>
     <Helmet>
       <title>{pageName}</title>
@@ -25,10 +35,10 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avat
       <GridHeader item xs={12}>
         <Header firstName={firstName} lastName={lastName} avatar={avatar} />
       </GridHeader>
-      <Grid item xs={3} xl={2}>
-        <Menu />
-      </Grid>
-      <PageWrapper item xs={9} xl={10}>
+      <GridMenu isSqueeze={isSqueeze}>
+        <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
+      </GridMenu>
+      <PageWrapper isSqueeze={isSqueeze}>
         <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
       </PageWrapper>
     </Grid>
