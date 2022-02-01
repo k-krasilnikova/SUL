@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Confirm from 'components/Confirm/Confirm';
+import ConfirmLogOut from 'components/Layout/Header/ConfirmLogOut/ConfirmLogOut';
 import { User } from 'types/user';
 import { useLogOut } from 'api/logOut/';
 
@@ -50,7 +50,11 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
         handleFilterClose={handleFilterClose}
         handleConfirm={handleConfirm}
       />
-      <Confirm handleLogOut={handleLogOut} showConfirm={showConfirm} cancelLogOut={cancelLogOut} />
+      <ConfirmLogOut
+        handleLogOut={handleLogOut}
+        showConfirm={showConfirm}
+        cancelLogOut={cancelLogOut}
+      />
     </>
   );
 };
