@@ -15,6 +15,7 @@ interface IClientCourse {
       isCompleted: boolean;
     },
   ];
+  date: Date;
 }
 
-export { IClientCourse };
+export { IClientCourse, TCourseStatus };
