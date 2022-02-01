@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
@@ -5,6 +6,8 @@ import IconButton from '@mui/material/IconButton';
 import { AuthorizedLayout } from 'components/Layout';
 import { Back, Forward } from 'components/Arrows';
 import { PATHS } from 'constants/routes';
+import { playVideo } from 'icons';
+import { MATERIAL } from 'constants/materials';
 
 import {
   LearningPageContainer,
@@ -12,45 +15,58 @@ import {
   LearningWrapper,
   StepperController,
   Step,
-  TextWrapper,
+  MaterialWrapper,
+  MaterialText,
+  MaterialVideo,
   Description,
   DescriptionTitle,
   DescriptionText,
   StartTestButton,
   NextButton,
-  NextButtonWrapper,
+  ButtonWrapper,
 } from './styled';
+import { FormDialog } from './FormDialog';
 
 interface LearningProps {
   stage: number;
   maxStage: number;
+  dialogOpen: boolean;
   stageBack: () => void;
   stageForward: () => void;
-  courseText: Array<string>;
-  courseDescription: {
+  handleClickDialogOpen: () => void;
+  handleDialogClose: () => void;
+  courseDescription?: {
     title: string;
     info: string;
   };
   testEnabled: boolean;
   backDisabled: boolean;
   forwardDisabled: boolean;
+  material: string;
+  materialType: string;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
   stage,
   maxStage,
+  dialogOpen,
   stageBack,
   stageForward,
-  courseText,
   courseDescription,
   testEnabled,
   backDisabled,
   forwardDisabled,
+  material,
+  materialType,
+  handleClickDialogOpen,
+  handleDialogClose,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
       <Link to={PATHS.myCourses}>
-        <BackButton variant="contained">Back</BackButton>
+        <BackButton disableElevation variant="contained">
+          Back
+        </BackButton>
       </Link>
       <LearningWrapper>
         <StepperController>
@@ -64,22 +80,41 @@ const LearningCourse: React.FC<LearningProps> = ({
             <Forward arrowDisabled={forwardDisabled} />
           </IconButton>
         </StepperController>
-        <TextWrapper>{courseText[stage - 1]}</TextWrapper>
+        <MaterialWrapper>
+          {materialType === MATERIAL.video ? (
+            <MaterialVideo
+              url={material}
+              playIcon={<img src={playVideo} alt="play" />}
+              light
+              playing
+              controls
+              width="100%"
+              height="100%"
+            />
+          ) : (
+            <MaterialText>{material}</MaterialText>
+          )}
+        </MaterialWrapper>
         {courseDescription && (
           <Description>
             <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
             <DescriptionText>{courseDescription.info}</DescriptionText>
           </Description>
         )}
-        {testEnabled ? (
-          <StartTestButton variant="contained">Start the Test</StartTestButton>
-        ) : (
-          <NextButtonWrapper>
+        <ButtonWrapper>
+          {testEnabled ? (
+            <>
+              <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
+                Start the Test
+              </StartTestButton>
+              <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
+            </>
+          ) : (
             <NextButton variant="contained" onClick={stageForward}>
               Next
             </NextButton>
-          </NextButtonWrapper>
-        )}
+          )}
+        </ButtonWrapper>
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>
