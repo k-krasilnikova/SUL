@@ -4,6 +4,7 @@
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
+  text-transform: none !important;
 }
 body {
   margin: 0;
@@ -32,4 +33,7 @@ a {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #7e7e7e;
+}
+iframe {
+  pointer-events: none;
 }

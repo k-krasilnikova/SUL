@@ -218,6 +218,7 @@ export const InfoItemText = styled(Typography)({
   },
   verticalAlign: 'middle',
   color: theme.palette.text.primary,
+  fontSize: '14px !important',
 });
 
 export const InfoItemTextBox = styled(Box)({

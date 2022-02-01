@@ -5,7 +5,8 @@ import { AccordionSummary, AccordionDetails, Typography, ClickAwayListener } fro
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
-import { alertIcon, filterIcon, logOutIcon, brandLogo } from 'icons';
+import { alertIcon, filterIcon, logOutIcon } from 'icons';
+import { brandLogo } from 'images';
 
 import {
   LayoutHeader,
