@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ListItemIcon, ListItemText } from '@mui/material';
+import { ListItemIcon } from '@mui/material';
 
 import { IMenuProps } from 'types/menu';
 
-import { MenuTabs, MenuTabsWrapper, TabWrapper } from './styled';
+import { MenuTabs, MenuTabsWrapper, TabWrapper, ItemText, LeftArrow, RightArrow } from './styled';
 
-const Menu: React.FC<IMenuProps> = ({ menuList, menuItem, classes }) => {
+const Menu: React.FC<IMenuProps> = ({ menuList, classes, pathname, isSqueeze, handleSqueeze }) => {
   return (
     <MenuTabs>
+      {isSqueeze ? <RightArrow onClick={handleSqueeze} /> : <LeftArrow onClick={handleSqueeze} />}
       <MenuTabsWrapper>
         {menuList.map((item) =>
-          menuItem === item.path ? (
+          pathname?.includes(item.path) ? (
             <TabWrapper
               id={item.path}
               key={item.title}
@@ -20,7 +21,8 @@ const Menu: React.FC<IMenuProps> = ({ menuList, menuItem, classes }) => {
               to={item.path}
             >
               <ListItemIcon classes={{ root: classes.selectedLogo }}>{item.icon}</ListItemIcon>
-              <ListItemText
+              <ItemText
+                isSqueeze={isSqueeze}
                 primary={item.title}
                 primaryTypographyProps={{ variant: 'h6' }}
                 classes={{ root: classes.selectedText }}
@@ -35,7 +37,8 @@ const Menu: React.FC<IMenuProps> = ({ menuList, menuItem, classes }) => {
               to={item.path}
             >
               <ListItemIcon classes={{ root: classes.default }}>{item.icon}</ListItemIcon>
-              <ListItemText
+              <ItemText
+                isSqueeze={isSqueeze}
                 primary={item.title}
                 primaryTypographyProps={{ variant: 'h6' }}
                 classes={{ root: classes.default }}
