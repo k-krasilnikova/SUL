@@ -1,20 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ListItemIcon, ListItemText, ListItemButton } from '@mui/material';
+import { ListItemIcon, ListItemText } from '@mui/material';
 
-import { MenuProps } from 'types/menu';
+import { IMenuProps } from 'types/menu';
 
-import { MenuTabs } from './styled';
+import { MenuTabs, MenuTabsWrapper, TabWrapper } from './styled';
 
-const Menu: React.FC<MenuProps> = ({ menuList }) => (
-  <MenuTabs>
-    {menuList.map((item) => (
-      <ListItemButton key={item.title} component={Link} to={item.path}>
-        <ListItemIcon>{item.icon}</ListItemIcon>
-        <ListItemText primary={item.title} primaryTypographyProps={{ variant: 'h6' }} />
-      </ListItemButton>
-    ))}
-  </MenuTabs>
-);
+const Menu: React.FC<IMenuProps> = ({ menuList, menuItem, classes }) => {
+  return (
+    <MenuTabs>
+      <MenuTabsWrapper>
+        {menuList.map((item) =>
+          menuItem === item.path ? (
+            <TabWrapper
+              id={item.path}
+              key={item.title}
+              component={Link}
+              classes={{ root: classes.selected }}
+              to={item.path}
+            >
+              <ListItemIcon classes={{ root: classes.selectedLogo }}>{item.icon}</ListItemIcon>
+              <ListItemText
+                primary={item.title}
+                primaryTypographyProps={{ variant: 'h6' }}
+                classes={{ root: classes.selectedText }}
+              />
+            </TabWrapper>
+          ) : (
+            <TabWrapper
+              id={item.path}
+              key={item.title}
+              component={Link}
+              classes={{ root: classes.default }}
+              to={item.path}
+            >
+              <ListItemIcon classes={{ root: classes.default }}>{item.icon}</ListItemIcon>
+              <ListItemText
+                primary={item.title}
+                primaryTypographyProps={{ variant: 'h6' }}
+                classes={{ root: classes.default }}
+              />
+            </TabWrapper>
+          ),
+        )}
+      </MenuTabsWrapper>
+    </MenuTabs>
+  );
+};
 
 export default Menu;

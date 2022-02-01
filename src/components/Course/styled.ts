@@ -14,10 +14,10 @@ export const CourseContainer = styled(Grid)({
   borderRadius: '16px',
   fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
-  flexDirection: 'column',
   width: '100%',
   height: '100%',
   justifyContent: 'space-between',
+  flexDirection: 'column',
   minHeight: '100%',
   [theme.breakpoints.down('lg')]: {
     display: 'flex',
@@ -27,17 +27,38 @@ export const CourseContainer = styled(Grid)({
 });
 
 export const AboutCourseContainer = styled('div')({
-  minHeight: '220px',
-  padding: '16px',
-  marginBottom: '30px',
+  minHeight: '295px',
+  padding: '16px 0 16px 16px',
   textOverflow: 'ellipse',
   overflow: 'hidden',
+  width: '100%',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     height: 'fit-content',
   },
+});
+
+export const ButtonsContainer = styled('div')({
+  [theme.breakpoints.down('xl')]: {
+    justifyContent: 'center',
+  },
+  [theme.breakpoints.down('lg')]: {
+    justifyContent: 'space-between',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  height: 'fit-content',
+  width: '100%',
+  fontSize: '12px',
+  justifyContent: 'space-between',
+  paddingBottom: '16px',
 });
 
 export const ImageWrapper = styled('div')({
@@ -55,7 +76,7 @@ export const ImageWrapper = styled('div')({
   [theme.breakpoints.down('xl')]: {
     width: '50%',
     height: 'auto',
-    alignItems: 'center',
+    alignItems: 'center !important',
     alignSelf: 'center',
     margin: '0px 24px 16px 0px',
   },
@@ -102,13 +123,13 @@ export const CourseTitle = styled('p')({
     fontSize: '24px',
     fontWeight: '500',
     lineHeight: '31px',
-    letterSpacing: '-0.40px',
+    letterSpacing: '-0.4px',
     textAlign: 'left',
     padding: '0px',
   },
   fontFamily: '"Ubuntu", sans-serif',
   color: ' #2C2525',
-  margin: '14px 43px 16px 0px',
+  margin: '15px 31px 16px 0px',
 });
 
 export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, lineHeight }) => ({
@@ -125,11 +146,10 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
   },
   [theme.breakpoints.up('lg')]: {
     fontSize: '16px',
-    fontWeight: '400',
+    fontWeight: 'normal',
     lineHeight: '21px',
-    letterSpacing: '-0.40px',
+    letterSpacing: '-0.4px !important',
     textAlign: 'left',
-    margin: '0px 43px 14px 0px',
     ...(fontSize && {
       fontSize: `${fontSize}px`,
     }),
@@ -148,28 +168,6 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
   }),
 }));
 
-export const ButtonsContainer = styled('div')({
-  [theme.breakpoints.down('xl')]: {
-    justifyContent: 'center',
-  },
-  [theme.breakpoints.down('lg')]: {
-    justifyContent: 'space-between',
-  },
-  [theme.breakpoints.down('md')]: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
-  display: 'flex',
-  flexWrap: 'wrap',
-  flexDirection: 'row',
-  height: 'fit-content',
-  width: '100%',
-  fontSize: '12px',
-  justifyContent: 'space-between',
-  padding: '10px',
-  margin: '0px',
-});
-
 export const InfoContainer = styled(Box)({
   [theme.breakpoints.up('xs')]: {
     margin: '0px',
@@ -185,8 +183,9 @@ export const InfoContainer = styled(Box)({
   height: 'fit-content',
   display: 'flex',
   alignItems: 'center',
-  alignSelf: 'center',
-  backgroundColor: 'none',
+  alignSelf: 'end',
+  paddingLeft: '30px !important',
+  paddingBottom: '7px !important',
 });
 
 export const InfoItem = styled('div')({
@@ -195,7 +194,6 @@ export const InfoItem = styled('div')({
   },
   [theme.breakpoints.up('lg')]: {
     padding: '0px',
-    margin: '0px 2px 0px 22px',
   },
   display: 'inline-flex',
   verticalAlign: 'middle',
@@ -211,14 +209,22 @@ export const InfoItemText = styled(Typography)({
   [theme.breakpoints.up('lg')]: {
     width: '90px',
     padding: '0px',
-    marginLeft: '8px',
     fontFamily: '"Ubuntu", sans-serif',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '18px',
-    letterSpacing: '-0.40px',
+    letterSpacing: '-0.4px',
     textAlign: 'left',
   },
   verticalAlign: 'middle',
-  color: 'black',
+  color: theme.palette.text.primary,
+  fontSize: '14px !important',
+});
+
+export const InfoItemTextBox = styled(Box)({
+  marginLeft: '8px',
+});
+
+export const CourseDescriptionWrapper = styled(Box)({
+  margin: '0px 45px 14px 16px',
 });
