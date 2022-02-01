@@ -24,13 +24,20 @@ import {
   NextButton,
   ButtonWrapper,
 } from './styled';
+import { FormDialog } from './FormDialog';
 
 interface LearningProps {
   stage: number;
   maxStage: number;
+  dialogOpen: boolean;
   stageBack: () => void;
   stageForward: () => void;
-  courseDescription?: { title: string; info: string } | null;
+  handleClickDialogOpen: () => void;
+  handleDialogClose: () => void;
+  courseDescription: {
+    title: string;
+    info: string;
+  };
   testEnabled: boolean;
   backDisabled: boolean;
   forwardDisabled: boolean;
@@ -41,6 +48,7 @@ interface LearningProps {
 const LearningCourse: React.FC<LearningProps> = ({
   stage,
   maxStage,
+  dialogOpen,
   stageBack,
   stageForward,
   courseDescription,
@@ -49,6 +57,8 @@ const LearningCourse: React.FC<LearningProps> = ({
   forwardDisabled,
   material,
   materialType,
+  handleClickDialogOpen,
+  handleDialogClose,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -92,11 +102,14 @@ const LearningCourse: React.FC<LearningProps> = ({
         )}
         <ButtonWrapper>
           {testEnabled ? (
-            <StartTestButton disableElevation variant="contained">
-              Start the Test
-            </StartTestButton>
+            <>
+              <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
+                Start the Test
+              </StartTestButton>
+              <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
+            </>
           ) : (
-            <NextButton disableElevation variant="contained" onClick={stageForward}>
+            <NextButton variant="contained" onClick={stageForward}>
               Next
             </NextButton>
           )}
