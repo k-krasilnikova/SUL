@@ -1,8 +1,5 @@
-<svg width="150" height="150" xmlns="http://www.w3.org/2000/svg" stroke="null">
- <g id="Layer_1">
-  <title>Layer 1</title>
-  <rect id="svg_2" height="167" width="161" y="-1.8" x="-0.20001" stroke="#b2b2b2" fill="#e5e5e5"/>
-  <path transform="rotate(-90 75 120.399)" stroke="#ffffff" id="svg_4" d="m46,54.39901l29,0l0,0c16.01626,0 29,29.54921 29,66c0,36.4508 -12.98374,66 -29,66l-29,0l0,-132z" fill="#ffffff"/>
-  <ellipse ry="30" rx="29.5" id="svg_5" cy="51.20001" cx="75" stroke="#ffffff" fill="#ffffff"/>
- </g>
+<svg width="219" height="219" viewBox="0 0 219 219" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="109.5" cy="109.5" r="109.5" fill="#EAEAEA"/>
+<circle cx="109.738" cy="108.892" r="41.3667" fill="#C6C6C9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M48.0591 199.381C54.4835 171.249 79.6598 150.258 109.739 150.258C139.817 150.258 164.994 171.249 171.418 199.38C153.853 211.377 132.615 218.392 109.738 218.392C86.8621 218.392 65.6245 211.377 48.0591 199.381Z" fill="#C6C6C9"/>
 </svg>

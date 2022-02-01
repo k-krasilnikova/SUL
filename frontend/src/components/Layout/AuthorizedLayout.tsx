@@ -25,10 +25,10 @@ const AuthorizedLayout: React.FC<Props> = ({ pageName, firstName, lastName, avat
       <GridHeader item xs={12}>
         <Header firstName={firstName} lastName={lastName} avatar={avatar} />
       </GridHeader>
-      <Grid item xs={2}>
+      <Grid item xs={3} xl={2}>
         <Menu />
       </Grid>
-      <PageWrapper item xs={9}>
+      <PageWrapper item xs={9} xl={10}>
         <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
       </PageWrapper>
     </Grid>

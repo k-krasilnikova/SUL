@@ -18,6 +18,7 @@ import {
   SkillTitle,
   Title,
   SkillsInfoList,
+  NoSkills,
 } from './styled';
 
 interface Props {
@@ -34,23 +35,42 @@ interface Props {
       }>;
     }>;
   }>;
-  setSearchSkill: (value: string) => void;
+  searchSkillInList: (value: string) => void;
+  checkSpace: (event: React.KeyboardEvent) => void;
+  checkPastedValue: (value: string) => void;
+  searchSkill: string;
 }
 
-const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill }) => (
+const UserSkills: React.FC<Props> = ({
+  userSkills,
+  searchSkillInList,
+  checkSpace,
+  checkPastedValue,
+  searchSkill,
+}) => (
   <SkillsBox>
     <SearchWrapper>
       <SearchSkill
         disableUnderline
         placeholder="Search"
+        inputProps={{ maxLength: 100 }}
+        fullWidth
         startAdornment={
           <InputAdornment position="start">
             <SearchIcon color="disabled" />
           </InputAdornment>
         }
-        onChange={(event) => {
-          setSearchSkill(event.target.value);
+        onKeyDown={(event) => {
+          checkSpace(event);
         }}
+        onChange={(event) => {
+          searchSkillInList(event.target.value);
+        }}
+        onPaste={(event) => {
+          event.preventDefault();
+          checkPastedValue(event.clipboardData.getData('Text'));
+        }}
+        value={searchSkill}
       />
       <Divider />
     </SearchWrapper>
@@ -73,7 +93,9 @@ const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill }) => (
           </div>
         ))
       ) : (
-        <NoContent message={NO_SKILLS} size={SIZE.medium} />
+        <NoSkills>
+          <NoContent message={NO_SKILLS} size={SIZE.medium} />
+        </NoSkills>
       )}
     </SkillsList>
   </SkillsBox>
