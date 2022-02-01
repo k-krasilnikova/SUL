@@ -38,7 +38,7 @@ const getCoursesProvider = async ({
 };
 
 const getCourseProvider = async (courseId: string) => {
-  const course = await CourseModel.find({ _id: courseId }, { materials: 0 }).lean();
+  const course = await CourseModel.findOne({ _id: courseId }, { materials: 0 }).lean();
   if (!course) {
     throw new Error('course not found');
   }
@@ -59,7 +59,7 @@ const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; sta
 };
 
 const materialsCounterProvider = async (courseId: string) => {
-  const materialsCount = await CourseModel.aggregate([
+  const materialsCount: { _id: string; total: number }[] = await CourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
       $project: {

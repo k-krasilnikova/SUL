@@ -18,15 +18,6 @@ const LearningCourseContainer: React.FC = () => {
   const [testEnabled, setTestEnabled] = useState(false);
   const [backDisabled, setBackDisabled] = useState(true);
   const [forwardDisabled, setForwardDisabled] = useState(false);
-  const [dialogOpen, setDialogOpen] = React.useState(false);
-
-  const handleClickDialogOpen = () => {
-    setDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setDialogOpen(false);
-  };
 
   const params = useParams();
   const { data } = useGetClientCourseInfo(params.courseId);

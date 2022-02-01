@@ -11,7 +11,11 @@ import { IUser } from 'interfaces/Ientities/Iusers';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
 
-const applyCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const applyCourse = async (
+  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
+  res: Response<{ message: string } | { status: string }, { id: string }>,
+  next: TMiddlewareCall,
+) => {
   try {
     const { id: courseId } = req.body;
     const { id: userId } = res.locals;
