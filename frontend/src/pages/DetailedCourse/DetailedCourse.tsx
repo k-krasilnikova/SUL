@@ -44,7 +44,7 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
         <ImageWrapper>
           <Image />
         </ImageWrapper>
-        <ProgressBar />
+        <ProgressBar size="large" text="0%" />
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title} </DetailedCourseTitle>
         <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
