@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongoose';
+
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
-
 import ClientCourseModel from '../models/ClientCourses';
 import UserModel from '../models/User';
 
