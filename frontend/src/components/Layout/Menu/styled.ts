@@ -12,7 +12,7 @@ interface TabWrapperTypes {
   to?: string;
 }
 
-const BORDER_CANCELER = 10;
+const BORDER_CANCELER = 7;
 
 export const MenuTabs = styled('div')({
   maxWidth: '303px',
@@ -43,7 +43,7 @@ export const useListStyles = makeStyles({
   default: {
     background: 'none',
     color: 'black',
-    paddingLeft: '22px !important',
+    paddingLeft: '21px !important',
     '& span': {
       fontFamily: 'Ubuntu, sans-serif',
       fontWeight: 400,
@@ -51,30 +51,30 @@ export const useListStyles = makeStyles({
       paddingLeft: '-10px !important',
     },
     '& svg': {
-      width: '39px',
-      height: '39px',
+      width: '40px',
+      height: '40px',
     },
     '&:hover': {
-      background: theme.palette.secondary.main,
+      background: `${theme.palette.secondary.main} !important`,
     },
   },
   selected: {
     width: `calc(100% + ${BORDER_CANCELER}px)`,
-    paddingLeft: '43px !important',
+    paddingLeft: '41px !important',
     background: theme.palette.secondary.main,
-    boxShadow: '-2px -4px 15px rgba(0, 0, 0, 0.05)',
+    boxShadow: '-10px -4px 15px rgba(0, 0, 0, 0.05)',
     '& span': {
       paddingLeft: '5px !important',
     },
     '&:hover': {
-      background: theme.palette.secondary.main,
+      background: `${theme.palette.secondary.main} !important`,
     },
   },
   selectedLogo: {
     color: `${theme.palette.primary.main} !important`,
     '& svg': {
-      width: '39px',
-      height: '39px',
+      width: '40px',
+      height: '40px',
     },
   },
   selectedText: {

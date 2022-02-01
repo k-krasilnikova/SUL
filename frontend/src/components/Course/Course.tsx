@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Image } from 'components/Image';
-import { shortify } from 'utils/helpers/shortify';
+import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -22,14 +22,14 @@ interface Props {
 }
 
 const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, children }) => (
-  <CourseContainer container>
+  <CourseContainer container direction="column">
     <AboutCourseContainer>
       <ImageWrapper>
         <Image />
       </ImageWrapper>
       <CourseTitle>{title}</CourseTitle>
       <CourseDescriptionWrapper>
-        <CourseDescription>{shortify(description)}</CourseDescription>
+        <CourseDescription>{shortifyCourseDescription(description)}</CourseDescription>
       </CourseDescriptionWrapper>
     </AboutCourseContainer>
     <ButtonsContainer>

@@ -9,7 +9,14 @@ import { PATHS } from 'constants/routes';
 import { ResponseDataMyCourses } from 'types/responseDataMyCourses';
 import Loader from 'components/Loader';
 
-import { PageContainer, CourseButton, DetailsButton, CourseActions, GridItem } from './styled';
+import {
+  PageContainer,
+  CourseActions,
+  GridItem,
+  CourseActionsBox,
+  DetailsButton,
+  StartCourseButton,
+} from './styled';
 
 const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => (
   <AuthorizedLayout pageName="My Courses">
@@ -27,14 +34,16 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
                 duration={object.course.duration}
                 lessons={object.course.lessons}
               >
-                <CourseActions>
-                  <DetailsButton>Details</DetailsButton>
-                  <Link to={`${PATHS.myCourses}/${object.course._id}`}>
-                    <CourseButton color="primary" variant="contained">
-                      Start the course
-                    </CourseButton>
-                  </Link>
-                </CourseActions>
+                <CourseActionsBox>
+                  <CourseActions>
+                    <DetailsButton variant="mediumOutlined">Details</DetailsButton>
+                    <Link to={`${PATHS.myCourses}/${object.course._id}`}>
+                      <StartCourseButton color="primary" variant="mediumContained">
+                        Start the course
+                      </StartCourseButton>
+                    </Link>
+                  </CourseActions>
+                </CourseActionsBox>
               </CourseItem>
             </Suspense>
           </GridItem>

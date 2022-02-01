@@ -20,7 +20,7 @@ const ProgressBar: React.FC<ProgressProps> = ({ value, color, text, size }) => (
       text={text}
       strokeWidth={10}
       styles={buildStyles({
-        textSize: '18px',
+        textSize: '24px',
         textColor: '#9C9C9C',
         pathColor: color || PROGRESS_COLOR,
         trailColor: '#d6d6d6',

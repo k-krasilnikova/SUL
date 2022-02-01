@@ -9,3 +9,4 @@ export { default as starEmpty } from './star-empty.svg';
 export { default as starContained } from './star-contained.svg';
 export { default as brandLogo } from './logo_black.png';
 export { default as signInImage } from './signInImage.jpeg';
+export { default as playVideo } from './playVideo.svg';

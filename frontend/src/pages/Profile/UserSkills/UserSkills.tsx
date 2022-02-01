@@ -35,11 +35,19 @@ interface Props {
       }>;
     }>;
   }>;
-  setSearchSkill: (value: string) => void;
+  searchSkillInList: (value: string) => void;
   checkSpace: (event: React.KeyboardEvent) => void;
+  checkPastedValue: (value: string) => void;
+  searchSkill: string;
 }
 
-const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace }) => (
+const UserSkills: React.FC<Props> = ({
+  userSkills,
+  searchSkillInList,
+  checkSpace,
+  checkPastedValue,
+  searchSkill,
+}) => (
   <SkillsBox>
     <SearchWrapper>
       <SearchSkill
@@ -56,8 +64,13 @@ const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace })
           checkSpace(event);
         }}
         onChange={(event) => {
-          setSearchSkill(event.target.value);
+          searchSkillInList(event.target.value);
         }}
+        onPaste={(event) => {
+          event.preventDefault();
+          checkPastedValue(event.clipboardData.getData('Text'));
+        }}
+        value={searchSkill}
       />
       <Divider />
     </SearchWrapper>

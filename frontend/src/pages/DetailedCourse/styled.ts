@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Box } from '@mui/system';
 import { Grid, Typography } from '@mui/material';
+
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
@@ -73,7 +74,6 @@ export const SimilarCoursesWrapper = styled(Grid)({
 });
 
 export const SimilarCoursesItemWrapper = styled(Grid)({
-  height: '361px',
   width: '711px',
   marginTop: '40px',
 });
@@ -93,7 +93,7 @@ export const BackButton = styled(Button)({
 
 export const StartButton = styled(Button)({
   height: '50px',
-  width: '155px',
+  width: '150px',
 });
 
 export const DetailsButton = styled(Button)({
