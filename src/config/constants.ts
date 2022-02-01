@@ -19,6 +19,7 @@ const TIME_30D_SEC = 2592000000;
 
 const SALT_ROUNDS = 10;
 
+const REQUIRED_PCT = 1;
 const DEFAULT_N_PER_PAGE = 10;
 const FIRST_PAGE = 1;
 const NOTHING = 0;
@@ -46,4 +47,5 @@ export {
   ORDER_TYPE,
   NO_FILTER,
   INITIAL_INDX,
+  REQUIRED_PCT,
 };

@@ -12,8 +12,8 @@ const passCourse = async (req: Request, res: Response, next: TMiddlewareCall) =>
       return;
     }
     const { id: clientCourseId } = req.params;
-    await updateCourseProgress(clientCourseId, stage);
-    res.json({ pass: true });
+    const updt = await updateCourseProgress(clientCourseId, stage);
+    res.json(updt);
   } catch (err) {
     if (isError(err)) {
       next(err);

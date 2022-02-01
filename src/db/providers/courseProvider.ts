@@ -38,7 +38,7 @@ const getCoursesProvider = async ({
 };
 
 const getCourseProvider = async (courseId: string) => {
-  const course = await CourseModel.find({ _id: courseId }, { materials: 0 }).lean();
+  const course = await CourseModel.findOne({ _id: courseId }, { materials: 0 }).lean();
   if (!course) {
     throw new Error('course not found');
   }

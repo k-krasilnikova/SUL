@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
 
@@ -12,6 +14,9 @@ const getClientCourseProvider = async (clientCourseId: string) => {
   const clientCourse = await ClientCourseModel.findOne({ _id: clientCourseId })
     .populate('course')
     .lean();
+  if (!clientCourse) {
+    throw new Error('course not found');
+  }
   return clientCourse;
 };
 
@@ -42,6 +47,32 @@ const getStatusProvider = async (courseId: string) => {
   return currStatus;
 };
 
+const getCurrentProgress = async (clientCourseId: string) => {
+  const progress: Array<{ currProgress: number }> = await ClientCourseModel.aggregate([
+    { $match: { _id: new mongoose.Types.ObjectId(clientCourseId) } },
+    {
+      $project: {
+        _id: 0,
+        currProgress: {
+          $divide: [
+            {
+              $size: {
+                $filter: {
+                  input: '$progress',
+                  as: 'passed',
+                  cond: { $eq: ['$$passed.isCompleted', true] },
+                },
+              },
+            },
+            { $size: '$progress' },
+          ],
+        },
+      },
+    },
+  ]);
+  return progress;
+};
+
 const updateCourseStatus = async (courseId: string, courseStatus: string) => {
   const updatedCourse = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
@@ -57,4 +88,5 @@ export {
   updateCourseStatus,
   applyCourseProvider,
   updateCourseProgress,
+  getCurrentProgress,
 };
