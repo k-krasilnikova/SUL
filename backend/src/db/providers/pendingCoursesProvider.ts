@@ -1,7 +1,7 @@
 import UserModel from '../models/User';
 
-const getPendingCoursesProvider = async (userId: string) => {
-  const dbUser = await UserModel.findById(userId)
+const getPendingCoursesProvider = async (managerId: string) => {
+  const dbUser = await UserModel.findById(managerId)
     .populate({
       path: 'pendingCourses',
       select: 'user course status',

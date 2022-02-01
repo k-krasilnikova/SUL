@@ -1,9 +1,6 @@
-import { ObjectId } from 'mongoose';
-
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
 import ClientCourseModel from '../models/ClientCourses';
-import UserModel from '../models/User';
 
 const getClientCoursesProvider = async (userId: string) => {
   try {
@@ -20,19 +17,13 @@ const getClientCourseProvider = async (clientCourseId: string) => {
   return clientCourse;
 };
 
-const applyCourseProvider = async (
-  courseId: string,
-  userId: string,
-  progressDto: IProgress[],
-  managerId: ObjectId,
-) => {
+const applyCourseProvider = async (courseId: string, userId: string, progressDto: IProgress[]) => {
   const applyedCourse = await ClientCourseModel.create({
     user: userId,
     course: courseId,
     status: CourseStatus.pending,
     progress: progressDto,
   });
-  await UserModel.updateOne({ _id: managerId }, { $push: { pendingCourses: applyedCourse } });
   return applyedCourse;
 };
 

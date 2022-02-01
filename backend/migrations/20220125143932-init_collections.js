@@ -317,30 +317,6 @@ const DEFAULT_USERS_DOCS = [
     managerId: '',
   },
   {
-    username: 'manager1',
-    passwordHash: 'manager1',
-    email: 'user@itechart-group.com',
-    role: 'employee',
-    firstName: 'manager1',
-    lastName: 'manager1',
-    position: 'Software Engineer',
-    skills: [
-      { name: 'js', image: '', score: 1 },
-      { name: 'react', image: '', score: 1 },
-      { name: 'git', image: '', score: 1 },
-      { name: 'html', image: '', score: 1 },
-      { name: 'css', image: '', score: 1 },
-    ],
-    group: 'U4.D4.mocked',
-    employees: [],
-    pendingCourses: [],
-    avatar: '',
-    birthday: '1970-01-01T00:00:00Z',
-    skype: 'manager1',
-    phone: '+375(33)2635213',
-    managerId: '',
-  },
-  {
     username: 'manager',
     passwordHash: 'manager',
     email: 'manager@itechart-group.com',
@@ -603,7 +579,7 @@ module.exports = {
       DEFAULT_EMPLOYEES.map((doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
-        doc.managerId = users[2].insertedId;
+        doc.managerId = users[1].insertedId;
         return db.collection('users').insertOne(doc);
       }),
     );
