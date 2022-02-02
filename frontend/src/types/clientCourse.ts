@@ -1,12 +1,7 @@
-export interface Content {
-  stage: number;
-  content: string;
-  isCompleted: boolean;
-}
-
 export interface Material {
-  content: Array<Content>;
-  technology: Array<string>;
+  _id: string;
+  content: Array<string>;
+  stage: number;
 }
 
 export interface ClientCourse {

@@ -17,11 +17,11 @@ export const LayoutHeader = styled(Grid)({
 export const BrandLogoLink = styled(Link)({
   flexGrow: '0',
   flexShrink: '0',
-  width: '127px',
-  margin: '28px 163px 0px 40px',
+  width: '130px',
+  margin: '28px 163px 28px 40px',
 });
 export const BrandLogo = styled('img')({
-  width: '127px',
+  width: '130px',
 });
 export const HeaderContent = styled('div')({
   flexGrow: '2',
@@ -86,11 +86,12 @@ export const Filter = styled('div')({
   width: '334px',
   backgroundColor: '#FFFFFF',
   borderRadius: '6px',
+  boxShadow: '0px 4px 4px #00000040',
 });
 export const FilterAccordion = styled(Accordion)({
   border: 'none',
   boxShadow: 'none',
-  height: '65px',
+  minHeight: '65px',
   padding: '10px',
 });
 export const Notifications = styled('div')({
@@ -103,19 +104,19 @@ export const Notifications = styled('div')({
   fontFamily: '"Ubuntu", sans-serif',
   borderRadius: '6px',
   textAlign: 'left',
-  boxShadow:
-    '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+  boxShadow: '0px 4px 4px #00000040',
 });
 export const UserBlock = styled(Link)({
   display: 'flex',
   justifyContent: 'flex-start',
+  alignItems: 'center',
   height: '60px',
-  padding: '0px',
+  padding: '6px',
   margin: '10px 45px 10px 20px',
 });
 export const UserName = styled('div')({
-  height: '60px',
-  padding: '12px 10px 13px 0px',
+  height: '28px',
+  padding: '0px 10px 0px 0px',
   marginLeft: '22px',
   fontSize: '24px',
   color: 'black',
@@ -126,7 +127,7 @@ export const LogOut = styled('div')({
   width: '50px',
   height: '50px',
   margin: '15px 20px 15px 0px',
-  padding: '10px',
+  padding: '12px 10px 10px 10px',
   '&:hover': {
     cursor: 'pointer',
   },

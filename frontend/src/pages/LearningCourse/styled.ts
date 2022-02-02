@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import ReactPlayer from 'react-player';
 
 import { Button } from 'components/Button';
 
@@ -18,11 +19,10 @@ export const BackButton = styled(Button)({
   lineHeight: '22px',
   letterSpacing: '-0.4px',
   textAlign: 'center',
-  textTransform: 'none',
   boxShadow: 'none',
 });
 export const LearningWrapper = styled('div')({
-  maxWidth: '1388px',
+  width: '1218px',
   color: '#131313',
   textAlign: 'right',
   padding: '0px 85px',
@@ -43,21 +43,29 @@ export const Step = styled('p')({
   fontWeight: '400',
   lineHeight: '22px',
 });
-export const TextWrapper = styled(Box)({
+export const MaterialWrapper = styled(Box)({
   width: '100%',
   height: '615px',
-  padding: '20px',
   marginBottom: '40px',
   background: 'rgba(30, 30, 30, 0.12)',
   borderRadius: '5px',
+  overflow: 'hidden',
+});
+export const MaterialText = styled('div')({
+  height: '100%',
   textAlign: 'justify',
+  padding: '20px',
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '24px',
   overflowY: 'auto',
 });
+export const MaterialVideo = styled(ReactPlayer)({
+  height: '100%',
+  width: '100%',
+});
 export const Description = styled('div')({
   display: 'inline-block',
-  maxWidth: 'calc(100% - 155px - 41px)',
+  width: 'calc(100% - 196px)',
   height: '418px',
   padding: '31px 238px 31px 54px',
   textAlign: 'left',
@@ -66,31 +74,33 @@ export const Description = styled('div')({
   borderRadius: '8px',
   overflowY: 'auto',
 });
-export const DescriptionTitle = styled(Typography)({
+export const DescriptionTitle = styled('span')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '32px',
   fontStyle: 'normal',
   fontWeight: '700',
   lineHeight: '38px',
   letterSpacing: '0em',
-  marginBottom: '24px',
 });
-export const DescriptionText = styled(Typography)({
+export const DescriptionText = styled('p')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '24px',
   fontStyle: 'normal',
   fontWeight: '400',
   lineHeight: '31px',
   letterSpacing: '-0.4px',
+  margin: '24px 0px 0px 0px',
 });
-export const StartTestButton = styled(Button)({
+export const ButtonWrapper = styled('div')({
   display: 'inline-block',
   verticalAlign: 'top',
   width: '155px',
-  height: '50px',
   marginLeft: '40px',
+});
+export const StartTestButton = styled(Button)({
+  width: '155px',
+  height: '50px',
   color: 'white',
-  textTransform: 'none',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: '500',
@@ -101,18 +111,13 @@ export const StartTestButton = styled(Button)({
   '&hover': {
     background: '#D43E41',
   },
-});
-export const NextButtonWrapper = styled('div')({
-  display: 'inline-block',
-  verticalAlign: 'top',
-  width: '155px',
-  marginLeft: '40px',
+  paddingTop: '8px!important',
+  boxShadow: 'none!important',
 });
 export const NextButton = styled(Button)({
   width: '86px',
   height: '50px',
   color: 'white',
-  textTransform: 'none',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: '500',
@@ -123,4 +128,6 @@ export const NextButton = styled(Button)({
   '&hover': {
     background: '#D43E41',
   },
+  paddingTop: '8px!important',
+  boxShadow: 'none!important',
 });

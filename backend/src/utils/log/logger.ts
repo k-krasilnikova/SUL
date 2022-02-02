@@ -2,9 +2,7 @@ import winston from 'winston';
 
 import { ENVIROMENTS } from 'config/constants';
 
-const logFormat = winston.format.printf(
-  ({ message, level, timestamp }) => `${level}:${timestamp}:${message}`,
-);
+const logFormat = winston.format.printf(({ message, level }) => `${level}:${message}`);
 
 winston.loggers.add(ENVIROMENTS.qa, {
   format: winston.format.combine(
