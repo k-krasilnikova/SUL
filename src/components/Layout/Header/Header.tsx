@@ -2,6 +2,7 @@ import React from 'react';
 import { Search as SearchIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { AccordionSummary, AccordionDetails, Typography, ClickAwayListener } from '@mui/material';
+
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';

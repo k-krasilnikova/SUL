@@ -18,15 +18,6 @@ const LearningCourseContainer: React.FC = () => {
   const [testEnabled, setTestEnabled] = useState(false);
   const [backDisabled, setBackDisabled] = useState(true);
   const [forwardDisabled, setForwardDisabled] = useState(false);
-  const [dialogOpen, setDialogOpen] = React.useState(false);
-
-  const handleClickDialogOpen = () => {
-    setDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setDialogOpen(false);
-  };
 
   const params = useParams();
   const { data } = useGetClientCourseInfo(params.courseId);
@@ -71,6 +62,16 @@ const LearningCourseContainer: React.FC = () => {
     materialType === MATERIAL.video && data
       ? optimizeLink(data.course.materials[stage - 1].content[CONTENT_ELEMENT])
       : MATERIAL.text;
+
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  const handleClickDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
 
   return (
     <>

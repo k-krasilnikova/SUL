@@ -129,4 +129,5 @@ export const NextButton = styled(Button)({
     background: '#D43E41',
   },
   paddingTop: '8px!important',
+  boxShadow: 'none!important',
 });
