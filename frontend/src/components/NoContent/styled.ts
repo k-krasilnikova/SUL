@@ -26,21 +26,33 @@ export const Message = styled(Typography)<Size>(({ size }) => ({
     fontSize: '30px',
     lineHeight: '30px',
     ...(size === SIZE.large && {
-      fontSize: '40px',
-      lineHeight: '40px',
+      fontSize: '30px',
+      lineHeight: '30px',
+    }),
+    ...(size === SIZE.medium && {
+      fontSize: '20px',
+      lineHeight: '20px',
+    }),
+    ...(size === SIZE.small && {
+      fontSize: '12px',
+      lineHeight: '12px',
+    }),
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '50px',
+    lineHeight: '50px',
+    ...(size === SIZE.large && {
+      fontSize: '50px',
+      lineHeight: '50px',
     }),
     ...(size === SIZE.medium && {
       fontSize: '30px',
       lineHeight: '30px',
     }),
     ...(size === SIZE.small && {
-      fontSize: '20px',
-      lineHeight: '20px',
+      fontSize: '16px',
+      lineHeight: '16px',
     }),
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '50px',
-    lineHeight: '50px',
   },
   [theme.breakpoints.up('lg')]: {
     fontSize: '73px',

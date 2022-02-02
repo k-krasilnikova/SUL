@@ -24,10 +24,6 @@ coursesRouter.get(
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getAllCourses,
 );
-coursesRouter.post(
-  `${Params.noParams}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
-  applyCourse,
-);
+coursesRouter.post(`${Params.noParams}`, withAuth([USER_ROLES.EMPLOYEE]), applyCourse);
 
 export default coursesRouter;
