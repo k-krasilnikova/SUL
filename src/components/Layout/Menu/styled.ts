@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core';
 import { ListItemButton, ListItemText } from '@mui/material';
 import { ReactFragment } from 'react';
-import { leftArrow, rightArrow } from 'icons/menuIcons';
 
+import { leftArrow, rightArrow } from 'icons/menuIcons';
 import theme from 'themeSettings';
 
 import { HEADER_HEIGHT } from '../Header/styled';

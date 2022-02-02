@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import Loader from 'components/Loader';
-
 import { Header } from './Header';
 import Menu from './Menu';
 import { GridHeader, PageWrapper, GridMenu } from './styled';
