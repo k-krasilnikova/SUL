@@ -7,13 +7,23 @@ import { ProgressBarBox } from './styled';
 interface ProgressProps {
   value?: number;
   color?: string;
+  textColor?: string;
   text?: string;
   size?: string;
+  trailColor?: string;
 }
 
 const PROGRESS_COLOR = '#1BC02C';
+const TEXT_COLOR = '#9C9C9C';
 
-const ProgressBar: React.FC<ProgressProps> = ({ value, color, text, size }) => (
+const ProgressBar: React.FC<ProgressProps> = ({
+  value,
+  color,
+  textColor,
+  text,
+  size,
+  trailColor,
+}) => (
   <ProgressBarBox size={size}>
     <CircularProgressbar
       value={value || 0}
@@ -21,9 +31,9 @@ const ProgressBar: React.FC<ProgressProps> = ({ value, color, text, size }) => (
       strokeWidth={10}
       styles={buildStyles({
         textSize: '24px',
-        textColor: '#9C9C9C',
+        textColor: textColor || TEXT_COLOR,
         pathColor: color || PROGRESS_COLOR,
-        trailColor: '#d6d6d6',
+        trailColor: trailColor || '#d6d6d6',
       })}
     />
   </ProgressBarBox>
