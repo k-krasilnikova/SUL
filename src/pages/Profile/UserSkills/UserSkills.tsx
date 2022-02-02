@@ -1,7 +1,7 @@
 import React from 'react';
-import { Divider } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { Divider } from '@mui/material';
 
 import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import { NoContent } from 'components/NoContent';
@@ -15,9 +15,11 @@ import {
   SkillsBox,
   SkillsList,
   SkillsListItem,
+  Star,
   SkillTitle,
   Title,
   SkillsInfoList,
+  SkillsDivider,
   NoSkills,
 } from './styled';
 
@@ -35,11 +37,19 @@ interface Props {
       }>;
     }>;
   }>;
-  setSearchSkill: (value: string) => void;
+  searchSkillInList: (value: string) => void;
   checkSpace: (event: React.KeyboardEvent) => void;
+  checkPastedValue: (value: string) => void;
+  searchSkill: string;
 }
 
-const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace }) => (
+const UserSkills: React.FC<Props> = ({
+  userSkills,
+  searchSkillInList,
+  checkSpace,
+  checkPastedValue,
+  searchSkill,
+}) => (
   <SkillsBox>
     <SearchWrapper>
       <SearchSkill
@@ -56,8 +66,13 @@ const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace })
           checkSpace(event);
         }}
         onChange={(event) => {
-          setSearchSkill(event.target.value);
+          searchSkillInList(event.target.value);
         }}
+        onPaste={(event) => {
+          event.preventDefault();
+          checkPastedValue(event.clipboardData.getData('Text'));
+        }}
+        value={searchSkill}
       />
       <Divider />
     </SearchWrapper>
@@ -67,7 +82,7 @@ const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace })
           <div key={skill.id}>
             <SkillsListItem>
               <SkillTitle>
-                <img alt="skill" src={skill.isCompleted ? starContained : starEmpty} />
+                <Star alt="skill" src={skill.isCompleted ? starContained : starEmpty} />
                 <Title>{skill.title}</Title>
               </SkillTitle>
               <SkillsInfoList>
@@ -76,7 +91,7 @@ const UserSkills: React.FC<Props> = ({ userSkills, setSearchSkill, checkSpace })
                 ))}
               </SkillsInfoList>
             </SkillsListItem>
-            {skill !== userSkills[userSkills.length - 1] && <Divider />}
+            {skill !== userSkills[userSkills.length - 1] && <SkillsDivider />}
           </div>
         ))
       ) : (
