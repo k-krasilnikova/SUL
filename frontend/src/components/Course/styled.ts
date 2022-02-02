@@ -17,11 +17,11 @@ export const CourseContainer = styled(Grid)({
   width: '100%',
   height: '100%',
   justifyContent: 'space-between',
-  flexDirection: 'column',
+  // flexDirection: 'column',
   minHeight: '100%',
   [theme.breakpoints.down('lg')]: {
     display: 'flex',
-    flexDirection: 'column',
+    // flexDirection: 'column',
     justifyContent: 'space-between',
   },
 });
