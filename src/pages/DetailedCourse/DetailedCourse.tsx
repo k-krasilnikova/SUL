@@ -14,6 +14,7 @@ import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 import {
   BackButton,
   CourseActionsBox,
+  CourseInfoBox,
   DetailedCourseActionsBox,
   DetailedCourseText,
   DetailedCourseTitle,
@@ -48,10 +49,12 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title} </DetailedCourseTitle>
         <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
-          <CourseInfo
-            duration={INITIAL_DETAILED_COURSE.duration}
-            lessons={INITIAL_DETAILED_COURSE.lessons}
-          />
+          <CourseInfoBox>
+            <CourseInfo
+              duration={INITIAL_DETAILED_COURSE.duration}
+              lessons={INITIAL_DETAILED_COURSE.lessons}
+            />
+          </CourseInfoBox>
           <StartButton variant="large" color="primary" onClick={handleApplyCourse}>
             Start
           </StartButton>
