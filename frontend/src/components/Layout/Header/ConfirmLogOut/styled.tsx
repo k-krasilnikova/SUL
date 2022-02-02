@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { Button } from 'components/Button';
 import { DialogTitle } from '@mui/material';
 
-import theme from 'themeSettings';
+import { Button } from 'components/Button';
 
 export const ConfirmBox = styled('div')({
   minWidth: '660px',
@@ -42,23 +41,16 @@ export const ButtonCancel = styled(Button)({
   height: '100%',
   background: '#E19697 !important',
   padding: '14px 23px !important',
-  borderRadius: '4px',
-  fontFamily: "'Ubuntu', sans-serif",
   fontSize: '18px !important',
   fontWeight: '400 !important',
-  letterSpacing: '-0.41px',
   marginRight: '25px !important',
 });
 
 export const ButtonExit = styled(Button)({
   width: '100px !important',
   height: '100%',
-  background: `${theme.palette.primary.main} !important`,
   padding: '14px 23px !important',
-  borderRadius: '4px',
-  fontFamily: "'Ubuntu', sans-serif",
   fontSize: '18px !important',
   fontWeight: '400 !important',
-  letterSpacing: '-0.41px',
   marginLeft: '25px !important',
 });
