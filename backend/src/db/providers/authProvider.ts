@@ -20,7 +20,7 @@ const saveTokenProvider = async (token: string, user: IUser) => {
   );
 };
 
-const clearTokenProvider = async (userId: string) => {
+const clearTokenProvider = async (userId: string): Promise<void> => {
   await UserModel.updateOne(
     { _id: userId },
     {
