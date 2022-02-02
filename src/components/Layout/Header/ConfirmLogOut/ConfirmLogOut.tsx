@@ -4,13 +4,13 @@ import ConfirmDialog from 'components/ConfirmDialog/ConfirmDialog';
 import { ConfirmBox, ButtonBox, ConfirmMessage, ButtonCancel, ButtonExit } from './styled';
 
 interface IConfirm {
-  showConfirm: boolean;
+  isConfirmOpen: boolean;
   handleLogOut: () => void;
   cancelLogOut: () => void;
 }
 
-const ConfirmLogOut: React.FC<IConfirm> = ({ handleLogOut, cancelLogOut, showConfirm }) => (
-  <ConfirmDialog open={showConfirm} onClose={cancelLogOut}>
+const ConfirmLogOut: React.FC<IConfirm> = ({ handleLogOut, cancelLogOut, isConfirmOpen }) => (
+  <ConfirmDialog open={isConfirmOpen} onClose={cancelLogOut}>
     <ConfirmBox>
       <ConfirmMessage>Log out of this account?</ConfirmMessage>
       <ButtonBox>

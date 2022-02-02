@@ -9,7 +9,7 @@ import Header from './Header';
 const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
-  const [showConfirm, setShowConfirm] = useState<boolean>(false);
+  const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
   const EMPTY_ARGUMENT = null;
   const handleNotificationsOpen = () => {
     setNotificationsOpen(!isNotificationsOpen);
@@ -26,14 +26,14 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
 
   const { mutateAsync } = useLogOut();
   const handleConfirm = (): void => {
-    setShowConfirm(true);
+    setConfirmOpen(true);
   };
 
   const handleLogOut = (): void => {
     mutateAsync(EMPTY_ARGUMENT);
   };
   const cancelLogOut = (): void => {
-    setShowConfirm(false);
+    setConfirmOpen(false);
   };
 
   return (
@@ -52,7 +52,7 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
       />
       <ConfirmLogOut
         handleLogOut={handleLogOut}
-        showConfirm={showConfirm}
+        isConfirmOpen={isConfirmOpen}
         cancelLogOut={cancelLogOut}
       />
     </>
