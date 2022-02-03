@@ -37,6 +37,7 @@ interface Props {
   handleFilterOpen: () => void;
   handleNotificationsClose: () => void;
   handleFilterClose: () => void;
+  handleConfirm: () => void;
 }
 type HeaderProps = User & Props;
 
@@ -50,6 +51,7 @@ const Header: React.FC<HeaderProps> = ({
   handleFilterOpen,
   handleNotificationsClose,
   handleFilterClose,
+  handleConfirm,
 }) => (
   <LayoutHeader container>
     <BrandLogoLink to={PATHS.profile}>
@@ -101,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({
         <UserAvatar avatar={avatar} size="small" />
         <UserName>{`${firstName} ${lastName}`}</UserName>
       </UserBlock>
-      <LogOut>
+      <LogOut onClick={handleConfirm}>
         <img alt="log_out" src={logOutIcon} />
       </LogOut>
     </HeaderContent>
