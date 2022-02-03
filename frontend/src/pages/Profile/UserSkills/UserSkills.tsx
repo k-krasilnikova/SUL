@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search as SearchIcon } from '@mui/icons-material';
+
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Divider } from '@mui/material';
 
@@ -11,6 +11,7 @@ import { starEmpty, starContained } from 'icons';
 
 import {
   SearchWrapper,
+  SearchIcon,
   SearchSkill,
   SkillsBox,
   SkillsList,
