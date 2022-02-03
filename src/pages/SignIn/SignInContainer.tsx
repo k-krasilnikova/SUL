@@ -16,7 +16,7 @@ const initSignInvalue: SignInFields = {
 };
 
 const SignInContainer: React.FC = () => {
-  const { mutateAsync } = useGetAuth();
+  const { mutateAsync, isLoading, isSuccess, status } = useGetAuth();
   const FIELD_TOUCHED = true;
   const FIELD_VALIDATE = false;
 
@@ -34,9 +34,17 @@ const SignInContainer: React.FC = () => {
     formik.setFieldTouched(name, FIELD_TOUCHED, FIELD_VALIDATE);
   };
 
+  console.log('loading', isLoading);
+  console.log('success', isSuccess);
+  console.log('status', status);
   return (
     <FormikProvider value={formik}>
-      <SignIn formik={formik} warningHandler={warningHandler} />
+      <SignIn
+        formik={formik}
+        warningHandler={warningHandler}
+        isLoading={isLoading}
+        status={status}
+      />
     </FormikProvider>
   );
 };

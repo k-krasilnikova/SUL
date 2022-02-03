@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 import { Button } from 'components/Button';
@@ -5,7 +6,10 @@ import { TextField } from 'components/TextField';
 import { Image } from 'components/Image';
 import { SignTypes } from 'types/signIn';
 import { signInImage } from 'images';
+import ButtonLoader from 'components/ButtonLoader';
 
+import { Typography, Box } from '@mui/material';
+import { keyframes } from '@mui/system';
 import Definition from './Definition';
 import {
   SignWrapper,
@@ -14,15 +18,17 @@ import {
   GridWrapper,
   GridSignInput,
   GridButton,
+  SignButton,
   SignMain,
   SignMainGrid,
   SignPresGrid,
   SignFormGrid,
   DefinitionWrapper,
   ImageWrapper,
+  RotatedBox,
 } from './styled';
 
-const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
+const SignIn = ({ formik, warningHandler, isLoading, status }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
@@ -30,6 +36,15 @@ const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
     handleSubmit,
     handleBlur,
   } = formik;
+
+  const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
   return (
     <SignMain>
@@ -69,15 +84,21 @@ const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>
-                    <Button
-                      fullWidth
-                      disabled={!isValid}
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                    >
-                      Log In
-                    </Button>
+                    {isLoading && status === 'loading' ? (
+                      <SignButton fullWidth disabled type="submit" variant="outlined">
+                        <RotatedBox />
+                      </SignButton>
+                    ) : (
+                      <SignButton
+                        fullWidth
+                        disabled={!isValid}
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                      >
+                        Log In
+                      </SignButton>
+                    )}
                   </GridButton>
                 </GridWrapper>
               </ItemsBox>

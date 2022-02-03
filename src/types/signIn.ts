@@ -24,4 +24,6 @@ export interface SignTypes {
     };
   };
   imageUrl?: string;
+  isLoading?: any;
+  status?: any;
 }
