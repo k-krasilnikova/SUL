@@ -14,6 +14,7 @@ import {
   CloseButton,
   CloseButtonBox,
   StyledButtonBox,
+  CloseIcon,
 } from './styled';
 
 interface IFormDialog {
@@ -29,7 +30,7 @@ const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) =>
     <ConfirmDialog open={dialogOpen} onClose={handleDialogClose}>
       <CloseButtonBox>
         <CloseButton onClick={handleDialogClose}>
-          <img alt="close" src={close} />
+          <CloseIcon alt="close" src={close} />
         </CloseButton>
       </CloseButtonBox>
       <StyledDialogTitle>

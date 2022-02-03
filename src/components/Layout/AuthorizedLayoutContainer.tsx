@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useGetUserInfo } from 'api/userInfo';
-import { setMenuToggle } from 'utils/helpers/setMenuToggle';
-import { getMenuToggle } from 'utils/helpers/getMenuToggle';
+import { setMenuToggle } from 'utils/helpers/menuHelpers/setMenuToggle';
+import { getMenuToggle } from 'utils/helpers/menuHelpers/getMenuToggle';
 import AuthorizedLayout from './AuthorizedLayout';
 
 interface Props {
@@ -12,7 +12,6 @@ interface Props {
 const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
   const { data } = useGetUserInfo();
   const currentMenuStatus = getMenuToggle();
-
   const [isSqueeze, setSqueeze] = useState<boolean | undefined>(currentMenuStatus);
   const handleSqueeze = () => {
     const toggleStatus = setMenuToggle();
