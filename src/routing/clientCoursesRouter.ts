@@ -11,35 +11,19 @@ import getClientCourseById from 'controllers/clientCourses/getClientCourse';
 import getTest from 'controllers/tests/getTest';
 
 const clientCoursesRouter = Router();
-clientCoursesRouter.get(
-  `${Params.id}${SubRoutes.test}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
-  getTest,
-);
+clientCoursesRouter.get(`${Params.id}${SubRoutes.test}`, withAuth([USER_ROLES.EMPLOYEE]), getTest);
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.start}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
+  withAuth([USER_ROLES.EMPLOYEE]),
   startCourse,
 );
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.finish}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
+  withAuth([USER_ROLES.EMPLOYEE]),
   finishCourse,
 );
-clientCoursesRouter.get(
-  `${Params.id}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
-  getClientCourseById,
-);
-clientCoursesRouter.put(
-  `${Params.id}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
-  passCourse,
-);
-clientCoursesRouter.get(
-  `${Params.noParams}`,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
-  getClientCourses,
-);
+clientCoursesRouter.get(`${Params.id}`, withAuth([USER_ROLES.EMPLOYEE]), getClientCourseById);
+clientCoursesRouter.put(`${Params.id}`, withAuth([USER_ROLES.EMPLOYEE]), passCourse);
+clientCoursesRouter.get(`${Params.noParams}`, withAuth([USER_ROLES.EMPLOYEE]), getClientCourses);
 
 export default clientCoursesRouter;
