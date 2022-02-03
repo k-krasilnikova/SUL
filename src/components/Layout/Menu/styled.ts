@@ -32,6 +32,9 @@ export const MenuTabsWrapper = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
+  },
 });
 
 export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({

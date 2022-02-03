@@ -9,7 +9,7 @@ export const ProfileBox = styled('div')({
   [theme.breakpoints.up('xs')]: {
     margin: '16px 19px 14px 16px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     margin: '40px 0px 50px 54px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -22,7 +22,7 @@ export const AvatarWrapper = styled('div')({
     marginBottom: '14px',
     width: '80px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     display: 'inline-block',
     marginRight: '80px',
     marginLeft: '19px',
@@ -49,6 +49,7 @@ export const UserInfoList = styled(List)({
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: '400',
   color: '#2C2525',
+  paddingTop: '0px',
 });
 export const UserInfoLabel = styled('span')({
   [theme.breakpoints.up('xs')]: {
@@ -58,7 +59,7 @@ export const UserInfoLabel = styled('span')({
     lineHeight: '18px',
     marginTop: '5px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     width: '115px',
     display: 'inline-block',
     fontSize: '18px',
@@ -85,7 +86,7 @@ export const UserInfoText = styled('span')({
     lineHeight: '18px',
     marginTop: '5px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     width: '300px',
     display: 'inline-flex',
     fontSize: '18px',
@@ -106,7 +107,7 @@ export const CopyIcon = styled(ContentCopyIcon)({
   [theme.breakpoints.up('xs')]: {
     width: '14px !important',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     width: '18px !important',
   },
   marginLeft: '10px',
