@@ -1,7 +1,10 @@
 import { styled } from '@mui/styles';
 import { Grid, Box } from '@mui/material';
 
+import Button from 'components/Button/Button';
 import theme from 'themeSettings';
+
+import { keyframes } from '@mui/system';
 
 const SignMain = styled(Box)({
   height: '100% !important',
@@ -158,11 +161,28 @@ const GridButton = styled(Grid)({
   margin: '0 !important ',
   padding: '0px !important',
   marginTop: '20px !important',
-  '& button': {
-    fontSize: '18px',
-    fontWeight: 600,
-    letterSpacing: '0.2px',
-  },
+});
+
+const SignButton = styled(Button)({
+  fontSize: '18px !important',
+  fontWeight: '600 !important',
+  letterSpacing: '0.2px !importnatn',
+});
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const RotatedBox = styled(Box)({
+  backgroundColor: 'pink',
+  width: 30,
+  height: 30,
+  animation: `${spin} 1s infinite ease !important`,
 });
 
 export {
@@ -176,6 +196,8 @@ export {
   GridSignInput,
   ItemsBox,
   GridButton,
+  SignButton,
   DefinitionWrapper,
   ImageWrapper,
+  RotatedBox,
 };
