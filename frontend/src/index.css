@@ -34,6 +34,3 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #7e7e7e;
 }
-iframe {
-  pointer-events: none;
-}
