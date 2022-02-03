@@ -1,35 +1,22 @@
 import React from 'react';
 
-import SkillInfo from './SkillInfo';
+import { SkillListItem } from 'types/skill';
 
-interface SkillProps {
-  skillItem: {
-    id: number;
-    technology: Array<string>;
-    stages: Array<{
-      stage: number;
-      isCompleted: boolean;
-    }>;
-  };
-}
+import SkillInfo from './SkillInfo';
 
 const PERCENTAGE = 100;
 
+interface SkillProps {
+  skillItem: SkillListItem;
+}
+
 const CourseMaterialInfoContainer: React.FC<SkillProps> = ({ skillItem }) => {
-  const technologyTitle = skillItem.technology.join(', ');
-  const stages = skillItem.stages.length;
-  let stagesCompleted = 0;
-  skillItem.stages.forEach((stage) => {
-    if (stage.isCompleted) {
-      stagesCompleted += 1;
-    }
-  });
-  const progress = (stagesCompleted / stages) * PERCENTAGE;
+  const progress = (skillItem.score / skillItem.maxScore) * PERCENTAGE;
   return (
     <SkillInfo
-      technologyTitle={technologyTitle}
-      stages={stages}
-      stagesCompleted={stagesCompleted}
+      technologyTitle={skillItem.name}
+      stages={skillItem.maxScore}
+      stagesCompleted={skillItem.score}
       progress={progress}
     />
   );
