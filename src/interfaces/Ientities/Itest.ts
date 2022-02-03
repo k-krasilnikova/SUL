@@ -2,8 +2,9 @@ interface ITest {
   _id?: string;
   title: string;
   questions: Array<{
+    qN: number;
     question: string;
-    answers: { variant: string; isCorrect: boolean };
+    answers: { variant: string; isCorrect: boolean; aN: number };
   }>;
   timeout: number;
 }

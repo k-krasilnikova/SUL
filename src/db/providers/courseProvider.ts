@@ -38,11 +38,15 @@ const getCoursesProvider = async ({
 };
 
 const getCourseProvider = async (courseId: string) => {
-  const course = await CourseModel.findOne({ _id: courseId }, { materials: 0 }).lean();
-  if (!course) {
-    throw new Error('course not found');
+  try {
+    const course = await CourseModel.findOne({ _id: courseId }, { materials: 0 }).lean();
+    if (!course) {
+      throw new Error('course not found');
+    }
+    return course;
+  } catch (error) {
+    throw new Error('wrong id prams');
   }
-  return course;
 };
 
 const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {
