@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import theme from 'themeSettings';
 
 export const HEADER_HEIGHT = '80px';
+export const HEADER_HEIGHT_IPAD = '60px';
 
 export const LayoutHeader = styled(Grid)({
   width: 'calc(100vw-10px)',
@@ -13,6 +14,12 @@ export const LayoutHeader = styled(Grid)({
   justifyContent: 'flex-start',
   backgroundColor: theme.palette.secondary.main,
   fontFamily: '"Ubuntu", sans-serif',
+  [theme.breakpoints.up('md')]: {
+    height: HEADER_HEIGHT_IPAD,
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: HEADER_HEIGHT,
+  },
 });
 export const BrandLogoLink = styled(Link)({
   flexGrow: '0',
@@ -23,14 +30,22 @@ export const BrandLogoLink = styled(Link)({
     margin: '28px 20px 28px 20px',
   },
   [theme.breakpoints.up('md')]: {
-    margin: '28px 30px 28px 30px',
+    width: '105px',
+    margin: '19px 48px 16px 32px',
   },
   [theme.breakpoints.up('xl')]: {
+    width: '130px',
     margin: '28px 163px 28px 40px',
   },
 });
 export const BrandLogo = styled('img')({
   width: '130px',
+  [theme.breakpoints.up('md')]: {
+    width: '105px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '130px',
+  },
 });
 export const HeaderContent = styled('div')({
   flexGrow: '2',
@@ -48,13 +63,11 @@ export const SpaceHolder = styled('div')({
   height: HEADER_HEIGHT,
 });
 export const Search = styled(Input)({
-  flexGrow: '2',
-  flexShrink: '3',
-  height: '50px',
+  flexGrow: '0',
+  flexShrink: '1',
   borderRadius: '3px',
-  margin: '15px 20px 15px 0px',
+
   padding: '10px',
-  fontSize: '24px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
   color: '#3c3c43',
   [theme.breakpoints.up('xs')]: {
@@ -62,10 +75,16 @@ export const Search = styled(Input)({
   },
   [theme.breakpoints.up('lg')]: {
     display: 'inline-flex!important',
-    maxWidth: '463px!important',
+    width: '463px!important',
+    height: '44px',
+    fontSize: '16px',
+    margin: '8px 20px 8px 0px',
   },
   [theme.breakpoints.up('xl')]: {
-    maxWidth: '730px!important',
+    width: '730px!important',
+    height: '50px',
+    fontSize: '24px',
+    margin: '15px 20px 15px 0px',
   },
 });
 export const RelativeWrapper = styled('div')({
@@ -74,14 +93,22 @@ export const RelativeWrapper = styled('div')({
 export const NotificationsButton = styled('div')({
   flexGrow: '0',
   flexShrink: '0',
-  width: '50px',
-  height: '50px',
   borderRadius: '3px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
-  margin: '15px 20px 15px 0px',
-  padding: '10px',
   '&:hover': {
     cursor: 'pointer',
+  },
+  [theme.breakpoints.up('lg')]: {
+    width: '44px',
+    height: '44px',
+    margin: '8px 16px 8px 0px',
+    padding: '8px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '50px',
+    height: '50px',
+    margin: '15px 20px 15px 0px',
+    padding: '10px',
   },
 });
 export const FilterButton = styled('div')({
@@ -91,10 +118,20 @@ export const FilterButton = styled('div')({
   height: '50px',
   borderRadius: '3px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
-  marginTop: '15px',
-  padding: '10px 12px 10px 5px',
   '&:hover': {
     cursor: 'pointer',
+  },
+  [theme.breakpoints.up('lg')]: {
+    width: '44px',
+    height: '44px',
+    marginTop: '8px',
+    padding: '8px 9px 10px 6px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '50px',
+    height: '50px',
+    marginTop: '15px',
+    padding: '10px 12px 10px 5px',
   },
 });
 export const Filter = styled('div')({
@@ -128,31 +165,56 @@ export const UserBlock = styled(Link)({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  height: '60px',
-  padding: '6px',
-  margin: '10px 45px 10px 20px',
   [theme.breakpoints.down('md')]: {
     display: 'none',
   },
+  [theme.breakpoints.up('lg')]: {
+    height: '50px',
+    padding: '3px',
+    margin: '5px 30px 5px 10px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '60px',
+    padding: '6px',
+    margin: '10px 45px 10px 20px',
+  },
 });
 export const UserName = styled('div')({
-  height: '28px',
-  padding: '0px 10px 0px 0px',
-  marginLeft: '22px',
-  fontSize: '24px',
   color: 'black',
+  fontFamily: '"Ubuntu", sans-serif',
+  fontWeight: '400',
+  [theme.breakpoints.up('lg')]: {
+    height: '23px',
+    marginLeft: '16px',
+    fontSize: '20px',
+    padding: '2px 5px 0px 0px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '28px',
+    marginLeft: '22px',
+    fontSize: '24px',
+    padding: '0px 10px 0px 0px',
+  },
 });
 export const LogOut = styled('div')({
   flexGrow: '0',
   flexShrink: '0',
-  width: '50px',
-  height: '50px',
-  margin: '15px 20px 15px 0px',
-  padding: '12px 10px 10px 10px',
   '&:hover': {
     cursor: 'pointer',
   },
   [theme.breakpoints.down('md')]: {
     display: 'none',
+  },
+  [theme.breakpoints.up('lg')]: {
+    width: '40px',
+    height: '30px',
+    margin: '15px 16px 15px 0px',
+    padding: '3px 0px 0px 0px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '50px',
+    height: '50px',
+    margin: '15px 20px 15px 0px',
+    padding: '12px 10px 10px 10px',
   },
 });
