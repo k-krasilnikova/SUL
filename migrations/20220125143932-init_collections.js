@@ -358,9 +358,9 @@ const DEFAULT_USERS_DOCS = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -385,9 +385,9 @@ const DEFAULT_USERS_DOCS = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -415,9 +415,9 @@ const DEFAULT_EMPLOYEES = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -442,9 +442,9 @@ const DEFAULT_EMPLOYEES = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
