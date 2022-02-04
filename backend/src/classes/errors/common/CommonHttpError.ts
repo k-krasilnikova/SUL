@@ -3,7 +3,7 @@ class CommonHttpError implements Error {
 
   message: string;
 
-  statusCode: number;
+  statusCode = 0;
 
   constructor(message: string) {
     this.name = 'CommonHttpError';
