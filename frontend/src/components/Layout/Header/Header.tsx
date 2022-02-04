@@ -6,7 +6,7 @@ import { AccordionSummary, AccordionDetails, Typography, ClickAwayListener } fro
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
-import { alertIcon, filterIcon, logOutIcon } from 'icons';
+import { alertIcon, filterIcon, logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
 
 import {
@@ -25,6 +25,7 @@ import {
   UserName,
   LogOut,
   RelativeWrapper,
+  MobileMenuIcon,
 } from './styled';
 
 interface Props {
@@ -106,6 +107,9 @@ const Header: React.FC<HeaderProps> = ({
       <LogOut onClick={handleConfirm}>
         <img alt="log_out" src={logOutIcon} />
       </LogOut>
+      <MobileMenuIcon>
+        <img alt="menu" src={menuMobileIcon} />
+      </MobileMenuIcon>
     </HeaderContent>
   </LayoutHeader>
 );
