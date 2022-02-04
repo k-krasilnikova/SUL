@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import Loader from 'components/Loader';
+
 import { Header } from './Header';
 import Menu from './Menu';
 import { GridHeader, PageWrapper, GridMenu } from './styled';
@@ -10,6 +11,9 @@ import { GridHeader, PageWrapper, GridMenu } from './styled';
 interface Props {
   pageName: string | undefined;
   children: React.ReactNode;
+  classes: {
+    [key: string]: string;
+  };
   firstName?: string;
   lastName?: string;
   avatar?: string;
@@ -24,6 +28,7 @@ const AuthorizedLayout: React.FC<Props> = ({
   avatar,
   isSqueeze,
   handleSqueeze,
+  classes,
   children,
 }) => (
   <HelmetProvider>
@@ -34,12 +39,25 @@ const AuthorizedLayout: React.FC<Props> = ({
       <GridHeader item xs={12}>
         <Header firstName={firstName} lastName={lastName} avatar={avatar} />
       </GridHeader>
-      <GridMenu isSqueeze={isSqueeze}>
-        <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
-      </GridMenu>
-      <PageWrapper isSqueeze={isSqueeze}>
-        <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
-      </PageWrapper>
+      {isSqueeze ? (
+        <>
+          <GridMenu classes={{ root: classes.hideGridMenu }}>
+            <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
+          </GridMenu>
+          <PageWrapper classes={{ root: classes.showPageWrapper }}>
+            <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
+          </PageWrapper>
+        </>
+      ) : (
+        <>
+          <GridMenu>
+            <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
+          </GridMenu>
+          <PageWrapper classes={{ root: classes.hidePageWrapper }}>
+            <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
+          </PageWrapper>
+        </>
+      )}
     </Grid>
   </HelmetProvider>
 );
