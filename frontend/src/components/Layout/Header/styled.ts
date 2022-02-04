@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 import theme from 'themeSettings';
 
+interface MobileMenuProps {
+  openMenu: boolean;
+}
+
 export const HEADER_HEIGHT = '80px';
 export const HEADER_HEIGHT_IPAD = '60px';
 export const HEADER_HEIGHT_MOBILE = '44px';
@@ -247,14 +251,15 @@ export const LogOut = styled('div')({
     padding: '12px 10px 10px 10px',
   },
 });
-export const MobileMenuIcon = styled('div')({
+export const MobileMenuIcon = styled('div')<MobileMenuProps>(({ openMenu }) => ({
   [theme.breakpoints.up('xs')]: {
     width: '16px',
     height: '10px',
     textAlign: 'center',
     margin: '15px 17px 16px 6px',
+    transform: openMenu ? 'rotate(90deg) translateX(2px) translateY(-5px)' : 'none',
   },
   [theme.breakpoints.up('md')]: {
     display: 'none',
   },
-});
+}));
