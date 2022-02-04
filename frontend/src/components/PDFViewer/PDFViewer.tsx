@@ -1,10 +1,9 @@
 import React from 'react';
 import { Document } from 'react-pdf';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 import { FIRST_PAGE_INDEX, LAST_PAGE_INDEX } from 'constants/pdfViewer';
 import Loader from 'components/Loader';
+import { Back, Forward } from 'components/Arrows';
 
 import {
   ButtonBox,
@@ -40,13 +39,13 @@ const PDFViewer: React.FC<IPDFViewer> = ({
     <PDFWrapper>
       <ButtonBox>
         <StyledButton disabled={pageNumber <= FIRST_PAGE_INDEX} onClick={clickPreviousPage}>
-          <NavigateBeforeIcon />
+          <Back arrowDisabled={pageNumber <= FIRST_PAGE_INDEX} />
         </StyledButton>
         <PageNumberText>
           {pageNumber}/{LAST_PAGE_INDEX}
         </PageNumberText>
         <StyledButton disabled={pageNumber >= LAST_PAGE_INDEX} onClick={clickNextPage}>
-          <NavigateNextIcon />
+          <Forward arrowDisabled={pageNumber >= LAST_PAGE_INDEX} />
         </StyledButton>
       </ButtonBox>
       <DocumentBox ref={documentBoxRef}>
