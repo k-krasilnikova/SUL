@@ -11,16 +11,12 @@ import { HEADER_HEIGHT } from '../Header/styled';
 interface TabWrapperTypes {
   component?: ReactFragment;
   to?: string;
-  isSqueeze?: boolean;
 }
 
 const BORDER_CANCELER = 7;
 
-export const MenuTabs = styled('div')<TabWrapperTypes>(({ isSqueeze }) => ({
+export const MenuTabs = styled('div')({
   maxWidth: '303px',
-  ...(isSqueeze && {
-    maxWidth: '129px',
-  }),
   height: `calc(100vh - ${HEADER_HEIGHT})`,
   backgroundColor: theme.palette.secondary.main,
   borderRight: '1px solid rgba(0, 0, 0, 0.39)',
@@ -29,7 +25,7 @@ export const MenuTabs = styled('div')<TabWrapperTypes>(({ isSqueeze }) => ({
   fontFamily: '"Ubuntu", sans-serif',
   margin: '0px',
   position: 'relative',
-}));
+});
 
 export const LeftArrow = styled(leftArrow)({
   display: 'block',
@@ -69,16 +65,11 @@ export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({
   marginBottom: '12px !important',
 });
 
-export const ItemText = styled(ListItemText)<TabWrapperTypes>(({ isSqueeze }) => ({
+export const ItemText = styled(ListItemText)({
   '& span': {
     display: 'block !important',
   },
-  ...(isSqueeze && {
-    '& span': {
-      display: 'none !important',
-    },
-  }),
-}));
+});
 
 export const useListStyles = makeStyles({
   default: {
