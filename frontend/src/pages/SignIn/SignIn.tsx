@@ -6,6 +6,7 @@ import { TextField } from 'components/TextField';
 import { Image } from 'components/Image';
 import { SignTypes } from 'types/signIn';
 import { signInImage } from 'images';
+import { buttonSpinner } from 'icons';
 import ButtonLoader from 'components/ButtonLoader';
 
 import { Typography, Box } from '@mui/material';
@@ -25,7 +26,6 @@ import {
   SignFormGrid,
   DefinitionWrapper,
   ImageWrapper,
-  RotatedBox,
 } from './styled';
 
 const SignIn = ({ formik, warningHandler, isLoading, status }: SignTypes): JSX.Element => {
@@ -36,15 +36,6 @@ const SignIn = ({ formik, warningHandler, isLoading, status }: SignTypes): JSX.E
     handleSubmit,
     handleBlur,
   } = formik;
-
-  const spin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
 
   return (
     <SignMain>
@@ -84,9 +75,9 @@ const SignIn = ({ formik, warningHandler, isLoading, status }: SignTypes): JSX.E
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>
-                    {isLoading && status === 'loading' ? (
-                      <SignButton fullWidth disabled type="submit" variant="outlined">
-                        <RotatedBox />
+                    {status === 'loading' ? (
+                      <SignButton fullWidth type="submit" variant="outlined">
+                        <ButtonLoader />
                       </SignButton>
                     ) : (
                       <SignButton

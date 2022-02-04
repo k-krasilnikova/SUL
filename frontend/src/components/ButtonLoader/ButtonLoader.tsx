@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-import { buttonLoader } from 'icons';
+import { buttonSpinner } from 'icons';
 
+import { Image } from 'components/Image';
 import { LoaderIcon } from './styled';
 
 const ButtonLoader: React.FC = () => {
   return (
     <LoaderIcon>
-      <img alt="loading" src={buttonLoader} />
+      <Image imageUrl={buttonSpinner} />
     </LoaderIcon>
   );
 };
