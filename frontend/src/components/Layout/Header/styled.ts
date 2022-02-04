@@ -30,7 +30,7 @@ export const BrandLogoLink = styled(Link)({
   flexShrink: '0',
   [theme.breakpoints.up('xs')]: {
     width: '79px',
-    margin: '14px 163px 12px 12px',
+    margin: '14px 140px 12px 12px',
   },
   [theme.breakpoints.up('md')]: {
     width: '105px',
@@ -38,7 +38,7 @@ export const BrandLogoLink = styled(Link)({
   },
   [theme.breakpoints.up('xl')]: {
     width: '130px',
-    margin: '28px 140px 28px 40px',
+    margin: '28px 163px 28px 40px',
   },
 });
 export const BrandLogo = styled('img')({
@@ -94,7 +94,7 @@ export const Search = styled(Input)({
     fontSize: '24px',
     margin: '15px 20px 15px 0px',
   },
-  '@media(min-width: 1505px)': {
+  '@media(min-width: 1530px)': {
     width: '730px!important',
   },
 });
