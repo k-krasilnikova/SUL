@@ -5,7 +5,7 @@ import CommonHttpError from '../common/CommonHttpError';
 class UnauthorizedError extends CommonHttpError {
   constructor(message: string) {
     super(message);
-    this.statusCode = STATUS_CODES.clientErros.UNAUTHORIZED;
+    this.statusCode = STATUS_CODES.clientErrors.UNAUTHORIZED;
   }
 }
 
