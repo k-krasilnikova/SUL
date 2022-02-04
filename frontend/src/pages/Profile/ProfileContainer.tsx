@@ -15,6 +15,7 @@ const Profile: React.FC = () => {
       group={data?.group}
       phone={data?.phone}
       skype={data?.skype}
+      skills={data?.skills}
     />
   );
 };

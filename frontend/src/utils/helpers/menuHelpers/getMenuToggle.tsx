@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+
 import { MENU_VALUES } from 'constants/menuPaths';
 
 export const getMenuToggle = (): boolean | undefined => {

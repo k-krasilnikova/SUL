@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Input, Divider } from '@mui/material';
+import { Search } from '@mui/icons-material';
 
 import theme from 'themeSettings';
 
@@ -9,16 +10,18 @@ interface SkillProps {
 
 export const SearchWrapper = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    marginLeft: '13px',
-    marginRight: '19px',
-  },
-  [theme.breakpoints.up('md')]: {
     marginLeft: '0px',
-    marginRight: '0px',
   },
   [theme.breakpoints.up('xl')]: {
     marginLeft: '48px',
-    marginRight: '0px',
+  },
+});
+export const SearchIcon = styled(Search)({
+  [theme.breakpoints.up('xs')]: {
+    fontSize: '10px',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '15px',
   },
 });
 export const SearchSkill = styled(Input)({
@@ -26,7 +29,7 @@ export const SearchSkill = styled(Input)({
     fontSize: '16px',
     lineHeight: '33.61px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     fontSize: '18px',
   },
 });
@@ -36,7 +39,7 @@ export const SkillsBox = styled('div')({
     marginLeft: '13px',
     marginRight: '19px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     maxWidth: '828px',
     marginLeft: '54px',
     marginRight: '47px',
@@ -52,7 +55,7 @@ export const SkillsList = styled('div')({
     paddingTop: '10px',
     maxWidth: '288px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     paddingTop: '16px',
     maxWidth: '828px',
   },
@@ -64,7 +67,7 @@ export const SkillsListItem = styled('div')({
   [theme.breakpoints.up('xs')]: {
     paddingTop: '4px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     paddingTop: '16px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -82,7 +85,7 @@ export const SkillTitle = styled('div')({
   [theme.breakpoints.up('xs')]: {
     alignItems: 'center',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     alignItems: 'start',
   },
   [theme.breakpoints.up('xl')]: {
@@ -104,7 +107,7 @@ export const Title = styled('div')({
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     fontSize: '18px',
     paddingTop: '0px',
   },
@@ -117,7 +120,7 @@ export const SkillsInfoList = styled('div')({
   [theme.breakpoints.up('md')]: {
     padding: '0px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     padding: '0px 17px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -134,7 +137,7 @@ export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
     padding: '7px 8px 4px 8px',
     margin: '8px 12px 8px 0px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     margin: '12px 32px 12px 0px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -207,7 +210,7 @@ export const SkillsDivider = styled(Divider)({
   [theme.breakpoints.up('xs')]: {
     display: 'none',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     display: 'block',
   },
 });

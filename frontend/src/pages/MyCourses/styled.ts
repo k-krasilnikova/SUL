@@ -10,16 +10,13 @@ export const PageContainer = styled(Grid)({
     margin: '0px !important',
   },
   width: '100%',
-  paddingRight: '8.3%',
+  paddingRight: '8.8%',
   paddingTop: '2.5%',
-  paddingLeft: '5px',
+  paddingLeft: '7px',
 });
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
-  maxWidth: '711px!important',
-  flexBasis: '711px!important',
-  margin: '0px 30px 30px 0px !important',
 });
 
 export const CourseButton = styled(Button)({
