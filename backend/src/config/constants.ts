@@ -35,13 +35,13 @@ const STATUS_CODES = {
   success: {
     OK: 200,
   },
-  clientErros: {
+  clientErrors: {
     BAD_REQUEST: 400,
     UNAUTHORIZED: 401,
     FORBIDDEN: 403,
     NOT_FOUND: 404,
   },
-  serverErros: {
+  serverErrors: {
     INTERNAL_SERVER_ERROR: 500,
     SERVICE_UNAVAILABLE: 503,
   },
