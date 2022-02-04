@@ -4,8 +4,6 @@ import { Grid, Box } from '@mui/material';
 import Button from 'components/Button/Button';
 import theme from 'themeSettings';
 
-import { keyframes } from '@mui/system';
-
 const SignMain = styled(Box)({
   height: '100% !important',
   minHeight: '100vh',
@@ -169,22 +167,6 @@ const SignButton = styled(Button)({
   letterSpacing: '0.2px !importnatn',
 });
 
-const spin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const RotatedBox = styled(Box)({
-  backgroundColor: 'pink',
-  width: 30,
-  height: 30,
-  animation: `${spin} 1s infinite ease !important`,
-});
-
 export {
   SignMain,
   SignMainGrid,
@@ -199,5 +181,4 @@ export {
   SignButton,
   DefinitionWrapper,
   ImageWrapper,
-  RotatedBox,
 };
