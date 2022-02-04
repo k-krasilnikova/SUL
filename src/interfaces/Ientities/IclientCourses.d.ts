@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongoose';
 import { ICourse } from './Icourses';
 
-type TCourseStatus = 'pending' | 'approved' | 'started' | 'completed' | 'rejected';
+type TCourseStatus = 'pending' | 'approved' | 'started' | 'completed' | 'rejected' | 'inTesting';
 
 interface IClientCourse {
   _id?: string;
