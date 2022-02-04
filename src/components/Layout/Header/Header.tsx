@@ -39,6 +39,8 @@ interface Props {
   handleNotificationsClose: () => void;
   handleFilterClose: () => void;
   handleConfirm: () => void;
+  isMobileMenuOpen: boolean;
+  toggleMobileMenu: () => void;
 }
 type HeaderProps = User & Props;
 
@@ -53,6 +55,8 @@ const Header: React.FC<HeaderProps> = ({
   handleNotificationsClose,
   handleFilterClose,
   handleConfirm,
+  isMobileMenuOpen,
+  toggleMobileMenu,
 }) => (
   <LayoutHeader container>
     <BrandLogoLink to={PATHS.profile}>
@@ -107,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({
       <LogOut onClick={handleConfirm}>
         <img alt="log_out" src={logOutIcon} />
       </LogOut>
-      <MobileMenuIcon>
+      <MobileMenuIcon openMenu={isMobileMenuOpen} onClick={toggleMobileMenu}>
         <img alt="menu" src={menuMobileIcon} />
       </MobileMenuIcon>
     </HeaderContent>

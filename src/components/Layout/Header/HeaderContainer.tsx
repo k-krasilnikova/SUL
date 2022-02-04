@@ -10,6 +10,7 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const EMPTY_ARGUMENT = null;
   const handleNotificationsOpen = () => {
     setNotificationsOpen(!isNotificationsOpen);
@@ -36,6 +37,9 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
     setConfirmOpen(false);
   };
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
   return (
     <>
       <Header
@@ -49,6 +53,8 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
         handleNotificationsClose={handleNotificationsClose}
         handleFilterClose={handleFilterClose}
         handleConfirm={handleConfirm}
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
       />
       <ConfirmLogOut
         handleLogOut={handleLogOut}
