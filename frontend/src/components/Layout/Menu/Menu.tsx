@@ -6,7 +6,14 @@ import { IMenuProps } from 'types/menu';
 
 import { MenuTabs, MenuTabsWrapper, TabWrapper, ItemText, LeftArrow, RightArrow } from './styled';
 
-const Menu: React.FC<IMenuProps> = ({ menuList, classes, pathname, isSqueeze, handleSqueeze }) => (
+const Menu: React.FC<IMenuProps> = ({
+  menuList,
+  classes,
+  pathname,
+  isSqueeze,
+  handleSqueeze,
+  isTabHeader,
+}) => (
   <MenuTabs>
     {isSqueeze ? <RightArrow onClick={handleSqueeze} /> : <LeftArrow onClick={handleSqueeze} />}
     <MenuTabsWrapper>
@@ -21,8 +28,7 @@ const Menu: React.FC<IMenuProps> = ({ menuList, classes, pathname, isSqueeze, ha
           >
             <ListItemIcon classes={{ root: classes.selectedLogo }}>{item.icon}</ListItemIcon>
             <ItemText
-              isSqueeze={isSqueeze}
-              primary={item.title}
+              primary={isSqueeze ? isTabHeader : item.title}
               primaryTypographyProps={{ variant: 'h6' }}
               classes={{ root: classes.selectedText }}
             />
@@ -37,8 +43,7 @@ const Menu: React.FC<IMenuProps> = ({ menuList, classes, pathname, isSqueeze, ha
           >
             <ListItemIcon classes={{ root: classes.default }}>{item.icon}</ListItemIcon>
             <ItemText
-              isSqueeze={isSqueeze}
-              primary={item.title}
+              primary={isSqueeze ? isTabHeader : item.title}
               primaryTypographyProps={{ variant: 'h6' }}
               classes={{ root: classes.default }}
             />

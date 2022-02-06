@@ -111,3 +111,8 @@ export const StartCourseButton = styled(Button)({
 export const CourseActionsBox = styled(Box)({
   marginLeft: '16px !important',
 });
+
+export const CourseInfoBox = styled(Box)({
+  display: 'flex',
+  alignSelf: 'center !important',
+});

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search as SearchIcon } from '@mui/icons-material';
+
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Divider } from '@mui/material';
 
@@ -8,9 +8,12 @@ import { NoContent } from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
 import { SIZE } from 'constants/sizes';
 import { starEmpty, starContained } from 'icons';
+import { Skill } from 'types/skill';
+import isSkillCompleted from 'utils/helpers/isSkillCompleted';
 
 import {
   SearchWrapper,
+  SearchIcon,
   SearchSkill,
   SkillsBox,
   SkillsList,
@@ -24,19 +27,7 @@ import {
 } from './styled';
 
 interface Props {
-  userSkills: Array<{
-    id: number;
-    title: string;
-    isCompleted: boolean;
-    technologies: Array<{
-      id: number;
-      technology: Array<string>;
-      stages: Array<{
-        stage: number;
-        isCompleted: boolean;
-      }>;
-    }>;
-  }>;
+  userSkills?: Array<Skill>;
   searchSkillInList: (value: string) => void;
   checkSpace: (event: React.KeyboardEvent) => void;
   checkPastedValue: (value: string) => void;
@@ -79,15 +70,15 @@ const UserSkills: React.FC<Props> = ({
     <SkillsList>
       {userSkills?.length ? (
         userSkills.map((skill) => (
-          <div key={skill.id}>
+          <div>
             <SkillsListItem>
               <SkillTitle>
-                <Star alt="skill" src={skill.isCompleted ? starContained : starEmpty} />
-                <Title>{skill.title}</Title>
+                <Star alt="skill" src={isSkillCompleted(skill) ? starContained : starEmpty} />
+                <Title>{skill.skillGroup}</Title>
               </SkillTitle>
               <SkillsInfoList>
-                {skill.technologies.map((skillItem) => (
-                  <SkillInfoContainer key={skillItem.id} skillItem={skillItem} />
+                {skill.skillList.map((skillItem) => (
+                  <SkillInfoContainer skillItem={skillItem} />
                 ))}
               </SkillsInfoList>
             </SkillsListItem>
