@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
-import { Button } from 'components/Button';
 import { TextField } from 'components/TextField';
 import { Image } from 'components/Image';
 import { SignTypes } from 'types/signIn';
@@ -9,8 +7,6 @@ import { signInImage } from 'images';
 import { buttonSpinner } from 'icons';
 import ButtonLoader from 'components/ButtonLoader';
 
-import { Typography, Box } from '@mui/material';
-import { keyframes } from '@mui/system';
 import Definition from './Definition';
 import {
   SignWrapper,
@@ -28,7 +24,7 @@ import {
   ImageWrapper,
 } from './styled';
 
-const SignIn = ({ formik, warningHandler, isLoading, status }: SignTypes): JSX.Element => {
+const SignIn = ({ formik, warningHandler, status }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
@@ -76,8 +72,8 @@ const SignIn = ({ formik, warningHandler, isLoading, status }: SignTypes): JSX.E
                   </GridSignInput>
                   <GridButton item xs={12}>
                     {status === 'loading' ? (
-                      <SignButton fullWidth type="submit" variant="outlined">
-                        <ButtonLoader />
+                      <SignButton fullWidth type="submit" variant="outlined" disabled>
+                        <ButtonLoader buttonSpinner={buttonSpinner} />
                       </SignButton>
                     ) : (
                       <SignButton
