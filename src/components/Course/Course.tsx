@@ -12,6 +12,7 @@ import {
   AboutCourseContainer,
   ButtonsContainer,
   CourseDescriptionWrapper,
+  CourseInfoBox,
 } from './styled';
 
 interface Props {
@@ -33,7 +34,9 @@ const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, ch
       </CourseDescriptionWrapper>
     </AboutCourseContainer>
     <ButtonsContainer>
-      <CourseInfo duration={duration} lessons={lessons} />
+      <CourseInfoBox>
+        <CourseInfo duration={duration} lessons={lessons} />
+      </CourseInfoBox>
       {children}
     </ButtonsContainer>
   </CourseContainer>

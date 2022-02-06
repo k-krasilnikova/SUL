@@ -17,6 +17,7 @@ const MenuContainer: React.FC<Props> = ({ handleSqueeze, isSqueeze }) => {
   const menuItems = menuRole ? ROLES_MENU[menuRole] : [];
   const { pathname } = window.location;
   const classes = useListStyles();
+  const TAB_HEADER = null;
 
   return (
     <Menu
@@ -25,6 +26,7 @@ const MenuContainer: React.FC<Props> = ({ handleSqueeze, isSqueeze }) => {
       pathname={pathname}
       isSqueeze={isSqueeze}
       handleSqueeze={handleSqueeze}
+      isTabHeader={TAB_HEADER}
     />
   );
 };

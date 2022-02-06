@@ -14,6 +14,7 @@ export interface IMenuProps {
   children?: React.ReactNode;
   menuItem?: string;
   pathname?: string;
+  isTabHeader?: null;
 }
 
 export interface IRolesMenu {
