@@ -18,7 +18,7 @@ interface IPendingCourses {
 }
 
 interface IUser {
-  _id?: ObjectId;
+  _id: ObjectId;
   username: string;
   passwordHash: string;
   email: string;
