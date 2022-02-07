@@ -36,8 +36,8 @@ const refresh = async (req: Request, res: Response, next: TMiddlewareCall) => {
     if (isExpectedHttpError(error)) {
       next(error);
     } else {
-      const unauthorizedErr = new ForbiddenError('Invalid refresh token.');
-      next(unauthorizedErr);
+      const forbiddenError = new ForbiddenError('Invalid refresh token.');
+      next(forbiddenError);
     }
   }
 };
