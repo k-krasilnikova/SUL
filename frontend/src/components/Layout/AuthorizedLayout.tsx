@@ -1,14 +1,13 @@
 import React, { Suspense } from 'react';
 import Grid from '@mui/material/Grid';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import Slide from '@mui/material/Slide';
 
 import Loader from 'components/Loader';
-import { MobileMenuTabs } from 'components/Layout/MobileMenu';
 
 import { Header } from './Header';
 import Menu from './Menu';
-import { MenuGrid, GridHeader, PageWrapper, MobileMenu, MobileMenuBackground } from './styled';
+import { MobileMenu } from './MobileMenu';
+import { MenuGrid, GridHeader, PageWrapper } from './styled';
 
 interface Props {
   pageName: string | undefined;
@@ -48,14 +47,13 @@ const AuthorizedLayout: React.FC<Props> = ({
       </MenuGrid>
       <PageWrapper item xs={12} lg={9} xl={10}>
         <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
-        <Slide direction="right" in={isMobileMenuOpen} mountOnEnter unmountOnExit>
-          <MobileMenuBackground />
-        </Slide>
-        <Slide direction="left" in={isMobileMenuOpen} appear={false} mountOnEnter unmountOnExit>
-          <MobileMenu>
-            <MobileMenuTabs />
-          </MobileMenu>
-        </Slide>
+        <MobileMenu
+          isMobileMenuOpen={isMobileMenuOpen}
+          toggleMobileMenu={toggleMobileMenu}
+          firstName={firstName}
+          lastName={lastName}
+          avatar={avatar}
+        />
       </PageWrapper>
     </Grid>
   </HelmetProvider>
