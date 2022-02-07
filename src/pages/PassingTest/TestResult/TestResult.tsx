@@ -1,7 +1,7 @@
 import React from 'react';
 
-import AuthorizedLayout from 'components/Layout/AuthorizedLayout';
 import ProgressBar from 'components/ProgressBar/ProgressBar';
+import { AuthorizedLayout } from 'components/Layout';
 import CourseMaterialInfo from 'pages/Profile/UserSkills/SkillInfo';
 import { ITestResult } from 'types/test';
 
