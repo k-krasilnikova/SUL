@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -34,10 +35,16 @@ import {
 
 interface IProps {
   status?: string;
-  handleApplyCourse?: () => void;
+  handleApplyCourse: (event: any) => void;
+  filterSpinner?: string | undefined;
 }
 
-const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status }) => (
+const idNames = {
+  start: 'start',
+  course: 'course',
+};
+
+const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status, filterSpinner }) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
       <Link to={PATHS.coursesList}>
@@ -59,9 +66,20 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status }) => (
               lessons={INITIAL_DETAILED_COURSE.lessons}
             />
           </CourseInfoBox>
-          <StartButton variant="large" color="primary" onClick={handleApplyCourse}>
-            Start
-          </StartButton>
+          {status === 'loading' && filterSpinner === idNames.start ? (
+            <StartButton id={idNames.start} variant="mediumOutlined" disabled>
+              <ButtonLoader buttonSpinner={buttonSpinner} />
+            </StartButton>
+          ) : (
+            <StartButton
+              id={idNames.start}
+              variant="large"
+              color="primary"
+              onClick={(event) => handleApplyCourse(event)}
+            >
+              Start
+            </StartButton>
+          )}
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
           <Grid item xs={8}>
@@ -78,16 +96,18 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status }) => (
                     <DetailsButton color="primary" variant="mediumOutlined">
                       Details
                     </DetailsButton>
-                    {status === 'loading' ? (
-                      <StartCourseButton
-                        onClick={handleApplyCourse}
-                        variant="mediumOutlined"
-                        disabled
-                      >
+                    {status === 'loading' && filterSpinner === idNames.course ? (
+                      <StartCourseButton variant="mediumOutlined" disabled>
                         <ButtonLoader buttonSpinner={buttonSpinner} />
                       </StartCourseButton>
                     ) : (
-                      <StartCourseButton onClick={handleApplyCourse} variant="mediumContained">
+                      <StartCourseButton
+                        id={idNames.course}
+                        onClick={(event) => {
+                          handleApplyCourse(event);
+                        }}
+                        variant="mediumContained"
+                      >
                         Start the course
                       </StartCourseButton>
                     )}
