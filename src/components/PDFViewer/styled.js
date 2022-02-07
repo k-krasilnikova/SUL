@@ -21,7 +21,7 @@ export const ButtonBox = styled(Box)({
 
 export const StyledButton = styled(Button)({
   color: '#000000',
-  minWidth: '25px',
+  minWidth: '40px!important',
 });
 
 export const DocumentBox = styled(Box)({
