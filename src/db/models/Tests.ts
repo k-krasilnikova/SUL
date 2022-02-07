@@ -6,8 +6,15 @@ const testSchema = new Schema<ITest>({
   title: { type: String, required: true, unique: true },
   questions: [
     {
+      qN: { type: Number, unique: true },
       question: { type: String },
-      answers: [{ variant: { type: String }, isCorrect: { type: Boolean } }],
+      answers: [
+        {
+          aN: { type: Number, unique: true },
+          variant: { type: String },
+        },
+      ],
+      correctAnswer: { type: Number },
     },
   ],
   timeout: { type: Number, required: true },
