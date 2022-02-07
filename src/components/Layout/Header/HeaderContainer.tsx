@@ -6,11 +6,24 @@ import { useLogOut } from 'api/logOut/';
 
 import Header from './Header';
 
-const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
+interface MobileMenuProps {
+  isMobileMenuOpen: boolean;
+  toggleMobileMenu: () => void;
+}
+
+type Props = User & MobileMenuProps;
+
+const HeaderContainer: React.FC<Props> = ({
+  firstName,
+  lastName,
+  avatar,
+  isMobileMenuOpen,
+  toggleMobileMenu,
+}) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+
   const EMPTY_ARGUMENT = null;
   const handleNotificationsOpen = () => {
     setNotificationsOpen(!isNotificationsOpen);
@@ -37,9 +50,6 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
     setConfirmOpen(false);
   };
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
   return (
     <>
       <Header

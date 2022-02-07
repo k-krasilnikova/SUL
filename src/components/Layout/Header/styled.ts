@@ -28,6 +28,7 @@ export const LayoutHeader = styled(Grid)({
   [theme.breakpoints.up('xl')]: {
     height: HEADER_HEIGHT,
   },
+  position: 'relative',
 });
 export const BrandLogoLink = styled(Link)({
   flexGrow: '0',
@@ -252,6 +253,9 @@ export const LogOut = styled('div')({
   },
 });
 export const MobileMenuIcon = styled('div')<MobileMenuProps>(({ openMenu }) => ({
+  '&:hover': {
+    cursor: 'pointer',
+  },
   [theme.breakpoints.up('xs')]: {
     width: '16px',
     height: '10px',
