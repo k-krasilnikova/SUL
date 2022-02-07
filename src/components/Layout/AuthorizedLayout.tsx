@@ -45,7 +45,7 @@ const AuthorizedLayout: React.FC<Props> = ({
       <MenuGrid item xs={3} xl={2}>
         <Menu />
       </MenuGrid>
-      <PageWrapper item xs={12} lg={9} xl={10}>
+      <PageWrapper item xs={12} md={9} xl={10}>
         <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
         <MobileMenu
           isMobileMenuOpen={isMobileMenuOpen}

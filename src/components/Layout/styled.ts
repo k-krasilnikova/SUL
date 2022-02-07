@@ -15,7 +15,7 @@ export const PageWrapper = styled(Grid)({
 });
 
 export const MenuGrid = styled(Grid)({
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('md')]: {
     display: 'none',
   },
 });
