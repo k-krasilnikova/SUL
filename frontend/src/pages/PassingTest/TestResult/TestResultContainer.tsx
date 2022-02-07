@@ -8,7 +8,7 @@ const TEST_STATUSES = {
   failed: 'failed',
 };
 
-const STATUS = TEST_STATUSES.completed;
+const STATUS = TEST_STATUSES.failed;
 
 const TestResultContainer: React.FC<ITestResult> = ({ status = STATUS }) => {
   const isFailed = status === TEST_STATUSES.failed;

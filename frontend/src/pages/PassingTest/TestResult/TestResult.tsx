@@ -13,6 +13,7 @@ import {
   ProgressBarBox,
   ResultBox,
   SkillsText,
+  StyledDivider,
   SubmitButton,
   TestResultBox,
   TestResultText,
@@ -33,7 +34,7 @@ const TestResult: React.FC<ITestResult> = ({ isFailed }) => (
               text="35%"
               color="#D43E41"
               textColor="#000000"
-              trailColor="linear-gradient(90deg, #75c275 60.72%, #e26c5a 100%)"
+              trailColor="#eaeaea"
             />
           ) : (
             <ProgressBar
@@ -42,7 +43,7 @@ const TestResult: React.FC<ITestResult> = ({ isFailed }) => (
               text="75%"
               color="#1CC02C"
               textColor="#000000"
-              trailColor="linear-gradient(90deg, #75c275 60.72%, #e26c5a 100%)"
+              trailColor="#eaeaea"
             />
           )}
         </ProgressBarBox>
@@ -54,7 +55,10 @@ const TestResult: React.FC<ITestResult> = ({ isFailed }) => (
             <SkillsText>Acquired skills:</SkillsText>
             <TestSkillsBox>
               {isFailed ? (
-                <FailedCourseText>None</FailedCourseText>
+                <>
+                  <FailedCourseText>None</FailedCourseText>
+                  <StyledDivider />
+                </>
               ) : (
                 <>
                   <CourseMaterialInfo
