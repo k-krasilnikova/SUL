@@ -86,7 +86,11 @@ const MobileMenu: React.FC<Props> = ({
             )}
           </MenuTabsWrapper>
         </MenuTabs>
-        <SpaceHolder />
+        <SpaceHolder
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        />
         <MobileUserBlock>
           <UserProfile to={PATHS.profile}>
             <AvatarWrapper>
