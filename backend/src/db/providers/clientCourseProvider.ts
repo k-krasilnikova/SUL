@@ -16,6 +16,9 @@ const getClientCourseProvider = async (clientCourseId: string) => {
   if (!clientCourse) {
     throw new Error('course not found');
   }
+  if (clientCourse.status === CourseStatus.testing) {
+    throw new Error('Testing is started');
+  }
   return clientCourse;
 };
 

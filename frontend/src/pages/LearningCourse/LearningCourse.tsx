@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
@@ -43,6 +44,7 @@ interface LearningProps {
   forwardDisabled: boolean;
   material: string;
   materialType: string;
+  videoPreview: string | boolean;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -59,6 +61,7 @@ const LearningCourse: React.FC<LearningProps> = ({
   materialType,
   handleClickDialogOpen,
   handleDialogClose,
+  videoPreview,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -84,11 +87,12 @@ const LearningCourse: React.FC<LearningProps> = ({
             <MaterialVideo
               url={material}
               playIcon={<img src={playVideo} alt="play" />}
-              light
+              light={videoPreview}
               playing
               controls
               width="100%"
               height="100%"
+              frameborder="0"
             />
           ) : (
             <MaterialText>{material}</MaterialText>

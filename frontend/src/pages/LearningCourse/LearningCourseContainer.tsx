@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
-import { optimizeLink } from 'utils/helpers/videoLink';
+import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { MATERIAL } from 'constants/materials';
 import { defineMaterialType } from 'utils/helpers/defineMaterialType';
+import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
 
 import LearningCourse from './LearningCourse';
 
@@ -62,6 +63,7 @@ const LearningCourseContainer: React.FC = () => {
     materialType === MATERIAL.video && data
       ? optimizeLink(data.course.materials[stage - 1].content[CONTENT_ELEMENT])
       : MATERIAL.text;
+  const videoPreview = getPreviewId(material);
 
   const [dialogOpen, setDialogOpen] = React.useState(false);
 
@@ -91,6 +93,7 @@ const LearningCourseContainer: React.FC = () => {
           dialogOpen={dialogOpen}
           handleClickDialogOpen={handleClickDialogOpen}
           handleDialogClose={handleDialogClose}
+          videoPreview={videoPreview}
         />
       )}
     </>

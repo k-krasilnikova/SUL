@@ -19,6 +19,15 @@ export const BrandLogoLink = styled(Link)({
   flexShrink: '0',
   width: '130px',
   margin: '28px 163px 28px 40px',
+  [theme.breakpoints.up('xs')]: {
+    margin: '28px 20px 28px 20px',
+  },
+  [theme.breakpoints.up('md')]: {
+    margin: '28px 30px 28px 30px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    margin: '28px 163px 28px 40px',
+  },
 });
 export const BrandLogo = styled('img')({
   width: '130px',
@@ -39,9 +48,8 @@ export const SpaceHolder = styled('div')({
   height: HEADER_HEIGHT,
 });
 export const Search = styled(Input)({
-  flexGrow: '0',
+  flexGrow: '2',
   flexShrink: '3',
-  width: '730px',
   height: '50px',
   borderRadius: '3px',
   margin: '15px 20px 15px 0px',
@@ -49,6 +57,16 @@ export const Search = styled(Input)({
   fontSize: '24px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
   color: '#3c3c43',
+  [theme.breakpoints.up('xs')]: {
+    display: 'none!important',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'inline-flex!important',
+    maxWidth: '463px!important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    maxWidth: '730px!important',
+  },
 });
 export const RelativeWrapper = styled('div')({
   position: 'relative',
@@ -113,6 +131,9 @@ export const UserBlock = styled(Link)({
   height: '60px',
   padding: '6px',
   margin: '10px 45px 10px 20px',
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
 });
 export const UserName = styled('div')({
   height: '28px',
@@ -130,5 +151,8 @@ export const LogOut = styled('div')({
   padding: '12px 10px 10px 10px',
   '&:hover': {
     cursor: 'pointer',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
   },
 });

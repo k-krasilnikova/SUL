@@ -10,9 +10,9 @@ export const PageContainer = styled(Grid)({
     margin: '0px !important',
   },
   width: '100%',
-  paddingRight: '8.3%',
+  paddingRight: '8.4%',
   paddingTop: '2.5%',
-  paddingLeft: '5px',
+  paddingLeft: '1.5%',
 });
 
 export const GridItem = styled(Grid)({

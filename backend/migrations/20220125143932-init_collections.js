@@ -10,7 +10,7 @@ const SALT_ROUNDS = 10;
 
 const TESTS = [
   {
-    title: 'test for course "JS for begginers" ',
+    title: 'test for course "JS for begginers"',
     questions: [
       {
         qN: 1,
@@ -96,7 +96,7 @@ const TESTS = [
     timeout: 900000,
   },
   {
-    title: 'test for course "Java for profi" ',
+    title: 'test for course "Java for profi"',
     questions: [
       {
         qN: 1,
@@ -192,7 +192,7 @@ const TESTS = [
     timeout: 450000,
   },
   {
-    title: 'test for course "Python for kids" ',
+    title: 'test for course "Python for kids"',
     questions: [
       {
         qN: 1,
@@ -244,7 +244,7 @@ const TESTS = [
     timeout: 90000,
   },
   {
-    title: 'test for course "Python for kids" ',
+    title: 'test for course "Python for kids"',
     questions: [
       {
         qN: 1,
@@ -296,7 +296,7 @@ const TESTS = [
     timeout: 90000,
   },
   {
-    title: 'test for course "Python for kids" ',
+    title: 'test for course "Python for kids"',
     questions: [
       {
         qN: 1,
@@ -362,9 +362,9 @@ const DEFAULT_USERS_DOCS = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -389,9 +389,9 @@ const DEFAULT_USERS_DOCS = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -419,9 +419,9 @@ const DEFAULT_EMPLOYEES = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -446,9 +446,9 @@ const DEFAULT_EMPLOYEES = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -577,8 +577,8 @@ const MATERIALS = [
 
 const MOCKED_COURSES = [
   {
-    title: 'JS for begginers',
-    description: 'basic course for begginers',
+    title: 'JS for beginners',
+    description: 'basic course for beginners',
     technology: ['js', 'html', 'css'],
     requiredSkills: ['html', 'css'],
     duration: '123124679',
@@ -590,7 +590,7 @@ const MOCKED_COURSES = [
     title: 'Java for Profi ',
     description: 'course for people who want rise their level in java',
     technology: ['java', 'sql'],
-    requiredSkills: ['java for begginers'],
+    requiredSkills: ['java for beginners'],
     duration: '123124679',
     materials: MATERIALS[1].content,
     lessons: 0,

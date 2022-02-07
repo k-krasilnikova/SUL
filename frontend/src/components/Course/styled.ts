@@ -182,10 +182,8 @@ export const InfoContainer = styled(Box)({
   },
   height: 'fit-content',
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'end',
   alignSelf: 'end',
-  paddingLeft: '30px !important',
-  paddingBottom: '7px !important',
 });
 
 export const InfoItem = styled('div')({
@@ -227,4 +225,9 @@ export const InfoItemTextBox = styled(Box)({
 
 export const CourseDescriptionWrapper = styled(Box)({
   margin: '0px 45px 14px 16px',
+});
+
+export const CourseInfoBox = styled(Box)({
+  paddingLeft: '30px !important',
+  paddingBottom: '7px !important',
 });
