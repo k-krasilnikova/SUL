@@ -12,7 +12,7 @@ export const PageContainer = styled(Grid)({
   width: '100%',
   paddingRight: '8.4%',
   paddingTop: '2.5%',
-  paddingLeft: '7px',
+  paddingLeft: '1.5%',
 });
 
 export const GridItem = styled(Grid)({

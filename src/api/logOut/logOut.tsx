@@ -5,6 +5,7 @@ import { apiClientWrapper } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
 import { logOutHandler } from 'utils/helpers/logOutHandler';
+import { removeMenuStatus } from 'utils/helpers/menuHelpers/removeMenuStatus';
 
 const useLogOut = (): UseMutationResult => {
   const navigateTo = useNavigate();
@@ -21,6 +22,7 @@ const useLogOut = (): UseMutationResult => {
     {
       onSuccess: () => {
         logOutHandler();
+        removeMenuStatus();
         navigateTo(PATHS.signIn);
       },
     },

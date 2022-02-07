@@ -3,5 +3,5 @@ interface ICookiesTypes {
 }
 
 export const MENU_VALUES: ICookiesTypes = {
-  menuPath: 'menuPath',
+  menuStatus: 'menuStatus',
 };
