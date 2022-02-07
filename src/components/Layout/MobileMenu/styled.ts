@@ -107,6 +107,9 @@ export const LogOut = styled('div')({
   width: '26px',
   height: '24px',
   marginTop: '3px',
+  '&:hover': {
+    cursor: 'pointer',
+  },
 });
 
 export const useListStyles = makeStyles({
