@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/core';
 import styled from 'styled-components';
 import Grid from '@mui/material/Grid';
 
@@ -8,13 +9,26 @@ export const GridHeader = styled(Grid)({
   zIndex: '10',
 });
 
+export const GridMenu = styled(Grid)({
+  width: '303px',
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
+  },
+});
+
 export const PageWrapper = styled(Grid)({
   overflowY: 'auto',
   height: 'calc(100vh - 80px)',
 });
 
-export const MenuGrid = styled(Grid)({
-  [theme.breakpoints.down('lg')]: {
-    display: 'none',
+export const useLayOutStyles = makeStyles({
+  hideGridMenu: {
+    width: '129px',
+  },
+  hidePageWrapper: {
+    width: 'calc(100% - 303px)',
+  },
+  showPageWrapper: {
+    width: `calc(100% - 129px)`,
   },
 });
