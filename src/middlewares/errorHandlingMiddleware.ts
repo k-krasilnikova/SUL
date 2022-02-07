@@ -14,11 +14,20 @@ const handleError: TErrorHandler = (
   const { statusCode, message } = error;
 
   if (!statusCode && next) {
-    const internalError = new InternalServerError('Unhandled server error.');
-    next(internalError);
+    next();
   } else {
     res.status(statusCode).json(message);
   }
 };
 
-export default handleError;
+const handleInternalError = (req: Request, res: Response, next: TMiddlewareCall) => {
+  const { statusCode, message } = new InternalServerError();
+
+  res.status(statusCode).json(message);
+
+  if (next) {
+    next();
+  }
+};
+
+export { handleError, handleInternalError };
