@@ -1,3 +1,5 @@
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+
 import UserModel from '../models/User';
 
 const getPendingCoursesProvider = async (managerId: string) => {
@@ -20,7 +22,7 @@ const getPendingCoursesProvider = async (managerId: string) => {
     })
     .lean();
   if (!dbUser) {
-    throw new Error('user not found');
+    throw new BadRequestError('User not found.');
   }
   return dbUser;
 };

@@ -7,13 +7,10 @@ import {
 } from 'config/constants';
 import { IAccessJwtPayload, IRefreshJwtPayload, ITokens } from 'interfaces/Iauth/authInterfaces';
 import { IUser } from 'interfaces/Ientities/Iusers';
+import InternalServerError from 'classes/errors/serverErrors/InternalServerError';
 
 const generateJWT = (userData: IUser): ITokens => {
   try {
-    if (!userData._id) {
-      throw new Error('wrong user id');
-    }
-
     const { _id: id, role } = userData;
     const timeout = process.env.JWT_EXPIRATION_TIME_ACCESS || DEFAULT_ACCESS_TIMEOUT;
     const refreshTimeout = process.env.JWT_EXPIRATION_TIME_REFRESH || DEFAULT_REFRESH_TIMEOUT;
@@ -31,7 +28,7 @@ const generateJWT = (userData: IUser): ITokens => {
     );
     return { accessToken, refreshToken };
   } catch (error) {
-    throw new Error('not generate token');
+    throw new InternalServerError('Could not generate token.');
   }
 };
 
