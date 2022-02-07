@@ -13,15 +13,10 @@ const schema = new Schema<IUser>({
   lastName: { type: String, required: true },
   skills: [
     {
-      skillGroup: { type: String },
-      skillList: [
-        {
-          name: { type: String, unique: true },
-          image: { type: String },
-          score: { type: Number },
-          maxScore: { type: Number },
-        },
-      ],
+      name: { type: String, unique: true },
+      image: { type: String },
+      score: { type: Number },
+      group: { type: String },
     },
   ],
   employees: [{ type: Schema.Types.ObjectId, ref: 'User' }],

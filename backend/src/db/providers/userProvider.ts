@@ -19,4 +19,13 @@ const updatePendingFieldCourses = async (
   await UserModel.updateOne({ _id: managerId }, { $push: { pendingCourses: applyedCourseId } });
 };
 
-export { getUserProvider, updatePendingFieldCourses };
+const updateUserSkill = async (userId: string, skillName: string) => {
+  const updatedSkill = await UserModel.findOneAndUpdate(
+    { _id: userId },
+    { $inc: { 'skills.$[elem].score': 1 } },
+    { arrayFilters: [{ 'elem.name': { $eq: skillName } }] },
+  );
+  return updatedSkill;
+};
+
+export { getUserProvider, updatePendingFieldCourses, updateUserSkill };
