@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
-import Countdown from 'react-countdown';
 
-import { countdownRenderer } from 'utils/helpers/countdownRenderer';
 import { AuthorizedLayout } from 'components/Layout';
+import { CountDownTimer } from 'components/CountDownTimer';
 import { PATHS } from 'constants/routes';
 import { INITIAL_TEST } from 'constants/test';
 import { IPassingTest } from 'types/test';
@@ -41,7 +40,7 @@ const PassingTest: React.FC<IPassingTest> = ({
           <TitleBox>
             <CourseTestTitle>{INITIAL_TEST.title}</CourseTestTitle>
             <CountDownText>
-              <Countdown date={Date.now() + INITIAL_TEST.timeout} renderer={countdownRenderer} />
+              <CountDownTimer duration={INITIAL_TEST.timeout} />
             </CountDownText>
           </TitleBox>
         </Box>

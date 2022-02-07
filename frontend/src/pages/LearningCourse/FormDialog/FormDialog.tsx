@@ -1,12 +1,11 @@
 import React from 'react';
-import Countdown from 'react-countdown';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 
-import { countdownRenderer } from 'utils/helpers/countdownRenderer';
 import { close } from 'icons';
 import { ConfirmDialog } from 'components/ConfirmDialog';
 import { PATHS } from 'constants/routes';
+import { CountDownTimer } from 'components/CountDownTimer';
 
 import {
   MainDialogContentText,
@@ -26,7 +25,6 @@ interface IFormDialog {
 }
 
 const TEST_TIME_REMAINS_IN_SECONDS = 9150000;
-const TEST_DATE = Date.now() + TEST_TIME_REMAINS_IN_SECONDS;
 
 const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) => {
   const params = useParams();
@@ -38,7 +36,7 @@ const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) =>
         </CloseButton>
       </CloseButtonBox>
       <StyledDialogTitle>
-        <Countdown date={TEST_DATE} renderer={countdownRenderer} />
+        <CountDownTimer duration={TEST_TIME_REMAINS_IN_SECONDS} />
       </StyledDialogTitle>
       <MainDialogContentText>
         By clicking on the button, you confirm <br /> the end of the course and proceed to testing
