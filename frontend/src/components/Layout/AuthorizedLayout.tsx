@@ -35,7 +35,6 @@ const AuthorizedLayout: React.FC<Props> = ({
   isSqueeze,
   handleSqueeze,
   classes,
-  children,
 }) => (
   <HelmetProvider>
     <Helmet>

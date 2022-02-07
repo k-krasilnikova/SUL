@@ -37,8 +37,8 @@ type Props = MobileMenuProps & IMenuProps;
 
 const MobileMenu: React.FC<Props> = ({
   menuList,
-  menuItem,
   classes,
+  pathname,
   isMobileMenuOpen,
   toggleMobileMenu,
   firstName,
@@ -52,7 +52,7 @@ const MobileMenu: React.FC<Props> = ({
         <MenuTabs>
           <MenuTabsWrapper>
             {menuList.map((item) =>
-              menuItem === item.path ? (
+              pathname?.includes(item.path) ? (
                 <TabWrapper
                   id={item.path}
                   key={item.title}
