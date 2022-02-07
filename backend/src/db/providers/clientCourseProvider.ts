@@ -19,7 +19,7 @@ const getClientCourseProvider = async (clientCourseId: string) => {
     throw new BadRequestError('Course not found.');
   }
   if (clientCourse.status === CourseStatus.testing) {
-    throw new Error('Testing is started');
+    throw new BadRequestError('Testing have already been started.');
   }
   return clientCourse;
 };
