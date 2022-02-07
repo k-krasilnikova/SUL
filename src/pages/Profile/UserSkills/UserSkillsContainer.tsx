@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
 
+import { Skill } from 'types/skill';
+
 import UserSkills from './UserSkills';
 
 interface SkillsProps {
-  skills: Array<{
-    id: number;
-    title: string;
-    isCompleted: boolean;
-    technologies: Array<{
-      id: number;
-      technology: Array<string>;
-      stages: Array<{
-        stage: number;
-        isCompleted: boolean;
-      }>;
-    }>;
-  }>;
+  skills?: Array<Skill>;
 }
 
 const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
@@ -37,7 +27,7 @@ const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
   };
   const userSkills = skills?.filter(
     (skill) =>
-      !searchSkill.trimEnd() || skill.title.toLowerCase().includes(searchSkill.toLowerCase()),
+      !searchSkill.trimEnd() || skill.skillGroup.toLowerCase().includes(searchSkill.toLowerCase()),
   );
   return (
     <UserSkills

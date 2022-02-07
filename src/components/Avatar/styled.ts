@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Avatar from '@mui/material/Avatar';
+import Avatar from 'react-avatar';
 
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';
@@ -27,13 +27,13 @@ export const UserAvatarRounded = styled(Avatar)<Size>(({ size }) => ({
       height: '40px',
     }),
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('lg')]: {
     ...(size === SIZE.large && {
       width: '132px',
       height: '132px',
     }),
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('xl')]: {
     ...(size === SIZE.large && {
       width: '220px',
       height: '220px',

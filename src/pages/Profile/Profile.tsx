@@ -5,7 +5,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
-import { SKILLS } from 'constants/skills';
 import { SIZE } from 'constants/sizes';
 import Loader from 'components/Loader';
 
@@ -27,6 +26,7 @@ const ProfileContent: React.FC<User> = ({
   group,
   phone,
   skype,
+  skills,
 }) => (
   <AuthorizedLayout pageName="Profile">
     <ProfileBox>
@@ -62,7 +62,7 @@ const ProfileContent: React.FC<User> = ({
       </UserInfoList>
     </ProfileBox>
     <Suspense fallback={<Loader color="primary" />}>
-      <UserSkills skills={SKILLS} />
+      <UserSkills skills={skills} />
     </Suspense>
   </AuthorizedLayout>
 );

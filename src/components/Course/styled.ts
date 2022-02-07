@@ -182,7 +182,7 @@ export const InfoContainer = styled(Box)({
   },
   height: 'fit-content',
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'end',
   alignSelf: 'end',
 });
 
