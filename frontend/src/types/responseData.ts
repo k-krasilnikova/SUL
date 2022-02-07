@@ -8,4 +8,6 @@ export interface ResponseDataType {
   isFetched?: boolean;
   error?: string | unknown;
   handleApplyCourse?: () => void;
+  handleSqueeze?: () => void;
+  isSqueeze?: boolean;
 }

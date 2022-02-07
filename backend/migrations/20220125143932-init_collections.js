@@ -6,287 +6,339 @@ const SALT_ROUNDS = 10;
 
 const TESTS = [
   {
-    title: 'test for course "JS for begginers" ',
+    title: 'test for course "JS for begginers"',
     questions: [
       {
+        qN: 1,
         question: 'choose type that does not exist in JavaScript',
         answers: [
-          { variant: 'boolean', isCorrect: false },
-          { variant: 'integer', isCorrect: true },
-          { variant: 'undefined', isCorrect: false },
+          { variant: 'boolean', aN: 1 },
+          { variant: 'integer', aN: 2 },
+          { variant: 'undefined', aN: 3 },
         ],
+        correctAnswer: 2,
       },
       {
+        qN: 2,
         question: 'choose falsy type',
         answers: [
-          { variant: '{}', isCorrect: false },
-          { variant: '[]', isCorrect: false },
-          { variant: '0', isCorrect: true },
+          { variant: '{}', aN: 1 },
+          { variant: '[]', aN: 2 },
+          { variant: '0', aN: 3 },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 3,
         question: 'typeof "null" is',
         answers: [
-          { variant: 'string', isCorrect: false },
-          { variant: 'object', isCorrect: true },
-          { variant: 'null', isCorrect: false },
+          { variant: 'string', aN: 1 },
+          { variant: 'object', aN: 2 },
+          { variant: 'null', aN: 3 },
         ],
+        correctAnswer: 2,
       },
       {
+        qN: 4,
         question: '1/"a" === 1/"a" ?',
         answers: [
-          { variant: 'false', isCorrect: true },
-          { variant: 'true', isCorrect: false },
-          { variant: 'undefined', isCorrect: false },
+          { variant: 'false', aN: 1 },
+          { variant: 'true', aN: 2 },
+          { variant: 'undefined', aN: 3 },
         ],
+        correctAnswer: 1,
       },
       {
+        qN: 5,
         question: '[] + 0 = ?',
         answers: [
-          { variant: '[object Object]', isCorrect: false },
-          { variant: '[]', isCorrect: false },
-          { variant: '0', isCorrect: true },
+          { variant: '[object Object]', aN: 1 },
+          { variant: '[]', aN: 2 },
+          { variant: '0', aN: 3 },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 6,
         question: 'null == undefined',
         answers: [
-          { variant: 'true', isCorrect: true },
-          { variant: 'false', isCorrect: false },
-          { variant: 'undefined', isCorrect: false },
+          { variant: 'true', aN: 1 },
+          { variant: 'false', aN: 1 },
+          { variant: 'undefined', aN: 1 },
         ],
+        correctAnswer: 1,
       },
       {
+        qN: 7,
         question: 'null >= 0 ',
         answers: [
-          { variant: 'false', isCorrect: false },
-          { variant: 'true', isCorrect: true },
-          { variant: 'undefined', isCorrect: false },
+          { variant: 'false', aN: 1 },
+          { variant: 'true', aN: 2 },
+          { variant: 'undefined', aN: 3 },
         ],
+        correctAnswer: 2,
       },
       {
+        qN: 8,
         question: '!!false + !false + [1, "2"] + null',
         answers: [
-          { variant: '11,20', isCorrect: true },
-          { variant: '11.20', isCorrect: false },
-          { variant: '11,2null', isCorrect: false },
+          { variant: '11,20', aN: 1 },
+          { variant: '11.20', aN: 2 },
+          { variant: '11,2null', aN: 3 },
         ],
+        correctAnswer: 1,
       },
     ],
     timeout: 900000,
   },
   {
-    title: 'test for course "Java for profi" ',
+    title: 'test for course "Java for profi"',
     questions: [
       {
+        qN: 1,
         question: 'Which of the following stands true about default modifier of class members?',
         answers: [
           {
             variant:
               'By default, variables, methods and constructors can be accessed by subclass only.',
-            isCorrect: false,
+            aN: 1,
           },
           {
             variant:
               'By default, variables, methods and constructors can be accessed by any class lying in any package.',
-            isCorrect: false,
+            aN: 2,
           },
           {
             variant:
               'By default, variables, methods and constructors can be accessed by any class lying in the same package.',
-            isCorrect: true,
+            aN: 3,
           },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 2,
         question: 'Can be constructor be made private?',
         answers: [
-          { variant: 'true', isCorrect: true },
-          { variant: 'false', isCorrect: false },
+          { variant: 'true', aN: 1 },
+          { variant: 'false', aN: 2 },
         ],
+        correctAnswer: 1,
       },
       {
+        qN: 3,
         question: 'What is polymorphism?',
         answers: [
           {
             variant: 'Polymorphism is a technique to define different objects of same type.',
-            isCorrect: false,
+            aN: 1,
           },
           {
             variant: ' Polymorphism is the ability of an object to take on many forms.',
-            isCorrect: true,
+            aN: 2,
           },
           {
             variant: 'Polymorphism is a technique to define different methods of same type.',
-            isCorrect: false,
+            aN: 3,
           },
         ],
+        correctAnswer: 2,
       },
       {
+        qN: 4,
         question: 'Which of the following is true about String?',
         answers: [
-          { variant: 'String is mutable', isCorrect: false },
-          { variant: 'String is immutable', isCorrect: true },
-          { variant: 'String is a data type', isCorrect: false },
+          { variant: 'String is mutable', aN: 1 },
+          { variant: 'String is immutable', aN: 2 },
+          { variant: 'String is a data type', aN: 3 },
         ],
+        correctAnswer: 2,
       },
       {
+        qN: 5,
         question: ' What is Encapsulation?',
         answers: [
           {
             variant: 'Encapsulation is a technique to define different methods of same type.',
-            isCorrect: false,
+            aN: 1,
           },
           {
             variant: 'Encapsulation is the ability of an object to take on many forms.',
-            isCorrect: false,
+            aN: 2,
           },
           {
             variant:
               'Encapsulation is the technique of making the fields in a class private and providing access to the fields via public methods.',
-            isCorrect: true,
+            aN: 3,
           },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 6,
         question: 'What of the following is the default value of an instance variable?',
         answers: [
-          { variant: 'Depends upon the type variable', isCorrect: true },
-          { variant: 'null', isCorrect: false },
-          { variant: '0', isCorrect: false },
+          { variant: 'Depends upon the type variable', aN: 1 },
+          { variant: 'null', aN: 2 },
+          { variant: '0', aN: 3 },
         ],
+        correctAnswer: 1,
       },
     ],
     timeout: 450000,
   },
   {
-    title: 'test for course "Python for kids" ',
+    title: 'test for course "Python for kids"',
     questions: [
       {
+        qN: 1,
         question: 'i = 1/n while True:/n if(1%2==0):/n break/n print(i)/n i += 2',
         answers: [
-          { variant: '1 3 5', isCorrect: false },
-          { variant: '1', isCorrect: false },
-          { variant: '1 3 5 7 9 ...', isCorrect: true },
+          { variant: '1 3 5', aN: 1 },
+          { variant: '1', aN: 2 },
+          { variant: '1 3 5 7 9 ...', aN: 3 },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 2,
         question: 'List Comprehension is',
         answers: [
-          { variant: 'new_list = [for member in iterable]', isCorrect: false },
-          { variant: 'new_list = [members]', isCorrect: false },
+          { variant: 'new_list = [for member in iterable]', aN: 1 },
+          { variant: 'new_list = [members]', aN: 2 },
           {
             variant: 'new_list = [expression for member in iterable (if conditional)]',
-            isCorrect: true,
+            aN: 3,
           },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 3,
         question: 'Which of the following are true of Python lists?',
         answers: [
-          { variant: 'A given object may appear in a list more than once', isCorrect: true },
-          { variant: 'All elements in a list must be of the same type', isCorrect: false },
+          { variant: 'A given object may appear in a list more than once', aN: 1 },
+          { variant: 'All elements in a list must be of the same type', aN: 2 },
           {
             variant: 'A list may contain any type of object except another list',
-            isCorrect: false,
+            aN: 3,
           },
         ],
+        correctAnswer: 1,
       },
       {
+        qN: 4,
         question: "a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']/b print(a[4::-2])",
         answers: [
-          { variant: "['quux']", isCorrect: true },
-          { variant: "['quux', 'qux', 'baz', 'foo']", isCorrect: false },
-          { variant: "['quux', 'baz', 'foo']", isCorrect: false },
+          { variant: "['quux']", aN: 1 },
+          { variant: "['quux', 'qux', 'baz', 'foo']", aN: 2 },
+          { variant: "['quux', 'baz', 'foo']", aN: 3 },
         ],
+        correctAnswer: 1,
       },
     ],
     timeout: 90000,
   },
   {
-    title: 'test for course "Python for kids" ',
+    title: 'test for course "Python for kids"',
     questions: [
       {
+        qN: 1,
         question: 'i = 1/n while True:/n if(1%2==0):/n break/n print(i)/n i += 2',
         answers: [
-          { variant: '1 3 5', isCorrect: false },
-          { variant: '1', isCorrect: false },
-          { variant: '1 3 5 7 9 ...', isCorrect: true },
+          { variant: '1 3 5', aN: 1 },
+          { variant: '1', aN: 2 },
+          { variant: '1 3 5 7 9 ...', aN: 3 },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 2,
         question: 'List Comprehension is',
         answers: [
-          { variant: 'new_list = [for member in iterable]', isCorrect: false },
-          { variant: 'new_list = [members]', isCorrect: false },
+          { variant: 'new_list = [for member in iterable]', aN: 1 },
+          { variant: 'new_list = [members]', aN: 2 },
           {
             variant: 'new_list = [expression for member in iterable (if conditional)]',
-            isCorrect: true,
+            aN: 3,
           },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 3,
         question: 'Which of the following are true of Python lists?',
         answers: [
-          { variant: 'A given object may appear in a list more than once', isCorrect: true },
-          { variant: 'All elements in a list must be of the same type', isCorrect: false },
+          { variant: 'A given object may appear in a list more than once', aN: 1 },
+          { variant: 'All elements in a list must be of the same type', aN: 2 },
           {
             variant: 'A list may contain any type of object except another list',
-            isCorrect: false,
+            aN: 3,
           },
         ],
+        correctAnswer: 1,
       },
       {
+        qN: 4,
         question: "a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']/b print(a[4::-2])",
         answers: [
-          { variant: "['quux']", isCorrect: true },
-          { variant: "['quux', 'qux', 'baz', 'foo']", isCorrect: false },
-          { variant: "['quux', 'baz', 'foo']", isCorrect: false },
+          { variant: "['quux']", aN: 1 },
+          { variant: "['quux', 'qux', 'baz', 'foo']", aN: 2 },
+          { variant: "['quux', 'baz', 'foo']", aN: 3 },
         ],
+        correctAnswer: 1,
       },
     ],
     timeout: 90000,
   },
   {
-    title: 'test for course "Python for kids" ',
+    title: 'test for course "Python for kids"',
     questions: [
       {
+        qN: 1,
         question: 'i = 1/n while True:/n if(1%2==0):/n break/n print(i)/n i += 2',
         answers: [
-          { variant: '1 3 5', isCorrect: false },
-          { variant: '1', isCorrect: false },
-          { variant: '1 3 5 7 9 ...', isCorrect: true },
+          { variant: '1 3 5', aN: 1 },
+          { variant: '1', aN: 2 },
+          { variant: '1 3 5 7 9 ...', aN: 3 },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 2,
         question: 'List Comprehension is',
         answers: [
-          { variant: 'new_list = [for member in iterable]', isCorrect: false },
-          { variant: 'new_list = [members]', isCorrect: false },
+          { variant: 'new_list = [for member in iterable]', aN: 1 },
+          { variant: 'new_list = [members]', aN: 2 },
           {
             variant: 'new_list = [expression for member in iterable (if conditional)]',
-            isCorrect: true,
+            aN: 3,
           },
         ],
+        correctAnswer: 3,
       },
       {
+        qN: 3,
         question: 'Which of the following are true of Python lists?',
         answers: [
-          { variant: 'A given object may appear in a list more than once', isCorrect: true },
-          { variant: 'All elements in a list must be of the same type', isCorrect: false },
+          { variant: 'A given object may appear in a list more than once', aN: 1 },
+          { variant: 'All elements in a list must be of the same type', aN: 2 },
           {
             variant: 'A list may contain any type of object except another list',
-            isCorrect: false,
+            aN: 3,
           },
         ],
+        correctAnswer: 1,
       },
       {
+        qN: 4,
         question: "a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']/b print(a[4::-2])",
         answers: [
-          { variant: "['quux']", isCorrect: true },
-          { variant: "['quux', 'qux', 'baz', 'foo']", isCorrect: false },
-          { variant: "['quux', 'baz', 'foo']", isCorrect: false },
+          { variant: "['quux']", aN: 1 },
+          { variant: "['quux', 'qux', 'baz', 'foo']", aN: 2 },
+          { variant: "['quux', 'baz', 'foo']", aN: 3 },
         ],
+        correctAnswer: 1,
       },
     ],
     timeout: 90000,
@@ -306,9 +358,9 @@ const DEFAULT_USERS_DOCS = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -333,9 +385,9 @@ const DEFAULT_USERS_DOCS = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -363,9 +415,9 @@ const DEFAULT_EMPLOYEES = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -390,9 +442,9 @@ const DEFAULT_EMPLOYEES = [
       {
         skillGroup: 'skill group 1',
         skillList: [
-          { name: 'php', image: '', score: 1 },
-          { name: 'js', image: '', score: 1 },
-          { name: 'html', image: '', score: 1 },
+          { name: 'php', image: '', score: 1, maxScore: 5 },
+          { name: 'js', image: '', score: 1, maxScore: 5 },
+          { name: 'html', image: '', score: 1, maxScore: 5 },
         ],
       },
     ],
@@ -521,8 +573,8 @@ const MATERIALS = [
 
 const MOCKED_COURSES = [
   {
-    title: 'JS for begginers',
-    description: 'basic course for begginers',
+    title: 'JS for beginners',
+    description: 'basic course for beginners',
     technology: ['js', 'html', 'css'],
     requiredSkills: ['html', 'css'],
     duration: '123124679',
@@ -534,7 +586,7 @@ const MOCKED_COURSES = [
     title: 'Java for Profi ',
     description: 'course for people who want rise their level in java',
     technology: ['java', 'sql'],
-    requiredSkills: ['java for begginers'],
+    requiredSkills: ['java for beginners'],
     duration: '123124679',
     materials: MATERIALS[1].content,
     lessons: 0,
