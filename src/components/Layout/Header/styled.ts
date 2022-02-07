@@ -8,9 +8,18 @@ interface MobileMenuProps {
   openMenu: boolean;
 }
 
+interface CoursesPageProps {
+  pagename?: string;
+  menuopen: boolean;
+}
+
 export const HEADER_HEIGHT = '80px';
 export const HEADER_HEIGHT_IPAD = '60px';
 export const HEADER_HEIGHT_MOBILE = '44px';
+const PAGES_TO_SEARCH = {
+  myCourses: 'My Courses',
+  coursesList: 'Courses List',
+};
 
 export const LayoutHeader = styled(Grid)({
   width: 'calc(100vw-10px)',
@@ -35,10 +44,13 @@ export const BrandLogoLink = styled(Link)({
   flexShrink: '0',
   [theme.breakpoints.up('xs')]: {
     width: '79px',
-    margin: '14px 140px 12px 12px',
+    margin: '14px 10px 12px 12px',
   },
   [theme.breakpoints.up('md')]: {
     width: '105px',
+    margin: '19px 30px 16px 32px',
+  },
+  '@media(min-width: 1050px)': {
     margin: '19px 48px 16px 32px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -64,6 +76,10 @@ export const HeaderContent = styled('div')({
   justifyContent: 'flex-end',
   height: HEADER_HEIGHT,
   textAlign: 'right',
+  position: 'relative',
+  [theme.breakpoints.down('md')]: {
+    width: 'calc(100% - 101px)',
+  },
 });
 export const SpaceHolder = styled('div')({
   flexGrow: '4',
@@ -77,7 +93,7 @@ export const SpaceHolder = styled('div')({
     maxWidth: '1000px',
   },
 });
-export const Search = styled(Input)({
+export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) => ({
   flexGrow: '0',
   flexShrink: '1',
   borderRadius: '3px',
@@ -86,8 +102,43 @@ export const Search = styled(Input)({
   color: '#3c3c43',
   [theme.breakpoints.up('xs')]: {
     display: 'none!important',
+    position: 'relative',
+    ...(pagename === PAGES_TO_SEARCH.myCourses &&
+      !menuopen && {
+        flexShrink: '0',
+        display: 'block',
+        position: 'absolute',
+        width: '260px',
+        height: '30px',
+        top: '60px',
+        right: 'calc(100vw - 310px)',
+      }),
+    ...(pagename === PAGES_TO_SEARCH.coursesList &&
+      !menuopen && {
+        flexShrink: '0',
+        display: 'block',
+        position: 'absolute',
+        width: '260px',
+        height: '30px',
+        top: '60px',
+        right: 'calc(100vw - 310px)',
+      }),
+  },
+  [theme.breakpoints.up('md')]: {
+    position: 'relative',
+    top: '0px',
+    right: '0px',
+    display: 'inline-flex!important',
+    width: '200px!important',
+    height: '44px',
+    fontSize: '16px',
+    margin: '8px 20px 8px 0px',
+  },
+  '@media(min-width: 900px)': {
+    width: '300px!important',
   },
   [theme.breakpoints.up('lg')]: {
+    position: 'relative',
     display: 'inline-flex!important',
     width: '463px!important',
     height: '44px',
@@ -102,7 +153,7 @@ export const Search = styled(Input)({
   '@media(min-width: 1530px)': {
     width: '730px!important',
   },
-});
+}));
 export const RelativeWrapper = styled('div')({
   position: 'relative',
 });
@@ -117,16 +168,21 @@ export const NotificationsButton = styled('div')({
   [theme.breakpoints.up('xs')]: {
     width: '50px',
     height: '50px',
-    margin: '-2px 0px 12px 0px',
     padding: '10px',
     transform: 'scale(0.6)',
+    position: 'absolute',
+    top: '-2px',
+    left: '-48px',
   },
   [theme.breakpoints.up('md')]: {
+    position: 'relative',
     transform: 'none',
     width: '44px',
     height: '44px',
     margin: '8px 16px 8px 0px',
     padding: '8px',
+    top: '0px',
+    left: '0px',
   },
   [theme.breakpoints.up('xl')]: {
     width: '50px',
@@ -135,7 +191,7 @@ export const NotificationsButton = styled('div')({
     padding: '10px',
   },
 });
-export const FilterButton = styled('div')({
+export const FilterButton = styled('div')<CoursesPageProps>(({ pagename, menuopen }) => ({
   flexGrow: '0',
   flexShrink: '0',
   borderRadius: '3px',
@@ -144,14 +200,31 @@ export const FilterButton = styled('div')({
     cursor: 'pointer',
   },
   [theme.breakpoints.up('xs')]: {
-    display: 'none!important',
+    ...((pagename === PAGES_TO_SEARCH.myCourses && !menuopen) ||
+    (pagename === PAGES_TO_SEARCH.coursesList && !menuopen)
+      ? {
+          position: 'absolute',
+          top: '50px',
+          right: 'calc(100vw - 360px)',
+          width: '50px',
+          height: '50px',
+          padding: '10px',
+          transform: 'scale(0.6)',
+        }
+      : {
+          display: 'none',
+        }),
   },
   [theme.breakpoints.up('md')]: {
-    display: 'block!important',
+    display: 'block',
+    position: 'relative',
+    transform: 'none',
     width: '44px',
     height: '44px',
-    marginTop: '8px',
-    padding: '8px 9px 10px 6px',
+    margin: '8px 16px 8px 0px',
+    padding: '8px',
+    top: '0px',
+    left: '0px',
   },
   [theme.breakpoints.up('lg')]: {
     width: '44px',
@@ -165,7 +238,7 @@ export const FilterButton = styled('div')({
     marginTop: '15px',
     padding: '10px 12px 10px 5px',
   },
-});
+}));
 export const Filter = styled('div')({
   position: 'absolute',
   zIndex: '15',

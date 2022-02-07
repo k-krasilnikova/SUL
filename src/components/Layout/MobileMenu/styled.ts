@@ -18,7 +18,6 @@ export const MobileMenuSlide = styled('div')({
   height: `calc(100% - ${HEADER_HEIGHT_MOBILE})`,
   backgroundColor: theme.palette.secondary.main,
   padding: '8px 16px 40px 8px',
-  zIndex: '8',
   position: 'absolute',
   top: HEADER_HEIGHT_MOBILE,
   right: '0px',
