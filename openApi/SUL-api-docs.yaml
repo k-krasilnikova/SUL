@@ -1,0 +1,703 @@
+openapi: 3.0.0
+
+info:
+  description: |
+    API documentation
+
+  version: "1.0.0"
+
+  title: Skill Up Level API
+
+  termsOfService: "http://swagger.io/terms/"
+
+  contact:
+    email: danila.apalonik@itechart-group.com
+
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+servers:
+  - url: "https://sul-server.herokuapp.com/api/"
+
+tags:
+  - name: account
+    description: All the account data access.
+
+  - name: users
+    description: User profile data access.
+
+  - name: courses
+    description: All the courses manipulations.
+
+  - name: clientCourses
+    description: User courses data access.
+
+  - name: materials
+    description: Courses materials data access.
+
+  - name: pendingCourses
+    description: Pending courses data access.
+
+paths:
+  # ACCOUNT
+  /account/login:
+    post:
+      tags:
+        - account
+      summary: Log In attempt & Getting auth tokens.
+      operationId: login
+      responses:
+        "200":
+          $ref: "#/components/responses/LoginResponseSuccess"
+        "401":
+          description: Authorization error.
+      requestBody:
+        $ref: "#/components/requestBodies/AuthBody"
+
+  /account/logout:
+    get:
+      tags:
+        - account
+      summary: Log Out attempt & Cookie clearing.
+      operationId: logout
+      responses:
+        "200":
+          description: Successful log out.
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+  /account/refresh:
+    get:
+      tags:
+        - account
+      summary: Refresh auth tokens.
+      operationId: refresh
+      parameters:
+        - name: refreshToken
+          in: cookie
+          required: true
+          schema:
+            $ref: "#/components/schemas/CommonToken"
+      responses:
+        "200":
+          $ref: "#/components/responses/RefreshResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+
+  # USERS
+  /users/{id}:
+    get:
+      tags:
+        - users
+      summary: User profile information access.
+      operationId: getProfileInformation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/CommonId"
+      responses:
+        "200":
+          $ref: "#/components/responses/ProfileInfoResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+  # COURSES
+  /courses:
+    get:
+      tags:
+        - courses
+      summary: Get all courses info.
+      operationId: getAllCourses
+      responses:
+        "200":
+          $ref: "#/components/responses/AllCoursesResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+    # LATER!
+    post:
+      tags:
+        - courses
+      summary: Apply for a course.
+      operationId: applyCourse
+      responses:
+        "200":
+          description: LATER
+        "403":
+          description: LATER
+      security:
+        - jwtAuth: []
+
+  /courses/{id}:
+    get:
+      tags:
+        - courses
+      summary: Get course information by its ID.
+      operationId: getCourseById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/CommonId"
+      responses:
+        "200":
+          $ref: "#/components/responses/CourseInfoResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+  /courses/{id}/materials:
+    get:
+      tags:
+        - courses
+        - materials
+      summary: Get particular course materials.
+      operationId: getMaterials
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/CommonId"
+      responses:
+        "200":
+          $ref: "" # LATER : describe real response ?
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+  # CLIENT COURSES
+  /clientCourses:
+    get:
+      tags:
+        - clientCourses
+      summary: Get list of user courses.
+      operationId: getClientCourses
+      responses:
+        "200":
+          $ref: "#/components/responses/AllClientCoursesResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+  /clientCourses/{id}:
+    get:
+      tags:
+        - clientCourses
+      summary: Get particular user course.
+      operationId: getClientCourseById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/CommonId"
+      responses:
+        "200":
+          $ref: "#/components/responses/ClientCourseResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+    put:
+      tags:
+        - clientCourses
+      summary: Mark the particular course as [passed] by its id.
+      operationId: passCourse
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/CommonId"
+      responses:
+        "200":
+          $ref: "#/components/responses/PassCourseResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+  /clientCourses/{id}/start:
+    get:
+      tags:
+        - clientCourses
+      summary: Start particular course.
+      operationId: startCourse
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/CommonId"
+      responses:
+        "200":
+          $ref: "#/components/responses/StartCourseResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+  /clientCourses/{id}/finish:
+    get:
+      tags:
+        - clientCourses
+      summary: Finish particular course.
+      operationId: finishCourse
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/CommonId"
+      responses:
+        "200":
+          $ref: "#/components/responses/FinishCourseResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+  /clientCourses/{id}/test:
+    get:
+      tags:
+        - clientCourses
+      summary: Get course test.
+      operationId: getTest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/CommonId"
+      responses:
+        "200":
+          $ref: "#/components/responses/GetTestResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+  # PENDING COURSES
+  /pendingCourses:
+    get:
+      tags:
+        - pendingCourses
+      summary: Get pending courses list.
+      operationId: getPendingCourses
+      responses:
+        "200":
+          $ref: "#/components/responses/GetPendingCoursesResponseSuccess"
+        "403":
+          $ref: "#/components/schemas/ForbiddenError"
+      security:
+        - jwtAuth: []
+
+components:
+  schemas:
+    # RESPONSES
+    TokenResponse:
+      type: object
+      properties:
+        accessToken:
+          $ref: "#/components/schemas/CommonToken"
+        refreshToken:
+          $ref: "#/components/schemas/CommonToken"
+
+    LoginResponse:
+      type: object
+      properties:
+        accessToken:
+          $ref: "#/components/schemas/CommonToken"
+        refreshToken:
+          $ref: "#/components/schemas/CommonToken"
+        _id:
+          $ref: "#/components/schemas/CommonId"
+        username:
+          type: string
+          example: user
+        email:
+          type: string
+          example: user@itechart-group.com
+        role:
+          type: string
+          example: employee
+        firstName:
+          type: string
+          example: User
+        lastName:
+          type: string
+          example: User
+        position:
+          type: string
+          example: Software Engineer
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+        group:
+          type: string
+          example: U4.D4.mocked
+        employees:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+        pendingCourses:
+          type: array
+          items:
+            type: string
+            example: _id
+            # ADD LATER !
+        avatar:
+          type: string
+          example: https://image-url.zone
+        birthday:
+          type: string
+          example: "1970-01-01T00:00:00Z"
+        skype:
+          type: string
+          example: user
+        phone:
+          type: string
+          example: +375(33)26535213
+
+    ProfileInfo:
+      type: object
+      properties:
+        _id:
+          $ref: "#/components/schemas/CommonId"
+        username:
+          type: string
+          example: user
+        email:
+          type: string
+          example: user@itechart-group.com
+        role:
+          type: string
+          example: employee
+        firstName:
+          type: string
+          example: User
+        lastName:
+          type: string
+          example: User
+        position:
+          type: string
+          example: Software Engineer
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+        group:
+          type: string
+          example: U4.D4.mocked
+        employees:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+        pendingCourses:
+          type: array
+          items:
+            $ref: "#/components/schemas/CourseInfo"
+        avatar:
+          type: string
+          example: https://image-url.zone
+        birthday:
+          type: string
+          example: "1970-01-01T00:00:00Z"
+        skype:
+          type: string
+          example: user
+        phone:
+          type: string
+          example: +375(33)2635213
+        managerId:
+          $ref: "#/components/schemas/CommonId"
+
+    # ERRORS
+    UnauthorizedError:
+      type: string
+      example: Unauthorized
+      description: Authorization error
+    ForbiddenError:
+      type: string
+      example: Error message.
+      description: Access forbidden.
+
+    # BODIES
+    AuthBody:
+      type: object
+      required:
+        - login
+        - password
+      properties:
+        login:
+          type: string
+          example: user
+        password:
+          type: string
+          example: user
+
+    # ELEMENTS
+    Skill:
+      type: object
+      required:
+        - _id
+        - name
+        - score
+      properties:
+        _id:
+          $ref: "#/components/schemas/CommonId"
+        name:
+          type: string
+          example: js
+        image:
+          type: string
+          example: https://i.imgur.com/S2lYrKD.gif
+        score:
+          type: integer
+          example: 3
+
+    Course:
+      type: object
+      properties:
+        _id:
+          $ref: "#/components/schemas/CommonId"
+        title:
+          type: string
+          example: JS for beginners
+        description:
+          type: string
+          example: Basic course for beginners
+        technology:
+          type: array
+          items:
+            type: string
+          example: ["js", "html", "css"]
+        requiredSkills:
+          type: array
+          items:
+            type: string
+          example: ["html", "css"]
+        duration:
+          type: integer
+          example: 123124679
+        materials:
+          $ref: "#/components/schemas/Material"
+        lessons:
+          type: integer
+          example: 0
+        test:
+          $ref: "#/components/schemas/CommonId"
+
+    CourseInfo:
+      type: object
+      properties:
+        _id:
+          $ref: "#/components/schemas/CommonId"
+        title:
+          type: string
+          example: JS for beginners
+        description:
+          type: string
+          example: Basic course for beginners
+        technology:
+          type: array
+          items:
+            type: string
+          example: ["js", "html", "css"]
+        requiredSkills:
+          type: array
+          items:
+            type: string
+          example: ["html", "css"]
+        duration:
+          type: integer
+          example: 123124679
+        lessons:
+          type: integer
+          example: 0
+        test:
+          $ref: "#/components/schemas/CommonId"
+
+    Material:
+      type: string # LATER
+      example: TO DO LATER
+
+    User:
+      type: object
+      properties:
+        prop:
+          type: string
+          description: das
+        # ADD LATER
+
+    Test:
+      type: object
+      properties:
+        later:
+          type: string
+          example: LATER!
+        # ======================================= !
+
+    ClientCourse:
+      type: object
+      properties:
+        _id:
+          $ref: "#/components/schemas/CommonId"
+        user:
+          $ref: "#/components/schemas/CommonId"
+        course:
+          $ref: "#/components/schemas/Course"
+        status:
+          type: string
+          example: pending
+        progress:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProgressStage"
+
+    # COMMON
+    CommonToken:
+      type: string
+      example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+    CommonId:
+      type: string
+      example: "61f944b7a91736d7260f1ee3"
+    ProgressStage:
+      type: object
+      properties:
+        stage:
+          type: string
+          example: 2
+        isComleted:
+          type: boolean
+          example: true
+        _id:
+          $ref: "#/components/schemas/CommonId"
+
+  # BODIES
+  requestBodies:
+    AuthBody:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AuthBody"
+
+  # RESPONSES TAB
+  responses:
+    LoginResponseSuccess:
+      description: Successful login execution response.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/LoginResponse"
+
+    RefreshResponseSuccess:
+      description: Successful refresh execution response.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/TokenResponse"
+
+    ProfileInfoResponseSuccess:
+      description: Profile info received.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ProfileInfo"
+
+    CourseInfoResponseSuccess:
+      description: Course information received.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CourseInfo"
+
+    AllCoursesResponseSuccess:
+      description: Courses information received.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/CourseInfo"
+
+    ClientCourseResponseSuccess:
+      description: Client course information received.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ClientCourse"
+
+    AllClientCoursesResponseSuccess:
+      description: Client courses information received.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/ClientCourse"
+
+    StartCourseResponseSuccess:
+      description: Course successfully started.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              start:
+                type: boolean
+                example: true
+
+    FinishCourseResponseSuccess:
+      description: Course successfully finished.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              finish:
+                type: boolean
+                example: true
+
+    PassCourseResponseSuccess:
+      description: Course successfully passed.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ClientCourse"
+
+    GetTestResponseSuccess:
+      description: Course test received successfully.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Test"
+
+    GetPendingCoursesResponseSuccess:
+      description: Pending courses list received successfully.
+      content:
+        application/json:
+          schema:
+            $ref: "" # ADD LATER
+
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
