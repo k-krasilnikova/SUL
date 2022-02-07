@@ -4,7 +4,8 @@ interface ITest {
   questions: Array<{
     qN: number;
     question: string;
-    answers: { variant: string; isCorrect: boolean; aN: number };
+    answers: { variant: string; aN: number }[];
+    correctAnswer: number;
   }>;
   timeout: number;
 }

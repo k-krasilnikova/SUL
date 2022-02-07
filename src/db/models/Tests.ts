@@ -12,9 +12,9 @@ const testSchema = new Schema<ITest>({
         {
           aN: { type: Number, unique: true },
           variant: { type: String },
-          isCorrect: { type: Boolean },
         },
       ],
+      correctAnswer: { type: Number },
     },
   ],
   timeout: { type: Number, required: true },

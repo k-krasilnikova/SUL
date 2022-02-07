@@ -5,7 +5,7 @@ import { TestDb } from 'interfaces/Ientities/Itest';
 import TestModel from 'db/models/Tests';
 
 const getTestProvider = async (courseId: string) => {
-  const test: Promise<TestDb>[] = await ClientCourseModel.aggregate([
+  const test: TestDb[] = await ClientCourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
       $lookup: {
@@ -26,8 +26,9 @@ const getTestProvider = async (courseId: string) => {
     { $unwind: { path: '$test', preserveNullAndEmptyArrays: true } },
     {
       $project: {
-        'test.questions.answers.variant': 1,
+        'test.questions.answers': 1,
         'test.questions.question': 1,
+        'test.question.qN': 1,
         'test.title': 1,
         'test.timeout': 1,
         'test._id': 1,
@@ -44,14 +45,7 @@ const getTrueAnswersProvider = async (testId: string) => {
     {
       _id: 0,
       'questions.qN': 1,
-      'questions.question': 0,
-      trueAnswers: {
-        $filter: {
-          input: '$questions.answers',
-          as: 'quArray',
-          cond: { $eq: ['$$quArray.isCorrect', true] },
-        },
-      },
+      'questions.correctAnswer': 1,
     },
   );
   if (!trueAnswers) {

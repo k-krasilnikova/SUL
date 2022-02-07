@@ -3,8 +3,10 @@ import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 
 interface ISkills {
-  skillGroup: string;
-  skillList: [{ name: string; image: string; score: number; maxScore: number }];
+  name: string;
+  image: string;
+  score: number;
+  group: string;
 }
 
 type TUserForPendingCourses = Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
@@ -43,4 +45,4 @@ type TUserRole = 'admin' | 'manager' | 'employee';
 
 type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { IUser, TUserRole, TUserPosition };
+export { IUser, TUserRole, TUserPosition, IPendingCourses };
