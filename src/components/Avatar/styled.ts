@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Avatar from '@mui/material/Avatar';
+import Avatar from 'react-avatar';
 
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';
