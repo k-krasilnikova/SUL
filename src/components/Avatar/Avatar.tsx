@@ -11,7 +11,7 @@ interface AvatarProps {
 type Props = User & AvatarProps;
 
 const UserAvatar: React.FC<Props> = ({ avatar, size }) => (
-  <UserAvatarRounded alt="my photo" src={avatar || avatarDefault} size={size} />
+  <UserAvatarRounded name="my photo" src={avatar || avatarDefault} size={size} round unstyled />
 );
 
 export default UserAvatar;
