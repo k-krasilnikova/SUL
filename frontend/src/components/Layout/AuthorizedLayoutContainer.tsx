@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+
 import { useGetUserInfo } from 'api/userInfo';
+import { setMenuToggle } from 'utils/helpers/menuHelpers/setMenuToggle';
+import { getMenuToggle } from 'utils/helpers/menuHelpers/getMenuToggle';
 
 import AuthorizedLayout from './AuthorizedLayout';
+import { useLayOutStyles } from './styled';
 
 interface Props {
   pageName: string;
@@ -14,6 +18,13 @@ const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
+  const currentMenuStatus = getMenuToggle();
+  const [isSqueeze, setSqueeze] = useState<boolean | undefined>(currentMenuStatus);
+  const handleSqueeze = () => {
+    const toggleStatus = setMenuToggle();
+    setSqueeze(toggleStatus);
+  };
+  const classes = useLayOutStyles();
   return (
     <AuthorizedLayout
       pageName={pageName}
@@ -22,6 +33,9 @@ const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
       avatar={data?.avatar}
       isMobileMenuOpen={isMobileMenuOpen}
       toggleMobileMenu={toggleMobileMenu}
+      isSqueeze={isSqueeze}
+      handleSqueeze={handleSqueeze}
+      classes={classes}
     >
       {children}
     </AuthorizedLayout>
