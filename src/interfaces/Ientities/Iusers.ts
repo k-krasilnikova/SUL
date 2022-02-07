@@ -10,7 +10,7 @@ interface ISkills {
 type TUserForPendingCourses = Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
 type TCourseForPendingCourses = Pick<ICourse, 'title'>;
 
-interface IPendingCourses {
+export interface IPendingCourses {
   user: TUserForPendingCourses;
   course: TCourseForPendingCourses;
   status: TCourseStatus;
