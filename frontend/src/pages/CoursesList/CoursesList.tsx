@@ -8,6 +8,8 @@ import { NO_COURSES } from 'constants/messages';
 import { ResponseDataType } from 'types/responseData';
 import { PATHS } from 'constants/routes';
 import Loader from 'components/Loader';
+import ButtonLoader from 'components/ButtonLoader';
+import { buttonSpinner } from 'animations';
 
 import {
   PageContainer,
@@ -18,7 +20,12 @@ import {
   StartCourseButton,
 } from './styled';
 
-const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyCourse }) => (
+const CoursesList: React.FC<ResponseDataType> = ({
+  data,
+  isLoading,
+  handleApplyCourse,
+  status,
+}) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
       <Loader color="primary" />
@@ -41,9 +48,19 @@ const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyC
                         Details
                       </DetailsButton>
                     </Link>
-                    <StartCourseButton onClick={handleApplyCourse} variant="mediumContained">
-                      Start the course
-                    </StartCourseButton>
+                    {status === 'loading' ? (
+                      <StartCourseButton
+                        onClick={handleApplyCourse}
+                        variant="mediumOutlined"
+                        disabled
+                      >
+                        <ButtonLoader buttonSpinner={buttonSpinner} />
+                      </StartCourseButton>
+                    ) : (
+                      <StartCourseButton onClick={handleApplyCourse} variant="mediumContained">
+                        Start the course
+                      </StartCourseButton>
+                    )}
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>

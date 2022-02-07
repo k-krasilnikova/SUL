@@ -9,4 +9,3 @@ export { default as starEmpty } from './star-empty.svg';
 export { default as starContained } from './star-contained.svg';
 export { default as playVideo } from './playVideo.svg';
 export { default as close } from './close.svg';
-export { default as buttonSpinner } from './buttonSpinner.gif';

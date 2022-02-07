@@ -1,6 +1,7 @@
 import { Course } from './course';
 
 export interface ResponseDataType {
+  status: string;
   data?: Array<Course>;
   isLoading?: boolean;
   isError?: boolean;

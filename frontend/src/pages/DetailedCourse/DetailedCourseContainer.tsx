@@ -9,12 +9,13 @@ import DetailedCourse from './DetailedCourse';
 const DetailedCourseContainer: React.FC = () => {
   const params = useParams();
   const { data } = useGetCourseInfo(params.courseId);
-  const { mutate } = useApplyCourse();
+  const { mutate, status } = useApplyCourse();
+
   const handleApplyCourse = () => {
     mutate(params.courseId);
   };
 
-  return data ? <DetailedCourse handleApplyCourse={handleApplyCourse} /> : null;
+  return data ? <DetailedCourse handleApplyCourse={handleApplyCourse} status={status} /> : null;
 };
 
 export default DetailedCourseContainer;

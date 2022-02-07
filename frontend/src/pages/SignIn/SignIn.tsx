@@ -4,7 +4,7 @@ import { TextField } from 'components/TextField';
 import { Image } from 'components/Image';
 import { SignTypes } from 'types/signIn';
 import { signInImage } from 'images';
-import { buttonSpinner } from 'icons';
+import { buttonSpinner } from 'animations';
 import ButtonLoader from 'components/ButtonLoader';
 
 import Definition from './Definition';
@@ -72,7 +72,7 @@ const SignIn = ({ formik, warningHandler, status }: SignTypes): JSX.Element => {
                   </GridSignInput>
                   <GridButton item xs={12}>
                     {status === 'loading' ? (
-                      <SignButton fullWidth type="submit" variant="outlined" disabled>
+                      <SignButton fullWidth type="submit" variant="mediumOutlined" disabled>
                         <ButtonLoader buttonSpinner={buttonSpinner} />
                       </SignButton>
                     ) : (

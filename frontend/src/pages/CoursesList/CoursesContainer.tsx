@@ -8,14 +8,21 @@ import CoursesList from './CoursesList';
 
 const CoursesContainer: React.FC = () => {
   const params = useParams();
-  const { mutate } = useApplyCourse();
+  const { mutate, status } = useApplyCourse();
   const { data, isLoading } = useGetCourses();
 
   const handleApplyCourse = () => {
     mutate(params.courseId);
   };
 
-  return <CoursesList data={data} isLoading={isLoading} handleApplyCourse={handleApplyCourse} />;
+  return (
+    <CoursesList
+      data={data}
+      isLoading={isLoading}
+      handleApplyCourse={handleApplyCourse}
+      status={status}
+    />
+  );
 };
 
 export default CoursesContainer;
