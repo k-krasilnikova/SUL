@@ -1,7 +1,7 @@
 import React from 'react';
 import ConfirmDialog from 'components/ConfirmDialog/ConfirmDialog';
 import ButtonLoader from 'components/ButtonLoader';
-import { buttonSpinner } from 'icons';
+import { buttonSpinner } from 'animations';
 
 import { ConfirmBox, ButtonBox, ConfirmMessage, ButtonCancel, ButtonExit } from './styled';
 
@@ -9,7 +9,7 @@ interface IConfirm {
   isConfirmOpen: boolean;
   handleLogOut: () => void;
   cancelLogOut: () => void;
-  status: string;
+  status?: string;
 }
 
 const ConfirmLogOut: React.FC<IConfirm> = ({

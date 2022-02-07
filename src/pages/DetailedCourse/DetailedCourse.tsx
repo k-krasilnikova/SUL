@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
@@ -10,6 +11,8 @@ import { ProgressBar } from 'components/ProgressBar';
 import { CourseActions } from 'pages/CoursesList/styled';
 import { PATHS } from 'constants/routes';
 import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
+import ButtonLoader from 'components/ButtonLoader';
+import { buttonSpinner } from 'animations';
 
 import {
   BackButton,
@@ -30,10 +33,11 @@ import {
 } from './styled';
 
 interface IProps {
+  status?: string;
   handleApplyCourse?: () => void;
 }
 
-const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
+const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status }) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
       <Link to={PATHS.coursesList}>
@@ -74,9 +78,19 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
                     <DetailsButton color="primary" variant="mediumOutlined">
                       Details
                     </DetailsButton>
-                    <StartCourseButton onClick={handleApplyCourse} variant="mediumContained">
-                      Start the course
-                    </StartCourseButton>
+                    {status === 'loading' ? (
+                      <StartCourseButton
+                        onClick={handleApplyCourse}
+                        variant="mediumOutlined"
+                        disabled
+                      >
+                        <ButtonLoader buttonSpinner={buttonSpinner} />
+                      </StartCourseButton>
+                    ) : (
+                      <StartCourseButton onClick={handleApplyCourse} variant="mediumContained">
+                        Start the course
+                      </StartCourseButton>
+                    )}
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>
