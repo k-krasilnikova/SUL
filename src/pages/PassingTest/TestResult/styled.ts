@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
 
 import Button from 'components/Button/Button';
 
@@ -68,4 +68,9 @@ export const FailedCourseText = styled(Typography)({
   fontSize: '32px !important',
   fontWeight: '400 !important',
   color: '#131313',
+});
+
+export const StyledDivider = styled(Divider)({
+  borderColor: '#C6C6C9',
+  width: '112px',
 });
