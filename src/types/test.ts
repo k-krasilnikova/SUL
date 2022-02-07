@@ -48,4 +48,5 @@ export interface IPassingTest {
   resultEnabled: boolean;
   stageNext: () => void;
   questionStageItem: IQuestionObject;
+  children?: React.ReactChild;
 }
