@@ -6,6 +6,7 @@ enum Routes {
   clientCourses = '/clientCourses',
   materials = '/materials',
   pendingCourses = '/pendingCourses',
+  test = '/test',
 }
 
 enum SubRoutes {
