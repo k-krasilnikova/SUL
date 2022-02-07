@@ -27,9 +27,15 @@ export const useLayOutStyles = makeStyles({
     width: '129px',
   },
   hidePageWrapper: {
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
     width: 'calc(100% - 303px)',
   },
   showPageWrapper: {
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
     width: `calc(100% - 129px)`,
   },
 });

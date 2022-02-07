@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { useGetProfile } from 'api/profile';
 import { useLogOut } from 'api/logOut/';
 import ConfirmLogOut from 'components/Layout/Header/ConfirmLogOut/ConfirmLogOut';
-import { PATHS } from 'constants/routes';
-import { ROLES_MENU } from 'constants/mobileMenuRoles';
-import { setCurrentMenuPath, getCurrentMenuPath } from 'utils/helpers/selectMenuHelpers';
+import { ROLES_MENU } from 'constants/menuRoles';
 
 import MobileMenu from './MobileMenu';
 import { useListStyles } from './styled';
@@ -19,6 +17,7 @@ interface MobileMenuProps {
 }
 
 const EMPTY_ARGUMENT = null;
+const TAB_HEADER = null;
 
 const MobileMenuContainer: React.FC<MobileMenuProps> = ({
   isMobileMenuOpen,
@@ -32,19 +31,8 @@ const MobileMenuContainer: React.FC<MobileMenuProps> = ({
   const menuRole = data?.role;
   const menuItems = menuRole ? ROLES_MENU[menuRole] : [];
   const { pathname } = window.location;
-  const getInitMenuName = getCurrentMenuPath();
-  const [menuItem, setMenuItem] = useState<string | undefined>(getInitMenuName);
-
-  useEffect(() => {
-    const PATH_VALUES = Object.values(PATHS);
-    PATH_VALUES.forEach((route) => {
-      if (pathname.includes(route) && route !== PATHS.home) {
-        setMenuItem(route);
-        setCurrentMenuPath(route);
-      }
-    });
-  }, [pathname]);
   const classes = useListStyles();
+
   const { mutateAsync } = useLogOut();
   const handleConfirm = (): void => {
     setConfirmOpen(true);
@@ -59,8 +47,9 @@ const MobileMenuContainer: React.FC<MobileMenuProps> = ({
     <>
       <MobileMenu
         menuList={menuItems}
-        menuItem={menuItem}
         classes={classes}
+        pathname={pathname}
+        isTabHeader={TAB_HEADER}
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}
         firstName={firstName}
