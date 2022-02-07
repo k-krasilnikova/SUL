@@ -1,1 +1,1 @@
-export { default as MobileMenuTabs } from './MobileMenuContainer';
+export { default as MobileMenu } from './MobileMenuContainer';

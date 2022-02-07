@@ -1,14 +1,33 @@
 import React, { useState, useEffect } from 'react';
 
+import { useGetProfile } from 'api/profile';
+import { useLogOut } from 'api/logOut/';
+import ConfirmLogOut from 'components/Layout/Header/ConfirmLogOut/ConfirmLogOut';
 import { PATHS } from 'constants/routes';
 import { ROLES_MENU } from 'constants/mobileMenuRoles';
-import { useGetProfile } from 'api/profile';
 import { setCurrentMenuPath, getCurrentMenuPath } from 'utils/helpers/selectMenuHelpers';
 
 import MobileMenu from './MobileMenu';
 import { useListStyles } from './styled';
 
-const MobileMenuContainer: React.FC = () => {
+interface MobileMenuProps {
+  isMobileMenuOpen: boolean;
+  toggleMobileMenu: () => void;
+  firstName?: string;
+  lastName?: string;
+  avatar?: string;
+}
+
+const EMPTY_ARGUMENT = null;
+
+const MobileMenuContainer: React.FC<MobileMenuProps> = ({
+  isMobileMenuOpen,
+  toggleMobileMenu,
+  firstName,
+  lastName,
+  avatar,
+}) => {
+  const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
   const { data } = useGetProfile();
   const menuRole = data?.role;
   const menuItems = menuRole ? ROLES_MENU[menuRole] : [];
@@ -26,7 +45,36 @@ const MobileMenuContainer: React.FC = () => {
     });
   }, [pathname]);
   const classes = useListStyles();
-  return <MobileMenu menuList={menuItems} menuItem={menuItem} classes={classes} />;
+  const { mutateAsync } = useLogOut();
+  const handleConfirm = (): void => {
+    setConfirmOpen(true);
+  };
+  const handleLogOut = (): void => {
+    mutateAsync(EMPTY_ARGUMENT);
+  };
+  const cancelLogOut = (): void => {
+    setConfirmOpen(false);
+  };
+  return (
+    <>
+      <MobileMenu
+        menuList={menuItems}
+        menuItem={menuItem}
+        classes={classes}
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
+        firstName={firstName}
+        lastName={lastName}
+        avatar={avatar}
+        handleConfirm={handleConfirm}
+      />
+      <ConfirmLogOut
+        handleLogOut={handleLogOut}
+        isConfirmOpen={isConfirmOpen}
+        cancelLogOut={cancelLogOut}
+      />
+    </>
+  );
 };
 
 export default MobileMenuContainer;
