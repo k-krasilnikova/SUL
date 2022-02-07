@@ -40,6 +40,7 @@ const AuthorizedLayout: React.FC<Props> = ({
           avatar={avatar}
           isMobileMenuOpen={isMobileMenuOpen}
           toggleMobileMenu={toggleMobileMenu}
+          pageName={pageName}
         />
       </GridHeader>
       <MenuGrid item xs={3} xl={2}>
