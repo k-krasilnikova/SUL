@@ -10,7 +10,7 @@ interface MobileMenuProps {
 
 interface CoursesPageProps {
   pagename?: string;
-  menuopen: boolean;
+  menuopen: string;
 }
 
 export const HEADER_HEIGHT = '80px';
@@ -104,7 +104,7 @@ export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) =
     display: 'none!important',
     position: 'relative',
     ...(pagename === PAGES_TO_SEARCH.myCourses &&
-      !menuopen && {
+      menuopen === 'false' && {
         flexShrink: '0',
         display: 'block',
         position: 'absolute',
@@ -114,7 +114,7 @@ export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) =
         right: 'calc(100vw - 310px)',
       }),
     ...(pagename === PAGES_TO_SEARCH.coursesList &&
-      !menuopen && {
+      menuopen === 'false' && {
         flexShrink: '0',
         display: 'block',
         position: 'absolute',
