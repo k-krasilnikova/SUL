@@ -15,6 +15,8 @@ const CoursesContainer: React.FC = () => {
     mutate(params.courseId);
   };
 
+  console.log(data);
+
   return (
     <CoursesList
       data={data}
