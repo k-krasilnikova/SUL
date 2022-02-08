@@ -1,10 +1,11 @@
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
 import { IUser } from 'interfaces/Ientities/Iusers';
 
 const authProvider = async (login: string) => {
   const dbUser = await UserModel.findOne({ username: login }).lean();
   if (!dbUser) {
-    throw new Error('user not found');
+    throw new NotFoundError('User not found.');
   }
   return dbUser;
 };

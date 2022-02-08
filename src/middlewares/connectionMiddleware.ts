@@ -3,7 +3,7 @@ import { connect } from 'mongoose';
 
 import { DEFAULT_CONNECTION_STRING } from 'config/constants';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { isError } from 'utils/typeGuards/isError';
+import ServiceUnavailableError from 'classes/errors/serverErrors/ServiceUnavailableError';
 
 const connectionMiddleware = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
@@ -13,9 +13,9 @@ const connectionMiddleware = async (req: Request, res: Response, next: TMiddlewa
 
     next();
   } catch (err) {
-    if (isError(err)) {
-      next(err);
-    }
+    const { message } = err as Error;
+    const serviceUnavailableError = new ServiceUnavailableError(message);
+    next(serviceUnavailableError);
   }
 };
 
