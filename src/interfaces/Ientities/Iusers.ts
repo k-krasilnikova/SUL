@@ -45,4 +45,4 @@ type TUserRole = 'admin' | 'manager' | 'employee';
 
 type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { IUser, TUserRole, TUserPosition, IPendingCourses };
+export { IUser, TUserRole, TUserPosition, IPendingCourses, ISkills };
