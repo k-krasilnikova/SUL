@@ -8,18 +8,14 @@ export const PageContainer = styled(Grid)({
   [theme.breakpoints.down('md')]: {
     paddingTop: '40px',
   },
-  [theme.breakpoints.down('xl')]: {
-    maxWidth: '100%',
-    margin: '0px !important',
-  },
-  width: '100%',
-  paddingRight: '8.8%',
-  paddingTop: '2.5%',
-  paddingLeft: '7px',
+  maxWidth: '1482px',
+  paddingTop: '16px',
+  margin: '0px 0px 0px -6px !important',
 });
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
+  width: '711px',
 });
 
 export const CourseButton = styled(Button)({
