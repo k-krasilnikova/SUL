@@ -1,15 +1,31 @@
 import React, { useState } from 'react';
 
-import ConfirmLogOut from 'components/Layout/Header/ConfirmLogOut/ConfirmLogOut';
+import { ConfirmLogOutModalWindow } from 'components/Layout/Header/ConfirmLogOut';
 import { User } from 'types/user';
 import { useLogOut } from 'api/logOut/';
 
 import Header from './Header';
 
-const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
+interface MobileMenuProps {
+  isMobileMenuOpen: boolean;
+  toggleMobileMenu: () => void;
+  pageName?: string;
+}
+
+type Props = User & MobileMenuProps;
+
+const HeaderContainer: React.FC<Props> = ({
+  firstName,
+  lastName,
+  avatar,
+  isMobileMenuOpen,
+  toggleMobileMenu,
+  pageName,
+}) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
+
   const EMPTY_ARGUMENT = null;
   const handleNotificationsOpen = () => {
     setNotificationsOpen(!isNotificationsOpen);
@@ -49,8 +65,11 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
         handleNotificationsClose={handleNotificationsClose}
         handleFilterClose={handleFilterClose}
         handleConfirm={handleConfirm}
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
+        pageName={pageName}
       />
-      <ConfirmLogOut
+      <ConfirmLogOutModalWindow
         handleLogOut={handleLogOut}
         isConfirmOpen={isConfirmOpen}
         cancelLogOut={cancelLogOut}
