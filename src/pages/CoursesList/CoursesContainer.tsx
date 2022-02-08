@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
 import { useGetCourses } from 'api/courses';
@@ -10,12 +10,12 @@ const CoursesContainer: React.FC = () => {
   const params = useParams();
   const { mutate, status } = useApplyCourse();
   const { data, isLoading } = useGetCourses();
+  const [targetId, setSpinner] = useState<string | undefined>();
 
-  const handleApplyCourse = () => {
+  const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>) => {
+    setSpinner((event.target as HTMLElement).id);
     mutate(params.courseId);
   };
-
-  console.log(data);
 
   return (
     <CoursesList
@@ -23,6 +23,7 @@ const CoursesContainer: React.FC = () => {
       isLoading={isLoading}
       handleApplyCourse={handleApplyCourse}
       status={status}
+      targetId={targetId}
     />
   );
 };
