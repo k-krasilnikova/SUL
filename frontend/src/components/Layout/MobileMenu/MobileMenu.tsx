@@ -28,6 +28,7 @@ interface MobileMenuProps {
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
   handleConfirm: () => void;
+  preventMenuClose: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   firstName?: string;
   lastName?: string;
   avatar?: string;
@@ -45,6 +46,7 @@ const MobileMenu: React.FC<Props> = ({
   lastName,
   avatar,
   handleConfirm,
+  preventMenuClose,
 }) => (
   <MobileMenuBackdrop open={isMobileMenuOpen} onClick={toggleMobileMenu}>
     <Slide direction="left" in={isMobileMenuOpen} appear={false} mountOnEnter unmountOnExit>
@@ -87,8 +89,8 @@ const MobileMenu: React.FC<Props> = ({
           </MenuTabsWrapper>
         </MenuTabs>
         <SpaceHolder
-          onClick={(e) => {
-            e.stopPropagation();
+          onClick={(event) => {
+            preventMenuClose(event);
           }}
         />
         <MobileUserBlock>

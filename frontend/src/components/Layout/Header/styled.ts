@@ -150,7 +150,7 @@ export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) =
     fontSize: '24px',
     margin: '15px 20px 15px 0px',
   },
-  '@media(min-width: 1530px)': {
+  '@media(min-width: 1570px)': {
     width: '730px!important',
   },
 }));

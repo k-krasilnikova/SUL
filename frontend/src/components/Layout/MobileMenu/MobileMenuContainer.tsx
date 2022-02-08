@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useGetProfile } from 'api/profile';
 import { useLogOut } from 'api/logOut/';
-import ConfirmLogOut from 'components/Layout/Header/ConfirmLogOut/ConfirmLogOut';
+import { ConfirmLogOutModalWindow } from 'components/Layout/Header/ConfirmLogOut';
 import { ROLES_MENU } from 'constants/menuRoles';
 
 import MobileMenu from './MobileMenu';
@@ -43,6 +43,9 @@ const MobileMenuContainer: React.FC<MobileMenuProps> = ({
   const cancelLogOut = (): void => {
     setConfirmOpen(false);
   };
+  const preventMenuClose = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation();
+  };
   return (
     <>
       <MobileMenu
@@ -56,8 +59,9 @@ const MobileMenuContainer: React.FC<MobileMenuProps> = ({
         lastName={lastName}
         avatar={avatar}
         handleConfirm={handleConfirm}
+        preventMenuClose={preventMenuClose}
       />
-      <ConfirmLogOut
+      <ConfirmLogOutModalWindow
         handleLogOut={handleLogOut}
         isConfirmOpen={isConfirmOpen}
         cancelLogOut={cancelLogOut}
