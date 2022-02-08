@@ -6,11 +6,14 @@ import Loader from 'components/Loader';
 
 import { Header } from './Header';
 import Menu from './Menu';
+import { MobileMenu } from './MobileMenu';
 import { GridHeader, PageWrapper, GridMenu } from './styled';
 
 interface Props {
   pageName: string | undefined;
   children: React.ReactNode;
+  isMobileMenuOpen: boolean;
+  toggleMobileMenu: () => void;
   classes: {
     [key: string]: string;
   };
@@ -26,10 +29,12 @@ const AuthorizedLayout: React.FC<Props> = ({
   firstName,
   lastName,
   avatar,
+  children,
+  isMobileMenuOpen,
+  toggleMobileMenu,
   isSqueeze,
   handleSqueeze,
   classes,
-  children,
 }) => (
   <HelmetProvider>
     <Helmet>
@@ -37,7 +42,14 @@ const AuthorizedLayout: React.FC<Props> = ({
     </Helmet>
     <Grid container>
       <GridHeader item xs={12}>
-        <Header firstName={firstName} lastName={lastName} avatar={avatar} />
+        <Header
+          firstName={firstName}
+          lastName={lastName}
+          avatar={avatar}
+          isMobileMenuOpen={isMobileMenuOpen}
+          toggleMobileMenu={toggleMobileMenu}
+          pageName={pageName}
+        />
       </GridHeader>
       {isSqueeze ? (
         <>
@@ -46,6 +58,13 @@ const AuthorizedLayout: React.FC<Props> = ({
           </GridMenu>
           <PageWrapper classes={{ root: classes.showPageWrapper }}>
             <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
+            <MobileMenu
+              isMobileMenuOpen={isMobileMenuOpen}
+              toggleMobileMenu={toggleMobileMenu}
+              firstName={firstName}
+              lastName={lastName}
+              avatar={avatar}
+            />
           </PageWrapper>
         </>
       ) : (
@@ -55,6 +74,13 @@ const AuthorizedLayout: React.FC<Props> = ({
           </GridMenu>
           <PageWrapper classes={{ root: classes.hidePageWrapper }}>
             <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
+            <MobileMenu
+              isMobileMenuOpen={isMobileMenuOpen}
+              toggleMobileMenu={toggleMobileMenu}
+              firstName={firstName}
+              lastName={lastName}
+              avatar={avatar}
+            />
           </PageWrapper>
         </>
       )}
