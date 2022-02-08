@@ -72,7 +72,7 @@ const UserSkills: React.FC<Props> = ({
       {userSkills?.length ? (
         userSkills.map((skill) => (
           <div>
-            {/* <SkillsListItem>
+            <SkillsListItem>
               <SkillTitle>
                 <Star alt="skill" src={isSkillCompleted(skill) ? starContained : starEmpty} />
                 <Title>{skill.skillGroup}</Title>
@@ -83,7 +83,7 @@ const UserSkills: React.FC<Props> = ({
                 ))}
               </SkillsInfoList>
             </SkillsListItem>
-            {skill !== userSkills[userSkills.length - 1] && <SkillsDivider />} */}
+            {skill !== userSkills[userSkills.length - 1] && <SkillsDivider />}
           </div>
         ))
       ) : (
