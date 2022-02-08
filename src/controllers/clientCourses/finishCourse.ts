@@ -11,9 +11,7 @@ const finishCourse = async (req: Request, res: Response, next: TMiddlewareCall) 
     const { id: clientCourseId } = req.params;
     const progress = await getCurrentProgress(clientCourseId);
     if (progress[INITIAL_INDX].currProgress < REQUIRED_PCT) {
-      throw new BadRequestError(
-        "You can not finish course till all the stages haven't been passed.",
-      );
+      throw new BadRequestError("Can not finish course till all the stages haven't been passed.");
     }
     await updateCourseStatus(clientCourseId, CourseStatus.completed);
     res.json({ finish: true });

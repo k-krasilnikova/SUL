@@ -11,6 +11,7 @@ import {
 import CourseModel from 'db/models/Course';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 
 const getCoursesProvider = async ({
   pageN,
@@ -30,7 +31,7 @@ const getCoursesProvider = async ({
       .limit(nPerPage)
       .lean();
     if (!courses) {
-      throw new BadRequestError('Course not found.');
+      throw new NotFoundError('Course not found.');
     }
     return courses;
   } catch (error) {
@@ -41,7 +42,7 @@ const getCoursesProvider = async ({
 const getCourseProvider = async (courseId: string) => {
   const course = await CourseModel.findOne({ _id: courseId }, { materials: 0 }).lean();
   if (!course) {
-    throw new BadRequestError('Course not found.');
+    throw new NotFoundError('Course not found.');
   }
   return course;
 };
@@ -54,7 +55,7 @@ const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; sta
     stage?.length ? { 'materials.$': 1 } : { materials: 1 },
   ).lean();
   if (!material) {
-    throw new BadRequestError('Materials not found.');
+    throw new NotFoundError('Materials not found.');
   }
   return material;
 };
