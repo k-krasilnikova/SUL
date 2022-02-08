@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 
 import ClientCourseModel from '../models/ClientCourses';
 
@@ -16,7 +17,7 @@ const getClientCourseProvider = async (clientCourseId: string) => {
     .populate('course')
     .lean();
   if (!clientCourse) {
-    throw new BadRequestError('Course not found.');
+    throw new NotFoundError('Course not found.');
   }
   if (clientCourse.status === CourseStatus.testing) {
     throw new BadRequestError('Testing have already been started.');

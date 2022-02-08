@@ -1,7 +1,7 @@
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { getTestProvider } from 'db/providers/testProvider';
 import { Request, Response } from 'express';
 
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import { getTestProvider } from 'db/providers/testProvider';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 
 const getTest = async (req: Request, res: Response, next: TMiddlewareCall) => {
@@ -9,7 +9,7 @@ const getTest = async (req: Request, res: Response, next: TMiddlewareCall) => {
     const { id: clientCourseId } = req.params;
     const test = await getTestProvider(clientCourseId);
     if (!test.length) {
-      throw new BadRequestError('No tests found.');
+      throw new NotFoundError('No tests found.');
     }
     res.json(test);
   } catch (err) {
