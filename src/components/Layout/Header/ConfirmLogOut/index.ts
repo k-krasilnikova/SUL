@@ -1,1 +1,1 @@
-export { default as ConfirmLogOut } from './ConfirmLogOut';
+export { default as ConfirmLogOutModalWindow } from './ConfirmLogOut';

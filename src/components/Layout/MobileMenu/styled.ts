@@ -123,8 +123,9 @@ export const useListStyles = makeStyles({
       paddingLeft: '2px',
     },
     '& svg': {
-      width: '50px',
-      height: '50px',
+      width: '25px',
+      height: '25px',
+      margin: '12.5px',
     },
   },
   selected: {
@@ -139,8 +140,9 @@ export const useListStyles = makeStyles({
       color: `${theme.palette.primary.main}`,
     },
     '& svg': {
-      width: '50px',
-      height: '50px',
+      width: '25px',
+      height: '25px',
+      margin: '12.5px',
       color: `${theme.palette.primary.main}`,
     },
   },
