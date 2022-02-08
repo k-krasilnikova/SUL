@@ -9,4 +9,6 @@ export { default as starEmpty } from './star-empty.svg';
 export { default as starContained } from './star-contained.svg';
 export { default as playVideo } from './playVideo.svg';
 export { default as close } from './close.svg';
+export { default as checkbox } from './checkbox.svg';
+export { default as checkboxChecked } from './checkboxChecked.svg';
 export { default as menuMobileIcon } from './menuMobileIcon.svg';
