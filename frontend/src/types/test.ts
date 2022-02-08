@@ -35,6 +35,7 @@ export interface IQuestionItem {
 export interface ITestResult {
   status?: string;
   isFailed?: boolean;
+  skills?: { name: string; image: string; score: number; maxScore: number }[];
 }
 
 export interface IPassingTest {

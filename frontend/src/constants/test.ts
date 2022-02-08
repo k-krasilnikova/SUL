@@ -84,3 +84,18 @@ export const INITIAL_TEST = {
   ],
   timeout: 900000,
 };
+
+export const SKILLS = [
+  {
+    name: 'Nest.js',
+    image: '',
+    score: 2,
+    maxScore: 2,
+  },
+  {
+    name: 'Express.js',
+    image: '',
+    score: 2,
+    maxScore: 2,
+  },
+];
