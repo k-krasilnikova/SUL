@@ -4,7 +4,7 @@ info:
   description: |
     API documentation
 
-  version: "1.0.0"
+  version: 1.0.1
 
   title: Skill Up Level API
 
@@ -51,7 +51,11 @@ paths:
         "200":
           $ref: "#/components/responses/LoginResponseSuccess"
         "401":
-          description: Authorization error.
+          $ref: "#/components/schemas/UnauthorizedError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       requestBody:
         $ref: "#/components/requestBodies/AuthBody"
 
@@ -64,8 +68,14 @@ paths:
       responses:
         "200":
           description: Successful log out.
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -84,8 +94,14 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/RefreshResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
 
   # USERS
   /users/{id}:
@@ -103,8 +119,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/ProfileInfoResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -118,8 +142,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/AllCoursesResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -132,8 +164,16 @@ paths:
       responses:
         "200":
           description: LATER
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
-          description: LATER
+          $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -152,8 +192,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/CourseInfoResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -173,8 +221,16 @@ paths:
       responses:
         "200":
           $ref: "" # LATER : describe real response ?
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -188,8 +244,14 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/AllClientCoursesResponseSuccess"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -208,8 +270,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/ClientCourseResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -227,8 +297,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/PassCourseResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -247,8 +325,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/StartCourseResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -267,8 +353,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/FinishCourseResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -287,8 +381,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/GetTestResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -302,8 +404,16 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/GetPendingCoursesResponseSuccess"
+        "400":
+          $ref: "#/components/schemas/BadRequestError"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailableError"
       security:
         - jwtAuth: []
 
@@ -429,14 +539,26 @@ components:
           $ref: "#/components/schemas/CommonId"
 
     # ERRORS
+    BadRequestError:
+      type: string
+      example: Required data missing.
+      description: Invalid request.
     UnauthorizedError:
       type: string
-      example: Unauthorized
-      description: Authorization error
+      example: Unauthorized.
+      description: Authorization error.
     ForbiddenError:
       type: string
       example: Error message.
       description: Access forbidden.
+    InternalServerError:
+      type: string
+      example: Unknown server error.
+      description: Common server error.
+    ServiceUnavailableError:
+      type: string
+      example: Could not connect to database.
+      description: Service is now unavailable.
 
     # BODIES
     AuthBody:

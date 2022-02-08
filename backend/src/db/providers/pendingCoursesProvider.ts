@@ -1,3 +1,5 @@
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+
 import UserModel from '../models/User';
 
 const getPendingCoursesProvider = async (managerId: string) => {
@@ -20,7 +22,7 @@ const getPendingCoursesProvider = async (managerId: string) => {
     })
     .lean();
   if (!dbUser) {
-    throw new Error('user not found');
+    throw new NotFoundError('User not found.');
   }
   return dbUser;
 };
