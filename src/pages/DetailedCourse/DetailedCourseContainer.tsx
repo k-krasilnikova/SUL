@@ -11,10 +11,15 @@ const DetailedCourseContainer: React.FC = () => {
   const params = useParams();
   const { data } = useGetCourseInfo(params.courseId);
   const { mutate, status } = useApplyCourse();
-  const [filterSpinner, setSpinner] = useState<string | undefined>();
+  const [targetId, setSpinner] = useState<string | undefined>();
 
-  const handleApplyCourse = (event: any): void => {
-    setSpinner(event?.target?.id);
+  const ID_FOR_BUTTONS = {
+    start: 'start',
+    course: 'course',
+  };
+
+  const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>): void => {
+    setSpinner((event.target as HTMLElement).id);
     mutate(params.courseId);
   };
 
@@ -22,7 +27,8 @@ const DetailedCourseContainer: React.FC = () => {
     <DetailedCourse
       handleApplyCourse={handleApplyCourse}
       status={status}
-      filterSpinner={filterSpinner}
+      buttonId={ID_FOR_BUTTONS}
+      targetId={targetId}
     />
   ) : null;
 };

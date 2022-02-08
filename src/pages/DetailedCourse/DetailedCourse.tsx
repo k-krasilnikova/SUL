@@ -35,16 +35,14 @@ import {
 
 interface IProps {
   status?: string;
-  handleApplyCourse: (event: any) => void;
-  filterSpinner?: string | undefined;
+  handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  targetId?: string | undefined;
+  buttonId: {
+    [key: string]: string | undefined;
+  };
 }
 
-const idNames = {
-  start: 'start',
-  course: 'course',
-};
-
-const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status, filterSpinner }) => (
+const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status, targetId, buttonId }) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
       <Link to={PATHS.coursesList}>
@@ -66,13 +64,13 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status, filterSpi
               lessons={INITIAL_DETAILED_COURSE.lessons}
             />
           </CourseInfoBox>
-          {status === 'loading' && filterSpinner === idNames.start ? (
-            <StartButton id={idNames.start} variant="mediumOutlined" disabled>
+          {status === 'loading' && targetId === buttonId.start ? (
+            <StartButton id={buttonId.start} variant="mediumOutlined" disabled>
               <ButtonLoader buttonSpinner={buttonSpinner} />
             </StartButton>
           ) : (
             <StartButton
-              id={idNames.start}
+              id={buttonId.start}
               variant="large"
               color="primary"
               onClick={(event) => handleApplyCourse(event)}
@@ -96,13 +94,13 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status, filterSpi
                     <DetailsButton color="primary" variant="mediumOutlined">
                       Details
                     </DetailsButton>
-                    {status === 'loading' && filterSpinner === idNames.course ? (
+                    {status === 'loading' && targetId === buttonId.course ? (
                       <StartCourseButton variant="mediumOutlined" disabled>
                         <ButtonLoader buttonSpinner={buttonSpinner} />
                       </StartCourseButton>
                     ) : (
                       <StartCourseButton
-                        id={idNames.course}
+                        id={buttonId.course}
                         onClick={(event) => {
                           handleApplyCourse(event);
                         }}
