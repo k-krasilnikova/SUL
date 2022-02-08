@@ -6,7 +6,7 @@ import { AccordionSummary, AccordionDetails, Typography, ClickAwayListener } fro
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { UserAvatar } from 'components/Avatar';
-import { alertIcon, filterIcon, logOutIcon } from 'icons';
+import { alertIcon, filterIcon, logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
 
 import {
@@ -25,6 +25,7 @@ import {
   UserName,
   LogOut,
   RelativeWrapper,
+  MobileMenuIcon,
 } from './styled';
 
 interface Props {
@@ -38,6 +39,9 @@ interface Props {
   handleNotificationsClose: () => void;
   handleFilterClose: () => void;
   handleConfirm: () => void;
+  isMobileMenuOpen: boolean;
+  toggleMobileMenu: () => void;
+  pageName?: string;
 }
 type HeaderProps = User & Props;
 
@@ -52,6 +56,9 @@ const Header: React.FC<HeaderProps> = ({
   handleNotificationsClose,
   handleFilterClose,
   handleConfirm,
+  isMobileMenuOpen,
+  toggleMobileMenu,
+  pageName,
 }) => (
   <LayoutHeader container>
     <BrandLogoLink to={PATHS.profile}>
@@ -66,6 +73,8 @@ const Header: React.FC<HeaderProps> = ({
             <SearchIcon color="disabled" />
           </InputAdornment>
         }
+        pagename={pageName}
+        menuopen={isMobileMenuOpen.toString()}
       />
       <ClickAwayListener onClickAway={handleNotificationsClose}>
         <RelativeWrapper>
@@ -77,7 +86,11 @@ const Header: React.FC<HeaderProps> = ({
       </ClickAwayListener>
       <ClickAwayListener onClickAway={handleFilterClose}>
         <RelativeWrapper>
-          <FilterButton onClick={handleFilterOpen}>
+          <FilterButton
+            onClick={handleFilterOpen}
+            pagename={pageName}
+            menuopen={isMobileMenuOpen.toString()}
+          >
             <img alt="filter" src={filterIcon} />
           </FilterButton>
           {isFilterOpen ? (
@@ -106,6 +119,9 @@ const Header: React.FC<HeaderProps> = ({
       <LogOut onClick={handleConfirm}>
         <img alt="log_out" src={logOutIcon} />
       </LogOut>
+      <MobileMenuIcon openMenu={isMobileMenuOpen} onClick={toggleMobileMenu}>
+        <img alt="menu" src={menuMobileIcon} />
+      </MobileMenuIcon>
     </HeaderContent>
   </LayoutHeader>
 );
