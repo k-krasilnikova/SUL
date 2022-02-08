@@ -2,8 +2,8 @@ import React from 'react';
 
 import ProgressBar from 'components/ProgressBar/ProgressBar';
 import { AuthorizedLayout } from 'components/Layout';
-import CourseMaterialInfo from 'pages/Profile/UserSkills/SkillInfo';
 import { ITestResult } from 'types/test';
+import CourseMaterialInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 
 import {
   AboutSkillsBox,
@@ -12,6 +12,7 @@ import {
   FailedCourseText,
   ProgressBarBox,
   ResultBox,
+  SkillsInfoList,
   SkillsText,
   StyledDivider,
   SubmitButton,
@@ -21,30 +22,16 @@ import {
   TestSkillsBox,
 } from './styled';
 
-const TestResult: React.FC<ITestResult> = ({ isFailed }) => (
+const TestResult: React.FC<ITestResult> = ({ isFailed, skills }) => (
   <AuthorizedLayout pageName="Test Result">
     <TestResultBox>
       <TestResultTitle>Your Score</TestResultTitle>
       <ContentBox>
         <ProgressBarBox>
           {isFailed ? (
-            <ProgressBar
-              size="xlarge"
-              value={35}
-              text="35%"
-              color="#D43E41"
-              textColor="#000000"
-              trailColor="#eaeaea"
-            />
+            <ProgressBar size="xlarge" value={35} text="35%" variant="failed" />
           ) : (
-            <ProgressBar
-              size="xlarge"
-              value={75}
-              text="75%"
-              color="#1CC02C"
-              textColor="#000000"
-              trailColor="#eaeaea"
-            />
+            <ProgressBar size="xlarge" value={75} text="75%" variant="completed" />
           )}
         </ProgressBarBox>
         <ResultBox>
@@ -60,20 +47,11 @@ const TestResult: React.FC<ITestResult> = ({ isFailed }) => (
                   <StyledDivider />
                 </>
               ) : (
-                <>
-                  <CourseMaterialInfo
-                    technologyTitle="Nest.js"
-                    progress={100}
-                    stages={2}
-                    stagesCompleted={2}
-                  />
-                  <CourseMaterialInfo
-                    technologyTitle="Express.js"
-                    progress={100}
-                    stages={2}
-                    stagesCompleted={2}
-                  />
-                </>
+                <SkillsInfoList>
+                  {skills?.map((skillItem) => (
+                    <CourseMaterialInfoContainer skillItem={skillItem} />
+                  ))}
+                </SkillsInfoList>
               )}
             </TestSkillsBox>
           </AboutSkillsBox>

@@ -24,7 +24,7 @@ const QuestionItem: React.FC<IQuestionItem> = ({
 }) => (
   <Box>
     <QuestionAndStageBox>
-      <TestQuestion>{questionItem ? questionItem.question : null}</TestQuestion>
+      {questionItem && <TestQuestion>{questionItem.question}</TestQuestion>}
       <StageWrapper>
         <Stage>
           {stage}/{maxStage}

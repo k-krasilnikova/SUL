@@ -74,3 +74,7 @@ export const StyledDivider = styled(Divider)({
   borderColor: '#C6C6C9',
   width: '112px',
 });
+
+export const SkillsInfoList = styled(Box)({
+  padding: '0',
+});
