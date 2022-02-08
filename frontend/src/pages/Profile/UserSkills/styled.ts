@@ -130,6 +130,7 @@ export const SkillsInfoList = styled('div')({
 export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
   display: 'inline-block',
   borderRadius: '5px',
+  fontFamily: theme.typography.fontFamily,
   [theme.breakpoints.up('xs')]: {
     minWidth: '120px',
     maxWidth: '150px',
