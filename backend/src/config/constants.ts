@@ -31,6 +31,22 @@ const ORDER_TYPE = {
   desc: -1,
 };
 
+const STATUS_CODES = {
+  success: {
+    OK: 200,
+  },
+  clientErrors: {
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    FORBIDDEN: 403,
+    NOT_FOUND: 404,
+  },
+  serverErrors: {
+    INTERNAL_SERVER_ERROR: 500,
+    SERVICE_UNAVAILABLE: 503,
+  },
+};
+
 export {
   DEFAULT_CONNECTION_STRING,
   DEFAULT_ACCESS_TIMEOUT,
@@ -48,4 +64,5 @@ export {
   NO_FILTER,
   INITIAL_INDX,
   REQUIRED_PCT,
+  STATUS_CODES,
 };
