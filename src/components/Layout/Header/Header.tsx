@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({
           </InputAdornment>
         }
         pagename={pageName}
-        menuopen={isMobileMenuOpen}
+        menuopen={isMobileMenuOpen.toString()}
       />
       <ClickAwayListener onClickAway={handleNotificationsClose}>
         <RelativeWrapper>
@@ -86,7 +86,11 @@ const Header: React.FC<HeaderProps> = ({
       </ClickAwayListener>
       <ClickAwayListener onClickAway={handleFilterClose}>
         <RelativeWrapper>
-          <FilterButton onClick={handleFilterOpen} pagename={pageName} menuopen={isMobileMenuOpen}>
+          <FilterButton
+            onClick={handleFilterOpen}
+            pagename={pageName}
+            menuopen={isMobileMenuOpen.toString()}
+          >
             <img alt="filter" src={filterIcon} />
           </FilterButton>
           {isFilterOpen ? (
