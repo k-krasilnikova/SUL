@@ -6,7 +6,7 @@ const SALT_ROUNDS = 10;
 
 const TESTS = [
   {
-    title: 'test for course "JS for begginers"',
+    title: 'test for course "JS for beginners"',
     questions: [
       {
         qN: 1,
@@ -63,14 +63,14 @@ const TESTS = [
         question: 'null == undefined',
         answers: [
           { variant: 'true', aN: 1 },
-          { variant: 'false', aN: 1 },
-          { variant: 'undefined', aN: 1 },
+          { variant: 'false', aN: 2 },
+          { variant: 'undefined', aN: 3 },
         ],
         correctAnswer: 1,
       },
       {
         qN: 7,
-        question: 'null >= 0 ',
+        question: 'null >= 0',
         answers: [
           { variant: 'false', aN: 1 },
           { variant: 'true', aN: 2 },
@@ -134,7 +134,7 @@ const TESTS = [
             aN: 1,
           },
           {
-            variant: ' Polymorphism is the ability of an object to take on many forms.',
+            variant: 'Polymorphism is the ability of an object to take on many forms.',
             aN: 2,
           },
           {
@@ -156,7 +156,7 @@ const TESTS = [
       },
       {
         qN: 5,
-        question: ' What is Encapsulation?',
+        question: 'What is Encapsulation?',
         answers: [
           {
             variant: 'Encapsulation is a technique to define different methods of same type.',
@@ -583,7 +583,7 @@ const MOCKED_COURSES = [
     test: '',
   },
   {
-    title: 'Java for Profi ',
+    title: 'Java for Profi',
     description: 'course for people who want rise their level in java',
     technology: ['java', 'sql'],
     requiredSkills: ['java for beginners'],

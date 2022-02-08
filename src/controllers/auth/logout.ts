@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { isError } from 'utils/typeGuards/isError';
 import { clearTokenProvider } from 'db/providers/authProvider';
 
 const logout = async (
@@ -15,9 +14,7 @@ const logout = async (
     res.clearCookie('refreshToken');
     res.json({ message: 'Logout is successful' });
   } catch (error) {
-    if (isError(error)) {
-      next(error);
-    }
+    next(error);
   }
 };
 

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 
-import { isError } from 'utils/typeGuards/isError';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { applyCourseProvider, getClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
@@ -10,6 +9,7 @@ import { checkCourseDuplicates } from 'utils/validation/checkDuplicates';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const applyCourse = async (
   req: Request<Record<string, never>, Record<string, never>, { id: string }>,
@@ -22,8 +22,7 @@ const applyCourse = async (
     const applyedCourses = await getClientCoursesProvider(userId);
     const isDuplicate = checkCourseDuplicates(applyedCourses, courseId);
     if (isDuplicate) {
-      res.json({ message: 'course already applied' });
-      return;
+      throw new BadRequestError('Course already applied.');
     }
     const materialsCount = await materialsCounterProvider(courseId);
     const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
@@ -32,9 +31,7 @@ const applyCourse = async (
     await updatePendingFieldCourses(user.managerId, course._id);
     res.json(course);
   } catch (err) {
-    if (isError(err)) {
-      next(err);
-    }
+    next(err);
   }
 };
 
