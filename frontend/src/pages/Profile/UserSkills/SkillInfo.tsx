@@ -7,9 +7,9 @@ import { SkillInfo, SkillInfoFlex, SkillInfoText, SkillProgress, SkillInfoStage 
 
 interface Props {
   technologyTitle: string;
-  stages: number;
-  stagesCompleted: number;
-  progress: number;
+  stages?: number;
+  stagesCompleted?: number;
+  progress?: number;
 }
 
 const CourseMaterialInfo: React.FC<Props> = ({
