@@ -57,7 +57,9 @@ const PassingTest: React.FC<IPassingTest> = ({
       <ButtonsBox>
         {resultEnabled ? (
           <Link to={`${PATHS.myCourses}/${params.courseId}/test/result`}>
-            <ResultButton variant="medium">Result</ResultButton>
+            <ResultButton variant="medium" disabled={Boolean(!value[questionStageItem.qN])}>
+              Result
+            </ResultButton>
           </Link>
         ) : (
           <NextButton

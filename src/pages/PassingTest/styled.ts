@@ -37,8 +37,7 @@ export const CountDownText = styled(Typography)({
   fontSize: '22px !important',
   color: '#131313',
   display: 'flex',
-  alignSelf: 'flex-end',
-  paddingBottom: '6px',
+  alignSelf: 'center',
 });
 
 export const QuestionItemBox = styled(Box)({
@@ -59,6 +58,10 @@ export const ResultButton = styled(Button)({
   width: '98px',
   fontSize: '18px !important',
   fontWeight: '500 !important',
+  '&:disabled': {
+    backgroundColor: '#E19697',
+    color: '#ffffff !important',
+  },
 });
 
 export const NextButton = styled(Button)({
