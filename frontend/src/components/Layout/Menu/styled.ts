@@ -6,7 +6,7 @@ import { ReactFragment } from 'react';
 import { leftArrow, rightArrow } from 'icons/menuIcons';
 import theme from 'themeSettings';
 
-import { HEADER_HEIGHT } from '../Header/styled';
+import { HEADER_HEIGHT, HEADER_HEIGHT_IPAD } from '../Header/styled';
 
 interface TabWrapperTypes {
   component?: ReactFragment;
@@ -21,10 +21,19 @@ export const MenuTabs = styled('div')({
   backgroundColor: theme.palette.secondary.main,
   borderRight: '1px solid rgba(0, 0, 0, 0.39)',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
-  fontSize: '24px',
   fontFamily: '"Ubuntu", sans-serif',
   margin: '0px',
   position: 'relative',
+  [theme.breakpoints.up('md')]: {
+    height: `calc(100vh - ${HEADER_HEIGHT_IPAD})`,
+    maxWidth: '205px',
+    fontSize: '18px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: `calc(100vh - ${HEADER_HEIGHT})`,
+    maxWidth: '303px',
+    fontSize: '22px',
+  },
 });
 
 export const LeftArrow = styled(leftArrow)({
@@ -58,6 +67,12 @@ export const MenuTabsWrapper = styled('div')({
   [theme.breakpoints.down('md')]: {
     display: 'none',
   },
+  [theme.breakpoints.up('md')]: {
+    paddingTop: '30px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    paddingTop: '50px',
+  },
 });
 
 export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({
@@ -68,6 +83,12 @@ export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({
 export const ItemText = styled(ListItemText)({
   '& span': {
     display: 'block !important',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '18px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '22px',
+    },
   },
 });
 
@@ -75,14 +96,26 @@ export const useListStyles = makeStyles({
   default: {
     background: 'none',
     color: 'black',
-    paddingLeft: '21px !important',
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '13px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      paddingLeft: '21px',
+    },
     '& span': {
       fontFamily: 'Ubuntu, sans-serif',
       fontWeight: 400,
-      fontSize: '22px',
-      paddingLeft: '-10px !important',
+      paddingLeft: '-10px',
     },
     '& svg': {
+      [theme.breakpoints.up('md')]: {
+        width: '35px',
+        height: '35px',
+      },
+      [theme.breakpoints.up('xl')]: {
+        width: '40px',
+        height: '40px',
+      },
       width: '40px',
       height: '40px',
     },
@@ -107,6 +140,14 @@ export const useListStyles = makeStyles({
     '& svg': {
       width: '40px',
       height: '40px',
+      [theme.breakpoints.up('md')]: {
+        width: '35px',
+        height: '35px',
+      },
+      [theme.breakpoints.up('xl')]: {
+        width: '40px',
+        height: '40px',
+      },
     },
   },
   selectedText: {
