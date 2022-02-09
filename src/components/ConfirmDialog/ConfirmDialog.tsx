@@ -6,12 +6,11 @@ interface IDialog {
   children: React.ReactNode;
   open: boolean;
   onClose: () => void;
-  width?: number | undefined;
-  height?: number | undefined;
+  size?: string;
 }
 
-const ConfirmDialog: React.FC<IDialog> = ({ children, open, onClose, width, height }) => (
-  <StyledDialog open={open} onClose={onClose} width={width} height={height}>
+const ConfirmDialog: React.FC<IDialog> = ({ children, open, onClose, size }) => (
+  <StyledDialog open={open} onClose={onClose} size={size}>
     {children}
   </StyledDialog>
 );
