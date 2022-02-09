@@ -125,11 +125,17 @@ export const useListStyles = makeStyles({
   },
   selected: {
     width: `calc(100% + ${BORDER_CANCELER}px)`,
-    paddingLeft: '41px !important',
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '25px !important',
+    },
+    [theme.breakpoints.up('xl')]: {
+      paddingLeft: '41px !important',
+    },
+
     background: theme.palette.secondary.main,
     boxShadow: '-10px -4px 15px rgba(0, 0, 0, 0.05)',
     '& span': {
-      paddingLeft: '5px !important',
+      paddingLeft: '0px !important',
     },
     '&:hover': {
       background: `${theme.palette.secondary.main} !important`,
@@ -154,7 +160,12 @@ export const useListStyles = makeStyles({
     '& span': {
       fontFamily: 'Ubuntu, sans-serif',
       fontWeight: 500,
-      fontSize: '22px',
+      [theme.breakpoints.up('md')]: {
+        fontSize: '18px',
+      },
+      [theme.breakpoints.up('xl')]: {
+        fontSize: '22px',
+      },
     },
   },
 });
