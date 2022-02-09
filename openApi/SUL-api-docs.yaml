@@ -52,6 +52,8 @@ paths:
           $ref: "#/components/responses/LoginResponseSuccess"
         "401":
           $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          $ref: "#/components/schemas/NotFoundError"
         "500":
           $ref: "#/components/schemas/InternalServerError"
         "503":
@@ -125,6 +127,8 @@ paths:
           $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "404":
+          $ref: "#/components/schemas/NotFoundError"
         "500":
           $ref: "#/components/schemas/InternalServerError"
         "503":
@@ -198,6 +202,8 @@ paths:
           $ref: "#/components/schemas/UnauthorizedError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
+        "404":
+          $ref: "#/components/schemas/NotFoundError"
         "500":
           $ref: "#/components/schemas/InternalServerError"
         "503":
@@ -274,6 +280,8 @@ paths:
           $ref: "#/components/schemas/BadRequestError"
         "401":
           $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          $ref: "#/components/schemas/NotFoundError"
         "403":
           $ref: "#/components/schemas/ForbiddenError"
         "500":
@@ -551,6 +559,10 @@ components:
       type: string
       example: Error message.
       description: Access forbidden.
+    NotFoundError:
+      type: string
+      example: Resource not found.
+      description: Resource not found.
     InternalServerError:
       type: string
       example: Unknown server error.
