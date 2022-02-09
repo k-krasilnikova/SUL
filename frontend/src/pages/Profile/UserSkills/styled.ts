@@ -26,11 +26,11 @@ export const SearchIcon = styled(Search)({
 });
 export const SearchSkill = styled(Input)({
   [theme.breakpoints.up('xs')]: {
-    fontSize: '16px',
+    fontSize: '16px!important',
     lineHeight: '33.61px',
   },
   [theme.breakpoints.up('sm')]: {
-    fontSize: '18px',
+    fontSize: '18px!important',
   },
 });
 export const SkillsBox = styled('div')({

@@ -79,14 +79,25 @@ export const HeaderContent = styled('div')({
   height: HEADER_HEIGHT,
   textAlign: 'right',
   position: 'relative',
+  fontSize: '24px',
   [theme.breakpoints.down('md')]: {
     width: 'calc(100% - 101px)',
+    fontSize: '16px',
+  },
+  [theme.breakpoints.up('xs')]: {
+    height: HEADER_HEIGHT_MOBILE,
+  },
+  [theme.breakpoints.up('md')]: {
+    height: HEADER_HEIGHT_IPAD,
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: HEADER_HEIGHT,
   },
 });
 export const SpaceHolder = styled('div')({
   flexGrow: '4',
   flexShrink: '2',
-  height: HEADER_HEIGHT,
+  height: '100%',
   [theme.breakpoints.up('xs')]: {
     display: 'none',
   },
@@ -105,25 +116,21 @@ export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) =
   [theme.breakpoints.up('xs')]: {
     display: 'none!important',
     position: 'relative',
+    flexShrink: '0',
+    width: '260px',
+    height: '30px',
+    top: '60px',
+    right: 'calc(100vw - 310px)',
+    fontSize: '16px',
     ...(pagename === PAGES_TO_SEARCH.myCourses &&
       menuopen === 'false' && {
-        flexShrink: '0',
         display: 'block',
         position: 'absolute',
-        width: '260px',
-        height: '30px',
-        top: '60px',
-        right: 'calc(100vw - 310px)',
       }),
     ...(pagename === PAGES_TO_SEARCH.coursesList &&
       menuopen === 'false' && {
-        flexShrink: '0',
         display: 'block',
         position: 'absolute',
-        width: '260px',
-        height: '30px',
-        top: '60px',
-        right: 'calc(100vw - 310px)',
       }),
   },
   [theme.breakpoints.up('md')]: {
@@ -144,7 +151,6 @@ export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) =
     display: 'inline-flex!important',
     width: '463px!important',
     height: '44px',
-    fontSize: '16px',
     margin: '8px 16px 8px 0px',
   },
   [theme.breakpoints.up('xl')]: {
