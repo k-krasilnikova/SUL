@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Divider } from '@mui/material';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import ConfirmDialog from 'components/ConfirmDialog/ConfirmDialog';
+import { ConfirmDialog } from 'components/ConfirmDialog';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 

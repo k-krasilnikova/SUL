@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
@@ -11,15 +10,15 @@ const DetailedCourseContainer: React.FC = () => {
   const params = useParams();
   const { data } = useGetCourseInfo(params.courseId);
   const { mutate, status } = useApplyCourse();
-  const [targetId, setSpinner] = useState<string | undefined>();
+  const [targetId, setTargetId] = useState<string | undefined>();
 
-  const ID_FOR_BUTTONS = {
+  const BUTTON_ID = {
     start: 'start',
     course: 'course',
   };
 
   const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>): void => {
-    setSpinner((event.target as HTMLElement).id);
+    setTargetId((event.target as HTMLElement).id);
     mutate(params.courseId);
   };
 
@@ -27,7 +26,7 @@ const DetailedCourseContainer: React.FC = () => {
     <DetailedCourse
       handleApplyCourse={handleApplyCourse}
       status={status}
-      buttonId={ID_FOR_BUTTONS}
+      buttonId={BUTTON_ID}
       targetId={targetId}
     />
   ) : null;
