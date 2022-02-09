@@ -4,25 +4,27 @@ import { saveTokenProvider } from 'db/providers/authProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';
-import { isError } from 'utils/typeGuards/isError';
 import { TIME_30D_SEC } from 'config/constants';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import ForbiddenError from 'classes/errors/clientErrors/ForbiddenError';
+import isExpectedHttpError from 'utils/typeGuards/isExpectedHttpError';
 
-interface ICoikies {
+interface ICookies {
   refreshToken: string;
 }
 
 const refresh = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
-    const { refreshToken }: { refreshToken: string } = req.cookies as ICoikies;
+    const { refreshToken }: { refreshToken: string } = req.cookies as ICookies;
     if (!refreshToken) {
-      throw new Error('no credentials');
+      throw new BadRequestError('No refresh token provided.');
     }
     const decodeRefreshToken = verifyRefreshToken(refreshToken);
 
     const dbUser = await getUserProvider(decodeRefreshToken.id);
     const isValidToken = refreshToken === dbUser?.refreshToken;
     if (!isValidToken) {
-      throw new Error('refresh time expired');
+      throw new ForbiddenError('Invalid refresh token.');
     }
 
     const newTokens = generateJWT(dbUser);
@@ -31,8 +33,11 @@ const refresh = async (req: Request, res: Response, next: TMiddlewareCall) => {
 
     res.json({ ...newTokens });
   } catch (error) {
-    if (isError(error)) {
+    if (isExpectedHttpError(error)) {
       next(error);
+    } else {
+      const forbiddenError = new ForbiddenError('Invalid refresh token.');
+      next(forbiddenError);
     }
   }
 };

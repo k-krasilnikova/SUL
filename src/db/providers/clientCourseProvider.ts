@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+
 import ClientCourseModel from '../models/ClientCourses';
 
 const getClientCoursesProvider = async (userId: string) => {
@@ -14,10 +17,10 @@ const getClientCourseProvider = async (clientCourseId: string) => {
     .populate('course')
     .lean();
   if (!clientCourse) {
-    throw new Error('course not found');
+    throw new NotFoundError('Course not found.');
   }
   if (clientCourse.status === CourseStatus.testing) {
-    throw new Error('Testing is started');
+    throw new BadRequestError('Testing have already been started.');
   }
   return clientCourse;
 };
@@ -92,7 +95,7 @@ const getCourseTechnology = async (clientCourseId: string) => {
     })
     .lean();
   if (!technology) {
-    throw new Error('course not found');
+    throw new NotFoundError('course not found');
   }
   return technology;
 };

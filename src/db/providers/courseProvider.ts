@@ -10,6 +10,8 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 
 const getCoursesProvider = async ({
   pageN,
@@ -28,24 +30,19 @@ const getCoursesProvider = async ({
       .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
       .limit(nPerPage)
       .lean();
-    if (!courses) {
-      throw new Error('courses not found');
+    if (!courses.length) {
+      throw new NotFoundError('Course not found.');
     }
     return courses;
   } catch (error) {
-    throw new Error('invalid query');
+    throw new BadRequestError('Invalid query.');
   }
 };
 
 const getCourseProvider = async (courseId: string) => {
-  try {
-    const course = await CourseModel.findOne({ _id: courseId }, { materials: 0 }).lean();
-    if (!course) {
-      throw new Error('course not found');
-    }
-    return course;
-  } catch (error) {
-    throw new Error('wrong id prams');
+  const course = await CourseModel.findOne({ _id: courseId }, { materials: 0 }).lean();
+  if (!course) {
+    throw new NotFoundError('Course not found.');
   }
 };
 
@@ -56,8 +53,8 @@ const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; sta
     },
     stage?.length ? { 'materials.$': 1 } : { materials: 1 },
   ).lean();
-  if (!material) {
-    throw new Error('materials not found');
+  if (!material.length) {
+    throw new NotFoundError('Materials not found.');
   }
   return material;
 };

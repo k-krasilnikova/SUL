@@ -8,6 +8,7 @@ import { Routes } from 'enums/routesEnum';
 import routers from 'routing/routes';
 import connectionMiddleware from 'middlewares/connectionMiddleware';
 import loggerMiddleware from 'middlewares/loggerMiddleware';
+import { handleError, handleInternalError } from 'middlewares/errorHandlingMiddleware';
 
 dotenv.config();
 const app = express();
@@ -24,6 +25,8 @@ app.use(
 app.use(connectionMiddleware);
 app.use(loggerMiddleware);
 app.use(`${Routes.namespace}`, routers);
+
+app.use(handleError, handleInternalError);
 
 app.listen(port, () => {
   if (port) {
