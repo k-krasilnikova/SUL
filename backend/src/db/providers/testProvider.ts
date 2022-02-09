@@ -28,7 +28,7 @@ const getTestProvider = async (courseId: string) => {
       $project: {
         'test.questions.answers': 1,
         'test.questions.question': 1,
-        'test.question.qN': 1,
+        'test.questions.qN': 1,
         'test.title': 1,
         'test.timeout': 1,
         'test._id': 1,
