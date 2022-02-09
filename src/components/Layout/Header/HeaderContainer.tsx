@@ -11,6 +11,11 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
   const EMPTY_ARGUMENT = null;
+  const CONFIRM_SIZE = {
+    width: 520,
+    height: 260,
+  };
+
   const handleNotificationsOpen = () => {
     setNotificationsOpen(!isNotificationsOpen);
   };
@@ -54,6 +59,8 @@ const HeaderContainer: React.FC<User> = ({ firstName, lastName, avatar }) => {
         handleLogOut={handleLogOut}
         isConfirmOpen={isConfirmOpen}
         cancelLogOut={cancelLogOut}
+        width={CONFIRM_SIZE.width}
+        height={CONFIRM_SIZE.height}
       />
     </>
   );
