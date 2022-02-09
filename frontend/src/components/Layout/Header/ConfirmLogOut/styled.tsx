@@ -18,8 +18,8 @@ export const ConfirmBox = styled('div')({
     minWidth: '378px',
   },
   [theme.breakpoints.up('xl')]: {
-    minWidth: '660px',
-    minHeight: '335px',
+    minWidth: '520px',
+    minHeight: '260px',
   },
 });
 
@@ -36,11 +36,11 @@ export const ConfirmMessage = styled(DialogTitle)({
   color: '#131313',
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px!important',
-    marginTop: '51px !important',
+    marginTop: '31px !important',
   },
   [theme.breakpoints.up('xl')]: {
     fontSize: '20px!important',
-    marginTop: '73px !important',
+    marginTop: '35px !important',
   },
 });
 
@@ -55,7 +55,7 @@ export const ButtonBox = styled('div')({
     width: '40%',
   },
   [theme.breakpoints.up('xl')]: {
-    marginTop: '30px !important',
+    marginTop: '21px !important',
     height: '50px',
     width: '80%',
   },
@@ -64,7 +64,6 @@ export const ButtonBox = styled('div')({
 export const ButtonCancel = styled(Button)({
   width: '100px !important',
   height: '100%',
-  background: '#E19697 !important',
   padding: '14px 23px !important',
   fontSize: '18px !important',
   fontWeight: '400 !important',
@@ -97,4 +96,27 @@ export const ButtonExit = styled(Button)({
     fontSize: '18px !important',
     padding: '14px 23px !important',
   },
+});
+
+export const CloseButton = styled('div')({
+  display: 'flex',
+  maxWidth: '12px',
+  maxHeight: '12px',
+  margin: '8px 8px 0 0',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+});
+
+export const CloseButtonBox = styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignContent: 'center',
+  height: '20px !important',
+});
+
+export const CloseIcon = styled('img')({
+  width: '12px',
+  height: '12px',
+  color: theme.palette.primary.main,
 });
