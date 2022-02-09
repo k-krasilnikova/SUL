@@ -43,12 +43,14 @@ export const BrandLogoLink = styled(Link)({
   flexGrow: '0',
   flexShrink: '0',
   [theme.breakpoints.up('xs')]: {
-    width: '79px',
+    width: '77.33px',
     margin: '14px 10px 12px 12px',
+    quality: '100',
   },
   [theme.breakpoints.up('md')]: {
-    width: '105px',
+    width: '101.75px',
     margin: '19px 30px 16px 32px',
+    quality: '100',
   },
   '@media(min-width: 1050px)': {
     margin: '19px 48px 16px 32px',
