@@ -1,22 +1,23 @@
 import styled from 'styled-components';
 import { Dialog } from '@mui/material';
 
-interface IDialog {
-  width?: number | undefined;
-  height?: number | undefined;
+import { SIZE } from 'constants/sizes';
+
+interface Size {
+  size?: string;
 }
 
-export const StyledDialog = styled(Dialog)<IDialog>(({ width, height }) => ({
+export const StyledDialog = styled(Dialog)<Size>(({ size }) => ({
   '& .MuiDialog-paper': {
     borderRadius: '5px',
     boxShadow: 'none',
-    minWidth: '660px !important',
-    maxHeight: '335px !important',
-    ...(width && {
-      minWidth: `${width}px !important`,
+    ...(size === SIZE.large && {
+      minWidth: '660px !important',
+      maxHeight: '335px !important',
     }),
-    ...(height && {
-      maxHeight: `${height}px !important`,
+    ...(size === SIZE.medium && {
+      minWidth: '520px !important',
+      maxHeight: '260px !important',
     }),
   },
 }));
