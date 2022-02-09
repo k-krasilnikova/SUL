@@ -5,7 +5,7 @@ export const StyledDialog = styled(Dialog)({
   '& .MuiDialog-paper': {
     borderRadius: '5px',
     boxShadow: 'none',
-    minWidth: '660px !important',
-    maxHeight: '335px !important',
+    maxWidth: '660px !important',
+    maxHeight: '340px !important',
   },
 });
