@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';

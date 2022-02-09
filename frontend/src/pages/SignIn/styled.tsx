@@ -164,7 +164,7 @@ const GridButton = styled(Grid)({
 const SignButton = styled(Button)({
   fontSize: '18px !important',
   fontWeight: '600 !important',
-  letterSpacing: '0.2px !importnatn',
+  letterSpacing: '0.2px !important',
 });
 
 export {

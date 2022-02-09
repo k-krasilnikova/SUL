@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React from 'react';
+import { Typography } from '@mui/material';
 
 import { Image } from 'components/Image';
-import { Typography } from '@mui/material';
+
 import { LoaderIcon } from './styled';
 
 interface Props {

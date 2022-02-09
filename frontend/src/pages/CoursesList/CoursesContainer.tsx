@@ -10,10 +10,10 @@ const CoursesContainer: React.FC = () => {
   const params = useParams();
   const { mutate, status } = useApplyCourse();
   const { data, isLoading } = useGetCourses();
-  const [targetId, setSpinner] = useState<string | undefined>();
+  const [targetId, setTargetId] = useState<string | undefined>();
 
   const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>) => {
-    setSpinner((event.target as HTMLElement).id);
+    setTargetId((event.target as HTMLElement).id);
     mutate(params.courseId);
   };
 

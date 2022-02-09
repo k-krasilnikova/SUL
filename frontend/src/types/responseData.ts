@@ -2,6 +2,7 @@ import { Course } from './course';
 
 export interface ResponseDataType {
   status: string;
+  handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
   targetId?: string;
   data?: Array<Course>;
   isLoading?: boolean;
@@ -9,7 +10,6 @@ export interface ResponseDataType {
   isFetching?: boolean;
   isFetched?: boolean;
   error?: string | unknown;
-  handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
   handleSqueeze?: () => void;
   isSqueeze?: boolean;
 }
