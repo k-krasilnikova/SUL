@@ -55,7 +55,7 @@ export const MenuTabsWrapper = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('md')]: {
     display: 'none',
   },
 });

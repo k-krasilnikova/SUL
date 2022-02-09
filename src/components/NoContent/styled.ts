@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';
@@ -17,14 +16,16 @@ export const MessageWrapper = styled(Box)({
   justifyContent: 'center',
 });
 
-export const Message = styled(Typography)<Size>(({ size }) => ({
+export const Message = styled('span')<Size>(({ size }) => ({
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: 'bold',
   color: '#8b8b8b',
   margin: 'auto',
   [theme.breakpoints.up('xs')]: {
-    fontSize: '30px',
-    lineHeight: '30px',
+    fontFamily: 'Ubuntu',
+    fontSize: '36px',
+    fontWeight: '700',
+    lineHeight: '41px',
     ...(size === SIZE.large && {
       fontSize: '30px',
       lineHeight: '30px',
@@ -38,9 +39,11 @@ export const Message = styled(Typography)<Size>(({ size }) => ({
       lineHeight: '12px',
     }),
   },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '50px',
-    lineHeight: '50px',
+  [theme.breakpoints.up('lg')]: {
+    fontFamily: 'Ubuntu',
+    fontSize: '60px',
+    fontWeight: '700',
+    lineHeight: '69px',
     ...(size === SIZE.large && {
       fontSize: '50px',
       lineHeight: '50px',
@@ -54,7 +57,7 @@ export const Message = styled(Typography)<Size>(({ size }) => ({
       lineHeight: '16px',
     }),
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('xl')]: {
     fontSize: '73px',
     lineHeight: '73px',
     ...(size === SIZE.large && {
