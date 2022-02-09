@@ -1,21 +1,23 @@
 import { Request, Response } from 'express';
 import { connect } from 'mongoose';
 
-import { DEFAULT_CONNECTION_STRING } from 'config/constants';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { isError } from 'utils/typeGuards/isError';
+import ServiceUnavailableError from 'classes/errors/serverErrors/ServiceUnavailableError';
 
 const connectionMiddleware = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
-    const CONNECTION_STRING: string = process.env.DATABASE_URL || DEFAULT_CONNECTION_STRING;
+    const CONNECTION_STRING: string | undefined =
+      process.env.NODE_ENV === 'dev' ? process.env.DATABASE_BACKDEV_URL : process.env.DATABASE_URL;
 
-    await connect(CONNECTION_STRING);
+    if (CONNECTION_STRING !== undefined) {
+      await connect(CONNECTION_STRING);
+    }
 
     next();
   } catch (err) {
-    if (isError(err)) {
-      next(err);
-    }
+    const { message } = err as Error;
+    const serviceUnavailableError = new ServiceUnavailableError(message);
+    next(serviceUnavailableError);
   }
 };
 

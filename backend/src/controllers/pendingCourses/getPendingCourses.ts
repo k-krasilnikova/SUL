@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
+import { ObjectId } from 'mongoose';
 
-import { isError } from 'utils/typeGuards/isError';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { IPendingCourses, IUser } from 'interfaces/Ientities/Iusers';
 import { getPendingCoursesProvider } from 'db/providers/pendingCoursesProvider';
-import { ObjectId } from 'mongoose';
 
 const getPendingCourses = async (
   req: Request,
@@ -16,9 +15,7 @@ const getPendingCourses = async (
     const user: IUser = await getPendingCoursesProvider(userId);
     res.json(user.pendingCourses);
   } catch (error) {
-    if (isError(error)) {
-      next(error);
-    }
+    next(error);
   }
 };
 

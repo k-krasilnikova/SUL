@@ -8,6 +8,7 @@ const DEFAULT_ACCESS_TIMEOUT = '1d';
 const DEFAULT_REFRESH_TIMEOUT = '7d';
 const DEFAULT_CONNECTION_STRING = 'CONN_STRING_NOT_SET';
 const DEFAULT_NO_SECRET = 'undefined';
+const PASS_THRESHOLD = 0.7;
 
 const USER_ROLES = {
   ADMIN: 'admin',
@@ -31,6 +32,22 @@ const ORDER_TYPE = {
   desc: -1,
 };
 
+const STATUS_CODES = {
+  success: {
+    OK: 200,
+  },
+  clientErrors: {
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    FORBIDDEN: 403,
+    NOT_FOUND: 404,
+  },
+  serverErrors: {
+    INTERNAL_SERVER_ERROR: 500,
+    SERVICE_UNAVAILABLE: 503,
+  },
+};
+
 export {
   DEFAULT_CONNECTION_STRING,
   DEFAULT_ACCESS_TIMEOUT,
@@ -48,4 +65,6 @@ export {
   NO_FILTER,
   INITIAL_INDX,
   REQUIRED_PCT,
+  STATUS_CODES,
+  PASS_THRESHOLD,
 };

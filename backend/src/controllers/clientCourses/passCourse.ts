@@ -1,16 +1,15 @@
 import { Request, Response } from 'express';
 
 import { getStatusProvider, updateCourseProgress } from 'db/providers/clientCourseProvider';
-import { isError } from 'utils/typeGuards/isError';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import CourseStatus from 'enums/coursesEnums';
+import { TMiddlewareCall } from 'interfaces/commonMiddleware';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const passCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
     const { stage } = req.query;
     if (typeof stage !== 'string') {
-      res.json({ message: 'invalid query params' });
-      return;
+      throw new BadRequestError('Invalid query parameters.');
     }
     const { id: clientCourseId } = req.params;
     const courseStatus = await getStatusProvider(clientCourseId);
@@ -21,9 +20,7 @@ const passCourse = async (req: Request, res: Response, next: TMiddlewareCall) =>
     const updt = await updateCourseProgress(clientCourseId, stage);
     res.json(updt);
   } catch (err) {
-    if (isError(err)) {
-      next(err);
-    }
+    next(err);
   }
 };
 

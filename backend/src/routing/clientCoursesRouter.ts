@@ -11,12 +11,16 @@ import getClientCourseById from 'controllers/clientCourses/getClientCourse';
 import getTest from 'controllers/tests/getTest';
 import getAchivments from 'controllers/skills/getAchivments';
 import startTest from 'controllers/tests/startTest';
+import getTestResults from 'controllers/tests/getTestResults';
+import unitTestResults from 'middlewares/sendTestResults';
 
 const clientCoursesRouter = Router();
 clientCoursesRouter.get(
-  `${Params.id}${SubRoutes.test}/results`,
+  `${Params.id}${SubRoutes.test}${SubRoutes.result}`,
   withAuth([USER_ROLES.EMPLOYEE]),
+  getTestResults,
   getAchivments,
+  unitTestResults,
 );
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.test}${SubRoutes.start}`,
