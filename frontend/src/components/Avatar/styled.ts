@@ -23,6 +23,12 @@ export const UserAvatarRounded = styled(Avatar)<Size>(({ size }) => ({
       height: '60px',
     }),
     ...(size === SIZE.small && {
+      width: '30px',
+      height: '30px',
+    }),
+  },
+  [theme.breakpoints.up('md')]: {
+    ...(size === SIZE.small && {
       width: '40px',
       height: '40px',
     }),
