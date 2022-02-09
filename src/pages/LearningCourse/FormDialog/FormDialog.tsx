@@ -29,7 +29,7 @@ const TEST_TIME_REMAINS_IN_SECONDS = 9150000;
 const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) => {
   const params = useParams();
   return (
-    <ConfirmDialog open={dialogOpen} onClose={handleDialogClose}>
+    <ConfirmDialog open={dialogOpen} onClose={handleDialogClose} size="large">
       <CloseButtonBox>
         <CloseButton onClick={handleDialogClose}>
           <CloseIcon alt="close" src={close} />

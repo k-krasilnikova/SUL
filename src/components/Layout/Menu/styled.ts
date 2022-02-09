@@ -29,22 +29,34 @@ export const MenuTabs = styled('div')({
 
 export const LeftArrow = styled(leftArrow)({
   display: 'block',
-  position: 'absolute',
-  right: '5%',
-  top: '75.5%',
-  width: '40px !important',
-  heigth: '40px !important',
-  cursor: 'pointer',
+  marginRight: '10px',
 });
 
 export const RightArrow = styled(rightArrow)({
   display: 'block',
+  marginRight: '10px',
+});
+
+export const RightArrowBox = styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  position: 'absolute',
+  right: '12%',
+  top: '1%',
+  minWidth: '280px !important',
+  cursor: 'pointer',
+  padding: '10px 0px',
+});
+
+export const LeftArrowBox = styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
   position: 'absolute',
   right: '5%',
-  top: '75.5%',
-  width: '40px !important',
-  heigth: '40px !important',
+  top: '1%',
+  minWidth: '280px !important',
   cursor: 'pointer',
+  padding: '10px 0px',
 });
 
 export const MenuTabsWrapper = styled('div')({
