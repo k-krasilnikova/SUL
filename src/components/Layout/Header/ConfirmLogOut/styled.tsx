@@ -1,14 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import styled from 'styled-components';
 import { DialogTitle } from '@mui/material';
 
 import { Button } from 'components/Button';
 import theme from 'themeSettings';
-
-interface IConfirm {
-  width?: number | undefined;
-  height?: number | undefined;
-}
 
 export const ConfirmBox = styled('div')({
   minWidth: '520px',

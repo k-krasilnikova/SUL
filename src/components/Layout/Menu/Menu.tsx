@@ -4,7 +4,16 @@ import { ListItemIcon } from '@mui/material';
 
 import { IMenuProps } from 'types/menu';
 
-import { MenuTabs, MenuTabsWrapper, TabWrapper, ItemText, LeftArrow, RightArrow } from './styled';
+import {
+  MenuTabs,
+  MenuTabsWrapper,
+  TabWrapper,
+  ItemText,
+  LeftArrowBox,
+  RightArrowBox,
+  LeftArrow,
+  RightArrow,
+} from './styled';
 
 const Menu: React.FC<IMenuProps> = ({
   menuList,
@@ -15,7 +24,15 @@ const Menu: React.FC<IMenuProps> = ({
   isTabHeader,
 }) => (
   <MenuTabs>
-    {isSqueeze ? <RightArrow onClick={handleSqueeze} /> : <LeftArrow onClick={handleSqueeze} />}
+    {isSqueeze ? (
+      <RightArrowBox onClick={handleSqueeze}>
+        <RightArrow />
+      </RightArrowBox>
+    ) : (
+      <LeftArrowBox onClick={handleSqueeze}>
+        <LeftArrow />
+      </LeftArrowBox>
+    )}
     <MenuTabsWrapper>
       {menuList.map((item) =>
         pathname?.includes(item.path) ? (
