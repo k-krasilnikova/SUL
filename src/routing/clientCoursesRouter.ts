@@ -9,7 +9,7 @@ import startCourse from 'controllers/clientCourses/startCourse';
 import finishCourse from 'controllers/clientCourses/finishCourse';
 import getClientCourseById from 'controllers/clientCourses/getClientCourse';
 import getTest from 'controllers/tests/getTest';
-import getAchivments from 'controllers/skills/getAchivments';
+import getAchivments from 'controllers/tests/getAchivments';
 import startTest from 'controllers/tests/startTest';
 import getTestResults from 'controllers/tests/getTestResults';
 import unitTestResults from 'middlewares/sendTestResults';

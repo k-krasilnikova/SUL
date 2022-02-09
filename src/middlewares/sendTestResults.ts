@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { isError } from 'lodash';
+import { isError } from 'utils/typeGuards/isError';
 
 const unitTestResults = async (
   req: Request,

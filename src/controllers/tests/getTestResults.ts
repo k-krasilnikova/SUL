@@ -1,9 +1,9 @@
+import { Request, Response } from 'express';
+
 import { PASS_THRESHOLD } from 'config/constants';
 import { getStatusProvider } from 'db/providers/clientCourseProvider';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
-import { Request, Response } from 'express';
-
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { isError } from 'utils/typeGuards/isError';
 import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
