@@ -51,6 +51,6 @@ export const AnswersBox = styled(Box)({
 
 export const StyledRadio = styled(Radio)({
   display: 'flex',
-  padding: '0',
+  padding: '0 !important',
   alignSelf: 'flex-start',
 });
