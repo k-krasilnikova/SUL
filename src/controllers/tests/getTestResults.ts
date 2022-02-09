@@ -17,7 +17,7 @@ const getTestResults = async (
     const { id: testId, answers } = req.body;
     const { id: courseId } = req.params;
     const courseStatus = await getStatusProvider(courseId);
-    if (courseStatus?.status !== CourseStatus.testing) {
+    if (!courseStatus || courseStatus?.status !== CourseStatus.testing) {
       res.json({ message: 'test is not started' });
       return;
     }
