@@ -11,7 +11,6 @@ const PassingTestContainer: React.FC = () => {
   const maxStage = INITIAL_TEST ? INITIAL_TEST.questions.length : MAX_STAGE_INITIAL;
 
   const [stage, setStage] = useState(1);
-  const [resultEnabled, setResultEnabled] = useState(false);
   const [values, setValues] = React.useState({});
 
   const handleChange = (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,12 +18,7 @@ const PassingTestContainer: React.FC = () => {
   };
 
   const stageNext = () => {
-    if (stage < maxStage) {
-      if (stage + STAGE_CHANGE === maxStage && !resultEnabled) {
-        setResultEnabled(true);
-      }
-      setStage(stage + STAGE_CHANGE);
-    }
+    setStage(stage + STAGE_CHANGE);
   };
 
   const stageBack = () => {
@@ -33,6 +27,7 @@ const PassingTestContainer: React.FC = () => {
     }
   };
 
+  const resultEnabled = stage === maxStage;
   const questionStageItem = INITIAL_TEST.questions[stage - 1];
 
   return (
