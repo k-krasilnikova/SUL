@@ -1,4 +1,4 @@
-import { useQuery, UseQueryResult } from 'react-query';
+import { useQuery, useQueryClient, UseQueryResult } from 'react-query';
 import { AxiosError } from 'axios';
 
 import { apiClientWrapper } from 'api/base';
@@ -6,9 +6,10 @@ import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
 import { ITest } from 'types/test';
 
-const useGetCourseTest = (_id?: string): UseQueryResult<Array<ITest>, AxiosError> =>
-  useQuery(
-    ['CourseTest', _id],
+const useGetCourseTest = (_id?: string): UseQueryResult<Array<ITest>, AxiosError> => {
+  const queryClient = useQueryClient();
+  return useQuery(
+    ['CourseTest'],
     async () => {
       const apiClient = apiClientWrapper();
       try {
@@ -21,7 +22,9 @@ const useGetCourseTest = (_id?: string): UseQueryResult<Array<ITest>, AxiosError
     },
     {
       refetchOnWindowFocus: false,
+      onSuccess: () => queryClient.removeQueries(['ClientCourseInfo', _id]),
     },
   );
+};
 
 export default useGetCourseTest;
