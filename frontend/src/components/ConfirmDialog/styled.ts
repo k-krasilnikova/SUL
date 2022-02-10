@@ -11,6 +11,8 @@ export const StyledDialog = styled(Dialog)<Size>(({ size }) => ({
   '& .MuiDialog-paper': {
     borderRadius: '5px',
     boxShadow: 'none',
+    maxWidth: '660px !important',
+    maxHeight: '340px !important',
     ...(size === SIZE.large && {
       minWidth: '660px !important',
       maxHeight: '335px !important',

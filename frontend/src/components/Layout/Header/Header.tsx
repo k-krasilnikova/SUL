@@ -66,11 +66,12 @@ const Header: React.FC<HeaderProps> = ({
     </BrandLogoLink>
     <HeaderContent>
       <Search
+        className="search"
         disableUnderline
         placeholder="Search"
         startAdornment={
           <InputAdornment position="start">
-            <SearchIcon color="disabled" />
+            <SearchIcon color="disabled" fontSize="medium" />
           </InputAdornment>
         }
         pagename={pageName}

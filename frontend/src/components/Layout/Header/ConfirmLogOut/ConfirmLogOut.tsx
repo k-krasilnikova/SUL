@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ConfirmDialog from 'components/ConfirmDialog/ConfirmDialog';
+import { ConfirmDialog } from 'components/ConfirmDialog';
 import { close } from 'icons';
 
 import {
@@ -41,5 +41,4 @@ const ConfirmLogOut: React.FC<IConfirm> = ({ handleLogOut, cancelLogOut, isConfi
     </ConfirmBox>
   </ConfirmDialog>
 );
-
 export default ConfirmLogOut;
