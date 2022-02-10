@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
-import { INITIAL_TEST } from 'constants/test';
+import { INITIAL_TEST, MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 
 import PassingTest from './PassingTest';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
-  const MAX_STAGE_INITIAL = 1;
-  const MIN_STAGE = 1;
-  const STAGE_CHANGE = 1;
+
   const maxStage = INITIAL_TEST ? INITIAL_TEST.questions.length : MAX_STAGE_INITIAL;
 
   const [stage, setStage] = useState(1);
