@@ -23,10 +23,11 @@ import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
 import Loader from 'components/Loader';
 import { queryClient } from 'api/base';
+import { LOADER } from 'constants/loaderTypes';
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
-    <Suspense fallback={<Loader color="primary" />}>
+    <Suspense fallback={<Loader color="primary" type={LOADER.page} />}>
       <BrowserRouter basename={PATHS.home}>
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
