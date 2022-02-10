@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Grid from '@mui/material/Grid';
 
 import theme from 'themeSettings';
+import { HEADER_HEIGHT, HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from './Header/styled';
 
 export const GridHeader = styled(Grid)({
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
@@ -11,10 +12,10 @@ export const GridHeader = styled(Grid)({
 
 export const GridMenu = styled(Grid)({
   width: '303px',
-  [theme.breakpoints.down('md')]: {
+  '@media(max-width: 1110px)': {
     display: 'none',
   },
-  [theme.breakpoints.up('md')]: {
+  '@media(min-width: 1110px)': {
     width: '205px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -25,13 +26,21 @@ export const GridMenu = styled(Grid)({
 export const PageWrapper = styled(Grid)({
   overflowY: 'auto',
   overflowX: 'hidden',
-  height: 'calc(100vh - 80px)',
+  [theme.breakpoints.up('xs')]: {
+    height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
+  },
+  [theme.breakpoints.up('md')]: {
+    height: `calc(100vh - ${HEADER_HEIGHT_IPAD})`,
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: `calc(100vh - ${HEADER_HEIGHT})`,
+  },
 });
 
 export const useLayOutStyles = makeStyles({
   hideGridMenu: {
     width: '129px',
-    [theme.breakpoints.up('md')]: {
+    '@media(min-width: 1110px)': {
       width: '82px',
     },
     [theme.breakpoints.up('xl')]: {
@@ -39,11 +48,11 @@ export const useLayOutStyles = makeStyles({
     },
   },
   hidePageWrapper: {
-    [theme.breakpoints.down('md')]: {
+    '@media(max-width: 1110px)': {
       width: '100%',
     },
 
-    [theme.breakpoints.up('md')]: {
+    '@media(min-width: 1110px)': {
       width: 'calc(100% - 205px)',
     },
     [theme.breakpoints.up('xl')]: {
@@ -51,10 +60,10 @@ export const useLayOutStyles = makeStyles({
     },
   },
   showPageWrapper: {
-    [theme.breakpoints.down('md')]: {
+    '@media(max-width: 1110px)': {
       width: '100%',
     },
-    [theme.breakpoints.up('md')]: {
+    '@media(min-width: 1110px)': {
       width: `calc(100% - 82px)`,
     },
     [theme.breakpoints.up('xl')]: {
