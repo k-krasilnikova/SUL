@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { PASS_THRESHOLD } from 'config/constants';
-import { getStatusProvider } from 'db/providers/clientCourseProvider';
+import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
@@ -31,6 +31,7 @@ const getTestResults = async (
       return;
     }
     res.locals.result = result;
+    await updateCourseStatus(courseId, CourseStatus.successful);
     next();
   } catch (err) {
     if (isError(err)) {

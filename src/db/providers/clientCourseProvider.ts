@@ -50,6 +50,9 @@ const getStatusProvider = async (courseId: string) => {
     { _id: courseId },
     { status: 1, _id: 0 },
   ).lean();
+  if (!currStatus) {
+    throw new NotFoundError('course not found');
+  }
   return currStatus;
 };
 

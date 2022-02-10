@@ -2,16 +2,15 @@ import { Request, Response } from 'express';
 
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import CourseStatus from 'enums/coursesEnums';
-import { getCurrentProgress, updateCourseStatus } from 'db/providers/clientCourseProvider';
-import { INITIAL_INDX, REQUIRED_PCT } from 'config/constants';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 
 const finishCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
   try {
     const { id: clientCourseId } = req.params;
-    const progress = await getCurrentProgress(clientCourseId);
-    if (progress[INITIAL_INDX].currProgress < REQUIRED_PCT) {
-      throw new BadRequestError("Can not finish course till all the stages haven't been passed.");
+    const { status } = await getStatusProvider(clientCourseId);
+    if (status !== CourseStatus.successful) {
+      res.json({ message: 'you don`t pass the test' });
+      return;
     }
     await updateCourseStatus(clientCourseId, CourseStatus.completed);
     res.json({ finish: true });
