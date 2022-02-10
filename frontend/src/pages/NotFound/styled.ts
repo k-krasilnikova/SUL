@@ -16,22 +16,22 @@ export const DefaultWrapper = styled(Box)({
 
 export const ErrorText = styled(Typography)({
   fontFamily: '"Ubuntu", sans-serif',
-  fontWeight: 'bold',
+  fontWeight: 'bold !important',
   color: '#8b8b8b',
-  margin: '0.5em auto',
-  letterSpacing: '-0.4px',
-  lineHeight: '83.88px',
+  margin: '0.5em auto !important',
+  letterSpacing: '-0.4px! important',
+  lineHeight: '83.88px !important',
   [theme.breakpoints.up('xs')]: {
-    fontSize: '30px',
-    lineHeight: '30px',
+    fontSize: '30px !important',
+    lineHeight: '30px !important',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '50px',
-    lineHeight: '50px',
+    fontSize: '50px !important',
+    lineHeight: '50px !important',
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '73px',
-    lineHeight: '69px',
+    fontSize: '73px !important',
+    lineHeight: '69px !important',
   },
 });
 
@@ -43,18 +43,18 @@ export const UnderErrorText = styled(Typography)({
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: 'medium',
   color: '#8b8b8b',
-  lineHeight: '68.94px',
-  letterSpacing: '-0.4px',
+  lineHeight: '68.94px !important',
+  letterSpacing: '-0.4px !important',
   [theme.breakpoints.up('xs')]: {
-    fontSize: '20px',
-    lineHeight: '20px',
+    fontSize: '20px !important',
+    lineHeight: '20px !important',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '40px',
-    lineHeight: '40px',
+    fontSize: '40px !important',
+    lineHeight: '40px !important',
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '60px',
-    lineHeight: '60pxpx',
+    fontSize: '60px !important',
+    lineHeight: '60pxpx !important',
   },
 });
