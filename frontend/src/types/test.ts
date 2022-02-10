@@ -48,6 +48,7 @@ export interface IPassingTest {
   params: Readonly<Params<string>>;
   resultEnabled: boolean;
   stageNext: () => void;
+  stageBack: () => void;
   questionStageItem: IQuestionObject;
   children?: React.ReactChild;
 }

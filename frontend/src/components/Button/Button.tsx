@@ -13,6 +13,8 @@ declare module '@mui/material/Button' {
 interface Props extends ButtonProps {
   onClick?: () => void;
   children?: React.ReactNode;
+  component?: React.ElementType;
+  to?: string;
 }
 
 const Button: React.FC<Props> = ({ onClick, children, ...rest }) => (
