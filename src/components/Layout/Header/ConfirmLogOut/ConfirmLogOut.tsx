@@ -18,10 +18,11 @@ interface IConfirm {
   isConfirmOpen: boolean;
   handleLogOut: () => void;
   cancelLogOut: () => void;
+  size?: string;
 }
 
-const ConfirmLogOut: React.FC<IConfirm> = ({ handleLogOut, cancelLogOut, isConfirmOpen }) => (
-  <ConfirmDialog open={isConfirmOpen} onClose={cancelLogOut}>
+const ConfirmLogOut: React.FC<IConfirm> = ({ handleLogOut, cancelLogOut, isConfirmOpen, size }) => (
+  <ConfirmDialog open={isConfirmOpen} onClose={cancelLogOut} size={size}>
     <ConfirmBox>
       <CloseButtonBox>
         <CloseButton onClick={cancelLogOut}>

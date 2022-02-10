@@ -217,7 +217,7 @@ export const SkillsDivider = styled(Divider)({
 });
 export const NoSkills = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    marginTop: '10px',
+    marginTop: '50px',
   },
   [theme.breakpoints.up('lg')]: {
     marginTop: '80px',
