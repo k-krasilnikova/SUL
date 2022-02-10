@@ -26,4 +26,6 @@ export interface SignTypes {
   imageUrl?: string;
   isLoading?: boolean;
   status?: string;
+  handleFocus?: () => void;
+  labelState?: boolean;
 }
