@@ -26,7 +26,7 @@ const countTestResult = (
   trueAnswers: TCorrectAnswers<IAnswer, 'aN', 'correctAnswer'>[],
 ) => {
   const pureAnswers = trueAnswers.length - wrongAnswers.length;
-  return pureAnswers / trueAnswers.length;
+  return parseFloat((pureAnswers / trueAnswers.length).toFixed(2));
 };
 
 export { checkTestResults, countTestResult, IAnswer };

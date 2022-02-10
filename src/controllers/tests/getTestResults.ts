@@ -16,16 +16,18 @@ const getTestResults = async (
   try {
     const { id: testId, answers } = req.body;
     const { id: courseId } = req.params;
+
     const courseStatus = await getStatusProvider(courseId);
     if (!courseStatus || courseStatus?.status !== CourseStatus.testing) {
       res.json({ message: 'test is not started' });
       return;
     }
+
     const correctAnswers = await getTrueAnswersProvider(testId);
     const userWrongAnswers = checkTestResults(answers, correctAnswers.questions);
     const result = countTestResult(userWrongAnswers, correctAnswers.questions);
     if (result < PASS_THRESHOLD) {
-      res.json({ result, status: 'not passed' });
+      res.json({ result, testStatus: 'not passed' });
       return;
     }
     res.locals.result = result;

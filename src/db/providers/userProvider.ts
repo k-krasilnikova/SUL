@@ -16,7 +16,7 @@ const getUserProvider = async (userId: string) => {
 const getUserSkills = async (userId: string): Promise<Pick<IUser, 'skills'>> => {
   const clientSkills = await UserModel.findOne({ _id: userId }, { skills: 1, _id: 0 }).lean();
   if (!clientSkills) {
-    throw new NotFoundError('skills not found');
+    throw new NotFoundError('skills not found.');
   }
   return clientSkills;
 };

@@ -30,9 +30,6 @@ const getCoursesProvider = async ({
       .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
       .limit(nPerPage)
       .lean();
-    if (!courses.length) {
-      throw new NotFoundError('Course not found.');
-    }
     return courses;
   } catch (error) {
     throw new BadRequestError('Invalid query.');
