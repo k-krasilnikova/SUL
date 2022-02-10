@@ -1,1 +1,1 @@
-export { default as buttonSpinner } from './buttonLoader.svg';
+export { ReactComponent as buttonSpinner } from './buttonLoader.svg';

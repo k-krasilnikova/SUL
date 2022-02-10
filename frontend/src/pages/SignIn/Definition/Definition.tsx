@@ -5,9 +5,7 @@ import { Wrapper, LogoBox, CompanyLogo, Instructions } from './styled';
 const Definition = (): JSX.Element => (
   <Wrapper>
     <LogoBox>
-      <CompanyLogo>
-        <span>:i</span>Tech<span>Art</span>
-      </CompanyLogo>
+      <CompanyLogo>:iTechArt</CompanyLogo>
     </LogoBox>
     <LogoBox>
       <Instructions>

@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { ReactFragment } from 'react';
 import { Typography } from '@mui/material';
 
-import { Image } from 'components/Image';
-
-import { LoaderIcon } from './styled';
+import { LoaderIcon, CurrentIcon } from './styled';
 
 interface Props {
-  buttonSpinner?: string;
+  buttonSpinner?: ReactFragment;
 }
 
 const ButtonLoader: React.FC<Props> = ({ buttonSpinner }) =>
   buttonSpinner ? (
     <LoaderIcon>
-      <Image imageUrl={buttonSpinner} />
+      <CurrentIcon fontSize="large" component={buttonSpinner} />
     </LoaderIcon>
   ) : (
     <Typography variant="body2">Loading...</Typography>
