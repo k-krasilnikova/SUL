@@ -6,7 +6,7 @@ import { ListItemButton, Backdrop } from '@mui/material';
 
 import theme from 'themeSettings';
 
-import { HEADER_HEIGHT_MOBILE } from '../Header/styled';
+import { HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from '../Header/styled';
 
 interface TabWrapperTypes {
   component?: ReactFragment;
@@ -19,11 +19,19 @@ export const MobileMenuSlide = styled('div')({
   backgroundColor: theme.palette.secondary.main,
   padding: '8px 16px 40px 8px',
   position: 'absolute',
-  top: HEADER_HEIGHT_MOBILE,
+
   right: '0px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
+  [theme.breakpoints.up('xs')]: {
+    height: `calc(100% - ${HEADER_HEIGHT_MOBILE})`,
+    top: HEADER_HEIGHT_MOBILE,
+  },
+  [theme.breakpoints.up('md')]: {
+    height: `calc(100% - ${HEADER_HEIGHT_IPAD})`,
+    top: HEADER_HEIGHT_IPAD,
+  },
 });
 
 export const MobileMenuBackdrop = styled(Backdrop)({
@@ -41,7 +49,7 @@ export const MenuTabsWrapper = styled('div')({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'left',
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('lg')]: {
     display: 'none',
   },
 });

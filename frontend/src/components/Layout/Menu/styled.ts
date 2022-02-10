@@ -24,7 +24,7 @@ export const MenuTabs = styled('div')({
   fontFamily: '"Ubuntu", sans-serif',
   margin: '0px',
   position: 'relative',
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('lg')]: {
     height: `calc(100vh - ${HEADER_HEIGHT_IPAD})`,
     maxWidth: '205px',
     fontSize: '18px',
@@ -39,11 +39,13 @@ export const MenuTabs = styled('div')({
 export const LeftArrow = styled(leftArrow)({
   display: 'block',
   marginRight: '10px',
+  color: 'black',
 });
 
 export const RightArrow = styled(rightArrow)({
   display: 'block',
   marginRight: '10px',
+  color: 'black',
 });
 
 export const RightArrowBox = styled('div')({
@@ -51,7 +53,7 @@ export const RightArrowBox = styled('div')({
   justifyContent: 'flex-end',
   position: 'absolute',
   right: '12%',
-  top: 'calc(50% - 8px)',
+  top: 'calc(50% - 13px)',
   minWidth: '280px !important',
   cursor: 'pointer',
   padding: '10px 0px',
@@ -62,10 +64,11 @@ export const LeftArrowBox = styled('div')({
   justifyContent: 'flex-end',
   position: 'absolute',
   right: '5%',
-  top: '1%',
+  top: 'calc(50% - 13px)',
   minWidth: '280px !important',
   cursor: 'pointer',
   padding: '10px 0px',
+  zIndex: '15',
 });
 
 export const MenuTabsWrapper = styled('div')({
@@ -79,11 +82,11 @@ export const MenuTabsWrapper = styled('div')({
   [theme.breakpoints.down('md')]: {
     display: 'none',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('lg')]: {
     paddingTop: '30px',
   },
   [theme.breakpoints.up('xl')]: {
-    paddingTop: '50px',
+    paddingTop: '28px',
   },
 });
 
@@ -95,7 +98,7 @@ export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({
 export const ItemText = styled(ListItemText)({
   '& span': {
     display: 'block !important',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       fontSize: '18px',
     },
     [theme.breakpoints.up('xl')]: {
@@ -108,7 +111,7 @@ export const useListStyles = makeStyles({
   default: {
     background: 'none',
     color: 'black',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       paddingLeft: '13px',
     },
     [theme.breakpoints.up('xl')]: {
@@ -120,7 +123,7 @@ export const useListStyles = makeStyles({
       paddingLeft: '-10px',
     },
     '& svg': {
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('lg')]: {
         width: '35px',
         height: '35px',
       },
@@ -137,7 +140,7 @@ export const useListStyles = makeStyles({
   },
   selected: {
     width: `calc(100% + ${BORDER_CANCELER}px)`,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       paddingLeft: '25px !important',
     },
     [theme.breakpoints.up('xl')]: {
@@ -158,7 +161,7 @@ export const useListStyles = makeStyles({
     '& svg': {
       width: '40px',
       height: '40px',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('lg')]: {
         width: '35px',
         height: '35px',
       },
