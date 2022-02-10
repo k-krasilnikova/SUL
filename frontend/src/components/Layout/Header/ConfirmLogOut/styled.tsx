@@ -42,7 +42,7 @@ export const ButtonCancel = styled(Button)({
   background: '#E19697 !important',
   padding: '14px 23px !important',
   fontSize: '18px !important',
-  fontWeight: '400 !important',
+  fontWeight: '500 !important',
   marginRight: '25px !important',
 });
 
@@ -51,6 +51,6 @@ export const ButtonExit = styled(Button)({
   height: '100%',
   padding: '14px 23px !important',
   fontSize: '18px !important',
-  fontWeight: '400 !important',
+  fontWeight: '500 !important',
   marginLeft: '25px !important',
 });
