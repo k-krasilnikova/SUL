@@ -16,11 +16,14 @@ import {
   InnerWrapper,
   NextButton,
   PassingTestWrapper,
+  PreviousButton,
   QuestionItemBox,
   ResultButton,
   TitleBox,
 } from './styled';
 import QuestionItem from './QuestionItem';
+
+const INITIAL_STAGE = 1;
 
 const PassingTest: React.FC<IPassingTest> = ({
   stage,
@@ -30,6 +33,7 @@ const PassingTest: React.FC<IPassingTest> = ({
   params,
   resultEnabled,
   stageNext,
+  stageBack,
   questionStageItem,
 }) => (
   <AuthorizedLayout pageName="Passing Test">
@@ -55,12 +59,22 @@ const PassingTest: React.FC<IPassingTest> = ({
         />
       </QuestionItemBox>
       <ButtonsBox>
+        <Box>
+          {stage > INITIAL_STAGE && (
+            <PreviousButton variant="medium" onClick={stageBack}>
+              Previous
+            </PreviousButton>
+          )}
+        </Box>
         {resultEnabled ? (
-          <Link to={`${PATHS.myCourses}/${params.courseId}/test/result`}>
-            <ResultButton variant="medium" disabled={Boolean(!value[questionStageItem.qN])}>
-              Result
-            </ResultButton>
-          </Link>
+          <ResultButton
+            variant="medium"
+            disabled={Boolean(!value[questionStageItem.qN])}
+            component={Link}
+            to={`${PATHS.myCourses}/${params.courseId}/test/result`}
+          >
+            Result
+          </ResultButton>
         ) : (
           <NextButton
             variant="medium"
