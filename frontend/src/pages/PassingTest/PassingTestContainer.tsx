@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
-import { INITIAL_TEST } from 'constants/test';
+import { INITIAL_TEST, MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 
 import PassingTest from './PassingTest';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
-  const MAX_STAGE_INITIAL = 1;
-  const STAGE_CHANGE = 1;
+
   const maxStage = INITIAL_TEST ? INITIAL_TEST.questions.length : MAX_STAGE_INITIAL;
 
   const [stage, setStage] = useState(1);
@@ -28,6 +27,12 @@ const PassingTestContainer: React.FC = () => {
     }
   };
 
+  const stageBack = () => {
+    if (stage > MIN_STAGE) {
+      setStage(stage - STAGE_CHANGE);
+    }
+  };
+
   const questionStageItem = INITIAL_TEST.questions[stage - 1];
 
   return (
@@ -39,6 +44,7 @@ const PassingTestContainer: React.FC = () => {
       params={params}
       resultEnabled={resultEnabled}
       stageNext={stageNext}
+      stageBack={stageBack}
       questionStageItem={questionStageItem}
     />
   );
