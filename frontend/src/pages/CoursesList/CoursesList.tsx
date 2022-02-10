@@ -8,6 +8,7 @@ import { NO_COURSES } from 'constants/messages';
 import { ResponseDataType } from 'types/responseData';
 import { PATHS } from 'constants/routes';
 import Loader from 'components/Loader';
+import { LOADER } from 'constants/loaderTypes';
 
 import {
   PageContainer,
@@ -21,12 +22,12 @@ import {
 const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyCourse }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
-      <Loader color="primary" />
+      <Loader color="primary" type={LOADER.content} />
     ) : data?.length ? (
       <PageContainer container rowSpacing="24px" columnSpacing="30px">
         {data?.map((course) => (
-          <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12} container>
-            <Suspense fallback={<Loader color="primary" />}>
+          <Suspense fallback={<Loader color="primary" type={LOADER.content} />}>
+            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12} container>
               <CourseItem
                 key={course._id}
                 title={course?.title}
@@ -47,8 +48,8 @@ const CoursesList: React.FC<ResponseDataType> = ({ data, isLoading, handleApplyC
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>
-            </Suspense>
-          </GridItem>
+            </GridItem>
+          </Suspense>
         ))}
       </PageContainer>
     ) : (
