@@ -120,3 +120,26 @@ export const CloseIcon = styled('img')({
   height: '12px',
   color: theme.palette.primary.main,
 });
+
+export const CloseButton = styled('div')({
+  display: 'flex',
+  maxWidth: '12px',
+  maxHeight: '12px',
+  margin: '8px 8px 0 0',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+});
+
+export const CloseButtonBox = styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignContent: 'center',
+  height: '20px !important',
+});
+
+export const CloseIcon = styled('img')({
+  width: '12px',
+  height: '12px',
+  color: theme.palette.primary.main,
+});
