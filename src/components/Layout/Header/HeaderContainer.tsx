@@ -27,7 +27,11 @@ const HeaderContainer: React.FC<Props> = ({
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
   const EMPTY_ARGUMENT = null;
+
   const handleNotificationsOpen = () => {
+    if (isMobileMenuOpen) {
+      toggleMobileMenu();
+    }
     setNotificationsOpen(!isNotificationsOpen);
   };
   const handleFilterOpen = () => {
@@ -74,6 +78,7 @@ const HeaderContainer: React.FC<Props> = ({
         isConfirmOpen={isConfirmOpen}
         cancelLogOut={cancelLogOut}
         status={status}
+        size="medium"
       />
     </>
   );

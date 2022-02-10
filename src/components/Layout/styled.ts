@@ -14,6 +14,12 @@ export const GridMenu = styled(Grid)({
   [theme.breakpoints.down('md')]: {
     display: 'none',
   },
+  [theme.breakpoints.up('md')]: {
+    width: '205px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '303px',
+  },
 });
 
 export const PageWrapper = styled(Grid)({
@@ -25,17 +31,34 @@ export const PageWrapper = styled(Grid)({
 export const useLayOutStyles = makeStyles({
   hideGridMenu: {
     width: '129px',
+    [theme.breakpoints.up('md')]: {
+      width: '82px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '129px',
+    },
   },
   hidePageWrapper: {
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
-    width: 'calc(100% - 303px)',
+
+    [theme.breakpoints.up('md')]: {
+      width: 'calc(100% - 205px)',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: 'calc(100% - 303px)',
+    },
   },
   showPageWrapper: {
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
-    width: `calc(100% - 129px)`,
+    [theme.breakpoints.up('md')]: {
+      width: `calc(100% - 82px)`,
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: `calc(100% - 129px)`,
+    },
   },
 });
