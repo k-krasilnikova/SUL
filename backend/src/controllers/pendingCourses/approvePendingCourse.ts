@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { updateCourseStatus } from 'db/providers/clientCourseProvider';
+import { getClientCourseProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
+import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 
 interface ApprovePendingCourseRequest extends Request {
   body: { id: string };
@@ -15,8 +16,13 @@ const approvePendingCourse = async (
 ) => {
   const { id: clientCourseId } = req.body;
   try {
-    await updateCourseStatus(clientCourseId, CourseStatus.approved);
-    res.json({ status: 'Course was approved' });
+    const { status }: IClientCourse = await getClientCourseProvider(clientCourseId);
+    if (status !== CourseStatus.rejected) {
+      await updateCourseStatus(clientCourseId, CourseStatus.approved);
+      res.json('Course was approved');
+    } else {
+      res.json(`Can't approve course with status: ${status}`);
+    }
   } catch (error) {
     next(error);
   }
