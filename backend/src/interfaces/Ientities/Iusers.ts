@@ -2,7 +2,7 @@ import { ObjectId } from 'mongoose';
 import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 
-interface ISkills {
+interface ISkill {
   name: string;
   image: string;
   score: number;
@@ -29,7 +29,7 @@ interface IUser {
   position: TUserPosition;
   firstName: string;
   lastName: string;
-  skills: ISkills[];
+  skills: ISkill[];
   courses: ObjectId[];
   group: string;
   employees: ObjectId[];
@@ -45,4 +45,4 @@ type TUserRole = 'admin' | 'manager' | 'employee';
 
 type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { IUser, TUserRole, TUserPosition, IPendingCourses, ISkills };
+export { IUser, TUserRole, TUserPosition, IPendingCourses, ISkill };

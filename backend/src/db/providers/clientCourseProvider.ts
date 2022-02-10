@@ -95,7 +95,7 @@ const getCourseTechnology = async (clientCourseId: string) => {
     })
     .lean();
   if (!technology) {
-    throw new NotFoundError('course not found');
+    throw new NotFoundError('Course not found.');
   }
   return technology;
 };

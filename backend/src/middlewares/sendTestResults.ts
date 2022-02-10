@@ -7,14 +7,14 @@ const unitTestResults = async (
   req: Request,
   res: Response<
     { result: number; updatedSkills: string[]; newSkills: string[] },
-    { id: string; result: number; achivments: { newSkills: string[]; updatedSkills: string[] } }
+    { id: string; result: number; achievments: { newSkills: string[]; updatedSkills: string[] } }
   >,
   next: TMiddlewareCall,
 ) => {
   try {
     const {
       result,
-      achivments: { newSkills, updatedSkills },
+      achievments: { newSkills, updatedSkills },
     } = res.locals;
     res.json({ result, newSkills, updatedSkills });
   } catch (error) {

@@ -9,7 +9,7 @@ const connectionMiddleware = async (req: Request, res: Response, next: TMiddlewa
     const CONNECTION_STRING: string | undefined =
       process.env.NODE_ENV === 'dev' ? process.env.DATABASE_BACKDEV_URL : process.env.DATABASE_URL;
 
-    if (CONNECTION_STRING !== undefined) {
+    if (CONNECTION_STRING) {
       await connect(CONNECTION_STRING);
     }
 
