@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import { AuthorizedLayout } from 'components/Layout';
 import { CountDownTimer } from 'components/CountDownTimer';
 import { PATHS } from 'constants/routes';
-import { INITIAL_TEST } from 'constants/test';
+import { INITIAL_TEST, MIN_STAGE } from 'constants/test';
 import { IPassingTest } from 'types/test';
 
 import {
@@ -22,8 +22,6 @@ import {
   TitleBox,
 } from './styled';
 import QuestionItem from './QuestionItem';
-
-const INITIAL_STAGE = 1;
 
 const PassingTest: React.FC<IPassingTest> = ({
   stage,
@@ -60,7 +58,7 @@ const PassingTest: React.FC<IPassingTest> = ({
       </QuestionItemBox>
       <ButtonsBox>
         <Box>
-          {stage > INITIAL_STAGE && (
+          {stage > MIN_STAGE && (
             <PreviousButton variant="medium" onClick={stageBack}>
               Previous
             </PreviousButton>
