@@ -51,7 +51,7 @@ export const RightArrowBox = styled('div')({
   justifyContent: 'flex-end',
   position: 'absolute',
   right: '12%',
-  top: '1%',
+  top: 'calc(50% - 8px)',
   minWidth: '280px !important',
   cursor: 'pointer',
   padding: '10px 0px',
