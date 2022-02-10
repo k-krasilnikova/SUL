@@ -137,17 +137,30 @@ const GridSignInput = styled(Grid)({
   boxSizing: 'border-box',
   height: 'fit-content',
   marginBottom: '20px !important',
+  '& label': {
+    fontFamily: '"Ubuntu", sans-serif',
+    color: '#6C6C6C !important',
+    fontSize: '18px',
+    lineHeight: '20px',
+    fontWeight: 400,
+  },
   '& input': {
     fontSize: '18px',
     fontWeight: 600,
     fontFamily: '"Ubuntu", sans-serif',
     padding: '15px 14px',
-    '&::placeholder': {
-      color: '#C6C6C9',
-      fontSize: '18px !important',
-      fontFamily: '"Ubuntu", sans-serif',
-      fontWeight: 400,
-    },
+    // '&::placeholder': {
+    //   color: '#C6C6C9',
+    //   fontSize: '18px !important',
+    //   fontFamily: '"Ubuntu", sans-serif',
+    //   fontWeight: 400,
+    // },
+  },
+  '& input:valid + fieldset': {
+    borderColor: '#E5EEFD',
+  },
+  '& input:valid:focus + fieldset': {
+    borderColor: '#E5EEFD',
   },
 });
 
@@ -163,7 +176,7 @@ const GridButton = styled(Grid)({
 
 const SignButton = styled(Button)({
   fontSize: '18px !important',
-  fontWeight: '600 !important',
+  fontWeight: '700 !important',
   letterSpacing: '0.2px !important',
 });
 

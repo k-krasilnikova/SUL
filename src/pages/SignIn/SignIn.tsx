@@ -24,7 +24,13 @@ import {
   ImageWrapper,
 } from './styled';
 
-const SignIn = ({ formik, warningHandler, status }: SignTypes): JSX.Element => {
+const SignIn = ({
+  formik,
+  warningHandler,
+  status,
+  handleFocus,
+  labelState,
+}: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
@@ -52,22 +58,23 @@ const SignIn = ({ formik, warningHandler, status }: SignTypes): JSX.Element => {
                   <GridSignInput item xs={12}>
                     <TextField
                       value={login}
+                      label={labelState ? 'Login' : 'Name'}
                       warningHandler={warningHandler}
                       handleBlur={handleBlur}
+                      handleFocus={handleFocus}
                       error={errors}
-                      placeholder="Login"
                       id="login"
                     />
                   </GridSignInput>
                   <GridSignInput item xs={12}>
                     <TextField
                       value={password}
+                      label="Password"
                       warningHandler={warningHandler}
                       handleBlur={handleBlur}
                       error={errors}
                       id="password"
                       type="password"
-                      placeholder="Password"
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
@@ -17,6 +17,7 @@ const initSignInvalue: SignInFields = {
 
 const SignInContainer: React.FC = () => {
   const { mutateAsync, status } = useGetAuth();
+  const [labelState, setLabelState] = useState<boolean | undefined>(false);
   const FIELD_TOUCHED = true;
   const FIELD_VALIDATE = false;
 
@@ -34,9 +35,19 @@ const SignInContainer: React.FC = () => {
     formik.setFieldTouched(name, FIELD_TOUCHED, FIELD_VALIDATE);
   };
 
+  const handleFocus = () => {
+    setLabelState(true);
+  };
+
   return (
     <FormikProvider value={formik}>
-      <SignIn formik={formik} warningHandler={warningHandler} status={status} />
+      <SignIn
+        formik={formik}
+        warningHandler={warningHandler}
+        status={status}
+        handleFocus={handleFocus}
+        labelState={labelState}
+      />
     </FormikProvider>
   );
 };
