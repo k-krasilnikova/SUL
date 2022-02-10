@@ -50,7 +50,7 @@ const UserSkills: React.FC<Props> = ({
         fullWidth
         startAdornment={
           <InputAdornment position="start">
-            <SearchIcon color="disabled" />
+            <SearchIcon color="disabled" fontSize="inherit" />
           </InputAdornment>
         }
         onKeyDown={(event) => {
@@ -70,7 +70,7 @@ const UserSkills: React.FC<Props> = ({
     <SkillsList>
       {userSkills?.length ? (
         userSkills.map((skill) => (
-          <div>
+          <div key={skill.skillGroup}>
             <SkillsListItem>
               <SkillTitle>
                 <Star alt="skill" src={isSkillCompleted(skill) ? starContained : starEmpty} />
@@ -78,7 +78,7 @@ const UserSkills: React.FC<Props> = ({
               </SkillTitle>
               <SkillsInfoList>
                 {skill.skillList.map((skillItem) => (
-                  <SkillInfoContainer skillItem={skillItem} />
+                  <SkillInfoContainer key={skillItem.name} skillItem={skillItem} />
                 ))}
               </SkillsInfoList>
             </SkillsListItem>

@@ -29,6 +29,9 @@ const HeaderContainer: React.FC<Props> = ({
   const EMPTY_ARGUMENT = null;
 
   const handleNotificationsOpen = () => {
+    if (isMobileMenuOpen) {
+      toggleMobileMenu();
+    }
     setNotificationsOpen(!isNotificationsOpen);
   };
   const handleFilterOpen = () => {
