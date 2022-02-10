@@ -33,7 +33,8 @@ const getAchievments = async (
       res.locals.achievments = { newSkills, updatedSkills: oldSkills };
       next();
     }
-    res.json({ message: 'achivments failed' });
+    res.locals.achievments = { newSkills: [], updatedSkills: [] };
+    next();
   } catch (err) {
     if (isError(err)) {
       next(err);
