@@ -36,7 +36,7 @@ const ProgressBar: React.FC<ProgressProps> = ({
   if (variant === VARIANTS.completed) {
     gradientProps = {
       startColor: 'rgba(28, 192, 44, 1)',
-      endColor: '#eaeaea',
+      endColor: 'rgba(234, 234, 234, 1)',
       rotation: 135,
     };
   }

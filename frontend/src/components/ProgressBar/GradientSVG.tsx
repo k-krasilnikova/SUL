@@ -7,9 +7,7 @@ interface IGradient {
   idCSS?: string;
 }
 
-export const GradientSVG: React.FC<IGradient> = (props) => {
-  const { startColor, endColor, idCSS, rotation } = props;
-
+export const GradientSVG: React.FC<IGradient> = ({ startColor, endColor, idCSS, rotation }) => {
   const gradientTransform = `rotate(${rotation})`;
 
   return (
