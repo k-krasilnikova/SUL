@@ -4,6 +4,7 @@ import { Document } from 'react-pdf';
 import { FIRST_PAGE_INDEX, LAST_PAGE_INDEX } from 'constants/pdfViewer';
 import { Back, Forward } from 'components/Arrows';
 import Loader from 'components/Loader';
+import { LOADER } from 'constants/loaderTypes';
 
 import {
   ButtonBox,
@@ -52,7 +53,7 @@ const PDFViewer: React.FC<IPDFViewer> = ({
       </StyledButton>
     </ButtonBox>
     <DocumentBox ref={documentBoxRef}>
-      {displayLoader && <Loader color="primary" />}
+      {displayLoader && <Loader color="primary" type={LOADER.content} />}
       <Document
         file={src}
         onLoadSuccess={() => {
