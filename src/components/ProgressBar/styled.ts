@@ -24,8 +24,14 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
     height: '218px',
   }),
   ...(size === SIZE.medium && {
-    width: '80px',
-    height: '80px',
+    [theme.breakpoints.up('xs')]: {
+      width: '46px',
+      height: '46px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '80px',
+      height: '80px',
+    },
   }),
   ...(size === SIZE.small && {
     width: '41px',

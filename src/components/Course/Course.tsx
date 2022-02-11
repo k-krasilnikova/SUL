@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Image } from 'components/Image';
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
+import { ProgressBar } from 'components/ProgressBar';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -13,6 +14,8 @@ import {
   ButtonsContainer,
   CourseDescriptionWrapper,
   CourseInfoBox,
+  MobileCourseInfoBox,
+  MobileCourseProgress,
 } from './styled';
 
 interface Props {
@@ -20,18 +23,41 @@ interface Props {
   description: string;
   duration: string | undefined;
   lessons: number | undefined;
+  pageName?: string;
 }
 
-const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, children }) => (
+const PAGES = {
+  myCourses: 'myCourses',
+  coursesList: 'coursesList',
+};
+
+const CourseItem: React.FC<Props> = ({
+  title,
+  description,
+  duration,
+  lessons,
+  pageName,
+  children,
+}) => (
   <CourseContainer container direction="column">
     <AboutCourseContainer>
       <ImageWrapper>
         <Image />
       </ImageWrapper>
-      <CourseTitle>{title}</CourseTitle>
-      <CourseDescriptionWrapper>
-        <CourseDescription>{shortifyCourseDescription(description)}</CourseDescription>
-      </CourseDescriptionWrapper>
+      <div>
+        <CourseTitle>{title}</CourseTitle>
+        <CourseDescriptionWrapper>
+          <CourseDescription>{shortifyCourseDescription(description)}</CourseDescription>
+        </CourseDescriptionWrapper>
+        <MobileCourseInfoBox>
+          <CourseInfo duration={duration} lessons={lessons} />
+        </MobileCourseInfoBox>
+      </div>
+      {pageName === PAGES.myCourses && (
+        <MobileCourseProgress>
+          <ProgressBar value={50} text="50%" size="medium" textColor="#000000" />
+        </MobileCourseProgress>
+      )}
     </AboutCourseContainer>
     <ButtonsContainer>
       <CourseInfoBox>

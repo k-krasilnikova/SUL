@@ -11,7 +11,6 @@ interface InfoContainerTypes {
 
 export const CourseContainer = styled(Grid)({
   backgroundColor: 'rgba(118, 118, 128, 0.12);',
-  borderRadius: '16px',
   fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
   width: '100%',
@@ -19,21 +18,34 @@ export const CourseContainer = styled(Grid)({
   justifyContent: 'space-between',
   flexDirection: 'column',
   minHeight: '100%',
+  [theme.breakpoints.up('xs')]: {
+    borderRadius: '4px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    borderRadius: '11px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    borderRadius: '16px',
+  },
 });
 
 export const AboutCourseContainer = styled('div')({
   textOverflow: 'ellipse',
   overflow: 'hidden',
   width: '100%',
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.up('xs')]: {
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    height: 'fit-content',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'start',
+    padding: '8px 8px 10px 8px',
+    height: '82px',
   },
   [theme.breakpoints.up('lg')]: {
+    display: 'block',
     padding: '16px 26px 16px 16px',
     minHeight: '194px',
+    height: 'content-fit',
   },
   [theme.breakpoints.up('xl')]: {
     padding: '16px 0 16px 16px',
@@ -42,12 +54,13 @@ export const AboutCourseContainer = styled('div')({
 });
 
 export const ButtonsContainer = styled('div')({
-  [theme.breakpoints.up('md')]: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
+  [theme.breakpoints.up('xs')]: {
+    display: 'none',
   },
   [theme.breakpoints.up('lg')]: {
+    display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingBottom: '16px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -66,13 +79,20 @@ export const ImageWrapper = styled('div')({
   float: 'left',
   margin: '0px 8px 0px 0px',
   overflow: 'hidden',
-  borderRadius: '10px',
+  [theme.breakpoints.up('xs')]: {
+    flexShrink: '0',
+    width: '72px',
+    height: '46px',
+    alignItems: 'center',
+    alignSelf: 'center',
+    margin: '8px 8px 28px 0px',
+    borderRadius: '4px',
+  },
   [theme.breakpoints.up('lg')]: {
     width: '224px',
     height: '124px',
-    alignItems: 'center',
-    alignSelf: 'center',
     margin: '0px 24px 4px 0px',
+    borderRadius: '8px',
   },
   [theme.breakpoints.up('xl')]: {
     width: '346px',
@@ -80,17 +100,24 @@ export const ImageWrapper = styled('div')({
     alignItems: 'center',
     alignSelf: 'center',
     margin: '0px 24px 16px 0px',
+    borderRadius: '10px',
   },
 });
 
 export const CourseTitle = styled('p')({
+  [theme.breakpoints.up('xs')]: {
+    fontSize: '16px',
+    fontWeight: '400',
+    lineHeight: '19px',
+    letterSpacing: '-0.4px',
+    textAlign: 'left',
+    padding: '0px',
+    margin: '0px 14px 8px 0px',
+  },
   [theme.breakpoints.up('lg')]: {
     fontSize: '24px',
     fontWeight: '700',
     lineHeight: '31px',
-    letterSpacing: '-0.4px',
-    textAlign: 'left',
-    padding: '0px',
     margin: '9px 38px 16px 0px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -103,17 +130,10 @@ export const CourseTitle = styled('p')({
 
 export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, lineHeight }) => ({
   [theme.breakpoints.up('xs')]: {
-    fontSize: '12px',
-    lineHeight: '22px',
-    padding: '5px',
-    ...(fontSize && {
-      fontSize: `${fontSize}px`,
-    }),
-    ...(lineHeight && {
-      lineHeight: `${lineHeight}px`,
-    }),
+    display: 'none',
   },
   [theme.breakpoints.up('lg')]: {
+    display: 'block',
     fontSize: '18px',
     fontWeight: 'normal',
     lineHeight: '27px',
@@ -147,27 +167,21 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
 export const InfoContainer = styled(Box)({
   [theme.breakpoints.up('xs')]: {
     margin: '0px',
-    height: '100%',
     padding: '0px',
-    flexDirection: 'row',
-  },
-  [theme.breakpoints.up('lg')]: {
-    margin: '0px',
-    height: '100%',
     flexDirection: 'row',
   },
   height: 'fit-content',
   display: 'flex',
-  alignItems: 'end',
+  alignItems: 'middle',
   alignSelf: 'end',
 });
 
 export const InfoItem = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    padding: '5px',
+    padding: '0px',
   },
   [theme.breakpoints.up('lg')]: {
-    padding: '0px',
+    padding: '5px',
   },
   display: 'inline-flex',
   verticalAlign: 'middle',
@@ -175,39 +189,77 @@ export const InfoItem = styled('div')({
 });
 export const InfoItemText = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
-    width: '70px',
-    padding: '5px',
-    fontSize: '8px',
-    lineHeight: '24px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    width: '90px',
+    width: '45px',
     padding: '0px',
     fontFamily: '"Ubuntu", sans-serif',
+    fontSize: '10px!important',
+    lineHeight: '14px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    width: '70px',
     fontSize: '10px',
     fontWeight: '400',
-    lineHeight: '14px',
+    lineHeight: '18px!important',
     letterSpacing: '-0.4px',
     textAlign: 'left',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '14px',
+    fontSize: '14px!important',
     lineHeight: '18px',
   },
   verticalAlign: 'middle',
   color: theme.palette.text.primary,
-  fontSize: '14px !important',
+  fontSize: '14px',
 });
 
 export const InfoItemTextBox = styled(Box)({
-  marginLeft: '8px',
+  [theme.breakpoints.up('xs')]: {
+    marginLeft: '4px',
+    marginRight: '15px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    marginLeft: '8px',
+  },
 });
 
 export const CourseDescriptionWrapper = styled(Box)({
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
+  },
   margin: '0px 45px 14px 16px',
 });
 
 export const CourseInfoBox = styled(Box)({
-  paddingLeft: '30px !important',
-  paddingBottom: '7px !important',
+  [theme.breakpoints.up('lg')]: {
+    paddingLeft: '30px !important',
+  },
+});
+
+export const MobileCourseInfoBox = styled(Box)({
+  [theme.breakpoints.up('xs')]: {
+    padding: '0px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'none',
+  },
+});
+
+export const InfoItemIcon = styled('img')({
+  [theme.breakpoints.up('xs')]: {
+    width: '15px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    width: '20px',
+  },
+});
+
+export const MobileCourseProgress = styled('div')({
+  [theme.breakpoints.up('xs')]: {
+    flexShrink: '0',
+    flexGrow: '0',
+    height: '46px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'none',
+  },
 });
