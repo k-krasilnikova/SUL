@@ -19,16 +19,9 @@ export const CourseContainer = styled(Grid)({
   justifyContent: 'space-between',
   flexDirection: 'column',
   minHeight: '100%',
-  [theme.breakpoints.down('lg')]: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
 });
 
 export const AboutCourseContainer = styled('div')({
-  minHeight: '295px',
-  padding: '16px 0 16px 16px',
   textOverflow: 'ellipse',
   overflow: 'hidden',
   width: '100%',
@@ -38,18 +31,27 @@ export const AboutCourseContainer = styled('div')({
     justifyContent: 'center',
     height: 'fit-content',
   },
+  [theme.breakpoints.up('lg')]: {
+    padding: '16px 26px 16px 16px',
+    minHeight: '194px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    padding: '16px 0 16px 16px',
+    minHeight: '295px',
+  },
 });
 
 export const ButtonsContainer = styled('div')({
-  [theme.breakpoints.down('xl')]: {
-    justifyContent: 'center',
-  },
-  [theme.breakpoints.down('lg')]: {
-    justifyContent: 'space-between',
-  },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.up('md')]: {
     display: 'flex',
     justifyContent: 'space-evenly',
+  },
+  [theme.breakpoints.up('lg')]: {
+    justifyContent: 'space-between',
+    paddingBottom: '16px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    justifyContent: 'space-between',
   },
   display: 'flex',
   flexWrap: 'wrap',
@@ -58,7 +60,6 @@ export const ButtonsContainer = styled('div')({
   width: '100%',
   fontSize: '12px',
   justifyContent: 'space-between',
-  paddingBottom: '16px',
 });
 
 export const ImageWrapper = styled('div')({
@@ -66,6 +67,13 @@ export const ImageWrapper = styled('div')({
   margin: '0px 8px 0px 0px',
   overflow: 'hidden',
   borderRadius: '10px',
+  [theme.breakpoints.up('lg')]: {
+    width: '224px',
+    height: '124px',
+    alignItems: 'center',
+    alignSelf: 'center',
+    margin: '0px 24px 4px 0px',
+  },
   [theme.breakpoints.up('xl')]: {
     width: '346px',
     height: '191px',
@@ -73,63 +81,24 @@ export const ImageWrapper = styled('div')({
     alignSelf: 'center',
     margin: '0px 24px 16px 0px',
   },
-  [theme.breakpoints.down('xl')]: {
-    width: '50%',
-    height: 'auto',
-    alignItems: 'center !important',
-    alignSelf: 'center',
-    margin: '0px 24px 16px 0px',
-  },
-  [theme.breakpoints.down('lg')]: {
-    width: '250px',
-    height: 'auto',
-    alignItems: 'center',
-    alignSelf: 'center',
-    marginRight: '10px',
-  },
-  [theme.breakpoints.down('md')]: {
-    width: '175px',
-    height: 'auto',
-    alignItems: 'center',
-    alignSelf: 'center',
-    marginRight: '5px',
-  },
-  [theme.breakpoints.down('sm')]: {
-    width: '85%',
-    height: 'auto',
-    alignItems: 'center',
-    alignSelf: 'center',
-    marginRight: '0px',
-  },
 });
 
 export const CourseTitle = styled('p')({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '16px',
-    lineHeight: '26px',
-    padding: '5px',
-  },
-  [theme.breakpoints.up('sm')]: {
-    fontSize: '18px',
-    lineHeight: '28px',
-    padding: '5px',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '24px',
-    lineHeight: '30px',
-    padding: '5px',
-  },
   [theme.breakpoints.up('lg')]: {
     fontSize: '24px',
-    fontWeight: '500',
+    fontWeight: '700',
     lineHeight: '31px',
     letterSpacing: '-0.4px',
     textAlign: 'left',
     padding: '0px',
+    margin: '9px 38px 16px 0px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    fontWeight: '500',
+    margin: '15px 31px 16px 0px',
   },
   fontFamily: '"Ubuntu", sans-serif',
   color: ' #2C2525',
-  margin: '15px 31px 16px 0px',
 });
 
 export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, lineHeight }) => ({
@@ -145,11 +114,17 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
     }),
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '16px',
+    fontSize: '18px',
     fontWeight: 'normal',
-    lineHeight: '21px',
+    lineHeight: '27px',
     letterSpacing: '-0.4px !important',
     textAlign: 'left',
+    padding: '0px',
+    margin: '0px 35px 9px 7px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    fontSize: '16px',
+    lineHeight: '21px',
     ...(fontSize && {
       fontSize: `${fontSize}px`,
     }),
@@ -157,6 +132,7 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, li
       lineHeight: `${lineHeight}px`,
     }),
     padding: '0px',
+    margin: '0px',
   },
   color: '#131313',
   fontFamily: '"Ubuntu", sans-serif',
@@ -208,11 +184,15 @@ export const InfoItemText = styled(Typography)({
     width: '90px',
     padding: '0px',
     fontFamily: '"Ubuntu", sans-serif',
-    fontSize: '14px',
+    fontSize: '10px',
     fontWeight: '400',
-    lineHeight: '18px',
+    lineHeight: '14px',
     letterSpacing: '-0.4px',
     textAlign: 'left',
+  },
+  [theme.breakpoints.up('xl')]: {
+    fontSize: '14px',
+    lineHeight: '18px',
   },
   verticalAlign: 'middle',
   color: theme.palette.text.primary,

@@ -5,17 +5,32 @@ import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
-  [theme.breakpoints.down('md')]: {
+  '@media(max-width: 1110px)': {
     paddingTop: '40px',
+  },
+  '@media(min-width: 1110px)': {
+    padding: '16px 30px 0px 30px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    paddingTop: '16px',
+    margin: '0px 0px 0px -6px !important',
   },
   maxWidth: '1482px',
   paddingTop: '16px',
-  margin: '0px 0px 0px -6px !important',
 });
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
   width: '711px',
+  [theme.breakpoints.up('lg')]: {
+    width: '100%',
+    paddingTop: '8px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '711px',
+    paddingLeft: '30px',
+    paddingTop: '24px',
+  },
 });
 
 export const CourseButton = styled(Button)({
@@ -57,13 +72,39 @@ export const CourseActionsBox = styled(Box)({
 });
 
 export const DetailsButton = styled(Button)({
-  height: '50px',
-  width: '150px',
-  marginRight: '16px !important',
+  [theme.breakpoints.up('lg')]: {
+    height: '44px',
+    width: '131px',
+    marginRight: '9px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '50px',
+    width: '150px',
+    marginRight: '16px !important',
+    fontSize: '16px!important',
+    lineHeight: '22px',
+    padding: '12px 12px!important',
+  },
 });
 
 export const StartCourseButton = styled(Button)({
-  height: '50px',
-  width: '150px',
-  marginRight: '40px !important',
+  [theme.breakpoints.up('lg')]: {
+    height: '44px',
+    width: '131px',
+    marginRight: '26px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '50px',
+    width: '150px',
+    marginRight: '40px !important',
+    fontSize: '16px!important',
+    lineHeight: '22px',
+    padding: '12px 12px!important',
+  },
 });
