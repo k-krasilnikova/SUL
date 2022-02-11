@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { pdfjs } from 'react-pdf';
+import React, { useCallback, useEffect, useState } from 'react';
+import { pdfjs, PDFPageProxy } from 'react-pdf';
 
 import { OFFSET_NEXT, OFFSET_PREVIOUS, PDF_WORKER_SRC } from 'constants/pdfViewer';
 
@@ -13,15 +13,28 @@ interface IPDFViewerContainer {
 
 const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [scale, setScale] = useState(1);
+  const [originalWidth, setToriginalWidth] = useState(1);
+
+  const documentBoxRef = React.useRef<HTMLElement>(null);
 
   const onDocumentLoadSuccess = () => {
     setCurrentPageNumber(currentPageNumber);
   };
+
+  const onPageLoadSuccess = (page: PDFPageProxy) => {
+    setToriginalWidth(page.originalWidth);
+    if (documentBoxRef.current) {
+      const pageScale = documentBoxRef.current.clientWidth / page.originalWidth;
+      if (scale !== pageScale) {
+        setScale(pageScale);
+      }
+    }
+  };
+
   const changePage = (offset: number) => {
     setCurrentPageNumber((prevPageNumber) => prevPageNumber + offset);
   };
-
-  const documentBoxRef = React.useRef<HTMLElement>(null);
 
   const scrollToTop = () => {
     if (documentBoxRef.current) {
@@ -38,13 +51,28 @@ const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
     scrollToTop();
     changePage(OFFSET_NEXT);
   };
+  const handleResize = useCallback(() => {
+    if (documentBoxRef.current) {
+      const pageScale = documentBoxRef.current.clientWidth / originalWidth;
+      setScale(pageScale);
+    }
+  }, [originalWidth]);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 
   return (
     <PDFViewer
       src={src}
       pageNumber={currentPageNumber}
+      scale={scale}
       documentBoxRef={documentBoxRef}
       onDocumentLoadSuccess={onDocumentLoadSuccess}
+      onPageLoadSuccess={onPageLoadSuccess}
       clickNextPage={clickNextPage}
       clickPreviousPage={clickPreviousPage}
     />

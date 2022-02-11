@@ -26,7 +26,7 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
     ) : data?.length ? (
       <PageContainer container rowSpacing="24px" columnSpacing="30px">
         {data?.map((object) => (
-          <Suspense fallback={<Loader color="primary" type={LOADER.content} />}>
+          <Suspense fallback={<Loader color="primary" type={LOADER.content} key={object._id} />}>
             <GridItem key={object._id} item xl={6} lg={6} md={12} sm={12}>
               <CourseItem
                 key={object.course._id}
