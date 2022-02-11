@@ -10,7 +10,10 @@ import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/user
 
 const getTestResults = async (
   req: Request<Record<string, never>, Record<string, never>, { id: string; answers: IAnswer[] }>,
-  res: Response<unknown, { id: string; result: number }>,
+  res: Response<
+    { message: string } | { result: number; testStatus: string },
+    { id: string; result: number }
+  >,
   next: TMiddlewareCall,
 ) => {
   try {
