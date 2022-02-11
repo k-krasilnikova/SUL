@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Document } from 'react-pdf';
 
 import { FIRST_PAGE_INDEX, LAST_PAGE_INDEX } from 'constants/pdfViewer';
 import { Back, Forward } from 'components/Arrows';
+import Loader from 'components/Loader';
 
 import {
   ButtonBox,
@@ -34,6 +35,7 @@ const PDFViewer: React.FC<IPDFViewer> = ({
   clickNextPage,
   documentBoxRef,
 }) => {
+  const [displayLoader, setDisplayLoader] = useState<boolean>(false);
   return (
     <PDFWrapper>
       <ButtonBox>
@@ -48,8 +50,17 @@ const PDFViewer: React.FC<IPDFViewer> = ({
         </StyledButton>
       </ButtonBox>
       <DocumentBox ref={documentBoxRef}>
-        <Document file={src} onLoadSuccess={onDocumentLoadSuccess}>
-          <StyledPage pageNumber={pageNumber} scale={1.7} />
+        {displayLoader && <Loader color="primary" />}
+        <Document
+          file={src}
+          onLoadSuccess={() => {
+            setDisplayLoader(false);
+            return onDocumentLoadSuccess;
+          }}
+          onLoadProgress={() => setDisplayLoader(true)}
+          loading=""
+        >
+          <StyledPage pageNumber={pageNumber} scale={1.7} loading="" />
         </Document>
       </DocumentBox>
     </PDFWrapper>
