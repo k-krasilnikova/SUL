@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Icon } from '@mui/material';
 import { ReactFragment } from 'react';
 
+import theme from 'themeSettings';
+
 interface Props {
   buttonSpinner?: ReactFragment;
   fontSize?: string;
@@ -9,8 +11,16 @@ interface Props {
 }
 
 export const LoaderIcon = styled('div')({
-  width: '40px !important',
-  height: '40px !important',
+  width: '20px !important',
+  height: '20px !important',
+  [theme.breakpoints.down('xl')]: {
+    width: '30px !important',
+    height: '30px !important',
+  },
+  [theme.breakpoints.down('lg')]: {
+    width: '25px !important',
+    height: '25px !important',
+  },
 });
 
 export const CurrentIcon = styled(Icon)<Props>({

@@ -25,7 +25,7 @@ const CoursesList: React.FC<ResponseDataType> = ({
   data,
   isLoading,
   handleApplyCourse,
-  status,
+  targetLoading,
   targetId,
 }) => (
   <AuthorizedLayout pageName="Courses List">
@@ -50,7 +50,7 @@ const CoursesList: React.FC<ResponseDataType> = ({
                         Details
                       </DetailsButton>
                     </Link>
-                    {status === 'loading' && targetId === course._id ? (
+                    {targetLoading && targetId === course._id ? (
                       <StartCourseButton variant="mediumOutlined" disabled>
                         <ButtonLoader buttonSpinner={buttonSpinner} />
                       </StartCourseButton>

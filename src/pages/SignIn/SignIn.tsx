@@ -24,7 +24,7 @@ import {
   ImageWrapper,
 } from './styled';
 
-const SignIn = ({ formik, warningHandler, status }: SignTypes): JSX.Element => {
+const SignIn = ({ formik, warningHandler, isLoading }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
@@ -71,7 +71,7 @@ const SignIn = ({ formik, warningHandler, status }: SignTypes): JSX.Element => {
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>
-                    {status === 'loading' ? (
+                    {isLoading ? (
                       <SignButton fullWidth type="submit" variant="mediumOutlined" disabled>
                         <ButtonLoader buttonSpinner={buttonSpinner} />
                       </SignButton>
