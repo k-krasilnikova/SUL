@@ -1,3 +1,3 @@
-type TMiddlewareCall = <T>(error?: T) => T extends Error ? Error : void;
+type TMiddlewareCall = <T>(error?: T) => T extends Error ? TErrorHandler : void;
 
 export { TMiddlewareCall };
