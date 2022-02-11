@@ -5,8 +5,8 @@ import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
-  '@media(max-width: 1110px)': {
-    paddingTop: '40px',
+  [theme.breakpoints.up('xs')]: {
+    padding: '54px 8px 0px 8px',
   },
   '@media(min-width: 1110px)': {
     padding: '16px 30px 0px 30px',
@@ -22,7 +22,7 @@ export const PageContainer = styled(Grid)({
 export const GridItem = styled(Grid)({
   height: 'fit-content',
   width: '711px',
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('xs')]: {
     width: '100%',
     paddingTop: '8px',
   },

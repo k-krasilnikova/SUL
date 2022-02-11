@@ -34,6 +34,7 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
                 description={object.course.description}
                 duration={object.course.duration}
                 lessons={object.course.lessons}
+                pageName="myCourses"
               >
                 <CourseActionsBox>
                   <CourseActions>
