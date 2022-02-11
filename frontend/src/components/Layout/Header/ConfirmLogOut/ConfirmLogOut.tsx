@@ -20,7 +20,7 @@ interface IConfirm {
   isConfirmOpen: boolean;
   handleLogOut: () => void;
   cancelLogOut: () => void;
-  status?: string;
+  isLoading?: boolean;
   size?: string;
 }
 
@@ -29,7 +29,7 @@ const ConfirmLogOut: React.FC<IConfirm> = ({
   cancelLogOut,
   isConfirmOpen,
   size,
-  status,
+  isLoading,
 }) => (
   <ConfirmDialog open={isConfirmOpen} onClose={cancelLogOut} size={size}>
     <ConfirmBox>
@@ -43,7 +43,7 @@ const ConfirmLogOut: React.FC<IConfirm> = ({
         <ButtonCancel variant="mediumOutlined" onClick={cancelLogOut}>
           Cancel
         </ButtonCancel>
-        {status === 'loading' ? (
+        {isLoading ? (
           <ButtonExit onClick={handleLogOut} disabled variant="outlined">
             <ButtonLoader buttonSpinner={buttonSpinner} />
           </ButtonExit>

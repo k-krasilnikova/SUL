@@ -25,5 +25,4 @@ export interface SignTypes {
   };
   imageUrl?: string;
   isLoading?: boolean;
-  status?: string;
 }

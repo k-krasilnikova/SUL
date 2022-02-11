@@ -8,8 +8,8 @@ import CoursesList from './CoursesList';
 
 const CoursesContainer: React.FC = () => {
   const params = useParams();
-  const { mutate, status } = useApplyCourse();
-  const { data, isLoading } = useGetCourses();
+  const { mutate, isLoading } = useApplyCourse();
+  const getCourses = useGetCourses();
   const [targetId, setTargetId] = useState<string | undefined>();
 
   const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>) => {
@@ -19,11 +19,11 @@ const CoursesContainer: React.FC = () => {
 
   return (
     <CoursesList
-      data={data}
-      isLoading={isLoading}
+      data={getCourses.data}
+      isLoading={getCourses.isLoading}
       handleApplyCourse={handleApplyCourse}
-      status={status}
       targetId={targetId}
+      targetLoading={isLoading}
     />
   );
 };
