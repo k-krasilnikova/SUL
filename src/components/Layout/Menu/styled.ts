@@ -53,7 +53,7 @@ export const RightArrowBox = styled('div')({
   justifyContent: 'flex-end',
   position: 'absolute',
   right: '12%',
-  top: 'calc(50% - 13px)',
+  top: '1%',
   minWidth: '280px !important',
   cursor: 'pointer',
   padding: '10px 0px',
@@ -64,7 +64,7 @@ export const LeftArrowBox = styled('div')({
   justifyContent: 'flex-end',
   position: 'absolute',
   right: '5%',
-  top: 'calc(50% - 13px)',
+  top: '1%',
   minWidth: '280px !important',
   cursor: 'pointer',
   padding: '10px 0px',
@@ -86,7 +86,7 @@ export const MenuTabsWrapper = styled('div')({
     paddingTop: '30px',
   },
   [theme.breakpoints.up('xl')]: {
-    paddingTop: '28px',
+    paddingTop: '50px',
   },
 });
 
