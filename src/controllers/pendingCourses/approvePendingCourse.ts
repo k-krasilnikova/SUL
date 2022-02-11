@@ -19,11 +19,12 @@ const approvePendingCourse = async (
     const courseStatus = await getStatusProvider(clientCourseId);
     if (courseStatus?.status !== CourseStatus.rejected) {
       await updateCourseStatus(clientCourseId, CourseStatus.approved);
-      return res.json('Course was approved');
+      res.json('Course was approved');
+      return;
     }
     throw new BadRequestError(`Can't approve course`);
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
 

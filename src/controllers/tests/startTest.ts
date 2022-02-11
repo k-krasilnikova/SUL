@@ -23,11 +23,12 @@ const startTest = async (req: Request, res: Response, next: TMiddlewareCall) => 
         throw new BadRequestError("Can not start test till course stages haven't been passed.");
       }
       await updateCourseStatus(clientCourseId, CourseStatus.testing);
-      return res.json('Test started successfully ');
+      res.json('Test started successfully ');
+      return;
     }
     throw new BadRequestError(`Failed: can not start testing course`);
   } catch (err) {
-    return next(err);
+    next(err);
   }
 };
 
