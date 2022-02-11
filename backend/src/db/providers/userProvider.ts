@@ -13,6 +13,11 @@ const getUserProvider = async (userId: string) => {
   return dbUser;
 };
 
+const getEmployeesProvider = async (managerId: string) => {
+  const employess = await UserModel.find({ managerId }).lean();
+  return employess;
+};
+
 const getUserSkills = async (userId: string): Promise<Pick<IUser, 'skills'>> => {
   const clientSkills = await UserModel.findOne({ _id: userId }, { skills: 1, _id: 0 }).lean();
   if (!clientSkills) {
@@ -58,4 +63,11 @@ const updateUserSkill = async (userId: string, skillName: string) => {
   );
 };
 
-export { getUserProvider, updatePendingFieldCourses, updateUserSkill, getUserSkills, addUserSkill };
+export {
+  getUserProvider,
+  updatePendingFieldCourses,
+  updateUserSkill,
+  getUserSkills,
+  addUserSkill,
+  getEmployeesProvider,
+};
