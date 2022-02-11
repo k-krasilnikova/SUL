@@ -10,7 +10,7 @@ import { isError } from 'utils/typeGuards/isError';
 const getAchievments = async (
   req: Request<Record<string, never>, Record<string, never>, { id: string }>,
   res: Response<
-    unknown,
+    void,
     { id: string; achievments: { newSkills: string[]; updatedSkills: string[] } }
   >,
   next: TMiddlewareCall,
