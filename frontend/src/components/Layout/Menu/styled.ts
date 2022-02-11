@@ -40,12 +40,22 @@ export const LeftArrow = styled(leftArrow)({
   display: 'block',
   marginRight: '10px',
   color: 'black',
+  position: 'absolute',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+  zIndex: '15',
 });
 
 export const RightArrow = styled(rightArrow)({
   display: 'block',
   marginRight: '10px',
   color: 'black',
+  position: 'absolute',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+  zIndex: '15',
 });
 
 export const RightArrowBox = styled('div')({
@@ -55,7 +65,6 @@ export const RightArrowBox = styled('div')({
   right: '12%',
   top: '1%',
   minWidth: '280px !important',
-  cursor: 'pointer',
   padding: '10px 0px',
 });
 
@@ -66,9 +75,7 @@ export const LeftArrowBox = styled('div')({
   right: '5%',
   top: '1%',
   minWidth: '280px !important',
-  cursor: 'pointer',
   padding: '10px 0px',
-  zIndex: '15',
 });
 
 export const MenuTabsWrapper = styled('div')({
