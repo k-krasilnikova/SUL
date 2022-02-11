@@ -21,7 +21,7 @@ const CourseMaterialInfo: React.FC<Props> = ({
   <SkillInfo completed={stages === stagesCompleted}>
     <SkillInfoFlex>
       <SkillProgress>
-        <ProgressBar value={progress} size={SIZE.small} />
+        <ProgressBar value={progress} size={SIZE.small} variant="skills" />
       </SkillProgress>
       <div style={{ width: 'fit-content' }}>
         <SkillInfoText>{technologyTitle}</SkillInfoText>
