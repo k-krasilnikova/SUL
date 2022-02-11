@@ -16,14 +16,7 @@ export const SearchWrapper = styled('div')({
     marginLeft: '48px',
   },
 });
-export const SearchIcon = styled(Search)({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '10px',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '15px',
-  },
-});
+export const SearchIcon = styled(Search)({});
 export const SearchSkill = styled(Input)({
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px!important',

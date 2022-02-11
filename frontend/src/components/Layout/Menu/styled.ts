@@ -83,9 +83,6 @@ export const MenuTabsWrapper = styled('div')({
     display: 'none',
   },
   [theme.breakpoints.up('lg')]: {
-    paddingTop: '30px',
-  },
-  [theme.breakpoints.up('xl')]: {
     paddingTop: '50px',
   },
 });
