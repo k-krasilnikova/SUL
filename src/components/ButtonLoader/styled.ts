@@ -11,15 +11,15 @@ interface Props {
 }
 
 export const LoaderIcon = styled('div')({
-  width: '20px !important',
-  height: '20px !important',
+  width: '40px !important',
+  height: '40px !important',
   [theme.breakpoints.down('xl')]: {
-    width: '30px !important',
-    height: '30px !important',
+    width: '35px !important',
+    height: '35px !important',
   },
   [theme.breakpoints.down('lg')]: {
-    width: '25px !important',
-    height: '25px !important',
+    width: '28px !important',
+    height: '28px !important',
   },
 });
 
