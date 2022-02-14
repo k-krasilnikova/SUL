@@ -114,9 +114,9 @@ const DefinitionWrapper = styled(Box)({
 const SignWrapper = styled(Box)({
   alignSelf: 'start',
   justifySelf: 'center',
-  width: '325px',
-  minHeight: '335px',
-  boxShadow: '5px 5px 7px 3px rgb(0 0 0 / 10%)',
+  width: '328px',
+  minHeight: '341px',
+  boxShadow: '2px 4px 10px 2px rgba(0, 0, 0, 0.15)',
   marginTop: '8%',
   marginRight: '18px',
   [theme.breakpoints.down('xl')]: {
@@ -139,14 +139,14 @@ const SignWrapper = styled(Box)({
 // Враппер для формы
 const FormBox = styled(Box)({
   marginTop: '50px',
-  marginRight: '20px',
-  marginLeft: '20px',
+  width: '282px',
+  marginRight: '22px',
+  marginLeft: '22px',
   [theme.breakpoints.down('xl')]: {
     margin: '0 auto',
     marginTop: '10px',
     width: '245px',
     maxHeight: '257px',
-    border: '1px solid red',
   },
 });
 
@@ -176,7 +176,7 @@ const GridSignInput = styled(Grid)({
   margin: '0 !important ',
   padding: '0px !important',
   boxSizing: 'border-box',
-  marginBottom: '20px !important',
+  marginBottom: '29px !important',
   '& label': {
     fontFamily: '"Ubuntu", sans-serif',
     color: '#C6C6C9 !important',
@@ -188,7 +188,7 @@ const GridSignInput = styled(Grid)({
     fontSize: '18px',
     fontWeight: 400,
     fontFamily: '"Ubuntu", sans-serif',
-    padding: '15px 14px',
+    padding: '13.07px 14px',
     color: '#1D1D1D',
     background: '#E5EEFD',
     borderRadius: '5px',
@@ -209,7 +209,7 @@ const GridSignInput = styled(Grid)({
     marginBottom: '24px !important',
     margin: '0 !important ',
     padding: '0px !important',
-    height: '45px',
+    height: '44px',
     '& label': {
       fontSize: '16px',
       lineHeight: '18px',
@@ -219,7 +219,7 @@ const GridSignInput = styled(Grid)({
       fontSize: '16px',
       fontWeight: 400,
       padding: '0px 10px',
-      height: '45px',
+      height: '44px',
     },
   },
 });
@@ -232,7 +232,7 @@ const GridButton = styled(Grid)({
   boxSizing: 'border-box',
   margin: '0 !important ',
   padding: '0px !important',
-  marginTop: '20px !important',
+  marginTop: '10px !important',
   [theme.breakpoints.down('xl')]: {
     marginTop: '10px !important',
   },
