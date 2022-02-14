@@ -19,7 +19,6 @@ export const MobileMenuSlide = styled('div')({
   backgroundColor: theme.palette.secondary.main,
   padding: '8px 16px 40px 8px',
   position: 'absolute',
-
   right: '0px',
   display: 'flex',
   flexDirection: 'column',
@@ -49,7 +48,7 @@ export const MenuTabsWrapper = styled('div')({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'left',
-  [theme.breakpoints.up('lg')]: {
+  '@media(min-width: 1110px)': {
     display: 'none',
   },
 });
