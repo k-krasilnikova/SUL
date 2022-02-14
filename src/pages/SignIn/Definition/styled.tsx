@@ -35,14 +35,16 @@ export const CompanyLogo = styled(Typography)({
   fontSize: '42px !important',
   fontWeight: '600 !important',
   textAlign: 'center',
+  [theme.breakpoints.down('xl')]: {
+    marginLeft: '10px !important',
+    fontSize: '34px !important',
+    fontWeight: '700 !important',
+  },
   [theme.breakpoints.down('lg')]: {
     marginLeft: '0px !important',
   },
   [theme.breakpoints.down('sm')]: {
     fontSize: '35px !important',
-  },
-  '& span': {
-    color: theme.palette.primary.main,
   },
 });
 
@@ -52,6 +54,11 @@ export const Instructions = styled(Typography)({
   paddingTop: '8px',
   fontWeight: '600 !important',
   textAlign: 'center',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '38px !important',
+    fontWeight: '700 !important',
+    textAlign: 'center',
+  },
   [theme.breakpoints.down('md')]: {
     textAlign: 'center',
   },

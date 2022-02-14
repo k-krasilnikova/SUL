@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 import { TextField } from 'components/TextField';
@@ -27,22 +28,25 @@ import {
 const SignIn = ({
   formik,
   warningHandler,
-  status,
+  isLoading,
   handleFocus,
+  classes,
   labelState,
+  labelHandler,
+  status,
 }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
-    isValid,
     handleSubmit,
     handleBlur,
   } = formik;
+  const { loginLabel, emptyLogin, passwordLabel, emptyPassword } = labelHandler;
 
   return (
     <SignMain>
       <SignMainGrid justifyContent="space-between" container spacing={{ xl: 2, lg: 2 }}>
-        <SignPresGrid item xs={12} sm={12} md={6} lg={7} xl={6} alignItems="center">
+        <SignPresGrid item xs={12} sm={12} md={6} lg={7} xl={6}>
           <ImageWrapper>
             <Image imageUrl={signInImage} />
           </ImageWrapper>
@@ -55,10 +59,18 @@ const SignIn = ({
             <FormBox>
               <ItemsBox component="form" onSubmit={handleSubmit}>
                 <GridWrapper container spacing={1}>
-                  <GridSignInput item xs={12}>
+                  <GridSignInput
+                    item
+                    xs={12}
+                    classes={
+                      (labelState === loginLabel && errors.login !== emptyLogin) || login
+                        ? { root: classes.explicitLabel }
+                        : { root: classes.basicLabel }
+                    }
+                  >
                     <TextField
                       value={login}
-                      label={labelState ? 'Login' : 'Name'}
+                      label="Login"
                       warningHandler={warningHandler}
                       handleBlur={handleBlur}
                       handleFocus={handleFocus}
@@ -66,31 +78,35 @@ const SignIn = ({
                       id="login"
                     />
                   </GridSignInput>
-                  <GridSignInput item xs={12}>
+                  <GridSignInput
+                    item
+                    xs={12}
+                    classes={
+                      (labelState === passwordLabel && errors.password !== emptyPassword) ||
+                      password
+                        ? { root: classes.explicitLabel }
+                        : { root: classes.basicLabel }
+                    }
+                  >
                     <TextField
                       value={password}
                       label="Password"
                       warningHandler={warningHandler}
                       handleBlur={handleBlur}
+                      handleFocus={handleFocus}
                       error={errors}
                       id="password"
                       type="password"
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>
-                    {status === 'loading' ? (
+                    {isLoading ? (
                       <SignButton fullWidth type="submit" variant="mediumOutlined" disabled>
                         <ButtonLoader buttonSpinner={buttonSpinner} />
                       </SignButton>
                     ) : (
-                      <SignButton
-                        fullWidth
-                        disabled={!isValid}
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                      >
-                        Log In
+                      <SignButton fullWidth type="submit" variant="contained" color="primary">
+                        LOG IN
                       </SignButton>
                     )}
                   </GridButton>

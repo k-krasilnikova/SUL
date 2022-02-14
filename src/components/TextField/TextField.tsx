@@ -21,11 +21,11 @@ interface TextFieldProps {
     password?: string;
   };
   onChange?: (e: string) => void;
-  handleFocus?: () => void;
   handleBlur?: (e: React.FocusEvent) => void;
   value?: unknown;
   type?: string;
   placeholder?: string;
+  handleFocus: (e: React.FocusEvent) => void;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -52,7 +52,7 @@ const TextField: React.FC<TextFieldProps> = ({
       defaultValue={defaultValue}
       helperText={helperText}
       onBlur={handleBlur}
-      onFocus={handleFocus}
+      onFocus={(e: React.FocusEvent) => handleFocus(e)}
       size="medium"
       fullWidth
       {...rest}
