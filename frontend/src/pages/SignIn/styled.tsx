@@ -1,6 +1,6 @@
 import { styled } from '@mui/styles';
 import { makeStyles } from '@material-ui/core';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 
 import Button from 'components/Button/Button';
 import theme from 'themeSettings';
@@ -116,6 +116,7 @@ const SignWrapper = styled(Box)({
   justifySelf: 'center',
   width: '328px',
   minHeight: '341px',
+  maxHeight: '355px',
   boxShadow: '2px 4px 10px 2px rgba(0, 0, 0, 0.15)',
   marginTop: '8%',
   marginRight: '18px',
@@ -165,6 +166,9 @@ const GridWrapper = styled(Grid)({
   maxHeight: 'fit-content !important',
   marginBottom: '25px !important',
   alignContent: 'start',
+  '& div:nth-child(2)': {
+    marginBottom: '0px !important',
+  },
   [theme.breakpoints.down('xl')]: {
     marginBottom: '0px !important',
     marginTop: '20px !important',
@@ -224,6 +228,14 @@ const GridSignInput = styled(Grid)({
   },
 });
 
+const GridError = styled(Grid)({
+  height: '14px',
+  maxHeight: '14px',
+  // [theme.breakpoints.down('xl')]: {
+  //   marginTop: '10px !important',
+  // },
+});
+
 // Враппер для Кнопки
 const GridButton = styled(Grid)({
   display: 'flex',
@@ -243,6 +255,15 @@ const SignButton = styled(Button)({
   fontSize: '18px !important',
   fontWeight: '400 !important',
   letterSpacing: '0.2px !important',
+});
+
+const WarningHelper = styled(Typography)({
+  fontSize: '14px',
+  margin: '0px',
+  marginTop: '15px',
+  textAlign: 'center',
+  fontFamily: '"Ubuntu", sans-serif',
+  color: theme.palette.primary.main,
 });
 
 const useExplitLabel = makeStyles({
@@ -268,5 +289,7 @@ export {
   SignButton,
   DefinitionWrapper,
   ImageWrapper,
+  WarningHelper,
   useExplitLabel,
+  GridError,
 };

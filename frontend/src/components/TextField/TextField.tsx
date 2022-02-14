@@ -59,7 +59,6 @@ const TextField: React.FC<TextFieldProps> = ({
     >
       {children}
     </Field>
-    <ErrorMessage component={WarningHelper} name={id} />
   </>
 );
 
