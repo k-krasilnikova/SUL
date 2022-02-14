@@ -3,6 +3,7 @@ import React from 'react';
 import { Image } from 'components/Image';
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
 import { ProgressBar } from 'components/ProgressBar';
+import { checkIcon } from 'icons';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -16,6 +17,7 @@ import {
   CourseInfoBox,
   MobileCourseInfoBox,
   MobileCourseProgress,
+  MobileCourseCompleted,
 } from './styled';
 
 interface Props {
@@ -24,6 +26,8 @@ interface Props {
   duration: string | undefined;
   lessons: number | undefined;
   pageName?: string;
+  status?: string;
+  progress?: number;
 }
 
 const PAGES = {
@@ -37,6 +41,8 @@ const CourseItem: React.FC<Props> = ({
   duration,
   lessons,
   pageName,
+  status,
+  progress,
   children,
 }) => (
   <CourseContainer container direction="column">
@@ -44,7 +50,7 @@ const CourseItem: React.FC<Props> = ({
       <ImageWrapper>
         <Image />
       </ImageWrapper>
-      <div>
+      <div style={{ flexGrow: '2' }}>
         <CourseTitle>{title}</CourseTitle>
         <CourseDescriptionWrapper>
           <CourseDescription>{shortifyCourseDescription(description)}</CourseDescription>
@@ -52,10 +58,15 @@ const CourseItem: React.FC<Props> = ({
         <MobileCourseInfoBox>
           <CourseInfo duration={duration} lessons={lessons} />
         </MobileCourseInfoBox>
+        {status === 'completed' && (
+          <MobileCourseCompleted>
+            Completed <img alt="" src={checkIcon} />
+          </MobileCourseCompleted>
+        )}
       </div>
-      {pageName === PAGES.myCourses && (
+      {pageName === PAGES.myCourses && status !== 'completed' && (
         <MobileCourseProgress>
-          <ProgressBar value={50} text="50%" size="medium" textColor="#000000" />
+          <ProgressBar value={progress} text={`${progress}%`} size="medium" textColor="#000000" />
         </MobileCourseProgress>
       )}
     </AboutCourseContainer>

@@ -42,7 +42,7 @@ export const CourseButton = styled(Button)({
     width: '120px',
     lineHeight: '10px',
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('sm')]: {
     width: '140px',
     marginLeft: '5px',
     height: '40px',
@@ -54,7 +54,7 @@ export const CourseButton = styled(Button)({
 });
 
 export const CourseActions = styled('div')({
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('md')]: {
     display: 'flex',
     justifyContent: 'space-between',
     margin: '0px',
@@ -72,7 +72,7 @@ export const CourseActionsBox = styled(Box)({
 });
 
 export const DetailsButton = styled(Button)({
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('sm')]: {
     height: '44px',
     width: '131px',
     marginRight: '9px !important',
@@ -91,7 +91,7 @@ export const DetailsButton = styled(Button)({
 });
 
 export const StartCourseButton = styled(Button)({
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('sm')]: {
     height: '44px',
     width: '131px',
     marginRight: '26px !important',
