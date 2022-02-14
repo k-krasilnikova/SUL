@@ -122,7 +122,7 @@ export const useListStyles = makeStyles({
   default: {
     background: 'none',
     color: 'black',
-    padding: '0px',
+    padding: '0px!important',
     '& span': {
       fontFamily: 'Ubuntu, sans-serif',
       fontWeight: 400,
@@ -137,7 +137,7 @@ export const useListStyles = makeStyles({
   },
   selected: {
     color: `${theme.palette.primary.main}`,
-    padding: '0px',
+    padding: '0px!important',
     background: 'none',
     '& span': {
       fontFamily: 'Ubuntu, sans-serif',
