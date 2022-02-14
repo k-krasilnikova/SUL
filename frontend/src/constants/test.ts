@@ -91,11 +91,13 @@ export const SKILLS = [
     image: '',
     score: 2,
     maxScore: 2,
+    group: 'backend',
   },
   {
     name: 'Express.js',
     image: '',
     score: 2,
     maxScore: 2,
+    group: 'backend',
   },
 ];
