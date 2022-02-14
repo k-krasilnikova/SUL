@@ -16,6 +16,7 @@ export const GridMenu = styled(Grid)({
     display: 'none',
   },
   '@media(min-width: 1110px)': {
+    display: 'block',
     width: '205px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -41,33 +42,33 @@ export const useLayOutStyles = makeStyles({
   hideGridMenu: {
     width: '129px',
     '@media(min-width: 1110px)': {
-      width: '82px',
+      width: '82px!important',
     },
     [theme.breakpoints.up('xl')]: {
-      width: '129px',
+      width: '129px!important',
     },
   },
   hidePageWrapper: {
     '@media(max-width: 1110px)': {
-      width: '100%',
+      width: '100%!important',
     },
 
     '@media(min-width: 1110px)': {
-      width: 'calc(100% - 205px)',
+      width: 'calc(100% - 205px)!important',
     },
     [theme.breakpoints.up('xl')]: {
-      width: 'calc(100% - 303px)',
+      width: 'calc(100% - 303px)!important',
     },
   },
   showPageWrapper: {
     '@media(max-width: 1110px)': {
-      width: '100%',
+      width: '100%!important',
     },
     '@media(min-width: 1110px)': {
-      width: `calc(100% - 82px)`,
+      width: `calc(100% - 82px)!important`,
     },
     [theme.breakpoints.up('xl')]: {
-      width: `calc(100% - 129px)`,
+      width: `calc(100% - 129px)!important`,
     },
   },
 });
