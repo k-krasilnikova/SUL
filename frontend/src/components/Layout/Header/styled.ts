@@ -124,13 +124,11 @@ export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) =
     fontSize: '16px',
     ...(pagename === PAGES_TO_SEARCH.myCourses &&
       menuopen === 'false' && {
-        display: 'block',
-        position: 'absolute',
+        display: 'flex',
       }),
     ...(pagename === PAGES_TO_SEARCH.coursesList &&
       menuopen === 'false' && {
-        display: 'block',
-        position: 'absolute',
+        display: 'flex',
       }),
   },
   [theme.breakpoints.up('md')]: {
