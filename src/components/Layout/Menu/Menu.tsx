@@ -25,12 +25,12 @@ const Menu: React.FC<IMenuProps> = ({
 }) => (
   <MenuTabs>
     {isSqueeze ? (
-      <RightArrowBox>
-        <RightArrow onClick={handleSqueeze} />
+      <RightArrowBox onClick={handleSqueeze}>
+        <RightArrow />
       </RightArrowBox>
     ) : (
-      <LeftArrowBox>
-        <LeftArrow onClick={handleSqueeze} />
+      <LeftArrowBox onClick={handleSqueeze}>
+        <LeftArrow />
       </LeftArrowBox>
     )}
     <MenuTabsWrapper>
