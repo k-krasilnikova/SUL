@@ -37,8 +37,10 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
               >
                 <CourseActionsBox>
                   <CourseActions>
-                    <DetailsButton variant="mediumOutlined">Details</DetailsButton>
                     <Link to={`${PATHS.myCourses}/${object._id}`}>
+                      <DetailsButton variant="mediumOutlined">Details</DetailsButton>
+                    </Link>
+                    <Link to={`${PATHS.learnCourse}/${object._id}`}>
                       <StartCourseButton color="primary" variant="mediumContained">
                         Start the course
                       </StartCourseButton>
