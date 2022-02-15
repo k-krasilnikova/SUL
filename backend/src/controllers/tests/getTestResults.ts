@@ -7,13 +7,11 @@ import CourseStatus from 'enums/coursesEnums';
 import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { isError } from 'utils/typeGuards/isError';
 import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
+import { TestRuslt } from 'interfaces/Ientities/Itest';
 
 const getTestResults = async (
-  req: Request<Record<string, never>, Record<string, never>, { id: string; answers: IAnswer[] }>,
-  res: Response<
-    { message: string } | { result: number; testStatus: string },
-    { id: string; result: { result: number; testStatus: string } }
-  >,
+  req: Request<Record<string, string>, Record<string, never>, { id: string; answers: IAnswer[] }>,
+  res: Response<{ message: string }, { id: string; result: TestRuslt }>,
   next: TMiddlewareCall,
 ) => {
   try {

@@ -5,13 +5,11 @@ import { addUserSkill, getUserSkills, updateUserSkill } from 'db/providers/userP
 import { ISkill } from 'interfaces/Ientities/Iusers';
 import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
+import { TAchievments } from 'interfaces/Ientities/Itest';
 
 const getAchievments = async (
-  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
-  res: Response<
-    void,
-    { id: string; achievments: { newSkills: string[]; updatedSkills: string[] } }
-  >,
+  req: Request<Record<string, string>, Record<string, never>, { id: string }>,
+  res: Response<void, { id: string; achievments: TAchievments }>,
   next: NextFunction,
 ) => {
   try {
