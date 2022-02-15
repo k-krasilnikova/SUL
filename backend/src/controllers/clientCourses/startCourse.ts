@@ -1,11 +1,9 @@
-import { Request, Response } from 'express';
-
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
+import { NextFunction, Request, Response } from 'express';
 import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
-const startCourse = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const startCourse = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
     const courseStatus = await getStatusProvider(clientCourseId);

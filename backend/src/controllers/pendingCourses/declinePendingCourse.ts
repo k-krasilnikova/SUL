@@ -1,6 +1,4 @@
-import { Request, Response } from 'express';
-
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
+import { NextFunction, Request, Response } from 'express';
 import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
@@ -12,7 +10,7 @@ interface DeclinePendingCourseRequest extends Request {
 const declinePendingCourse = async (
   req: DeclinePendingCourseRequest,
   res: Response,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   const { id: clientCourseId } = req.body;
   try {

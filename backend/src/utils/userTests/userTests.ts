@@ -1,9 +1,4 @@
-interface IAnswer {
-  qN: number;
-  aN: number;
-}
-
-type TCorrectAnswers<T, K extends keyof T, R extends PropertyKey> = Omit<T, K> & { [P in R]: T[K] };
+import { IAnswer, TCorrectAnswers } from 'interfaces/Ientities/Itest';
 
 const checkTestResults = (
   userAnswers: IAnswer[],

@@ -1,20 +1,15 @@
-import { Request, Response } from 'express';
-
+import { NextFunction, Request, Response } from 'express';
 import { PASS_THRESHOLD } from 'config/constants';
 import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { isError } from 'utils/typeGuards/isError';
 import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const getTestResults = async (
   req: Request<Record<string, never>, Record<string, never>, { id: string; answers: IAnswer[] }>,
-  res: Response<
-    { message: string } | { result: number; testStatus: string },
-    { id: string; result: number }
-  >,
-  next: TMiddlewareCall,
+  res: Response<{ result: number; testStatus: string }, { id: string; result: number }>,
+  next: NextFunction,
 ) => {
   try {
     const { id: testId, answers } = req.body;
@@ -22,8 +17,7 @@ const getTestResults = async (
 
     const courseStatus = await getStatusProvider(courseId);
     if (!courseStatus || courseStatus?.status !== CourseStatus.testing) {
-      res.json({ message: 'test is not started' });
-      return;
+      throw new BadRequestError('test is not started');
     }
 
     const correctAnswers = await getTrueAnswersProvider(testId);
@@ -37,9 +31,7 @@ const getTestResults = async (
     await updateCourseStatus(courseId, CourseStatus.successful);
     next();
   } catch (err) {
-    if (isError(err)) {
-      next(err);
-    }
+    next(err);
   }
 };
 

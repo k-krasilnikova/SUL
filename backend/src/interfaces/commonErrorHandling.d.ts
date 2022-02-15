@@ -1,14 +1,11 @@
-import { Request, Response } from 'express';
-
+import { NextFunction, Request, Response } from 'express';
 import CommonHttpError from 'classes/errors/common/CommonHttpError';
-
-import { TMiddlewareCall } from './commonMiddleware';
 
 type TErrorHandler = (
   err: CommonHttpError,
   req: Request,
   res: Response,
-  next?: TMiddlewareCall,
+  next?: NextFunction,
 ) => void;
 
 export { TErrorHandler };

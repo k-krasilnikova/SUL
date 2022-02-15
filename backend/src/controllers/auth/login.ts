@@ -1,9 +1,7 @@
 import { compare } from 'bcrypt';
-import { Request, Response } from 'express';
-
+import { NextFunction, Request, Response } from 'express';
 import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
 import { IUser } from 'interfaces/Ientities/Iusers';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { generateJWT } from 'utils/auth/authUtils';
 import { generateInitialDto } from 'utils/dto/dtoUtils';
 import { TIME_30D_SEC } from 'config/constants';
@@ -13,7 +11,7 @@ import UnauthorizedError from 'classes/errors/clientErrors/UnauthorizedError';
 const login = async (
   req: Request<Record<string, never>, Record<string, never>, ILoginPayload>,
   res: Response,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   try {
     const { login: username, password } = req.body;
