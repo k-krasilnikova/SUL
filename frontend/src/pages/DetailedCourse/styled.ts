@@ -6,7 +6,12 @@ import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
 export const DetailedCourseWrapper = styled(Box)({
-  margin: '40px 0 40px 40px',
+  [theme.breakpoints.up('md')]: {
+    margin: '25px 0 25px 21px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    margin: '40px 0 40px 40px',
+  },
 });
 
 export const ImageWrapper = styled('div')({
@@ -16,22 +21,27 @@ export const ImageWrapper = styled('div')({
   margin: '0 30px 30px 0',
   overflow: 'hidden',
   borderRadius: '10px',
-  [theme.breakpoints.down('md')]: {
-    alignItems: 'center',
-    alignSelf: 'center',
-    marginRight: '10px',
+  [theme.breakpoints.up('md')]: {
+    width: '281px',
+    height: '147px',
+    margin: '5px 25px 105px 0',
   },
-  [theme.breakpoints.down('sm')]: {
-    alignItems: 'center',
-    alignSelf: 'center',
-    marginRight: '0px',
-    width: '100%',
+  [theme.breakpoints.up('xl')]: {
+    width: '479px',
+    height: '268px',
+    margin: '0 30px 30px 0',
   },
 });
 
 export const InnerWrapper = styled(Box)({
-  margin: '2%',
-  maxWidth: '85%',
+  [theme.breakpoints.up('md')]: {
+    margin: '27px',
+    maxWidth: '847px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    margin: '2%',
+    maxWidth: '85%',
+  },
 });
 
 export const DetailedCourseText = styled(Typography)({
@@ -43,23 +53,29 @@ export const DetailedCourseText = styled(Typography)({
     lineHeight: '32px',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '20px',
-    lineHeight: '35px',
+    fontSize: '18px',
+    lineHeight: '28px',
   },
   [theme.breakpoints.up('lg')]: {
     fontSize: '24px !important',
     lineHeight: '37px !important',
-    letterSpacing: '-0.4px !important',
   },
 });
 
 export const DetailedCourseTitle = styled(Typography)({
-  fontSize: '42px !important',
-  fontWeight: 'bold !important',
-  lineHeight: '55px !important',
+  fontWeight: '700 !important',
   letterSpacing: '-0.4px !important',
-  marginBottom: '13px !important',
   color: '#2c2525',
+  [theme.breakpoints.up('md')]: {
+    fontSize: '32px !important',
+    lineHeight: '28px !important',
+    marginBottom: '24px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    fontSize: '42px !important',
+    lineHeight: '55px !important',
+    marginBottom: '13px !important',
+  },
 });
 
 export const DetailedCourseActionsBox = styled(Box)({
@@ -71,41 +87,107 @@ export const DetailedCourseActionsBox = styled(Box)({
 export const SimilarCoursesWrapper = styled(Grid)({
   marginTop: '156px',
   marginBottom: '171px',
+  [theme.breakpoints.up('md')]: {
+    marginTop: '63px',
+    marginBottom: '40px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    marginTop: '156px',
+    marginBottom: '171px',
+  },
 });
 
 export const SimilarCoursesItemWrapper = styled(Grid)({
   width: '711px',
   marginTop: '40px',
+  [theme.breakpoints.up('md')]: {
+    width: '500px',
+    marginTop: '16px',
+    maxHeight: '254px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '711px',
+    marginTop: '40px',
+    maxHeight: '361px',
+  },
 });
 
 export const SimilarCoursesTitle = styled(Typography)({
-  fontSize: '40px !important',
   fontWeight: 'bold !important',
   color: '#2C2525',
-  lineHeight: '52px !important',
   letterSpacing: '-0.4px !important',
+  [theme.breakpoints.up('md')]: {
+    fontSize: '24px !important',
+    lineHeight: '31px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    fontSize: '40px !important',
+    lineHeight: '52px !important',
+  },
 });
 
 export const BackButton = styled(Button)({
   height: '39px',
   width: '84px',
+  [theme.breakpoints.up('md')]: {
+    height: '32px',
+    width: '64px',
+    fontSize: '12px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '39px',
+    width: '84px',
+    fontSize: '18px !important',
+  },
 });
 
 export const StartButton = styled(Button)({
   height: '50px',
   width: '150px',
+  [theme.breakpoints.up('md')]: {
+    height: '37px',
+    width: '112px',
+    fontSize: '12px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '50px',
+    width: '150px',
+    fontSize: '18px !important',
+  },
 });
 
 export const DetailsButton = styled(Button)({
   height: '50px',
   width: '150px',
-  marginRight: '16px !important',
+  [theme.breakpoints.up('md')]: {
+    height: '35px',
+    width: '105px',
+    marginRight: '11px !important',
+    fontSize: '12px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '50px',
+    width: '150px',
+    marginRight: '16px !important',
+    fontSize: '18px !important',
+  },
 });
 
 export const StartCourseButton = styled(Button)({
   height: '50px',
   width: '150px',
-  marginRight: '40px !important',
+  [theme.breakpoints.up('md')]: {
+    height: '35px',
+    width: '105px',
+    marginRight: '28px !important',
+    fontSize: '12px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '50px',
+    width: '150px',
+    marginRight: '40px !important',
+    fontSize: '18px !important',
+  },
 });
 
 export const CourseActionsBox = styled(Box)({
