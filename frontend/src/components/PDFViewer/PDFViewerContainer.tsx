@@ -13,6 +13,7 @@ interface IPDFViewerContainer {
 
 const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [displayLoader, setDisplayLoader] = useState<boolean>(false);
 
   const onDocumentLoadSuccess = () => {
     setCurrentPageNumber(currentPageNumber);
@@ -39,6 +40,10 @@ const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
     changePage(OFFSET_NEXT);
   };
 
+  const changeDisplayLoader = () => {
+    setDisplayLoader(!displayLoader);
+  };
+
   return (
     <PDFViewer
       src={src}
@@ -47,6 +52,8 @@ const PDFViewerContainer: React.FC<IPDFViewerContainer> = ({ src }) => {
       onDocumentLoadSuccess={onDocumentLoadSuccess}
       clickNextPage={clickNextPage}
       clickPreviousPage={clickPreviousPage}
+      displayLoader={displayLoader}
+      changeDisplayLoader={changeDisplayLoader}
     />
   );
 };

@@ -2,8 +2,9 @@ import React from 'react';
 import { Document } from 'react-pdf';
 
 import { FIRST_PAGE_INDEX, LAST_PAGE_INDEX } from 'constants/pdfViewer';
-import Loader from 'components/Loader';
 import { Back, Forward } from 'components/Arrows';
+import Loader from 'components/Loader';
+import { LOADER } from 'constants/loaderTypes';
 
 import {
   ButtonBox,
@@ -22,8 +23,10 @@ interface IPDFViewer {
   src: string;
   pageNumber: number;
   documentBoxRef: RefObject<HTMLElement>;
+  displayLoader: boolean;
   clickPreviousPage: () => void;
   clickNextPage: () => void;
+  changeDisplayLoader: () => void;
   onDocumentLoadSuccess?: () => void;
 }
 
@@ -34,31 +37,36 @@ const PDFViewer: React.FC<IPDFViewer> = ({
   clickPreviousPage,
   clickNextPage,
   documentBoxRef,
-}) => {
-  return (
-    <PDFWrapper>
-      <ButtonBox>
-        <StyledButton disabled={pageNumber <= FIRST_PAGE_INDEX} onClick={clickPreviousPage}>
-          <Back arrowDisabled={pageNumber <= FIRST_PAGE_INDEX} />
-        </StyledButton>
-        <PageNumberText>
-          {pageNumber}/{LAST_PAGE_INDEX}
-        </PageNumberText>
-        <StyledButton disabled={pageNumber >= LAST_PAGE_INDEX} onClick={clickNextPage}>
-          <Forward arrowDisabled={pageNumber >= LAST_PAGE_INDEX} />
-        </StyledButton>
-      </ButtonBox>
-      <DocumentBox ref={documentBoxRef}>
-        <Document
-          file={src}
-          onLoadSuccess={onDocumentLoadSuccess}
-          loading={<Loader color="primary" />}
-        >
-          <StyledPage pageNumber={pageNumber} scale={1.7} />
-        </Document>
-      </DocumentBox>
-    </PDFWrapper>
-  );
-};
+  displayLoader,
+  changeDisplayLoader,
+}) => (
+  <PDFWrapper>
+    <ButtonBox>
+      <StyledButton disabled={pageNumber <= FIRST_PAGE_INDEX} onClick={clickPreviousPage}>
+        <Back arrowDisabled={pageNumber <= FIRST_PAGE_INDEX} />
+      </StyledButton>
+      <PageNumberText>
+        {pageNumber}/{LAST_PAGE_INDEX}
+      </PageNumberText>
+      <StyledButton disabled={pageNumber >= LAST_PAGE_INDEX} onClick={clickNextPage}>
+        <Forward arrowDisabled={pageNumber >= LAST_PAGE_INDEX} />
+      </StyledButton>
+    </ButtonBox>
+    <DocumentBox ref={documentBoxRef}>
+      {displayLoader && <Loader color="primary" type={LOADER.content} />}
+      <Document
+        file={src}
+        onLoadSuccess={() => {
+          changeDisplayLoader();
+          return onDocumentLoadSuccess;
+        }}
+        onLoadProgress={() => changeDisplayLoader()}
+        loading=""
+      >
+        <StyledPage pageNumber={pageNumber} scale={1.7} loading="" />
+      </Document>
+    </DocumentBox>
+  </PDFWrapper>
+);
 
 export default PDFViewer;

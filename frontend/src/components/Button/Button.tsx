@@ -11,12 +11,15 @@ declare module '@mui/material/Button' {
 }
 
 interface Props extends ButtonProps {
-  onClick?: () => void;
+  id?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   children?: React.ReactNode;
+  component?: React.ElementType;
+  to?: string;
 }
 
-const Button: React.FC<Props> = ({ onClick, children, ...rest }) => (
-  <MuiButton onClick={onClick} {...rest}>
+const Button: React.FC<Props> = ({ onClick, children, id, ...rest }) => (
+  <MuiButton id={id} onClick={onClick} {...rest}>
     {children}
   </MuiButton>
 );
