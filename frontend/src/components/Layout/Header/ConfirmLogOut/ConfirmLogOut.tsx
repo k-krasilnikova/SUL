@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { ConfirmDialog } from 'components/ConfirmDialog';
+import ButtonLoader from 'components/ButtonLoader';
+import { buttonSpinner } from 'animations';
 import { close } from 'icons';
 
 import {
@@ -18,10 +20,17 @@ interface IConfirm {
   isConfirmOpen: boolean;
   handleLogOut: () => void;
   cancelLogOut: () => void;
+  isLoading?: boolean;
   size?: string;
 }
 
-const ConfirmLogOut: React.FC<IConfirm> = ({ handleLogOut, cancelLogOut, isConfirmOpen, size }) => (
+const ConfirmLogOut: React.FC<IConfirm> = ({
+  handleLogOut,
+  cancelLogOut,
+  isConfirmOpen,
+  size,
+  isLoading,
+}) => (
   <ConfirmDialog open={isConfirmOpen} onClose={cancelLogOut} size={size}>
     <ConfirmBox>
       <CloseButtonBox>
@@ -34,9 +43,15 @@ const ConfirmLogOut: React.FC<IConfirm> = ({ handleLogOut, cancelLogOut, isConfi
         <ButtonCancel variant="mediumOutlined" onClick={cancelLogOut}>
           Cancel
         </ButtonCancel>
-        <ButtonExit variant="mediumContained" onClick={handleLogOut}>
-          Exit
-        </ButtonExit>
+        {isLoading ? (
+          <ButtonExit onClick={handleLogOut} disabled variant="outlined">
+            <ButtonLoader buttonSpinner={buttonSpinner} />
+          </ButtonExit>
+        ) : (
+          <ButtonExit onClick={handleLogOut} variant="mediumContained">
+            Exit
+          </ButtonExit>
+        )}
       </ButtonBox>
     </ConfirmBox>
   </ConfirmDialog>
