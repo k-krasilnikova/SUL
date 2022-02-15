@@ -12,7 +12,7 @@ const getTestResults = async (
   req: Request<Record<string, never>, Record<string, never>, { id: string; answers: IAnswer[] }>,
   res: Response<
     { message: string } | { result: number; testStatus: string },
-    { id: string; result: number }
+    { id: string; result: { result: number; testStatus: string } }
   >,
   next: TMiddlewareCall,
 ) => {
@@ -30,10 +30,12 @@ const getTestResults = async (
     const userWrongAnswers = checkTestResults(answers, correctAnswers.questions);
     const result = countTestResult(userWrongAnswers, correctAnswers.questions);
     if (result < PASS_THRESHOLD) {
-      res.json({ result, testStatus: 'not passed' });
+      res.locals.result = { result, testStatus: 'not passed' };
+      await updateCourseStatus(courseId, CourseStatus.started);
+      next();
       return;
     }
-    res.locals.result = result;
+    res.locals.result = { result, testStatus: 'successful' };
     await updateCourseStatus(courseId, CourseStatus.successful);
     next();
   } catch (err) {

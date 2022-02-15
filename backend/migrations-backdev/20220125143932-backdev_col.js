@@ -94,6 +94,7 @@ const TESTS = [
       },
     ],
     timeout: 900000,
+    attempts: 3,
   },
   {
     title: 'test for course "Java for profi"',
@@ -190,6 +191,7 @@ const TESTS = [
       },
     ],
     timeout: 450000,
+    attempts: 3,
   },
   {
     title: 'test for course "Python for kids"',
@@ -242,6 +244,7 @@ const TESTS = [
       },
     ],
     timeout: 90000,
+    attempts: 3,
   },
   {
     title: 'test for course "Python for kids"',
@@ -294,6 +297,7 @@ const TESTS = [
       },
     ],
     timeout: 90000,
+    attempts: 3,
   },
   {
     title: 'test for course "Python for kids"',
@@ -346,6 +350,7 @@ const TESTS = [
       },
     ],
     timeout: 90000,
+    attempts: 3,
   },
 ];
 

@@ -8,6 +8,7 @@ interface ITest {
     correctAnswer: number;
   }>;
   timeout: number;
+  attempts: number;
 }
 
 type TestDb = { test: ITest };

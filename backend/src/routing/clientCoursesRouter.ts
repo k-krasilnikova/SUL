@@ -12,7 +12,7 @@ import getTest from 'controllers/tests/getTest';
 import getAchievments from 'controllers/tests/getAchievments';
 import startTest from 'controllers/tests/startTest';
 import getTestResults from 'controllers/tests/getTestResults';
-import unitTestResults from 'middlewares/sendTestResults';
+import unitTestResults from 'controllers/tests/sendTestResults';
 
 const clientCoursesRouter = Router();
 
