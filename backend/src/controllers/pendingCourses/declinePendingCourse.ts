@@ -17,12 +17,17 @@ const declinePendingCourse = async (
   const { id: clientCourseId } = req.body;
   try {
     const courseStatus = await getStatusProvider(clientCourseId);
-    if (courseStatus?.status !== CourseStatus.approved) {
-      await updateCourseStatus(clientCourseId, CourseStatus.rejected);
-      res.json('Course was declined');
-      return;
+    if (
+      courseStatus?.status === CourseStatus.approved ||
+      courseStatus?.status === CourseStatus.testing ||
+      courseStatus?.status === CourseStatus.started ||
+      courseStatus?.status === CourseStatus.completed
+    ) {
+      throw new BadRequestError(`Can't decline course with status: ${courseStatus.status}`);
     }
-    throw new BadRequestError(`Can't decline course`);
+    await updateCourseStatus(clientCourseId, CourseStatus.rejected);
+    res.json('Course was declined');
+    return;
   } catch (error) {
     next(error);
   }
