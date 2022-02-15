@@ -11,6 +11,13 @@ interface ITest {
   attempts: number;
 }
 
+type TAchievments = {
+  newSkills: Array<string | undefined>;
+  updatedSkills: Array<string | undefined>;
+};
+
+type TestRuslt = { result: number; testStatus: string };
+
 type TestDb = { test: ITest };
 
-export { ITest, TestDb };
+export { ITest, TestDb, TestRuslt, TAchievments };
