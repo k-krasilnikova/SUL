@@ -57,6 +57,10 @@ export const AboutCourseContainer = styled('div')({
   },
 });
 
+export const CourseTextContainer = styled('div')({
+  flexGrow: '2',
+});
+
 export const ButtonsContainer = styled('div')({
   [theme.breakpoints.up('xs')]: {
     display: 'none',
