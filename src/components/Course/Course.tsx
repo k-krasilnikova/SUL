@@ -18,6 +18,7 @@ import {
   MobileCourseInfoBox,
   MobileCourseProgress,
   MobileCourseCompleted,
+  CourseTextContainer,
 } from './styled';
 
 interface Props {
@@ -50,7 +51,7 @@ const CourseItem: React.FC<Props> = ({
       <ImageWrapper>
         <Image />
       </ImageWrapper>
-      <div style={{ flexGrow: '2' }}>
+      <CourseTextContainer>
         <CourseTitle>{title}</CourseTitle>
         <CourseDescriptionWrapper>
           <CourseDescription>{shortifyCourseDescription(description)}</CourseDescription>
@@ -63,7 +64,7 @@ const CourseItem: React.FC<Props> = ({
             Completed <img alt="" src={checkIcon} />
           </MobileCourseCompleted>
         )}
-      </div>
+      </CourseTextContainer>
       {pageName === PAGES.myCourses && status !== 'completed' && (
         <MobileCourseProgress>
           <ProgressBar value={progress} text={`${progress}%`} size="medium" textColor="#000000" />
