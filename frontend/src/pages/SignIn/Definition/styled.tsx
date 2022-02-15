@@ -41,9 +41,6 @@ export const CompanyLogo = styled(Typography)({
   [theme.breakpoints.down('sm')]: {
     fontSize: '35px !important',
   },
-  '& span': {
-    color: theme.palette.primary.main,
-  },
 });
 
 export const Instructions = styled(Typography)({

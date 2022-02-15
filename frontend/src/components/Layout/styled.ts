@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Grid from '@mui/material/Grid';
 
 import theme from 'themeSettings';
+
 import { HEADER_HEIGHT, HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from './Header/styled';
 
 export const GridHeader = styled(Grid)({
@@ -52,7 +53,6 @@ export const useLayOutStyles = makeStyles({
     '@media(max-width: 1110px)': {
       width: '100%!important',
     },
-
     '@media(min-width: 1110px)': {
       width: 'calc(100% - 205px)!important',
     },

@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Button } from 'components/Button';
 import { TextField } from 'components/TextField';
 import { Image } from 'components/Image';
 import { SignTypes } from 'types/signIn';
 import { signInImage } from 'images';
+import { buttonSpinner } from 'animations';
+import ButtonLoader from 'components/ButtonLoader';
 
 import Definition from './Definition';
 import {
@@ -14,6 +15,7 @@ import {
   GridWrapper,
   GridSignInput,
   GridButton,
+  SignButton,
   SignMain,
   SignMainGrid,
   SignPresGrid,
@@ -22,7 +24,7 @@ import {
   ImageWrapper,
 } from './styled';
 
-const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
+const SignIn = ({ formik, warningHandler, isLoading }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
@@ -69,15 +71,21 @@ const SignIn = ({ formik, warningHandler }: SignTypes): JSX.Element => {
                     />
                   </GridSignInput>
                   <GridButton item xs={12}>
-                    <Button
-                      fullWidth
-                      disabled={!isValid}
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                    >
-                      Log In
-                    </Button>
+                    {isLoading ? (
+                      <SignButton fullWidth type="submit" variant="mediumOutlined" disabled>
+                        <ButtonLoader buttonSpinner={buttonSpinner} />
+                      </SignButton>
+                    ) : (
+                      <SignButton
+                        fullWidth
+                        disabled={!isValid}
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                      >
+                        Log In
+                      </SignButton>
+                    )}
                   </GridButton>
                 </GridWrapper>
               </ItemsBox>
