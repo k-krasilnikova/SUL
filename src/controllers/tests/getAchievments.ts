@@ -1,11 +1,10 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-import { getCourseTechnology } from 'db/providers/clientCourseProvider';
+import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import { addUserSkill, getUserSkills, updateUserSkill } from 'db/providers/userProvider';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { ISkill } from 'interfaces/Ientities/Iusers';
 import { specifySkills } from 'utils/dto/skillsDto';
-import { isError } from 'utils/typeGuards/isError';
+import CourseStatus from 'enums/coursesEnums';
 
 const getAchievments = async (
   req: Request<Record<string, never>, Record<string, never>, { id: string }>,
@@ -13,14 +12,15 @@ const getAchievments = async (
     void,
     { id: string; achievments: { newSkills: string[]; updatedSkills: string[] } }
   >,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   try {
     const { id: clientCourseId } = req.params;
     const { id: userId } = res.locals;
 
-    const { course } = await getCourseTechnology(clientCourseId);
-    if ('technology' in course) {
+    const clientCourse = await getClientCourseProvider(clientCourseId);
+    const { course } = clientCourse;
+    if ('technology' in course && clientCourse.status === CourseStatus.successful) {
       const userSkills: { skills: ISkill[] } = await getUserSkills(userId);
       const { oldSkills, newSkills } = specifySkills(userSkills.skills, course.technology);
       if (oldSkills.length) {
@@ -36,9 +36,7 @@ const getAchievments = async (
     res.locals.achievments = { newSkills: [], updatedSkills: [] };
     next();
   } catch (err) {
-    if (isError(err)) {
-      next(err);
-    }
+    next(err);
   }
 };
 
