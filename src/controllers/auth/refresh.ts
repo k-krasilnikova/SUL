@@ -1,8 +1,6 @@
-import { Request, Response } from 'express';
-
+import { NextFunction, Request, Response } from 'express';
 import { saveTokenProvider } from 'db/providers/authProvider';
 import { getUserProvider } from 'db/providers/userProvider';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';
 import { TIME_30D_SEC } from 'config/constants';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
@@ -13,7 +11,7 @@ interface ICookies {
   refreshToken: string;
 }
 
-const refresh = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const refresh = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { refreshToken }: { refreshToken: string } = req.cookies as ICookies;
     if (!refreshToken) {

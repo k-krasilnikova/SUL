@@ -1,6 +1,4 @@
-import { Request, Response } from 'express';
-
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
+import { NextFunction, Request, Response } from 'express';
 import { applyCourseProvider, getClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
 import { INITIAL_INDX } from 'config/constants';
@@ -14,7 +12,7 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 const applyCourse = async (
   req: Request<Record<string, never>, Record<string, never>, { id: string }>,
   res: Response<{ message: string } | { status: string }, { id: string }>,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   try {
     const { id: courseId } = req.body;

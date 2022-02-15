@@ -1,9 +1,7 @@
-import { Request, Response } from 'express';
-
+import { NextFunction, Request, Response } from 'express';
 import { getCourseProvider } from 'db/providers/courseProvider';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 
-const getCourseById = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const getCourseById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id: courseId } = req.params;
     const course = await getCourseProvider(courseId);

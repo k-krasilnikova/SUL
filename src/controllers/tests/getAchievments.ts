@@ -1,11 +1,8 @@
-import { Request, Response } from 'express';
-
+import { NextFunction, Request, Response } from 'express';
 import { getCourseTechnology } from 'db/providers/clientCourseProvider';
 import { addUserSkill, getUserSkills, updateUserSkill } from 'db/providers/userProvider';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { ISkill } from 'interfaces/Ientities/Iusers';
 import { specifySkills } from 'utils/dto/skillsDto';
-import { isError } from 'utils/typeGuards/isError';
 
 const getAchievments = async (
   req: Request<Record<string, never>, Record<string, never>, { id: string }>,
@@ -13,7 +10,7 @@ const getAchievments = async (
     void,
     { id: string; achievments: { newSkills: string[]; updatedSkills: string[] } }
   >,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   try {
     const { id: clientCourseId } = req.params;
@@ -36,9 +33,7 @@ const getAchievments = async (
     res.locals.achievments = { newSkills: [], updatedSkills: [] };
     next();
   } catch (err) {
-    if (isError(err)) {
-      next(err);
-    }
+    next(err);
   }
 };
 

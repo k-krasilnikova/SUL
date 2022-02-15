@@ -1,6 +1,4 @@
-import { Request, Response } from 'express';
-
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
+import { NextFunction, Request, Response } from 'express';
 import {
   getCurrentProgress,
   getStatusProvider,
@@ -10,7 +8,7 @@ import CourseStatus from 'enums/coursesEnums';
 import { INITIAL_INDX, REQUIRED_PCT } from 'config/constants';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
-const startTest = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const startTest = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
     const courseStatus = await getStatusProvider(clientCourseId);

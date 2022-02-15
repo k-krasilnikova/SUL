@@ -1,13 +1,11 @@
-import { Request, Response } from 'express';
-
+import { NextFunction, Request, Response } from 'express';
 import { getClientCoursesProvider } from 'db/providers/clientCourseProvider';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 
 const getClientCourses = async (
   req: Request,
   res: Response<IClientCourse[], { id: string }>,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   try {
     const { id: userId } = res.locals;
