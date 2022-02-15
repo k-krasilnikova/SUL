@@ -44,7 +44,7 @@ const HeaderContainer: React.FC<Props> = ({
     setFilterOpen(false);
   };
 
-  const { mutateAsync } = useLogOut();
+  const { mutateAsync, isLoading } = useLogOut();
   const handleConfirm = (): void => {
     setConfirmOpen(true);
   };
@@ -77,6 +77,7 @@ const HeaderContainer: React.FC<Props> = ({
         handleLogOut={handleLogOut}
         isConfirmOpen={isConfirmOpen}
         cancelLogOut={cancelLogOut}
+        isLoading={isLoading}
         size="medium"
       />
     </>

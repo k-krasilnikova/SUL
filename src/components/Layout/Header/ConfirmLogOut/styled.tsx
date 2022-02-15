@@ -66,7 +66,7 @@ export const ButtonCancel = styled(Button)({
   height: '100%',
   padding: '14px 23px !important',
   fontSize: '18px !important',
-  fontWeight: '400 !important',
+  fontWeight: '500 !important',
   marginRight: '25px !important',
   [theme.breakpoints.up('xs')]: {
     marginRight: '16px !important',
@@ -85,7 +85,8 @@ export const ButtonExit = styled(Button)({
   height: '100%',
   padding: '14px 23px !important',
   fontSize: '18px !important',
-  fontWeight: '400 !important',
+  fontWeight: '500 !important',
+  marginLeft: '25px !important',
   [theme.breakpoints.up('xs')]: {
     marginLeft: '16px !important',
     fontSize: '12px !important',

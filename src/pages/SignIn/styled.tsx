@@ -1,6 +1,7 @@
 import { styled } from '@mui/styles';
 import { Grid, Box } from '@mui/material';
 
+import Button from 'components/Button/Button';
 import theme from 'themeSettings';
 
 const SignMain = styled(Box)({
@@ -158,11 +159,12 @@ const GridButton = styled(Grid)({
   margin: '0 !important ',
   padding: '0px !important',
   marginTop: '20px !important',
-  '& button': {
-    fontSize: '18px',
-    fontWeight: 600,
-    letterSpacing: '0.2px',
-  },
+});
+
+const SignButton = styled(Button)({
+  fontSize: '18px !important',
+  fontWeight: '600 !important',
+  letterSpacing: '0.2px !important',
 });
 
 export {
@@ -176,6 +178,7 @@ export {
   GridSignInput,
   ItemsBox,
   GridButton,
+  SignButton,
   DefinitionWrapper,
   ImageWrapper,
 };

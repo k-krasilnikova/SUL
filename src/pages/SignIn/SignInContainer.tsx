@@ -16,7 +16,7 @@ const initSignInvalue: SignInFields = {
 };
 
 const SignInContainer: React.FC = () => {
-  const { mutateAsync } = useGetAuth();
+  const { mutateAsync, isLoading } = useGetAuth();
   const FIELD_TOUCHED = true;
   const FIELD_VALIDATE = false;
 
@@ -36,7 +36,7 @@ const SignInContainer: React.FC = () => {
 
   return (
     <FormikProvider value={formik}>
-      <SignIn formik={formik} warningHandler={warningHandler} />
+      <SignIn formik={formik} warningHandler={warningHandler} isLoading={isLoading} />
     </FormikProvider>
   );
 };
