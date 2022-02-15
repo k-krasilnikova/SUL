@@ -30,12 +30,12 @@ export const PageWrapper = styled(Grid)({
 
 export const useLayOutStyles = makeStyles({
   hideGridMenu: {
-    width: '129px',
+    width: '129px !important',
     [theme.breakpoints.up('md')]: {
-      width: '82px',
+      width: '82px !important',
     },
     [theme.breakpoints.up('xl')]: {
-      width: '129px',
+      width: '129px !important',
     },
   },
   hidePageWrapper: {
@@ -44,10 +44,10 @@ export const useLayOutStyles = makeStyles({
     },
 
     [theme.breakpoints.up('md')]: {
-      width: 'calc(100% - 205px)',
+      width: 'calc(100% - 205px) !important',
     },
     [theme.breakpoints.up('xl')]: {
-      width: 'calc(100% - 303px)',
+      width: 'calc(100% - 303px) !important',
     },
   },
   showPageWrapper: {
