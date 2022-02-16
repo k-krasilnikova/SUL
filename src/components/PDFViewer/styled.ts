@@ -18,6 +18,12 @@ export const ButtonBox = styled(Box)({
   justifyContent: 'baseline',
   alignSelf: 'flex-end',
   marginRight: '4em',
+  [theme.breakpoints.down('md')]: {
+    marginRight: '3em',
+  },
+  [theme.breakpoints.down('sm')]: {
+    marginRight: '2em',
+  },
 });
 
 export const StyledButton = styled(Button)({
