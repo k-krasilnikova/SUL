@@ -1,18 +1,18 @@
 import CourseStatus from 'enums/coursesEnums';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
+import CourseStatus from 'enums/coursesEnums';
 
-const checkCourseDuplicates = (courseArr: IClientCourse[], courseId: string) => {
-  const arr = courseArr.find((clientCourse) => {
-    if ('_id' in clientCourse.course && clientCourse.course._id !== undefined) {
+const checkCourseDuplicates = (courseArr: IClientCourse[], courseId: string): boolean => {
+  const alreadyAppliedCourse = courseArr.find((clientCourse) => {
+    if (clientCourse && '_id' in clientCourse.course && clientCourse.course._id) {
       return (
         clientCourse.course._id.toString() === courseId &&
         clientCourse.status !== CourseStatus.rejected
       );
     }
-
-    return clientCourse.course.toString() === courseId;
+    return null;
   });
-  return arr;
+  return Boolean(alreadyAppliedCourse);
 };
 
 export { checkCourseDuplicates };

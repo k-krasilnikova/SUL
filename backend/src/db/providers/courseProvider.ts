@@ -66,6 +66,9 @@ const materialsCounterProvider = async (courseId: string) => {
       },
     },
   ]);
+  if (!materialsCount.length) {
+    throw new NotFoundError('materials not found');
+  }
   return materialsCount;
 };
 
