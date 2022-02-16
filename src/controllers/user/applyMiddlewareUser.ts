@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 
 const applyMiddlewareUser = async (
-  req: Request<Record<string, string>, Record<string, never>, { id: string }>,
+  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
   res: Response<
-    void,
+    never,
     {
       id: string;
       courseId: string | undefined;
@@ -14,7 +14,7 @@ const applyMiddlewareUser = async (
 ) => {
   try {
     const { id: userId } = res.locals;
-    const { id: courseId } = req.params;
+    const { id: courseId } = req.body;
     res.locals.courseId = courseId;
     res.locals.userId = userId;
     next();

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 
 const applyMiddlewareManager = async (
-  req: Request<Record<string, string>, Record<string, never>, { id: string }>,
+  req: Request<Record<string, string | undefined>, Record<string, never>, { id: string }>,
   res: Response<
-    unknown,
+    never,
     {
       id: string;
       courseId: string | undefined;
