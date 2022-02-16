@@ -44,7 +44,7 @@ const ConfirmLogOut: React.FC<IConfirm> = ({
           Cancel
         </ButtonCancel>
         {isLoading ? (
-          <ButtonExit onClick={handleLogOut} disabled variant="outlined">
+          <ButtonExit disabled variant="mediumOutlined">
             <ButtonLoader buttonSpinner={buttonSpinner} />
           </ButtonExit>
         ) : (
