@@ -30,9 +30,6 @@ const getCoursesProvider = async ({
       .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
       .limit(nPerPage)
       .lean();
-    if (!courses) {
-      throw new NotFoundError('Course not found.');
-    }
     return courses;
   } catch (error) {
     throw new BadRequestError('Invalid query.');
@@ -44,7 +41,6 @@ const getCourseProvider = async (courseId: string) => {
   if (!course) {
     throw new NotFoundError('Course not found.');
   }
-  return course;
 };
 
 const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {
@@ -54,7 +50,7 @@ const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; sta
     },
     stage?.length ? { 'materials.$': 1 } : { materials: 1 },
   ).lean();
-  if (!material) {
+  if (!material.length) {
     throw new NotFoundError('Materials not found.');
   }
   return material;

@@ -9,8 +9,25 @@ import startCourse from 'controllers/clientCourses/startCourse';
 import finishCourse from 'controllers/clientCourses/finishCourse';
 import getClientCourseById from 'controllers/clientCourses/getClientCourse';
 import getTest from 'controllers/tests/getTest';
+import getAchievments from 'controllers/tests/getAchievments';
+import startTest from 'controllers/tests/startTest';
+import getTestResults from 'controllers/tests/getTestResults';
+import unitTestResults from 'middlewares/sendTestResults';
 
 const clientCoursesRouter = Router();
+
+clientCoursesRouter.get(
+  `${Params.id}${SubRoutes.test}${SubRoutes.result}`,
+  withAuth([USER_ROLES.EMPLOYEE]),
+  getTestResults,
+  getAchievments,
+  unitTestResults,
+);
+clientCoursesRouter.get(
+  `${Params.id}${SubRoutes.test}${SubRoutes.start}`,
+  withAuth([USER_ROLES.EMPLOYEE]),
+  startTest,
+);
 clientCoursesRouter.get(`${Params.id}${SubRoutes.test}`, withAuth([USER_ROLES.EMPLOYEE]), getTest);
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.start}`,
