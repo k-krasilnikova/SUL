@@ -1,5 +1,6 @@
-import { compare } from 'bcrypt';
 import { NextFunction, Request, Response } from 'express';
+import { compare } from 'bcrypt';
+
 import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { generateJWT } from 'utils/auth/authUtils';

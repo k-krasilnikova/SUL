@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import { getUserProvider } from 'db/providers/userProvider';
 import { generateInitialDto } from 'utils/dto/dtoUtils';
 

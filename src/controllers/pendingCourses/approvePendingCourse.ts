@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';

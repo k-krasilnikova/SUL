@@ -13,7 +13,7 @@ const passCourse = async (req: Request, res: Response, next: NextFunction) => {
     const { id: clientCourseId } = req.params;
     const courseStatus = await getStatusProvider(clientCourseId);
     if (courseStatus?.status !== CourseStatus.started) {
-      throw new BadRequestError('course is not in progress');
+      throw new BadRequestError('Course is not in progress.');
     }
     const updt = await updateCourseProgress(clientCourseId, stage);
     res.json(updt);
