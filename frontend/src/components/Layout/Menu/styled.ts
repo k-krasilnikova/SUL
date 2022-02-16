@@ -38,7 +38,6 @@ export const MenuTabs = styled('div')({
 
 export const LeftArrow = styled(leftArrow)({
   display: 'block',
-  marginRight: '10px',
   color: 'black',
   position: 'absolute',
   '&:hover': {
@@ -49,7 +48,6 @@ export const LeftArrow = styled(leftArrow)({
 
 export const RightArrow = styled(rightArrow)({
   display: 'block',
-  marginRight: '10px',
   color: 'black',
   position: 'absolute',
   '&:hover': {
@@ -62,20 +60,32 @@ export const RightArrowBox = styled('div')({
   display: 'flex',
   justifyContent: 'flex-end',
   position: 'absolute',
-  right: '12%',
-  top: '1%',
-  minWidth: '280px !important',
   padding: '10px 0px',
+  height: '36px',
+  '@media(min-width: 1110px)': {
+    right: '7px',
+    top: '10px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    right: '12px',
+    top: '10px',
+  },
 });
 
 export const LeftArrowBox = styled('div')({
   display: 'flex',
   justifyContent: 'flex-end',
   position: 'absolute',
-  right: '5%',
-  top: '1%',
-  minWidth: '280px !important',
   padding: '10px 0px',
+  height: '36px',
+  '@media(min-width: 1110px)': {
+    right: '8px',
+    top: '10px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    right: '12px',
+    top: '10px',
+  },
 });
 
 export const MenuTabsWrapper = styled('div')({
