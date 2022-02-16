@@ -13,6 +13,7 @@ const getPendingCourses = async (
   try {
     const user: IUser = await getPendingCoursesProvider(userId);
     res.json(user.pendingCourses);
+    next();
   } catch (error) {
     next(error);
   }

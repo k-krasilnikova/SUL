@@ -4,17 +4,16 @@ import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourse
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
-interface ApprovePendingCourseRequest extends Request {
-  body: { id: string };
-}
-
 const approvePendingCourse = async (
-  req: ApprovePendingCourseRequest,
-  res: Response,
+  req: Request,
+  res: Response<string, { courseId: string | undefined }>,
   next: NextFunction,
 ) => {
-  const { id: clientCourseId } = req.body;
   try {
+    const { courseId: clientCourseId } = res.locals;
+    if (!clientCourseId) {
+      throw new BadRequestError('Invalid query.');
+    }
     const courseStatus = await getStatusProvider(clientCourseId);
     if (courseStatus?.status !== CourseStatus.pending) {
       throw new BadRequestError(`Can't approve course in status: ${courseStatus.status}`);

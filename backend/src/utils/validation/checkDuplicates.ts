@@ -1,3 +1,4 @@
+import CourseStatus from 'enums/coursesEnums';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 import CourseStatus from 'enums/coursesEnums';
 
