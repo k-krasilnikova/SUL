@@ -24,9 +24,6 @@ const applyCourse = async (
       throw new BadRequestError('Course already applied.');
     }
     const materialsCount = await materialsCounterProvider(courseId);
-    if (!materialsCount.length) {
-      throw new BadRequestError('Bad request. Check the courseId');
-    }
     const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
     const user: IUser = await getUserProvider(userId);
     const course: IClientCourse = await applyCourseProvider(courseId, userId, progressDto);
