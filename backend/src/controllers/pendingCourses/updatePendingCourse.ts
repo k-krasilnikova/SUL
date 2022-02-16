@@ -4,7 +4,6 @@ import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
-import { isError } from 'utils/typeGuards/isError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const updatePandingCourse = async (
@@ -23,9 +22,7 @@ const updatePandingCourse = async (
     const user: IUser = await getUserProvider(userId);
     await updatePendingFieldCourses(user.managerId, courseId);
   } catch (err) {
-    if (isError(err)) {
-      next(err);
-    }
+    next(err);
   }
 };
 

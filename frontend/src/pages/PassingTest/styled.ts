@@ -47,10 +47,11 @@ export const QuestionItemBox = styled(Box)({
 });
 
 export const ButtonsBox = styled(Box)({
-  marginTop: '120px',
+  marginTop: '103px',
   marginRight: '333px',
+  marginLeft: '125px',
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'space-between',
 });
 
 export const ResultButton = styled(Button)({
@@ -58,9 +59,9 @@ export const ResultButton = styled(Button)({
   width: '98px',
   fontSize: '18px !important',
   fontWeight: '500 !important',
-  '&:disabled': {
+  '&.MuiButton-root.Mui-disabled': {
     backgroundColor: '#E19697',
-    color: '#ffffff !important',
+    color: '#ffffff',
   },
 });
 
@@ -73,4 +74,11 @@ export const NextButton = styled(Button)({
     backgroundColor: '#E19697',
     color: '#ffffff !important',
   },
+});
+
+export const PreviousButton = styled(Button)({
+  width: '116px',
+  height: '50px',
+  fontSize: '18px !important',
+  fontWeight: '500 !important',
 });

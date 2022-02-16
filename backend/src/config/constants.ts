@@ -19,7 +19,7 @@ const USER_ROLES = {
 const TIME_30D_SEC = 2592000000;
 
 const SALT_ROUNDS = 10;
-
+const TWO_DIGITS = 2;
 const REQUIRED_PCT = 1;
 const DEFAULT_N_PER_PAGE = 10;
 const FIRST_PAGE = 1;
@@ -67,4 +67,5 @@ export {
   REQUIRED_PCT,
   STATUS_CODES,
   PASS_THRESHOLD,
+  TWO_DIGITS,
 };
