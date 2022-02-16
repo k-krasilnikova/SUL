@@ -1,7 +1,6 @@
 import { Course } from './course';
 
 export interface ResponseDataType {
-  status: string;
   handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
   targetId?: string;
   data?: Array<Course>;
@@ -12,4 +11,5 @@ export interface ResponseDataType {
   error?: string | unknown;
   handleSqueeze?: () => void;
   isSqueeze?: boolean;
+  targetLoading?: boolean;
 }

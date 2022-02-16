@@ -16,21 +16,14 @@ export const SearchWrapper = styled('div')({
     marginLeft: '48px',
   },
 });
-export const SearchIcon = styled(Search)({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '10px',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '15px',
-  },
-});
+export const SearchIcon = styled(Search)({});
 export const SearchSkill = styled(Input)({
   [theme.breakpoints.up('xs')]: {
-    fontSize: '16px',
+    fontSize: '16px!important',
     lineHeight: '33.61px',
   },
   [theme.breakpoints.up('sm')]: {
-    fontSize: '18px',
+    fontSize: '18px!important',
   },
 });
 export const SkillsBox = styled('div')({
@@ -217,7 +210,7 @@ export const SkillsDivider = styled(Divider)({
 });
 export const NoSkills = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    marginTop: '10px',
+    marginTop: '50px',
   },
   [theme.breakpoints.up('lg')]: {
     marginTop: '80px',
