@@ -18,6 +18,7 @@ enum SubRoutes {
   start = '/start',
   finish = '/finish',
   test = '/test',
+  result = '/result',
   approveCourse = '/approveCourse',
   declineCourse = '/declineCourse',
 }

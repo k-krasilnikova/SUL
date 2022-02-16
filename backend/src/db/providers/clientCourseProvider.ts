@@ -50,6 +50,9 @@ const getStatusProvider = async (courseId: string) => {
     { _id: courseId },
     { status: 1, _id: 0 },
   ).lean();
+  if (!currStatus) {
+    throw new NotFoundError('course not found');
+  }
   return currStatus;
 };
 
@@ -84,7 +87,23 @@ const updateCourseStatus = async (courseId: string, courseStatus: string) => {
     { _id: courseId },
     { $set: { status: courseStatus } },
   );
-  return updatedCourse;
+  if (updatedCourse) {
+    return updatedCourse;
+  }
+  throw new BadRequestError('Bad request. Check the data being sent');
+};
+
+const getCourseTechnology = async (clientCourseId: string) => {
+  const technology = await ClientCourseModel.findById(clientCourseId)
+    .populate({
+      path: 'course',
+      select: 'technology',
+    })
+    .lean();
+  if (!technology) {
+    throw new NotFoundError('Course not found.');
+  }
+  return technology;
 };
 
 export {
@@ -95,4 +114,5 @@ export {
   applyCourseProvider,
   updateCourseProgress,
   getCurrentProgress,
+  getCourseTechnology,
 };

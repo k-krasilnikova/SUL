@@ -1,16 +1,19 @@
 import { ObjectId } from 'mongoose';
+
 import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 
-interface ISkills {
-  skillGroup: string;
-  skillList: [{ name: string; image: string; score: number; maxScore: number }];
+interface ISkill {
+  name: string;
+  image: string;
+  score: number;
+  group: string;
 }
 
 type TUserForPendingCourses = Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
 type TCourseForPendingCourses = Pick<ICourse, 'title'>;
 
-export interface IPendingCourses {
+interface IPendingCourses {
   user: TUserForPendingCourses;
   course: TCourseForPendingCourses;
   status: TCourseStatus;
@@ -27,7 +30,7 @@ interface IUser {
   position: TUserPosition;
   firstName: string;
   lastName: string;
-  skills: ISkills[];
+  skills: ISkill[];
   courses: ObjectId[];
   group: string;
   employees: ObjectId[];
@@ -43,4 +46,4 @@ type TUserRole = 'admin' | 'manager' | 'employee';
 
 type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { IUser, TUserRole, TUserPosition };
+export { IUser, TUserRole, TUserPosition, IPendingCourses, ISkill };
