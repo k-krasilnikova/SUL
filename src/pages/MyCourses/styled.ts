@@ -5,7 +5,7 @@ import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
-  [theme.breakpoints.down('md')]: {
+  '@media(max-width: 1110px)': {
     paddingTop: '40px',
   },
   maxWidth: '1482px',

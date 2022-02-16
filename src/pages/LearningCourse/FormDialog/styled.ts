@@ -40,6 +40,8 @@ export const WarningDialogContentText = styled(DialogContentText)({
   fontWeight: '500 !important',
   fontSize: '16px',
   lineHeight: '22px',
+  height: '22px',
+  margin: '0px',
 });
 
 export const SecondaryDialogContentText = styled(DialogContentText)({
@@ -110,8 +112,8 @@ export const StyledButtonBox = styled(Box)({
   justifyContent: 'center',
   margin: '0',
   [theme.breakpoints.up('xs')]: {
-    paddingBottom: '30px !important',
-    paddingTop: '24px !important',
+    paddingBottom: '24px !important',
+    paddingTop: '32px !important',
   },
   [theme.breakpoints.up('md')]: {
     paddingBottom: '26px !important',
