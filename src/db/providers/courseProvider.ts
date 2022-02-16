@@ -41,6 +41,7 @@ const getCourseProvider = async (courseId: string) => {
   if (!course) {
     throw new NotFoundError('Course not found.');
   }
+  return course;
 };
 
 const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {

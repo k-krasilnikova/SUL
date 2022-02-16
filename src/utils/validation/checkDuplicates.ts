@@ -5,7 +5,7 @@ const checkCourseDuplicates = (courseArr: IClientCourse[], courseId: string): bo
   const alreadyAppliedCourse = courseArr.find((clientCourse) => {
     if (clientCourse && '_id' in clientCourse.course && clientCourse.course._id) {
       return (
-        clientCourse.course._id.toString() === courseId ??
+        clientCourse.course._id.toString() === courseId &&
         clientCourse.status !== CourseStatus.rejected
       );
     }
