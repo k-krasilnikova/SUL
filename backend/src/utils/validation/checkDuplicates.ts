@@ -1,14 +1,13 @@
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 
-const checkCourseDuplicates = (courseArr: IClientCourse[], courseId: string) => {
-  const arr = courseArr.find((clientCourse) => {
-    if ('_id' in clientCourse.course && clientCourse.course._id !== undefined) {
-      return clientCourse.course._id.toString() === courseId;
+const checkCourseDuplicates = (courseArr: IClientCourse[], courseId: string): boolean => {
+  const alreadyAppliedCourse = courseArr.find((clientCourse) => {
+    if (clientCourse && clientCourse._id) {
+      return clientCourse._id.toString() === courseId;
     }
-
-    return clientCourse.course.toString() === courseId;
+    return null;
   });
-  return arr;
+  return Boolean(alreadyAppliedCourse);
 };
 
 export { checkCourseDuplicates };
