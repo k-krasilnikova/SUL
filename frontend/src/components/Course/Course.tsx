@@ -67,7 +67,12 @@ const CourseItem: React.FC<Props> = ({
       </CourseTextContainer>
       {pageName === PAGES.myCourses && status !== 'completed' && (
         <MobileCourseProgress>
-          <ProgressBar value={progress} text={`${progress}%`} size="medium" textColor="#000000" />
+          <ProgressBar
+            value={progress}
+            text={`${progress}%`}
+            size="medium"
+            variant="mobileCourse"
+          />
         </MobileCourseProgress>
       )}
     </AboutCourseContainer>
