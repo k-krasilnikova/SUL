@@ -6,7 +6,7 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const approvePendingCourse = async (
   req: Request,
-  res: Response<unknown, { courseId?: string }>,
+  res: Response<string, { courseId: string | undefined }>,
   next: NextFunction,
 ) => {
   try {

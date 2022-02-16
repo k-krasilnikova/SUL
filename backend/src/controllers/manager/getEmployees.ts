@@ -1,10 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getEmployeesProvider } from 'db/providers/userProvider';
+import { IUser } from 'interfaces/Ientities/Iusers';
 
 const getEmployees = async (
   req: Request,
-  res: Response<unknown, { id: string }>,
+  res: Response<IUser[], { id: string }>,
   next: NextFunction,
 ) => {
   try {

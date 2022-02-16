@@ -6,7 +6,7 @@ import { ISkill } from 'interfaces/Ientities/Iusers';
 import { specifySkills } from 'utils/dto/skillsDto';
 
 const getAchievments = async (
-  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
+  req: Request,
   res: Response<
     void,
     { id: string; achievments: { newSkills: string[]; updatedSkills: string[] } }

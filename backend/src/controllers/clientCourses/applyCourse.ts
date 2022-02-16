@@ -1,3 +1,4 @@
+import { finished } from 'stream';
 import { NextFunction, Request, Response } from 'express';
 
 import { applyCourseProvider, getClientCoursesProvider } from 'db/providers/clientCourseProvider';
@@ -7,11 +8,11 @@ import { materialsCounterProvider } from 'db/providers/courseProvider';
 import { checkCourseDuplicates } from 'utils/validation/checkDuplicates';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { finished } from 'stream';
+import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
 
 const applyCourse = async (
-  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
-  res: Response<IClientCourse, { courseId?: string; userId?: string }>,
+  req: Request,
+  res: Response<IClientCourse, TCourseLocals>,
   next: NextFunction,
 ) => {
   try {
