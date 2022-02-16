@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 import { TextField } from 'components/TextField';
@@ -7,9 +6,9 @@ import { SignTypes } from 'types/signIn';
 import { signInImage } from 'images';
 import { buttonSpinner } from 'animations';
 import ButtonLoader from 'components/ButtonLoader';
-import { ErrorMessage } from 'formik';
 
 import Definition from './Definition';
+import ErrorsMessenger from './ErrorsMessager';
 import {
   SignWrapper,
   FormBox,
@@ -24,7 +23,6 @@ import {
   SignFormGrid,
   DefinitionWrapper,
   ImageWrapper,
-  WarningHelper,
   GridError,
 } from './styled';
 
@@ -36,7 +34,6 @@ const SignIn = ({
   classes,
   labelState,
   labelHandler,
-  status,
 }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
@@ -45,6 +42,9 @@ const SignIn = ({
     handleBlur,
   } = formik;
   const { loginLabel, emptyLogin, passwordLabel, emptyPassword } = labelHandler;
+
+  console.log('errors', errors);
+  console.log('labelState', labelState);
 
   return (
     <SignMain>
@@ -103,15 +103,11 @@ const SignIn = ({
                     />
                   </GridSignInput>
                   <GridError>
-                    {errors.login && errors.password && (
-                      <ErrorMessage component={WarningHelper} name="login" />
-                    )}
-                    {!errors.login && errors.password && (
-                      <ErrorMessage component={WarningHelper} name="password" />
-                    )}
-                    {!errors.password && errors.login && (
-                      <ErrorMessage component={WarningHelper} name="login" />
-                    )}
+                    <ErrorsMessenger
+                      error={errors}
+                      labelState={labelState}
+                      labelHandler={labelHandler}
+                    />
                   </GridError>
                   <GridButton item xs={12}>
                     {isLoading ? (

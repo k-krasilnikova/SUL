@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { Grid, Box, Typography } from '@mui/material';
 
 import Button from 'components/Button/Button';
-import theme from 'themeSettings';
+import globalTheme from 'themeSettings';
 
 const SignMain = styled(Box)({
   height: '100% !important',
@@ -13,7 +13,12 @@ const SignMain = styled(Box)({
   flexDirection: 'column',
   justifyContent: 'center',
   padding: '0',
-  background: theme.palette.secondary.main,
+  background: globalTheme.palette.secondary.main,
+  [globalTheme.breakpoints.down('sm')]: {
+    minWidth: '320px !important',
+    justifyContent: 'center !important',
+    margin: '0 auto !important',
+  },
 });
 
 // Родительский Грид
@@ -23,12 +28,23 @@ const SignMainGrid = styled(Grid)({
   width: '85% !important',
   margin: '0 auto !important',
   padding: '0px !important',
-  [theme.breakpoints.down('xl')]: {
+  [globalTheme.breakpoints.down('xl')]: {
     width: '90% !important',
     justifyContent: 'center !important',
   },
-  [theme.breakpoints.down('md')]: {
+  [globalTheme.breakpoints.down('md')]: {
     width: '95% !important',
+    justifyContent: 'center !important',
+  },
+  [globalTheme.breakpoints.down('sm')]: {
+    width: '100% !important',
+    justifyContent: 'center !important',
+  },
+  '@media(max-width: 1066px)': {
+    width: '95% !important',
+  },
+  [globalTheme.breakpoints.down('lg')]: {
+    width: '85% !important',
     justifyContent: 'center !important',
   },
 });
@@ -38,11 +54,11 @@ const SignPresGrid = styled(Grid)({
   padding: '0px 5px!important',
   margin: '0px !important',
   display: 'grid',
-  [theme.breakpoints.down('md')]: {
-    minHeight: '220px',
-    maxWidth: '400px !important',
+  [globalTheme.breakpoints.down('md')]: {
+    display: 'none',
+    justifyContent: 'center',
   },
-  [theme.breakpoints.down('sm')]: {
+  [globalTheme.breakpoints.down('sm')]: {
     display: 'none',
   },
 });
@@ -55,16 +71,16 @@ const ImageWrapper = styled(Box)({
   alignSelf: 'center',
   marginBottom: '20px',
   marginLeft: '10px',
-  border: '1px red solid',
-  [theme.breakpoints.down('lg')]: {
-    marginBottom: '0px !important',
-    marginLeft: '0px !important',
-  },
-  [theme.breakpoints.down('xl')]: {
+  [globalTheme.breakpoints.down('xl')]: {
     maxWidth: '455px',
     marginBottom: '55px',
     marginLeft: '0px',
     marginRight: '30px',
+  },
+  [globalTheme.breakpoints.down('lg')]: {
+    marginBottom: '0px !important',
+    marginLeft: '0px !important',
+    marginRight: '0px !important',
   },
 });
 
@@ -72,18 +88,24 @@ const ImageWrapper = styled(Box)({
 const SignFormGrid = styled(Grid)({
   display: 'grid',
   gridTemplateRows: '30% 70%',
-  [theme.breakpoints.down('xl')]: {
+  [globalTheme.breakpoints.down('xl')]: {
     minWidth: '400px !important',
     justifyContent: 'start',
   },
-  [theme.breakpoints.down('lg')]: {
+  [globalTheme.breakpoints.down('lg')]: {
+    minWidth: '300px !important',
     gridTemplateRows: '40% 60% !important',
+    justifyContent: 'end',
   },
-  [theme.breakpoints.down('md')]: {
+  [globalTheme.breakpoints.down('md')]: {
+    minWidth: '100% !important',
+    justifyContent: 'center',
+    gridTemplateRows: '25% 70% !important',
+  },
+  [globalTheme.breakpoints.down('sm')]: {
+    minWidth: '100% !important',
     gridTemplateRows: '30% 70% !important',
-  },
-  [theme.breakpoints.down('sm')]: {
-    gridTemplateRows: '20% 80% !important',
+    justifyContent: 'center',
   },
 });
 
@@ -94,19 +116,30 @@ const DefinitionWrapper = styled(Box)({
   maxWidth: '100%',
   marginRight: '18px',
   marginTop: '13.5%',
-  [theme.breakpoints.down('xl')]: {
-    marginTop: '12.5%',
+  [globalTheme.breakpoints.down('xl')]: {
+    marginTop: '15%',
     marginRight: '0px !important',
-    marginLeft: '35px !important',
+    marginLeft: '20px !important',
     width: '100%',
   },
-  [theme.breakpoints.down('lg')]: {
+  [globalTheme.breakpoints.down('lg')]: {
     alignSelf: 'center',
     justifySelf: 'end',
-  },
-  [theme.breakpoints.down('md')]: {
     marginTop: '0px !important',
+    marginRight: '0px !important',
+    marginLeft: '0px !important',
+  },
+  [globalTheme.breakpoints.down('md')]: {
+    marginTop: '0px !important',
+    marginRight: '0px !important',
+    marginLeft: '0px !important',
     justifySelf: 'center',
+  },
+  [globalTheme.breakpoints.down('sm')]: {
+    alignSelf: 'start',
+    marginTop: '70px !important',
+    marginRight: '0px !important',
+    marginLeft: '0px !important',
   },
 });
 
@@ -120,7 +153,7 @@ const SignWrapper = styled(Box)({
   boxShadow: '2px 4px 10px 2px rgba(0, 0, 0, 0.15)',
   marginTop: '8%',
   marginRight: '18px',
-  [theme.breakpoints.down('xl')]: {
+  [globalTheme.breakpoints.down('xl')]: {
     marginTop: '10px',
     marginRight: '0px !important',
     marginLeft: '20px !important',
@@ -128,12 +161,23 @@ const SignWrapper = styled(Box)({
     minHeight: '257px !important',
     maxHeight: '257px !important',
   },
-  [theme.breakpoints.down('lg')]: {
-    marginTop: '0px',
+  [globalTheme.breakpoints.down('lg')]: {
+    marginTop: '-27px',
     justifySelf: 'end',
+    marginRight: '0px !important',
+    marginLeft: '0px !important',
   },
-  [theme.breakpoints.down('md')]: {
+  [globalTheme.breakpoints.down('md')]: {
     justifySelf: 'center',
+    marginTop: '10px',
+    marginRight: '0px !important',
+    marginLeft: '0px !important',
+    boxShadow: '2px 4px 10px 2px rgba(0, 0, 0, 0.15)',
+  },
+  [globalTheme.breakpoints.down('sm')]: {
+    marginRight: '0px !important',
+    marginLeft: '0px !important',
+    boxShadow: 'none',
   },
 });
 
@@ -143,10 +187,16 @@ const FormBox = styled(Box)({
   width: '282px',
   marginRight: '22px',
   marginLeft: '22px',
-  [theme.breakpoints.down('xl')]: {
+  [globalTheme.breakpoints.down('xl')]: {
     margin: '0 auto',
     marginTop: '10px',
     width: '245px',
+    maxHeight: '257px',
+  },
+  [globalTheme.breakpoints.down('xl')]: {
+    margin: '0 auto',
+    marginTop: '10px',
+    width: '248px',
     maxHeight: '257px',
   },
 });
@@ -169,9 +219,13 @@ const GridWrapper = styled(Grid)({
   '& div:nth-child(2)': {
     marginBottom: '0px !important',
   },
-  [theme.breakpoints.down('xl')]: {
+  [globalTheme.breakpoints.down('xl')]: {
     marginBottom: '0px !important',
-    marginTop: '20px !important',
+    marginTop: '33px !important',
+  },
+  [globalTheme.breakpoints.down('sm')]: {
+    marginBottom: '0px !important',
+    marginTop: '25px !important',
   },
 });
 
@@ -209,7 +263,7 @@ const GridSignInput = styled(Grid)({
     borderColor: '#B7BECA !important',
     border: '1px solid #B7BECA !important',
   },
-  [theme.breakpoints.down('xl')]: {
+  [globalTheme.breakpoints.down('xl')]: {
     marginBottom: '24px !important',
     margin: '0 !important ',
     padding: '0px !important',
@@ -226,14 +280,28 @@ const GridSignInput = styled(Grid)({
       height: '44px',
     },
   },
+  [globalTheme.breakpoints.down('sm')]: {
+    marginBottom: '16px !important',
+  },
 });
 
 const GridError = styled(Grid)({
-  height: '14px',
-  maxHeight: '14px',
-  // [theme.breakpoints.down('xl')]: {
-  //   marginTop: '10px !important',
-  // },
+  maxHeight: '18px',
+  width: '100%',
+  marginTop: '16px',
+  marginBottom: '24px',
+  [globalTheme.breakpoints.down('xl')]: {
+    maxHeight: '15px !important',
+    width: '100%',
+    marginBottom: '10px !important',
+    marginTop: '16px !important',
+  },
+  [globalTheme.breakpoints.down('sm')]: {
+    maxHeight: '16px !important',
+    width: '100%',
+    marginBottom: '6px !important',
+    marginTop: '12px !important',
+  },
 });
 
 // Враппер для Кнопки
@@ -244,9 +312,11 @@ const GridButton = styled(Grid)({
   boxSizing: 'border-box',
   margin: '0 !important ',
   padding: '0px !important',
-  marginTop: '10px !important',
-  [theme.breakpoints.down('xl')]: {
+  [globalTheme.breakpoints.down('xl')]: {
     marginTop: '10px !important',
+  },
+  [globalTheme.breakpoints.down('sm')]: {
+    marginTop: '20px !important',
   },
 });
 
@@ -255,15 +325,21 @@ const SignButton = styled(Button)({
   fontSize: '18px !important',
   fontWeight: '400 !important',
   letterSpacing: '0.2px !important',
+  [globalTheme.breakpoints.down('sm')]: {
+    fontSize: '16px !important',
+    fontWeight: '400 !important',
+    letterSpacing: '0.2px !important',
+  },
 });
 
 const WarningHelper = styled(Typography)({
-  fontSize: '14px',
+  fontSize: '14px !important',
   margin: '0px',
-  marginTop: '15px',
+  lineHeight: '16px !important',
   textAlign: 'center',
+  fontWeight: '400 !important',
   fontFamily: '"Ubuntu", sans-serif',
-  color: theme.palette.primary.main,
+  color: globalTheme.palette.primary.main,
 });
 
 const useExplitLabel = makeStyles({
