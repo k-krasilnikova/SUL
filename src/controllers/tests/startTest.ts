@@ -21,11 +21,13 @@ const startTest = async (req: Request, res: Response, next: NextFunction) => {
       if (progress[INITIAL_INDX].currProgress < REQUIRED_PCT) {
         throw new BadRequestError("Can not start test till course stages haven't been passed.");
       }
-      await updateCourseStatus(clientCourseId, CourseStatus.testing);
-      res.json('Test started successfully ');
-      return;
+      throw new BadRequestError(
+        `Failed: can not start testing course with status: ${courseStatus?.status}`,
+      );
     }
-    throw new BadRequestError(`Failed: can not start testing course`);
+    await updateCourseStatus(clientCourseId, CourseStatus.testing);
+    res.json('Test started successfully ');
+    return;
   } catch (err) {
     next(err);
   }
