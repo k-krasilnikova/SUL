@@ -1,12 +1,11 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { clearTokenProvider } from 'db/providers/authProvider';
 
 const logout = async (
   req: Request,
   res: Response<{ message: string }, { id: string }>,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   try {
     const { id: userId } = res.locals;

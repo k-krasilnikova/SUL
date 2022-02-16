@@ -10,7 +10,7 @@ const SALT_ROUNDS = 10;
 
 const TESTS = [
   {
-    title: 'test for course "JS for beginners"',
+    title: 'test for course "JS for begginers"',
     questions: [
       {
         qN: 1,
@@ -67,14 +67,14 @@ const TESTS = [
         question: 'null == undefined',
         answers: [
           { variant: 'true', aN: 1 },
-          { variant: 'false', aN: 2 },
-          { variant: 'undefined', aN: 3 },
+          { variant: 'false', aN: 1 },
+          { variant: 'undefined', aN: 1 },
         ],
         correctAnswer: 1,
       },
       {
         qN: 7,
-        question: 'null >= 0',
+        question: 'null >= 0 ',
         answers: [
           { variant: 'false', aN: 1 },
           { variant: 'true', aN: 2 },
@@ -138,7 +138,7 @@ const TESTS = [
             aN: 1,
           },
           {
-            variant: 'Polymorphism is the ability of an object to take on many forms.',
+            variant: ' Polymorphism is the ability of an object to take on many forms.',
             aN: 2,
           },
           {
@@ -160,7 +160,7 @@ const TESTS = [
       },
       {
         qN: 5,
-        question: 'What is Encapsulation?',
+        question: ' What is Encapsulation?',
         answers: [
           {
             variant: 'Encapsulation is a technique to define different methods of same type.',
@@ -359,14 +359,9 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Admin',
     position: 'Software Engineer',
     skills: [
-      {
-        skillGroup: 'skill group 1',
-        skillList: [
-          { name: 'php', image: '', score: 1, maxScore: 5 },
-          { name: 'js', image: '', score: 1, maxScore: 5 },
-          { name: 'html', image: '', score: 1, maxScore: 5 },
-        ],
-      },
+      { name: 'java', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'mySQL', image: '', score: 0, maxScore: 5, group: 'databases' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -386,14 +381,9 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Manager',
     position: 'Team Manager',
     skills: [
-      {
-        skillGroup: 'skill group 1',
-        skillList: [
-          { name: 'php', image: '', score: 1, maxScore: 5 },
-          { name: 'js', image: '', score: 1, maxScore: 5 },
-          { name: 'html', image: '', score: 1, maxScore: 5 },
-        ],
-      },
+      { name: 'php', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -416,14 +406,10 @@ const DEFAULT_EMPLOYEES = [
     lastName: 'User',
     position: 'Software Engineer',
     skills: [
-      {
-        skillGroup: 'skill group 1',
-        skillList: [
-          { name: 'php', image: '', score: 1, maxScore: 5 },
-          { name: 'js', image: '', score: 1, maxScore: 5 },
-          { name: 'html', image: '', score: 1, maxScore: 5 },
-        ],
-      },
+      { name: 'react', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'css', image: '', score: 0, maxScore: 5, group: 'frontend' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -443,14 +429,10 @@ const DEFAULT_EMPLOYEES = [
     lastName: 'User1',
     position: 'Software Engineer',
     skills: [
-      {
-        skillGroup: 'skill group 1',
-        skillList: [
-          { name: 'php', image: '', score: 1, maxScore: 5 },
-          { name: 'js', image: '', score: 1, maxScore: 5 },
-          { name: 'html', image: '', score: 1, maxScore: 5 },
-        ],
-      },
+      { name: 'angular', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'ts', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'css', image: '', score: 0, maxScore: 5, group: 'frontend' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -587,7 +569,7 @@ const MOCKED_COURSES = [
     test: '',
   },
   {
-    title: 'Java for Profi',
+    title: 'Java for Profi ',
     description: 'course for people who want rise their level in java',
     technology: ['java', 'sql'],
     requiredSkills: ['java for beginners'],
@@ -660,7 +642,7 @@ module.exports = {
 
   async down(db) {
     await db.collection('courses').drop();
-    await db.collection('clientCourses').drop();
+    // await db.collection('clientCourses').drop();
     await db.collection('users').drop();
     await db.collection('tests').drop();
   },

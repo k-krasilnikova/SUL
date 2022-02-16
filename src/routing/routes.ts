@@ -7,7 +7,7 @@ import userRouter from './userRouter';
 import coursesRouter from './coursesRouter';
 import clientCoursesRouter from './clientCoursesRouter';
 import pendingCoursesRouter from './pendingCourses';
-import testRouter from './testRouter';
+import employeesRouter from './employeesRouter';
 
 const routers = Router();
 
@@ -16,6 +16,6 @@ routers.use(`${Routes.clientCourses}`, clientCoursesRouter);
 routers.use(`${Routes.pendingCourses}`, pendingCoursesRouter);
 routers.use(`${Routes.users}`, userRouter);
 routers.use(`${Routes.courses}`, coursesRouter);
-routers.use(`${Routes.test}`, testRouter);
+routers.use(`${Routes.employees}`, employeesRouter);
 
 export default routers;

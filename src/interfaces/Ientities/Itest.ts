@@ -12,4 +12,11 @@ interface ITest {
 
 type TestDb = { test: ITest };
 
-export { ITest, TestDb };
+interface IAnswer {
+  qN: number;
+  aN: number;
+}
+
+type TCorrectAnswers<T, K extends keyof T, R extends PropertyKey> = Omit<T, K> & { [P in R]: T[K] };
+
+export { ITest, TestDb, IAnswer, TCorrectAnswers };
