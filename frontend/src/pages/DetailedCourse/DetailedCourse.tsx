@@ -29,6 +29,8 @@ import {
   SimilarCoursesWrapper,
   StartButton,
   StartCourseButton,
+  DetailedCourseTextMobile,
+  ButtonFullText,
 } from './styled';
 
 interface IProps {
@@ -39,6 +41,8 @@ interface IProps {
   page: string;
   id: string;
   windowWidth: string;
+  isFullTextOpen: boolean;
+  toggleFullText: () => void;
   isLoading?: boolean;
   targetId?: string | undefined;
 }
@@ -56,6 +60,8 @@ const DetailedCourse: React.FC<IProps> = ({
   page,
   id,
   windowWidth,
+  isFullTextOpen,
+  toggleFullText,
 }) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
@@ -70,6 +76,18 @@ const DetailedCourse: React.FC<IProps> = ({
         </ImageWrapper>
         <ProgressBar size="large" text="0%" />
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
+
+        {isFullTextOpen ? (
+          <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
+        ) : (
+          <DetailedCourseTextMobile>
+            {INITIAL_DETAILED_COURSE.description.slice(0, 140)}
+            <ButtonFullText onClick={toggleFullText}>
+              {!isFullTextOpen && 'Look in full'}
+            </ButtonFullText>
+          </DetailedCourseTextMobile>
+        )}
+
         <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
           <CourseInfoBox>

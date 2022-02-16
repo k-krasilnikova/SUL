@@ -199,18 +199,12 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
 export const InfoContainer = styled(Box)({
   [theme.breakpoints.up('xs')]: {
     margin: '0px',
-    height: '100%',
     padding: '0px',
-    flexDirection: 'row',
-  },
-  [theme.breakpoints.up('lg')]: {
-    margin: '0px',
-    height: '100%',
     flexDirection: 'row',
   },
   height: 'fit-content',
   display: 'flex',
-  alignItems: 'end',
+  alignItems: 'middle',
   alignSelf: 'end',
 });
 
@@ -218,8 +212,8 @@ export const InfoItem = styled('div')({
   [theme.breakpoints.up('xs')]: {
     padding: '5px',
   },
-  [theme.breakpoints.up('lg')]: {
-    padding: '0px',
+  [theme.breakpoints.up('sm')]: {
+    padding: '5px',
   },
   display: 'inline-flex',
   verticalAlign: 'middle',
@@ -227,28 +221,37 @@ export const InfoItem = styled('div')({
 });
 export const InfoItemText = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
-    width: '70px',
-    padding: '5px',
-    fontSize: '8px',
-    lineHeight: '24px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    width: '90px',
+    width: '55px',
     padding: '0px',
     fontFamily: '"Ubuntu", sans-serif',
-    fontSize: '14px',
+    fontSize: '10px!important',
+    lineHeight: '14px',
     fontWeight: '400',
-    lineHeight: '18px',
     letterSpacing: '-0.4px',
     textAlign: 'left',
   },
+  [theme.breakpoints.up('sm')]: {
+    width: '70px',
+    fontWeight: '400',
+    lineHeight: '18px!important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    fontSize: '14px!important',
+    lineHeight: '18px',
+  },
   verticalAlign: 'middle',
   color: theme.palette.text.primary,
-  fontSize: '14px !important',
+  fontSize: '14px',
 });
 
 export const InfoItemTextBox = styled(Box)({
-  marginLeft: '8px',
+  [theme.breakpoints.up('xs')]: {
+    marginLeft: '4px',
+    marginRight: '15px',
+  },
+  [theme.breakpoints.up('md')]: {
+    marginLeft: '8px',
+  },
 });
 
 export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type }) => ({
@@ -264,11 +267,15 @@ export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type 
 }));
 
 export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
+  [theme.breakpoints.up('sm')]: {
+    paddingLeft: '12px !important',
+  },
   [theme.breakpoints.up('md')]: {
     display: type === 'similarCourses' ? 'none' : 'bllock',
   },
   [theme.breakpoints.up('xl')]: {
     display: 'block',
+    paddingLeft: '30px !important',
   },
   paddingLeft: '30px !important',
   paddingBottom: '7px !important',

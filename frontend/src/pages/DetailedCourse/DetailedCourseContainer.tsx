@@ -22,6 +22,11 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const { data } = useGetInfo(params.courseId);
   const { mutate, isLoading } = useApplyCourse();
   const [targetId, setTargetId] = useState<string | undefined>();
+  const [isFullTextOpen, setFullTextOpen] = useState(false);
+
+  const toggleFullText = () => {
+    setFullTextOpen(true);
+  };
 
   const BUTTON_ID = {
     start: 'start',
@@ -44,6 +49,8 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
       page={page}
       id={data._id}
       windowWidth={windowWidth}
+      isFullTextOpen={isFullTextOpen}
+      toggleFullText={toggleFullText}
     />
   ) : null;
 };
