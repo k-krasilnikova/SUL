@@ -32,7 +32,7 @@ import {
 } from './styled';
 
 interface IProps {
-  status?: string;
+  isLoading?: boolean;
   handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
   targetId?: string | undefined;
   buttonId: {
@@ -40,7 +40,7 @@ interface IProps {
   };
 }
 
-const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status, targetId, buttonId }) => (
+const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, isLoading, targetId, buttonId }) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
       <Link to={PATHS.coursesList}>
@@ -62,7 +62,7 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status, targetId,
               lessons={INITIAL_DETAILED_COURSE.lessons}
             />
           </CourseInfoBox>
-          {status === 'loading' && targetId === buttonId.start ? (
+          {isLoading && targetId === buttonId.start ? (
             <StartButton id={buttonId.start} variant="mediumOutlined" disabled>
               <ButtonLoader buttonSpinner={buttonSpinner} />
             </StartButton>
@@ -92,7 +92,7 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, status, targetId,
                     <DetailsButton color="primary" variant="mediumOutlined">
                       Details
                     </DetailsButton>
-                    {status === 'loading' && targetId === buttonId.course ? (
+                    {isLoading && targetId === buttonId.course ? (
                       <StartCourseButton variant="mediumOutlined" disabled>
                         <ButtonLoader buttonSpinner={buttonSpinner} />
                       </StartCourseButton>

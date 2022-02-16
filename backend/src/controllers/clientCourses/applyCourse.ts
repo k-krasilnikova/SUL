@@ -1,24 +1,25 @@
-import { Request, Response } from 'express';
+import { finished } from 'stream';
+import { NextFunction, Request, Response } from 'express';
 
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import { applyCourseProvider, getClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
 import { INITIAL_INDX } from 'config/constants';
 import { materialsCounterProvider } from 'db/providers/courseProvider';
 import { checkCourseDuplicates } from 'utils/validation/checkDuplicates';
-import { IUser } from 'interfaces/Ientities/Iusers';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
-import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
 
 const applyCourse = async (
-  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
-  res: Response<{ message: string } | { status: string }, { id: string }>,
-  next: TMiddlewareCall,
+  req: Request,
+  res: Response<IClientCourse, TCourseLocals>,
+  next: NextFunction,
 ) => {
   try {
-    const { id: courseId } = req.body;
-    const { id: userId } = res.locals;
+    const { courseId, userId } = res.locals;
+    if (!courseId || !userId) {
+      throw new BadRequestError('Invalid query');
+    }
     const applyedCourses = await getClientCoursesProvider(userId);
     const isDuplicate = checkCourseDuplicates(applyedCourses, courseId);
     if (isDuplicate) {
@@ -26,10 +27,13 @@ const applyCourse = async (
     }
     const materialsCount = await materialsCounterProvider(courseId);
     const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
-    const user: IUser = await getUserProvider(userId);
     const course: IClientCourse = await applyCourseProvider(courseId, userId, progressDto);
-    await updatePendingFieldCourses(user.managerId, course._id);
-    res.json(course);
+    next();
+    finished(res, () => {
+      if (!res.headersSent) {
+        res.json(course);
+      }
+    });
   } catch (err) {
     next(err);
   }

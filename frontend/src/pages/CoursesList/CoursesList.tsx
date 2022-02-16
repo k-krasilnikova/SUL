@@ -10,6 +10,7 @@ import { PATHS } from 'constants/routes';
 import Loader from 'components/Loader';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
+import { LOADER } from 'constants/loaderTypes';
 
 import {
   PageContainer,
@@ -24,32 +25,32 @@ const CoursesList: React.FC<ResponseDataType> = ({
   data,
   isLoading,
   handleApplyCourse,
-  status,
+  targetLoading,
   targetId,
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
-      <Loader color="primary" />
-    ) : data?.length ? (
+      <Loader color="primary" type={LOADER.content} />
+    ) : data ? (
       <PageContainer container rowSpacing="24px" columnSpacing="30px">
         {data?.map((course) => (
-          <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12} container>
-            <Suspense fallback={<Loader color="primary" />}>
+          <Suspense fallback={<Loader color="primary" type={LOADER.content} />}>
+            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12} container>
               <CourseItem
-                key={course._id}
+                key={`${course._id}_item`}
                 title={course?.title}
                 description={course?.description}
                 duration={course?.duration}
                 lessons={course?.lessons}
               >
-                <CourseActionsBox>
-                  <CourseActions>
+                <CourseActionsBox key={`${course._id}_box`}>
+                  <CourseActions key={`${course._id}_actions`}>
                     <Link to={`${PATHS.coursesList}/${course._id}`}>
                       <DetailsButton color="primary" variant="mediumOutlined">
                         Details
                       </DetailsButton>
                     </Link>
-                    {status === 'loading' && targetId === course._id ? (
+                    {targetLoading && targetId === course._id ? (
                       <StartCourseButton variant="mediumOutlined" disabled>
                         <ButtonLoader buttonSpinner={buttonSpinner} />
                       </StartCourseButton>
@@ -65,8 +66,8 @@ const CoursesList: React.FC<ResponseDataType> = ({
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>
-            </Suspense>
-          </GridItem>
+            </GridItem>
+          </Suspense>
         ))}
       </PageContainer>
     ) : (

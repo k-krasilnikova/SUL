@@ -7,6 +7,7 @@ enum Routes {
   materials = '/materials',
   pendingCourses = '/pendingCourses',
   test = '/test',
+  employees = '/employees',
 }
 
 enum SubRoutes {
@@ -18,6 +19,7 @@ enum SubRoutes {
   start = '/start',
   finish = '/finish',
   test = '/test',
+  result = '/result',
   approveCourse = '/approveCourse',
   declineCourse = '/declineCourse',
 }

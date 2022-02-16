@@ -3,7 +3,7 @@ import { ObjectId } from 'mongoose';
 interface ICourse {
   _id?: ObjectId;
   title: string;
-  technology: string;
+  technology: string[];
   requiredSkills?: Array<string>;
   description: string;
   duration: number;

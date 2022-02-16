@@ -9,7 +9,7 @@ import DetailedCourse from './DetailedCourse';
 const DetailedCourseContainer: React.FC = () => {
   const params = useParams();
   const { data } = useGetCourseInfo(params.courseId);
-  const { mutate, status } = useApplyCourse();
+  const { mutate, isLoading } = useApplyCourse();
   const [targetId, setTargetId] = useState<string | undefined>();
 
   const BUTTON_ID = {
@@ -25,7 +25,7 @@ const DetailedCourseContainer: React.FC = () => {
   return data ? (
     <DetailedCourse
       handleApplyCourse={handleApplyCourse}
-      status={status}
+      isLoading={isLoading}
       buttonId={BUTTON_ID}
       targetId={targetId}
     />
