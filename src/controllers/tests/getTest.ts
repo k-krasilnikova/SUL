@@ -1,10 +1,9 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { getTestProvider } from 'db/providers/testProvider';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 
-const getTest = async (req: Request, res: Response, next: TMiddlewareCall) => {
+const getTest = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
     const test = await getTestProvider(clientCourseId);
