@@ -43,9 +43,6 @@ const SignIn = ({
   } = formik;
   const { loginLabel, emptyLogin, passwordLabel, emptyPassword } = labelHandler;
 
-  console.log('errors', errors);
-  console.log('labelState', labelState);
-
   return (
     <SignMain>
       <SignMainGrid justifyContent="space-between" container spacing={{ xl: 2, lg: 2 }}>
