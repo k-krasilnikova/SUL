@@ -164,6 +164,7 @@ export const DetailsButton = styled(Button)({
     width: '105px',
     marginRight: '11px !important',
     fontSize: '12px !important',
+    padding: '4px 5px!important',
   },
   [theme.breakpoints.up('xl')]: {
     height: '50px',
@@ -181,6 +182,7 @@ export const StartCourseButton = styled(Button)({
     width: '105px',
     marginRight: '28px !important',
     fontSize: '12px !important',
+    padding: '4px 5px!important',
   },
   [theme.breakpoints.up('xl')]: {
     height: '50px',

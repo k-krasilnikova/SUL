@@ -38,6 +38,7 @@ interface IProps {
   };
   page: string;
   id: string;
+  windowWidth: string;
   isLoading?: boolean;
   targetId?: string | undefined;
 }
@@ -54,6 +55,7 @@ const DetailedCourse: React.FC<IProps> = ({
   buttonId,
   page,
   id,
+  windowWidth,
 }) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
@@ -111,6 +113,8 @@ const DetailedCourse: React.FC<IProps> = ({
                 description={INITIAL_DETAILED_COURSE.description}
                 duration={INITIAL_DETAILED_COURSE.duration}
                 lessons={INITIAL_DETAILED_COURSE.lessons}
+                windowWidth={windowWidth}
+                type="similarCourses"
               >
                 <CourseActionsBox>
                   <CourseActions>

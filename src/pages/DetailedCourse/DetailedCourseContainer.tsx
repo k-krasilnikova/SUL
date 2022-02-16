@@ -33,6 +33,8 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     mutate(params.courseId);
   };
 
+  const windowWidth = window.innerWidth < 1440 ? 'small' : 'large';
+
   return data ? (
     <DetailedCourse
       handleApplyCourse={handleApplyCourse}
@@ -41,6 +43,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
       targetId={targetId}
       page={page}
       id={data._id}
+      windowWidth={windowWidth}
     />
   ) : null;
 };
