@@ -4,6 +4,7 @@ import { Page } from 'react-pdf';
 import styled from 'styled-components';
 
 import { Button } from 'components/Button';
+import theme from 'themeSettings';
 
 export const PDFWrapper = styled(Box)({
   display: 'flex',
@@ -21,7 +22,10 @@ export const ButtonBox = styled(Box)({
 
 export const StyledButton = styled(Button)({
   color: '#000000',
-  minWidth: '40px!important',
+  minWidth: '40px !important',
+  '&.MuiButton-root': {
+    padding: '0 !important',
+  },
 });
 
 export const DocumentBox = styled(Box)({
@@ -29,6 +33,7 @@ export const DocumentBox = styled(Box)({
   justifySelf: 'center',
   alignSelf: 'flex-start',
   width: '1000px',
+  margin: '0 auto',
   maxWidth: 'inherit',
   overflowY: 'scroll',
   overflowX: 'hidden',
@@ -37,15 +42,21 @@ export const DocumentBox = styled(Box)({
     display: 'none',
   },
   'scrollbar-width': 'none',
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  [theme.breakpoints.down('xl')]: {
+    width: '100%',
+  },
 });
 
 export const PageNumberText = styled(Typography)({
-  fontSize: '18px',
+  fontSize: '18px !important',
+  color: '#131313 !important',
   padding: '6px 0',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '14px !important',
+  },
 });
 
 export const StyledPage = styled(Page)({
-  width: '75vw',
+  width: '100vw',
+  display: 'block',
 });
