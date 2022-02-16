@@ -52,7 +52,7 @@ const UserSkills: React.FC<Props> = ({
           fullWidth
           startAdornment={
             <InputAdornment position="start">
-              <SearchIcon color="disabled" fontSize="inherit" />
+              <SearchIcon color="disabled" fontSize="medium" />
             </InputAdornment>
           }
           onKeyDown={(event) => {

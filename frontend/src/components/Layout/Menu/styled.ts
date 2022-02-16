@@ -24,7 +24,7 @@ export const MenuTabs = styled('div')({
   fontFamily: '"Ubuntu", sans-serif',
   margin: '0px',
   position: 'relative',
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('lg')]: {
     height: `calc(100vh - ${HEADER_HEIGHT_IPAD})`,
     maxWidth: '205px',
     fontSize: '18px',
@@ -39,11 +39,23 @@ export const MenuTabs = styled('div')({
 export const LeftArrow = styled(leftArrow)({
   display: 'block',
   marginRight: '10px',
+  color: 'black',
+  position: 'absolute',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+  zIndex: '15',
 });
 
 export const RightArrow = styled(rightArrow)({
   display: 'block',
   marginRight: '10px',
+  color: 'black',
+  position: 'absolute',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+  zIndex: '15',
 });
 
 export const RightArrowBox = styled('div')({
@@ -53,7 +65,6 @@ export const RightArrowBox = styled('div')({
   right: '12%',
   top: '1%',
   minWidth: '280px !important',
-  cursor: 'pointer',
   padding: '10px 0px',
 });
 
@@ -64,7 +75,6 @@ export const LeftArrowBox = styled('div')({
   right: '5%',
   top: '1%',
   minWidth: '280px !important',
-  cursor: 'pointer',
   padding: '10px 0px',
 });
 
@@ -76,13 +86,11 @@ export const MenuTabsWrapper = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
-  [theme.breakpoints.down('md')]: {
+  '@media(max-width: 1110px)': {
     display: 'none',
   },
-  [theme.breakpoints.up('md')]: {
-    paddingTop: '30px',
-  },
-  [theme.breakpoints.up('xl')]: {
+  '@media(min-width: 1110px)': {
+    display: 'flex',
     paddingTop: '50px',
   },
 });
@@ -95,7 +103,7 @@ export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({
 export const ItemText = styled(ListItemText)({
   '& span': {
     display: 'block !important',
-    [theme.breakpoints.up('md')]: {
+    '@media(min-width: 1110px)': {
       fontSize: '18px',
     },
     [theme.breakpoints.up('xl')]: {
@@ -108,7 +116,7 @@ export const useListStyles = makeStyles({
   default: {
     background: 'none',
     color: 'black',
-    [theme.breakpoints.up('md')]: {
+    '@media(min-width: 1110px)': {
       paddingLeft: '13px',
     },
     [theme.breakpoints.up('xl')]: {
@@ -120,7 +128,7 @@ export const useListStyles = makeStyles({
       paddingLeft: '-10px',
     },
     '& svg': {
-      [theme.breakpoints.up('md')]: {
+      '@media(min-width: 1110px)': {
         width: '35px',
         height: '35px',
       },
@@ -137,7 +145,7 @@ export const useListStyles = makeStyles({
   },
   selected: {
     width: `calc(100% + ${BORDER_CANCELER}px)`,
-    [theme.breakpoints.up('md')]: {
+    '@media(min-width: 1110px)': {
       paddingLeft: '25px !important',
     },
     [theme.breakpoints.up('xl')]: {
@@ -158,7 +166,7 @@ export const useListStyles = makeStyles({
     '& svg': {
       width: '40px',
       height: '40px',
-      [theme.breakpoints.up('md')]: {
+      '@media(min-width: 1110px)': {
         width: '35px',
         height: '35px',
       },
@@ -172,7 +180,7 @@ export const useListStyles = makeStyles({
     '& span': {
       fontFamily: 'Ubuntu, sans-serif',
       fontWeight: 500,
-      [theme.breakpoints.up('md')]: {
+      '@media(min-width: 1110px)': {
         fontSize: '18px',
       },
       [theme.breakpoints.up('xl')]: {
