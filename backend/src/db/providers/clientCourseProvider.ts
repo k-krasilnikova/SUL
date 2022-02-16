@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 import ClientCourseModel from '../models/ClientCourses';
 
