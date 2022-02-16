@@ -15,12 +15,7 @@ const approvePendingCourse = async (
       throw new BadRequestError('Invalid query.');
     }
     const courseStatus = await getStatusProvider(clientCourseId);
-    if (
-      courseStatus?.status === CourseStatus.testing ||
-      courseStatus?.status === CourseStatus.rejected ||
-      courseStatus?.status === CourseStatus.started ||
-      courseStatus?.status === CourseStatus.completed
-    ) {
+    if (courseStatus?.status !== CourseStatus.pending) {
       throw new BadRequestError(`Can't approve course in status: ${courseStatus.status}`);
     }
     await updateCourseStatus(clientCourseId, CourseStatus.approved);
