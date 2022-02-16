@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import CommonHttpError from 'classes/errors/common/CommonHttpError';
 
 type TErrorHandler = (

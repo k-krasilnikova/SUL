@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import { saveTokenProvider } from 'db/providers/authProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';

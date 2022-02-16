@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import isExpectedHttpError from 'utils/typeGuards/isExpectedHttpError';
 import { verifyAccessToken } from 'utils/auth/authUtils';
 import UnauthorizedError from 'classes/errors/clientErrors/UnauthorizedError';

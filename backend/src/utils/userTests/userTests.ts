@@ -1,3 +1,4 @@
+import { TWO_DIGITS } from 'config/constants';
 import { IAnswer, TCorrectAnswers } from 'interfaces/Ientities/Itest';
 
 const checkTestResults = (
@@ -21,7 +22,7 @@ const countTestResult = (
   trueAnswers: TCorrectAnswers<IAnswer, 'aN', 'correctAnswer'>[],
 ) => {
   const pureAnswers = trueAnswers.length - wrongAnswers.length;
-  return parseFloat((pureAnswers / trueAnswers.length).toFixed(2));
+  return parseFloat((pureAnswers / trueAnswers.length).toFixed(TWO_DIGITS));
 };
 
 export { checkTestResults, countTestResult, IAnswer };

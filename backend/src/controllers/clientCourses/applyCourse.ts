@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import { applyCourseProvider, getClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
 import { INITIAL_INDX } from 'config/constants';

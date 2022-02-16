@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import { clearTokenProvider } from 'db/providers/authProvider';
 
 const logout = async (

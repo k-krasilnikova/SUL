@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import { getMaterialsProvider } from 'db/providers/courseProvider';
 
 const getMaterials = async (req: Request, res: Response, next: NextFunction) => {

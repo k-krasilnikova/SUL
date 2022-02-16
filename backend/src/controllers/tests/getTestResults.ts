@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import { PASS_THRESHOLD } from 'config/constants';
 import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
@@ -17,7 +18,7 @@ const getTestResults = async (
 
     const courseStatus = await getStatusProvider(courseId);
     if (!courseStatus || courseStatus?.status !== CourseStatus.testing) {
-      throw new BadRequestError('test is not started');
+      throw new BadRequestError("Test hasn't been started.");
     }
 
     const correctAnswers = await getTrueAnswersProvider(testId);
