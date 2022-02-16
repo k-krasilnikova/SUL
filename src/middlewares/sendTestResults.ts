@@ -1,7 +1,4 @@
-import { Request, Response } from 'express';
-
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { isError } from 'utils/typeGuards/isError';
+import { NextFunction, Request, Response } from 'express';
 
 const unitTestResults = async (
   req: Request,
@@ -9,7 +6,7 @@ const unitTestResults = async (
     { result: number; updatedSkills: string[]; newSkills: string[] },
     { id: string; result: number; achievments: { newSkills: string[]; updatedSkills: string[] } }
   >,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   try {
     const {
@@ -18,9 +15,7 @@ const unitTestResults = async (
     } = res.locals;
     res.json({ result, newSkills, updatedSkills });
   } catch (error) {
-    if (isError(error)) {
-      next(error);
-    }
+    next(error);
   }
 };
 

@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { finished } from 'stream';
 import winston from 'winston';
 
 import { ENVIROMENTS } from 'config/constants';
 
-const loggerMiddleware = (req: Request, res: Response, next: () => void) => {
+const loggerMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const { ip, method, url } = req;
   const startTime = new Date();
 

@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { updateCourseStatus } from 'db/providers/clientCourseProvider';
+import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 interface DeclinePendingCourseRequest extends Request {
   body: { id: string };
@@ -11,12 +11,22 @@ interface DeclinePendingCourseRequest extends Request {
 const declinePendingCourse = async (
   req: DeclinePendingCourseRequest,
   res: Response,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   const { id: clientCourseId } = req.body;
   try {
+    const courseStatus = await getStatusProvider(clientCourseId);
+    if (
+      courseStatus?.status === CourseStatus.approved ||
+      courseStatus?.status === CourseStatus.testing ||
+      courseStatus?.status === CourseStatus.started ||
+      courseStatus?.status === CourseStatus.completed
+    ) {
+      throw new BadRequestError(`Can't decline course with status: ${courseStatus.status}`);
+    }
     await updateCourseStatus(clientCourseId, CourseStatus.rejected);
-    res.json({ status: 'Course was declined' });
+    res.json('Course was declined');
+    return;
   } catch (error) {
     next(error);
   }

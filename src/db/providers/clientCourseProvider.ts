@@ -87,7 +87,10 @@ const updateCourseStatus = async (courseId: string, courseStatus: string) => {
     { _id: courseId },
     { $set: { status: courseStatus } },
   );
-  return updatedCourse;
+  if (updatedCourse) {
+    return updatedCourse;
+  }
+  throw new BadRequestError('Bad request. Check the data being sent');
 };
 
 const getCourseTechnology = async (clientCourseId: string) => {

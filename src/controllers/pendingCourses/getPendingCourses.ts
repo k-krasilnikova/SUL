@@ -1,15 +1,13 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { ObjectId } from 'mongoose';
 
 import { IPendingCourses, IUser } from 'interfaces/Ientities/Iusers';
 import { getPendingCoursesProvider } from 'db/providers/pendingCoursesProvider';
-import { isError } from 'utils/typeGuards/isError';
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 
 const getPendingCourses = async (
   req: Request,
   res: Response<IPendingCourses | ObjectId[], { id: string }>,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   const { id: userId } = res.locals;
   try {
@@ -17,9 +15,7 @@ const getPendingCourses = async (
     res.json(user.pendingCourses);
     next();
   } catch (error) {
-    if (isError(error)) {
-      next(error);
-    }
+    next(error);
   }
 };
 
