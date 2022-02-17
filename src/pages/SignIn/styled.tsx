@@ -21,7 +21,6 @@ const SignMain = styled(Box)({
   },
 });
 
-// Родительский Грид
 const SignMainGrid = styled(Grid)({
   height: '100% !important',
   minHeight: '100vh',
@@ -49,7 +48,6 @@ const SignMainGrid = styled(Grid)({
   },
 });
 
-// Родительский Левый Ьлок
 const SignPresGrid = styled(Grid)({
   padding: '0px 5px!important',
   margin: '0px !important',
@@ -63,7 +61,6 @@ const SignPresGrid = styled(Grid)({
   },
 });
 
-// Вроппер для Изображения
 const ImageWrapper = styled(Box)({
   width: '100%',
   maxWidth: '716px',
@@ -84,7 +81,6 @@ const ImageWrapper = styled(Box)({
   },
 });
 
-// Родительский Правый блок
 const SignFormGrid = styled(Grid)({
   display: 'grid',
   gridTemplateRows: '30% 70%',
@@ -114,7 +110,6 @@ const SignFormGrid = styled(Grid)({
   },
 });
 
-// Блок с Описанием
 const DefinitionWrapper = styled(Box)({
   alignSelf: 'start',
   justifySelf: 'center',
@@ -148,7 +143,6 @@ const DefinitionWrapper = styled(Box)({
   },
 });
 
-// Блок формы
 const SignWrapper = styled(Box)({
   alignSelf: 'start',
   justifySelf: 'center',
@@ -187,7 +181,6 @@ const SignWrapper = styled(Box)({
   },
 });
 
-// Враппер для формы
 const FormBox = styled(Box)({
   marginTop: '51px',
   width: '282px',
@@ -204,14 +197,12 @@ const FormBox = styled(Box)({
   },
 });
 
-// Форма
 const ItemsBox = styled(Box)({
   margin: '0px !important',
   padding: '0px !important',
   width: '100%',
 });
 
-// Грид для элементов формы
 const GridWrapper = styled(Grid)({
   width: '100% !important',
   margin: '0px !important ',
@@ -236,7 +227,6 @@ const GridWrapper = styled(Grid)({
   },
 });
 
-// Вроппер для инпута
 const GridSignInput = styled(Grid)({
   margin: '0 !important ',
   padding: '0px !important',
@@ -356,7 +346,6 @@ const GridError = styled(Grid)({
   },
 });
 
-// Враппер для Кнопки
 const GridButton = styled(Grid)({
   display: 'flex',
   height: '43px',
@@ -376,7 +365,6 @@ const GridButton = styled(Grid)({
   },
 });
 
-// Кнопка
 const SignButton = styled(Button)({
   fontSize: '18px !important',
   fontWeight: '400 !important',
