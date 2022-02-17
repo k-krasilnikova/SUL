@@ -16,6 +16,8 @@ const PAGES = {
   coursesList: 'coursesList',
 };
 
+const XL = 1440;
+
 const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const params = useParams();
   const useGetInfo = page === PAGES.coursesList ? useGetCourseInfo : useGetClientCourseInfo;
@@ -38,7 +40,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     mutate(params.courseId);
   };
 
-  const windowWidth = window.innerWidth < 1440 ? 'small' : 'large';
+  const windowWidth = window.innerWidth < XL ? 'small' : 'large';
 
   return data ? (
     <DetailedCourse

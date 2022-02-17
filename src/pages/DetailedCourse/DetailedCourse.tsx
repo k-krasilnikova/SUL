@@ -12,6 +12,7 @@ import { PATHS } from 'constants/routes';
 import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
+import { backIconMobile } from 'icons';
 
 import {
   BackButton,
@@ -31,6 +32,8 @@ import {
   StartCourseButton,
   DetailedCourseTextMobile,
   ButtonFullText,
+  BackArrow,
+  BackLink,
 } from './styled';
 
 interface IProps {
@@ -63,13 +66,14 @@ const DetailedCourse: React.FC<IProps> = ({
   isFullTextOpen,
   toggleFullText,
 }) => (
-  <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
+  <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
-      <Link to={PATHS.coursesList}>
+      <BackLink to={PATHS.coursesList}>
         <BackButton variant="medium" color="primary">
           Back
         </BackButton>
-      </Link>
+        <BackArrow alt="" src={backIconMobile} />
+      </BackLink>
       <InnerWrapper>
         <ImageWrapper>
           <Image />

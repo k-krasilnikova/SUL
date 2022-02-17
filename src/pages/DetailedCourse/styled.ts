@@ -4,6 +4,7 @@ import { Grid, Typography, Button as TextButton } from '@mui/material';
 
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
+import { Link } from 'react-router-dom';
 
 export const DetailedCourseWrapper = styled(Box)({
   [theme.breakpoints.up('md')]: {
@@ -175,8 +176,6 @@ export const SimilarCoursesTitle = styled(Typography)({
 });
 
 export const BackButton = styled(Button)({
-  height: '39px',
-  width: '84px',
   [theme.breakpoints.up('xs')]: {
     display: 'none!important',
   },
@@ -220,6 +219,14 @@ export const StartButton = styled(Button)({
 export const DetailsButton = styled(Button)({
   height: '50px',
   width: '150px',
+  [theme.breakpoints.up('sm')]: {
+    height: '44px',
+    width: '131px',
+    marginRight: '9px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
+  },
   [theme.breakpoints.up('md')]: {
     height: '35px',
     width: '105px',
@@ -238,6 +245,14 @@ export const DetailsButton = styled(Button)({
 export const StartCourseButton = styled(Button)({
   height: '50px',
   width: '150px',
+  [theme.breakpoints.up('sm')]: {
+    height: '44px',
+    width: '131px',
+    marginRight: '26px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
+  },
   [theme.breakpoints.up('md')]: {
     height: '35px',
     width: '105px',
@@ -286,4 +301,20 @@ export const ButtonFullText = styled(TextButton)({
   display: 'block!important',
   color: '#0A5EDC !important',
   padding: '0px !important',
+});
+
+export const BackArrow = styled('img')({
+  [theme.breakpoints.up('xs')]: {
+    display: 'inline-block',
+    margin: '22px 23px 10px 16px',
+  },
+  [theme.breakpoints.up('md')]: {
+    display: 'none',
+  },
+});
+export const BackLink = styled(Link)({
+  [theme.breakpoints.up('xs')]: {
+    height: 'fit-content',
+    width: 'fit-content',
+  },
 });
