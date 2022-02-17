@@ -2,12 +2,14 @@ import { Params } from 'react-router';
 
 export interface ITest {
   test: {
+    _id: string;
     title: string | undefined;
-    questions: Array<{
+    questions: {
       question: string;
-      answers: { variant: string; isCorrect: boolean };
-    }>;
-    timeout: number | undefined;
+      qN: number;
+      answers: { variant: string; aN: number }[];
+    }[];
+    timeout: number;
   };
 }
 
@@ -17,7 +19,7 @@ export interface IAnswers {
 }
 
 export interface IQuestionObject {
-  answers: Array<{ variant: string; aN: number }>;
+  answers: { variant: string; aN: number }[];
   question: string;
   qN: number;
 }
@@ -27,7 +29,14 @@ export interface IQuestionItem {
   value: {
     [key: number]: number;
   };
-  questionItem?: IQuestionObject;
+  questionItem: {
+    question: string;
+    qN: number;
+    answers: {
+      aN: number;
+      variant: string;
+    }[];
+  };
   stage?: number | undefined;
   maxStage?: number | undefined;
 }
@@ -42,6 +51,7 @@ export interface IPassingTest {
   stage: number;
   maxStage: number;
   handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmitResult: () => void;
   value: {
     [key: number]: number;
   };
@@ -49,6 +59,27 @@ export interface IPassingTest {
   resultEnabled: boolean;
   stageNext: () => void;
   stageBack: () => void;
-  questionStageItem: IQuestionObject;
+  questionStageItem: {
+    question: string;
+    qN: number;
+    answers: {
+      aN: number;
+      variant: string;
+    }[];
+  };
   children?: React.ReactChild;
+  testItem?: {
+    _id: string;
+    title: string | undefined;
+    questions: {
+      question: string;
+      qN: number;
+      answers: {
+        aN: number;
+        variant: string;
+      }[];
+    }[];
+    timeout: number;
+  };
+  isLoading: boolean;
 }
