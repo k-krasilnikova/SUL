@@ -35,7 +35,7 @@ const CoursesList: React.FC<ResponseDataType> = ({
       <PageContainer container rowSpacing="24px" columnSpacing="30px">
         {data?.map((course) => (
           <Suspense fallback={<Loader color="primary" type={LOADER.content} />}>
-            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12} container>
+            <GridItem key={course._id} item xl={6} lg={12} md={12} sm={12} container>
               <CourseItem
                 key={`${course._id}_item`}
                 title={course?.title}
