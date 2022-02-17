@@ -69,7 +69,7 @@ const PassingTest: React.FC<IPassingTest> = ({
             variant="medium"
             disabled={Boolean(!value[questionStageItem.qN])}
             component={Link}
-            to={`${PATHS.myCourses}/${params.courseId}/test/result`}
+            to={`${PATHS.learnCourse}/${params.courseId}/test/result`}
           >
             Result
           </ResultButton>
