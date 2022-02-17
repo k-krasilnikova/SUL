@@ -10,7 +10,7 @@ import { NO_CONTENT } from 'constants/messages';
 import { PATHS } from 'constants/routes';
 import { MIN_STAGE } from 'constants/test';
 import { LOADER } from 'constants/loaderTypes';
-import { IPassingTest } from 'types/test';
+import { IPassingTestProps } from 'types/test';
 
 import {
   BackButton,
@@ -27,7 +27,7 @@ import {
 } from './styled';
 import QuestionItem from './QuestionItem';
 
-const PassingTest: React.FC<IPassingTest> = ({
+const PassingTest: React.FC<IPassingTestProps> = ({
   stage,
   maxStage,
   handleChange,

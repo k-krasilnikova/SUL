@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import { RadioGroup } from '@mui/material';
 
 import { checkbox, checkboxChecked } from 'icons';
-import { IQuestionItem } from 'types/test';
+import { IQuestionProps } from 'types/test';
 
 import {
   AnswersBox,
@@ -15,7 +15,7 @@ import {
   TestQuestion,
 } from './styled';
 
-const QuestionItem: React.FC<IQuestionItem> = ({
+const QuestionItem: React.FC<IQuestionProps> = ({
   questionItem,
   stage,
   maxStage,
