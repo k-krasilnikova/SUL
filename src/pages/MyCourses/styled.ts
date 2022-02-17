@@ -108,3 +108,9 @@ export const StartCourseButton = styled(Button)({
     padding: '12px 12px!important',
   },
 });
+
+export const ContinueTestButton = styled(Button)({
+  height: '50px',
+  width: '160px',
+  marginRight: '40px !important',
+});
