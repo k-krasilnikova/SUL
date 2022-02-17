@@ -8,12 +8,16 @@ import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/user
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const getTestResults = async (
-  req: Request<Record<string, never>, Record<string, never>, { id: string; answers: IAnswer[] }>,
+  req: Request<
+    Record<string, never>,
+    Record<string, never>,
+    { testId: string; answers: IAnswer[] }
+  >,
   res: Response<{ result: number; testStatus: string }, { id: string; result: number }>,
   next: NextFunction,
 ) => {
   try {
-    const { id: testId, answers } = req.body;
+    const { testId, answers } = req.body;
     const { id: courseId } = req.params;
 
     const courseStatus = await getStatusProvider(courseId);
