@@ -9,6 +9,7 @@ import { PATHS } from 'constants/routes';
 import { ResponseDataMyCourses } from 'types/responseDataMyCourses';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
+import { STATUS } from 'constants/statuses';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 
 import {
@@ -27,18 +28,20 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
       <Loader color="primary" type={LOADER.content} />
     ) : data?.length ? (
       <PageContainer container>
-        {data?.map((object) => (
-          <Suspense fallback={<Loader color="primary" type={LOADER.content} key={object._id} />}>
-            <GridItem key={object._id} item xl={6} lg={12} md={12} sm={12}>
+        {data?.map((clientCourse) => (
+          <Suspense
+            fallback={<Loader color="primary" type={LOADER.content} key={clientCourse._id} />}
+          >
+            <GridItem key={clientCourse._id} item xl={6} lg={12} md={12} sm={12}>
               <CourseItem
-                key={object.course._id}
-                title={object.course.title}
-                description={object.course.description}
-                duration={object.course.duration}
-                lessons={object.course.lessons}
+                key={clientCourse.course._id}
+                title={clientCourse.course.title}
+                description={clientCourse.course.description}
+                duration={clientCourse.course.duration}
+                lessons={clientCourse.course.lessons}
                 pageName="myCourses"
-                status={object.status}
-                progress={countProgress(object.progress)}
+                status={clientCourse.status}
+                progress={countProgress(clientCourse.progress)}
               >
                 <CourseActionsBox>
                   <CourseActions>
@@ -46,7 +49,7 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
                       <DetailsButton variant="mediumOutlined">Details</DetailsButton>
                     </Link>
 
-                    {clientCourse.status === 'testing' ? (
+                    {clientCourse.status === STATUS.testing ? (
                       <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
                         <ContinueTestButton color="primary" variant="mediumContained">
                           Continue the test
