@@ -17,7 +17,7 @@ const startTest = async (req: Request, res: Response, next: NextFunction) => {
 
     if (courseStatus !== CourseStatus.started) {
       throw new BadRequestError(
-        `Failed: can not start testing course with status: ${courseStatus}`,
+        `Failed: can not start testing course with status: ${courseStatus}.`,
       );
     }
 
@@ -26,7 +26,7 @@ const startTest = async (req: Request, res: Response, next: NextFunction) => {
     }
 
     await updateCourseStatus(clientCourseId, CourseStatus.testing);
-    res.json('Test started successfully ');
+    res.json('Test has been started successfully.');
   } catch (err) {
     next(err);
   }
