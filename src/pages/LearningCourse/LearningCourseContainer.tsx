@@ -7,6 +7,7 @@ import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
 import { MATERIAL } from 'constants/materials';
 import { defineMaterialType } from 'utils/helpers/defineMaterialType';
 import Loader from 'components/Loader';
+
 import LearningCourse from './LearningCourse';
 
 const MIN_STAGE = 1;
