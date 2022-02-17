@@ -110,7 +110,20 @@ export const StartCourseButton = styled(Button)({
 });
 
 export const ContinueTestButton = styled(Button)({
-  height: '50px',
-  width: '160px',
-  marginRight: '40px !important',
+  [theme.breakpoints.up('sm')]: {
+    height: '44px',
+    width: '131px',
+    marginRight: '26px !important',
+    fontSize: '12px!important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '50px',
+    width: '150px',
+    marginRight: '40px !important',
+    fontSize: '14px!important',
+    lineHeight: '22px',
+    padding: '12px 12px!important',
+  },
 });
