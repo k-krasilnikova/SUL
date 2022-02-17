@@ -182,8 +182,8 @@ export const InfoContainer = styled(Box)({
   },
   height: 'fit-content',
   display: 'flex',
-  alignItems: 'end',
-  alignSelf: 'end',
+  alignItems: 'end !important',
+  alignSelf: 'end !important',
 });
 
 export const InfoItem = styled('div')({

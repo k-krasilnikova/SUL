@@ -13,7 +13,7 @@ export const PageContainer = styled(Grid)({
     margin: '0px !important',
   },
   width: '100%',
-  paddingRight: '8.4%',
+  paddingRight: '8.314%',
   paddingTop: '2.5%',
   paddingLeft: '1.5%',
 });
