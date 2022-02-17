@@ -32,7 +32,7 @@ const QuestionItem: React.FC<IQuestionItem> = ({
       </StageWrapper>
     </QuestionAndStageBox>
     <AnswersBox>
-      {questionItem?.answers.map((answer) => (
+      {questionItem.answers.map((answer) => (
         <RadioGroup
           key={answer.aN}
           value={value[questionItem.qN] || null}

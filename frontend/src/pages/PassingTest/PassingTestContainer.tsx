@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
-import { INITIAL_TEST, MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
+import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
+import useGetCourseTest from 'api/test/getCourseTest';
+import useSendTestResult from 'api/test/sendTestResult';
 
 import PassingTest from './PassingTest';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
+  const { data, isLoading } = useGetCourseTest(params.courseId);
 
-  const maxStage = INITIAL_TEST ? INITIAL_TEST.questions.length : MAX_STAGE_INITIAL;
+  const { mutate } = useSendTestResult({ courseId: params.courseId });
+
+  const courseTest = data?.length ? data[0].test : undefined;
+  const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
 
   const [stage, setStage] = useState(1);
   const [values, setValues] = React.useState({});
@@ -21,6 +27,14 @@ const PassingTestContainer: React.FC = () => {
     setStage(stage + STAGE_CHANGE);
   };
 
+  const handleSubmitResult = () => {
+    const resultData = {
+      id: courseTest?._id,
+      answers: Object.entries(values).map(([key, value]) => ({ qN: key, aN: value })),
+    };
+    mutate(resultData);
+  };
+
   const stageBack = () => {
     if (stage > MIN_STAGE) {
       setStage(stage - STAGE_CHANGE);
@@ -28,20 +42,27 @@ const PassingTestContainer: React.FC = () => {
   };
 
   const resultEnabled = stage === maxStage;
-  const questionStageItem = INITIAL_TEST.questions[stage - 1];
+  const questionStageItem = courseTest?.questions[stage - 1];
 
   return (
-    <PassingTest
-      stage={stage}
-      maxStage={maxStage}
-      handleChange={handleChange}
-      value={values}
-      params={params}
-      resultEnabled={resultEnabled}
-      stageNext={stageNext}
-      stageBack={stageBack}
-      questionStageItem={questionStageItem}
-    />
+    <>
+      {questionStageItem && (
+        <PassingTest
+          stage={stage}
+          maxStage={maxStage}
+          handleChange={handleChange}
+          value={values}
+          params={params}
+          resultEnabled={resultEnabled}
+          stageNext={stageNext}
+          stageBack={stageBack}
+          testItem={courseTest}
+          questionStageItem={questionStageItem}
+          isLoading={isLoading}
+          handleSubmitResult={handleSubmitResult}
+        />
+      )}
+    </>
   );
 };
 
