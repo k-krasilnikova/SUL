@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 import ClientCourseModel from '../models/ClientCourses';
 
@@ -18,9 +18,6 @@ const getClientCourseProvider = async (clientCourseId: string) => {
     .lean();
   if (!clientCourse) {
     throw new NotFoundError('Course not found.');
-  }
-  if (clientCourse.status === CourseStatus.testing) {
-    throw new BadRequestError('Testing have already been started.');
   }
   return clientCourse;
 };
@@ -87,7 +84,10 @@ const updateCourseStatus = async (courseId: string, courseStatus: string) => {
     { _id: courseId },
     { $set: { status: courseStatus } },
   );
-  return updatedCourse;
+  if (updatedCourse) {
+    return updatedCourse;
+  }
+  throw new BadRequestError('Bad request. Check the data being sent');
 };
 
 export {

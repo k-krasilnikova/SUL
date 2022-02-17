@@ -1,22 +1,19 @@
-import { getEmployeesProvider } from 'db/providers/userProvider';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { isError } from 'utils/typeGuards/isError';
+import { getEmployeesProvider } from 'db/providers/userProvider';
+import { IUser } from 'interfaces/Ientities/Iusers';
 
 const getEmployees = async (
   req: Request,
-  res: Response<unknown, { id: string }>,
-  next: TMiddlewareCall,
+  res: Response<IUser[], { id: string }>,
+  next: NextFunction,
 ) => {
   try {
     const { id: managerId } = res.locals;
     const employees = await getEmployeesProvider(managerId);
     res.json(employees);
   } catch (error) {
-    if (isError(error)) {
-      next(error);
-    }
+    next(error);
   }
 };
 

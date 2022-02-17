@@ -20,6 +20,7 @@ pendingCoursesRouter.put(
 pendingCoursesRouter.put(
   `${Params.noParams}${SubRoutes.declineCourse}`,
   withAuth([USER_ROLES.MANAGER]),
+  applyMiddlewareManager,
   declinePendingCourse,
 );
 

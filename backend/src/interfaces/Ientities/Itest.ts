@@ -20,4 +20,11 @@ type TestRuslt = { result: number; testStatus: string };
 
 type TestDb = { test: ITest };
 
-export { ITest, TestDb, TestRuslt, TAchievments };
+interface IAnswer {
+  qN: number;
+  aN: number;
+}
+
+type TCorrectAnswers<T, K extends keyof T, R extends PropertyKey> = Omit<T, K> & { [P in R]: T[K] };
+
+export { ITest, TestDb, IAnswer, TCorrectAnswers, TestRuslt, TAchievments };

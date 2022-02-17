@@ -1,12 +1,9 @@
-import { Request, Response } from 'express';
-
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { isError } from 'utils/typeGuards/isError';
+import { NextFunction, Request, Response } from 'express';
 
 const applyMiddlewareManager = async (
-  req: Request<Record<string, string>, Record<string, never>, { id: string }>,
+  req: Request<Record<string, string | undefined>, Record<string, never>, { id: string }>,
   res: Response<
-    unknown,
+    never,
     {
       id: string;
       courseId: string | undefined;
@@ -14,7 +11,7 @@ const applyMiddlewareManager = async (
       managerId: string | undefined;
     }
   >,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   try {
     const { id: managerId } = res.locals;
@@ -25,9 +22,7 @@ const applyMiddlewareManager = async (
     res.locals.managerId = managerId;
     next();
   } catch (error) {
-    if (isError(error)) {
-      next(error);
-    }
+    next(error);
   }
 };
 

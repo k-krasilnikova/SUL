@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
-import { INITIAL_TEST } from 'constants/test';
+import { INITIAL_TEST, MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 
 import PassingTest from './PassingTest';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
-  const MAX_STAGE_INITIAL = 1;
-  const STAGE_CHANGE = 1;
+
   const maxStage = INITIAL_TEST ? INITIAL_TEST.questions.length : MAX_STAGE_INITIAL;
 
   const [stage, setStage] = useState(1);
-  const [resultEnabled, setResultEnabled] = useState(false);
   const [values, setValues] = React.useState({});
 
   const handleChange = (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,14 +18,16 @@ const PassingTestContainer: React.FC = () => {
   };
 
   const stageNext = () => {
-    if (stage < maxStage) {
-      if (stage + STAGE_CHANGE === maxStage && !resultEnabled) {
-        setResultEnabled(true);
-      }
-      setStage(stage + STAGE_CHANGE);
+    setStage(stage + STAGE_CHANGE);
+  };
+
+  const stageBack = () => {
+    if (stage > MIN_STAGE) {
+      setStage(stage - STAGE_CHANGE);
     }
   };
 
+  const resultEnabled = stage === maxStage;
   const questionStageItem = INITIAL_TEST.questions[stage - 1];
 
   return (
@@ -39,6 +39,7 @@ const PassingTestContainer: React.FC = () => {
       params={params}
       resultEnabled={resultEnabled}
       stageNext={stageNext}
+      stageBack={stageBack}
       questionStageItem={questionStageItem}
     />
   );

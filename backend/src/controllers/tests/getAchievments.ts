@@ -8,7 +8,7 @@ import CourseStatus from 'enums/coursesEnums';
 import { TAchievments } from 'interfaces/Ientities/Itest';
 
 const getAchievments = async (
-  req: Request<Record<string, string>, Record<string, never>, { id: string }>,
+  req: Request,
   res: Response<void, { id: string; achievments: TAchievments }>,
   next: NextFunction,
 ) => {

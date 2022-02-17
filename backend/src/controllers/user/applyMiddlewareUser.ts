@@ -1,30 +1,25 @@
-import { Request, Response } from 'express';
-
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { isError } from 'utils/typeGuards/isError';
+import { NextFunction, Request, Response } from 'express';
 
 const applyMiddlewareUser = async (
-  req: Request<Record<string, string>, Record<string, never>, { id: string }>,
+  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
   res: Response<
-    unknown,
+    never,
     {
       id: string;
       courseId: string | undefined;
       userId: string | undefined;
     }
   >,
-  next: TMiddlewareCall,
+  next: NextFunction,
 ) => {
   try {
     const { id: userId } = res.locals;
-    const { id: courseId } = req.params;
+    const { id: courseId } = req.body;
     res.locals.courseId = courseId;
     res.locals.userId = userId;
     next();
   } catch (error) {
-    if (isError(error)) {
-      next(error);
-    }
+    next(error);
   }
 };
 
