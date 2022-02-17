@@ -9,6 +9,7 @@ import { PATHS } from 'constants/routes';
 import { ResponseDataMyCourses } from 'types/responseDataMyCourses';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
+import { countProgress } from 'utils/helpers/countCourseProgress';
 
 import {
   PageContainer,
@@ -24,16 +25,19 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
     ) : data?.length ? (
-      <PageContainer container rowSpacing="24px" columnSpacing="30px">
+      <PageContainer container>
         {data?.map((object) => (
           <Suspense fallback={<Loader color="primary" type={LOADER.content} key={object._id} />}>
-            <GridItem key={object._id} item xl={6} lg={6} md={12} sm={12}>
+            <GridItem key={object._id} item xl={6} lg={12} md={12} sm={12}>
               <CourseItem
                 key={object.course._id}
                 title={object.course.title}
                 description={object.course.description}
                 duration={object.course.duration}
                 lessons={object.course.lessons}
+                pageName="myCourses"
+                status={object.status}
+                progress={countProgress(object.progress)}
               >
                 <CourseActionsBox>
                   <CourseActions>
