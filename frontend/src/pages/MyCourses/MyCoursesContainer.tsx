@@ -4,9 +4,11 @@ import { useGetMyCourses } from 'api/myCourses';
 
 import MyCoursesList from './MyCoursesList';
 
+const SM = 425;
+
 const MyCoursesContainer: React.FC = () => {
   const { data, isLoading } = useGetMyCourses();
-  const windowWidth = window.innerWidth < 425 ? 'small' : 'large';
+  const windowWidth = window.innerWidth < SM ? 'small' : 'large';
 
   return (
     <MyCoursesList
