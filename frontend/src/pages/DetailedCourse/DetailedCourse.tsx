@@ -123,7 +123,7 @@ const DetailedCourse: React.FC<IProps> = ({
           )}
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
-          <Grid item xs={8}>
+          <Grid item xs={12}>
             <SimilarCoursesTitle>Similar courses</SimilarCoursesTitle>
             <SimilarCoursesItemWrapper>
               <CourseItem

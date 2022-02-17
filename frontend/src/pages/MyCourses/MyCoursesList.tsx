@@ -18,9 +18,16 @@ import {
   CourseActionsBox,
   DetailsButton,
   StartCourseButton,
+  MobileLink,
 } from './styled';
 
-const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => (
+interface Props {
+  windowWidth?: string;
+}
+
+type MyCoursesProps = ResponseDataMyCourses & Props;
+
+const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, windowWidth }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
@@ -29,29 +36,38 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
         {data?.map((object) => (
           <Suspense fallback={<Loader color="primary" type={LOADER.content} key={object._id} />}>
             <GridItem key={object._id} item xl={6} lg={12} md={12} sm={12}>
-              <CourseItem
-                key={object.course._id}
-                title={object.course.title}
-                description={object.course.description}
-                duration={object.course.duration}
-                lessons={object.course.lessons}
-                pageName="myCourses"
-                status={object.status}
-                progress={countProgress(object.progress)}
+              <MobileLink
+                to={`${PATHS.myCourses}/${object._id}`}
+                onClick={(e) => {
+                  if (windowWidth === 'large') {
+                    e.preventDefault();
+                  }
+                }}
               >
-                <CourseActionsBox>
-                  <CourseActions>
-                    <Link to={`${PATHS.myCourses}/${object._id}`}>
-                      <DetailsButton variant="mediumOutlined">Details</DetailsButton>
-                    </Link>
-                    <Link to={`${PATHS.learnCourse}/${object._id}`}>
-                      <StartCourseButton color="primary" variant="mediumContained">
-                        Start the course
-                      </StartCourseButton>
-                    </Link>
-                  </CourseActions>
-                </CourseActionsBox>
-              </CourseItem>
+                <CourseItem
+                  key={object.course._id}
+                  title={object.course.title}
+                  description={object.course.description}
+                  duration={object.course.duration}
+                  lessons={object.course.lessons}
+                  pageName="myCourses"
+                  status={object.status}
+                  progress={countProgress(object.progress)}
+                >
+                  <CourseActionsBox>
+                    <CourseActions>
+                      <Link to={`${PATHS.myCourses}/${object._id}`}>
+                        <DetailsButton variant="mediumOutlined">Details</DetailsButton>
+                      </Link>
+                      <Link to={`${PATHS.learnCourse}/${object._id}`}>
+                        <StartCourseButton color="primary" variant="mediumContained">
+                          Start the course
+                        </StartCourseButton>
+                      </Link>
+                    </CourseActions>
+                  </CourseActionsBox>
+                </CourseItem>
+              </MobileLink>
             </GridItem>
           </Suspense>
         ))}
