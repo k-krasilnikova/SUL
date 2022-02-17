@@ -1,53 +1,55 @@
 import { Params } from 'react-router';
 
-export interface ITest {
-  test: {
-    _id: string;
-    title: string | undefined;
-    questions: {
-      question: string;
-      qN: number;
-      answers: { variant: string; aN: number }[];
-    }[];
-    timeout: number;
-  };
+export interface ITestResponse {
+  test: ITestItem;
 }
 
-export interface IAnswers {
+export interface ITestItem {
+  _id: string;
+  title: string | undefined;
+  questions: {
+    question: string;
+    qN: number;
+    answers: IAnswer[];
+  }[];
+  timeout: number;
+}
+
+export interface IAnswer {
   variant: string;
   aN: number;
 }
 
 export interface IQuestionObject {
-  answers: { variant: string; aN: number }[];
-  question: string;
   qN: number;
+  question: string;
+  answers: IAnswer[];
 }
 
-export interface IQuestionItem {
+export interface IQuestionProps {
   handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: {
     [key: number]: number;
   };
-  questionItem: {
-    question: string;
-    qN: number;
-    answers: {
-      aN: number;
-      variant: string;
-    }[];
-  };
+  questionItem: IQuestionObject;
   stage?: number | undefined;
   maxStage?: number | undefined;
+}
+
+export interface ISkills {
+  name: string;
+  image: string;
+  score: number;
+  maxScore: number;
 }
 
 export interface ITestResult {
   status?: string;
   isFailed?: boolean;
-  skills?: { name: string; image: string; score: number; maxScore: number; group: string }[];
+  skills?: ISkills[];
 }
 
-export interface IPassingTest {
+export interface IPassingTestProps {
   stage: number;
   maxStage: number;
   handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -59,27 +61,8 @@ export interface IPassingTest {
   resultEnabled: boolean;
   stageNext: () => void;
   stageBack: () => void;
-  questionStageItem: {
-    question: string;
-    qN: number;
-    answers: {
-      aN: number;
-      variant: string;
-    }[];
-  };
+  questionStageItem: IQuestionObject;
   children?: React.ReactChild;
-  testItem?: {
-    _id: string;
-    title: string | undefined;
-    questions: {
-      question: string;
-      qN: number;
-      answers: {
-        aN: number;
-        variant: string;
-      }[];
-    }[];
-    timeout: number;
-  };
+  testItem?: ITestItem;
   isLoading: boolean;
 }
