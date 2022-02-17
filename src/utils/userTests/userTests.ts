@@ -1,9 +1,5 @@
-interface IAnswer {
-  qN: number;
-  aN: number;
-}
-
-type TCorrectAnswers<T, K extends keyof T, R extends PropertyKey> = Omit<T, K> & { [P in R]: T[K] };
+import { TWO_DIGITS } from 'config/constants';
+import { IAnswer, TCorrectAnswers } from 'interfaces/Ientities/Itest';
 
 const checkTestResults = (
   userAnswers: IAnswer[],
@@ -26,7 +22,7 @@ const countTestResult = (
   trueAnswers: TCorrectAnswers<IAnswer, 'aN', 'correctAnswer'>[],
 ) => {
   const pureAnswers = trueAnswers.length - wrongAnswers.length;
-  return parseFloat((pureAnswers / trueAnswers.length).toFixed(2));
+  return parseFloat((pureAnswers / trueAnswers.length).toFixed(TWO_DIGITS));
 };
 
 export { checkTestResults, countTestResult, IAnswer };

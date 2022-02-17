@@ -1,13 +1,12 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
 import isExpectedHttpError from 'utils/typeGuards/isExpectedHttpError';
 import { verifyAccessToken } from 'utils/auth/authUtils';
 import UnauthorizedError from 'classes/errors/clientErrors/UnauthorizedError';
 import ForbiddenError from 'classes/errors/clientErrors/ForbiddenError';
 
 const withAuth =
-  (roles: Array<string>) => async (req: Request, res: Response, next: TMiddlewareCall) => {
+  (roles: Array<string>) => async (req: Request, res: Response, next: NextFunction) => {
     try {
       const accessToken = req.headers.authorization?.split(' ')[1];
 

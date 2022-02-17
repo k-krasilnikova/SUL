@@ -16,7 +16,7 @@ import unitTestResults from 'controllers/tests/sendTestResults';
 
 const clientCoursesRouter = Router();
 
-clientCoursesRouter.get(
+clientCoursesRouter.put(
   `${Params.id}${SubRoutes.test}${SubRoutes.result}`,
   withAuth([USER_ROLES.EMPLOYEE]),
   getTestResults,

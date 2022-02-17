@@ -1,22 +1,26 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-import { TMiddlewareCall } from 'interfaces/commonMiddleware';
-import { updateCourseStatus } from 'db/providers/clientCourseProvider';
+import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const approvePendingCourse = async (
   req: Request,
-  res: Response<unknown, { courseId: string | undefined }>,
-  next: TMiddlewareCall,
+  res: Response<string, { courseId: string | undefined }>,
+  next: NextFunction,
 ) => {
   try {
     const { courseId: clientCourseId } = res.locals;
     if (!clientCourseId) {
       throw new BadRequestError('Invalid query.');
     }
+    const courseStatus = await getStatusProvider(clientCourseId);
+    if (courseStatus?.status !== CourseStatus.pending) {
+      throw new BadRequestError(`Can't approve course in status: ${courseStatus.status}`);
+    }
     await updateCourseStatus(clientCourseId, CourseStatus.approved);
-    res.json({ status: 'Course was approved' });
+    res.json('Course was approved');
+    return;
   } catch (error) {
     next(error);
   }
