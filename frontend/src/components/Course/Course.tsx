@@ -59,7 +59,9 @@ const CourseItem: React.FC<Props> = ({
       <CourseTextContainer>
         <CourseTitle type={type}>{title}</CourseTitle>
         <CourseDescriptionWrapper type={type}>
-          <CourseDescription type={type}>{shortifyCourseDescription(description, windowWidth)}</CourseDescription>
+          <CourseDescription type={type}>
+            {shortifyCourseDescription(description, windowWidth)}
+          </CourseDescription>
         </CourseDescriptionWrapper>
         <MobileCourseInfoBox>
           <CourseInfo duration={duration} lessons={lessons} />

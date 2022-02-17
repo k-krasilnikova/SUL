@@ -60,7 +60,7 @@ export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type })
     padding: '16px 0 16px 16px',
     minHeight: '295px',
   },
-});
+}));
 
 export const CourseTextContainer = styled('div')({
   flexGrow: '2',
@@ -154,29 +154,6 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
   },
   fontFamily: '"Ubuntu", sans-serif',
   color: ' #2C2525',
-});
-
-export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, lineHeight }) => ({
-  [theme.breakpoints.up('xs')]: {
-    display: 'none',
-  },
-  [theme.breakpoints.up('sm')]: {
-    display: 'block',
-    fontSize: '14px',
-    fontWeight: 'normal',
-    lineHeight: '22px',
-    letterSpacing: '-0.4px !important',
-    textAlign: 'left',
-    padding: '0px',
-    margin: '0px 35px 9px 7px',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '18px',
-    lineHeight: '27px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    fontSize: '16px',
-    lineHeight: '21px',
 }));
 
 export const CourseDescription = styled('p')<InfoContainerTypes>(
@@ -225,11 +202,6 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
     }),
     padding: '0px',
     margin: '0px',
-  },
-  color: '#131313',
-  fontFamily: '"Ubuntu", sans-serif',
-  ...(fontSize && {
-    fontSize: `${fontSize}px`,
   }),
 );
 
