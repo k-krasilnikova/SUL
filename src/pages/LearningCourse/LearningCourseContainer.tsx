@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
-import { MATERIAL } from 'constants/materials';
-import { defineMaterialType } from 'utils/helpers/defineMaterialType';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
-
+import { MATERIAL } from 'constants/materials';
+import { PATHS } from 'constants/routes';
+import { defineMaterialType } from 'utils/helpers/defineMaterialType';
 import LearningCourse from './LearningCourse';
 
 const MIN_STAGE = 1;
@@ -21,7 +21,14 @@ const LearningCourseContainer: React.FC = () => {
   const [forwardDisabled, setForwardDisabled] = useState(false);
 
   const params = useParams();
+  const navigate = useNavigate();
   const { data } = useGetClientCourseInfo(params.courseId);
+
+  const TESTING = 'testing';
+
+  if (data?.status === TESTING) {
+    navigate(`${PATHS.myCourses}/${params.courseId}/test`);
+  }
 
   const maxStage = data ? data.course.materials.length : MAX_STAGE_INITIAL;
 

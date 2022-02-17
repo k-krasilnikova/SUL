@@ -7,7 +7,7 @@ export interface Material {
 export interface ClientCourse {
   currentStage: 1;
   progress: [];
-  status: 'approved';
+  status: 'approved' | 'testing';
   user: '61e806ea748c709ccdc3e82c';
   _id: '61e806ea748c709ccdc3e82f';
   course: {

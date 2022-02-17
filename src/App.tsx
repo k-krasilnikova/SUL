@@ -23,23 +23,30 @@ import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
 import Loader from 'components/Loader';
 import { queryClient } from 'api/base';
+import { LOADER } from 'constants/loaderTypes';
+
+const PAGES = {
+  myCourses: 'myCourses',
+  coursesList: 'coursesList',
+};
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
-    <Suspense fallback={<Loader color="primary" />}>
+    <Suspense fallback={<Loader color="primary" type={LOADER.page} />}>
       <BrowserRouter basename={PATHS.home}>
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
             <Route path={PATHS.profile} element={<Profile />} />
             <Route path={PATHS.myCourses}>
               <Route index element={<MyCourses />} />
-              <Route path=":courseId" element={<LearningCourse />} />
-              <Route path=":courseId/test" element={<PassingTest />} />
-              <Route path=":courseId/test/result" element={<TestResult />} />
+              <Route path=":courseId" element={<DetailedCourse page={PAGES.myCourses} />} />
+              <Route path="learn/:courseId" element={<LearningCourse />} />
+              <Route path="learn/:courseId/test" element={<PassingTest />} />
+              <Route path="learn/:courseId/test/result" element={<TestResult />} />
             </Route>
             <Route path={PATHS.coursesList}>
               <Route index element={<CoursesList />} />
-              <Route path=":courseId" element={<DetailedCourse />} />
+              <Route path=":courseId" element={<DetailedCourse page={PAGES.coursesList} />} />
             </Route>
             <Route path={PATHS.help} element={<Help />} />
             <Route path={PATHS.employees} element={<Employees />} />

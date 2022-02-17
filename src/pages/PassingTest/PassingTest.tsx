@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import { AuthorizedLayout } from 'components/Layout';
 import { CountDownTimer } from 'components/CountDownTimer';
 import { PATHS } from 'constants/routes';
-import { INITIAL_TEST } from 'constants/test';
+import { INITIAL_TEST, MIN_STAGE } from 'constants/test';
 import { IPassingTest } from 'types/test';
 
 import {
@@ -16,6 +16,7 @@ import {
   InnerWrapper,
   NextButton,
   PassingTestWrapper,
+  PreviousButton,
   QuestionItemBox,
   ResultButton,
   TitleBox,
@@ -30,6 +31,7 @@ const PassingTest: React.FC<IPassingTest> = ({
   params,
   resultEnabled,
   stageNext,
+  stageBack,
   questionStageItem,
 }) => (
   <AuthorizedLayout pageName="Passing Test">
@@ -55,12 +57,22 @@ const PassingTest: React.FC<IPassingTest> = ({
         />
       </QuestionItemBox>
       <ButtonsBox>
+        <Box>
+          {stage > MIN_STAGE && (
+            <PreviousButton variant="medium" onClick={stageBack}>
+              Previous
+            </PreviousButton>
+          )}
+        </Box>
         {resultEnabled ? (
-          <Link to={`${PATHS.myCourses}/${params.courseId}/test/result`}>
-            <ResultButton variant="medium" disabled={Boolean(!value[questionStageItem.qN])}>
-              Result
-            </ResultButton>
-          </Link>
+          <ResultButton
+            variant="medium"
+            disabled={Boolean(!value[questionStageItem.qN])}
+            component={Link}
+            to={`${PATHS.learnCourse}/${params.courseId}/test/result`}
+          >
+            Result
+          </ResultButton>
         ) : (
           <NextButton
             variant="medium"

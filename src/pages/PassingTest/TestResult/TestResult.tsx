@@ -49,7 +49,7 @@ const TestResult: React.FC<ITestResult> = ({ isFailed, skills }) => (
               ) : (
                 <SkillsInfoList>
                   {skills?.map((skillItem) => (
-                    <CourseMaterialInfoContainer skillItem={skillItem} />
+                    <CourseMaterialInfoContainer skillItem={skillItem} key={skillItem.name} />
                   ))}
                 </SkillsInfoList>
               )}

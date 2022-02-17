@@ -5,12 +5,12 @@ export interface MenuItemProps {
 }
 
 export interface IMenuProps {
-  menuList: MenuItemProps[];
-  isSqueeze?: boolean;
-  handleSqueeze?: () => void;
   classes: {
     [key: string]: string | undefined;
   };
+  menuList: MenuItemProps[];
+  isSqueeze?: boolean;
+  handleSqueeze?: () => void;
   children?: React.ReactNode;
   menuItem?: string;
   pathname?: string;

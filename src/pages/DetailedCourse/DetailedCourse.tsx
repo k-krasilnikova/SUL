@@ -10,6 +10,8 @@ import { ProgressBar } from 'components/ProgressBar';
 import { CourseActions } from 'pages/CoursesList/styled';
 import { PATHS } from 'constants/routes';
 import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
+import ButtonLoader from 'components/ButtonLoader';
+import { buttonSpinner } from 'animations';
 
 import {
   BackButton,
@@ -27,13 +29,40 @@ import {
   SimilarCoursesWrapper,
   StartButton,
   StartCourseButton,
+  DetailedCourseTextMobile,
+  ButtonFullText,
 } from './styled';
 
 interface IProps {
-  handleApplyCourse?: () => void;
+  handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  buttonId: {
+    [key: string]: string | undefined;
+  };
+  page: string;
+  id: string;
+  windowWidth: string;
+  isFullTextOpen: boolean;
+  toggleFullText: () => void;
+  isLoading?: boolean;
+  targetId?: string | undefined;
 }
 
-const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
+const PAGES = {
+  myCourses: 'myCourses',
+  coursesList: 'coursesList',
+};
+
+const DetailedCourse: React.FC<IProps> = ({
+  handleApplyCourse,
+  isLoading,
+  targetId,
+  buttonId,
+  page,
+  id,
+  windowWidth,
+  isFullTextOpen,
+  toggleFullText,
+}) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
       <Link to={PATHS.coursesList}>
@@ -46,7 +75,19 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
           <Image />
         </ImageWrapper>
         <ProgressBar size="large" text="0%" />
-        <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title} </DetailedCourseTitle>
+        <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
+
+        {isFullTextOpen ? (
+          <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
+        ) : (
+          <DetailedCourseTextMobile>
+            {INITIAL_DETAILED_COURSE.description.slice(0, 140)}
+            <ButtonFullText onClick={toggleFullText}>
+              {!isFullTextOpen && 'Look in full'}
+            </ButtonFullText>
+          </DetailedCourseTextMobile>
+        )}
+
         <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
           <CourseInfoBox>
@@ -55,9 +96,31 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
               lessons={INITIAL_DETAILED_COURSE.lessons}
             />
           </CourseInfoBox>
-          <StartButton variant="large" color="primary" onClick={handleApplyCourse}>
-            Start
-          </StartButton>
+          {isLoading && targetId === buttonId.start ? (
+            <StartButton id={buttonId.start} variant="mediumOutlined" disabled>
+              <ButtonLoader buttonSpinner={buttonSpinner} />
+            </StartButton>
+          ) : (
+            <div>
+              {page === PAGES.myCourses && (
+                <Link to={`${PATHS.learnCourse}/${id}`}>
+                  <StartButton variant="large" color="primary">
+                    Start
+                  </StartButton>
+                </Link>
+              )}
+              {page === PAGES.coursesList && (
+                <StartButton
+                  id={buttonId.start}
+                  variant="large"
+                  color="primary"
+                  onClick={(event) => handleApplyCourse(event)}
+                >
+                  Start
+                </StartButton>
+              )}
+            </div>
+          )}
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
           <Grid item xs={8}>
@@ -68,15 +131,29 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse }) => (
                 description={INITIAL_DETAILED_COURSE.description}
                 duration={INITIAL_DETAILED_COURSE.duration}
                 lessons={INITIAL_DETAILED_COURSE.lessons}
+                windowWidth={windowWidth}
+                type="similarCourses"
               >
                 <CourseActionsBox>
                   <CourseActions>
                     <DetailsButton color="primary" variant="mediumOutlined">
                       Details
                     </DetailsButton>
-                    <StartCourseButton onClick={handleApplyCourse} variant="mediumContained">
-                      Start the course
-                    </StartCourseButton>
+                    {isLoading && targetId === buttonId.course ? (
+                      <StartCourseButton variant="mediumOutlined" disabled>
+                        <ButtonLoader buttonSpinner={buttonSpinner} />
+                      </StartCourseButton>
+                    ) : (
+                      <StartCourseButton
+                        id={buttonId.course}
+                        onClick={(event) => {
+                          handleApplyCourse(event);
+                        }}
+                        variant="mediumContained"
+                      >
+                        Start the course
+                      </StartCourseButton>
+                    )}
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>
