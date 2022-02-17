@@ -18,6 +18,7 @@ import {
   CourseActionsBox,
   DetailsButton,
   StartCourseButton,
+  ContinueTestButton,
 } from './styled';
 
 const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => (
@@ -41,14 +42,23 @@ const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => 
               >
                 <CourseActionsBox>
                   <CourseActions>
-                    <Link to={`${PATHS.myCourses}/${object._id}`}>
+                    <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
                       <DetailsButton variant="mediumOutlined">Details</DetailsButton>
                     </Link>
-                    <Link to={`${PATHS.learnCourse}/${object._id}`}>
-                      <StartCourseButton color="primary" variant="mediumContained">
-                        Start the course
-                      </StartCourseButton>
-                    </Link>
+
+                    {clientCourse.status === 'testing' ? (
+                      <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
+                        <ContinueTestButton color="primary" variant="mediumContained">
+                          Continue the test
+                        </ContinueTestButton>
+                      </Link>
+                    ) : (
+                      <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
+                        <StartCourseButton color="primary" variant="mediumContained">
+                          Start the course
+                        </StartCourseButton>
+                      </Link>
+                    )}
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>
