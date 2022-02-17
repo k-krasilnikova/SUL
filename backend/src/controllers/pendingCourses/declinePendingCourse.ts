@@ -4,24 +4,18 @@ import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourse
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
-interface DeclinePendingCourseRequest extends Request {
-  body: { id: string };
-}
-
 const declinePendingCourse = async (
-  req: DeclinePendingCourseRequest,
-  res: Response,
+  req: Request,
+  res: Response<string, { courseId: string | undefined }>,
   next: NextFunction,
 ) => {
-  const { id: clientCourseId } = req.body;
   try {
+    const { courseId: clientCourseId } = res.locals;
+    if (!clientCourseId) {
+      throw new BadRequestError('Invalid query.');
+    }
     const courseStatus = await getStatusProvider(clientCourseId);
-    if (
-      courseStatus?.status === CourseStatus.approved ||
-      courseStatus?.status === CourseStatus.testing ||
-      courseStatus?.status === CourseStatus.started ||
-      courseStatus?.status === CourseStatus.completed
-    ) {
+    if (courseStatus?.status !== CourseStatus.pending) {
       throw new BadRequestError(`Can't decline course with status: ${courseStatus.status}`);
     }
     await updateCourseStatus(clientCourseId, CourseStatus.rejected);

@@ -30,6 +30,8 @@ interface Props {
   pageName?: string;
   status?: string;
   progress?: number;
+  windowWidth?: string;
+  type?: string;
 }
 
 const PAGES = {
@@ -46,16 +48,18 @@ const CourseItem: React.FC<Props> = ({
   status,
   progress,
   children,
+  windowWidth,
+  type,
 }) => (
   <CourseContainer container direction="column">
-    <AboutCourseContainer>
+    <AboutCourseContainer type={type}>
       <ImageWrapper>
         <Image />
       </ImageWrapper>
       <CourseTextContainer>
-        <CourseTitle>{title}</CourseTitle>
-        <CourseDescriptionWrapper>
-          <CourseDescription>{shortifyCourseDescription(description)}</CourseDescription>
+        <CourseTitle type={type}>{title}</CourseTitle>
+        <CourseDescriptionWrapper type={type}>
+          <CourseDescription type={type}>{shortifyCourseDescription(description, windowWidth)}</CourseDescription>
         </CourseDescriptionWrapper>
         <MobileCourseInfoBox>
           <CourseInfo duration={duration} lessons={lessons} />
@@ -77,8 +81,8 @@ const CourseItem: React.FC<Props> = ({
         </MobileCourseProgress>
       )}
     </AboutCourseContainer>
-    <ButtonsContainer>
-      <CourseInfoBox>
+    <ButtonsContainer type={type}>
+      <CourseInfoBox type={type}>
         <CourseInfo duration={duration} lessons={lessons} />
       </CourseInfoBox>
       {children}
