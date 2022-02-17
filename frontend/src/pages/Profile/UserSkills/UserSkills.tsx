@@ -42,8 +42,8 @@ const UserSkills: React.FC<Props> = ({
   checkPastedValue,
   searchSkill,
 }) => (
-  <Suspense fallback={<Loader color="primary" type={LOADER.component} />}>
-    <SkillsBox>
+  <SkillsBox>
+    <Suspense fallback={<Loader color="primary" type={LOADER.component} />}>
       <SearchWrapper>
         <SearchSkill
           disableUnderline
@@ -95,12 +95,8 @@ const UserSkills: React.FC<Props> = ({
           </NoSkills>
         )}
       </SkillsList>
-
-      <SearchWrapper>
-        <Divider />
-      </SearchWrapper>
-    </SkillsBox>
-  </Suspense>
+    </Suspense>
+  </SkillsBox>
 );
 
 export default UserSkills;
