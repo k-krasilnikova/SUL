@@ -1,6 +1,5 @@
 import CourseStatus from 'enums/coursesEnums';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
-import CourseStatus from 'enums/coursesEnums';
 
 const checkCourseDuplicates = (courseArr: IClientCourse[], courseId: string): boolean => {
   const alreadyAppliedCourse = courseArr.find((clientCourse) => {
