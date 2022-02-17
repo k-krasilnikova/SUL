@@ -243,6 +243,8 @@ const GridSignInput = styled(Grid)({
   boxSizing: 'border-box',
   marginBottom: '25px !important',
   height: '53px !important',
+  maxHeight: '53px !important',
+  minHeight: '53px !important',
   '& label': {
     fontFamily: '"Ubuntu", sans-serif',
     color: '#C6C6C9 !important',
@@ -250,6 +252,8 @@ const GridSignInput = styled(Grid)({
     lineHeight: '21px',
     fontWeight: 400,
     height: '53px !important',
+    maxHeight: '53px !important',
+    minHeight: '53px !important',
   },
   '& input': {
     fontSize: '18px',
@@ -277,28 +281,58 @@ const GridSignInput = styled(Grid)({
     margin: '0 !important ',
     padding: '0px !important',
     height: '48px !important',
+    maxHeight: '48px !important',
+    minHeight: '48px !important',
     '& label': {
       fontSize: '16px',
       lineHeight: '18px',
       fontWeight: 400,
       height: '48px !important',
+      maxHeight: '48px !important',
+      minHeight: '48px !important',
     },
     '& input': {
       fontSize: '16px',
       fontWeight: 400,
       padding: '0px 10px',
-      height: '48px',
+      height: '48px !important',
+      maxHeight: '48px !important',
+      minHeight: '48px !important',
     },
   },
   [globalTheme.breakpoints.down('sm')]: {
     marginBottom: '16px !important',
+    height: '48px !important',
+    maxHeight: '48px !important',
+    minHeight: '48px !important',
+    '& label': {
+      height: '48px !important',
+      maxHeight: '48px !important',
+      minHeight: '48px !important',
+    },
+    '& input': {
+      height: '48px !important',
+      maxHeight: '48px !important',
+      minHeight: '48px !important',
+    },
   },
   [globalTheme.breakpoints.down('xs')]: {
     boxSizing: 'border-box',
     width: '100%',
+    height: '48px !important',
+    maxHeight: '48px !important',
+    minHeight: '48px !important',
+    '& label': {
+      height: '48px !important',
+      maxHeight: '48px !important',
+      minHeight: '48px !important',
+    },
     '& input': {
       width: '100%',
       boxSizing: 'border-box',
+      height: '48px !important',
+      maxHeight: '48px !important',
+      minHeight: '48px !important',
     },
   },
 });
@@ -371,11 +405,17 @@ const WarningHelper = styled(Typography)({
 
 const useExplitLabel = makeStyles({
   explicitLabel: {
+    fontFamily: '"Ubuntu", sans-serif !important',
     '& label': {
       color: '#1D1D1D !important',
     },
   },
-  basicLabel: {},
+  basicLabel: {
+    fontFamily: '"Ubuntu", sans-serif !important',
+    '& label': {
+      color: '#C6C6C9 !important',
+    },
+  },
 });
 
 export {
