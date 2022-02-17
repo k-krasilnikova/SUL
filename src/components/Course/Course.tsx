@@ -20,21 +20,33 @@ interface Props {
   description: string;
   duration: string | undefined;
   lessons: number | undefined;
+  windowWidth?: string;
+  type?: string;
 }
 
-const CourseItem: React.FC<Props> = ({ title, description, duration, lessons, children }) => (
+const CourseItem: React.FC<Props> = ({
+  title,
+  description,
+  duration,
+  lessons,
+  children,
+  windowWidth,
+  type,
+}) => (
   <CourseContainer container direction="column">
-    <AboutCourseContainer>
+    <AboutCourseContainer type={type}>
       <ImageWrapper>
         <Image />
       </ImageWrapper>
-      <CourseTitle>{title}</CourseTitle>
-      <CourseDescriptionWrapper>
-        <CourseDescription>{shortifyCourseDescription(description)}</CourseDescription>
+      <CourseTitle type={type}>{title}</CourseTitle>
+      <CourseDescriptionWrapper type={type}>
+        <CourseDescription type={type}>
+          {shortifyCourseDescription(description, windowWidth)}
+        </CourseDescription>
       </CourseDescriptionWrapper>
     </AboutCourseContainer>
-    <ButtonsContainer>
-      <CourseInfoBox>
+    <ButtonsContainer type={type}>
+      <CourseInfoBox type={type}>
         <CourseInfo duration={duration} lessons={lessons} />
       </CourseInfoBox>
       {children}
