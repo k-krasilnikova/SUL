@@ -29,18 +29,40 @@ import {
   SimilarCoursesWrapper,
   StartButton,
   StartCourseButton,
+  DetailedCourseTextMobile,
+  ButtonFullText,
 } from './styled';
 
 interface IProps {
-  isLoading?: boolean;
   handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
-  targetId?: string | undefined;
   buttonId: {
     [key: string]: string | undefined;
   };
+  page: string;
+  id: string;
+  windowWidth: string;
+  isFullTextOpen: boolean;
+  toggleFullText: () => void;
+  isLoading?: boolean;
+  targetId?: string | undefined;
 }
 
-const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, isLoading, targetId, buttonId }) => (
+const PAGES = {
+  myCourses: 'myCourses',
+  coursesList: 'coursesList',
+};
+
+const DetailedCourse: React.FC<IProps> = ({
+  handleApplyCourse,
+  isLoading,
+  targetId,
+  buttonId,
+  page,
+  id,
+  windowWidth,
+  isFullTextOpen,
+  toggleFullText,
+}) => (
   <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
     <DetailedCourseWrapper>
       <Link to={PATHS.coursesList}>
@@ -53,7 +75,19 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, isLoading, target
           <Image />
         </ImageWrapper>
         <ProgressBar size="large" text="0%" />
-        <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title} </DetailedCourseTitle>
+        <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
+
+        {isFullTextOpen ? (
+          <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
+        ) : (
+          <DetailedCourseTextMobile>
+            {INITIAL_DETAILED_COURSE.description.slice(0, 140)}
+            <ButtonFullText onClick={toggleFullText}>
+              {!isFullTextOpen && 'Look in full'}
+            </ButtonFullText>
+          </DetailedCourseTextMobile>
+        )}
+
         <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
           <CourseInfoBox>
@@ -67,14 +101,25 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, isLoading, target
               <ButtonLoader buttonSpinner={buttonSpinner} />
             </StartButton>
           ) : (
-            <StartButton
-              id={buttonId.start}
-              variant="large"
-              color="primary"
-              onClick={(event) => handleApplyCourse(event)}
-            >
-              Start
-            </StartButton>
+            <div>
+              {page === PAGES.myCourses && (
+                <Link to={`${PATHS.learnCourse}/${id}`}>
+                  <StartButton variant="large" color="primary">
+                    Start
+                  </StartButton>
+                </Link>
+              )}
+              {page === PAGES.coursesList && (
+                <StartButton
+                  id={buttonId.start}
+                  variant="large"
+                  color="primary"
+                  onClick={(event) => handleApplyCourse(event)}
+                >
+                  Start
+                </StartButton>
+              )}
+            </div>
           )}
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
@@ -86,6 +131,8 @@ const DetailedCourse: React.FC<IProps> = ({ handleApplyCourse, isLoading, target
                 description={INITIAL_DETAILED_COURSE.description}
                 duration={INITIAL_DETAILED_COURSE.duration}
                 lessons={INITIAL_DETAILED_COURSE.lessons}
+                windowWidth={windowWidth}
+                type="similarCourses"
               >
                 <CourseActionsBox>
                   <CourseActions>

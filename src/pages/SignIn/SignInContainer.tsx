@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
 import useGetAuth from 'api/auth/getAuth';
+
+import { useExplitLabel } from './styled';
 import SignIn from './SignIn';
 
 interface SignInFields {
@@ -16,16 +18,16 @@ const initSignInvalue: SignInFields = {
 };
 
 const SignInContainer: React.FC = () => {
-  const { mutateAsync, isLoading } = useGetAuth();
+  const { mutateAsync, isLoading, status } = useGetAuth();
+  const [labelState, setLabelState] = useState<string | undefined>();
   const FIELD_TOUCHED = true;
   const FIELD_VALIDATE = false;
 
   const formik = useFormik({
     initialValues: initSignInvalue,
     validationSchema: signInSchema,
-    onSubmit: (values, { resetForm }): void => {
+    onSubmit: (values): void => {
       mutateAsync(values);
-      resetForm();
     },
   });
 
@@ -34,9 +36,31 @@ const SignInContainer: React.FC = () => {
     formik.setFieldTouched(name, FIELD_TOUCHED, FIELD_VALIDATE);
   };
 
+  const handleFocus = (e: React.FocusEvent) => {
+    const targetId = e.target.id;
+    setLabelState(targetId);
+  };
+  const classes = useExplitLabel();
+
+  const LABEL_HANDLER = {
+    loginLabel: 'login',
+    emptyLogin: 'Login is required',
+    passwordLabel: 'password',
+    emptyPassword: 'Enter your password',
+  };
+
   return (
     <FormikProvider value={formik}>
-      <SignIn formik={formik} warningHandler={warningHandler} isLoading={isLoading} />
+      <SignIn
+        formik={formik}
+        warningHandler={warningHandler}
+        isLoading={isLoading}
+        handleFocus={handleFocus}
+        labelState={labelState}
+        classes={classes}
+        status={status}
+        labelHandler={LABEL_HANDLER}
+      />
     </FormikProvider>
   );
 };
