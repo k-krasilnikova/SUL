@@ -12,7 +12,6 @@ interface InfoContainerTypes {
 
 export const CourseContainer = styled(Grid)({
   backgroundColor: 'rgba(118, 118, 128, 0.12);',
-  borderRadius: '16px',
   fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
   width: '100%',
@@ -20,10 +19,14 @@ export const CourseContainer = styled(Grid)({
   justifyContent: 'space-between',
   flexDirection: 'column',
   minHeight: '100%',
-  [theme.breakpoints.down('lg')]: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+  [theme.breakpoints.up('xs')]: {
+    borderRadius: '4px',
+  },
+  [theme.breakpoints.up('sm')]: {
+    borderRadius: '11px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    borderRadius: '16px',
   },
 });
 
@@ -57,7 +60,11 @@ export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type })
     padding: '16px 0 16px 16px',
     minHeight: '295px',
   },
-}));
+});
+
+export const CourseTextContainer = styled('div')({
+  flexGrow: '2',
+});
 
 export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => ({
   [theme.breakpoints.up('xs')]: {
@@ -147,6 +154,29 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
   },
   fontFamily: '"Ubuntu", sans-serif',
   color: ' #2C2525',
+});
+
+export const CourseDescription = styled('p')<InfoContainerTypes>(({ fontSize, lineHeight }) => ({
+  [theme.breakpoints.up('xs')]: {
+    display: 'none',
+  },
+  [theme.breakpoints.up('sm')]: {
+    display: 'block',
+    fontSize: '14px',
+    fontWeight: 'normal',
+    lineHeight: '22px',
+    letterSpacing: '-0.4px !important',
+    textAlign: 'left',
+    padding: '0px',
+    margin: '0px 35px 9px 7px',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '18px',
+    lineHeight: '27px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    fontSize: '16px',
+    lineHeight: '21px',
 }));
 
 export const CourseDescription = styled('p')<InfoContainerTypes>(
@@ -193,6 +223,13 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
     ...(lineHeight && {
       lineHeight: `${lineHeight}px`,
     }),
+    padding: '0px',
+    margin: '0px',
+  },
+  color: '#131313',
+  fontFamily: '"Ubuntu", sans-serif',
+  ...(fontSize && {
+    fontSize: `${fontSize}px`,
   }),
 );
 
@@ -210,6 +247,9 @@ export const InfoContainer = styled(Box)({
 
 export const InfoItem = styled('div')({
   [theme.breakpoints.up('xs')]: {
+    padding: '0px',
+  },
+  [theme.breakpoints.up('sm')]: {
     padding: '5px',
   },
   [theme.breakpoints.up('sm')]: {
@@ -232,7 +272,7 @@ export const InfoItemText = styled(Typography)({
   },
   [theme.breakpoints.up('sm')]: {
     width: '70px',
-    fontWeight: '400',
+    fontSize: '10px',
     lineHeight: '18px!important',
   },
   [theme.breakpoints.up('xl')]: {
@@ -256,6 +296,9 @@ export const InfoItemTextBox = styled(Box)({
 
 export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type }) => ({
   margin: '0px 45px 14px 16px',
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
   [theme.breakpoints.up('md')]: {
     ...(type === 'similarCourses' && {
       margin: '0px 0px 9px 0px',
@@ -280,3 +323,46 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   paddingLeft: '30px !important',
   paddingBottom: '7px !important',
 }));
+
+export const MobileCourseInfoBox = styled(Box)({
+  [theme.breakpoints.up('xs')]: {
+    padding: '0px',
+  },
+  [theme.breakpoints.up('sm')]: {
+    display: 'none',
+  },
+});
+
+export const InfoItemIcon = styled('img')({
+  [theme.breakpoints.up('xs')]: {
+    width: '15px',
+  },
+  [theme.breakpoints.up('md')]: {
+    width: '20px',
+  },
+});
+
+export const MobileCourseProgress = styled('div')({
+  [theme.breakpoints.up('xs')]: {
+    flexShrink: '0',
+    flexGrow: '0',
+    height: '46px',
+  },
+  [theme.breakpoints.up('sm')]: {
+    display: 'none',
+  },
+});
+
+export const MobileCourseCompleted = styled('div')({
+  [theme.breakpoints.up('xs')]: {
+    fontFamily: '"Ubuntu", sans-serif',
+    fontWeight: 'normal',
+    fontSize: '12px',
+    lineHeight: '14px',
+    color: '#6D6D6E',
+    marginTop: '8px',
+  },
+  [theme.breakpoints.up('sm')]: {
+    display: 'none',
+  },
+});
