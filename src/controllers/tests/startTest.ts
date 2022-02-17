@@ -6,28 +6,27 @@ import {
   updateCourseStatus,
 } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
-import { INITIAL_INDX, REQUIRED_PCT } from 'config/constants';
+import { REQUIRED_PCT } from 'config/constants';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const startTest = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
-    const courseStatus = await getStatusProvider(clientCourseId);
-    const progress = await getCurrentProgress(clientCourseId);
-    if (
-      courseStatus?.status === CourseStatus.rejected ||
-      courseStatus?.status === CourseStatus.pending
-    ) {
-      if (progress[INITIAL_INDX].currProgress < REQUIRED_PCT) {
-        throw new BadRequestError("Can not start test till course stages haven't been passed.");
-      }
+    const { status: courseStatus } = await getStatusProvider(clientCourseId);
+    const [{ currProgress: currentProgress }] = await getCurrentProgress(clientCourseId);
+
+    if (courseStatus !== CourseStatus.started) {
       throw new BadRequestError(
-        `Failed: can not start testing course with status: ${courseStatus?.status}`,
+        `Failed: can not start testing course with status: ${courseStatus}`,
       );
     }
+
+    if (currentProgress < REQUIRED_PCT) {
+      throw new BadRequestError("Can not start test till course stages haven't been passed.");
+    }
+
     await updateCourseStatus(clientCourseId, CourseStatus.testing);
     res.json('Test started successfully ');
-    return;
   } catch (err) {
     next(err);
   }
