@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+
 import { TLocalsUser } from 'interfaces/IResponse/IResponse';
 
 const adapterUser = async (
