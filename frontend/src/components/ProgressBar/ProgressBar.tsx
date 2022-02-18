@@ -20,6 +20,7 @@ const TEXT_COLOR = '#9C9C9C';
 const VARIANTS = {
   completed: 'completed',
   failed: 'failed',
+  mobileCourse: 'mobileCourse',
 };
 
 const ProgressBar: React.FC<ProgressProps> = ({
@@ -52,6 +53,12 @@ const ProgressBar: React.FC<ProgressProps> = ({
           pathColor: '#d43e41',
           trailColor: '#eaeaea',
           textSize: '20px',
+        }),
+        ...(variant === VARIANTS.mobileCourse && {
+          textColor: '#000000',
+          pathColor: '#1cc02c',
+          trailColor: '#eaeaea',
+          textSize: '12px',
         }),
       })}
     />

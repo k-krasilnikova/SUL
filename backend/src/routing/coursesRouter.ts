@@ -22,7 +22,7 @@ coursesRouter.get(
   getCourseById,
 );
 coursesRouter.post(
-  `${Params.id}`,
+  `${Params.noParams}`,
   withAuth([USER_ROLES.EMPLOYEE]),
   applyMiddlewareUser,
   applyCourse,
