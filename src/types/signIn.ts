@@ -1,5 +1,11 @@
 export interface SignTypes {
   warningHandler: (name: string, e: string) => void;
+  classes: {
+    [key: string]: string | undefined;
+  };
+  labelHandler: {
+    [key: string]: string | undefined;
+  };
   value?: string | number;
   fieldValue?: string | number;
   login?: string;
@@ -25,4 +31,7 @@ export interface SignTypes {
   };
   imageUrl?: string;
   isLoading?: boolean;
+  handleFocus: (e: React.FocusEvent) => void;
+  labelState?: string;
+  status?: string;
 }
