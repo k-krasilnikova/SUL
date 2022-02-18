@@ -41,12 +41,14 @@ export interface ISkills {
   image: string;
   score: number;
   maxScore: number;
+  group: string;
 }
 
 export interface ITestResult {
   status?: string;
   isFailed?: boolean;
   skills?: ISkills[];
+  testResultResponse?: any;
 }
 
 export interface IPassingTestProps {
