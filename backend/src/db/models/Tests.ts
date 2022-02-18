@@ -18,6 +18,7 @@ const testSchema = new Schema<ITest>({
     },
   ],
   timeout: { type: Number, required: true },
+  attempts: { type: Number },
 });
 
 const TestModel = model<ITest>('Test', testSchema, 'tests');
