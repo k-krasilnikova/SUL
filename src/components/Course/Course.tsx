@@ -2,6 +2,9 @@ import React from 'react';
 
 import { Image } from 'components/Image';
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
+import { ProgressBar } from 'components/ProgressBar';
+import { checkIcon } from 'icons';
+import { STATUS } from 'constants/statuses';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -13,6 +16,10 @@ import {
   ButtonsContainer,
   CourseDescriptionWrapper,
   CourseInfoBox,
+  MobileCourseInfoBox,
+  MobileCourseProgress,
+  MobileCourseCompleted,
+  CourseTextContainer,
 } from './styled';
 
 interface Props {
@@ -20,15 +27,26 @@ interface Props {
   description: string;
   duration: string | undefined;
   lessons: number | undefined;
+  pageName?: string;
+  status?: string;
+  progress?: number;
   windowWidth?: string;
   type?: string;
 }
+
+const PAGES = {
+  myCourses: 'myCourses',
+  coursesList: 'coursesList',
+};
 
 const CourseItem: React.FC<Props> = ({
   title,
   description,
   duration,
   lessons,
+  pageName,
+  status,
+  progress,
   children,
   windowWidth,
   type,
@@ -38,12 +56,32 @@ const CourseItem: React.FC<Props> = ({
       <ImageWrapper>
         <Image />
       </ImageWrapper>
-      <CourseTitle type={type}>{title}</CourseTitle>
-      <CourseDescriptionWrapper type={type}>
-        <CourseDescription type={type}>
-          {shortifyCourseDescription(description, windowWidth)}
-        </CourseDescription>
-      </CourseDescriptionWrapper>
+      <CourseTextContainer>
+        <CourseTitle type={type}>{title}</CourseTitle>
+        <CourseDescriptionWrapper type={type}>
+          <CourseDescription type={type}>
+            {shortifyCourseDescription(description, windowWidth)}
+          </CourseDescription>
+        </CourseDescriptionWrapper>
+        <MobileCourseInfoBox>
+          <CourseInfo duration={duration} lessons={lessons} />
+        </MobileCourseInfoBox>
+        {status === STATUS.completed && (
+          <MobileCourseCompleted>
+            Completed <img alt="" src={checkIcon} />
+          </MobileCourseCompleted>
+        )}
+      </CourseTextContainer>
+      {pageName === PAGES.myCourses && status !== STATUS.completed && (
+        <MobileCourseProgress>
+          <ProgressBar
+            value={progress}
+            text={`${progress}%`}
+            size="medium"
+            variant="mobileCourse"
+          />
+        </MobileCourseProgress>
+      )}
     </AboutCourseContainer>
     <ButtonsContainer type={type}>
       <CourseInfoBox type={type}>
