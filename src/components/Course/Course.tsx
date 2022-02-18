@@ -79,8 +79,8 @@ const CourseItem: React.FC<Props> = ({
         </MobileCourseProgress>
       )}
     </AboutCourseContainer>
-    <ButtonsContainer>
-      <CourseInfoBox>
+    <ButtonsContainer type={type}>
+      <CourseInfoBox type={type}>
         <CourseInfo duration={duration} lessons={lessons} />
       </CourseInfoBox>
       {children}

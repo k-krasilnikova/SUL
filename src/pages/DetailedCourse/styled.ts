@@ -275,6 +275,7 @@ export const CourseActionsBox = styled(Box)({
 export const CourseInfoBox = styled(Box)({
   display: 'flex',
   alignSelf: 'center !important',
+  alignItems: 'center',
 });
 
 export const DetailedCourseTextMobile = styled(Typography)({
