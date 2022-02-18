@@ -15,7 +15,6 @@ const applyCourse = async (
   next: NextFunction,
 ) => {
   try {
-    console.log(res.locals);
     const { courseId, userId, results } = res.locals;
     if (!courseId || !userId) {
       throw new BadRequestError('Invalid query');
