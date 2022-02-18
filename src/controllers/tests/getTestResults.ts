@@ -5,6 +5,7 @@ import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourse
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
+import { TestRuslt } from 'interfaces/Ientities/Itest';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const getTestResults = async (
@@ -13,7 +14,7 @@ const getTestResults = async (
     Record<string, never>,
     { testId: string; answers: IAnswer[] }
   >,
-  res: Response<{ result: number; testStatus: string }, { id: string; result: number }>,
+  res: Response<never, { id: string; result: TestRuslt }>,
   next: NextFunction,
 ) => {
   try {
@@ -29,10 +30,12 @@ const getTestResults = async (
     const userWrongAnswers = checkTestResults(answers, correctAnswers.questions);
     const result = countTestResult(userWrongAnswers, correctAnswers.questions);
     if (result < PASS_THRESHOLD) {
-      res.json({ result, testStatus: 'not passed' });
+      res.locals.result = { result, testStatus: 'not passed' };
+      await updateCourseStatus(courseId, CourseStatus.started);
+      next();
       return;
     }
-    res.locals.result = result;
+    res.locals.result = { result, testStatus: 'successful' };
     await updateCourseStatus(courseId, CourseStatus.successful);
     next();
   } catch (err) {
