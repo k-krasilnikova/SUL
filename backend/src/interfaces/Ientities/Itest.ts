@@ -8,7 +8,15 @@ interface ITest {
     correctAnswer: number;
   }>;
   timeout: number;
+  attempts: number;
 }
+
+type TAchievments = {
+  newSkills: Array<string | undefined>;
+  updatedSkills: Array<string | undefined>;
+};
+
+type TestRuslt = { result: number; testStatus: string };
 
 type TestDb = { test: ITest };
 
@@ -19,4 +27,4 @@ interface IAnswer {
 
 type TCorrectAnswers<T, K extends keyof T, R extends PropertyKey> = Omit<T, K> & { [P in R]: T[K] };
 
-export { ITest, TestDb, IAnswer, TCorrectAnswers };
+export { ITest, TestDb, IAnswer, TCorrectAnswers, TestRuslt, TAchievments };
