@@ -359,14 +359,9 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Admin',
     position: 'Software Engineer',
     skills: [
-      {
-        skillGroup: 'skill group 1',
-        skillList: [
-          { name: 'php', image: '', score: 1, maxScore: 5 },
-          { name: 'js', image: '', score: 1, maxScore: 5 },
-          { name: 'html', image: '', score: 1, maxScore: 5 },
-        ],
-      },
+      { name: 'java', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'mySQL', image: '', score: 0, maxScore: 5, group: 'databases' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -386,14 +381,9 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Manager',
     position: 'Team Manager',
     skills: [
-      {
-        skillGroup: 'skill group 1',
-        skillList: [
-          { name: 'php', image: '', score: 1, maxScore: 5 },
-          { name: 'js', image: '', score: 1, maxScore: 5 },
-          { name: 'html', image: '', score: 1, maxScore: 5 },
-        ],
-      },
+      { name: 'php', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -416,14 +406,10 @@ const DEFAULT_EMPLOYEES = [
     lastName: 'User',
     position: 'Software Engineer',
     skills: [
-      {
-        skillGroup: 'skill group 1',
-        skillList: [
-          { name: 'php', image: '', score: 1, maxScore: 5 },
-          { name: 'js', image: '', score: 1, maxScore: 5 },
-          { name: 'html', image: '', score: 1, maxScore: 5 },
-        ],
-      },
+      { name: 'react', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'css', image: '', score: 0, maxScore: 5, group: 'frontend' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -443,14 +429,10 @@ const DEFAULT_EMPLOYEES = [
     lastName: 'User1',
     position: 'Software Engineer',
     skills: [
-      {
-        skillGroup: 'skill group 1',
-        skillList: [
-          { name: 'php', image: '', score: 1, maxScore: 5 },
-          { name: 'js', image: '', score: 1, maxScore: 5 },
-          { name: 'html', image: '', score: 1, maxScore: 5 },
-        ],
-      },
+      { name: 'angular', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'ts', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'css', image: '', score: 0, maxScore: 5, group: 'frontend' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
