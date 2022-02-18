@@ -9,8 +9,8 @@ const checkTestResults = (
     (currAnswer, nextAnswer) => currAnswer.qN - nextAnswer.qN,
   );
   const wrongAnswers = [];
-  for (let i = 0; i < userAnswersSorted.length; i += 1) {
-    if (userAnswersSorted[i].aN !== trueAnswers[i].correctAnswer) {
+  for (let i = 0; i < trueAnswers.length; i += 1) {
+    if (!userAnswersSorted[i] || userAnswersSorted[i].aN !== trueAnswers[i].correctAnswer) {
       wrongAnswers.push(userAnswersSorted[i]);
     }
   }
