@@ -3,13 +3,19 @@ import { useParams } from 'react-router';
 
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 import useGetCourseTest from 'api/test/getCourseTest';
-import useSendTestResult from 'api/test/sendTestResult';
+import { useSendTestResult, useStartCourseTest } from 'api/test';
 
 import PassingTest from './PassingTest';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
-  const { data, isLoading } = useGetCourseTest(params.courseId);
+
+  const { data, isLoading } = useGetCourseTest({ courseId: params.courseId });
+
+  useStartCourseTest({
+    courseId: params.courseId,
+    enabled: Boolean(data?.length),
+  });
 
   const { mutate } = useSendTestResult({ courseId: params.courseId });
 
