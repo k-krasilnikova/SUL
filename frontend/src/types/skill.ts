@@ -1,11 +1,9 @@
-export interface SkillListItem {
+export interface Skill {
   name: string;
   image: string;
   score: number;
   maxScore: number;
+  group: string;
 }
 
-export interface Skill {
-  skillGroup: string;
-  skillList: Array<SkillListItem>;
-}
+export type GroupedSkills = Map<string | number, Skill[]>;

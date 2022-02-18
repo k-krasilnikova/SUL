@@ -25,6 +25,7 @@ interface TextFieldProps {
   value?: unknown;
   type?: string;
   placeholder?: string;
+  handleFocus: (e: React.FocusEvent) => void;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -38,6 +39,8 @@ const TextField: React.FC<TextFieldProps> = ({
   error,
   onChange,
   handleBlur,
+  handleFocus,
+  placeholder,
   ...rest
 }) => (
   <>
@@ -49,14 +52,13 @@ const TextField: React.FC<TextFieldProps> = ({
       defaultValue={defaultValue}
       helperText={helperText}
       onBlur={handleBlur}
+      onFocus={(e: React.FocusEvent) => handleFocus(e)}
       size="medium"
-      required
       fullWidth
       {...rest}
     >
       {children}
     </Field>
-    <ErrorMessage component={WarningHelper} name={id} />
   </>
 );
 
