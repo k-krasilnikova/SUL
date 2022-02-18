@@ -29,7 +29,7 @@ const PassingTestContainer: React.FC = () => {
 
   const handleSubmitResult = () => {
     const resultData = {
-      id: courseTest?._id,
+      testId: courseTest?._id,
       answers: Object.entries(values).map(([key, value]) => ({ qN: key, aN: value })),
     };
     mutate(resultData);
