@@ -7,8 +7,9 @@ import getAllCourses from 'controllers/courses/getAllCourses';
 import getCourseById from 'controllers/courses/getCourse';
 import getMaterials from 'controllers/courses/getMaterials';
 import applyCourse from 'controllers/clientCourses/applyCourse';
-import applyMiddlewareUser from 'controllers/user/applyMiddlewareUser';
 import updatePandingCourse from 'controllers/pendingCourses/updatePendingCourse';
+import adapterUser from 'controllers/user/adapterUser';
+import adapterSender from 'controllers/pendingCourses/adapterSender';
 
 const coursesRouter = Router();
 coursesRouter.get(
@@ -24,9 +25,10 @@ coursesRouter.get(
 coursesRouter.post(
   `${Params.noParams}`,
   withAuth([USER_ROLES.EMPLOYEE]),
-  applyMiddlewareUser,
+  adapterUser,
   applyCourse,
   updatePandingCourse,
+  adapterSender,
 );
 coursesRouter.get(
   `${Params.noParams}`,
