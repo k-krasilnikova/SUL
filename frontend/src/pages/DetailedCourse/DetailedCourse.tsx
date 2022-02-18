@@ -55,6 +55,8 @@ const PAGES = {
   coursesList: 'coursesList',
 };
 
+const OPEN_FULL_TEXT = 'Look in full';
+
 const DetailedCourse: React.FC<IProps> = ({
   handleApplyCourse,
   isLoading,
@@ -80,18 +82,16 @@ const DetailedCourse: React.FC<IProps> = ({
         </ImageWrapper>
         <ProgressBar size="large" text="0%" />
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
-
         {isFullTextOpen ? (
           <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
         ) : (
           <DetailedCourseTextMobile>
             {INITIAL_DETAILED_COURSE.description.slice(0, 140)}
             <ButtonFullText onClick={toggleFullText}>
-              {!isFullTextOpen && 'Look in full'}
+              {!isFullTextOpen && OPEN_FULL_TEXT}
             </ButtonFullText>
           </DetailedCourseTextMobile>
         )}
-
         <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
           <CourseInfoBox>

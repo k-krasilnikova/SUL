@@ -11,6 +11,7 @@ import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
 import { STATUS } from 'constants/statuses';
 import { countProgress } from 'utils/helpers/countCourseProgress';
+import { PAGES } from 'constants/pages';
 
 import {
   PageContainer,
@@ -24,12 +25,12 @@ import {
 } from './styled';
 
 interface Props {
-  windowWidth?: string;
+  disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
 type MyCoursesProps = ResponseDataMyCourses & Props;
 
-const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, windowWidth }) => (
+const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, disableLink }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
@@ -41,40 +42,39 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, windowWidth 
           >
             <GridItem key={clientCourse._id} item xl={6} lg={12} md={12} sm={12}>
               <MobileLink
-                to={`${PATHS.myCourses}/${object._id}`}
-                onClick={(e) => {
-                  if (windowWidth === 'large') {
-                    e.preventDefault();
-                  }
+                to={`${PATHS.myCourses}/${clientCourse._id}`}
+                onClick={(event) => {
+                  disableLink(event);
                 }}
               >
-              <CourseItem
-                key={clientCourse.course._id}
-                title={clientCourse.course.title}
-                description={clientCourse.course.description}
-                duration={clientCourse.course.duration}
-                lessons={clientCourse.course.lessons}
-                pageName="myCourses"
-                status={clientCourse.status}
-                progress={countProgress(clientCourse.progress)}
-              >
-                <CourseActionsBox>
-                  <CourseActions>
-                    <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
-                      <DetailsButton variant="mediumOutlined">Details</DetailsButton>
-                    </Link>
-                    {clientCourse.status === STATUS.testing ? (
-                      <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
-                        <ContinueTestButton color="primary" variant="mediumContained">
-                          Continue the test
-                        </ContinueTestButton>
+                <CourseItem
+                  key={clientCourse.course._id}
+                  title={clientCourse.course.title}
+                  description={clientCourse.course.description}
+                  duration={clientCourse.course.duration}
+                  lessons={clientCourse.course.lessons}
+                  pageName={PAGES.myCourses}
+                  status={clientCourse.status}
+                  progress={countProgress(clientCourse.progress)}
+                >
+                  <CourseActionsBox>
+                    <CourseActions>
+                      <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
+                        <DetailsButton variant="mediumOutlined">Details</DetailsButton>
                       </Link>
-                    ) : (
-                      <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
-                        <StartCourseButton color="primary" variant="mediumContained">
-                          Start the course
-                        </StartCourseButton>
-                      </Link>
+                      {clientCourse.status === STATUS.testing ? (
+                        <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
+                          <ContinueTestButton color="primary" variant="mediumContained">
+                            Continue the test
+                          </ContinueTestButton>
+                        </Link>
+                      ) : (
+                        <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
+                          <StartCourseButton color="primary" variant="mediumContained">
+                            Start the course
+                          </StartCourseButton>
+                        </Link>
+                      )}
                     </CourseActions>
                   </CourseActionsBox>
                 </CourseItem>
