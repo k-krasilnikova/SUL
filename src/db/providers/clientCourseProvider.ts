@@ -90,19 +90,6 @@ const updateCourseStatus = async (courseId: string, courseStatus: string) => {
   throw new BadRequestError('Bad request. Check the data being sent');
 };
 
-const getCourseTechnology = async (clientCourseId: string) => {
-  const technology = await ClientCourseModel.findById(clientCourseId)
-    .populate({
-      path: 'course',
-      select: 'technology',
-    })
-    .lean();
-  if (!technology) {
-    throw new NotFoundError('Course not found.');
-  }
-  return technology;
-};
-
 export {
   getClientCoursesProvider,
   getClientCourseProvider,
@@ -111,5 +98,4 @@ export {
   applyCourseProvider,
   updateCourseProgress,
   getCurrentProgress,
-  getCourseTechnology,
 };
