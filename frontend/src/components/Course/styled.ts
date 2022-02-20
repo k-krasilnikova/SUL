@@ -211,11 +211,21 @@ export const InfoContainer = styled(Box)({
     padding: '0px',
     flexDirection: 'row',
   },
-  height: '50px',
+  [theme.breakpoints.up('md')]: {
+    height: 'fit-content',
+    display: 'flex',
+    alignItems: 'end',
+    alignSelf: 'end',
+  },
+  height: 'fit-content',
   display: 'flex',
-  alignItems: 'end !important',
-  alignSelf: 'end !important',
-  paddingBottom: '0px !important',
+  [theme.breakpoints.up('lg')]: {
+    height: '50px',
+    display: 'flex',
+    alignItems: 'end !important',
+    alignSelf: 'end !important',
+    paddingBottom: '0px !important',
+  },
 });
 
 export const InfoItem = styled('div')({
