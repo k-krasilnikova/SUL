@@ -1,1 +1,1 @@
-export { default } from './ErrorsMessenger';
+export { default } from './ErrorsContainer';
