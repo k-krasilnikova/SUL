@@ -27,9 +27,7 @@ const useGetCourseTest = (params: {
     {
       enabled,
       refetchOnWindowFocus: false,
-      onSuccess: async () => {
-        queryClient.removeQueries(['ClientCourseInfo', courseId]);
-      },
+      onSuccess: () => queryClient.removeQueries(['ClientCourseInfo', courseId]),
     },
   );
 };
