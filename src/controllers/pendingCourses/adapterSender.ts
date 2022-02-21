@@ -10,7 +10,7 @@ const adapterSender = async (
   try {
     const { results } = res.locals;
     if (!results) {
-      throw new BadRequestError('Invalid query');
+      throw new BadRequestError('Invalid query.');
     }
     res.json(results);
   } catch (err) {

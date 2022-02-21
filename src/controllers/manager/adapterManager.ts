@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { TLocalsManager } from 'interfaces/IResponse/IResponse';
 
-const adapterManger = async (
+const adapterManager = async (
   req: Request<Record<string, string | undefined>, Record<string, never>, { id: string }>,
   res: Response<never, TLocalsManager>,
   next: NextFunction,
@@ -22,4 +22,4 @@ const adapterManger = async (
   }
 };
 
-export default adapterManger;
+export default adapterManager;
