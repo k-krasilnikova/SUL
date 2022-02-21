@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
-import useGetCourseTest from 'api/test/getCourseTest';
-import { useSendTestResult, useStartCourseTest } from 'api/test';
+import { useSendTestResult, useStartCourseTest, useGetCourseTest } from 'api/test';
 
 import PassingTest from './PassingTest';
+import TestResult from './TestResult';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
 
-  const { data, isLoading } = useGetCourseTest({ courseId: params.courseId });
+  const { data: courseData, isLoading } = useGetCourseTest({ courseId: params.courseId });
 
   useStartCourseTest({
     courseId: params.courseId,
-    enabled: Boolean(data?.length),
+    enabled: Boolean(courseData?.length),
   });
 
-  const { mutate } = useSendTestResult({ courseId: params.courseId });
+  const { mutate, data: responseData } = useSendTestResult({ courseId: params.courseId });
 
-  const courseTest = data?.length ? data[0].test : undefined;
+  const courseTest = courseData?.length ? courseData[0].test : undefined;
   const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
 
   const [stage, setStage] = useState(1);
@@ -33,12 +33,14 @@ const PassingTestContainer: React.FC = () => {
     setStage(stage + STAGE_CHANGE);
   };
 
+  const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
+
   const handleSubmitResult = () => {
     const resultData = {
       testId: courseTest?._id,
       answers: Object.entries(values).map(([key, value]) => ({ qN: key, aN: value })),
     };
-    mutate(resultData);
+    mutate(resultData, { onSuccess: () => setTestResultPageEnabled(true) });
   };
 
   const stageBack = () => {
@@ -52,7 +54,7 @@ const PassingTestContainer: React.FC = () => {
 
   return (
     <>
-      {questionStageItem && (
+      {questionStageItem && !isTestResultPageEnabled && (
         <PassingTest
           stage={stage}
           maxStage={maxStage}
@@ -68,6 +70,7 @@ const PassingTestContainer: React.FC = () => {
           handleSubmitResult={handleSubmitResult}
         />
       )}
+      {isTestResultPageEnabled && <TestResult responseData={responseData} />}
     </>
   );
 };
