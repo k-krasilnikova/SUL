@@ -5,6 +5,9 @@ import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
+  [theme.breakpoints.up('xs')]: {
+    padding: '54px 8px 0 8px !important',
+  },
   '@media(max-width: 1110px)': {
     paddingTop: '40px',
   },
@@ -21,6 +24,16 @@ export const PageContainer = styled(Grid)({
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
+  width: '711px !important',
+  [theme.breakpoints.up('xs')]: {
+    width: '100%',
+    paddingTop: '8px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '711px',
+    paddingLeft: '30px',
+    paddingTop: '24px',
+  },
 });
 
 export const CourseButton = styled(Button)({
