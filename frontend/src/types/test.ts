@@ -2,6 +2,7 @@ import { Params } from 'react-router';
 
 export interface ITestResponse {
   test: ITestItem;
+  testResponse?: any;
 }
 
 export interface ITestItem {
@@ -44,11 +45,21 @@ export interface ISkills {
   group: string;
 }
 
+export interface IResponseData {
+  newSkills: [];
+  result: {
+    result: number;
+    testStatus: string;
+  };
+  updatedSkills: [];
+}
+
 export interface ITestResult {
+  responseData: IResponseData | undefined;
   status?: string;
   isFailed?: boolean;
   skills?: ISkills[];
-  testResultResponse?: any;
+  percentageValue?: number | undefined;
 }
 
 export interface IPassingTestProps {
@@ -63,8 +74,8 @@ export interface IPassingTestProps {
   resultEnabled: boolean;
   stageNext: () => void;
   stageBack: () => void;
+  isLoading: boolean;
   questionStageItem: IQuestionObject;
   children?: React.ReactChild;
   testItem?: ITestItem;
-  isLoading: boolean;
 }

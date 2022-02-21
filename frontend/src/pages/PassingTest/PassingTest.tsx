@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
 
 import { AuthorizedLayout } from 'components/Layout';
@@ -7,7 +6,6 @@ import { CountDownTimer } from 'components/CountDownTimer';
 import Loader from 'components/Loader';
 import { NoContent } from 'components/NoContent';
 import { NO_CONTENT } from 'constants/messages';
-import { PATHS } from 'constants/routes';
 import { MIN_STAGE } from 'constants/test';
 import { LOADER } from 'constants/loaderTypes';
 import { IPassingTestProps } from 'types/test';
@@ -32,7 +30,6 @@ const PassingTest: React.FC<IPassingTestProps> = ({
   maxStage,
   handleChange,
   value,
-  params,
   resultEnabled,
   stageNext,
   stageBack,
@@ -78,8 +75,6 @@ const PassingTest: React.FC<IPassingTestProps> = ({
             <ResultButton
               variant="medium"
               disabled={Boolean(!value[questionStageItem.qN])}
-              component={Link}
-              to={`${PATHS.learnCourse}/${params.courseId}/test/result`}
               onClick={handleSubmitResult}
             >
               Result

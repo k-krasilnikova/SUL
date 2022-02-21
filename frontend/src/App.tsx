@@ -17,7 +17,6 @@ import {
   NotFound,
   DetailedCourse,
   PassingTest,
-  TestResult,
 } from 'pages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
@@ -42,7 +41,6 @@ const App: React.FC = () => (
               <Route path=":courseId" element={<DetailedCourse page={PAGES.myCourses} />} />
               <Route path="learn/:courseId" element={<LearningCourse />} />
               <Route path="learn/:courseId/test" element={<PassingTest />} />
-              <Route path="learn/:courseId/test/result" element={<TestResult />} />
             </Route>
             <Route path={PATHS.coursesList}>
               <Route index element={<CoursesList />} />
