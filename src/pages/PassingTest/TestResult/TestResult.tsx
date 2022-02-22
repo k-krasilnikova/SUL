@@ -22,16 +22,26 @@ import {
   TestSkillsBox,
 } from './styled';
 
-const TestResult: React.FC<ITestResult> = ({ isFailed, skills }) => (
+const TestResult: React.FC<ITestResult> = ({ isFailed, responseData, percentageValue }) => (
   <AuthorizedLayout pageName="Test Result">
     <TestResultBox>
       <TestResultTitle>Your Score</TestResultTitle>
       <ContentBox>
         <ProgressBarBox>
           {isFailed ? (
-            <ProgressBar size="xlarge" value={35} text="35%" variant="failed" />
+            <ProgressBar
+              size="xlarge"
+              value={percentageValue}
+              text={`${percentageValue}%`}
+              variant="failed"
+            />
           ) : (
-            <ProgressBar size="xlarge" value={75} text="75%" variant="completed" />
+            <ProgressBar
+              size="xlarge"
+              value={percentageValue}
+              text={`${percentageValue}%`}
+              variant="completed"
+            />
           )}
         </ProgressBarBox>
         <ResultBox>
@@ -48,8 +58,14 @@ const TestResult: React.FC<ITestResult> = ({ isFailed, skills }) => (
                 </>
               ) : (
                 <SkillsInfoList>
-                  {skills?.map((skillItem) => (
-                    <CourseMaterialInfoContainer skillItem={skillItem} key={skillItem.name} />
+                  {responseData?.newSkills?.map((newSkillItem) => (
+                    <CourseMaterialInfoContainer skillItem={newSkillItem} key={newSkillItem} />
+                  ))}
+                  {responseData?.updatedSkills?.map((updatedSkillItem) => (
+                    <CourseMaterialInfoContainer
+                      skillItem={updatedSkillItem}
+                      key={updatedSkillItem}
+                    />
                   ))}
                 </SkillsInfoList>
               )}

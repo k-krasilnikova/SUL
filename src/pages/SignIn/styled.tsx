@@ -15,7 +15,6 @@ const SignMain = styled(Box)({
   padding: '0',
   background: globalTheme.palette.secondary.main,
   [globalTheme.breakpoints.down('sm')]: {
-    minWidth: '320px !important',
     justifyContent: 'center !important',
     margin: '0 auto !important',
   },
