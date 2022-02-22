@@ -1,10 +1,10 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
 import { Grid, Typography, Button as TextButton } from '@mui/material';
 
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
-import { Link } from 'react-router-dom';
 
 export const DetailedCourseWrapper = styled(Box)({
   [theme.breakpoints.up('md')]: {
