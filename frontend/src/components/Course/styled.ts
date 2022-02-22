@@ -229,6 +229,13 @@ export const InfoContainer = styled(Box)({
   },
   height: 'fit-content',
   display: 'flex',
+  [theme.breakpoints.up('lg')]: {
+    height: '50px',
+    display: 'flex',
+    alignItems: 'end !important',
+    alignSelf: 'end !important',
+    paddingBottom: '0px !important',
+  },
 });
 
 export const InfoItem = styled('div')({
@@ -307,7 +314,10 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
     display: 'block',
     paddingLeft: '30px !important',
   },
-  paddingBottom: '3px !important',
+  paddingLeft: '30px !important',
+  paddingBottom: '0px !important',
+  height: '50px !important',
+  display: 'flex',
 }));
 
 export const MobileCourseInfoBox = styled(Box)({

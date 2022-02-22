@@ -5,6 +5,8 @@ import { useParams } from 'react-router';
 import { close } from 'icons';
 import { ConfirmDialog } from 'components/ConfirmDialog';
 import { PATHS } from 'constants/routes';
+import { useGetCourseTest } from 'api/test';
+import { convertTestTimeout } from 'utils/helpers/convertTestTimeout';
 
 import {
   DialogBox,
@@ -26,29 +28,37 @@ interface IFormDialog {
 
 const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) => {
   const params = useParams();
+  const { data } = useGetCourseTest({ courseId: params.courseId, enabled: dialogOpen });
+  const timeout = data && data[0].test.timeout;
+
   return (
-    <ConfirmDialog open={dialogOpen} onClose={handleDialogClose}>
-      <DialogBox>
-        <CloseButtonBox>
-          <CloseButton onClick={handleDialogClose}>
-            <CloseIcon alt="close" src={close} />
-          </CloseButton>
-        </CloseButtonBox>
-        <StyledDialogTitle>2 h 48 min 48 sec left</StyledDialogTitle>
-        <MainDialogContentText>
-          By clicking on the button, you confirm <br /> the end of the course and proceed to testing
-        </MainDialogContentText>
-        <WarningDialogContentText>WARNING</WarningDialogContentText>
-        <SecondaryDialogContentText>
-          It will be impossible to return <br /> to the course materials
-        </SecondaryDialogContentText>
-        <StyledButtonBox>
-          <Link to={`${PATHS.learnCourse}/${params.courseId}/test`}>
-            <StyledButton variant="medium">Start the Test</StyledButton>
-          </Link>
-        </StyledButtonBox>
-      </DialogBox>
-    </ConfirmDialog>
+    <>
+      {timeout && (
+        <ConfirmDialog open={dialogOpen} onClose={handleDialogClose}>
+          <DialogBox>
+            <CloseButtonBox>
+              <CloseButton onClick={handleDialogClose}>
+                <CloseIcon alt="close" src={close} />
+              </CloseButton>
+            </CloseButtonBox>
+            <StyledDialogTitle>{convertTestTimeout(timeout)}</StyledDialogTitle>
+            <MainDialogContentText>
+              By clicking on the button, you confirm <br /> the end of the course and proceed to
+              testing
+            </MainDialogContentText>
+            <WarningDialogContentText>WARNING</WarningDialogContentText>
+            <SecondaryDialogContentText>
+              It will be impossible to return <br /> to the course materials
+            </SecondaryDialogContentText>
+            <StyledButtonBox>
+              <Link to={`${PATHS.learnCourse}/${params.courseId}/test`}>
+                <StyledButton variant="medium">Start the Test</StyledButton>
+              </Link>
+            </StyledButtonBox>
+          </DialogBox>
+        </ConfirmDialog>
+      )}
+    </>
   );
 };
 
