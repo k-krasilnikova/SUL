@@ -65,7 +65,7 @@ export const useLayOutStyles = makeStyles({
       width: '100%!important',
     },
     '@media(min-width: 1110px)': {
-      width: `calc(100% - 82px)!important`,
+      width: `calc(100% - 86px)!important`,
     },
     [theme.breakpoints.up('xl')]: {
       width: `calc(100% - 129px)!important`,
