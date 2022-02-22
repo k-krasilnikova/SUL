@@ -2,27 +2,32 @@ import { useQuery, useQueryClient, UseQueryResult } from 'react-query';
 import { AxiosError } from 'axios';
 
 import { apiClientWrapper } from 'api/base';
+import { ITestResponse } from 'types/test';
 import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
-import { ITest } from 'types/test';
 
-const useGetCourseTest = (_id?: string): UseQueryResult<Array<ITest>, AxiosError> => {
+const useGetCourseTest = (params: {
+  courseId?: string | undefined;
+  enabled?: boolean;
+}): UseQueryResult<Array<ITestResponse>, AxiosError> => {
+  const { courseId, enabled = true } = params;
   const queryClient = useQueryClient();
   return useQuery(
     ['CourseTest'],
     async () => {
       const apiClient = apiClientWrapper();
       try {
-        const response = await apiClient.get(`${API.getMyCourses}/${_id}/test`);
-        const testResponse: Array<ITest> = response.data;
+        const response = await apiClient.get(`${API.getMyCourses}/${courseId}/test`);
+        const testResponse: Array<ITestResponse> = response.data;
         return testResponse;
       } catch (error) {
         throw new Error(`${REQUEST_ERRORS.getError}`);
       }
     },
     {
+      enabled,
       refetchOnWindowFocus: false,
-      onSuccess: () => queryClient.removeQueries(['ClientCourseInfo', _id]),
+      onSuccess: () => queryClient.removeQueries(['ClientCourseInfo', courseId]),
     },
   );
 };

@@ -1,21 +1,17 @@
 import React from 'react';
 
 import { ITestResult } from 'types/test';
-import { SKILLS } from 'constants/test';
+import { PERCENTAGE, TEST_STATUS } from 'constants/test';
 
 import TestResult from './TestResult';
 
-const TEST_STATUSES = {
-  completed: 'completed',
-  failed: 'failed',
-};
-
-const STATUS = TEST_STATUSES.completed;
-
-const TestResultContainer: React.FC<ITestResult> = ({ status = STATUS }) => {
-  const isFailed = status === TEST_STATUSES.failed;
-
-  return <TestResult isFailed={isFailed} skills={SKILLS} />;
+const TestResultContainer: React.FC<ITestResult> = ({ responseData }) => {
+  const testStatus = responseData ? responseData.result.testStatus : undefined;
+  const isFailed = testStatus === TEST_STATUS.notPassed;
+  const percentageValue = responseData ? responseData?.result?.result * PERCENTAGE : undefined;
+  return (
+    <TestResult isFailed={isFailed} responseData={responseData} percentageValue={percentageValue} />
+  );
 };
 
 export default TestResultContainer;
