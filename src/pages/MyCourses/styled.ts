@@ -120,7 +120,7 @@ export const MobileLink = styled(Link)({
     '&:hover': {
       cursor: 'default',
     },
-  }
+  },
 });
 
 export const ContinueTestButton = styled(Button)({
