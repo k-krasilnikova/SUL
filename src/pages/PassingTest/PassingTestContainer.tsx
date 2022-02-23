@@ -6,6 +6,7 @@ import { useSendTestResult, useStartCourseTest, useGetCourseTest } from 'api/tes
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
+import ConfirmLeavePage from './ConfirmLeavePage';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
@@ -52,23 +53,42 @@ const PassingTestContainer: React.FC = () => {
   const resultEnabled = stage === maxStage;
   const questionStageItem = courseTest?.questions[stage - 1];
 
+  const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
+
+  const handleConfirm = (): void => {
+    setConfirmOpen(true);
+  };
+  const cancelLeavePage = (): void => {
+    setConfirmOpen(false);
+  };
+
   return (
     <>
       {questionStageItem && !isTestResultPageEnabled && (
-        <PassingTest
-          stage={stage}
-          maxStage={maxStage}
-          handleChange={handleChange}
-          value={values}
-          params={params}
-          resultEnabled={resultEnabled}
-          stageNext={stageNext}
-          stageBack={stageBack}
-          testItem={courseTest}
-          questionStageItem={questionStageItem}
-          isLoading={isLoading}
-          handleSubmitResult={handleSubmitResult}
-        />
+        <>
+          <PassingTest
+            stage={stage}
+            maxStage={maxStage}
+            handleChange={handleChange}
+            value={values}
+            params={params}
+            resultEnabled={resultEnabled}
+            stageNext={stageNext}
+            stageBack={stageBack}
+            testItem={courseTest}
+            questionStageItem={questionStageItem}
+            isLoading={isLoading}
+            handleSubmitResult={handleSubmitResult}
+            handleConfirm={handleConfirm}
+          />
+          <ConfirmLeavePage
+            courseId={params.courseId}
+            isConfirmOpen={isConfirmOpen}
+            cancelLeavePage={cancelLeavePage}
+            isLoading={isLoading}
+            size="medium"
+          />
+        </>
       )}
       {isTestResultPageEnabled && <TestResult responseData={responseData} />}
     </>
