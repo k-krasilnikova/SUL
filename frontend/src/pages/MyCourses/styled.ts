@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-
 import { Grid, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
+
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
@@ -106,6 +107,19 @@ export const StartCourseButton = styled(Button)({
     fontSize: '16px!important',
     lineHeight: '22px',
     padding: '12px 12px!important',
+  },
+});
+
+export const MobileLink = styled(Link)({
+  [theme.breakpoints.up('xs')]: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+  [theme.breakpoints.up('sm')]: {
+    '&:hover': {
+      cursor: 'default',
+    },
   },
 });
 
