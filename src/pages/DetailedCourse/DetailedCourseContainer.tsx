@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import useGetCourseInfo from 'api/courses/getCourseInfo';
 import useApplyCourse from 'api/courses/applyCourse';
 import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
+import { WINDOW_SIZE } from 'constants/windowWidth';
 
 import DetailedCourse from './DetailedCourse';
 
@@ -38,7 +39,8 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     mutate(params.courseId);
   };
 
-  const windowWidth = window.innerWidth < 1440 ? 'small' : 'large';
+  const windowWidth =
+    window.innerWidth < WINDOW_SIZE.xl.width ? WINDOW_SIZE.lg.name : WINDOW_SIZE.xl.name;
 
   return data ? (
     <DetailedCourse

@@ -1,9 +1,11 @@
+import { WINDOW_SIZE } from 'constants/windowWidth';
+
 export const shortifyCourseDescription = (str: string, windowWidth?: string): string => {
-  let maxLegth;
-  if (windowWidth === 'small') {
-    maxLegth = 180;
+  let maxLength;
+  if (windowWidth === WINDOW_SIZE.lg.name) {
+    maxLength = 180;
   } else {
-    maxLegth = 420;
+    maxLength = 420;
   }
-  return str.length > maxLegth ? `${str.slice(0, maxLegth)}...` : str;
+  return str.length > maxLength ? `${str.slice(0, maxLength)}...` : str;
 };
