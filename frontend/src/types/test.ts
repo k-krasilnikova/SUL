@@ -78,4 +78,5 @@ export interface IPassingTestProps {
   questionStageItem: IQuestionObject;
   children?: React.ReactChild;
   testItem?: ITestItem;
+  handleConfirm: () => void;
 }
