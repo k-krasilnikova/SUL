@@ -31,7 +31,7 @@ export interface SignTypes {
   };
   imageUrl?: string;
   isLoading?: boolean;
-  handleFocus: (e: React.FocusEvent) => void;
+  handleFocus?: (e: React.FocusEvent) => void;
   labelState?: string;
   status?: string;
 }

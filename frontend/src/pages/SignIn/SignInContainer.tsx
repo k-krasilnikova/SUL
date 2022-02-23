@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
@@ -19,7 +18,7 @@ const initSignInvalue: SignInFields = {
 
 const SignInContainer: React.FC = () => {
   const { mutateAsync, isLoading, status } = useGetAuth();
-  const [labelState, setLabelState] = useState<string | undefined>();
+  // const [labelState, setLabelState] = useState<string | undefined>();
   const FIELD_TOUCHED = true;
   const FIELD_VALIDATE = false;
 
@@ -36,10 +35,10 @@ const SignInContainer: React.FC = () => {
     formik.setFieldTouched(name, FIELD_TOUCHED, FIELD_VALIDATE);
   };
 
-  const handleFocus = (e: React.FocusEvent) => {
-    const targetId = e.target.id;
-    setLabelState(targetId);
-  };
+  // const handleFocus = (e: React.FocusEvent) => {
+  //   const targetId = e.target.id;
+  //   setLabelState(targetId);
+  // };
   const classes = useExplitLabel();
 
   const LABEL_HANDLER = {
@@ -55,8 +54,8 @@ const SignInContainer: React.FC = () => {
         formik={formik}
         warningHandler={warningHandler}
         isLoading={isLoading}
-        handleFocus={handleFocus}
-        labelState={labelState}
+        // handleFocus={handleFocus}
+        // labelState={labelState}
         classes={classes}
         status={status}
         labelHandler={LABEL_HANDLER}
