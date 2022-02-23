@@ -30,7 +30,7 @@ const SignIn = ({
   formik,
   warningHandler,
   isLoading,
-  handleFocus,
+  // handleFocus,
   classes,
   labelState,
   labelHandler,
@@ -40,9 +40,9 @@ const SignIn = ({
     errors,
     handleSubmit,
     handleBlur,
+    touched,
   } = formik;
   const { loginLabel, emptyLogin, passwordLabel, emptyPassword } = labelHandler;
-
   return (
     <SignMain>
       <SignMainGrid justifyContent="space-between" container spacing={{ xl: 2, lg: 2 }}>
@@ -73,7 +73,7 @@ const SignIn = ({
                       label="Login"
                       warningHandler={warningHandler}
                       handleBlur={handleBlur}
-                      handleFocus={handleFocus}
+                      // handleFocus={handleFocus}
                       error={errors}
                       id="login"
                     />
@@ -93,7 +93,7 @@ const SignIn = ({
                       label="Password"
                       warningHandler={warningHandler}
                       handleBlur={handleBlur}
-                      handleFocus={handleFocus}
+                      // handleFocus={handleFocus}
                       error={errors}
                       id="password"
                       type="password"
@@ -102,6 +102,7 @@ const SignIn = ({
                   <GridError>
                     <ErrorsMessenger
                       error={errors}
+                      touched={touched}
                       labelState={labelState}
                       labelHandler={labelHandler}
                     />

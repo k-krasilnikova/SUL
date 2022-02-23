@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import ErrorsMessager from './ErrorsMessenger';
 
@@ -8,43 +7,33 @@ export interface ITextFieldTypes {
     login?: string;
     password?: string;
   };
+  touched: Record<string, boolean | undefined>;
   labelState?: string;
   labelHandler: {
     [key: string]: string | undefined;
   };
 }
 
-const ErrorsMessenger = ({ error, labelState }: ITextFieldTypes): JSX.Element => {
-  const { login, password } = error;
-  const [focusHistory, setfocusHistory] = useState<Array<string | undefined>>([]);
-  const [isLoginHistory, setLoginHistory] = useState<boolean>();
-  const [isPasswordHistory, setPasswordHistory] = useState<boolean>();
-  const ERRORS_LABEL = { login: 'login', password: 'password', limiter: 2 };
+const ErrorsMessenger = ({ error, touched }: ITextFieldTypes): JSX.Element => {
+  const [keysQueue, setQueue] = useState<string[] | never[]>([]);
+  const [fieldKey, setFiledKey] = useState<string | undefined>();
 
   useEffect(() => {
-    setfocusHistory([...focusHistory, labelState]);
-  }, [labelState]);
+    const touchedKeys = Object.keys(touched);
+    let errorKeys = Object.keys(error);
+    errorKeys = errorKeys.filter((key) => touchedKeys.includes(key));
+    console.log('in effect1', errorKeys);
+    setQueue([...errorKeys]);
+  }, [error, touched]);
 
   useEffect(() => {
-    const loginStatus = focusHistory.includes(ERRORS_LABEL.login);
-    const passwordStatus = focusHistory.includes(ERRORS_LABEL.password);
-    setLoginHistory(loginStatus);
-    setPasswordHistory(passwordStatus);
-  }, [focusHistory]);
+    console.log('queue', keysQueue);
+    const name = [...keysQueue].shift();
+    setFiledKey(name);
+    console.log('in effect2', name);
+  }, [error, keysQueue]);
 
-  return (
-    <ErrorsMessager
-      labelState={labelState}
-      loginError={login}
-      passwordError={password}
-      isLoginHistory={isLoginHistory}
-      isPasswordHistory={isPasswordHistory}
-      focusHistory={focusHistory}
-      loginHelper={ERRORS_LABEL.login}
-      passwordHelper={ERRORS_LABEL.password}
-      historyLimiter={ERRORS_LABEL.limiter}
-    />
-  );
+  return <ErrorsMessager errorKey={fieldKey} />;
 };
 
 export default ErrorsMessenger;
