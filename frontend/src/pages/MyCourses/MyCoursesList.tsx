@@ -9,6 +9,9 @@ import { PATHS } from 'constants/routes';
 import { ResponseDataMyCourses } from 'types/responseDataMyCourses';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
+import { STATUS } from 'constants/statuses';
+import { countProgress } from 'utils/helpers/countCourseProgress';
+import { PAGES } from 'constants/pages';
 
 import {
   PageContainer,
@@ -17,37 +20,65 @@ import {
   CourseActionsBox,
   DetailsButton,
   StartCourseButton,
+  MobileLink,
+  ContinueTestButton,
 } from './styled';
 
-const MyCoursesList: React.FC<ResponseDataMyCourses> = ({ data, isLoading }) => (
+interface Props {
+  disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+}
+
+type MyCoursesProps = ResponseDataMyCourses & Props;
+
+const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, disableLink }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
     ) : data?.length ? (
-      <PageContainer container rowSpacing="24px" columnSpacing="30px">
-        {data?.map((object) => (
-          <Suspense fallback={<Loader color="primary" type={LOADER.content} key={object._id} />}>
-            <GridItem key={object._id} item xl={6} lg={6} md={12} sm={12}>
-              <CourseItem
-                key={object.course._id}
-                title={object.course.title}
-                description={object.course.description}
-                duration={object.course.duration}
-                lessons={object.course.lessons}
+      <PageContainer container>
+        {data?.map((clientCourse) => (
+          <Suspense
+            fallback={<Loader color="primary" type={LOADER.content} key={clientCourse._id} />}
+          >
+            <GridItem key={clientCourse._id} item xl={6} lg={12} md={12} sm={12}>
+              <MobileLink
+                to={`${PATHS.myCourses}/${clientCourse._id}`}
+                onClick={(event) => {
+                  disableLink(event);
+                }}
               >
-                <CourseActionsBox>
-                  <CourseActions>
-                    <Link to={`${PATHS.myCourses}/${object._id}`}>
-                      <DetailsButton variant="mediumOutlined">Details</DetailsButton>
-                    </Link>
-                    <Link to={`${PATHS.learnCourse}/${object._id}`}>
-                      <StartCourseButton color="primary" variant="mediumContained">
-                        Start the course
-                      </StartCourseButton>
-                    </Link>
-                  </CourseActions>
-                </CourseActionsBox>
-              </CourseItem>
+                <CourseItem
+                  key={clientCourse.course._id}
+                  title={clientCourse.course.title}
+                  description={clientCourse.course.description}
+                  duration={clientCourse.course.duration}
+                  lessons={clientCourse.course.lessons}
+                  pageName={PAGES.myCourses}
+                  status={clientCourse.status}
+                  progress={countProgress(clientCourse.progress)}
+                >
+                  <CourseActionsBox>
+                    <CourseActions>
+                      <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
+                        <DetailsButton variant="mediumOutlined">Details</DetailsButton>
+                      </Link>
+                      {clientCourse.status === STATUS.testing ? (
+                        <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
+                          <ContinueTestButton color="primary" variant="mediumContained">
+                            Continue the test
+                          </ContinueTestButton>
+                        </Link>
+                      ) : (
+                        <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
+                          <StartCourseButton color="primary" variant="mediumContained">
+                            Start the course
+                          </StartCourseButton>
+                        </Link>
+                      )}
+                    </CourseActions>
+                  </CourseActionsBox>
+                </CourseItem>
+              </MobileLink>
             </GridItem>
           </Suspense>
         ))}

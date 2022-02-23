@@ -1,16 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
-const applyMiddlewareManager = async (
+import { TLocalsManager } from 'interfaces/IResponse/IResponse';
+
+const adapterManager = async (
   req: Request<Record<string, string | undefined>, Record<string, never>, { id: string }>,
-  res: Response<
-    never,
-    {
-      id: string;
-      courseId: string | undefined;
-      userId: string | undefined;
-      managerId: string | undefined;
-    }
-  >,
+  res: Response<never, TLocalsManager>,
   next: NextFunction,
 ) => {
   try {
@@ -18,12 +12,14 @@ const applyMiddlewareManager = async (
     const { id: employeeId } = req.params;
     const { id: courseId } = req.body;
     res.locals.courseId = courseId;
+    res.locals.clientCourseId = courseId;
     res.locals.userId = employeeId;
     res.locals.managerId = managerId;
+    res.locals.results = {};
     next();
   } catch (error) {
     next(error);
   }
 };
 
-export default applyMiddlewareManager;
+export default adapterManager;

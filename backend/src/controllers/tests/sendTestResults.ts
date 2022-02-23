@@ -1,10 +1,20 @@
 import { NextFunction, Request, Response } from 'express';
 
+import { TAchievments, TestRuslt } from 'interfaces/Ientities/Itest';
+
 const unitTestResults = async (
   req: Request,
   res: Response<
-    { result: number; updatedSkills: string[]; newSkills: string[] },
-    { id: string; result: number; achievments: { newSkills: string[]; updatedSkills: string[] } }
+    {
+      result: TestRuslt;
+      newSkills: TAchievments['newSkills'];
+      updatedSkills: TAchievments['updatedSkills'];
+    },
+    {
+      id: string;
+      result: TestRuslt;
+      achievments: TAchievments;
+    }
   >,
   next: NextFunction,
 ) => {
