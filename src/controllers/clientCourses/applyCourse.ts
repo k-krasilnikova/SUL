@@ -1,4 +1,3 @@
-import { finished } from 'stream';
 import { NextFunction, Request, Response } from 'express';
 
 import { applyCourseProvider, getClientCoursesProvider } from 'db/providers/clientCourseProvider';
@@ -12,11 +11,11 @@ import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
 
 const applyCourse = async (
   req: Request,
-  res: Response<IClientCourse, TCourseLocals>,
+  res: Response<never, TCourseLocals & { results: Record<'course', IClientCourse> }>,
   next: NextFunction,
 ) => {
   try {
-    const { courseId, userId } = res.locals;
+    const { courseId, userId, results } = res.locals;
     if (!courseId || !userId) {
       throw new BadRequestError('Invalid query');
     }
@@ -28,12 +27,9 @@ const applyCourse = async (
     const materialsCount = await materialsCounterProvider(courseId);
     const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
     const course: IClientCourse = await applyCourseProvider(courseId, userId, progressDto);
+    res.locals.clientCourseId = course._id;
+    results.course = course;
     next();
-    finished(res, () => {
-      if (!res.headersSent) {
-        res.json(course);
-      }
-    });
   } catch (err) {
     next(err);
   }

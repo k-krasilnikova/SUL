@@ -11,12 +11,13 @@ const updatePandingCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { courseId, userId } = res.locals;
-    if (!courseId || !userId) {
+    const { clientCourseId, userId } = res.locals;
+    if (!clientCourseId || !userId) {
       throw new BadRequestError('Invalid query');
     }
-    const user: IUser = await getUserProvider(userId);
-    await updatePendingFieldCourses(user.managerId, courseId);
+    const { managerId }: IUser = await getUserProvider(userId);
+    await updatePendingFieldCourses(managerId, clientCourseId);
+    next();
   } catch (err) {
     next(err);
   }
