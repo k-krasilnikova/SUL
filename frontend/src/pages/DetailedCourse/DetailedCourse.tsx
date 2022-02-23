@@ -12,6 +12,7 @@ import { PATHS } from 'constants/routes';
 import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
+import { backIconMobile } from 'icons';
 
 import {
   BackButton,
@@ -31,6 +32,8 @@ import {
   StartCourseButton,
   DetailedCourseTextMobile,
   ButtonFullText,
+  BackArrow,
+  BackLink,
 } from './styled';
 
 interface IProps {
@@ -52,6 +55,8 @@ const PAGES = {
   coursesList: 'coursesList',
 };
 
+const OPEN_FULL_TEXT = 'Look in full';
+
 const DetailedCourse: React.FC<IProps> = ({
   handleApplyCourse,
   isLoading,
@@ -63,31 +68,30 @@ const DetailedCourse: React.FC<IProps> = ({
   isFullTextOpen,
   toggleFullText,
 }) => (
-  <AuthorizedLayout pageName={INITIAL_DETAILED_COURSE.title}>
+  <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
-      <Link to={PATHS.coursesList}>
+      <BackLink to={PATHS.coursesList}>
         <BackButton variant="medium" color="primary">
           Back
         </BackButton>
-      </Link>
+        <BackArrow alt="" src={backIconMobile} />
+      </BackLink>
       <InnerWrapper>
         <ImageWrapper>
           <Image />
         </ImageWrapper>
         <ProgressBar size="large" text="0%" />
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
-
         {isFullTextOpen ? (
           <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
         ) : (
           <DetailedCourseTextMobile>
             {INITIAL_DETAILED_COURSE.description.slice(0, 140)}
             <ButtonFullText onClick={toggleFullText}>
-              {!isFullTextOpen && 'Look in full'}
+              {!isFullTextOpen && OPEN_FULL_TEXT}
             </ButtonFullText>
           </DetailedCourseTextMobile>
         )}
-
         <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
           <CourseInfoBox>
@@ -123,7 +127,7 @@ const DetailedCourse: React.FC<IProps> = ({
           )}
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
-          <Grid item xs={8}>
+          <Grid item xs={12}>
             <SimilarCoursesTitle>Similar courses</SimilarCoursesTitle>
             <SimilarCoursesItemWrapper>
               <CourseItem

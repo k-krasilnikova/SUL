@@ -11,8 +11,8 @@ const getPendingCourses = async (
 ) => {
   const { id: userId } = res.locals;
   try {
-    const user: IUser = await getPendingCoursesProvider(userId);
-    res.json(user.pendingCourses);
+    const { pendingCourses }: IUser = await getPendingCoursesProvider(userId);
+    res.json(pendingCourses);
     next();
   } catch (error) {
     next(error);

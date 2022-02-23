@@ -5,6 +5,7 @@ import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescripti
 import { ProgressBar } from 'components/ProgressBar';
 import { checkIcon } from 'icons';
 import { STATUS } from 'constants/statuses';
+import { PAGES } from 'constants/pages';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -33,11 +34,6 @@ interface Props {
   windowWidth?: string;
   type?: string;
 }
-
-const PAGES = {
-  myCourses: 'myCourses',
-  coursesList: 'coursesList',
-};
 
 const CourseItem: React.FC<Props> = ({
   title,
