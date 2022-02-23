@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { SkillListItem } from 'types/skill';
+import { Skill } from 'types/skill';
 
 import SkillInfo from './SkillInfo';
 
 const PERCENTAGE = 100;
 
 interface SkillProps {
-  skillItem: SkillListItem;
+  skillItem: Skill;
 }
 
 const CourseMaterialInfoContainer: React.FC<SkillProps> = ({ skillItem }) => {

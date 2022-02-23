@@ -1,47 +1,72 @@
 import { Params } from 'react-router';
 
-export interface ITest {
-  test: {
-    title: string | undefined;
-    questions: Array<{
-      question: string;
-      answers: { variant: string; isCorrect: boolean };
-    }>;
-    timeout: number | undefined;
-  };
+export interface ITestResponse {
+  test: ITestItem;
+  testResponse?: any;
 }
 
-export interface IAnswers {
+export interface ITestItem {
+  _id: string;
+  title: string | undefined;
+  questions: {
+    question: string;
+    qN: number;
+    answers: IAnswer[];
+  }[];
+  timeout: number;
+}
+
+export interface IAnswer {
   variant: string;
   aN: number;
 }
 
 export interface IQuestionObject {
-  answers: Array<{ variant: string; aN: number }>;
-  question: string;
   qN: number;
+  question: string;
+  answers: IAnswer[];
 }
 
-export interface IQuestionItem {
+export interface IQuestionProps {
   handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: {
     [key: number]: number;
   };
-  questionItem?: IQuestionObject;
+  questionItem: IQuestionObject;
   stage?: number | undefined;
   maxStage?: number | undefined;
 }
 
-export interface ITestResult {
-  status?: string;
-  isFailed?: boolean;
-  skills?: { name: string; image: string; score: number; maxScore: number }[];
+export interface ISkills {
+  name: string;
+  image: string;
+  score: number;
+  maxScore: number;
+  group: string;
 }
 
-export interface IPassingTest {
+export interface IResponseData {
+  newSkills: [];
+  result: {
+    result: number;
+    testStatus: string;
+  };
+  updatedSkills: [];
+}
+
+export interface ITestResult {
+  responseData: IResponseData | undefined;
+  status?: string;
+  isFailed?: boolean;
+  skills?: ISkills[];
+  percentageValue?: number | undefined;
+}
+
+export interface IPassingTestProps {
   stage: number;
   maxStage: number;
   handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmitResult: () => void;
   value: {
     [key: number]: number;
   };
@@ -49,6 +74,8 @@ export interface IPassingTest {
   resultEnabled: boolean;
   stageNext: () => void;
   stageBack: () => void;
+  isLoading: boolean;
   questionStageItem: IQuestionObject;
   children?: React.ReactChild;
+  testItem?: ITestItem;
 }

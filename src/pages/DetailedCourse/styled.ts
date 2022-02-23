@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
 import { Grid, Typography, Button as TextButton } from '@mui/material';
 
@@ -125,6 +126,7 @@ export const SimilarCoursesWrapper = styled(Grid)({
   [theme.breakpoints.up('xs')]: {
     marginTop: '48px',
     marginBottom: '10px',
+    width: '80%',
   },
   [theme.breakpoints.up('md')]: {
     marginTop: '63px',
@@ -139,6 +141,10 @@ export const SimilarCoursesWrapper = styled(Grid)({
 export const SimilarCoursesItemWrapper = styled(Grid)({
   width: '711px',
   marginTop: '40px',
+  [theme.breakpoints.up('xs')]: {
+    marginTop: '8px',
+    width: '100%',
+  },
   [theme.breakpoints.up('md')]: {
     width: '500px',
     marginTop: '16px',
@@ -170,8 +176,6 @@ export const SimilarCoursesTitle = styled(Typography)({
 });
 
 export const BackButton = styled(Button)({
-  height: '39px',
-  width: '84px',
   [theme.breakpoints.up('xs')]: {
     display: 'none!important',
   },
@@ -215,6 +219,14 @@ export const StartButton = styled(Button)({
 export const DetailsButton = styled(Button)({
   height: '50px',
   width: '150px',
+  [theme.breakpoints.up('sm')]: {
+    height: '44px',
+    width: '131px',
+    marginRight: '9px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
+  },
   [theme.breakpoints.up('md')]: {
     height: '35px',
     width: '105px',
@@ -233,6 +245,14 @@ export const DetailsButton = styled(Button)({
 export const StartCourseButton = styled(Button)({
   height: '50px',
   width: '150px',
+  [theme.breakpoints.up('sm')]: {
+    height: '44px',
+    width: '131px',
+    marginRight: '26px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
+  },
   [theme.breakpoints.up('md')]: {
     height: '35px',
     width: '105px',
@@ -255,6 +275,7 @@ export const CourseActionsBox = styled(Box)({
 export const CourseInfoBox = styled(Box)({
   display: 'flex',
   alignSelf: 'center !important',
+  alignItems: 'center',
 });
 
 export const DetailedCourseTextMobile = styled(Typography)({
@@ -281,4 +302,20 @@ export const ButtonFullText = styled(TextButton)({
   display: 'block!important',
   color: '#0A5EDC !important',
   padding: '0px !important',
+});
+
+export const BackArrow = styled('img')({
+  [theme.breakpoints.up('xs')]: {
+    display: 'inline-block',
+    margin: '22px 23px 10px 16px',
+  },
+  [theme.breakpoints.up('md')]: {
+    display: 'none',
+  },
+});
+export const BackLink = styled(Link)({
+  [theme.breakpoints.up('xs')]: {
+    height: 'fit-content',
+    width: 'fit-content',
+  },
 });
