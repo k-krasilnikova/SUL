@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 
 import ErrorsMessager from './ErrorsMessenger';
 
@@ -8,32 +9,40 @@ export interface ITextFieldTypes {
     password?: string;
   };
   touched: Record<string, boolean | undefined>;
-  labelState?: string;
-  labelHandler: {
-    [key: string]: string | undefined;
-  };
 }
 
 const ErrorsMessenger = ({ error, touched }: ITextFieldTypes): JSX.Element => {
   const [keysQueue, setQueue] = useState<string[] | never[]>([]);
   const [fieldKey, setFiledKey] = useState<string | undefined>();
+  const FIELD_NAME = {
+    loginField: 'login',
+    passwordField: 'password',
+  };
 
-  useEffect(() => {
+  const getCurrentError = (): string[] | never[] => {
     const touchedKeys = Object.keys(touched);
     let errorKeys = Object.keys(error);
     errorKeys = errorKeys.filter((key) => touchedKeys.includes(key));
-    console.log('in effect1', errorKeys);
-    setQueue([...errorKeys]);
+    return errorKeys;
+  };
+
+  useEffect(() => {
+    const currentErrors = getCurrentError();
+    setQueue(currentErrors);
   }, [error, touched]);
 
   useEffect(() => {
-    console.log('queue', keysQueue);
-    const name = [...keysQueue].shift();
-    setFiledKey(name);
-    console.log('in effect2', name);
+    const currentName = keysQueue.shift();
+    setFiledKey(currentName);
   }, [error, keysQueue]);
 
-  return <ErrorsMessager errorKey={fieldKey} />;
+  return (
+    <ErrorsMessager
+      identificator={fieldKey}
+      loginFiled={FIELD_NAME.loginField}
+      passwordField={FIELD_NAME.passwordField}
+    />
+  );
 };
 
 export default ErrorsMessenger;

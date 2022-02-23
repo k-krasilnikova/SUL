@@ -1,5 +1,7 @@
 export interface SignTypes {
   warningHandler: (name: string, e: string) => void;
+  getFieldName: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  getCoordinates: (event: React.MouseEvent<Element, MouseEvent>) => void;
   classes: {
     [key: string]: string | undefined;
   };
@@ -34,4 +36,5 @@ export interface SignTypes {
   handleFocus?: (e: React.FocusEvent) => void;
   labelState?: string;
   status?: string;
+  labelStatus?: string | boolean;
 }
