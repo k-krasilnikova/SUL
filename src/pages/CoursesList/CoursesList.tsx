@@ -19,14 +19,22 @@ import {
   CourseActionsBox,
   DetailsButton,
   StartCourseButton,
+  MobileLink,
 } from './styled';
 
-const CoursesList: React.FC<ResponseDataType> = ({
+interface Props {
+  disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+}
+
+type CoursesProps = ResponseDataType & Props;
+
+const CoursesList: React.FC<CoursesProps> = ({
   data,
   isLoading,
   handleApplyCourse,
   targetLoading,
   targetId,
+  disableLink,
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
@@ -35,37 +43,44 @@ const CoursesList: React.FC<ResponseDataType> = ({
       <PageContainer container>
         {data?.map((course) => (
           <Suspense fallback={<Loader color="primary" type={LOADER.content} />}>
-            <GridItem key={course._id} item xl={6} lg={12} md={12} sm={12} container>
-              <CourseItem
-                key={`${course._id}_item`}
-                title={course?.title}
-                description={course?.description}
-                duration={course?.duration}
-                lessons={course?.lessons}
+            <GridItem key={course._id} item xl={6} lg={12} md={12} sm={12}>
+              <MobileLink
+                to={`${PATHS.coursesList}/${course._id}`}
+                onClick={(event) => {
+                  disableLink(event);
+                }}
               >
-                <CourseActionsBox key={`${course._id}_box`}>
-                  <CourseActions key={`${course._id}_actions`}>
-                    <Link to={`${PATHS.coursesList}/${course._id}`}>
-                      <DetailsButton color="primary" variant="mediumOutlined">
-                        Details
-                      </DetailsButton>
-                    </Link>
-                    {targetLoading && targetId === course._id ? (
-                      <StartCourseButton variant="mediumOutlined" disabled>
-                        <ButtonLoader buttonSpinner={buttonSpinner} />
-                      </StartCourseButton>
-                    ) : (
-                      <StartCourseButton
-                        id={course._id}
-                        onClick={handleApplyCourse}
-                        variant="mediumContained"
-                      >
-                        Start the course
-                      </StartCourseButton>
-                    )}
-                  </CourseActions>
-                </CourseActionsBox>
-              </CourseItem>
+                <CourseItem
+                  key={`${course._id}_item`}
+                  title={course?.title}
+                  description={course?.description}
+                  duration={course?.duration}
+                  lessons={course?.lessons}
+                >
+                  <CourseActionsBox key={`${course._id}_box`}>
+                    <CourseActions key={`${course._id}_actions`}>
+                      <Link to={`${PATHS.coursesList}/${course._id}`}>
+                        <DetailsButton color="primary" variant="mediumOutlined">
+                          Details
+                        </DetailsButton>
+                      </Link>
+                      {targetLoading && targetId === course._id ? (
+                        <StartCourseButton variant="mediumOutlined" disabled>
+                          <ButtonLoader buttonSpinner={buttonSpinner} />
+                        </StartCourseButton>
+                      ) : (
+                        <StartCourseButton
+                          id={course._id}
+                          onClick={handleApplyCourse}
+                          variant="mediumContained"
+                        >
+                          Start the course
+                        </StartCourseButton>
+                      )}
+                    </CourseActions>
+                  </CourseActionsBox>
+                </CourseItem>
+              </MobileLink>
             </GridItem>
           </Suspense>
         ))}
