@@ -46,7 +46,7 @@ const SignIn = ({
   const { loginLabel, passwordLabel } = labelHandler;
 
   return (
-    <SignMain onClick={(event) => getCoordinates(event)}>
+    <SignMain onClick={getCoordinates}>
       <SignMainGrid justifyContent="space-between" container spacing={{ xl: 2, lg: 2 }}>
         <SignPresGrid item xs={12} sm={12} md={6} lg={7} xl={6}>
           <ImageWrapper>
@@ -62,7 +62,7 @@ const SignIn = ({
               <ItemsBox component="form" onSubmit={handleSubmit}>
                 <GridWrapper container spacing={1}>
                   <GridSignInput
-                    onClick={(event) => getFieldName(event)}
+                    onClick={getFieldName}
                     id="login"
                     item
                     xs={12}
@@ -82,7 +82,7 @@ const SignIn = ({
                     />
                   </GridSignInput>
                   <GridSignInput
-                    onClick={(event) => getFieldName(event)}
+                    onClick={getFieldName}
                     id="password"
                     item
                     xs={12}
@@ -112,7 +112,7 @@ const SignIn = ({
                       </SignButton>
                     ) : (
                       <SignButton fullWidth type="submit" variant="contained" color="primary">
-                        LOG INsdsd
+                        LOG IN
                       </SignButton>
                     )}
                   </GridButton>
