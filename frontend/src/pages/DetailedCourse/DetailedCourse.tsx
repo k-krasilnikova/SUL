@@ -109,7 +109,7 @@ const DetailedCourse: React.FC<IProps> = ({
               {page === PAGES.myCourses && (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
                   <StartButton variant="large" color="primary">
-                    Start
+                    Start the course
                   </StartButton>
                 </Link>
               )}
@@ -120,7 +120,7 @@ const DetailedCourse: React.FC<IProps> = ({
                   color="primary"
                   onClick={(event) => handleApplyCourse(event)}
                 >
-                  Start
+                  Start the course
                 </StartButton>
               )}
             </div>
