@@ -26,9 +26,7 @@ const SignInContainer: React.FC = () => {
 
   const LABEL_HANDLER = {
     loginLabel: 'login',
-    emptyLogin: 'Login is required',
     passwordLabel: 'password',
-    emptyPassword: 'Enter your password',
     additionalClass:
       'MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-wb57ya-MuiFormControl-root-MuiTextField-root',
   };
@@ -69,6 +67,8 @@ const SignInContainer: React.FC = () => {
       ? setLabelStatus(targetFieldName)
       : setLabelStatus(FIELD_VALIDATE);
   }, [currentCoordinates, targetFieldName]);
+
+  console.log('labelStatus', labelStatus);
 
   return (
     <FormikProvider value={formik}>
