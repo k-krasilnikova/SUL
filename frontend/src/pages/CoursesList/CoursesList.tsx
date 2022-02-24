@@ -44,12 +44,7 @@ const CoursesList: React.FC<CoursesProps> = ({
         {data?.map((course) => (
           <Suspense fallback={<Loader color="primary" type={LOADER.content} />}>
             <GridItem key={course._id} item xl={6} lg={12} md={12} sm={12}>
-              <MobileLink
-                to={`${PATHS.coursesList}/${course._id}`}
-                onClick={(event) => {
-                  disableLink(event);
-                }}
-              >
+              <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
                 <CourseItem
                   key={`${course._id}_item`}
                   title={course?.title}
