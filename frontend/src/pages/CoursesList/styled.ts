@@ -1,26 +1,41 @@
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 import { Grid, Box } from '@mui/material';
+
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
+  [theme.breakpoints.up('xs')]: {
+    padding: '54px 8px 0 8px !important',
+  },
   '@media(max-width: 1110px)': {
     paddingTop: '40px',
   },
-  [theme.breakpoints.down('xl')]: {
-    maxWidth: '100%',
-    margin: '0px !important',
+  [theme.breakpoints.up('xl')]: {
+    padding: '16px 8px 0 8px !important',
+  },
+  '@media(min-width: 1110px)': {
+    padding: '16px 30px 0px 30px !important',
+  },
+  '@media(min-width: 1440px)': {
+    padding: '16px 30px 0px 0px !important',
   },
   width: '100%',
-  paddingRight: '147px !important',
-  paddingTop: '2.5% !important',
-  paddingLeft: '11px !important',
-  marginLeft: '-18px !important',
 });
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
+  width: '711px !important',
+  [theme.breakpoints.up('xs')]: {
+    width: '100%',
+    paddingTop: '8px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '711px',
+    paddingLeft: '30px',
+    paddingTop: '24px !important',
+  },
 });
 
 export const CourseButton = styled(Button)({
@@ -32,7 +47,7 @@ export const CourseButton = styled(Button)({
     width: '120px',
     lineHeight: '10px',
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('sm')]: {
     width: '140px',
     marginLeft: '5px',
     height: '40px',
@@ -44,7 +59,7 @@ export const CourseButton = styled(Button)({
 });
 
 export const CourseActions = styled('div')({
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('md')]: {
     display: 'flex',
     justifyContent: 'space-between',
     margin: '0px',
@@ -62,13 +77,52 @@ export const CourseActionsBox = styled(Box)({
 });
 
 export const DetailsButton = styled(Button)({
-  height: '50px',
-  width: '150px',
-  marginRight: '16px !important',
+  [theme.breakpoints.up('sm')]: {
+    height: '44px',
+    width: '131px',
+    marginRight: '9px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '50px',
+    width: '150px',
+    marginRight: '16px !important',
+    fontSize: '16px!important',
+    lineHeight: '22px',
+    padding: '12px 12px!important',
+  },
 });
 
 export const StartCourseButton = styled(Button)({
-  height: '50px',
-  width: '150px',
-  marginRight: '40px !important',
+  [theme.breakpoints.up('sm')]: {
+    height: '44px',
+    width: '131px',
+    marginRight: '26px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    height: '50px',
+    width: '150px',
+    marginRight: '40px !important',
+    fontSize: '16px!important',
+    lineHeight: '22px',
+    padding: '12px 12px!important',
+  },
+});
+
+export const MobileLink = styled(Link)({
+  [theme.breakpoints.up('xs')]: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+  [theme.breakpoints.up('sm')]: {
+    '&:hover': {
+      cursor: 'default',
+    },
+  },
 });
