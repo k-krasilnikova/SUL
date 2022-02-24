@@ -68,8 +68,6 @@ const SignInContainer: React.FC = () => {
       : setLabelStatus(FIELD_VALIDATE);
   }, [currentCoordinates, targetFieldName]);
 
-  console.log('labelStatus', labelStatus);
-
   return (
     <FormikProvider value={formik}>
       <SignIn
