@@ -76,7 +76,7 @@ export interface IPassingTestProps {
   stageBack: () => void;
   isLoading: boolean;
   questionStageItem: IQuestionObject;
+  handleConfirm: () => void;
   children?: React.ReactChild;
   testItem?: ITestItem;
-  handleConfirm: () => void;
 }
