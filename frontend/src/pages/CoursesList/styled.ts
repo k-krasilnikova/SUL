@@ -22,19 +22,27 @@ export const PageContainer = styled(Grid)({
     padding: '16px 30px 0px 0px !important',
   },
   width: '100%',
+  paddingRight: '30px !important',
+  paddingTop: '1.0% !important',
+  paddingLeft: '0px !important',
 });
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
-  width: '711px !important',
+  [theme.breakpoints.up('xl')]: {
+    maxWidth: '741px !important',
+    width: '741px !important',
+    paddingLeft: '30px',
+    paddingTop: '24px',
+  },
+  [theme.breakpoints.down('xl')]: {
+    paddingLeft: '30px',
+    paddingTop: '24px',
+    width: '711px !important',
+  },
   [theme.breakpoints.up('xs')]: {
     width: '100%',
     paddingTop: '8px !important',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '711px',
-    paddingLeft: '30px',
-    paddingTop: '24px !important',
   },
 });
 
