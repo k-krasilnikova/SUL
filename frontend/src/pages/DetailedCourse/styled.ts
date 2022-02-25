@@ -201,7 +201,7 @@ export const StartButton = styled(Button)({
     fontSize: '14px !important',
     marginLeft: 'calc(100% - 131px) !important',
     marginTop: '24px',
-    padding: '10px 10px!important',
+    padding: '10px 10px !important',
   },
   [theme.breakpoints.up('md')]: {
     height: '37px',
@@ -211,9 +211,12 @@ export const StartButton = styled(Button)({
     marginTop: '0px !important',
     padding: '4px 5px !important',
   },
+  [theme.breakpoints.up('lg')]: {
+    padding: '10px 5px !important',
+  },
   [theme.breakpoints.up('xl')]: {
-    height: '50px',
-    width: '150px',
+    height: '50px !important',
+    width: '150px !important',
     fontSize: '18px !important',
   },
 });
