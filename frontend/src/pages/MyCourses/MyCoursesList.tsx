@@ -30,17 +30,18 @@ interface Props {
 
 type MyCoursesProps = ResponseDataMyCourses & Props;
 
-const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, disableLink }) => (
+const MyCoursesList: React.FC<MyCoursesProps> = ({ clientCourses, isLoading, disableLink }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
-    ) : data?.length ? (
+    ) : clientCourses?.length ? (
       <PageContainer container>
-        {data?.map((clientCourse) => (
+        {clientCourses?.map((clientCourse) => (
           <Suspense
+            key={clientCourse._id}
             fallback={<Loader color="primary" type={LOADER.content} key={clientCourse._id} />}
           >
-            <GridItem key={clientCourse._id} item xl={6} lg={12} md={12} sm={12}>
+            <GridItem item xl={6} lg={12} md={12} sm={12}>
               <MobileLink
                 to={`${PATHS.myCourses}/${clientCourse._id}`}
                 onClick={(event) => {
@@ -69,6 +70,10 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, disableLink 
                             Continue the test
                           </ContinueTestButton>
                         </Link>
+                      ) : clientCourse.status === STATUS.pending ? (
+                        <StartCourseButton disabled color="primary" variant="mediumContained">
+                          Pending
+                        </StartCourseButton>
                       ) : (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
                           <StartCourseButton color="primary" variant="mediumContained">

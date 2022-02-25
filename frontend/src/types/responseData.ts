@@ -3,7 +3,7 @@ import { Course } from './course';
 export interface ResponseDataType {
   handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
   targetId?: string;
-  data?: Array<Course>;
+  courses?: Array<Course>;
   isLoading?: boolean;
   isError?: boolean;
   isFetching?: boolean;

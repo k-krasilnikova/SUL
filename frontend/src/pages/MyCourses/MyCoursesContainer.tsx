@@ -6,7 +6,7 @@ import { WINDOW_SIZE } from 'constants/windowWidth';
 import MyCoursesList from './MyCoursesList';
 
 const MyCoursesContainer: React.FC = () => {
-  const { data, isLoading } = useGetMyCourses();
+  const { data: clientCourses, isLoading } = useGetMyCourses();
   const windowWidth =
     window.innerWidth < WINDOW_SIZE.sm.width ? WINDOW_SIZE.xs.name : WINDOW_SIZE.sm.name;
   const disableLink = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -17,7 +17,7 @@ const MyCoursesContainer: React.FC = () => {
 
   return (
     <MyCoursesList
-      data={data?.filter((item) => item.course)}
+      clientCourses={clientCourses?.filter((item) => item.course)}
       isLoading={isLoading}
       disableLink={disableLink}
     />
