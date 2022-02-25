@@ -12,7 +12,7 @@ interface NotificationsProps {
 const NotificationsBar: React.FC<NotificationsProps> = ({ notifications }) => (
   <Notifications>
     {notifications?.length ? (
-      notifications.map((note) => <NotificationPlate note={note} key={`${note.id}`} />)
+      notifications.map((note) => <NotificationPlate note={note} key={`${note._id}`} />)
     ) : (
       <TextWrapper>No notifications yet</TextWrapper>
     )}
