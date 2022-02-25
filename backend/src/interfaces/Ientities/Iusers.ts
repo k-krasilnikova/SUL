@@ -10,6 +10,14 @@ interface ISkill {
   group: string;
 }
 
+interface INotification {
+  _id: ObjectId;
+  title: string;
+  description: string;
+  status: string;
+  userId: ObjectId;
+}
+
 type TUserForPendingCourses = Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
 type TCourseForPendingCourses = Pick<ICourse, 'title'>;
 
@@ -40,10 +48,11 @@ interface IUser {
   skype: string;
   phone: string;
   managerId: ObjectId;
+  notifications?: INotification[];
 }
 
 type TUserRole = 'admin' | 'manager' | 'employee';
 
 type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { IUser, TUserRole, TUserPosition, IPendingCourses, ISkill };
+export { IUser, TUserRole, TUserPosition, IPendingCourses, ISkill, INotification };

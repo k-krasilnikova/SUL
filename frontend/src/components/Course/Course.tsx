@@ -4,7 +4,7 @@ import { Image } from 'components/Image';
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
 import { ProgressBar } from 'components/ProgressBar';
 import { checkIcon } from 'icons';
-import { STATUS } from 'constants/statuses';
+import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
 
 import CourseInfo from './CourseInfo';
@@ -64,13 +64,13 @@ const CourseItem: React.FC<Props> = ({
         <MobileCourseInfoBox>
           <CourseInfo duration={duration} lessons={lessons} />
         </MobileCourseInfoBox>
-        {status === STATUS.completed && (
+        {status === COURSE_STATUSES.completed && (
           <MobileCourseCompleted>
             Completed <img alt="" src={checkIcon} />
           </MobileCourseCompleted>
         )}
       </CourseTextContainer>
-      {pageName === PAGES.myCourses && status !== STATUS.completed && (
+      {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed && (
         <MobileCourseProgress>
           <ProgressBar
             value={progress}

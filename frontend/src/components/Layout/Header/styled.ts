@@ -286,37 +286,7 @@ export const FilterAccordion = styled(Accordion)({
     minHeight: '65px',
   },
 });
-export const Notifications = styled('div')({
-  position: 'absolute',
-  zIndex: '15',
-  backgroundColor: '#FFFFFF',
-  padding: '10px',
-  fontFamily: '"Ubuntu", sans-serif',
-  borderRadius: '6px',
-  textAlign: 'left',
-  boxShadow: '0px 4px 4px 0px #00000040',
-  [theme.breakpoints.up('xs')]: {
-    top: HEADER_HEIGHT_MOBILE,
-    width: '304px',
-    left: '-270px',
-  },
-  [theme.breakpoints.up('md')]: {
-    top: HEADER_HEIGHT_IPAD,
-    left: '0px',
-  },
-  '@media(min-width: 1110px)': {
-    width: '400px',
-  },
-  '@media(min-width: 1130px)': {
-    width: '452px',
-    left: '-8px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    top: HEADER_HEIGHT,
-    width: '572px',
-    left: '0px',
-  },
-});
+
 export const UserBlock = styled(Link)({
   display: 'flex',
   justifyContent: 'flex-start',
