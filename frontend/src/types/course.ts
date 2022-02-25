@@ -19,4 +19,5 @@ export interface Course {
   lessons: number;
   materials: Array<Material>;
   _id: string;
+  avatar?: string;
 }
