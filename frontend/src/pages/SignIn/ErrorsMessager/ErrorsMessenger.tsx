@@ -1,37 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { ErrorMessage } from 'formik';
 
-import { WarningHelper } from './styled';
+import { WarningHelper } from '../styled';
 
-export interface ITextFieldTypes {
-  error: {
-    login?: string;
-    password?: string;
-  };
-  labelState?: string;
-  labelHandler: {
-    [key: string]: string | undefined;
-  };
+export interface IErrorFieldTypes {
+  loginFiled: string;
+  passwordField: string;
+  identificator?: string;
 }
 
-const ErrorsMessenger = ({ error, labelState, labelHandler }: ITextFieldTypes): JSX.Element => {
-  const { loginLabel, passwordLabel } = labelHandler;
-
-  return (
-    <>
-      {labelState === loginLabel && error.login && error.password && (
-        <ErrorMessage component={WarningHelper} name="login" />
-      )}
-      {labelState === passwordLabel && error.login && error.password && (
-        <ErrorMessage component={WarningHelper} name="password" />
-      )}
-      {!error.password && error.login && <ErrorMessage component={WarningHelper} name="login" />}
-      {!error.login && error.password && <ErrorMessage component={WarningHelper} name="password" />}
-      {!labelState && error.login && error.password && (
-        <ErrorMessage component={WarningHelper} name="login" />
-      )}
-    </>
-  );
-};
+const ErrorsMessenger = ({
+  identificator,
+  loginFiled,
+  passwordField,
+}: IErrorFieldTypes): JSX.Element => (
+  <>
+    {identificator === loginFiled && (
+      <ErrorMessage component={WarningHelper} name={identificator} />
+    )}
+    {identificator === passwordField && (
+      <ErrorMessage component={WarningHelper} name={identificator} />
+    )}
+  </>
+);
 
 export default ErrorsMessenger;
