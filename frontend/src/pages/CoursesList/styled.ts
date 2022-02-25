@@ -29,19 +29,18 @@ export const PageContainer = styled(Grid)({
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
+  [theme.breakpoints.up('xs')]: {
+    width: '100%',
+    paddingTop: '8px !important',
+  },
   [theme.breakpoints.up('xl')]: {
     maxWidth: '741px !important',
     width: '741px !important',
     paddingLeft: '30px',
-    paddingTop: '24px',
+    paddingTop: '24px !important',
   },
-  [theme.breakpoints.down('xl')]: {
-    paddingLeft: '30px',
-    paddingTop: '24px',
-    width: '711px !important',
-  },
-  [theme.breakpoints.up('xs')]: {
-    width: '100%',
+  [theme.breakpoints.down('xs')]: {
+    width: '100% !important',
     paddingTop: '8px !important',
   },
 });
