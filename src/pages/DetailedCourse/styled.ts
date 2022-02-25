@@ -9,9 +9,11 @@ import { Button } from 'components/Button';
 export const DetailedCourseWrapper = styled(Box)({
   [theme.breakpoints.up('md')]: {
     margin: '25px 0 25px 21px',
+    width: 'calc(100% - 21px)',
   },
   [theme.breakpoints.up('xl')]: {
     margin: '40px 0 40px 40px',
+    width: 'calc(100% - 40px)',
   },
 });
 
@@ -50,6 +52,9 @@ export const InnerWrapper = styled(Box)({
   [theme.breakpoints.up('md')]: {
     margin: '27px',
     maxWidth: '847px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    maxWidth: 'calc(100% - 54px)',
   },
   [theme.breakpoints.up('xl')]: {
     margin: '2%',
