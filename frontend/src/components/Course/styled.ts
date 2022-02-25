@@ -21,7 +21,7 @@ export const CourseContainer = styled(Grid)({
   minHeight: '100%',
   [theme.breakpoints.up('xs')]: {
     borderRadius: '4px',
-    width: 'fit-content',
+    width: '100%',
   },
   [theme.breakpoints.up('sm')]: {
     borderRadius: '11px',
