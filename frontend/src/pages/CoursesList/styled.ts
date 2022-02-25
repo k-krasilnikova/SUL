@@ -13,14 +13,23 @@ export const PageContainer = styled(Grid)({
     margin: '0px !important',
   },
   width: '100%',
-  paddingRight: '147px !important',
-  paddingTop: '2.5% !important',
-  paddingLeft: '11px !important',
-  marginLeft: '-18px !important',
+  paddingRight: '30px !important',
+  paddingTop: '1.0% !important',
+  paddingLeft: '0px !important',
 });
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
+  [theme.breakpoints.up('xl')]: {
+    maxWidth: '741px !important',
+    width: '741px !important',
+    paddingLeft: '30px',
+    paddingTop: '24px',
+  },
+  [theme.breakpoints.down('xl')]: {
+    paddingLeft: '30px',
+    paddingTop: '24px',
+  },
 });
 
 export const CourseButton = styled(Button)({
