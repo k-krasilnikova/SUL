@@ -38,7 +38,11 @@ interface IUser {
   position: TUserPosition;
   firstName: string;
   lastName: string;
-  skills: ISkill[];
+  technologies: {
+    group: ObjectId;
+    achievedSkills: ObjectId[];
+    isPrimary: boolean;
+  }[];
   courses: ObjectId[];
   group: string;
   employees: ObjectId[];
