@@ -14,18 +14,16 @@ export const CourseContainer = styled(Grid)({
   backgroundColor: 'rgba(118, 118, 128, 0.12);',
   fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
-
   height: '100%',
   justifyContent: 'space-between',
   flexDirection: 'column',
   minHeight: '100%',
   [theme.breakpoints.up('xs')]: {
     borderRadius: '4px',
-    width: 'fit-content',
+    width: '100%',
   },
   [theme.breakpoints.up('sm')]: {
     borderRadius: '11px',
-    width: '100%',
   },
   [theme.breakpoints.up('xl')]: {
     borderRadius: '16px',

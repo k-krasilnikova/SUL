@@ -48,7 +48,6 @@ const AuthorizedLayout: React.FC<Props> = ({
           avatar={avatar}
           isMobileMenuOpen={isMobileMenuOpen}
           toggleMobileMenu={toggleMobileMenu}
-          pageName={pageName}
         />
       </GridHeader>
       {isSqueeze ? (

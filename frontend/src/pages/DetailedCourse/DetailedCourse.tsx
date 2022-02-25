@@ -70,7 +70,7 @@ const DetailedCourse: React.FC<IProps> = ({
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
-      <BackLink to={PATHS.coursesList}>
+      <BackLink to={page === PAGES.coursesList ? PATHS.coursesList : PATHS.myCourses}>
         <BackButton variant="medium" color="primary">
           Back
         </BackButton>
