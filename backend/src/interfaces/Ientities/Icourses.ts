@@ -10,6 +10,7 @@ interface ICourse {
   materials: { stage: string; content: Array<string> }[];
   lessons: number;
   test: ObjectId;
+  avatar?: string;
 }
 
 type TCourses = Array<ICourse>;

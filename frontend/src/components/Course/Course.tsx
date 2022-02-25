@@ -33,6 +33,7 @@ interface Props {
   progress?: number;
   windowWidth?: string;
   type?: string;
+  imageUrl?: string;
 }
 
 const CourseItem: React.FC<Props> = ({
@@ -46,11 +47,12 @@ const CourseItem: React.FC<Props> = ({
   children,
   windowWidth,
   type,
+  imageUrl,
 }) => (
   <CourseContainer container direction="column">
     <AboutCourseContainer type={type}>
       <ImageWrapper>
-        <Image />
+        <Image imageUrl={imageUrl} />
       </ImageWrapper>
       <CourseTextContainer>
         <CourseTitle type={type}>{title}</CourseTitle>
