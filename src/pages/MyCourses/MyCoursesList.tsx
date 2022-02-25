@@ -56,6 +56,7 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, disableLink 
                   pageName={PAGES.myCourses}
                   status={clientCourse.status}
                   progress={countProgress(clientCourse.progress)}
+                  imageUrl={clientCourse.course.avatar}
                 >
                   <CourseActionsBox>
                     <CourseActions>

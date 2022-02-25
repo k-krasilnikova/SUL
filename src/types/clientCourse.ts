@@ -20,5 +20,6 @@ export interface ClientCourse {
     lessons: number;
     materials: Array<Material>;
     _id: string;
+    avatar?: string;
   };
 }

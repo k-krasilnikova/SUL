@@ -51,6 +51,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                   description={course?.description}
                   duration={course?.duration}
                   lessons={course?.lessons}
+                  imageUrl={course?.avatar}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>
