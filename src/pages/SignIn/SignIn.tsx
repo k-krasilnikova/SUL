@@ -30,21 +30,23 @@ const SignIn = ({
   formik,
   warningHandler,
   isLoading,
-  handleFocus,
   classes,
-  labelState,
   labelHandler,
+  getFieldName,
+  getCoordinates,
+  labelStatus,
 }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
     handleSubmit,
     handleBlur,
+    touched,
   } = formik;
-  const { loginLabel, emptyLogin, passwordLabel, emptyPassword } = labelHandler;
+  const { loginLabel, passwordLabel } = labelHandler;
 
   return (
-    <SignMain>
+    <SignMain onClick={getCoordinates}>
       <SignMainGrid justifyContent="space-between" container spacing={{ xl: 2, lg: 2 }}>
         <SignPresGrid item xs={12} sm={12} md={6} lg={7} xl={6}>
           <ImageWrapper>
@@ -60,10 +62,12 @@ const SignIn = ({
               <ItemsBox component="form" onSubmit={handleSubmit}>
                 <GridWrapper container spacing={1}>
                   <GridSignInput
+                    onClick={getFieldName}
+                    id="login"
                     item
                     xs={12}
                     classes={
-                      (labelState === loginLabel && errors.login !== emptyLogin) || login
+                      labelStatus === loginLabel || login
                         ? { root: classes.explicitLabel }
                         : { root: classes.basicLabel }
                     }
@@ -73,17 +77,17 @@ const SignIn = ({
                       label="Login"
                       warningHandler={warningHandler}
                       handleBlur={handleBlur}
-                      handleFocus={handleFocus}
                       error={errors}
                       id="login"
                     />
                   </GridSignInput>
                   <GridSignInput
+                    onClick={getFieldName}
+                    id="password"
                     item
                     xs={12}
                     classes={
-                      (labelState === passwordLabel && errors.password !== emptyPassword) ||
-                      password
+                      labelStatus === passwordLabel || password
                         ? { root: classes.explicitLabel }
                         : { root: classes.basicLabel }
                     }
@@ -93,18 +97,13 @@ const SignIn = ({
                       label="Password"
                       warningHandler={warningHandler}
                       handleBlur={handleBlur}
-                      handleFocus={handleFocus}
                       error={errors}
                       id="password"
                       type="password"
                     />
                   </GridSignInput>
                   <GridError>
-                    <ErrorsMessenger
-                      error={errors}
-                      labelState={labelState}
-                      labelHandler={labelHandler}
-                    />
+                    <ErrorsMessenger error={errors} touched={touched} />
                   </GridError>
                   <GridButton item xs={12}>
                     {isLoading ? (
