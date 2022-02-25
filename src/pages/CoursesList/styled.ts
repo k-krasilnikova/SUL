@@ -30,7 +30,7 @@ export const PageContainer = styled(Grid)({
 export const GridItem = styled(Grid)({
   height: 'fit-content',
   [theme.breakpoints.up('xs')]: {
-    width: '100%',
+    width: '100% !important',
     paddingTop: '8px !important',
   },
   [theme.breakpoints.up('xl')]: {
@@ -38,10 +38,6 @@ export const GridItem = styled(Grid)({
     width: '741px !important',
     paddingLeft: '30px',
     paddingTop: '24px !important',
-  },
-  [theme.breakpoints.down('xs')]: {
-    width: '100% !important',
-    paddingTop: '8px !important',
   },
 });
 
