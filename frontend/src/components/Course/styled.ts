@@ -14,7 +14,6 @@ export const CourseContainer = styled(Grid)({
   backgroundColor: 'rgba(118, 118, 128, 0.12);',
   fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
-
   height: '100%',
   justifyContent: 'space-between',
   flexDirection: 'column',

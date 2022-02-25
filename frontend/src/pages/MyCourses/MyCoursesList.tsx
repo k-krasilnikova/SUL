@@ -9,7 +9,7 @@ import { PATHS } from 'constants/routes';
 import { ResponseDataMyCourses } from 'types/responseDataMyCourses';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
-import { STATUS } from 'constants/statuses';
+import { COURSE_STATUSES } from 'constants/statuses';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { PAGES } from 'constants/pages';
 
@@ -64,13 +64,13 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({ clientCourses, isLoading, dis
                       <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
                         <DetailsButton variant="mediumOutlined">Details</DetailsButton>
                       </Link>
-                      {clientCourse.status === STATUS.testing ? (
+                      {clientCourse.status === COURSE_STATUSES.testing ? (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
                           <ContinueTestButton color="primary" variant="mediumContained">
                             Continue the test
                           </ContinueTestButton>
                         </Link>
-                      ) : clientCourse.status === STATUS.pending ? (
+                      ) : clientCourse.status === COURSE_STATUSES.pending ? (
                         <StartCourseButton disabled color="primary" variant="mediumContained">
                           Pending
                         </StartCourseButton>
