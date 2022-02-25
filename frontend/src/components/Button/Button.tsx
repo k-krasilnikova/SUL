@@ -16,10 +16,11 @@ interface Props extends ButtonProps {
   children?: React.ReactNode;
   component?: React.ElementType;
   to?: string;
+  disabled?: boolean;
 }
 
-const Button: React.FC<Props> = ({ onClick, children, id, ...rest }) => (
-  <MuiButton id={id} onClick={onClick} {...rest}>
+const Button: React.FC<Props> = ({ disabled, onClick, children, id, ...rest }) => (
+  <MuiButton id={id} onClick={onClick} disabled={disabled} {...rest}>
     {children}
   </MuiButton>
 );
