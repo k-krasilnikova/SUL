@@ -29,7 +29,7 @@ interface Props {
 type CoursesProps = ResponseDataType & Props;
 
 const CoursesList: React.FC<CoursesProps> = ({
-  data,
+  courses,
   isLoading,
   handleApplyCourse,
   targetLoading,
@@ -39,18 +39,21 @@ const CoursesList: React.FC<CoursesProps> = ({
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
-    ) : data ? (
+    ) : courses ? (
       <PageContainer container>
-        {data?.map((course) => (
-          <Suspense fallback={<Loader color="primary" type={LOADER.content} />}>
+        {courses.map((course) => (
+          <Suspense
+            key={`${course._id}_item`}
+            fallback={<Loader color="primary" type={LOADER.content} />}
+          >
             <GridItem key={course._id} item xl={6} lg={12} md={12} sm={12}>
               <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
                 <CourseItem
-                  key={`${course._id}_item`}
                   title={course?.title}
                   description={course?.description}
                   duration={course?.duration}
                   lessons={course?.lessons}
+                  imageUrl={course?.avatar}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>

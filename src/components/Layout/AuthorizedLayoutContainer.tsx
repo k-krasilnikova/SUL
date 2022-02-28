@@ -31,6 +31,7 @@ const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
       firstName={data?.firstName}
       lastName={data?.lastName}
       avatar={data?.avatar}
+      notifications={data?.notifications}
       isMobileMenuOpen={isMobileMenuOpen}
       toggleMobileMenu={toggleMobileMenu}
       isSqueeze={isSqueeze}

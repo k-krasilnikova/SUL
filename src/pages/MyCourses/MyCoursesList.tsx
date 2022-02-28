@@ -9,7 +9,7 @@ import { PATHS } from 'constants/routes';
 import { ResponseDataMyCourses } from 'types/responseDataMyCourses';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
-import { STATUS } from 'constants/statuses';
+import { COURSE_STATUSES } from 'constants/statuses';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { PAGES } from 'constants/pages';
 
@@ -30,17 +30,18 @@ interface Props {
 
 type MyCoursesProps = ResponseDataMyCourses & Props;
 
-const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, disableLink }) => (
+const MyCoursesList: React.FC<MyCoursesProps> = ({ clientCourses, isLoading, disableLink }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
-    ) : data?.length ? (
+    ) : clientCourses?.length ? (
       <PageContainer container>
-        {data?.map((clientCourse) => (
+        {clientCourses?.map((clientCourse) => (
           <Suspense
+            key={clientCourse._id}
             fallback={<Loader color="primary" type={LOADER.content} key={clientCourse._id} />}
           >
-            <GridItem key={clientCourse._id} item xl={6} lg={12} md={12} sm={12}>
+            <GridItem item xl={6} lg={12} md={12} sm={12}>
               <MobileLink
                 to={`${PATHS.myCourses}/${clientCourse._id}`}
                 onClick={(event) => {
@@ -56,18 +57,23 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, disableLink 
                   pageName={PAGES.myCourses}
                   status={clientCourse.status}
                   progress={countProgress(clientCourse.progress)}
+                  imageUrl={clientCourse.course.avatar}
                 >
                   <CourseActionsBox>
                     <CourseActions>
                       <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
                         <DetailsButton variant="mediumOutlined">Details</DetailsButton>
                       </Link>
-                      {clientCourse.status === STATUS.testing ? (
+                      {clientCourse.status === COURSE_STATUSES.testing ? (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
                           <ContinueTestButton color="primary" variant="mediumContained">
                             Continue the test
                           </ContinueTestButton>
                         </Link>
+                      ) : clientCourse.status === COURSE_STATUSES.pending ? (
+                        <StartCourseButton disabled color="primary" variant="mediumContained">
+                          Pending
+                        </StartCourseButton>
                       ) : (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
                           <StartCourseButton color="primary" variant="mediumContained">
