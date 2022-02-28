@@ -1,5 +1,4 @@
 import { styled } from '@mui/styles';
-import { makeStyles } from '@material-ui/core';
 import { Grid, Box, Typography } from '@mui/material';
 
 import Button from 'components/Button/Button';
@@ -226,7 +225,11 @@ const GridWrapper = styled(Grid)({
   },
 });
 
-const GridSignInput = styled(Grid)({
+interface IColor {
+  color?: string;
+}
+
+const GridSignInput = styled(Grid)<IColor>(({ color }) => ({
   margin: '0 !important ',
   padding: '0px !important',
   boxSizing: 'border-box',
@@ -237,6 +240,9 @@ const GridSignInput = styled(Grid)({
   '& label': {
     fontFamily: '"Ubuntu", sans-serif',
     color: '#C6C6C9 !important',
+    ...(color && {
+      color: `${color} !important`,
+    }),
     fontSize: '18px',
     lineHeight: '21px',
     fontWeight: 400,
@@ -324,7 +330,7 @@ const GridSignInput = styled(Grid)({
       minHeight: '48px !important',
     },
   },
-});
+}));
 
 const GridError = styled(Grid)({
   maxHeight: '18px',
@@ -390,21 +396,6 @@ const WarningHelper = styled(Typography)({
   color: globalTheme.palette.primary.main,
 });
 
-const useExplitLabel = makeStyles({
-  explicitLabel: {
-    fontFamily: '"Ubuntu", sans-serif !important',
-    '& label': {
-      color: '#1D1D1D !important',
-    },
-  },
-  basicLabel: {
-    fontFamily: '"Ubuntu", sans-serif !important',
-    '& label': {
-      color: '#C6C6C9 !important',
-    },
-  },
-});
-
 export {
   SignMain,
   SignMainGrid,
@@ -420,6 +411,5 @@ export {
   DefinitionWrapper,
   ImageWrapper,
   WarningHelper,
-  useExplitLabel,
   GridError,
 };
