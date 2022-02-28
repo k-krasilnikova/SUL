@@ -38,7 +38,7 @@ const getCoursesProvider = async ({
 };
 
 interface ICourseWithStatusDb extends ICourse {
-  status: [{ status: string }];
+  status: [{ status?: string }];
 }
 
 const getCourseProvider = async (courseId: string, userId: string) => {
@@ -83,9 +83,15 @@ const getCourseProvider = async (courseId: string, userId: string) => {
     throw new NotFoundError('Course not found.');
   }
 
-  const [{ status: courseStatus }] = agregatedCourse.status;
+  const course: ICourseStatus = { ...agregatedCourse, status: 'not set' };
 
-  const course: ICourseStatus = { ...agregatedCourse, status: courseStatus };
+  if (agregatedCourse.status.length) {
+    const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
+
+    course.status = courseStatus;
+  } else {
+    delete course.status;
+  }
 
   return course;
 };

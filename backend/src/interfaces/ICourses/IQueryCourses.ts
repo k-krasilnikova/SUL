@@ -9,7 +9,7 @@ interface IQueryCourses {
 }
 
 interface ICourseStatus extends ICourse {
-  status: string;
+  status?: string;
 }
 
 interface IProgress {
