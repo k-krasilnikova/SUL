@@ -78,7 +78,6 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                   status={clientCourse.status}
                   progress={countProgress(clientCourse.progress)}
                   windowWidth={windowWidth}
-                  type="myCourses"
                 >
                   <CourseActionsBox>
                     <CourseActions>
