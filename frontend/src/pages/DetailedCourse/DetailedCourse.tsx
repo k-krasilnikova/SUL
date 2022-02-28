@@ -48,6 +48,7 @@ interface IProps {
   toggleFullText: () => void;
   isLoading?: boolean;
   targetId?: string | undefined;
+  isCourseApplicationSubmitted?: boolean;
 }
 
 const PAGES = {
@@ -67,6 +68,7 @@ const DetailedCourse: React.FC<IProps> = ({
   windowWidth,
   isFullTextOpen,
   toggleFullText,
+  isCourseApplicationSubmitted,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -80,7 +82,7 @@ const DetailedCourse: React.FC<IProps> = ({
         <ImageWrapper>
           <Image />
         </ImageWrapper>
-        <ProgressBar size="large" text="0%" />
+        {isCourseApplicationSubmitted && <ProgressBar size="large" text="0%" />}
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
           <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
@@ -109,7 +111,7 @@ const DetailedCourse: React.FC<IProps> = ({
               {page === PAGES.myCourses && (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
                   <StartButton variant="large" color="primary">
-                    Start
+                    Start the course
                   </StartButton>
                 </Link>
               )}
@@ -120,7 +122,7 @@ const DetailedCourse: React.FC<IProps> = ({
                   color="primary"
                   onClick={(event) => handleApplyCourse(event)}
                 >
-                  Start
+                  Start the course
                 </StartButton>
               )}
             </div>
