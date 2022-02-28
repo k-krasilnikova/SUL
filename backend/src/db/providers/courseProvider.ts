@@ -29,16 +29,6 @@ const getCoursesProvider = async (
   userId: string,
 ): Promise<ICourseStatus[]> => {
   try {
-    // const sortingField = { [orderField]: order };
-    // const courses = await CourseModel.find(
-    //   title ? { title: { $regex: new RegExp(title), $options: 'i' } } : NO_FILTER,
-    //   { materials: 0 },
-    // )
-    //   .sort(sortingField)
-    //   .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
-    //   .limit(nPerPage)
-    //   .lean();
-    // return courses;
     const sortingField = { [orderField]: order };
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
       {
