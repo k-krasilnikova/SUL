@@ -56,7 +56,7 @@ const CourseItem: React.FC<Props> = ({
         <CourseTitle type={type}>{title}</CourseTitle>
         <CourseDescriptionWrapper type={type}>
           <CourseDescription type={type}>
-            {shortifyCourseDescription(description, windowWidth, type)}
+            {shortifyCourseDescription(description, windowWidth, pageName)}
           </CourseDescription>
         </CourseDescriptionWrapper>
         <MobileCourseInfoBox>

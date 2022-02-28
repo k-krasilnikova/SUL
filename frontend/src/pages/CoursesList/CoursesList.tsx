@@ -12,6 +12,7 @@ import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { LOADER } from 'constants/loaderTypes';
 import MobileSearch from 'components/Layout/MobileSearch';
+import { PAGES } from 'constants/pages';
 
 import {
   PageContainer,
@@ -69,7 +70,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                   duration={course?.duration}
                   lessons={course?.lessons}
                   windowWidth={windowWidth}
-                  type="coursesList"
+                  pageName={PAGES.coursesList}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>

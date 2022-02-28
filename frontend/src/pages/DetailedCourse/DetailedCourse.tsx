@@ -14,6 +14,7 @@ import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { backIconMobile } from 'icons';
 import MobileSearch from 'components/Layout/MobileSearch';
+import { PAGES } from 'constants/pages';
 
 import {
   BackButton,
@@ -54,11 +55,6 @@ interface IProps {
   handleFilterOpen: () => void;
   handleFilterClose: () => void;
 }
-
-const PAGES = {
-  myCourses: 'myCourses',
-  coursesList: 'coursesList',
-};
 
 const OPEN_FULL_TEXT = 'Look in full';
 
@@ -153,6 +149,7 @@ const DetailedCourse: React.FC<IProps> = ({
                 lessons={INITIAL_DETAILED_COURSE.lessons}
                 windowWidth={windowWidth}
                 type="similarCourses"
+                pageName={PAGES.detailed}
               >
                 <CourseActionsBox>
                   <CourseActions>
