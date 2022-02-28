@@ -17,6 +17,7 @@ const HeaderContainer: React.FC<Props> = ({
   firstName,
   lastName,
   avatar,
+  notifications,
   isMobileMenuOpen,
   toggleMobileMenu,
 }) => {
@@ -60,6 +61,7 @@ const HeaderContainer: React.FC<Props> = ({
         firstName={firstName}
         lastName={lastName}
         avatar={avatar}
+        notifications={notifications}
         isNotificationsOpen={isNotificationsOpen}
         isFilterOpen={isFilterOpen}
         handleNotificationsOpen={handleNotificationsOpen}

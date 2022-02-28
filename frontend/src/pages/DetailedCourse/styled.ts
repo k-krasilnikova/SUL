@@ -231,8 +231,8 @@ export const StartButton = styled(Button)({
     margin: '0px 50px 0px calc(100% - 162px) !important',
   },
   [theme.breakpoints.up('xl')]: {
-    height: '50px',
-    width: '150px',
+    height: '50px !important',
+    width: '150px !important',
     fontSize: '18px !important',
   },
 });

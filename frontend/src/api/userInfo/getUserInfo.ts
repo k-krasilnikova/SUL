@@ -16,6 +16,7 @@ interface UserResponse {
   avatar?: string;
   birthday?: Date;
   skype?: string;
+  notifications?: Notification[];
   error?: unknown;
 }
 

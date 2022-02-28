@@ -1,9 +1,17 @@
+import { SortOrder } from 'enums/common';
+
+import { ICourse } from '../Ientities/Icourses';
+
 interface IQueryCourses {
   pageN?: number;
   title?: string;
   orderField?: string;
-  order?: number | string;
+  order?: SortOrder;
   nPerPage?: number;
+}
+
+interface ICourseStatus extends ICourse {
+  status?: string;
 }
 
 interface IProgress {
@@ -11,4 +19,4 @@ interface IProgress {
   isCompleted: boolean;
 }
 
-export { IQueryCourses, IProgress };
+export { IQueryCourses, ICourseStatus, IProgress };

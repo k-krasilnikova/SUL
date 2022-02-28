@@ -17,6 +17,7 @@ interface Props {
   classes: {
     [key: string]: string;
   };
+  notifications?: Array<Notification>;
   firstName?: string;
   lastName?: string;
   avatar?: string;
@@ -29,6 +30,7 @@ const AuthorizedLayout: React.FC<Props> = ({
   firstName,
   lastName,
   avatar,
+  notifications,
   children,
   isMobileMenuOpen,
   toggleMobileMenu,
@@ -46,6 +48,7 @@ const AuthorizedLayout: React.FC<Props> = ({
           firstName={firstName}
           lastName={lastName}
           avatar={avatar}
+          notifications={notifications}
           isMobileMenuOpen={isMobileMenuOpen}
           toggleMobileMenu={toggleMobileMenu}
         />
