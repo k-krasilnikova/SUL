@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import useGetCourseInfo from 'api/courses/getCourseInfo';
 import useApplyCourse from 'api/courses/applyCourse';
 import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
-import { WINDOW_SIZE } from 'constants/windowWidth';
+import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 
 import DetailedCourse from './DetailedCourse';
 
@@ -40,16 +40,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     mutate(params.courseId);
   };
 
-  let windowWidth = WINDOW_SIZE.xl.name;
-  if (window.innerWidth < WINDOW_SIZE.xl.width && window.innerWidth > WINDOW_SIZE.lg.width) {
-    windowWidth = WINDOW_SIZE.lg.name;
-  }
-  if (window.innerWidth < WINDOW_SIZE.lg.width && window.innerWidth > WINDOW_SIZE.md.width) {
-    windowWidth = WINDOW_SIZE.md.name;
-  }
-  if (window.innerWidth < WINDOW_SIZE.md.width && window.innerWidth > WINDOW_SIZE.sm.width) {
-    windowWidth = WINDOW_SIZE.sm.name;
-  }
+  let windowWidth = getWindowWidth();
 
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
   const handleFilterOpen = () => {

@@ -37,7 +37,7 @@ const MobileSearch: React.FC<Props> = ({ isFilterOpen, handleFilterOpen, handleF
         <FilterButton onClick={handleFilterOpen}>
           <FilterIcon alt="filter" src={filterIcon} />
         </FilterButton>
-        {isFilterOpen ? (
+        {isFilterOpen && (
           <Filter>
             <FilterAccordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon fontSize="small" />}>
@@ -52,7 +52,7 @@ const MobileSearch: React.FC<Props> = ({ isFilterOpen, handleFilterOpen, handleF
               <AccordionDetails>Technologies here</AccordionDetails>
             </FilterAccordion>
           </Filter>
-        ) : null}
+        )}
       </RelativeWrapper>
     </ClickAwayListener>
   </>

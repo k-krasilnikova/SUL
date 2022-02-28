@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { useGetMyCourses } from 'api/myCourses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
+import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 
 import MyCoursesList from './MyCoursesList';
 
@@ -23,16 +24,7 @@ const MyCoursesContainer: React.FC = () => {
     setFilterOpen(false);
   };
 
-  let windowWidth = WINDOW_SIZE.xl.name;
-  if (window.innerWidth < WINDOW_SIZE.xl.width && window.innerWidth > WINDOW_SIZE.lg.width) {
-    windowWidth = WINDOW_SIZE.lg.name;
-  }
-  if (window.innerWidth < WINDOW_SIZE.lg.width && window.innerWidth > WINDOW_SIZE.md.width) {
-    windowWidth = WINDOW_SIZE.md.name;
-  }
-  if (window.innerWidth < WINDOW_SIZE.md.width && window.innerWidth > WINDOW_SIZE.sm.width) {
-    windowWidth = WINDOW_SIZE.sm.name;
-  }
+  let windowWidth = getWindowWidth();
 
   return (
     <MyCoursesList
