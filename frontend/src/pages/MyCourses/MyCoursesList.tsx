@@ -1,7 +1,5 @@
 import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Search as SearchIcon } from '@mui/icons-material';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
@@ -14,7 +12,7 @@ import { LOADER } from 'constants/loaderTypes';
 import { STATUS } from 'constants/statuses';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { PAGES } from 'constants/pages';
-import { filterIcon } from 'icons';
+import MobileSearch from 'components/Layout/MobileSearch';
 
 import {
   PageContainer,
@@ -26,37 +24,38 @@ import {
   MobileLink,
   ContinueTestButton,
   MobileSearchWrapper,
-  Search,
-  FilterButton,
-  FilterIcon,
 } from './styled';
 
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  isFilterOpen: boolean;
+  handleFilterOpen: () => void;
+  handleFilterClose: () => void;
+  windowWidth: string;
 }
 
 type MyCoursesProps = ResponseDataMyCourses & Props;
 
-const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, disableLink }) => (
+const MyCoursesList: React.FC<MyCoursesProps> = ({
+  data,
+  isLoading,
+  disableLink,
+  isFilterOpen,
+  handleFilterOpen,
+  handleFilterClose,
+  windowWidth,
+}) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
     ) : data?.length ? (
       <PageContainer container>
         <MobileSearchWrapper>
-          <Search
-            className="search"
-            disableUnderline
-            placeholder="Search"
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon color="disabled" fontSize="medium" />
-              </InputAdornment>
-            }
+          <MobileSearch
+            isFilterOpen={isFilterOpen}
+            handleFilterOpen={handleFilterOpen}
+            handleFilterClose={handleFilterClose}
           />
-          <FilterButton>
-            <FilterIcon alt="filter" src={filterIcon} />
-          </FilterButton>
         </MobileSearchWrapper>
         {data?.map((clientCourse) => (
           <Suspense
@@ -78,6 +77,8 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({ data, isLoading, disableLink 
                   pageName={PAGES.myCourses}
                   status={clientCourse.status}
                   progress={countProgress(clientCourse.progress)}
+                  windowWidth={windowWidth}
+                  type="myCourses"
                 >
                   <CourseActionsBox>
                     <CourseActions>

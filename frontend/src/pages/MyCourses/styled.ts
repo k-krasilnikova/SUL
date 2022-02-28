@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Grid, Box, Input } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import theme from 'themeSettings';
@@ -148,38 +148,4 @@ export const MobileSearchWrapper = styled('div')({
   '@media(min-width: 1110px)': {
     display: 'none',
   },
-});
-export const Search = styled(Input)({
-  borderRadius: '3px',
-  backgroundColor: 'rgba(118, 118, 128, 0.12)',
-  color: '#3c3c43',
-  padding: '8px',
-  [theme.breakpoints.up('xs')]: {
-    display: 'inline-flex!important',
-    width: 'calc(100% - 38px)',
-    height: '30px',
-    marginRight: '8px',
-  },
-  '@media(min-width: 1110px)': {
-    display: 'none!important',
-  },
-});
-export const FilterButton = styled('div')({
-  borderRadius: '3px',
-  backgroundColor: 'rgba(118, 118, 128, 0.12)',
-  '&:hover': {
-    cursor: 'pointer',
-  },
-  height: '30px',
-  width: '30px',
-  paddingLeft: '3px',
-  [theme.breakpoints.up('xs')]: {
-    display: 'inline-block',
-  },
-  '@media(min-width: 1110px)': {
-    display: 'none',
-  },
-});
-export const FilterIcon = styled('img')({
-  transform: 'scale(0.6)',
 });

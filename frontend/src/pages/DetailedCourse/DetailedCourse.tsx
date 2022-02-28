@@ -13,6 +13,7 @@ import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { backIconMobile } from 'icons';
+import MobileSearch from 'components/Layout/MobileSearch';
 
 import {
   BackButton,
@@ -34,6 +35,7 @@ import {
   ButtonFullText,
   BackArrow,
   BackLink,
+  MobileSearchWrapper,
 } from './styled';
 
 interface IProps {
@@ -48,6 +50,9 @@ interface IProps {
   toggleFullText: () => void;
   isLoading?: boolean;
   targetId?: string | undefined;
+  isFilterOpen: boolean;
+  handleFilterOpen: () => void;
+  handleFilterClose: () => void;
 }
 
 const PAGES = {
@@ -67,6 +72,9 @@ const DetailedCourse: React.FC<IProps> = ({
   windowWidth,
   isFullTextOpen,
   toggleFullText,
+  isFilterOpen,
+  handleFilterOpen,
+  handleFilterClose,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -76,11 +84,18 @@ const DetailedCourse: React.FC<IProps> = ({
         </BackButton>
         <BackArrow alt="" src={backIconMobile} />
       </BackLink>
+      <MobileSearchWrapper>
+        <MobileSearch
+          isFilterOpen={isFilterOpen}
+          handleFilterOpen={handleFilterOpen}
+          handleFilterClose={handleFilterClose}
+        />
+      </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper>
           <Image />
         </ImageWrapper>
-        <ProgressBar size="large" text="0%" />
+        <ProgressBar size="large" text="0%" textColor="#131313" />
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
           <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
@@ -98,6 +113,7 @@ const DetailedCourse: React.FC<IProps> = ({
             <CourseInfo
               duration={INITIAL_DETAILED_COURSE.duration}
               lessons={INITIAL_DETAILED_COURSE.lessons}
+              type="detailedCourse"
             />
           </CourseInfoBox>
           {isLoading && targetId === buttonId.start ? (

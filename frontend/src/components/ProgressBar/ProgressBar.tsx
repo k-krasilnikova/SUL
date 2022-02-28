@@ -55,10 +55,10 @@ const ProgressBar: React.FC<ProgressProps> = ({
           textSize: '20px',
         }),
         ...(variant === VARIANTS.mobileCourse && {
-          textColor: '#000000',
+          textColor: ' #131313',
           pathColor: '#1cc02c',
           trailColor: '#eaeaea',
-          textSize: '12px',
+          textSize: '24px',
         }),
       })}
     />

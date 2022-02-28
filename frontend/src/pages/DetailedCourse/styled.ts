@@ -50,10 +50,11 @@ export const InnerWrapper = styled(Box)({
     maxWidth: '98%',
   },
   [theme.breakpoints.up('md')]: {
-    margin: '27px',
+    margin: '14px 30px 0px 27px',
     maxWidth: '847px',
   },
   [theme.breakpoints.up('lg')]: {
+    margin: '29px 40px 0px 27px',
     maxWidth: 'calc(100% - 54px)',
   },
   [theme.breakpoints.up('xl')]: {
@@ -71,14 +72,19 @@ export const DetailedCourseText = styled(Typography)({
   },
   [theme.breakpoints.up('md')]: {
     display: 'block',
-    fontSize: '18px',
+    fontSize: '18px!important',
     lineHeight: '28px',
     clear: 'none',
     padding: '0px',
   },
   [theme.breakpoints.up('lg')]: {
+    lineHeight: '28px !important',
+    marginRight: '100px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
     fontSize: '24px !important',
     lineHeight: '37px !important',
+    marginRight: '0px !important',
   },
 });
 
@@ -169,10 +175,12 @@ export const SimilarCoursesTitle = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px !important',
     lineHeight: '21px !important',
+    marginLeft: '8px!important',
   },
   [theme.breakpoints.up('md')]: {
     fontSize: '24px !important',
     lineHeight: '31px !important',
+    marginLeft: '0px!important',
   },
   [theme.breakpoints.up('xl')]: {
     fontSize: '40px !important',
@@ -189,6 +197,10 @@ export const BackButton = styled(Button)({
     height: '32px',
     width: '64px',
     fontSize: '12px !important',
+    marginBottom: '15px !important',
+  },
+  '@media(min-width: 1110px)': {
+    marginBottom: '0px !important',
   },
   [theme.breakpoints.up('xl')]: {
     height: '39px',
@@ -204,15 +216,19 @@ export const StartButton = styled(Button)({
     height: '44px',
     width: '131px',
     fontSize: '14px !important',
-    marginLeft: 'calc(100% - 131px) !important',
-    marginTop: '24px',
+    margin: '24px 18px 0px calc(100% - 156px) !important',
   },
   [theme.breakpoints.up('md')]: {
     height: '37px',
     width: '112px',
     fontSize: '12px !important',
-    marginLeft: '0px !important',
-    marginTop: '0px !important',
+    margin: '0px 20px 0px calc(100% - 132px) !important',
+  },
+  [theme.breakpoints.up('lg')]: {
+    height: '37px',
+    width: '112px',
+    fontSize: '12px !important',
+    margin: '0px 50px 0px calc(100% - 162px) !important',
   },
   [theme.breakpoints.up('xl')]: {
     height: '50px',
@@ -312,7 +328,7 @@ export const ButtonFullText = styled(TextButton)({
 export const BackArrow = styled('img')({
   [theme.breakpoints.up('xs')]: {
     display: 'inline-block',
-    margin: '22px 23px 10px 16px',
+    margin: '16px 23px 5px 16px',
   },
   [theme.breakpoints.up('md')]: {
     display: 'none',
@@ -322,5 +338,18 @@ export const BackLink = styled(Link)({
   [theme.breakpoints.up('xs')]: {
     height: 'fit-content',
     width: 'fit-content',
+  },
+});
+export const MobileSearchWrapper = styled('div')({
+  width: 'calc(100% - 56px)',
+  margin: '16px 0px 8px 0px',
+  height: '30px',
+  display: 'inline-block',
+  [theme.breakpoints.up('md')]: {
+    margin: '0px 0px 0px 6px',
+    width: 'calc(100% - 80px)',
+  },
+  '@media(min-width: 1110px)': {
+    display: 'none',
   },
 });
