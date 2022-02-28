@@ -98,6 +98,8 @@ const getCourseProvider = async (courseId: string, userId: string): Promise<ICou
       $match: {
         _id: new mongoose.Types.ObjectId(courseId),
       },
+    },
+    {
       $project: {
         materials: 0,
       },
