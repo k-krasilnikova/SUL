@@ -1,3 +1,5 @@
+import { ICourse } from '../Ientities/Icourses';
+
 interface IQueryCourses {
   pageN?: number;
   title?: string;
@@ -6,9 +8,13 @@ interface IQueryCourses {
   nPerPage?: number;
 }
 
+interface ICourseStatus extends ICourse {
+  status: string;
+}
+
 interface IProgress {
   stage: number;
   isCompleted: boolean;
 }
 
-export { IQueryCourses, IProgress };
+export { IQueryCourses, ICourseStatus, IProgress };

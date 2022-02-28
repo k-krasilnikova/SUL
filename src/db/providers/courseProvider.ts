@@ -9,9 +9,10 @@ import {
   ORDER_TYPE,
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
-import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseStatus, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import { ICourse } from 'interfaces/Ientities/Icourses';
 
 const getCoursesProvider = async ({
   pageN,
@@ -36,11 +37,56 @@ const getCoursesProvider = async ({
   }
 };
 
-const getCourseProvider = async (courseId: string) => {
-  const course = await CourseModel.findOne({ _id: courseId }, { materials: 0 }).lean();
-  if (!course) {
+interface ICourseWithStatusDb extends ICourse {
+  status: [{ status: string }];
+}
+
+const getCourseProvider = async (courseId: string, userId: string) => {
+  const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
+    {
+      $match: {
+        _id: new mongoose.Types.ObjectId(courseId),
+      },
+    },
+    {
+      $lookup: {
+        from: 'clientCourses',
+        localField: '_id',
+        foreignField: 'course',
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId)] }],
+              },
+            },
+          },
+          {
+            $project: {
+              status: 1,
+              _id: 0,
+            },
+          },
+        ],
+        as: 'status',
+      },
+    },
+    {
+      $project: {
+        materials: 0,
+      },
+    },
+  ]);
+
+  const [agregatedCourse] = aggregation;
+  if (!agregatedCourse) {
     throw new NotFoundError('Course not found.');
   }
+
+  const [{ status: courseStatus }] = agregatedCourse.status;
+
+  const course: ICourseStatus = { ...agregatedCourse, status: courseStatus };
+
   return course;
 };
 
