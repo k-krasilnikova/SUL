@@ -39,8 +39,24 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     mutate(params.courseId);
   };
 
-  const windowWidth =
-    window.innerWidth < WINDOW_SIZE.xl.width ? WINDOW_SIZE.lg.name : WINDOW_SIZE.xl.name;
+  let windowWidth = WINDOW_SIZE.xl.name;
+  if (window.innerWidth < WINDOW_SIZE.xl.width && window.innerWidth > WINDOW_SIZE.lg.width) {
+    windowWidth = WINDOW_SIZE.lg.name;
+  }
+  if (window.innerWidth < WINDOW_SIZE.lg.width && window.innerWidth > WINDOW_SIZE.md.width) {
+    windowWidth = WINDOW_SIZE.md.name;
+  }
+  if (window.innerWidth < WINDOW_SIZE.md.width && window.innerWidth > WINDOW_SIZE.sm.width) {
+    windowWidth = WINDOW_SIZE.sm.name;
+  }
+
+  const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
+  const handleFilterOpen = () => {
+    setFilterOpen(!isFilterOpen);
+  };
+  const handleFilterClose = () => {
+    setFilterOpen(false);
+  };
 
   return data ? (
     <DetailedCourse
@@ -53,6 +69,9 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
       windowWidth={windowWidth}
       isFullTextOpen={isFullTextOpen}
       toggleFullText={toggleFullText}
+      isFilterOpen={isFilterOpen}
+      handleFilterOpen={handleFilterOpen}
+      handleFilterClose={handleFilterClose}
     />
   ) : null;
 };

@@ -11,6 +11,7 @@ import Loader from 'components/Loader';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { LOADER } from 'constants/loaderTypes';
+import MobileSearch from 'components/Layout/MobileSearch';
 
 import {
   PageContainer,
@@ -20,10 +21,15 @@ import {
   DetailsButton,
   StartCourseButton,
   MobileLink,
+  MobileSearchWrapper,
 } from './styled';
 
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  isFilterOpen: boolean;
+  handleFilterOpen: () => void;
+  handleFilterClose: () => void;
+  windowWidth: string;
 }
 
 type CoursesProps = ResponseDataType & Props;
@@ -35,12 +41,23 @@ const CoursesList: React.FC<CoursesProps> = ({
   targetLoading,
   targetId,
   disableLink,
+  isFilterOpen,
+  handleFilterOpen,
+  handleFilterClose,
+  windowWidth,
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
     ) : data ? (
       <PageContainer container>
+        <MobileSearchWrapper>
+          <MobileSearch
+            isFilterOpen={isFilterOpen}
+            handleFilterOpen={handleFilterOpen}
+            handleFilterClose={handleFilterClose}
+          />
+        </MobileSearchWrapper>
         {data?.map((course) => (
           <Suspense fallback={<Loader color="primary" type={LOADER.content} />}>
             <GridItem key={course._id} item xl={6} lg={12} md={12} sm={12}>
@@ -51,6 +68,8 @@ const CoursesList: React.FC<CoursesProps> = ({
                   description={course?.description}
                   duration={course?.duration}
                   lessons={course?.lessons}
+                  windowWidth={windowWidth}
+                  type="coursesList"
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>
