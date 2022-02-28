@@ -1,5 +1,6 @@
 import { Course } from './course';
 import { Skill } from './skill';
+import { Notification } from './notification';
 
 export interface User {
   firstName?: string;
@@ -17,4 +18,5 @@ export interface User {
   courses?: Array<Course>;
   handleLogOut?: () => void;
   skills?: Array<Skill>;
+  notifications?: Array<Notification>;
 }
