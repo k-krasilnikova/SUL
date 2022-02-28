@@ -24,6 +24,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const { mutate, isLoading } = useApplyCourse();
   const [targetId, setTargetId] = useState<string | undefined>();
   const [isFullTextOpen, setFullTextOpen] = useState(false);
+  const isCourseApplicationSubmitted = data ? Boolean(data.status) : false;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
@@ -72,6 +73,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
       isFilterOpen={isFilterOpen}
       handleFilterOpen={handleFilterOpen}
       handleFilterClose={handleFilterClose}
+      isCourseApplicationSubmitted={isCourseApplicationSubmitted}
     />
   ) : null;
 };

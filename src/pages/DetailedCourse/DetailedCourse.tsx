@@ -54,6 +54,7 @@ interface IProps {
   isFilterOpen: boolean;
   handleFilterOpen: () => void;
   handleFilterClose: () => void;
+  isCourseApplicationSubmitted?: boolean;
 }
 
 const OPEN_FULL_TEXT = 'Look in full';
@@ -71,6 +72,7 @@ const DetailedCourse: React.FC<IProps> = ({
   isFilterOpen,
   handleFilterOpen,
   handleFilterClose,
+  isCourseApplicationSubmitted,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -91,7 +93,7 @@ const DetailedCourse: React.FC<IProps> = ({
         <ImageWrapper>
           <Image />
         </ImageWrapper>
-        <ProgressBar size="large" text="0%" textColor="#131313" />
+        {isCourseApplicationSubmitted && <ProgressBar size="large" text="0%" textColor="#131313"/>}
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
           <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
@@ -121,7 +123,7 @@ const DetailedCourse: React.FC<IProps> = ({
               {page === PAGES.myCourses && (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
                   <StartButton variant="large" color="primary">
-                    Start
+                    Start the course
                   </StartButton>
                 </Link>
               )}
@@ -132,7 +134,7 @@ const DetailedCourse: React.FC<IProps> = ({
                   color="primary"
                   onClick={(event) => handleApplyCourse(event)}
                 >
-                  Start
+                  Start the course
                 </StartButton>
               )}
             </div>

@@ -10,7 +10,7 @@ import CoursesList from './CoursesList';
 const CoursesContainer: React.FC = () => {
   const params = useParams();
   const { mutate, isLoading } = useApplyCourse();
-  const getCourses = useGetCourses();
+  const { data: courses, isLoading: isCoursesLoading } = useGetCourses();
   const [targetId, setTargetId] = useState<string | undefined>();
 
   const disableLinkWidth =
@@ -47,8 +47,8 @@ const CoursesContainer: React.FC = () => {
 
   return (
     <CoursesList
-      data={getCourses.data}
-      isLoading={getCourses.isLoading}
+      courses={courses}
+      isLoading={isCoursesLoading}
       handleApplyCourse={handleApplyCourse}
       targetId={targetId}
       targetLoading={isLoading}

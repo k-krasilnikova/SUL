@@ -5,7 +5,9 @@ import { AccordionSummary, AccordionDetails, Typography, ClickAwayListener } fro
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
+import { Notification } from 'types/notification';
 import { UserAvatar } from 'components/Avatar';
+import NotificationsBar from 'components/NotificationsBar';
 import { alertIcon, filterIcon, logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
 
@@ -18,7 +20,6 @@ import {
   Search,
   NotificationsButton,
   FilterButton,
-  Notifications,
   Filter,
   FilterAccordion,
   UserBlock,
@@ -32,6 +33,7 @@ interface Props {
   firstName?: string;
   lastName?: string;
   avatar?: string;
+  notifications?: Array<Notification>;
   isNotificationsOpen: boolean;
   isFilterOpen: boolean;
   handleNotificationsOpen: () => void;
@@ -48,6 +50,7 @@ const Header: React.FC<HeaderProps> = ({
   firstName,
   lastName,
   avatar,
+  notifications,
   isNotificationsOpen,
   isFilterOpen,
   handleNotificationsOpen,
@@ -78,7 +81,7 @@ const Header: React.FC<HeaderProps> = ({
           <NotificationsButton onClick={handleNotificationsOpen}>
             <img alt="notifications" src={alertIcon} />
           </NotificationsButton>
-          {isNotificationsOpen ? <Notifications>Notifications here</Notifications> : null}
+          {isNotificationsOpen && <NotificationsBar notifications={notifications} />}
         </RelativeWrapper>
       </ClickAwayListener>
       <ClickAwayListener onClickAway={handleFilterClose}>
@@ -86,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({
           <FilterButton onClick={handleFilterOpen}>
             <img alt="filter" src={filterIcon} />
           </FilterButton>
-          {isFilterOpen ? (
+          {isFilterOpen && (
             <Filter>
               <FilterAccordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -101,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({
                 <AccordionDetails>Technologies here</AccordionDetails>
               </FilterAccordion>
             </Filter>
-          ) : null}
+          )}
         </RelativeWrapper>
       </ClickAwayListener>
       <SpaceHolder />
