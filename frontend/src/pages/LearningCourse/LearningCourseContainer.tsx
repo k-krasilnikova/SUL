@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
+import { useStartClientCourse } from 'api/myCourses';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
 import { MATERIAL } from 'constants/materials';
@@ -24,6 +25,7 @@ const LearningCourseContainer: React.FC = () => {
   const params = useParams();
 
   const { data, isLoading } = useGetClientCourseInfo(params.courseId);
+  useStartClientCourse(params.courseId);
 
   const maxStage = data ? data.course.materials.length : MAX_STAGE_INITIAL;
 

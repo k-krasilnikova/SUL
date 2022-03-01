@@ -39,7 +39,10 @@ const PassingTestContainer: React.FC = () => {
   const handleSubmitResult = () => {
     const resultData = {
       testId: courseTest?._id,
-      answers: Object.entries(values).map(([key, value]) => ({ qN: key, aN: value })),
+      answers: Object.entries(values).map(([key, value]) => ({
+        qN: Number(key),
+        aN: Number(value),
+      })),
     };
     mutate(resultData, { onSuccess: () => setTestResultPageEnabled(true) });
   };
