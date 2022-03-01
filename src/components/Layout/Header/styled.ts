@@ -8,19 +8,9 @@ interface MobileMenuProps {
   openMenu: boolean;
 }
 
-interface CoursesPageProps {
-  pagename?: string;
-  menuopen: string;
-}
-
 export const HEADER_HEIGHT = '80px';
 export const HEADER_HEIGHT_IPAD = '60px';
 export const HEADER_HEIGHT_MOBILE = '44px';
-const PAGES_TO_SEARCH = {
-  myCourses: 'My Courses',
-  coursesList: 'Courses List',
-  detailedCourse: 'Course',
-};
 
 export const LayoutHeader = styled(Grid)({
   width: 'calc(100vw-10px)',
@@ -107,7 +97,7 @@ export const SpaceHolder = styled('div')({
     maxWidth: '1000px',
   },
 });
-export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) => ({
+export const Search = styled(Input)({
   flexGrow: '0',
   flexShrink: '1',
   borderRadius: '3px',
@@ -116,35 +106,6 @@ export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) =
   color: '#3c3c43',
   [theme.breakpoints.up('xs')]: {
     display: 'none!important',
-    position: 'relative',
-    flexShrink: '0',
-    width: '260px',
-    height: '30px',
-    top: '60px',
-    right: 'calc(100vw - 310px)',
-    fontSize: '16px',
-    ...(pagename === PAGES_TO_SEARCH.myCourses &&
-      menuopen === 'false' && {
-        display: 'flex',
-      }),
-    ...(pagename === PAGES_TO_SEARCH.coursesList &&
-      menuopen === 'false' && {
-        display: 'flex',
-      }),
-    ...(pagename === PAGES_TO_SEARCH.detailedCourse &&
-      menuopen === 'false' && {
-        display: 'flex',
-        width: '228px',
-        top: '60px',
-        right: 'calc(100vw - 315px)',
-      }),
-  },
-  [theme.breakpoints.up('md')]: {
-    top: '80px',
-    right: 'calc(100vw - 330px)',
-    ...(pagename === PAGES_TO_SEARCH.detailedCourse && {
-      display: 'none!important',
-    }),
   },
   '@media(min-width: 1110px)': {
     position: 'relative',
@@ -163,7 +124,7 @@ export const Search = styled(Input)<CoursesPageProps>(({ pagename, menuopen }) =
   '@media(min-width: 1650px)': {
     width: '730px!important',
   },
-}));
+});
 export const RelativeWrapper = styled('div')({
   position: 'relative',
 });
@@ -204,7 +165,7 @@ export const NotificationsButton = styled('div')({
     padding: '10px',
   },
 });
-export const FilterButton = styled('div')<CoursesPageProps>(({ pagename, menuopen }) => ({
+export const FilterButton = styled('div')({
   flexGrow: '0',
   flexShrink: '0',
   borderRadius: '3px',
@@ -213,28 +174,7 @@ export const FilterButton = styled('div')<CoursesPageProps>(({ pagename, menuope
     cursor: 'pointer',
   },
   [theme.breakpoints.up('xs')]: {
-    ...((pagename === PAGES_TO_SEARCH.myCourses && menuopen === 'false') ||
-    (pagename === PAGES_TO_SEARCH.coursesList && menuopen === 'false') ||
-    (pagename === PAGES_TO_SEARCH.detailedCourse && menuopen === 'false')
-      ? {
-          position: 'absolute',
-          top: '50px',
-          right: 'calc(100vw - 360px)',
-          width: '50px',
-          height: '50px',
-          padding: '10px',
-          transform: 'scale(0.6)',
-        }
-      : {
-          display: 'none',
-        }),
-  },
-  [theme.breakpoints.up('md')]: {
-    top: '70px',
-    right: 'calc(100vw - 380px)',
-    ...(pagename === PAGES_TO_SEARCH.detailedCourse && {
-      display: 'none',
-    }),
+    display: 'none',
   },
   '@media(min-width: 1110px)': {
     position: 'relative',
@@ -253,7 +193,7 @@ export const FilterButton = styled('div')<CoursesPageProps>(({ pagename, menuope
     marginTop: '15px',
     padding: '10px 12px 10px 5px',
   },
-}));
+});
 export const Filter = styled('div')({
   position: 'absolute',
   zIndex: '15',
