@@ -93,7 +93,7 @@ const DetailedCourse: React.FC<IProps> = ({
         <ImageWrapper>
           <Image />
         </ImageWrapper>
-        {isCourseApplicationSubmitted && <ProgressBar size="large" text="0%" textColor="#131313"/>}
+        {isCourseApplicationSubmitted && <ProgressBar size="large" text="0%" textColor="#131313" />}
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
           <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
