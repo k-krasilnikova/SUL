@@ -7,7 +7,7 @@ import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.up('xs')]: {
-    padding: '0px 8px 0 8px !important',
+    padding: '0px 8px !important',
   },
   '@media(max-width: 1110px)': {
     paddingTop: '40px',
@@ -29,25 +29,17 @@ export const PageContainer = styled(Grid)({
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
+  width: '711px',
   [theme.breakpoints.up('xs')]: {
     width: '100% !important',
     paddingTop: '8px !important',
+    paddingLeft: '0px !important',
   },
   [theme.breakpoints.up('xl')]: {
     maxWidth: '741px !important',
     width: '741px !important',
-    paddingLeft: '30px',
-    paddingTop: '24px',
-  },
-  [theme.breakpoints.down('xl')]: {
-    paddingLeft: '30px',
-    paddingTop: '24px',
-    width: '711px !important',
-  },
-  [theme.breakpoints.up('xs')]: {
-    width: '100%',
-    paddingTop: '8px !important',
-    paddingLeft: '0px',
+    paddingLeft: '30px !important',
+    paddingTop: '24px !important',
   },
 });
 
