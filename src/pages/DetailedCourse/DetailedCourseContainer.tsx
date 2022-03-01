@@ -40,7 +40,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     mutate(params.courseId);
   };
 
-  let windowWidth = getWindowWidth();
+  const windowWidth = getWindowWidth();
 
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
   const handleFilterOpen = () => {
