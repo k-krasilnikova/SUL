@@ -6,13 +6,13 @@ import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
 import { ClientCourse } from 'types/clientCourse';
 
-const useGetClientCourseInfo = (_id?: string): UseQueryResult<ClientCourse, AxiosError> =>
+const useGetClientCourseInfo = (courseId?: string): UseQueryResult<ClientCourse, AxiosError> =>
   useQuery(
-    ['ClientCourseInfo', _id],
+    ['ClientCourseInfo', courseId],
     async () => {
       const apiClient = apiClientWrapper();
       try {
-        const response = await apiClient.get(`${API.getMyCourses}/${_id}`);
+        const response = await apiClient.get(`${API.getMyCourses}/${courseId}`);
         const courseResponse: Array<ClientCourse> = response.data;
         return courseResponse;
       } catch (error) {
