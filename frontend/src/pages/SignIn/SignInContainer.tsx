@@ -5,8 +5,8 @@ import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
 import useGetAuth from 'api/auth/getAuth';
+import { SIGN_STYLE_PROPS } from 'constants/signStyle';
 
-import { useExplitLabel } from './styled';
 import SignIn from './SignIn';
 
 interface SignInFields {
@@ -20,18 +20,9 @@ const initSignInvalue: SignInFields = {
 };
 
 const SignInContainer: React.FC = () => {
-  const { mutateAsync, isLoading, status } = useGetAuth();
+  const { mutateAsync, isLoading } = useGetAuth();
   const FIELD_TOUCHED = true;
   const FIELD_VALIDATE = false;
-
-  const LABEL_HANDLER = {
-    loginLabel: 'login',
-    passwordLabel: 'password',
-    additionalClass:
-      'MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-wb57ya-MuiFormControl-root-MuiTextField-root',
-  };
-
-  const classes = useExplitLabel();
 
   const formik = useFormik({
     initialValues: initSignInvalue,
@@ -51,7 +42,7 @@ const SignInContainer: React.FC = () => {
   };
 
   const getCoordinates = (event: React.MouseEvent<Element, MouseEvent>) => {
-    (event.target as HTMLElement).className === LABEL_HANDLER.additionalClass
+    (event.target as HTMLElement).className === SIGN_STYLE_PROPS.additionalClass
       ? setCoordinates((event.target as HTMLElement).className)
       : setCoordinates((event.target as HTMLElement).id);
   };
@@ -63,7 +54,7 @@ const SignInContainer: React.FC = () => {
   useEffect(() => {
     currentCoordinates === targetFieldName
       ? setLabelStatus(targetFieldName)
-      : currentCoordinates === LABEL_HANDLER.additionalClass
+      : currentCoordinates === SIGN_STYLE_PROPS.additionalClass
       ? setLabelStatus(targetFieldName)
       : setLabelStatus(FIELD_VALIDATE);
   }, [currentCoordinates, targetFieldName]);
@@ -74,9 +65,7 @@ const SignInContainer: React.FC = () => {
         formik={formik}
         warningHandler={warningHandler}
         isLoading={isLoading}
-        classes={classes}
-        status={status}
-        labelHandler={LABEL_HANDLER}
+        labelHandler={SIGN_STYLE_PROPS}
         getFieldName={getFieldName}
         getCoordinates={getCoordinates}
         labelStatus={labelStatus}

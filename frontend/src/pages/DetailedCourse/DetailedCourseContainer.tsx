@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import useGetCourseInfo from 'api/courses/getCourseInfo';
 import useApplyCourse from 'api/courses/applyCourse';
 import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
-import { WINDOW_SIZE } from 'constants/windowWidth';
+import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 
 import DetailedCourse from './DetailedCourse';
 
@@ -24,6 +24,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const { mutate, isLoading } = useApplyCourse();
   const [targetId, setTargetId] = useState<string | undefined>();
   const [isFullTextOpen, setFullTextOpen] = useState(false);
+  const isCourseApplicationSubmitted = data ? Boolean(data.status) : false;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
@@ -39,8 +40,15 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     mutate(params.courseId);
   };
 
-  const windowWidth =
-    window.innerWidth < WINDOW_SIZE.xl.width ? WINDOW_SIZE.lg.name : WINDOW_SIZE.xl.name;
+  let windowWidth = getWindowWidth();
+
+  const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
+  const handleFilterOpen = () => {
+    setFilterOpen(!isFilterOpen);
+  };
+  const handleFilterClose = () => {
+    setFilterOpen(false);
+  };
 
   return data ? (
     <DetailedCourse
@@ -53,6 +61,10 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
       windowWidth={windowWidth}
       isFullTextOpen={isFullTextOpen}
       toggleFullText={toggleFullText}
+      isFilterOpen={isFilterOpen}
+      handleFilterOpen={handleFilterOpen}
+      handleFilterClose={handleFilterClose}
+      isCourseApplicationSubmitted={isCourseApplicationSubmitted}
     />
   ) : null;
 };

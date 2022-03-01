@@ -27,10 +27,6 @@ const NOTHING = 0;
 const INITIAL_INDX = 0;
 const NO_FILTER = {};
 const DEFAULT_ORDER_FIELD = '_id';
-const ORDER_TYPE = {
-  asc: 1,
-  desc: -1,
-};
 
 const STATUS_CODES = {
   success: {
@@ -61,7 +57,6 @@ export {
   DEFAULT_N_PER_PAGE,
   FIRST_PAGE,
   NOTHING,
-  ORDER_TYPE,
   NO_FILTER,
   INITIAL_INDX,
   REQUIRED_PCT,

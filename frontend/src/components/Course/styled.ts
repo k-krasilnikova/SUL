@@ -24,7 +24,6 @@ export const CourseContainer = styled(Grid)({
   },
   [theme.breakpoints.up('sm')]: {
     borderRadius: '11px',
-    width: '100%',
   },
   [theme.breakpoints.up('xl')]: {
     borderRadius: '16px',
@@ -137,6 +136,10 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     textAlign: 'left',
     padding: '0px',
     margin: '0px 14px 8px 0px',
+    ...(type === 'similarCourses' && {
+      fontSize: '18px',
+      fontWeight: '700',
+    }),
   },
   [theme.breakpoints.up('sm')]: {
     fontSize: '18px',
@@ -214,11 +217,14 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
   }),
 );
 
-export const InfoContainer = styled(Box)({
+export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   [theme.breakpoints.up('xs')]: {
     margin: '0px',
     padding: '0px',
     flexDirection: 'row',
+    ...(type === 'detailedCourse' && {
+      marginLeft: '8px',
+    }),
   },
   [theme.breakpoints.up('md')]: {
     height: 'fit-content',
@@ -235,7 +241,7 @@ export const InfoContainer = styled(Box)({
     alignSelf: 'end !important',
     paddingBottom: '0px !important',
   },
-});
+}));
 
 export const InfoItem = styled('div')({
   [theme.breakpoints.up('xs')]: {
@@ -249,6 +255,7 @@ export const InfoItem = styled('div')({
   },
   display: 'inline-flex',
   color: 'black',
+  alignItems: 'center',
 });
 export const InfoItemText = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
@@ -312,6 +319,9 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   '@media(min-width: 1680px)': {
     display: 'block',
     paddingLeft: '30px !important',
+    ...(type === 'similarCourses' && {
+      display: 'block',
+    }),
   },
   paddingLeft: '30px !important',
   paddingBottom: '0px !important',
@@ -325,15 +335,6 @@ export const MobileCourseInfoBox = styled(Box)({
   },
   [theme.breakpoints.up('sm')]: {
     display: 'none',
-  },
-});
-
-export const InfoItemIcon = styled('img')({
-  [theme.breakpoints.up('xs')]: {
-    width: '15px',
-  },
-  [theme.breakpoints.up('md')]: {
-    width: '20px',
   },
 });
 
