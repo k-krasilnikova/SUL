@@ -67,6 +67,7 @@ export const CourseTextContainer = styled('div')({
 });
 
 export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => ({
+  boxShadow: '0px -23px 15px 0px rgba(238, 238, 240, 1)',
   [theme.breakpoints.up('xs')]: {
     display: 'none',
   },

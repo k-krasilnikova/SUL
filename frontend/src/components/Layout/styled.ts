@@ -29,14 +29,29 @@ export const PageWrapper = styled(Grid)({
   overflowY: 'auto',
   overflowX: 'hidden',
   [theme.breakpoints.up('xs')]: {
+    padding: '0px 8px !important',
     height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
   },
   [theme.breakpoints.up('md')]: {
     height: `calc(100vh - ${HEADER_HEIGHT_IPAD})`,
   },
+  '@media(max-width: 1110px)': {
+    paddingTop: '40px',
+  },
   [theme.breakpoints.up('xl')]: {
     height: `calc(100vh - ${HEADER_HEIGHT})`,
+    padding: '16px 8px 0 8px !important',
   },
+  '@media(min-width: 1110px)': {
+    padding: '16px 30px 0px 30px !important',
+  },
+  '@media(min-width: 1440px)': {
+    padding: '16px 30px 0px 0px !important',
+  },
+  width: '100%',
+  paddingRight: '30px !important',
+  paddingTop: '1.0% !important',
+  paddingLeft: '0px !important',
 });
 
 export const useLayOutStyles = makeStyles({
