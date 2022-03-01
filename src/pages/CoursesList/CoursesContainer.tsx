@@ -35,7 +35,7 @@ const CoursesContainer: React.FC = () => {
     setFilterOpen(false);
   };
 
-  let windowWidth = getWindowWidth();
+  const windowWidth = getWindowWidth();
 
   return (
     <CoursesList
