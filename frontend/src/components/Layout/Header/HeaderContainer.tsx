@@ -9,7 +9,6 @@ import Header from './Header';
 interface MobileMenuProps {
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
-  pageName?: string;
 }
 
 type Props = User & MobileMenuProps;
@@ -21,7 +20,6 @@ const HeaderContainer: React.FC<Props> = ({
   notifications,
   isMobileMenuOpen,
   toggleMobileMenu,
-  pageName,
 }) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
@@ -73,7 +71,6 @@ const HeaderContainer: React.FC<Props> = ({
         handleConfirm={handleConfirm}
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}
-        pageName={pageName}
       />
       <ConfirmLogOutModalWindow
         handleLogOut={handleLogOut}

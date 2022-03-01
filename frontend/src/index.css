@@ -7,6 +7,7 @@
   text-transform: none !important;
 }
 body {
+  overflow-y: hidden;
   margin: 0;
   background-color: var(--layout-background-color);
   scrollbar-color: #b6b6b6 #f1f1f1;

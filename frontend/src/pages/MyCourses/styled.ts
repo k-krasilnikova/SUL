@@ -7,7 +7,7 @@ import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.up('xs')]: {
-    padding: '54px 8px 0px 8px',
+    padding: '0px 8px',
   },
   '@media(min-width: 1110px)': {
     padding: '16px 30px 0px 30px',
@@ -139,5 +139,13 @@ export const ContinueTestButton = styled(Button)({
     fontSize: '16px!important',
     lineHeight: '22px',
     padding: '12px 0px!important',
+  },
+});
+export const MobileSearchWrapper = styled('div')({
+  width: '100%',
+  margin: '16px 0px 8px 0px',
+  height: '30px',
+  '@media(min-width: 1110px)': {
+    display: 'none',
   },
 });

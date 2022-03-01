@@ -7,7 +7,7 @@ import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.up('xs')]: {
-    padding: '54px 8px 0 8px !important',
+    padding: '0px 8px 0 8px !important',
   },
   '@media(max-width: 1110px)': {
     paddingTop: '40px',
@@ -37,7 +37,17 @@ export const GridItem = styled(Grid)({
     maxWidth: '741px !important',
     width: '741px !important',
     paddingLeft: '30px',
-    paddingTop: '24px !important',
+    paddingTop: '24px',
+  },
+  [theme.breakpoints.down('xl')]: {
+    paddingLeft: '30px',
+    paddingTop: '24px',
+    width: '711px !important',
+  },
+  [theme.breakpoints.up('xs')]: {
+    width: '100%',
+    paddingTop: '8px !important',
+    paddingLeft: '0px',
   },
 });
 
@@ -127,5 +137,13 @@ export const MobileLink = styled(Link)({
     '&:hover': {
       cursor: 'default',
     },
+  },
+});
+export const MobileSearchWrapper = styled('div')({
+  width: '100%',
+  margin: '16px 0px 8px 0px',
+  height: '30px',
+  '@media(min-width: 1110px)': {
+    display: 'none',
   },
 });
