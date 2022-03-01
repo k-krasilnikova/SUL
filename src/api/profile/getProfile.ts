@@ -11,17 +11,23 @@ import { ResponseError } from 'types/serverError';
 type ProfileResponse = User & ResponseError;
 
 const useGetProfile = (): UseQueryResult<ProfileResponse, AxiosError> =>
-  useQuery('profile', async () => {
-    let profileResponse: ProfileResponse;
-    const apiClient = apiClientWrapper();
-    const userId = getUserIdCookie();
-    try {
-      const response = await apiClient.get(`${API.getProfile}/${userId}`);
-      profileResponse = response.data;
-      return profileResponse;
-    } catch (error) {
-      throw new Error(`${REQUEST_ERRORS.getError}`);
-    }
-  });
+  useQuery(
+    'profile',
+    async () => {
+      let profileResponse: ProfileResponse;
+      const apiClient = apiClientWrapper();
+      const userId = getUserIdCookie();
+      try {
+        const response = await apiClient.get(`${API.getProfile}/${userId}`);
+        profileResponse = response.data;
+        return profileResponse;
+      } catch (error) {
+        throw new Error(`${REQUEST_ERRORS.getError}`);
+      }
+    },
+    {
+      staleTime: 600000,
+    },
+  );
 
 export default useGetProfile;
