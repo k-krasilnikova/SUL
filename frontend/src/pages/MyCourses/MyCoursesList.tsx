@@ -37,7 +37,7 @@ interface Props {
 type MyCoursesProps = ResponseDataMyCourses & Props;
 
 const MyCoursesList: React.FC<MyCoursesProps> = ({
-  data,
+  clientCourses,
   isLoading,
   disableLink,
   isFilterOpen,
