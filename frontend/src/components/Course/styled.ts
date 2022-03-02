@@ -240,6 +240,9 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     alignItems: 'end !important',
     alignSelf: 'end !important',
     paddingBottom: '0px !important',
+    ...(type === 'searchCourse' && {
+      height: 'auto !important',
+    }),
   },
 }));
 
@@ -327,6 +330,9 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   paddingBottom: '0px !important',
   height: '50px !important',
   display: 'flex',
+  ...(type === 'searchCourse' && {
+    height: 'auto !important',
+  }),
 }));
 
 export const MobileCourseInfoBox = styled(Box)({

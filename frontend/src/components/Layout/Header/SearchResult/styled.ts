@@ -1,0 +1,50 @@
+import styled from 'styled-components';
+import { ListItem } from '@mui/material';
+
+import { imageDefault } from 'icons';
+
+interface CourseAvatar {
+  avatar?: string;
+}
+
+export const SearchResultWrapper = styled('div')({
+  position: 'absolute',
+  zIndex: '15',
+  background: '#FFFFFF',
+  borderRadius: '6px',
+  top: '80px',
+  left: '40px',
+  boxShadow: '0px 4px 4px 0px #00000040',
+  minHeight: '39px',
+  maxHeight: '232px',
+  minWidth: '117px',
+  maxWidth: '572px',
+  padding: '8px',
+  overflowY: 'auto',
+});
+export const SearchResultItem = styled(ListItem)({
+  fontSize: '14px',
+  color: '#131313',
+  display: 'flex',
+  marin: '8px',
+});
+export const Image = styled('div')<CourseAvatar>(({ avatar }) => ({
+  width: '82px',
+  height: '51px',
+  border: '1px solid #7676801F',
+  borderRadius: '4px',
+  float: 'left',
+  margin: '0px 8px 0px 0px',
+  overflow: 'hidden',
+  flexShrink: '0',
+  alignItems: 'center',
+  background: `no-repeat center url(${avatar || imageDefault})`,
+  backgroundSize: 'cover',
+}));
+export const CourseTitle = styled('span')({
+  fontSize: '20px',
+  fontWeight: '700',
+  lineHeight: '26px',
+  letterSpacing: '-0.4px',
+  marginLeft: '8px',
+});
