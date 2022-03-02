@@ -28,14 +28,14 @@ const useGetUserInfo = (): UseQueryResult<UserResponse, AxiosError> =>
       const userId = getUserIdCookie();
       try {
         const response = await apiClient.get(`${API.getProfile}/${userId}`);
-        const profileResponse = response.data;
-        return profileResponse;
+        return response.data;
       } catch (error) {
         throw new Error(`${REQUEST_ERRORS.getError}`);
       }
     },
     {
       cacheTime: 600000,
+      staleTime: 600000,
     },
   );
 
