@@ -6,4 +6,5 @@ export const PAGES = {
   signIn: 'signIn',
   notFound: 'notFound',
   learnCourse: 'learnCourse',
+  detailed: 'detailedCourse',
 };

@@ -43,7 +43,6 @@ interface Props {
   handleConfirm: () => void;
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
-  pageName?: string;
 }
 type HeaderProps = User & Props;
 
@@ -61,7 +60,6 @@ const Header: React.FC<HeaderProps> = ({
   handleConfirm,
   isMobileMenuOpen,
   toggleMobileMenu,
-  pageName,
 }) => (
   <LayoutHeader container>
     <BrandLogoLink to={PATHS.profile}>
@@ -77,8 +75,6 @@ const Header: React.FC<HeaderProps> = ({
             <SearchIcon color="disabled" fontSize="medium" />
           </InputAdornment>
         }
-        pagename={pageName}
-        menuopen={isMobileMenuOpen.toString()}
       />
       <ClickAwayListener onClickAway={handleNotificationsClose}>
         <RelativeWrapper>
@@ -90,11 +86,7 @@ const Header: React.FC<HeaderProps> = ({
       </ClickAwayListener>
       <ClickAwayListener onClickAway={handleFilterClose}>
         <RelativeWrapper>
-          <FilterButton
-            onClick={handleFilterOpen}
-            pagename={pageName}
-            menuopen={isMobileMenuOpen.toString()}
-          >
+          <FilterButton onClick={handleFilterOpen}>
             <img alt="filter" src={filterIcon} />
           </FilterButton>
           {isFilterOpen && (
