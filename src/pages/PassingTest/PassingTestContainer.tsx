@@ -11,16 +11,16 @@ import ConfirmLeavePage from './ConfirmLeavePage';
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
 
-  const { data: courseData, isLoading } = useGetCourseTest({ courseId: params.courseId });
+  const { data: courseTestData, isLoading } = useGetCourseTest({ courseId: params.courseId });
 
   useStartCourseTest({
     courseId: params.courseId,
-    enabled: Boolean(courseData?.length),
+    enabled: Boolean(courseTestData?.length),
   });
 
   const { mutate, data: responseData } = useSendTestResult({ courseId: params.courseId });
 
-  const courseTest = courseData?.length ? courseData[0].test : undefined;
+  const courseTest = courseTestData?.length ? courseTestData[0].test : undefined;
   const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
 
   const [stage, setStage] = useState(1);
@@ -52,7 +52,6 @@ const PassingTestContainer: React.FC = () => {
       setStage(stage - STAGE_CHANGE);
     }
   };
-
   const resultEnabled = stage === maxStage;
   const questionStageItem = courseTest?.questions[stage - 1];
 

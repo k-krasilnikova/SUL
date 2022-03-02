@@ -6,8 +6,12 @@ import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
 import { ClientCourse } from 'types/clientCourse';
 
-const useStartClientCourse = (courseId?: string): UseQueryResult<ClientCourse, AxiosError> =>
-  useQuery(
+const useStartClientCourse = (params: {
+  courseId?: string | undefined;
+  enabled?: boolean;
+}): UseQueryResult<ClientCourse, AxiosError> => {
+  const { courseId, enabled = true } = params;
+  return useQuery(
     ['StartClientCourse', courseId],
     async () => {
       const apiClient = apiClientWrapper();
@@ -20,8 +24,9 @@ const useStartClientCourse = (courseId?: string): UseQueryResult<ClientCourse, A
       }
     },
     {
-      refetchOnWindowFocus: false,
+      enabled,
     },
   );
+};
 
 export default useStartClientCourse;

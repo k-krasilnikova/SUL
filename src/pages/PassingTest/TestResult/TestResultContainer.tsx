@@ -3,16 +3,22 @@ import { useParams } from 'react-router';
 
 import { ITestResult } from 'types/test';
 import { PERCENTAGE, TEST_STATUS } from 'constants/test';
+import { COURSE_STATUSES } from 'constants/statuses';
 import useFinishClientCourse from 'api/myCourses/finishClientCourse';
+import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
 
 import TestResult from './TestResult';
 
 const TestResultContainer: React.FC<ITestResult> = ({ responseData }) => {
   const params = useParams();
-  const { mutate } = useFinishClientCourse(params.courseId);
+
+  const { data: courseData } = useGetClientCourseInfo(params.courseId);
+  const { mutate } = useFinishClientCourse(courseData?._id);
 
   const handleFinishCourse = () => {
-    mutate(params.courseId);
+    if (courseData?.status === COURSE_STATUSES.testing) {
+      mutate(params.courseId);
+    }
   };
 
   const testStatus = responseData ? responseData.result.testStatus : undefined;
