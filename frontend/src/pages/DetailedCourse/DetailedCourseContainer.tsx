@@ -42,14 +42,6 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
 
   const windowWidth = getWindowWidth();
 
-  const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
-  const handleFilterOpen = () => {
-    setFilterOpen(!isFilterOpen);
-  };
-  const handleFilterClose = () => {
-    setFilterOpen(false);
-  };
-
   return data ? (
     <DetailedCourse
       handleApplyCourse={handleApplyCourse}
@@ -61,9 +53,6 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
       windowWidth={windowWidth}
       isFullTextOpen={isFullTextOpen}
       toggleFullText={toggleFullText}
-      isFilterOpen={isFilterOpen}
-      handleFilterOpen={handleFilterOpen}
-      handleFilterClose={handleFilterClose}
       isCourseApplicationSubmitted={isCourseApplicationSubmitted}
     />
   ) : null;

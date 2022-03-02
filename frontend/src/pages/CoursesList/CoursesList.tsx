@@ -27,9 +27,6 @@ import {
 
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
-  isFilterOpen: boolean;
-  handleFilterOpen: () => void;
-  handleFilterClose: () => void;
   windowWidth: string;
 }
 
@@ -42,9 +39,6 @@ const CoursesList: React.FC<CoursesProps> = ({
   targetLoading,
   targetId,
   disableLink,
-  isFilterOpen,
-  handleFilterOpen,
-  handleFilterClose,
   windowWidth,
 }) => (
   <AuthorizedLayout pageName="Courses List">
@@ -53,11 +47,7 @@ const CoursesList: React.FC<CoursesProps> = ({
     ) : courses ? (
       <PageContainer container>
         <MobileSearchWrapper>
-          <MobileSearch
-            isFilterOpen={isFilterOpen}
-            handleFilterOpen={handleFilterOpen}
-            handleFilterClose={handleFilterClose}
-          />
+          <MobileSearch />
         </MobileSearchWrapper>
         {courses.map((course) => (
           <Suspense

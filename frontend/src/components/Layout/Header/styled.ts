@@ -106,7 +106,7 @@ export const Search = styled(Input)({
   padding: '10px',
   margin: '15px 20px 15px 0px',
   fontSize: '18px',
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(950)]: {
     display: 'none!important',
   },
   [theme.breakpoints.up(1920)]: {

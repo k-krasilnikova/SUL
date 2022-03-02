@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useGetMyCourses } from 'api/myCourses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
@@ -16,14 +16,6 @@ const MyCoursesContainer: React.FC = () => {
     }
   };
 
-  const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
-  const handleFilterOpen = () => {
-    setFilterOpen(!isFilterOpen);
-  };
-  const handleFilterClose = () => {
-    setFilterOpen(false);
-  };
-
   const windowWidth = getWindowWidth();
 
   return (
@@ -31,9 +23,6 @@ const MyCoursesContainer: React.FC = () => {
       clientCourses={clientCourses?.filter((item) => item.course)}
       isLoading={isLoading}
       disableLink={disableLink}
-      isFilterOpen={isFilterOpen}
-      handleFilterOpen={handleFilterOpen}
-      handleFilterClose={handleFilterClose}
       windowWidth={windowWidth}
     />
   );
