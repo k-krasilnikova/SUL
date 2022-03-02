@@ -22,7 +22,6 @@ const HeaderContainer: React.FC<Props> = ({
   toggleMobileMenu,
 }) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
-  const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
   const EMPTY_ARGUMENT = null;
@@ -33,14 +32,8 @@ const HeaderContainer: React.FC<Props> = ({
     }
     setNotificationsOpen(!isNotificationsOpen);
   };
-  const handleFilterOpen = () => {
-    setFilterOpen(!isFilterOpen);
-  };
   const handleNotificationsClose = () => {
     setNotificationsOpen(false);
-  };
-  const handleFilterClose = () => {
-    setFilterOpen(false);
   };
 
   const { mutateAsync, isLoading } = useLogOut();
@@ -63,11 +56,8 @@ const HeaderContainer: React.FC<Props> = ({
         avatar={avatar}
         notifications={notifications}
         isNotificationsOpen={isNotificationsOpen}
-        isFilterOpen={isFilterOpen}
         handleNotificationsOpen={handleNotificationsOpen}
-        handleFilterOpen={handleFilterOpen}
         handleNotificationsClose={handleNotificationsClose}
-        handleFilterClose={handleFilterClose}
         handleConfirm={handleConfirm}
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}
