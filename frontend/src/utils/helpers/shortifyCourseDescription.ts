@@ -17,16 +17,28 @@ export const shortifyCourseDescription = (
     maxLength = 100;
   }
   if (
-    windowWidth === WINDOW_SIZE.lg.name &&
+    windowWidth === WINDOW_SIZE.xl.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
     maxLength = 260;
   }
   if (
+    windowWidth === WINDOW_SIZE.lg.name &&
+    (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
+  ) {
+    maxLength = 215;
+  }
+  if (
+    windowWidth === WINDOW_SIZE.xmd.name &&
+    (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
+  ) {
+    maxLength = 110;
+  }
+  if (
     windowWidth === WINDOW_SIZE.md.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
-    maxLength = 190;
+    maxLength = 60;
   }
   if (
     windowWidth === WINDOW_SIZE.sm.name &&

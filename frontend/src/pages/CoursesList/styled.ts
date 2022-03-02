@@ -78,7 +78,7 @@ export const CourseActions = styled('div')({
 });
 
 export const CourseActionsBox = styled(Box)({
-  marginLeft: '16px !important',
+  marginLeft: '8px !important',
 });
 
 export const DetailsButton = styled(Button)({
