@@ -12,16 +12,10 @@ export const GridHeader = styled(Grid)({
 });
 
 export const GridMenu = styled(Grid)({
-  width: '303px',
-  '@media(max-width: 1110px)': {
+  width: '275px',
+  display: 'block',
+  [theme.breakpoints.down('md')]: {
     display: 'none',
-  },
-  '@media(min-width: 1110px)': {
-    display: 'block',
-    width: '205px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '303px',
   },
 });
 
@@ -50,25 +44,15 @@ export const useLayOutStyles = makeStyles({
     },
   },
   hidePageWrapper: {
-    '@media(max-width: 1110px)': {
+    width: 'calc(100% - 275px)!important',
+    [theme.breakpoints.down('md')]: {
       width: '100%!important',
-    },
-    '@media(min-width: 1110px)': {
-      width: 'calc(100% - 205px)!important',
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: 'calc(100% - 303px)!important',
     },
   },
   showPageWrapper: {
-    '@media(max-width: 1110px)': {
+    width: `calc(100% - 129px)!important`,
+    [theme.breakpoints.down('md')]: {
       width: '100%!important',
-    },
-    '@media(min-width: 1110px)': {
-      width: `calc(100% - 86px)!important`,
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: `calc(100% - 129px)!important`,
     },
   },
 });
