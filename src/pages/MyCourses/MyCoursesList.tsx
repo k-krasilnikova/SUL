@@ -12,6 +12,7 @@ import { LOADER } from 'constants/loaderTypes';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { PAGES } from 'constants/pages';
+import MobileSearch from 'components/Layout/MobileSearch';
 
 import {
   PageContainer,
@@ -22,20 +23,40 @@ import {
   StartCourseButton,
   MobileLink,
   ContinueTestButton,
+  MobileSearchWrapper,
 } from './styled';
 
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  isFilterOpen: boolean;
+  handleFilterOpen: () => void;
+  handleFilterClose: () => void;
+  windowWidth: string;
 }
 
 type MyCoursesProps = ResponseDataMyCourses & Props;
 
-const MyCoursesList: React.FC<MyCoursesProps> = ({ clientCourses, isLoading, disableLink }) => (
+const MyCoursesList: React.FC<MyCoursesProps> = ({
+  clientCourses,
+  isLoading,
+  disableLink,
+  isFilterOpen,
+  handleFilterOpen,
+  handleFilterClose,
+  windowWidth,
+}) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
     ) : clientCourses?.length ? (
       <PageContainer container>
+        <MobileSearchWrapper>
+          <MobileSearch
+            isFilterOpen={isFilterOpen}
+            handleFilterOpen={handleFilterOpen}
+            handleFilterClose={handleFilterClose}
+          />
+        </MobileSearchWrapper>
         {clientCourses?.map((clientCourse) => (
           <Suspense
             key={clientCourse._id}
@@ -57,6 +78,7 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({ clientCourses, isLoading, dis
                   pageName={PAGES.myCourses}
                   status={clientCourse.status}
                   progress={countProgress(clientCourse.progress)}
+                  windowWidth={windowWidth}
                   imageUrl={clientCourse.course.avatar}
                 >
                   <CourseActionsBox>

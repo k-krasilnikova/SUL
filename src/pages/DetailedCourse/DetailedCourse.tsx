@@ -13,6 +13,8 @@ import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { backIconMobile } from 'icons';
+import MobileSearch from 'components/Layout/MobileSearch';
+import { PAGES } from 'constants/pages';
 
 import {
   BackButton,
@@ -34,6 +36,7 @@ import {
   ButtonFullText,
   BackArrow,
   BackLink,
+  MobileSearchWrapper,
 } from './styled';
 
 interface IProps {
@@ -48,12 +51,11 @@ interface IProps {
   toggleFullText: () => void;
   isLoading?: boolean;
   targetId?: string | undefined;
+  isFilterOpen: boolean;
+  handleFilterOpen: () => void;
+  handleFilterClose: () => void;
+  isCourseApplicationSubmitted?: boolean;
 }
-
-const PAGES = {
-  myCourses: 'myCourses',
-  coursesList: 'coursesList',
-};
 
 const OPEN_FULL_TEXT = 'Look in full';
 
@@ -67,20 +69,31 @@ const DetailedCourse: React.FC<IProps> = ({
   windowWidth,
   isFullTextOpen,
   toggleFullText,
+  isFilterOpen,
+  handleFilterOpen,
+  handleFilterClose,
+  isCourseApplicationSubmitted,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
-      <BackLink to={PATHS.coursesList}>
+      <BackLink to={page === PAGES.coursesList ? PATHS.coursesList : PATHS.myCourses}>
         <BackButton variant="medium" color="primary">
           Back
         </BackButton>
         <BackArrow alt="" src={backIconMobile} />
       </BackLink>
+      <MobileSearchWrapper>
+        <MobileSearch
+          isFilterOpen={isFilterOpen}
+          handleFilterOpen={handleFilterOpen}
+          handleFilterClose={handleFilterClose}
+        />
+      </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper>
           <Image />
         </ImageWrapper>
-        <ProgressBar size="large" text="0%" />
+        {isCourseApplicationSubmitted && <ProgressBar size="large" text="0%" textColor="#131313" />}
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
           <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
@@ -98,6 +111,7 @@ const DetailedCourse: React.FC<IProps> = ({
             <CourseInfo
               duration={INITIAL_DETAILED_COURSE.duration}
               lessons={INITIAL_DETAILED_COURSE.lessons}
+              type="detailedCourse"
             />
           </CourseInfoBox>
           {isLoading && targetId === buttonId.start ? (
@@ -109,7 +123,7 @@ const DetailedCourse: React.FC<IProps> = ({
               {page === PAGES.myCourses && (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
                   <StartButton variant="large" color="primary">
-                    Start
+                    Start the course
                   </StartButton>
                 </Link>
               )}
@@ -120,7 +134,7 @@ const DetailedCourse: React.FC<IProps> = ({
                   color="primary"
                   onClick={(event) => handleApplyCourse(event)}
                 >
-                  Start
+                  Start the course
                 </StartButton>
               )}
             </div>
@@ -137,6 +151,7 @@ const DetailedCourse: React.FC<IProps> = ({
                 lessons={INITIAL_DETAILED_COURSE.lessons}
                 windowWidth={windowWidth}
                 type="similarCourses"
+                pageName={PAGES.detailed}
               >
                 <CourseActionsBox>
                   <CourseActions>

@@ -7,6 +7,7 @@
   text-transform: none !important;
 }
 body {
+  overflow-y: hidden;
   margin: 0;
   background-color: var(--layout-background-color);
   scrollbar-color: #b6b6b6 #f1f1f1;
@@ -36,4 +37,12 @@ a {
 }
 .search {
   font-size: inherit !important;
+}
+img {
+  image-rendering: initial;
+  filter: none;
+  -webkit-filter: blur(0px);
+  -moz-filter: blur(0px);
+  -ms-filter: blur(0px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
 }
