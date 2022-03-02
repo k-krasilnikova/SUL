@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Input, Grid, Accordion } from '@mui/material';
+import { Input, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import theme from 'themeSettings';
@@ -63,17 +63,15 @@ export const BrandLogo = styled('img')({
   },
 });
 export const HeaderContent = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
   flexGrow: '2',
   flexShrink: '2',
-  display: 'flex',
-  justifyContent: 'flex-end',
   height: HEADER_HEIGHT,
   textAlign: 'right',
-  position: 'relative',
-  fontSize: '24px',
   [theme.breakpoints.down('md')]: {
     width: 'calc(100% - 101px)',
-    fontSize: '16px',
   },
   [theme.breakpoints.up('xs')]: {
     height: HEADER_HEIGHT_MOBILE,
@@ -101,129 +99,41 @@ export const Search = styled(Input)({
   flexGrow: '0',
   flexShrink: '1',
   borderRadius: '3px',
-  padding: '10px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
   color: '#3c3c43',
-  [theme.breakpoints.up('xs')]: {
+  height: '40px',
+  width: '460px',
+  padding: '10px',
+  margin: '15px 20px 15px 0px',
+  fontSize: '18px',
+  [theme.breakpoints.down('md')]: {
     display: 'none!important',
   },
-  '@media(min-width: 1110px)': {
-    position: 'relative',
-    top: '0px',
-    left: '0px',
-    display: 'inline-flex!important',
-    width: '463px!important',
-    height: '44px',
-    margin: '8px 16px 8px 0px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    height: '50px',
-    fontSize: '24px',
-    margin: '15px 20px 15px 0px',
-  },
-  '@media(min-width: 1650px)': {
-    width: '730px!important',
+  [theme.breakpoints.up(1920)]: {
+    width: '600px',
   },
 });
 export const RelativeWrapper = styled('div')({
   position: 'relative',
 });
 export const NotificationsButton = styled('div')({
+  position: 'relative',
   flexGrow: '0',
   flexShrink: '0',
   borderRadius: '3px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
+  width: '40px',
+  height: '40px',
+  margin: '15px 20px 15px 0px',
+  padding: '5px',
+  display: 'flex',
+  justifyContent: 'center',
   '&:hover': {
     cursor: 'pointer',
   },
-  [theme.breakpoints.up('xs')]: {
-    width: '50px',
-    height: '50px',
-    padding: '10px',
-    transform: 'scale(0.6)',
-    position: 'absolute',
-    top: '-2px',
-    left: '-48px',
-  },
-  [theme.breakpoints.up('md')]: {
-    top: '7px',
-  },
-  '@media(min-width: 1110px)': {
-    position: 'relative',
-    transform: 'none',
-    width: '44px',
-    height: '44px',
-    margin: '8px 16px 8px 0px',
-    padding: '8px',
-    top: '0px',
-    left: '0px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '50px',
-    height: '50px',
-    margin: '15px 20px 15px 0px',
-    padding: '10px',
-  },
-});
-export const FilterButton = styled('div')({
-  flexGrow: '0',
-  flexShrink: '0',
-  borderRadius: '3px',
-  backgroundColor: 'rgba(118, 118, 128, 0.12)',
-  '&:hover': {
-    cursor: 'pointer',
-  },
-  [theme.breakpoints.up('xs')]: {
-    display: 'none',
-  },
-  '@media(min-width: 1110px)': {
-    position: 'relative',
-    display: 'block',
-    top: '0px',
-    left: '0px',
-    width: '44px',
-    height: '44px',
-    marginTop: '8px',
-    padding: '8px 9px 10px 6px',
-    transform: 'none',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '50px',
-    height: '50px',
-    marginTop: '15px',
-    padding: '10px 12px 10px 5px',
-  },
-});
-export const Filter = styled('div')({
-  position: 'absolute',
-  zIndex: '15',
-  backgroundColor: '#FFFFFF',
-  borderRadius: '6px',
-  boxShadow: '0px 4px 4px #00000040',
-  [theme.breakpoints.up('xs')]: {
-    top: '100px',
-    width: '274px',
-    right: 'calc(100vw - 350px)',
-  },
-  [theme.breakpoints.up('md')]: {
-    left: '0px',
-    top: HEADER_HEIGHT_IPAD,
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '334px',
-    left: '0px',
-    top: HEADER_HEIGHT,
-  },
-});
-export const FilterAccordion = styled(Accordion)({
-  border: 'none',
-  boxShadow: 'none',
-  padding: '10px',
-  '@media(min-width: 1110px)': {
-    minHeight: '53px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    minHeight: '65px',
+  [theme.breakpoints.down('md')]: {
+    width: '35px',
+    height: '35px',
   },
 });
 
@@ -231,7 +141,7 @@ export const UserBlock = styled(Link)({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('md')]: {
     display: 'none',
   },
   '@media(min-width: 1110px)': {
@@ -250,60 +160,40 @@ export const UserName = styled('div')({
   color: 'black',
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: '400',
-  '@media(min-width: 1110px)': {
-    height: '23px',
+  fontSize: '18px',
+  padding: '0px 10px 0px 0px',
+  marginLeft: '22px',
+  [theme.breakpoints.down('md')]: {
     marginLeft: '16px',
-    fontSize: '20px',
     padding: '0px 5px 0px 0px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    height: '28px',
-    marginLeft: '22px',
-    fontSize: '24px',
-    padding: '0px 10px 0px 0px',
   },
 });
 export const LogOut = styled('div')({
   flexGrow: '0',
   flexShrink: '0',
+  display: 'block',
+  width: '40px',
+  height: '30px',
+  margin: '15px 16px 15px 0px',
+  padding: '3px 0px 0px 0px',
   '&:hover': {
     cursor: 'pointer',
   },
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('md')]: {
     display: 'none',
-  },
-  '@media(min-width: 1110px)': {
-    display: 'block',
-    width: '40px',
-    height: '30px',
-    margin: '15px 16px 15px 0px',
-    padding: '3px 0px 0px 0px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '50px',
-    height: '50px',
-    margin: '15px 20px 15px 0px',
-    padding: '12px 10px 10px 10px',
   },
 });
 export const MobileMenuIcon = styled('div')<MobileMenuProps>(({ openMenu }) => ({
+  display: 'none',
   '&:hover': {
     cursor: 'pointer',
   },
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('md')]: {
+    display: 'block',
     width: '18px',
     height: '12px',
     textAlign: 'center',
     margin: '15px 17px 16px 6px',
     transform: openMenu ? 'rotate(90deg) translateX(2px) translateY(-5px)' : 'none',
-  },
-  [theme.breakpoints.up('md')]: {
-    width: '18px',
-    height: '20px',
-    margin: '15px 17px 16px 6px',
-    transform: openMenu ? 'rotate(90deg) translateX(4px) translateY(-6px)' : 'none',
-  },
-  '@media(min-width: 1110px)': {
-    display: 'none',
   },
 }));

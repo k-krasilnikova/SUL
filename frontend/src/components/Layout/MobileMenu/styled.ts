@@ -15,7 +15,7 @@ interface TabWrapperTypes {
 
 export const MobileMenuSlide = styled('div')({
   width: '176px',
-  height: `calc(100% - ${HEADER_HEIGHT_MOBILE})`,
+  height: '100%',
   backgroundColor: theme.palette.secondary.main,
   padding: '8px 16px 40px 8px',
   position: 'absolute',
@@ -23,13 +23,9 @@ export const MobileMenuSlide = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
-  [theme.breakpoints.up('xs')]: {
-    height: `calc(100% - ${HEADER_HEIGHT_MOBILE})`,
+  top: HEADER_HEIGHT_IPAD,
+  [theme.breakpoints.down('md')]: {
     top: HEADER_HEIGHT_MOBILE,
-  },
-  [theme.breakpoints.up('md')]: {
-    height: `calc(100% - ${HEADER_HEIGHT_IPAD})`,
-    top: HEADER_HEIGHT_IPAD,
   },
 });
 
@@ -48,7 +44,7 @@ export const MenuTabsWrapper = styled('div')({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'left',
-  '@media(min-width: 1110px)': {
+  [theme.breakpoints.up('md')]: {
     display: 'none',
   },
 });
@@ -136,7 +132,7 @@ export const useListStyles = makeStyles({
     },
   },
   selected: {
-    color: `${theme.palette.primary.main}`,
+    color: theme.palette.primary.main,
     padding: '0px!important',
     background: 'none',
     '& span': {
@@ -144,23 +140,23 @@ export const useListStyles = makeStyles({
       fontWeight: 400,
       fontSize: '16px',
       paddingLeft: '2px',
-      color: `${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
     },
     '& svg': {
       width: '25px',
       height: '25px',
       margin: '12.5px',
-      color: `${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
     },
   },
   selectedLogo: {
     '& svg': {
-      color: `${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
     },
   },
   selectedText: {
     '& span': {
-      color: `${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
     },
   },
 });

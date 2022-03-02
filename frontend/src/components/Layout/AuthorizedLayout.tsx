@@ -53,39 +53,23 @@ const AuthorizedLayout: React.FC<Props> = ({
           toggleMobileMenu={toggleMobileMenu}
         />
       </GridHeader>
-      {isSqueeze ? (
-        <>
-          <GridMenu classes={{ root: classes?.hideGridMenu }}>
-            <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
-          </GridMenu>
-          <PageWrapper classes={{ root: classes?.showPageWrapper }}>
-            <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
-            <MobileMenu
-              isMobileMenuOpen={isMobileMenuOpen}
-              toggleMobileMenu={toggleMobileMenu}
-              firstName={firstName}
-              lastName={lastName}
-              avatar={avatar}
-            />
-          </PageWrapper>
-        </>
-      ) : (
-        <>
-          <GridMenu>
-            <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
-          </GridMenu>
-          <PageWrapper classes={{ root: classes.hidePageWrapper }}>
-            <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
-            <MobileMenu
-              isMobileMenuOpen={isMobileMenuOpen}
-              toggleMobileMenu={toggleMobileMenu}
-              firstName={firstName}
-              lastName={lastName}
-              avatar={avatar}
-            />
-          </PageWrapper>
-        </>
-      )}
+      <>
+        <GridMenu classes={isSqueeze && { root: classes?.hideGridMenu }}>
+          <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
+        </GridMenu>
+        <PageWrapper
+          classes={{ root: isSqueeze ? classes?.showPageWrapper : classes?.hidePageWrapper }}
+        >
+          <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
+          <MobileMenu
+            isMobileMenuOpen={isMobileMenuOpen}
+            toggleMobileMenu={toggleMobileMenu}
+            firstName={firstName}
+            lastName={lastName}
+            avatar={avatar}
+          />
+        </PageWrapper>
+      </>
     </Grid>
   </HelmetProvider>
 );
