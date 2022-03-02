@@ -77,11 +77,9 @@ const CoursesList: React.FC<CoursesProps> = ({
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>
-                      <Link to={`${PATHS.coursesList}/${course._id}`}>
-                        <DetailsButton color="primary" variant="mediumOutlined">
-                          Details
-                        </DetailsButton>
-                      </Link>
+                      <DetailsButton color="primary" variant="mediumOutlined">
+                        <Link to={`${PATHS.coursesList}/${course._id}`}>Details </Link>
+                      </DetailsButton>
                       {targetLoading && targetId === course._id ? (
                         <StartCourseButton variant="mediumOutlined" disabled>
                           <ButtonLoader buttonSpinner={buttonSpinner} />
