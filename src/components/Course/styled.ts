@@ -75,6 +75,7 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
     justifyContent: 'space-between',
     alignItems: 'end',
     paddingBottom: '16px',
+    marginLeft: '0px',
   },
   [theme.breakpoints.up('md')]: {
     ...(type === 'similarCourses' && {
@@ -219,6 +220,7 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
 
 export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   [theme.breakpoints.up('xs')]: {
+    display: 'flex',
     margin: '0px',
     padding: '0px',
     flexDirection: 'row',
@@ -226,32 +228,54 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
       marginLeft: '8px',
     }),
   },
-  [theme.breakpoints.up('md')]: {
-    height: 'fit-content',
-    display: 'flex',
-    alignItems: 'end',
-    alignSelf: 'end',
+  [theme.breakpoints.up('sm')]: {
+    display: 'block',
   },
-  height: 'fit-content',
-  display: 'flex',
-  [theme.breakpoints.up('lg')]: {
-    height: '50px',
+  [theme.breakpoints.up(550)]: {
     display: 'flex',
+  },
+  [theme.breakpoints.up('md')]: {
+    display: 'block',
     alignItems: 'end !important',
     alignSelf: 'end !important',
+    height: '50px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'flex',
+    height: '50px',
     paddingBottom: '0px !important',
+  },
+  [theme.breakpoints.up('xl')]: {
+    display: 'block',
+    marginLeft: '15px',
+  },
+  [theme.breakpoints.up(1680)]: {
+    display: 'flex',
+    marginLeft: '0px',
   },
 }));
 
 export const InfoItem = styled('div')({
   [theme.breakpoints.up('xs')]: {
     padding: '0px',
+    display: 'inline-flex',
   },
   [theme.breakpoints.up('sm')]: {
     padding: '5px',
+    display: 'flex',
+  },
+  [theme.breakpoints.up(550)]: {
+    display: 'inline-flex',
   },
   [theme.breakpoints.up('md')]: {
     paddingBottom: '0px !important',
+    display: 'flex',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'inline-flex',
+  },
+  [theme.breakpoints.up('xl')]: {
+    display: 'flex',
   },
   display: 'inline-flex',
   color: 'black',
@@ -269,9 +293,10 @@ export const InfoItemText = styled(Typography)({
     textAlign: 'left',
   },
   [theme.breakpoints.up('sm')]: {
-    width: '70px',
-    fontSize: '10px',
     lineHeight: '18px!important',
+  },
+  [theme.breakpoints.up('md')]: {
+    width: '70px',
   },
   [theme.breakpoints.up('xl')]: {
     fontSize: '14px!important',
@@ -360,5 +385,25 @@ export const MobileCourseCompleted = styled('div')({
   },
   [theme.breakpoints.up('sm')]: {
     display: 'none',
+  },
+});
+
+export const DurationIcon = styled('img')({
+  imageRendering: 'pixelated',
+  [theme.breakpoints.up('xs')]: {
+    height: '14px',
+  },
+  [theme.breakpoints.up('md')]: {
+    height: '20px',
+  },
+});
+
+export const LessonsIcon = styled('img')({
+  imageRendering: 'pixelated',
+  [theme.breakpoints.up('xs')]: {
+    height: '14px',
+  },
+  [theme.breakpoints.up('md')]: {
+    height: '20px',
   },
 });
