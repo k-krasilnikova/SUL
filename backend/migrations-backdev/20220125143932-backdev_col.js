@@ -359,9 +359,9 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Admin',
     position: 'Software Engineer',
     skills: [
-      { name: 'java', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'mySQL', image: '', score: 0, maxScore: 5, group: 'databases' },
+      { name: 'Java', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'JavaScript', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'MySQL', image: '', score: 0, maxScore: 5, group: 'databases' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -381,9 +381,9 @@ const DEFAULT_USERS_DOCS = [
     lastName: 'Manager',
     position: 'Team Manager',
     skills: [
-      { name: 'php', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'PHP', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'JavaScript', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'HTML', image: '', score: 0, maxScore: 5, group: 'frontend' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -406,10 +406,10 @@ const DEFAULT_EMPLOYEES = [
     lastName: 'User',
     position: 'Software Engineer',
     skills: [
-      { name: 'react', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'css', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'ReactJS', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'JavaScript', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'HTML', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'CSS', image: '', score: 0, maxScore: 5, group: 'frontend' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -429,10 +429,10 @@ const DEFAULT_EMPLOYEES = [
     lastName: 'User1',
     position: 'Software Engineer',
     skills: [
-      { name: 'angular', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'ts', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'css', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'Angular', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'TypeScript', image: '', score: 0, maxScore: 5, group: 'languages' },
+      { name: 'HTML', image: '', score: 0, maxScore: 5, group: 'frontend' },
+      { name: 'CSS', image: '', score: 0, maxScore: 5, group: 'frontend' },
     ],
     group: 'U4.D4.mocked',
     employees: [],
@@ -470,7 +470,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['js', 'html', 'css'],
+    technology: ['JavaScript', 'HTML', 'CSS'],
   },
   {
     content: [
@@ -496,7 +496,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['java'],
+    technology: ['Java'],
   },
   {
     content: [
@@ -560,9 +560,10 @@ const MATERIALS = [
 const MOCKED_COURSES = [
   {
     title: 'JS for beginners',
-    description: 'basic course for beginners',
-    technology: ['js', 'html', 'css'],
-    requiredSkills: ['html', 'css'],
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
+    technology: ['JavaScript', 'HTML', 'CSS'],
+    requiredSkills: ['HTML', 'CSS'],
     duration: '123124679',
     materials: MATERIALS[0].content,
     lessons: 0,
@@ -570,9 +571,10 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Java for Profi ',
-    description: 'course for people who want rise their level in java',
-    technology: ['java', 'sql'],
-    requiredSkills: ['java for beginners'],
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
+    technology: ['Java', 'sql'],
+    requiredSkills: ['Java for beginners'],
     duration: '123124679',
     materials: MATERIALS[1].content,
     lessons: 0,
@@ -580,7 +582,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Python for kids',
-    description: 'school level of python programming',
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
     technology: ['python', 'pandas', 'django'],
     requiredSkills: ['math', 'english'],
     duration: '12312679',
@@ -590,8 +593,9 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Kotlin',
-    description: 'Kotlin programming',
-    technology: ['kotlin', 'java'],
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
+    technology: ['Kotlin', 'Java'],
     requiredSkills: ['math', 'english'],
     duration: '12312679',
     materials: MATERIALS[3].content,
@@ -600,8 +604,9 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Scala',
-    description: 'school level of Scala programming',
-    technology: ['scala'],
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
+    technology: ['Scala'],
     requiredSkills: ['math', 'english'],
     duration: '12312679',
     materials: MATERIALS[4].content,
@@ -610,8 +615,115 @@ const MOCKED_COURSES = [
   },
 ];
 
+const SKILLS = [
+  {
+    name: 'Java',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968282.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Java')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'JavaScript',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('JavaScript')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'TypeScript',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968381.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('TypeScript')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'PHP',
+    image:
+      'https://cdn-icons.flaticon.com/png/512/2721/premium/2721635.png?token=exp=1646135289~hmac=3923a70ee466c0142de939aed4315fd5',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('PHP')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'HTML',
+    image: 'https://cdn-icons-png.flaticon.com/512/569/569835.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('HTML')).length,
+    group: 'Frontend',
+  },
+  {
+    name: 'ReactJS',
+    image:
+      'https://cdn-icons.flaticon.com/png/512/3066/premium/3066252.png?token=exp=1646136276~hmac=c919e8efcd0e8c45eb46e6166d7178bb',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('ReactJS')).length,
+    group: 'Frontend',
+  },
+  {
+    name: 'CSS',
+    image:
+      'https://cdn-icons.flaticon.com/png/512/802/premium/802251.png?token=exp=1646136370~hmac=e96529e33bd69a56e42c696982b5fc0a',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('CSS')).length,
+    group: 'Frontend',
+  },
+  {
+    name: 'Angular',
+    image: 'https://cdn-icons-png.flaticon.com/512/3522/3522248.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Angular')).length,
+    group: 'Frontend',
+  },
+  {
+    name: 'MySQL',
+    image: 'https://cdn-icons-png.flaticon.com/512/1199/1199128.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('MySQL')).length,
+    group: 'Databases',
+  },
+  {
+    name: 'Kotlin',
+    image:
+      'https://cdn-icons.flaticon.com/png/512/4299/premium/4299797.png?token=exp=1646209808~hmac=0dc8ef0df4f489ca552506131dceadd5',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Kotlin')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'Scala',
+    image: 'https://cdn-icons-png.flaticon.com/512/919/919834.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Scala')).length,
+    group: 'Languages',
+  },
+];
+
+const SKILL_GROUPS = [
+  {
+    name: 'Languages',
+    skills: [],
+  },
+  {
+    name: 'Frontend',
+    skills: [],
+  },
+  {
+    name: 'Databases',
+    skills: [],
+  },
+];
+
 module.exports = {
   async up(db) {
+    const groups = await Promise.all(
+      SKILL_GROUPS.map(async (group) => {
+        return { ...(await db.collection('skillGroups').insertOne(group)), name: group.name };
+      }),
+    );
+    const skills = await Promise.all(
+      SKILLS.map(async (skill) => {
+        const { group: groupName } = skill;
+        const { insertedId: groupId } = groups.filter((group) => group.name === groupName)[0];
+        skill.group = groupId;
+        const inserted = await db.collection('skills').insertOne(skill);
+        const { insertedId: skillId } = inserted;
+        db.collection('skillGroups').findOneAndUpdate(
+          { _id: groupId },
+          { $push: { skills: skillId } },
+        );
+        return inserted;
+      }),
+    );
     const tests = await Promise.all(
       TESTS.map((test) => {
         return db.collection('tests').insertOne(test);
@@ -641,6 +753,8 @@ module.exports = {
   },
 
   async down(db) {
+    await db.collection('skillGroups').drop();
+    await db.collection('skills').drop();
     await db.collection('courses').drop();
     // await db.collection('clientCourses').drop();
     await db.collection('users').drop();
