@@ -10,7 +10,7 @@ import { MobileMenu } from './MobileMenu';
 import { GridHeader, PageWrapper, GridMenu } from './styled';
 
 interface Props {
-  pageName: string | undefined;
+  pageName: string;
   children: React.ReactNode;
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
@@ -51,6 +51,7 @@ const AuthorizedLayout: React.FC<Props> = ({
           notifications={notifications}
           isMobileMenuOpen={isMobileMenuOpen}
           toggleMobileMenu={toggleMobileMenu}
+          pageName={pageName}
         />
       </GridHeader>
       {isSqueeze ? (
