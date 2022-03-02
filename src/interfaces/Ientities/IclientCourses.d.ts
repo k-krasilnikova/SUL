@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose';
 
-import { ICourse } from './Icourses';
+import { ICourse, ICoursePopulated } from './Icourses';
 
 type TCourseStatus =
   | 'pending'
@@ -14,7 +14,7 @@ type TCourseStatus =
 interface IClientCourse {
   _id?: string;
   user: ObjectId;
-  course: ObjectId | ICourse;
+  course: ObjectId;
   status: TCourseStatus;
   testResult: string;
   progress: [
@@ -26,4 +26,8 @@ interface IClientCourse {
   date: Date;
 }
 
-export { IClientCourse, TCourseStatus };
+interface IClientCoursePopulated extends IClientCourse {
+  course: ICoursePopulated;
+}
+
+export { IClientCourse, TCourseStatus, IClientCoursePopulated };

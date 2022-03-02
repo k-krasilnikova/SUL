@@ -4,10 +4,11 @@ import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 
 interface ISkill {
+  _id?: ObjectId;
   name: string;
   image: string;
-  score: number;
-  group: string;
+  maxScore: string;
+  group: ObjectId;
 }
 
 interface INotification {

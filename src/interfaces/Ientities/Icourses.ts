@@ -1,9 +1,11 @@
 import { ObjectId } from 'mongoose';
 
+import { ISkill } from './Iusers';
+
 interface ICourse {
   _id?: ObjectId;
   title: string;
-  technology: string[];
+  technologies: ObjectId[];
   requiredSkills?: Array<string>;
   description: string;
   duration: number;
@@ -13,6 +15,8 @@ interface ICourse {
   avatar?: string;
 }
 
+type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
+
 type TCourses = Array<ICourse>;
 
-export { ICourse, TCourses };
+export { ICourse, TCourses, ICoursePopulated };

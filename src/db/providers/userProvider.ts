@@ -1,9 +1,10 @@
 import { ObjectId } from 'mongoose';
 
-import { IUser } from 'interfaces/Ientities/Iusers';
+import IUserSkill from 'interfaces/Ientities/IUserSkill';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
+import UserSkillModel from 'db/models/UserSkill';
 
 const getUserProvider = async (userId: string) => {
   const dbUser = await UserModel.findById(userId).lean();
@@ -18,31 +19,22 @@ const getEmployeesProvider = async (managerId: string) => {
   return employess;
 };
 
-const getUserSkills = async (userId: string): Promise<Pick<IUser, 'skills'>> => {
-  const clientSkills = await UserModel.findOne({ _id: userId }, { skills: 1, _id: 0 }).lean();
-  if (!clientSkills) {
-    throw new NotFoundError('User not found.');
-  }
-  return clientSkills;
+const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
+  // const clientSkills = await UserModel.findOne({ _id: userId }, { technologies: 1, _id: 0 }).lean();
+  // if (!clientSkills) {
+  //   throw new NotFoundError('User not found.');
+  // }
+  // return clientSkills;
+  const skills = await UserSkillModel.find({ user: userId }).lean();
+  return skills;
 };
 
-const addUserSkill = async (userId: string, skillName: string) => {
-  const newSkill = {
-    name: skillName,
-    image: '',
+const addUserSkill = async (userId: string, skillId?: ObjectId) => {
+  await UserSkillModel.create({
+    user: userId,
+    skill: skillId,
     score: 1,
-    maxScore: 5,
-    group: '',
-  };
-
-  await UserModel.findOneAndUpdate(
-    { _id: userId },
-    {
-      $push: {
-        skills: newSkill,
-      },
-    },
-  ).lean();
+  });
 };
 
 const updatePendingFieldCourses = async (
@@ -55,12 +47,13 @@ const updatePendingFieldCourses = async (
   await UserModel.updateOne({ _id: managerId }, { $push: { pendingCourses: applyedCourseId } });
 };
 
-const updateUserSkill = async (userId: string, skillName: string) => {
-  await UserModel.findOneAndUpdate(
-    { _id: userId },
-    { $inc: { 'skills.$[elem].score': 1 } },
-    { arrayFilters: [{ 'elem.name': { $eq: skillName } }] },
-  );
+const updateUserSkill = async (userId: string, skillId?: ObjectId) => {
+  // await UserModel.findOneAndUpdate(
+  //   { _id: userId },
+  //   { $inc: { 'skills.$[elem].score': 1 } },
+  //   { arrayFilters: [{ 'elem.name': { $eq: skillName } }] },
+  // );
+  await UserSkillModel.findOneAndUpdate({ user: userId, skill: skillId }, { $inc: { score: 1 } });
 };
 
 export {
