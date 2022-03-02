@@ -6,10 +6,12 @@ import { AccordionSummary, AccordionDetails, Typography, ClickAwayListener } fro
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { Notification } from 'types/notification';
+import { Course } from 'types/course';
 import { UserAvatar } from 'components/Avatar';
 import NotificationsBar from 'components/NotificationsBar';
 import { alertIcon, filterIcon, logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
+import SearchResult from './SearchResult';
 
 import {
   LayoutHeader,
@@ -30,10 +32,6 @@ import {
 } from './styled';
 
 interface Props {
-  firstName?: string;
-  lastName?: string;
-  avatar?: string;
-  notifications?: Array<Notification>;
   isNotificationsOpen: boolean;
   isFilterOpen: boolean;
   handleNotificationsOpen: () => void;
@@ -43,7 +41,16 @@ interface Props {
   handleConfirm: () => void;
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
+  isSearchOpen: boolean;
+  searchCourses: (courseName: string) => void;
+  handleSearchClose: () => void;
+  firstName?: string;
+  lastName?: string;
+  avatar?: string;
+  notifications?: Array<Notification>;
+  coursesFound?: Array<Course>;
 }
+
 type HeaderProps = User & Props;
 
 const Header: React.FC<HeaderProps> = ({
@@ -60,22 +67,32 @@ const Header: React.FC<HeaderProps> = ({
   handleConfirm,
   isMobileMenuOpen,
   toggleMobileMenu,
+  isSearchOpen,
+  searchCourses,
+  handleSearchClose,
+  coursesFound,
 }) => (
   <LayoutHeader container>
     <BrandLogoLink to={PATHS.profile}>
       <BrandLogo alt=":iTechArt" src={brandLogo} />
     </BrandLogoLink>
     <HeaderContent>
-      <Search
-        className="search"
-        disableUnderline
-        placeholder="Search"
-        startAdornment={
-          <InputAdornment position="start">
-            <SearchIcon color="disabled" fontSize="medium" />
-          </InputAdornment>
-        }
-      />
+      <ClickAwayListener onClickAway={handleSearchClose}>
+        <RelativeWrapper>
+          <Search
+            className="search"
+            disableUnderline
+            placeholder="Search"
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon color="disabled" fontSize="medium" />
+              </InputAdornment>
+            }
+            onChange={(event) => searchCourses(event.target.value)}
+          />
+          {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
+        </RelativeWrapper>
+      </ClickAwayListener>
       <ClickAwayListener onClickAway={handleNotificationsClose}>
         <RelativeWrapper>
           <NotificationsButton onClick={handleNotificationsOpen}>

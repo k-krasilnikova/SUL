@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 import { ConfirmLogOutModalWindow } from 'components/Layout/Header/ConfirmLogOut';
 import { User } from 'types/user';
+import { Course } from 'types/course';
 import { useLogOut } from 'api/logOut/';
+import { searchAllCourses } from 'api/courses';
 
 import Header from './Header';
 
@@ -24,6 +26,8 @@ const HeaderContainer: React.FC<Props> = ({
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
+  const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
+  const [coursesFound, setFoundCourses] = useState<Array<Course>>([]);
 
   const EMPTY_ARGUMENT = null;
 
@@ -55,6 +59,18 @@ const HeaderContainer: React.FC<Props> = ({
     setConfirmOpen(false);
   };
 
+  const searchCourses = (courseName: string): void => {
+    setSearchOpen(true);
+    if (courseName.length) {
+      searchAllCourses(courseName).then((courses) => setFoundCourses(courses));
+    } else {
+      setSearchOpen(false);
+    }
+  };
+  const handleSearchClose = () => {
+    setSearchOpen(false);
+  };
+
   return (
     <>
       <Header
@@ -71,6 +87,10 @@ const HeaderContainer: React.FC<Props> = ({
         handleConfirm={handleConfirm}
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}
+        isSearchOpen={isSearchOpen}
+        searchCourses={searchCourses}
+        handleSearchClose={handleSearchClose}
+        coursesFound={coursesFound}
       />
       <ConfirmLogOutModalWindow
         handleLogOut={handleLogOut}
