@@ -358,11 +358,7 @@ const DEFAULT_USERS_DOCS = [
     firstName: 'Admin',
     lastName: 'Admin',
     position: 'Software Engineer',
-    skills: [
-      { name: 'Java', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'JavaScript', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'MySQL', image: '', score: 0, maxScore: 5, group: 'databases' },
-    ],
+    technologies: [],
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
@@ -380,11 +376,7 @@ const DEFAULT_USERS_DOCS = [
     firstName: 'Manager',
     lastName: 'Manager',
     position: 'Team Manager',
-    skills: [
-      { name: 'PHP', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'JavaScript', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'HTML', image: '', score: 0, maxScore: 5, group: 'frontend' },
-    ],
+    technologies: [],
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
@@ -405,12 +397,7 @@ const DEFAULT_EMPLOYEES = [
     firstName: 'User',
     lastName: 'User',
     position: 'Software Engineer',
-    skills: [
-      { name: 'ReactJS', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'JavaScript', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'HTML', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'CSS', image: '', score: 0, maxScore: 5, group: 'frontend' },
-    ],
+    technologies: [],
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
@@ -428,12 +415,7 @@ const DEFAULT_EMPLOYEES = [
     firstName: 'User1',
     lastName: 'User1',
     position: 'Software Engineer',
-    skills: [
-      { name: 'Angular', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'TypeScript', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'HTML', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'CSS', image: '', score: 0, maxScore: 5, group: 'frontend' },
-    ],
+    technologies: [],
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
@@ -683,7 +665,13 @@ const SKILLS = [
   {
     name: 'Scala',
     image: 'https://cdn-icons-png.flaticon.com/512/919/919834.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Scala')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Scala')).length + 1, // for the default level porpose (testing only)
+    group: 'Languages',
+  },
+  {
+    name: 'Python',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968350.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Python')).length + 1, // for the default level porpose (testing only)
     group: 'Languages',
   },
 ];
@@ -700,6 +688,19 @@ const SKILL_GROUPS = [
   {
     name: 'Databases',
     skills: [],
+  },
+];
+
+const USER_SKILLS = [
+  {
+    user: 'user',
+    skill: 'Scala',
+    score: '1',
+  },
+  {
+    user: 'user',
+    skill: 'Python',
+    score: '1',
   },
 ];
 
@@ -721,7 +722,7 @@ module.exports = {
           { _id: groupId },
           { $push: { skills: skillId } },
         );
-        return inserted;
+        return { ...inserted, name: skill.name };
       }),
     );
     const tests = await Promise.all(
@@ -736,18 +737,31 @@ module.exports = {
       }),
     );
     const users = await Promise.all(
-      DEFAULT_USERS_DOCS.map((doc) => {
+      DEFAULT_USERS_DOCS.map(async (doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
-        return db.collection('users').insertOne(doc);
+        return { ...(await db.collection('users').insertOne(doc)), username: doc.username };
       }),
     );
-    await Promise.all(
-      DEFAULT_EMPLOYEES.map((doc) => {
+    const employees = await Promise.all(
+      DEFAULT_EMPLOYEES.map(async (doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
         doc.managerId = users[1].insertedId;
-        return db.collection('users').insertOne(doc);
+        return { ...(await db.collection('users').insertOne(doc)), username: doc.username };
+      }),
+    );
+    const totalUsers = users.concat(employees);
+    const userSkills = Promise.all(
+      USER_SKILLS.map(async (uskill) => {
+        const newSkillRelation = { ...uskill };
+        newSkillRelation.skill = skills.filter(
+          (skill) => skill.name === newSkillRelation.skill,
+        )[0].insertedId;
+        newSkillRelation.user = totalUsers.filter(
+          (user) => user.username === newSkillRelation.user,
+        )[0].insertedId;
+        return db.collection('userSkills').insertOne(newSkillRelation);
       }),
     );
   },
@@ -759,5 +773,6 @@ module.exports = {
     // await db.collection('clientCourses').drop();
     await db.collection('users').drop();
     await db.collection('tests').drop();
+    await db.collection('userSkills').drop();
   },
 };
