@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
+import { COURSE_STATUSES } from 'constants/statuses';
 import { useSendTestResult, useStartCourseTest, useGetCourseTest } from 'api/test';
+import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
@@ -12,10 +14,12 @@ const PassingTestContainer: React.FC = () => {
   const params = useParams();
 
   const { data: courseTestData, isLoading } = useGetCourseTest({ courseId: params.courseId });
+  const { data: clientCourseResponse } = useGetClientCourseInfo(params.courseId);
 
   useStartCourseTest({
-    courseId: params.courseId,
-    enabled: Boolean(courseTestData?.length),
+    courseId: clientCourseResponse?._id,
+    enabled:
+      Boolean(courseTestData?.length) && clientCourseResponse?.status === COURSE_STATUSES.started,
   });
 
   const { mutate, data: responseData } = useSendTestResult({ courseId: params.courseId });
@@ -44,7 +48,9 @@ const PassingTestContainer: React.FC = () => {
         aN: Number(value),
       })),
     };
-    mutate(resultData, { onSuccess: () => setTestResultPageEnabled(true) });
+    if (clientCourseResponse?.status === COURSE_STATUSES.testing) {
+      mutate(resultData, { onSuccess: () => setTestResultPageEnabled(true) });
+    }
   };
 
   const stageBack = () => {
@@ -92,7 +98,9 @@ const PassingTestContainer: React.FC = () => {
           />
         </>
       )}
-      {isTestResultPageEnabled && <TestResult responseData={responseData} />}
+      {isTestResultPageEnabled && (
+        <TestResult responseData={responseData} status={clientCourseResponse?.status} />
+      )}
     </>
   );
 };
