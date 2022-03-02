@@ -54,6 +54,14 @@ export interface IResponseData {
   updatedSkills: [];
 }
 
+export interface IPassingTestResponse {
+  acknowledged: boolean;
+  modifiedCount: number;
+  upsertedId: null;
+  upsertedCount: number;
+  matchedCount: number;
+}
+
 export interface ITestResult {
   responseData: IResponseData | undefined;
   status?: string;

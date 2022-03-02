@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { close } from 'icons';
 import { ConfirmDialog } from 'components/ConfirmDialog';
 import { PATHS } from 'constants/routes';
+import { COURSE_STATUSES } from 'constants/statuses';
 import { useGetCourseTest } from 'api/test';
 import { convertTestTimeout } from 'utils/helpers/convertTestTimeout';
 
@@ -24,11 +25,15 @@ import {
 interface IFormDialog {
   dialogOpen: boolean;
   handleDialogClose: () => void;
+  courseStatus: string;
 }
 
-const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) => {
+const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose, courseStatus }) => {
   const params = useParams();
-  const { data } = useGetCourseTest({ courseId: params.courseId, enabled: dialogOpen });
+  const { data } = useGetCourseTest({
+    courseId: params.courseId,
+    enabled: dialogOpen && courseStatus === COURSE_STATUSES.started,
+  });
   const timeout = data && data[0].test.timeout;
 
   return (
