@@ -21,26 +21,12 @@ export const Notifications = styled('div')({
   boxShadow: '2px 2px 4px 4px #00000040',
   maxHeight: '250px',
   overflowY: 'auto',
-  [theme.breakpoints.up('xs')]: {
-    top: HEADER_HEIGHT_MOBILE,
-    width: '304px',
-    left: '-270px',
-  },
-  [theme.breakpoints.up('md')]: {
-    top: HEADER_HEIGHT_IPAD,
-    left: '0px',
-  },
-  '@media(min-width: 1110px)': {
-    width: '400px',
-  },
-  '@media(min-width: 1130px)': {
-    width: '350px',
-    left: '-8px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    top: HEADER_HEIGHT,
-    width: '572px',
-    left: '0px',
+  width: '400px',
+  top: '60px',
+  [theme.breakpoints.down('md')]: {
+    width: '300px',
+    top: '40px',
+    right: 0,
   },
 });
 
