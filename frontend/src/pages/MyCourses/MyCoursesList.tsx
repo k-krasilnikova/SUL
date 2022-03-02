@@ -91,7 +91,6 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                           <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
                             Continue the test
                           </Link>
-                          Continue the test
                         </ContinueTestButton>
                       ) : clientCourse.status === COURSE_STATUSES.pending ? (
                         <StartCourseButton disabled color="primary" variant="mediumContained">

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
@@ -32,43 +32,32 @@ const SignInContainer: React.FC = () => {
     },
   });
 
-  const [targetFieldName, setTargetName] = useState<string | undefined>();
-  const [currentCoordinates, setCoordinates] = useState<string | undefined>();
-  const [labelStatus, setLabelStatus] = useState<string | boolean>();
+  const [fieldStatus, setStatus] = useState<string | boolean>(false);
 
   const warningHandler = (name: string, e: string) => {
     formik.handleChange(e);
     formik.setFieldTouched(name, FIELD_TOUCHED, FIELD_VALIDATE);
   };
 
-  const getCoordinates = (event: React.MouseEvent<Element, MouseEvent>) => {
-    (event.target as HTMLElement).className === SIGN_STYLE_PROPS.additionalClass
-      ? setCoordinates((event.target as HTMLElement).className)
-      : setCoordinates((event.target as HTMLElement).id);
+  const outOfFocusFiled = (e: string) => {
+    formik.handleBlur(e);
+    setStatus(FIELD_VALIDATE);
   };
 
-  const getFieldName = (event: React.MouseEvent<Element, MouseEvent>) => {
-    setTargetName((event.currentTarget as HTMLElement).id);
+  const onFocusField = (event: React.MouseEvent<Element, MouseEvent>) => {
+    setStatus((event.currentTarget as HTMLElement).id);
   };
-
-  useEffect(() => {
-    currentCoordinates === targetFieldName
-      ? setLabelStatus(targetFieldName)
-      : currentCoordinates === SIGN_STYLE_PROPS.additionalClass
-      ? setLabelStatus(targetFieldName)
-      : setLabelStatus(FIELD_VALIDATE);
-  }, [currentCoordinates, targetFieldName]);
 
   return (
     <FormikProvider value={formik}>
       <SignIn
         formik={formik}
         warningHandler={warningHandler}
+        outOfFocusFiled={outOfFocusFiled}
+        getFieldName={onFocusField}
         isLoading={isLoading}
         labelHandler={SIGN_STYLE_PROPS}
-        getFieldName={getFieldName}
-        getCoordinates={getCoordinates}
-        labelStatus={labelStatus}
+        fieldStatus={fieldStatus}
       />
     </FormikProvider>
   );

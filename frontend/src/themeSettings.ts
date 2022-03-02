@@ -106,6 +106,10 @@ const theme = createTheme(
                 backgroundColor: globalTheme.palette.primary.dark,
                 color: globalTheme.palette.text.secondary,
               },
+              '&:disabled': {
+                backgroundColor: '#e38181',
+                color: '#8e5050',
+              },
             },
           },
           {

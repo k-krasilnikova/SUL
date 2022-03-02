@@ -57,6 +57,10 @@ export const CourseActions = styled('div')({
 
 export const CourseActionsBox = styled(Box)({
   marginLeft: '16px !important',
+  paddingBottom: '5px',
+  '@media(max-width: 580px)': {
+    marginLeft: '0px !important',
+  },
 });
 
 export const DetailsButton = styled(Button)({
@@ -86,6 +90,9 @@ export const StartCourseButton = styled(Button)({
     fontSize: '14px!important',
     lineHeight: '19px',
     padding: '10px 10px!important',
+  },
+  '@media(max-width: 580px)': {
+    marginRight: '0px !important',
   },
   [theme.breakpoints.up('xl')]: {
     height: '50px',
