@@ -817,7 +817,7 @@ module.exports = {
     try {
       await db.collection('clientCourses').drop();
     } catch {
-      console.log('clientCourses collection does not exist');
+      // console.log('clientCourses collection does not exist');
     }
     await db.collection('users').drop();
     await db.collection('tests').drop();

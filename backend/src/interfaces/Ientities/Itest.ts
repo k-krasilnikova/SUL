@@ -1,4 +1,4 @@
-import { ISkill } from './Iusers';
+import ISkill from './ISkill';
 
 interface ITest {
   _id?: string;

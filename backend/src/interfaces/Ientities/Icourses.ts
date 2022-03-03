@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose';
 
-import { ISkill } from './Iusers';
+import ISkill from './ISkill';
 
 interface ICourse {
   _id?: ObjectId;
