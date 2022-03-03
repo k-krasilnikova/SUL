@@ -1,12 +1,6 @@
-export interface Content {
-  stage: number;
-  content: string;
-  isCompleted: boolean;
-}
-
 export interface Material {
   _id?: string;
-  content: Array<Content>;
+  content: Array<string>;
   technology: Array<string>;
 }
 
