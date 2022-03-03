@@ -6,13 +6,17 @@ import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
 import { ClientCourse } from 'types/clientCourse';
 
-const useGetClientCourseInfo = (courseId?: string): UseQueryResult<ClientCourse, AxiosError> =>
-  useQuery(
-    ['ClientCourseInfo', courseId],
+const useStartClientCourse = (params: {
+  courseId?: string | undefined;
+  enabled?: boolean;
+}): UseQueryResult<ClientCourse, AxiosError> => {
+  const { courseId, enabled = true } = params;
+  return useQuery(
+    ['StartClientCourse', courseId],
     async () => {
       const apiClient = apiClientWrapper();
       try {
-        const response = await apiClient.get(`${API.getMyCourses}/${courseId}`);
+        const response = await apiClient.get(`${API.getMyCourses}/${courseId}/start`);
         const courseResponse: Array<ClientCourse> = response.data;
         return courseResponse;
       } catch (error) {
@@ -20,8 +24,9 @@ const useGetClientCourseInfo = (courseId?: string): UseQueryResult<ClientCourse,
       }
     },
     {
-      refetchOnWindowFocus: false,
+      enabled,
     },
   );
+};
 
-export default useGetClientCourseInfo;
+export default useStartClientCourse;
