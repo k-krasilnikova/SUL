@@ -85,6 +85,20 @@ const theme = createTheme(
             },
           },
           {
+            props: { variant: 'completed' },
+            style: {
+              textTransform: 'none',
+              border: 'none',
+              fontWeight: '500',
+              fontFamily: globalTheme.typography.fontFamily,
+              backgroundColor: 'transparent',
+              color: '#727272',
+              letterSpacing: '-0.4px',
+              textAlign: 'center',
+              boxShadow: 'none',
+            },
+          },
+          {
             props: { variant: 'mediumContained' },
             style: {
               textTransform: 'none',

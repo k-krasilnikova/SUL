@@ -44,6 +44,7 @@ interface LearningProps {
   material: string;
   materialType: string;
   videoPreview: string | boolean;
+  courseStatus: string;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -61,6 +62,7 @@ const LearningCourse: React.FC<LearningProps> = ({
   handleClickDialogOpen,
   handleDialogClose,
   videoPreview,
+  courseStatus,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -109,7 +111,11 @@ const LearningCourse: React.FC<LearningProps> = ({
               <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
                 Start the Test
               </StartTestButton>
-              <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
+              <FormDialog
+                dialogOpen={dialogOpen}
+                handleDialogClose={handleDialogClose}
+                courseStatus={courseStatus}
+              />
             </>
           ) : (
             <NextButton variant="contained" onClick={stageForward}>
