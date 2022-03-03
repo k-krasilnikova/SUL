@@ -76,11 +76,15 @@ const LearningCourseContainer: React.FC = () => {
     : undefined;
 
   const materialType = clientCourseResponse
-    ? defineMaterialType(clientCourseResponse.course.materials[stage - 1].content[CONTENT_ELEMENT])
+    ? defineMaterialType(
+        clientCourseResponse.course.materials[stage - 1].content[CONTENT_ELEMENT].content,
+      )
     : MATERIAL.text;
   const material =
     materialType === MATERIAL.video && clientCourseResponse
-      ? optimizeLink(clientCourseResponse.course.materials[stage - 1].content[CONTENT_ELEMENT])
+      ? optimizeLink(
+          clientCourseResponse.course.materials[stage - 1].content[CONTENT_ELEMENT].content,
+        )
       : MATERIAL.text;
   const videoPreview = getPreviewId(material);
 

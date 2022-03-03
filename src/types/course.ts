@@ -5,6 +5,7 @@ export interface Content {
 }
 
 export interface Material {
+  _id?: string;
   content: Array<Content>;
   technology: Array<string>;
 }
