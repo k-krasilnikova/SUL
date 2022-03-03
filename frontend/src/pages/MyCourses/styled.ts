@@ -5,32 +5,19 @@ import { Link } from 'react-router-dom';
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
-export const PageContainer = styled(Grid)({
-  [theme.breakpoints.up('xs')]: {
-    padding: '0px 8px',
-  },
-  '@media(min-width: 1110px)': {
-    padding: '16px 30px 0px 30px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    padding: '16px 0px 0px 0px',
-    margin: '0px 0px 0px -6px !important',
-  },
-  maxWidth: '1482px',
-  paddingTop: '16px',
-});
-
 export const GridItem = styled(Grid)({
   height: 'fit-content',
   width: '711px',
   [theme.breakpoints.up('xs')]: {
-    width: '100%',
-    paddingTop: '8px',
+    width: '100% !important',
+    paddingTop: '8px !important',
+    paddingLeft: '0px !important',
   },
   [theme.breakpoints.up('xl')]: {
-    width: '711px',
-    paddingLeft: '30px',
-    paddingTop: '24px',
+    maxWidth: '741px !important',
+    width: '741px !important',
+    paddingLeft: '30px !important',
+    paddingTop: '24px !important',
   },
 });
 

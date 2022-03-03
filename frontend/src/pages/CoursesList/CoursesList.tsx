@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
+import { Grid } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
@@ -15,7 +16,6 @@ import MobileSearch from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 
 import {
-  PageContainer,
   CourseActions,
   GridItem,
   CourseActionsBox,
@@ -51,7 +51,7 @@ const CoursesList: React.FC<CoursesProps> = ({
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
     ) : courses ? (
-      <PageContainer container>
+      <Grid container>
         <MobileSearchWrapper>
           <MobileSearch
             isFilterOpen={isFilterOpen}
@@ -102,7 +102,7 @@ const CoursesList: React.FC<CoursesProps> = ({
             </GridItem>
           </Suspense>
         ))}
-      </PageContainer>
+      </Grid>
     ) : (
       <NoContent message={NO_COURSES} />
     )}

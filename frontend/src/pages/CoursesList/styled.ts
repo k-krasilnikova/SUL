@@ -5,28 +5,6 @@ import { Grid, Box } from '@mui/material';
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
-export const PageContainer = styled(Grid)({
-  [theme.breakpoints.up('xs')]: {
-    padding: '0px 8px !important',
-  },
-  '@media(max-width: 1110px)': {
-    paddingTop: '40px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    padding: '16px 8px 0 8px !important',
-  },
-  '@media(min-width: 1110px)': {
-    padding: '16px 30px 0px 30px !important',
-  },
-  '@media(min-width: 1440px)': {
-    padding: '16px 30px 0px 0px !important',
-  },
-  width: '100%',
-  paddingRight: '30px !important',
-  paddingTop: '1.0% !important',
-  paddingLeft: '0px !important',
-});
-
 export const GridItem = styled(Grid)({
   height: 'fit-content',
   width: '711px',
