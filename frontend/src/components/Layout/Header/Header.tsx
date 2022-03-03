@@ -1,14 +1,13 @@
 import React from 'react';
 import { Search as SearchIcon } from '@mui/icons-material';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { ClickAwayListener } from '@mui/material';
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
-import { Notification } from 'types/notification';
+import { Notification as NotificationType } from 'types/notification';
 import { UserAvatar } from 'components/Avatar';
-import NotificationsBar from 'components/NotificationsBar';
-import { alertIcon, logOutIcon, menuMobileIcon } from 'icons';
+import Notifications from 'components/NotificationsBar';
+import { logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
 
 import {
@@ -18,7 +17,6 @@ import {
   BrandLogo,
   HeaderContent,
   Search,
-  NotificationsButton,
   UserBlock,
   UserName,
   LogOut,
@@ -29,10 +27,7 @@ interface Props {
   firstName?: string;
   lastName?: string;
   avatar?: string;
-  notifications?: Array<Notification>;
-  isNotificationsOpen: boolean;
-  handleNotificationsOpen: () => void;
-  handleNotificationsClose: () => void;
+  notifications?: NotificationType[];
   handleConfirm: () => void;
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
@@ -44,9 +39,6 @@ const Header: React.FC<HeaderProps> = ({
   lastName,
   avatar,
   notifications,
-  isNotificationsOpen,
-  handleNotificationsOpen,
-  handleNotificationsClose,
   handleConfirm,
   isMobileMenuOpen,
   toggleMobileMenu,
@@ -66,14 +58,11 @@ const Header: React.FC<HeaderProps> = ({
           </InputAdornment>
         }
       />
-      <ClickAwayListener onClickAway={handleNotificationsClose}>
-        <>
-          <NotificationsButton onClick={handleNotificationsOpen}>
-            <img alt="notifications" src={alertIcon} />
-            {isNotificationsOpen && <NotificationsBar notifications={notifications} />}
-          </NotificationsButton>
-        </>
-      </ClickAwayListener>
+      <Notifications
+        notifications={notifications}
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
+      />
       <SpaceHolder />
       <UserBlock to={PATHS.profile}>
         <UserAvatar avatar={avatar} size="small" />

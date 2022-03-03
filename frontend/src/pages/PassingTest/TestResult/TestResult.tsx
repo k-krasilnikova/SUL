@@ -22,7 +22,12 @@ import {
   TestSkillsBox,
 } from './styled';
 
-const TestResult: React.FC<ITestResult> = ({ isFailed, responseData, percentageValue }) => (
+const TestResult: React.FC<ITestResult> = ({
+  isFailed,
+  responseData,
+  percentageValue,
+  handleFinishCourse,
+}) => (
   <AuthorizedLayout pageName="Test Result">
     <TestResultBox>
       <TestResultTitle>Your Score</TestResultTitle>
@@ -74,7 +79,9 @@ const TestResult: React.FC<ITestResult> = ({ isFailed, responseData, percentageV
         </ResultBox>
       </ContentBox>
       <ButtonBox>
-        <SubmitButton variant="medium">Submit</SubmitButton>
+        <SubmitButton onClick={handleFinishCourse} variant="medium">
+          Submit
+        </SubmitButton>
       </ButtonBox>
     </TestResultBox>
   </AuthorizedLayout>

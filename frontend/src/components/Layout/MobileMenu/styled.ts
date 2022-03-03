@@ -68,11 +68,10 @@ export const SpaceHolder = styled('div')({
 export const MobileUserBlock = styled('div')({
   flexGrow: '0',
   flexShrink: '0',
-  height: '32px',
+  paddingBottom: '40px',
   display: 'inline-flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
-  width: '152px',
   alignItems: 'middle',
 });
 
