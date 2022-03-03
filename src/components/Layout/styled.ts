@@ -35,13 +35,7 @@ export const PageWrapper = styled(Grid)({
 
 export const useLayOutStyles = makeStyles({
   hideGridMenu: {
-    width: '129px',
-    '@media(min-width: 1110px)': {
-      width: '86px!important',
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: '129px!important',
-    },
+    width: '129px!important',
   },
   hidePageWrapper: {
     width: 'calc(100% - 275px)!important',
