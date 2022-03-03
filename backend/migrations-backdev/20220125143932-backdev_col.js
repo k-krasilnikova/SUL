@@ -652,7 +652,7 @@ const SKILLS = [
   {
     name: 'MySQL',
     image: 'https://cdn-icons-png.flaticon.com/512/1199/1199128.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('MySQL')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('MySQL')).length + 1, // for the default level porpose (testing only)
     group: 'Databases',
   },
   {
@@ -695,12 +695,17 @@ const USER_SKILLS = [
   {
     user: 'user',
     skill: 'Scala',
-    score: '1',
+    score: 1,
   },
   {
     user: 'user',
     skill: 'Python',
-    score: '1',
+    score: 1,
+  },
+  {
+    user: 'user',
+    skill: 'MySQL',
+    score: 1,
   },
 ];
 
@@ -722,7 +727,7 @@ module.exports = {
           { _id: groupId },
           { $push: { skills: skillId } },
         );
-        return { ...inserted, name: skill.name };
+        return { ...inserted, name: skill.name, group: groupId };
       }),
     );
     const tests = await Promise.all(
@@ -752,7 +757,7 @@ module.exports = {
       }),
     );
     const totalUsers = users.concat(employees);
-    const userSkills = Promise.all(
+    const userSkills = await Promise.all(
       USER_SKILLS.map(async (uskill) => {
         const newSkillRelation = { ...uskill };
         newSkillRelation.skill = skills.filter(
@@ -761,8 +766,47 @@ module.exports = {
         newSkillRelation.user = totalUsers.filter(
           (user) => user.username === newSkillRelation.user,
         )[0].insertedId;
-        return db.collection('userSkills').insertOne(newSkillRelation);
+        return {
+          ...(await db.collection('userSkills').insertOne(newSkillRelation)),
+          ...newSkillRelation,
+        };
       }),
+    );
+    // ONLY FOR 'USER'
+    const userId = totalUsers.filter((u) => u.username === 'user')[0].insertedId;
+    const langGroupId = groups.filter((group) => group.name === 'Languages')[0].insertedId;
+    const dbGroupId = groups.filter((group) => group.name === 'Databases')[0].insertedId;
+    const TECHS = [
+      {
+        group: groups.filter((group) => group.name === 'Languages')[0].insertedId,
+        achievedSkills: userSkills
+          .filter(
+            (uskill) =>
+              uskill.user === userId &&
+              skills.filter((skill) => skill.insertedId === uskill.skill)[0].group === langGroupId,
+          )
+          .map((uskill) => uskill.insertedId),
+        isPrimary: true,
+      },
+      {
+        group: groups.filter((group) => group.name === 'Databases')[0].insertedId,
+        achievedSkills: userSkills
+          .filter(
+            (uskill) =>
+              uskill.user === userId &&
+              skills.filter((skill) => skill.insertedId === uskill.skill)[0].group === dbGroupId,
+          )
+          .map((uskill) => uskill.insertedId),
+        isPrimary: false,
+      },
+    ];
+    await db.collection('users').findOneAndUpdate(
+      { _id: userId },
+      {
+        $set: {
+          technologies: TECHS,
+        },
+      },
     );
   },
 
@@ -770,7 +814,11 @@ module.exports = {
     await db.collection('skillGroups').drop();
     await db.collection('skills').drop();
     await db.collection('courses').drop();
-    // await db.collection('clientCourses').drop();
+    try {
+      await db.collection('clientCourses').drop();
+    } catch {
+      console.log('clientCourses collection does not exist');
+    }
     await db.collection('users').drop();
     await db.collection('tests').drop();
     await db.collection('userSkills').drop();
