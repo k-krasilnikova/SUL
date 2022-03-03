@@ -49,11 +49,12 @@ interface IProps {
   windowWidth: string;
   isFullTextOpen: boolean;
   toggleFullText: () => void;
-  isLoading?: boolean;
-  targetId?: string | undefined;
   isFilterOpen: boolean;
   handleFilterOpen: () => void;
   handleFilterClose: () => void;
+  isCourseStatusPending: boolean;
+  isLoading?: boolean;
+  targetId?: string | undefined;
   isCourseApplicationSubmitted?: boolean;
 }
 
@@ -73,6 +74,7 @@ const DetailedCourse: React.FC<IProps> = ({
   handleFilterOpen,
   handleFilterClose,
   isCourseApplicationSubmitted,
+  isCourseStatusPending,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -93,7 +95,9 @@ const DetailedCourse: React.FC<IProps> = ({
         <ImageWrapper>
           <Image />
         </ImageWrapper>
-        {isCourseApplicationSubmitted && <ProgressBar size="large" text="0%" textColor="#131313" />}
+        {isCourseApplicationSubmitted && !isCourseStatusPending && (
+          <ProgressBar size="large" text="0%" textColor="#131313" />
+        )}
         <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
           <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
@@ -122,7 +126,7 @@ const DetailedCourse: React.FC<IProps> = ({
             <div>
               {page === PAGES.myCourses && (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
-                  <StartButton variant="large" color="primary">
+                  <StartButton variant="large" color="primary" disabled={isCourseStatusPending}>
                     Start the course
                   </StartButton>
                 </Link>
@@ -133,6 +137,7 @@ const DetailedCourse: React.FC<IProps> = ({
                   variant="large"
                   color="primary"
                   onClick={(event) => handleApplyCourse(event)}
+                  disabled={isCourseStatusPending}
                 >
                   Start the course
                 </StartButton>

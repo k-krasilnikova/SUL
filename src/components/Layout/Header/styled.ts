@@ -106,35 +106,18 @@ export const Search = styled(Input)({
   padding: '10px',
   margin: '15px 20px 15px 0px',
   fontSize: '18px',
-  [theme.breakpoints.down('md')]: {
-    display: 'none!important',
-  },
   [theme.breakpoints.up(1920)]: {
     width: '600px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    width: '300px',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'none!important',
   },
 });
 export const RelativeWrapper = styled('div')({
   position: 'relative',
-});
-export const NotificationsButton = styled('div')({
-  position: 'relative',
-  flexGrow: '0',
-  flexShrink: '0',
-  borderRadius: '3px',
-  backgroundColor: 'rgba(118, 118, 128, 0.12)',
-  width: '40px',
-  height: '40px',
-  margin: '15px 20px 15px 0px',
-  padding: '5px',
-  display: 'flex',
-  justifyContent: 'center',
-  '&:hover': {
-    cursor: 'pointer',
-  },
-  [theme.breakpoints.down('md')]: {
-    width: '35px',
-    height: '35px',
-  },
 });
 
 export const UserBlock = styled(Link)({

@@ -6,4 +6,5 @@ export const PERCENTAGE = 100;
 export const TEST_STATUS = {
   notPassed: 'not passed',
   successful: 'successful',
+  testing: 'testing',
 };
