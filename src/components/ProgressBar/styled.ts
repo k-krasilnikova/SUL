@@ -18,6 +18,11 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
     width: '304px',
     height: '304px',
     margin: '0',
+    [theme.breakpoints.up('xs')]: {
+      width: '123px',
+      height: '123px',
+      marginLeft: '16px',
+    },
   }),
   ...(size === SIZE.large && {
     width: '218px',
