@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose';
 
-import { ICourse, ICoursePopulated } from './Icourses';
+import { ICoursePopulated } from './Icourses';
 
 type TCourseStatus =
   | 'pending'

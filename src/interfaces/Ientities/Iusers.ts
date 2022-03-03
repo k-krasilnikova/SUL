@@ -3,14 +3,6 @@ import { ObjectId } from 'mongoose';
 import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 
-interface ISkill {
-  _id?: ObjectId;
-  name: string;
-  image: string;
-  maxScore: string;
-  group: ObjectId;
-}
-
 interface INotification {
   _id: ObjectId;
   title: string;
@@ -60,4 +52,4 @@ type TUserRole = 'admin' | 'manager' | 'employee';
 
 type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { IUser, TUserRole, TUserPosition, IPendingCourses, ISkill, INotification };
+export { IUser, TUserRole, TUserPosition, IPendingCourses, INotification };

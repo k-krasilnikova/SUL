@@ -1,4 +1,4 @@
-import { ISkill } from 'interfaces/Ientities/Iusers';
+import ISkill from 'interfaces/Ientities/ISkill';
 import IUserSkill from 'interfaces/Ientities/IUserSkill';
 
 const specifySkills = (userSkills: IUserSkill[], techArray: ISkill[]) => {
