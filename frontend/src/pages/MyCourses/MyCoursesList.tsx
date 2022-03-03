@@ -83,25 +83,25 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                 >
                   <CourseActionsBox>
                     <CourseActions>
-                      <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
-                        <DetailsButton variant="mediumOutlined">Details</DetailsButton>
-                      </Link>
+                      <DetailsButton variant="mediumOutlined">
+                        <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>Details</Link>
+                      </DetailsButton>
                       {clientCourse.status === COURSE_STATUSES.testing ? (
-                        <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
-                          <ContinueTestButton color="primary" variant="mediumContained">
+                        <ContinueTestButton color="primary" variant="mediumContained">
+                          <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
                             Continue the test
-                          </ContinueTestButton>
-                        </Link>
+                          </Link>
+                        </ContinueTestButton>
                       ) : clientCourse.status === COURSE_STATUSES.pending ? (
                         <StartCourseButton disabled color="primary" variant="mediumContained">
                           Pending
                         </StartCourseButton>
                       ) : (
-                        <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
-                          <StartCourseButton color="primary" variant="mediumContained">
+                        <StartCourseButton color="primary" variant="mediumContained">
+                          <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
                             Start the course
-                          </StartCourseButton>
-                        </Link>
+                          </Link>
+                        </StartCourseButton>
                       )}
                     </CourseActions>
                   </CourseActionsBox>
