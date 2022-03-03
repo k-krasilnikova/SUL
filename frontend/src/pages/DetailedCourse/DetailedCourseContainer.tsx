@@ -5,6 +5,7 @@ import useGetCourseInfo from 'api/courses/getCourseInfo';
 import useApplyCourse from 'api/courses/applyCourse';
 import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
+import { COURSE_STATUSES } from 'constants/statuses';
 
 import DetailedCourse from './DetailedCourse';
 
@@ -25,6 +26,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const [targetId, setTargetId] = useState<string | undefined>();
   const [isFullTextOpen, setFullTextOpen] = useState(false);
   const isCourseApplicationSubmitted = data ? Boolean(data.status) : false;
+  const isCourseStatusPending = data ? data.status === COURSE_STATUSES.pending : false;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
@@ -65,6 +67,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
       handleFilterOpen={handleFilterOpen}
       handleFilterClose={handleFilterClose}
       isCourseApplicationSubmitted={isCourseApplicationSubmitted}
+      isCourseStatusPending={isCourseStatusPending}
     />
   ) : null;
 };
