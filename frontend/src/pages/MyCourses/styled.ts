@@ -35,6 +35,15 @@ export const CourseActions = styled('div')({
 
 export const CourseActionsBox = styled(Box)({
   marginLeft: '16px !important',
+  '@media(max-width: 1620px)': {
+    marginLeft: '45px !important',
+  },
+  [theme.breakpoints.down('xl')]: {
+    marginLeft: '16px !important',
+  },
+  '@media(max-width: 580px)': {
+    marginLeft: '0px !important',
+  },
 });
 
 export const DetailsButton = styled(Button)({
@@ -61,13 +70,16 @@ export const StartCourseButton = styled(Button)({
   fontSize: '16px!important',
   lineHeight: '22px',
   padding: '12px 12px!important',
-  [theme.breakpoints.down('xl')]: {
+  [theme.breakpoints.down('md')]: {
     height: '44px',
     width: '131px',
     marginRight: '26px !important',
     fontSize: '14px!important',
     lineHeight: '19px',
     padding: '10px 10px!important',
+  },
+  '@media(max-width: 580px)': {
+    marginRight: '0px !important',
   },
 });
 
@@ -83,19 +95,21 @@ export const MobileLink = styled(Link)({
 });
 
 export const ContinueTestButton = styled(Button)({
-  height: '50px',
   width: '150px',
   marginRight: '40px !important',
   fontSize: '16px!important',
   lineHeight: '22px',
   padding: '12px 12px!important',
-  [theme.breakpoints.down('xl')]: {
+  [theme.breakpoints.down('md')]: {
     height: '44px',
     width: '131px',
     marginRight: '26px !important',
     fontSize: '14px!important',
     lineHeight: '19px',
     padding: '10px 10px!important',
+  },
+  '@media(max-width: 580px)': {
+    marginRight: '0px !important',
   },
 });
 
