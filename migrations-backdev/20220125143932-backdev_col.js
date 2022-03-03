@@ -808,6 +808,7 @@ module.exports = {
         },
       },
     );
+    await db.createCollection('clientCourses');
   },
 
   async down(db) {
