@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import Loader from 'components/Loader';
+import { Notification as NotificationType } from 'types/notification';
 
 import { Header } from './Header';
 import Menu from './Menu';
@@ -17,7 +18,7 @@ interface Props {
   classes: {
     [key: string]: string;
   };
-  notifications?: Array<Notification>;
+  notifications?: NotificationType[];
   firstName?: string;
   lastName?: string;
   avatar?: string;
