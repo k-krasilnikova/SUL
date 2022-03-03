@@ -21,12 +21,12 @@ const PAGES = {
 const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const params = useParams();
   const useGetInfo = page === PAGES.coursesList ? useGetCourseInfo : useGetClientCourseInfo;
-  const { data } = useGetInfo(params.courseId);
+  const { data: courseData } = useGetInfo(params.courseId);
   const { mutate, isLoading } = useApplyCourse();
   const [targetId, setTargetId] = useState<string | undefined>();
   const [isFullTextOpen, setFullTextOpen] = useState(false);
-  const isCourseApplicationSubmitted = data ? Boolean(data.status) : false;
-  const isCourseStatusPending = data ? data.status === COURSE_STATUSES.pending : false;
+  const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
+  const isCourseStatusPending = courseData ? courseData.status === COURSE_STATUSES.pending : false;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
@@ -52,14 +52,17 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     setFilterOpen(false);
   };
 
-  return data ? (
+  const courseInfo = courseData && 'course' in courseData ? courseData.course : courseData;
+
+  return courseInfo && courseData ? (
     <DetailedCourse
+      courseData={courseInfo}
       handleApplyCourse={handleApplyCourse}
       isLoading={isLoading}
       buttonId={BUTTON_ID}
       targetId={targetId}
       page={page}
-      id={data._id}
+      id={courseData._id}
       windowWidth={windowWidth}
       isFullTextOpen={isFullTextOpen}
       toggleFullText={toggleFullText}
