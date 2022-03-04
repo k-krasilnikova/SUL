@@ -50,8 +50,12 @@ const ConfirmLeavePage: React.FC<IConfirm> = ({
             <ButtonLoader buttonSpinner={buttonSpinner} />
           </ButtonExit>
         ) : (
-          <ButtonExit variant="mediumContained">
-            <Link to={`${PATHS.myCourses}/${courseId}`}>Exit</Link>
+          <ButtonExit
+            component={Link}
+            to={`${PATHS.myCourses}/${courseId}`}
+            variant="mediumContained"
+          >
+            Exit
           </ButtonExit>
         )}
       </ButtonBox>

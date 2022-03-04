@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { makeStyles } from '@material-ui/core';
 import styled from 'styled-components';
 import Grid from '@mui/material/Grid';

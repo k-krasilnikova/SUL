@@ -17,32 +17,36 @@ export const GridItem = styled(Grid)({
     paddingTop: '8px !important',
     paddingLeft: '0px !important',
   },
+  '@media(min-width: 1920px)': {
+    width: '30% !important',
+    maxWidth: '33.33% !important',
+    paddingLeft: '20px !important',
+    paddingTop: '10px !important',
+  },
 });
 
 export const CourseActions = styled('div')({
   [theme.breakpoints.down('md')]: {
-    display: 'flex',
     justifyContent: 'space-between',
     margin: '0px',
     minWidth: '250px',
   },
   [theme.breakpoints.down('sm')]: {
-    display: 'flex',
     flexDirection: 'column',
     minWidth: 'auto',
   },
+  display: 'flex',
 });
 
 export const CourseActionsBox = styled(Box)({
   marginLeft: '16px !important',
-  '@media(max-width: 1620px)': {
-    marginLeft: '45px !important',
-  },
+  display: 'flex',
+  flexWrap: 'nowrap',
   [theme.breakpoints.down('xl')]: {
     marginLeft: '16px !important',
   },
-  '@media(max-width: 580px)': {
-    marginLeft: '0px !important',
+  [theme.breakpoints.down('md')]: {
+    marginLeft: '5px !important',
   },
 });
 
@@ -54,12 +58,12 @@ export const DetailsButton = styled(Button)({
   lineHeight: '22px',
   padding: '12px 12px!important',
   [theme.breakpoints.down('md')]: {
-    height: '44px',
-    width: '131px',
-    marginRight: '9px !important',
+    height: '40px',
+    width: '120px',
+    marginRight: '10px !important',
     fontSize: '14px!important',
-    lineHeight: '19px',
-    padding: '10px 10px!important',
+    lineHeight: '14px',
+    padding: '5px!important',
   },
 });
 
@@ -71,15 +75,15 @@ export const StartCourseButton = styled(Button)({
   lineHeight: '22px',
   padding: '12px 12px!important',
   [theme.breakpoints.down('md')]: {
-    height: '44px',
-    width: '131px',
-    marginRight: '26px !important',
+    height: '40px',
+    width: '120px',
+    marginRight: '10px !important',
     fontSize: '14px!important',
-    lineHeight: '19px',
-    padding: '10px 10px!important',
+    lineHeight: '14px',
+    padding: '5px!important',
   },
-  '@media(max-width: 580px)': {
-    marginRight: '0px !important',
+  '@media(min-width: 1920px)': {
+    marginRight: '12px !important',
   },
 });
 
@@ -95,21 +99,22 @@ export const MobileLink = styled(Link)({
 });
 
 export const ContinueTestButton = styled(Button)({
+  height: '50px',
   width: '150px',
   marginRight: '40px !important',
   fontSize: '16px!important',
   lineHeight: '22px',
   padding: '12px 12px!important',
   [theme.breakpoints.down('md')]: {
-    height: '44px',
-    width: '131px',
-    marginRight: '26px !important',
+    height: '40px',
+    width: '120px',
+    marginRight: '10px !important',
     fontSize: '14px!important',
-    lineHeight: '19px',
-    padding: '10px 10px!important',
+    lineHeight: '14px',
+    padding: '5px!important',
   },
-  '@media(max-width: 580px)': {
-    marginRight: '0px !important',
+  '@media(min-width: 1920px)': {
+    marginRight: '12px !important',
   },
 });
 

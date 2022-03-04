@@ -83,24 +83,34 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                 >
                   <CourseActionsBox>
                     <CourseActions>
-                      <DetailsButton variant="mediumOutlined">
-                        <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>Details</Link>
+                      <DetailsButton
+                        component={Link}
+                        to={`${PATHS.myCourses}/${clientCourse._id}`}
+                        variant="mediumOutlined"
+                      >
+                        Details
                       </DetailsButton>
                       {clientCourse.status === COURSE_STATUSES.testing ? (
-                        <ContinueTestButton color="primary" variant="mediumContained">
-                          <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
-                            Continue the test
-                          </Link>
+                        <ContinueTestButton
+                          component={Link}
+                          to={`${PATHS.learnCourse}/${clientCourse._id}/test`}
+                          color="primary"
+                          variant="mediumContained"
+                        >
+                          Continue the test
                         </ContinueTestButton>
                       ) : clientCourse.status === COURSE_STATUSES.pending ? (
                         <StartCourseButton disabled color="primary" variant="mediumContained">
                           Pending
                         </StartCourseButton>
                       ) : (
-                        <StartCourseButton color="primary" variant="mediumContained">
-                          <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
-                            Start the course
-                          </Link>
+                        <StartCourseButton
+                          component={Link}
+                          to={`${PATHS.learnCourse}/${clientCourse._id}`}
+                          color="primary"
+                          variant="mediumContained"
+                        >
+                          Start the course
                         </StartCourseButton>
                       )}
                     </CourseActions>

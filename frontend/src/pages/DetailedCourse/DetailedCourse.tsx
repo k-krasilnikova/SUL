@@ -121,8 +121,13 @@ const DetailedCourse: React.FC<IProps> = ({
           ) : (
             <div>
               {page === PAGES.myCourses && (
-                <StartButton variant="large" color="primary">
-                  <Link to={`${PATHS.learnCourse}/${id}`}>Start the course</Link>
+                <StartButton
+                  component={Link}
+                  to={`${PATHS.learnCourse}/${id}`}
+                  variant="large"
+                  color="primary"
+                >
+                  Start the course
                 </StartButton>
               )}
               {page === PAGES.coursesList && (

@@ -51,8 +51,12 @@ const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) =>
               It will be impossible to return <br /> to the course materials
             </SecondaryDialogContentText>
             <StyledButtonBox>
-              <StyledButton variant="medium">
-                <Link to={`${PATHS.learnCourse}/${params.courseId}/test`}>Start the Test </Link>
+              <StyledButton
+                component={Link}
+                to={`${PATHS.learnCourse}/${params.courseId}/test`}
+                variant="medium"
+              >
+                Start the Test
               </StyledButton>
             </StyledButtonBox>
           </DialogBox>

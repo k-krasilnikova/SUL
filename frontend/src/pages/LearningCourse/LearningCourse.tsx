@@ -64,8 +64,8 @@ const LearningCourse: React.FC<LearningProps> = ({
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
-      <BackButton disableElevation variant="contained">
-        <Link to={PATHS.myCourses}>Back</Link>
+      <BackButton component={Link} to={PATHS.myCourses} disableElevation variant="contained">
+        Back
       </BackButton>
       <LearningWrapper>
         <StepperController>
