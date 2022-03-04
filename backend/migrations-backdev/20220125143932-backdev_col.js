@@ -497,7 +497,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['python'],
+    technology: ['Python'],
   },
   {
     content: [
@@ -516,7 +516,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['python'],
+    technology: ['Python'],
   },
   {
     content: [
@@ -535,7 +535,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['python'],
+    technology: ['Python'],
   },
 ];
 
@@ -555,7 +555,7 @@ const MOCKED_COURSES = [
     title: 'Java for Profi ',
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
-    technology: ['Java', 'sql'],
+    technology: ['Java', 'SQL'],
     requiredSkills: ['Java for beginners'],
     duration: '123124679',
     materials: MATERIALS[1].content,
@@ -566,8 +566,8 @@ const MOCKED_COURSES = [
     title: 'Python for kids',
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
-    technology: ['python', 'pandas', 'django'],
-    requiredSkills: ['math', 'english'],
+    technology: ['Python', 'Pandas', 'Django'],
+    requiredSkills: ['Math', 'English'],
     duration: '12312679',
     materials: MATERIALS[2].content,
     lessons: 0,
@@ -578,7 +578,7 @@ const MOCKED_COURSES = [
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
     technology: ['Kotlin', 'Java'],
-    requiredSkills: ['math', 'english'],
+    requiredSkills: ['Math', 'English'],
     duration: '12312679',
     materials: MATERIALS[3].content,
     lessons: 0,
@@ -589,7 +589,7 @@ const MOCKED_COURSES = [
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
     technology: ['Scala'],
-    requiredSkills: ['math', 'english'],
+    requiredSkills: ['Math', 'English'],
     duration: '12312679',
     materials: MATERIALS[4].content,
     lessons: 0,
@@ -674,6 +674,38 @@ const SKILLS = [
     maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Python')).length + 1, // for the default level porpose (testing only)
     group: 'Languages',
   },
+  {
+    name: 'Math',
+    image: 'https://cdn-icons-png.flaticon.com/512/43/43102.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Math')).length + 1,
+    group: 'Others',
+  },
+  {
+    name: 'English',
+    image: 'https://cdn-icons-png.flaticon.com/512/197/197374.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('English')).length + 1,
+    group: 'Others',
+  },
+  {
+    name: 'SQL',
+    image:
+      'https://cdn-icons.flaticon.com/png/512/5815/premium/5815886.png?token=exp=1646319339~hmac=2faa682e9e0fad1ee1cc454841ab6346',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('SQL')).length,
+    group: 'Databases',
+  },
+  {
+    name: 'Pandas',
+    image:
+      'https://cdn-icons.flaticon.com/png/512/5399/premium/5399667.png?token=exp=1646319565~hmac=a784cab8da53672116aa2877e1d665d4',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Pandas')).length,
+    group: 'Data Science',
+  },
+  {
+    name: 'Django',
+    image: 'https://cdn-icons-png.flaticon.com/512/1822/1822921.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Django')).length,
+    group: 'Web Frameworks',
+  },
 ];
 
 const SKILL_GROUPS = [
@@ -687,6 +719,18 @@ const SKILL_GROUPS = [
   },
   {
     name: 'Databases',
+    skills: [],
+  },
+  {
+    name: 'Others',
+    skills: [],
+  },
+  {
+    name: 'Data Science',
+    skills: [],
+  },
+  {
+    name: 'Web Frameworks',
     skills: [],
   },
 ];
@@ -705,6 +749,16 @@ const USER_SKILLS = [
   {
     user: 'user',
     skill: 'MySQL',
+    score: 1,
+  },
+  {
+    user: 'user',
+    skill: 'Math',
+    score: 1,
+  },
+  {
+    user: 'user',
+    skill: 'English',
     score: 1,
   },
 ];
@@ -776,9 +830,10 @@ module.exports = {
     const userId = totalUsers.filter((u) => u.username === 'user')[0].insertedId;
     const langGroupId = groups.filter((group) => group.name === 'Languages')[0].insertedId;
     const dbGroupId = groups.filter((group) => group.name === 'Databases')[0].insertedId;
+    const othersGroupId = groups.filter((group) => group.name === 'Others')[0].insertedId;
     const TECHS = [
       {
-        group: groups.filter((group) => group.name === 'Languages')[0].insertedId,
+        group: langGroupId,
         achievedSkills: userSkills
           .filter(
             (uskill) =>
@@ -789,12 +844,24 @@ module.exports = {
         isPrimary: true,
       },
       {
-        group: groups.filter((group) => group.name === 'Databases')[0].insertedId,
+        group: dbGroupId,
         achievedSkills: userSkills
           .filter(
             (uskill) =>
               uskill.user === userId &&
               skills.filter((skill) => skill.insertedId === uskill.skill)[0].group === dbGroupId,
+          )
+          .map((uskill) => uskill.insertedId),
+        isPrimary: false,
+      },
+      {
+        group: othersGroupId,
+        achievedSkills: userSkills
+          .filter(
+            (uskill) =>
+              uskill.user === userId &&
+              skills.filter((skill) => skill.insertedId === uskill.skill)[0].group ===
+                othersGroupId,
           )
           .map((uskill) => uskill.insertedId),
         isPrimary: false,

@@ -1,10 +1,12 @@
 import { ObjectId } from 'mongoose';
 
-import IUserSkill from 'interfaces/Ientities/IUserSkill';
+import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
 import UserSkillModel from 'db/models/UserSkill';
+import SkillGroupModel from 'db/models/SkillGroup';
+import SkillModel from 'db/models/Skill';
 
 const getUserProvider = async (userId: string) => {
   const dbUser = await UserModel.findById(userId).lean();
@@ -12,6 +14,36 @@ const getUserProvider = async (userId: string) => {
     throw new NotFoundError('User not found.');
   }
   return dbUser;
+};
+
+const getFullUserInformationProvider = async (userId: string) => {
+  const dbUserFullInfo = await UserModel.findById(userId)
+    .populate([
+      {
+        path: 'technologies',
+        populate: {
+          path: 'group',
+          model: SkillGroupModel,
+          select: 'name -_id',
+        },
+      },
+      {
+        path: 'technologies',
+        populate: {
+          path: 'achievedSkills',
+          model: UserSkillModel,
+          populate: {
+            path: 'skill',
+            model: SkillModel,
+            select: 'name maxScore image -_id',
+          },
+          select: 'score skill -_id',
+        },
+      },
+    ])
+    .lean();
+
+  return dbUserFullInfo;
 };
 
 const getEmployeesProvider = async (managerId: string) => {
@@ -25,7 +57,7 @@ const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   //   throw new NotFoundError('User not found.');
   // }
   // return clientSkills;
-  const skills = await UserSkillModel.find({ user: userId }).lean();
+  const skills: IUserSkill[] = await UserSkillModel.find({ user: userId }).lean();
   return skills;
 };
 
@@ -58,6 +90,7 @@ const updateUserSkill = async (userId: string, skillId?: ObjectId) => {
 
 export {
   getUserProvider,
+  getFullUserInformationProvider,
   updatePendingFieldCourses,
   updateUserSkill,
   getUserSkills,
