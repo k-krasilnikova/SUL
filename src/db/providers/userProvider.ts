@@ -52,11 +52,6 @@ const getEmployeesProvider = async (managerId: string) => {
 };
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
-  // const clientSkills = await UserModel.findOne({ _id: userId }, { technologies: 1, _id: 0 }).lean();
-  // if (!clientSkills) {
-  //   throw new NotFoundError('User not found.');
-  // }
-  // return clientSkills;
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId }).lean();
   return skills;
 };
@@ -80,11 +75,6 @@ const updatePendingFieldCourses = async (
 };
 
 const updateUserSkill = async (userId: string, skillId?: ObjectId) => {
-  // await UserModel.findOneAndUpdate(
-  //   { _id: userId },
-  //   { $inc: { 'skills.$[elem].score': 1 } },
-  //   { arrayFilters: [{ 'elem.name': { $eq: skillName } }] },
-  // );
   await UserSkillModel.findOneAndUpdate({ user: userId, skill: skillId }, { $inc: { score: 1 } });
 };
 
