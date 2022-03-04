@@ -2,6 +2,7 @@ import { ObjectId } from 'mongoose';
 
 import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
+import { IUserSkillPopulated } from './IUserSkill';
 
 interface INotification {
   _id: ObjectId;
@@ -48,8 +49,16 @@ interface IUser {
   notifications?: INotification[];
 }
 
+type TUserPopulated = IUser & {
+  technologies: {
+    group: string;
+    achievedSkills: IUserSkillPopulated[];
+    isPrimary: boolean;
+  };
+};
+
 type TUserRole = 'admin' | 'manager' | 'employee';
 
 type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { IUser, TUserRole, TUserPosition, IPendingCourses, INotification };
+export { IUser, TUserPopulated, TUserRole, TUserPosition, IPendingCourses, INotification };

@@ -1,5 +1,5 @@
 import ISkill from 'interfaces/Ientities/ISkill';
-import IUserSkill from 'interfaces/Ientities/IUserSkill';
+import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 
 const specifySkills = (userSkills: IUserSkill[], techArray: ISkill[]) => {
   const skillsIds = userSkills.map((userSkill) => userSkill.skill);

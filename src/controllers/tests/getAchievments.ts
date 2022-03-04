@@ -5,7 +5,7 @@ import { addUserSkill, getUserSkills, updateUserSkill } from 'db/providers/userP
 import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
 import { TAchievments } from 'interfaces/Ientities/Itest';
-import IUserSkill from 'interfaces/Ientities/IUserSkill';
+import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 
 const getAchievments = async (
   req: Request,

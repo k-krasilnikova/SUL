@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import IUserSkill from 'interfaces/Ientities/IUserSkill';
+import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 
 const userSkillSchema = new Schema<IUserSkill>({
   user: {
