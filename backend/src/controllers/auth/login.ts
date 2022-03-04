@@ -23,7 +23,6 @@ const login = async (
     }
     const tokens = generateJWT(dbUser);
     await saveTokenProvider(tokens.refreshToken, dbUser);
-
     res.cookie('refreshToken', tokens.refreshToken, { maxAge: TIME_30D_SEC, httpOnly: true });
     res.json(generateInitialDto(dbUser, tokens));
   } catch (error) {

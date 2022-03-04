@@ -6,11 +6,14 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const declinePendingCourse = async (
   req: Request,
-  res: Response<string, { clientCourseId: string | undefined }>,
+  res: Response<
+    never,
+    { clientCourseId: string | undefined; results: Record<'updateStatus', string> }
+  >,
   next: NextFunction,
 ) => {
   try {
-    const { clientCourseId } = res.locals;
+    const { clientCourseId, results } = res.locals;
     if (!clientCourseId) {
       throw new BadRequestError('Invalid query.');
     }
@@ -19,8 +22,8 @@ const declinePendingCourse = async (
       throw new BadRequestError(`Can't decline course with status: ${status}`);
     }
     await updateCourseStatus(clientCourseId, CourseStatus.rejected);
-    res.json('Course was declined');
-    return;
+    results.updateStatus = 'Course was declined';
+    next();
   } catch (error) {
     next(error);
   }
