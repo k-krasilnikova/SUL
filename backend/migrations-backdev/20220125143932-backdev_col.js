@@ -556,7 +556,7 @@ const MOCKED_COURSES = [
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
     technology: ['Java', 'SQL'],
-    requiredSkills: ['Java for beginners'],
+    requiredSkills: ['Java'],
     duration: '123124679',
     materials: MATERIALS[1].content,
     lessons: 0,
@@ -618,8 +618,7 @@ const SKILLS = [
   },
   {
     name: 'PHP',
-    image:
-      'https://cdn-icons.flaticon.com/png/512/2721/premium/2721635.png?token=exp=1646135289~hmac=3923a70ee466c0142de939aed4315fd5',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968332.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('PHP')).length,
     group: 'Languages',
   },
@@ -631,15 +630,13 @@ const SKILLS = [
   },
   {
     name: 'ReactJS',
-    image:
-      'https://cdn-icons.flaticon.com/png/512/3066/premium/3066252.png?token=exp=1646136276~hmac=c919e8efcd0e8c45eb46e6166d7178bb',
+    image: 'https://cdn-icons-png.flaticon.com/512/45/45082.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('ReactJS')).length,
     group: 'Frontend',
   },
   {
     name: 'CSS',
-    image:
-      'https://cdn-icons.flaticon.com/png/512/802/premium/802251.png?token=exp=1646136370~hmac=e96529e33bd69a56e42c696982b5fc0a',
+    image: 'https://cdn-icons-png.flaticon.com/512/174/174854.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('CSS')).length,
     group: 'Frontend',
   },
@@ -657,8 +654,7 @@ const SKILLS = [
   },
   {
     name: 'Kotlin',
-    image:
-      'https://cdn-icons.flaticon.com/png/512/4299/premium/4299797.png?token=exp=1646209808~hmac=0dc8ef0df4f489ca552506131dceadd5',
+    image: 'https://cdn-icons-png.flaticon.com/512/154/154878.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Kotlin')).length,
     group: 'Languages',
   },
@@ -688,15 +684,13 @@ const SKILLS = [
   },
   {
     name: 'SQL',
-    image:
-      'https://cdn-icons.flaticon.com/png/512/5815/premium/5815886.png?token=exp=1646319339~hmac=2faa682e9e0fad1ee1cc454841ab6346',
+    image: 'https://cdn-icons-png.flaticon.com/512/28/28954.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('SQL')).length,
     group: 'Databases',
   },
   {
     name: 'Pandas',
-    image:
-      'https://cdn-icons.flaticon.com/png/512/5399/premium/5399667.png?token=exp=1646319565~hmac=a784cab8da53672116aa2877e1d665d4',
+    image: 'https://cdn-icons-png.flaticon.com/512/48/48674.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Pandas')).length,
     group: 'Data Science',
   },
@@ -792,6 +786,14 @@ module.exports = {
     await Promise.all(
       MOCKED_COURSES.map((course, index) => {
         course.test = tests[index].insertedId;
+        const techs = course.technology.map(
+          (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
+        );
+        course.technology = techs;
+        const requiredSkills = course.requiredSkills.map(
+          (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
+        );
+        course.requiredSkills = requiredSkills;
         return db.collection('courses').insertOne(course);
       }),
     );

@@ -6,7 +6,7 @@ interface ICourse {
   _id?: ObjectId;
   title: string;
   technologies: ObjectId[];
-  requiredSkills?: Array<string>;
+  requiredSkills?: ObjectId[];
   description: string;
   duration: number;
   materials: { stage: string; content: Array<string> }[];
