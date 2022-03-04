@@ -151,23 +151,21 @@ export const MobileSearchWrapper = styled('div')({
 });
 
 export const CompletedButton = styled(Button)({
-  [theme.breakpoints.up('sm')]: {
+  height: '50px',
+  width: '150px',
+  marginRight: '40px !important',
+  fontSize: '18px!important',
+  lineHeight: '22px',
+  padding: '12px 12px!important',
+  justifySelf: 'flex-start',
+  alignSelf: 'center',
+  display: 'flex',
+  [theme.breakpoints.down('lg')]: {
     height: '44px',
     width: '121px',
     marginRight: '36px !important',
     fontSize: '14px!important',
     lineHeight: '19px',
     padding: '10px 0px !important',
-  },
-  [theme.breakpoints.up('xl')]: {
-    height: '50px',
-    width: '150px',
-    marginRight: '40px !important',
-    fontSize: '18px!important',
-    lineHeight: '22px',
-    padding: '12px 12px!important',
-    justifySelf: 'flex-start',
-    alignSelf: 'center',
-    display: 'flex',
   },
 });
