@@ -148,7 +148,12 @@ const getCourseProvider = async (courseId: string, userId: string): Promise<ICou
     delete course.status;
   }
 
-  return course;
+  const populated = await CourseModel.populate(course, [
+    { path: 'technology', model: 'Skill', select: 'name image maxScore -_id' },
+    { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+  ]);
+
+  return populated;
 };
 
 const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {
