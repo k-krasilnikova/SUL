@@ -86,7 +86,12 @@ const getCoursesProvider = async (
       return course;
     });
 
-    return courses;
+    const populated = await CourseModel.populate(courses, [
+      { path: 'technology', model: 'Skill', select: 'name image maxScore -_id' },
+      { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+    ]);
+
+    return populated;
   } catch (error) {
     throw new BadRequestError('Invalid query.');
   }
