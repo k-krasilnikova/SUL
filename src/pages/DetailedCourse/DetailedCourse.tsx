@@ -128,7 +128,11 @@ const DetailedCourse: React.FC<IProps> = ({
             <div>
               {page === PAGES.myCourses && (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
-                  <StartButton variant="large" color="primary" disabled={isCourseStatusPending}>
+                  <StartButton
+                    color="primary"
+                    variant="mediumContained"
+                    disabled={isCourseStatusPending}
+                  >
                     Start the course
                   </StartButton>
                 </Link>
@@ -136,8 +140,8 @@ const DetailedCourse: React.FC<IProps> = ({
               {page === PAGES.coursesList && (
                 <StartButton
                   id={buttonId.start}
-                  variant="large"
                   color="primary"
+                  variant="mediumContained"
                   onClick={(event) => handleApplyCourse(event)}
                   disabled={isCourseStatusPending}
                 >
