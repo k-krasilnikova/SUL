@@ -10,7 +10,7 @@ interface InfoContainerTypes {
   type?: string;
 }
 
-export const CourseContainer = styled(Grid)({
+export const CourseContainer = styled(Grid)<InfoContainerTypes>(({ type }) => ({
   backgroundColor: 'rgba(118, 118, 128, 0.12);',
   fontFamily: '"Ubuntu", sans-serif',
   display: 'flex',
@@ -22,11 +22,16 @@ export const CourseContainer = styled(Grid)({
   [theme.breakpoints.down('xl')]: {
     borderRadius: '11px',
   },
+  [theme.breakpoints.down('md')]: {
+    ...(type === 'similarCourses' && {
+      maxWidth: '500px',
+      width: 'fit-content',
+    }),
+  },
   [theme.breakpoints.down('sm')]: {
     borderRadius: '4px',
-    width: '100%',
   },
-});
+}));
 
 export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type }) => ({
   textOverflow: 'ellipse',
@@ -326,10 +331,14 @@ export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type 
 }));
 
 export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
+  [theme.breakpoints.up('xs')]: {
+    paddingLeft: '8px !important',
+  },
   [theme.breakpoints.up('sm')]: {
-    paddingLeft: '12px !important',
+    paddingLeft: '10px !important',
   },
   [theme.breakpoints.up('md')]: {
+    paddingLeft: '16px !important',
     display: 'block',
     ...(type === 'similarCourses' && {
       display: 'none',

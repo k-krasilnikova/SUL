@@ -49,7 +49,7 @@ const CourseItem: React.FC<Props> = ({
   type,
   imageUrl,
 }) => (
-  <CourseContainer container direction="column">
+  <CourseContainer type={type} container direction="column">
     <AboutCourseContainer type={type}>
       <ImageWrapper>
         <Image imageUrl={imageUrl} />
