@@ -20,6 +20,7 @@ import {
   TestResultText,
   TestResultTitle,
   TestSkillsBox,
+  TitleBox,
 } from './styled';
 
 const TestResult: React.FC<ITestResult> = ({
@@ -30,7 +31,9 @@ const TestResult: React.FC<ITestResult> = ({
 }) => (
   <AuthorizedLayout pageName="Test Result">
     <TestResultBox>
-      <TestResultTitle>Your Score</TestResultTitle>
+      <TitleBox>
+        <TestResultTitle>Your Score</TestResultTitle>
+      </TitleBox>
       <ContentBox>
         <ProgressBarBox>
           {isFailed ? (
