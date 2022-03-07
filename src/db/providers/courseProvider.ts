@@ -18,6 +18,17 @@ interface ICourseWithStatusDb extends ICourse {
   status: [{ status?: string }];
 }
 
+const populateCourses = async (
+  courses: ICourseStatus | ICourseStatus[],
+): Promise<ICourseStatus | ICourseStatus[]> => {
+  const populated = await CourseModel.populate(courses, [
+    { path: 'technology', model: 'Skill', select: 'name image maxScore -_id' },
+    { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+  ]);
+
+  return populated;
+};
+
 const getCoursesProvider = async (
   {
     pageN,
@@ -27,7 +38,7 @@ const getCoursesProvider = async (
     nPerPage = DEFAULT_N_PER_PAGE,
   }: IQueryCourses,
   userId: string,
-): Promise<ICourseStatus[]> => {
+) => {
   try {
     const sortingField = { [orderField]: order };
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
@@ -86,10 +97,7 @@ const getCoursesProvider = async (
       return course;
     });
 
-    const populated = await CourseModel.populate(courses, [
-      { path: 'technology', model: 'Skill', select: 'name image maxScore -_id' },
-      { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
-    ]);
+    const populated = await populateCourses(courses);
 
     return populated;
   } catch (error) {
@@ -97,7 +105,7 @@ const getCoursesProvider = async (
   }
 };
 
-const getCourseProvider = async (courseId: string, userId: string): Promise<ICourseStatus> => {
+const getCourseProvider = async (courseId: string, userId: string) => {
   const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
     {
       $match: {
@@ -148,10 +156,7 @@ const getCourseProvider = async (courseId: string, userId: string): Promise<ICou
     delete course.status;
   }
 
-  const populated = await CourseModel.populate(course, [
-    { path: 'technology', model: 'Skill', select: 'name image maxScore -_id' },
-    { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
-  ]);
+  const populated = await populateCourses(course);
 
   return populated;
 };
