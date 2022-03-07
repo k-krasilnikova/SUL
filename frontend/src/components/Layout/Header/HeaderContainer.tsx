@@ -21,20 +21,9 @@ const HeaderContainer: React.FC<Props> = ({
   isMobileMenuOpen,
   toggleMobileMenu,
 }) => {
-  const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
   const EMPTY_ARGUMENT = null;
-
-  const handleNotificationsOpen = () => {
-    if (isMobileMenuOpen) {
-      toggleMobileMenu();
-    }
-    setNotificationsOpen(!isNotificationsOpen);
-  };
-  const handleNotificationsClose = () => {
-    setNotificationsOpen(false);
-  };
 
   const { mutateAsync, isLoading } = useLogOut();
   const handleConfirm = (): void => {
@@ -51,13 +40,10 @@ const HeaderContainer: React.FC<Props> = ({
   return (
     <>
       <Header
-        firstName={firstName}
-        lastName={lastName}
+        firstName={firstName || 'Test'}
+        lastName={lastName || 'Tester'}
         avatar={avatar}
         notifications={notifications}
-        isNotificationsOpen={isNotificationsOpen}
-        handleNotificationsOpen={handleNotificationsOpen}
-        handleNotificationsClose={handleNotificationsClose}
         handleConfirm={handleConfirm}
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}
