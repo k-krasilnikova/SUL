@@ -1,6 +1,5 @@
 import { ObjectId } from 'mongoose';
 
-import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
@@ -51,19 +50,6 @@ const getEmployeesProvider = async (managerId: string) => {
   return employess;
 };
 
-const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
-  const skills: IUserSkill[] = await UserSkillModel.find({ user: userId }).lean();
-  return skills;
-};
-
-const addUserSkill = async (userId: string, skillId?: ObjectId) => {
-  await UserSkillModel.create({
-    user: userId,
-    skill: skillId,
-    score: 1,
-  });
-};
-
 const updatePendingFieldCourses = async (
   managerId: ObjectId,
   applyedCourseId: string | undefined,
@@ -74,16 +60,9 @@ const updatePendingFieldCourses = async (
   await UserModel.updateOne({ _id: managerId }, { $push: { pendingCourses: applyedCourseId } });
 };
 
-const updateUserSkill = async (userId: string, skillId?: ObjectId) => {
-  await UserSkillModel.findOneAndUpdate({ user: userId, skill: skillId }, { $inc: { score: 1 } });
-};
-
 export {
   getUserProvider,
   getFullUserInformationProvider,
   updatePendingFieldCourses,
-  updateUserSkill,
-  getUserSkills,
-  addUserSkill,
   getEmployeesProvider,
 };

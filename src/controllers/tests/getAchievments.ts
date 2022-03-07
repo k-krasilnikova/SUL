@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
-import { addUserSkill, getUserSkills, updateUserSkill } from 'db/providers/userProvider';
+import { addUserSkill, getUserSkills, updateUserSkill } from 'db/providers/skillProvider';
 import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
 import { TAchievments } from 'interfaces/Ientities/Itest';
