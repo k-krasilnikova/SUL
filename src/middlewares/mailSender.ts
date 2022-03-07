@@ -26,11 +26,11 @@ const sendMail = async (
     if (status !== CourseStatus.approved && status !== CourseStatus.rejected) {
       throw new BadRequestError(`Can't send mail for course in status: ${status}`);
     }
-    await new Mail({
+    await new Mail().sendMail({
       to: email,
       subject: 'course notification',
       text: `Your request for course "${title}" has been ${status}`,
-    }).sendMail();
+    });
     next();
   } catch (error) {
     next(error);
