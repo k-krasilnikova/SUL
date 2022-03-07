@@ -23,7 +23,7 @@ interface IClientCourse {
       isCompleted: boolean;
     },
   ];
-  date: Date;
+  applyDate: Date;
 }
 
 export { IClientCourse, TCourseStatus };

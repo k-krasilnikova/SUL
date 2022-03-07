@@ -1,3 +1,4 @@
+import { DEFAULT_EMAIL, DEFAULT_TXT } from 'config/constants';
 import nodemailer, { Transporter } from 'nodemailer';
 
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
@@ -8,16 +9,14 @@ interface IMsgData {
   text: string;
 }
 
-class Mail {
-  private transporter: Transporter<SMTPTransport.SentMessageInfo>;
+interface IMailSender {
+  sendMail: (message: IMsgData) => Promise<void>;
+}
 
-  private to: string;
+class Mail implements IMailSender {
+  private readonly transporter: Transporter<SMTPTransport.SentMessageInfo>;
 
-  private subject: string;
-
-  private text: string;
-
-  constructor(mailData: IMsgData) {
+  constructor() {
     this.transporter = nodemailer.createTransport({
       host: String(process.env.SMTP_HOST),
       port: Number(process.env.SMTP_PORT_SSL),
@@ -30,17 +29,14 @@ class Mail {
         rejectUnauthorized: false,
       },
     });
-    this.to = mailData.to || 'default@mail.com';
-    this.subject = mailData.subject;
-    this.text = mailData.text;
   }
 
-  async sendMail(): Promise<void> {
+  async sendMail(message: IMsgData): Promise<void> {
     await this.transporter.sendMail({
       from: process.env.MAIL_USER,
-      to: this.to,
-      subject: this.subject,
-      text: this.text,
+      to: message.to || DEFAULT_EMAIL,
+      subject: message.subject || DEFAULT_TXT,
+      text: message.text || DEFAULT_TXT,
     });
   }
 }
