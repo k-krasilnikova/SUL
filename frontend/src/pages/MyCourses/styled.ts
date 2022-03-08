@@ -12,6 +12,12 @@ export const GridItem = styled(Grid)({
   paddingLeft: '30px !important',
   paddingTop: '24px !important',
   [theme.breakpoints.down('xl')]: {
+    width: '50% !important',
+    maxWidth: '50% !important',
+    paddingTop: '10px !important',
+    paddingLeft: '20px !important',
+  },
+  [theme.breakpoints.down('lg')]: {
     width: '100% !important',
     maxWidth: '100% !important',
     paddingTop: '8px !important',
@@ -44,22 +50,38 @@ export const CourseActionsBox = styled(Box)({
   flexWrap: 'nowrap',
   [theme.breakpoints.down('xl')]: {
     marginLeft: '16px !important',
+    paddingBottom: '5px',
   },
   [theme.breakpoints.down('md')]: {
     marginLeft: '5px !important',
   },
 });
 
+// Detail Button
 export const DetailsButton = styled(Button)({
   height: '50px',
   width: '150px',
   marginRight: '16px !important',
   fontSize: '16px!important',
   lineHeight: '22px',
-  padding: '12px 12px!important',
+  padding: '12px!important',
+  [theme.breakpoints.down('xl')]: {
+    height: '44px',
+    maxWidth: '125px',
+    marginRight: '16px !important',
+    fontSize: '14px!important',
+    lineHeight: '20px',
+    padding: '10px!important',
+  },
+  [theme.breakpoints.down('lg')]: {
+    height: '50px',
+    maxWidth: '150px',
+    fontSize: '16px!important',
+    padding: '12px!important',
+  },
   [theme.breakpoints.down('md')]: {
-    height: '40px',
-    width: '120px',
+    height: '44px',
+    maxWidth: '131px',
     marginRight: '10px !important',
     fontSize: '14px!important',
     lineHeight: '14px',
@@ -70,13 +92,27 @@ export const DetailsButton = styled(Button)({
 export const StartCourseButton = styled(Button)({
   height: '50px',
   width: '150px',
-  marginRight: '40px !important',
+  marginRight: '16px !important',
   fontSize: '16px!important',
   lineHeight: '22px',
-  padding: '12px 12px!important',
+  padding: '12px!important',
+  [theme.breakpoints.down('xl')]: {
+    height: '44px',
+    maxWidth: '125px',
+    marginRight: '16px !important',
+    fontSize: '14px!important',
+    lineHeight: '20px',
+    padding: '10px!important',
+  },
+  [theme.breakpoints.down('lg')]: {
+    height: '50px',
+    maxWidth: '150px',
+    fontSize: '16px!important',
+    padding: '12px!important',
+  },
   [theme.breakpoints.down('md')]: {
-    height: '40px',
-    width: '120px',
+    height: '44px',
+    maxWidth: '131px',
     marginRight: '10px !important',
     fontSize: '14px!important',
     lineHeight: '14px',
@@ -101,13 +137,27 @@ export const MobileLink = styled(Link)({
 export const ContinueTestButton = styled(Button)({
   height: '50px',
   width: '150px',
-  marginRight: '40px !important',
+  marginRight: '16px !important',
   fontSize: '16px!important',
   lineHeight: '22px',
-  padding: '12px 12px!important',
+  padding: '12px!important',
+  [theme.breakpoints.down('xl')]: {
+    height: '44px',
+    maxWidth: '125px',
+    marginRight: '16px !important',
+    fontSize: '14px!important',
+    lineHeight: '20px',
+    padding: '10px!important',
+  },
+  [theme.breakpoints.down('lg')]: {
+    height: '50px',
+    maxWidth: '150px',
+    fontSize: '16px!important',
+    padding: '12px!important',
+  },
   [theme.breakpoints.down('md')]: {
-    height: '40px',
-    width: '120px',
+    height: '44px',
+    maxWidth: '131px',
     marginRight: '10px !important',
     fontSize: '14px!important',
     lineHeight: '14px',
@@ -122,6 +172,10 @@ export const MobileSearchWrapper = styled('div')({
   width: '100%',
   margin: '16px 0px 8px 0px',
   height: '30px',
+  paddingLeft: '20px !important',
+  [theme.breakpoints.down('lg')]: {
+    paddingLeft: '0px !important',
+  },
   '@media(min-width: 1110px)': {
     display: 'none',
   },

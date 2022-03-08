@@ -41,8 +41,8 @@ export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type })
   minHeight: '295px',
   maxHeight: '295px',
   [theme.breakpoints.down('xl')]: {
-    minHeight: '194px',
-    maxHeight: '194px',
+    minHeight: '250px',
+    maxHeight: '250px',
   },
   [theme.breakpoints.down('lg')]: {
     padding: '16px 26px 16px 16px',

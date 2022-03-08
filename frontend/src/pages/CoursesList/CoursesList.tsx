@@ -64,7 +64,7 @@ const CoursesList: React.FC<CoursesProps> = ({
             key={`${course._id}_item`}
             fallback={<Loader color="primary" type={LOADER.content} />}
           >
-            <GridItem key={course._id} item xl={6} lg={12} md={12} sm={12}>
+            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
               <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
                 <CourseItem
                   title={course?.title}

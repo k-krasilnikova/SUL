@@ -33,8 +33,7 @@ export const PageWrapper = styled(Grid)({
   paddingLeft: '0px !important',
   height: `calc(100vh - ${HEADER_HEIGHT})`,
   [theme.breakpoints.down('xl')]: {
-    padding: '0px 8px !important',
-    paddingTop: '1% !important',
+    paddingRight: '20px !important',
   },
   [theme.breakpoints.down('lg')]: {
     padding: '0px 8px !important',
