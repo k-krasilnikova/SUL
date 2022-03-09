@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
 
 import { useGetCourses } from 'api/courses';
 import useApplyCourse from 'api/courses/applyCourse';
@@ -9,7 +8,6 @@ import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import CoursesList from './CoursesList';
 
 const CoursesContainer: React.FC = () => {
-  const params = useParams();
   const { mutate, isLoading } = useApplyCourse();
   const { data: courses, isLoading: isCoursesLoading } = useGetCourses();
   const [targetId, setTargetId] = useState<string | undefined>();
@@ -24,7 +22,7 @@ const CoursesContainer: React.FC = () => {
 
   const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>) => {
     setTargetId((event.target as HTMLElement).id);
-    mutate(params.courseId);
+    mutate((event.target as HTMLElement).id);
   };
 
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);

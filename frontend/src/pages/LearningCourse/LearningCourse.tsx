@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import IconButton from '@mui/material/IconButton';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { Back, Forward } from 'components/Arrows';
@@ -23,6 +22,7 @@ import {
   StartTestButton,
   NextButton,
   ButtonWrapper,
+  StyledButton,
 } from './styled';
 import { FormDialog } from './FormDialog';
 
@@ -73,15 +73,15 @@ const LearningCourse: React.FC<LearningProps> = ({
       </Link>
       <LearningWrapper>
         <StepperController>
-          <IconButton onClick={stageBack} disabled={backDisabled}>
+          <StyledButton onClick={stageBack} disabled={backDisabled}>
             <Back arrowDisabled={backDisabled} />
-          </IconButton>
+          </StyledButton>
           <Step>
             {stage}/{maxStage}
           </Step>
-          <IconButton onClick={stageForward} disabled={forwardDisabled}>
+          <StyledButton onClick={stageForward} disabled={forwardDisabled}>
             <Forward arrowDisabled={forwardDisabled} />
-          </IconButton>
+          </StyledButton>
         </StepperController>
         <MaterialWrapper>
           {materialType === MATERIAL.video ? (

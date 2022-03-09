@@ -9,12 +9,12 @@ import { CourseItem } from 'components/Course';
 import { ProgressBar } from 'components/ProgressBar';
 import { CourseActions } from 'pages/CoursesList/styled';
 import { PATHS } from 'constants/routes';
-import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { backIconMobile } from 'icons';
 import MobileSearch from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
+import { Course } from 'types/course';
 
 import {
   BackButton,
@@ -40,6 +40,7 @@ import {
 } from './styled';
 
 interface IProps {
+  courseData: Course;
   handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
   buttonId: {
     [key: string]: string | undefined;
@@ -61,6 +62,7 @@ interface IProps {
 const OPEN_FULL_TEXT = 'Look in full';
 
 const DetailedCourse: React.FC<IProps> = ({
+  courseData,
   handleApplyCourse,
   isLoading,
   targetId,
@@ -98,23 +100,23 @@ const DetailedCourse: React.FC<IProps> = ({
         {isCourseApplicationSubmitted && !isCourseStatusPending && (
           <ProgressBar size="large" text="0%" textColor="#131313" />
         )}
-        <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
+        <DetailedCourseTitle>{courseData.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
-          <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
+          <DetailedCourseTextMobile>{courseData.description}</DetailedCourseTextMobile>
         ) : (
           <DetailedCourseTextMobile>
-            {INITIAL_DETAILED_COURSE.description.slice(0, 140)}
+            {courseData.description.slice(0, 140)}
             <ButtonFullText onClick={toggleFullText}>
               {!isFullTextOpen && OPEN_FULL_TEXT}
             </ButtonFullText>
           </DetailedCourseTextMobile>
         )}
-        <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
+        <DetailedCourseText>{courseData.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
           <CourseInfoBox>
             <CourseInfo
-              duration={INITIAL_DETAILED_COURSE.duration}
-              lessons={INITIAL_DETAILED_COURSE.lessons}
+              duration={courseData.duration}
+              lessons={courseData.lessons}
               type="detailedCourse"
             />
           </CourseInfoBox>
@@ -126,7 +128,11 @@ const DetailedCourse: React.FC<IProps> = ({
             <div>
               {page === PAGES.myCourses && (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
-                  <StartButton variant="large" color="primary" disabled={isCourseStatusPending}>
+                  <StartButton
+                    color="primary"
+                    variant="mediumContained"
+                    disabled={isCourseStatusPending}
+                  >
                     Start the course
                   </StartButton>
                 </Link>
@@ -134,8 +140,8 @@ const DetailedCourse: React.FC<IProps> = ({
               {page === PAGES.coursesList && (
                 <StartButton
                   id={buttonId.start}
-                  variant="large"
                   color="primary"
+                  variant="mediumContained"
                   onClick={(event) => handleApplyCourse(event)}
                   disabled={isCourseStatusPending}
                 >
@@ -150,10 +156,10 @@ const DetailedCourse: React.FC<IProps> = ({
             <SimilarCoursesTitle>Similar courses</SimilarCoursesTitle>
             <SimilarCoursesItemWrapper>
               <CourseItem
-                title={INITIAL_DETAILED_COURSE.title}
-                description={INITIAL_DETAILED_COURSE.description}
-                duration={INITIAL_DETAILED_COURSE.duration}
-                lessons={INITIAL_DETAILED_COURSE.lessons}
+                title={courseData.title}
+                description={courseData.description}
+                duration={courseData.duration}
+                lessons={courseData.lessons}
                 windowWidth={windowWidth}
                 type="similarCourses"
                 pageName={PAGES.detailed}

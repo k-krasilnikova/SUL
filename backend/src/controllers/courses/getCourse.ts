@@ -1,11 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getCourseProvider } from 'db/providers/courseProvider';
-import { ICourse } from 'interfaces/Ientities/Icourses';
 
 const getCourseById = async (
   req: Request,
-  res: Response<ICourse, { id: string }>,
+  res: Response<unknown, { id: string }>,
   next: NextFunction,
 ) => {
   try {
