@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
+import { IClientCourse, IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 import CourseStatus from 'enums/coursesEnums';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
@@ -49,7 +49,7 @@ const updateCourseProgress = async (courseId: string, stage: string) => {
   return updatedProgress;
 };
 
-const getStatusProvider = async (courseId: string) => {
+const getStatusProvider = async (courseId: string): Promise<IClientCourse> => {
   const currStatus = await ClientCourseModel.findOne(
     { _id: courseId },
     { status: 1, _id: 0 },
