@@ -11,12 +11,11 @@ const schema = new Schema<IUser>({
   position: { type: String, required: true, default: 'Software Engineer' },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  skills: [
+  technologies: [
     {
-      name: { type: String, unique: true },
-      image: { type: String },
-      score: { type: Number },
-      group: { type: String },
+      group: { type: Schema.Types.ObjectId, ref: 'SkillGroup' },
+      achievedSkills: [{ type: Schema.Types.ObjectId, ref: 'UserSkill' }],
+      isPrimary: Boolean,
     },
   ],
   employees: [{ type: Schema.Types.ObjectId, ref: 'User' }],
