@@ -5,7 +5,8 @@ import {
   SnackbarProviderProps,
 } from 'notistack';
 import { IconButton } from '@mui/material';
-import { Close } from '@mui/icons-material';
+
+import { CloseIcon } from './styled';
 
 const Snackbar: React.FC<SnackbarProviderProps> = ({ children }) => {
   const notistackRef: React.Ref<BaseSnackbarProvider> = createRef();
@@ -19,7 +20,7 @@ const Snackbar: React.FC<SnackbarProviderProps> = ({ children }) => {
       ref={notistackRef}
       action={(key) => (
         <IconButton onClick={handleSnackbarClose(key)} size="small">
-          <Close fontSize="small" sx={{ color: '#ffffff' }} />
+          <CloseIcon fontSize="small" />
         </IconButton>
       )}
     >
