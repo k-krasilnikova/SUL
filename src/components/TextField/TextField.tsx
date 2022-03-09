@@ -9,6 +9,8 @@ import WarningHelper from './styled';
 interface TextFieldProps {
   id: string;
   warningHandler: (name: string, e: string) => void;
+  outOfFocusFiled: (e: string) => void;
+  getFieldName: (event: React.MouseEvent<Element, MouseEvent>) => void;
   handleChange?: (e: string) => void;
   setFieldTouched?: (name: string, value?: boolean, isValidate?: boolean) => void;
   label?: string;
@@ -25,7 +27,6 @@ interface TextFieldProps {
   value?: unknown;
   type?: string;
   placeholder?: string;
-  handleFocus?: (e: React.FocusEvent) => void;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -39,7 +40,8 @@ const TextField: React.FC<TextFieldProps> = ({
   error,
   onChange,
   handleBlur,
-  handleFocus,
+  getFieldName,
+  outOfFocusFiled,
   placeholder,
   ...rest
 }) => (
@@ -51,8 +53,8 @@ const TextField: React.FC<TextFieldProps> = ({
       label={label}
       defaultValue={defaultValue}
       helperText={helperText}
-      onBlur={handleBlur}
-      onFocus={(e: React.FocusEvent) => handleFocus && handleFocus(e)}
+      onBlur={outOfFocusFiled}
+      onFocus={getFieldName}
       size="medium"
       fullWidth
       {...rest}

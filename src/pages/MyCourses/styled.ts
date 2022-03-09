@@ -145,7 +145,27 @@ export const MobileSearchWrapper = styled('div')({
   width: '100%',
   margin: '16px 0px 8px 0px',
   height: '30px',
-  '@media(min-width: 1110px)': {
+  [theme.breakpoints.up('md')]: {
     display: 'none',
+  },
+});
+
+export const CompletedButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '40px !important',
+  fontSize: '18px!important',
+  lineHeight: '22px',
+  padding: '12px 12px!important',
+  justifySelf: 'flex-start',
+  alignSelf: 'center',
+  display: 'flex',
+  [theme.breakpoints.down('lg')]: {
+    height: '44px',
+    width: '121px',
+    marginRight: '36px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 0px !important',
   },
 });

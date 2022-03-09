@@ -13,6 +13,7 @@ import { buttonSpinner } from 'animations';
 import { LOADER } from 'constants/loaderTypes';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
+import { COURSE_STATUSES } from 'constants/statuses';
 
 import {
   PageContainer,
@@ -23,6 +24,7 @@ import {
   StartCourseButton,
   MobileLink,
   MobileSearchWrapper,
+  CompletedButton,
 } from './styled';
 
 interface Props {
@@ -72,7 +74,11 @@ const CoursesList: React.FC<CoursesProps> = ({
                           Details
                         </DetailsButton>
                       </Link>
-                      {targetLoading && targetId === course._id ? (
+                      {course.status === COURSE_STATUSES.completed ? (
+                        <CompletedButton variant="completed" disabled>
+                          Completed
+                        </CompletedButton>
+                      ) : targetLoading && targetId === course._id ? (
                         <StartCourseButton variant="mediumOutlined" disabled>
                           <ButtonLoader buttonSpinner={buttonSpinner} />
                         </StartCourseButton>

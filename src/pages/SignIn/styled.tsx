@@ -239,11 +239,10 @@ const GridSignInput = styled(Grid)<IColor>(({ color }) => ({
   minHeight: '53px !important',
   '& label': {
     fontFamily: '"Ubuntu", sans-serif',
-    color: '#C6C6C9 !important',
     ...(color && {
       color: `${color} !important`,
+      fontSize: `16px !important`,
     }),
-    fontSize: '18px',
     lineHeight: '21px',
     fontWeight: 400,
     height: '53px !important',
@@ -256,7 +255,6 @@ const GridSignInput = styled(Grid)<IColor>(({ color }) => ({
     fontFamily: '"Ubuntu", sans-serif',
     padding: '13.57px 14px',
     color: '#1D1D1D',
-    background: '#E5EEFD',
     borderRadius: '5px',
   },
   '& input + fieldset': {

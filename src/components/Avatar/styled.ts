@@ -1,18 +1,22 @@
 import styled from 'styled-components';
-import Avatar from 'react-avatar';
 
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';
 
 interface Size {
+  avatar: string;
   size?: string;
 }
 
-export const UserAvatarRounded = styled(Avatar)<Size>(({ size }) => ({
+export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
   display: 'inline-block',
   margin: '1% auto',
   width: '100px',
   height: '100px',
+  borderRadius: '50%',
+  overflow: 'hidden',
+  background: `no-repeat center url(${avatar})`,
+  backgroundSize: 'cover',
   [theme.breakpoints.up('xs')]: {
     ...(size === SIZE.large && {
       width: '80px',
