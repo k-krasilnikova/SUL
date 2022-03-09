@@ -24,6 +24,7 @@ import {
   MobileLink,
   ContinueTestButton,
   MobileSearchWrapper,
+  CompletedButton,
 } from './styled';
 
 interface Props {
@@ -96,6 +97,10 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                         <StartCourseButton disabled color="primary" variant="mediumContained">
                           Pending
                         </StartCourseButton>
+                      ) : clientCourse.status === COURSE_STATUSES.completed ? (
+                        <CompletedButton variant="completed" disabled>
+                          Completed
+                        </CompletedButton>
                       ) : (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
                           <StartCourseButton color="primary" variant="mediumContained">

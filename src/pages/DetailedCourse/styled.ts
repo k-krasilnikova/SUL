@@ -216,12 +216,15 @@ export const StartButton = styled(Button)({
     height: '44px',
     width: '131px',
     fontSize: '14px !important',
+    lineHeight: '19px',
+    padding: '10px 10px!important',
     margin: '24px 18px 0px calc(100% - 156px) !important',
   },
   [theme.breakpoints.up('md')]: {
-    height: '37px',
-    width: '112px',
+    height: '35px',
+    width: '105px',
     fontSize: '12px !important',
+    padding: '4px 5px!important',
     margin: '0px 20px 0px calc(100% - 132px) !important',
   },
   [theme.breakpoints.up('lg')]: {
