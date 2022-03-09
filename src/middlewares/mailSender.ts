@@ -22,8 +22,8 @@ const sendMail = async (
     }
     const { status, user: userId, course: courseId } = await getStatusProvider(clientCourseId);
     const { email } = await getUserProvider(userId);
-    const { title } = await getCourseProvider(courseId.toString(), userId.toString());
-    if (status !== CourseStatus.approved && status !== CourseStatus.rejected) {
+    const { title } = await getCourseProvider(courseId, userId);
+    if (![CourseStatus.approved, CourseStatus.rejected].includes(status)) {
       throw new BadRequestError(`Can't send mail for course in status: ${status}`);
     }
     await new Mail().sendMail({

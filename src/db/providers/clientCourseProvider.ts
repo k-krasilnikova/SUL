@@ -4,6 +4,7 @@ import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import CourseStatus from 'enums/coursesEnums';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 
 import ClientCourseModel from '../models/ClientCourses';
 
@@ -42,7 +43,7 @@ const updateCourseProgress = async (courseId: string, stage: string) => {
   return updatedProgress;
 };
 
-const getStatusProvider = async (courseId: string) => {
+const getStatusProvider = async (courseId: string): Promise<IClientCourse> => {
   const currStatus = await ClientCourseModel.findOne(
     { _id: courseId },
     { status: 1, _id: 0 },
