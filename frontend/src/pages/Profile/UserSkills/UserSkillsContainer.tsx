@@ -1,35 +1,49 @@
 import React, { useEffect, useState } from 'react';
 
-import { Skill } from 'types/skill';
-import groupByProperty from 'utils/helpers/groupByProperty';
+import { Technologies } from 'types/skill';
 
 import UserSkills from './UserSkills';
 
 interface SkillsProps {
-  skills?: Array<Skill>;
+  technologies?: Technologies;
 }
 
-const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
+const UserSkillsContainer: React.FC<SkillsProps> = ({ technologies }) => {
   const [searchSkill, setSearchSkill] = useState('');
-  const [userSkills, setUserSkills] = useState<Skill[] | undefined>();
+  const [userSkills, setUserSkills] = useState<Technologies | undefined>();
 
   useEffect(() => {
-    if (skills) {
-      setUserSkills(skills);
+    if (technologies) {
+      technologies.sort((techGroup) => (techGroup.isPrimary ? -1 : 1));
+      setUserSkills(technologies);
     }
-  }, [skills]);
+  }, [technologies]);
 
   useEffect(() => {
-    if (skills) {
+    if (technologies) {
       setUserSkills(
-        skills.filter(
-          (skill) =>
-            skill.name.toLocaleLowerCase().includes(searchSkill.trimEnd().toLocaleLowerCase()) ||
-            skill.group.toLowerCase().includes(searchSkill.toLowerCase()),
-        ),
+        technologies
+          .map((techGroup) => {
+            const isGroupMathed = techGroup.group.name
+              .toLowerCase()
+              .includes(searchSkill.toLowerCase());
+            if (isGroupMathed) {
+              return techGroup;
+            }
+
+            const filteredSkills = techGroup.achievedSkills.filter(
+              (uskill) =>
+                uskill.skill.name
+                  .toLocaleLowerCase()
+                  .includes(searchSkill.trimEnd().toLocaleLowerCase()) ||
+                techGroup.group.name.toLowerCase().includes(searchSkill.toLowerCase()),
+            );
+            return { ...techGroup, achievedSkills: filteredSkills };
+          })
+          .filter((techGroup) => techGroup.achievedSkills.length),
       );
     }
-  }, [searchSkill, skills]);
+  }, [searchSkill, technologies]);
 
   const searchSkillInList = (value: string) => {
     const formattedValue = value.split(/\s+/).join(' ').trimStart();
@@ -49,16 +63,9 @@ const UserSkillsContainer: React.FC<SkillsProps> = ({ skills }) => {
     }
   };
 
-  const groupSkills = (skillArr: Skill[] | undefined) => {
-    if (!skillArr) {
-      return undefined;
-    }
-    return groupByProperty(skillArr, 'group');
-  };
-
   return (
     <UserSkills
-      userSkills={groupSkills(userSkills)}
+      technologies={userSkills}
       searchSkillInList={searchSkillInList}
       checkSpace={checkSpace}
       checkPastedValue={checkPastedValue}

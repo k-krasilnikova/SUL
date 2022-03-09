@@ -25,7 +25,7 @@ const ProfileContent: React.FC<User> = ({
   group,
   phone,
   skype,
-  skills,
+  technologies,
 }) => (
   <AuthorizedLayout pageName="Profile">
     <ProfileBox>
@@ -60,7 +60,7 @@ const ProfileContent: React.FC<User> = ({
         </ListItem>
       </UserInfoList>
     </ProfileBox>
-    <UserSkills skills={skills} />
+    <UserSkills technologies={technologies} />
   </AuthorizedLayout>
 );
 
