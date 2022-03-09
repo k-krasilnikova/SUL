@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 
 import {
   DEFAULT_N_PER_PAGE,
@@ -92,11 +92,14 @@ const getCoursesProvider = async (
   }
 };
 
-const getCourseProvider = async (courseId: string, userId: string): Promise<ICourseStatus> => {
+const getCourseProvider = async (
+  courseId: string | ObjectId,
+  userId: string | ObjectId,
+): Promise<ICourseStatus> => {
   const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
     {
       $match: {
-        _id: new mongoose.Types.ObjectId(courseId),
+        _id: new mongoose.Types.ObjectId(courseId.toString()),
       },
     },
     {
@@ -113,7 +116,7 @@ const getCourseProvider = async (courseId: string, userId: string): Promise<ICou
           {
             $match: {
               $expr: {
-                $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId)] }],
+                $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId.toString())] }],
               },
             },
           },

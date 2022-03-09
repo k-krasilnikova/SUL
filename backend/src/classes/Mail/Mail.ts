@@ -1,6 +1,6 @@
-import { DEFAULT_EMAIL, DEFAULT_TXT } from 'config/constants';
 import nodemailer, { Transporter } from 'nodemailer';
 
+import { DEFAULT_EMAIL, DEFAULT_TXT } from 'config/constants';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 interface IMsgData {

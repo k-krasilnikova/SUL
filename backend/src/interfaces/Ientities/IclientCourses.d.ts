@@ -1,3 +1,4 @@
+import CourseStatus from 'enums/coursesEnums';
 import { ObjectId } from 'mongoose';
 
 import { ICourse } from './Icourses';
@@ -14,8 +15,8 @@ type TCourseStatus =
 interface IClientCourse {
   _id?: string;
   user: ObjectId;
-  course: ObjectId | ICourse;
-  status: TCourseStatus;
+  course: ObjectId;
+  status: CourseStatus;
   testResult: string;
   progress: [
     {
@@ -26,4 +27,8 @@ interface IClientCourse {
   applyDate: Date;
 }
 
-export { IClientCourse, TCourseStatus };
+interface IClentCoursePopulated extends IClientCourse {
+  course: ICourse;
+}
+
+export { IClientCourse, TCourseStatus, IClentCoursePopulated };
