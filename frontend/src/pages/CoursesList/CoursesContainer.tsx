@@ -34,10 +34,11 @@ const CoursesContainer: React.FC = () => {
   };
 
   const windowWidth = getWindowWidth();
+  const formattedCoursesList = courses?.filter((course) => !course.status);
 
   return (
     <CoursesList
-      courses={courses}
+      courses={formattedCoursesList}
       isLoading={isCoursesLoading}
       handleApplyCourse={handleApplyCourse}
       targetId={targetId}

@@ -36,6 +36,10 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
       width: '40px',
       height: '40px',
     }),
+    ...(size === SIZE.large && {
+      width: '130px',
+      height: '130px',
+    }),
   },
   [theme.breakpoints.up('lg')]: {
     ...(size === SIZE.large && {

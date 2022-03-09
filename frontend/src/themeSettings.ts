@@ -32,7 +32,7 @@ const globalTheme = createTheme({
       xs: 320,
       sm: 425,
       md: 770,
-      lg: 1024,
+      lg: 1025,
       xl: 1440,
     },
   },

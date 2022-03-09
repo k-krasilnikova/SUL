@@ -5,7 +5,7 @@ import { Notification } from 'types/notification';
 import { alertIcon } from 'icons';
 
 import NotificationPlate from './Notification';
-import { NotificationsButton, Notifications, TextWrapper } from './styled';
+import { NotificationsButton, Notifications, TextWrapper, RedMark } from './styled';
 
 interface NotificationsProps {
   isNotificationsOpen: boolean;
@@ -23,18 +23,21 @@ const NotificationsBar: React.FC<NotificationsProps> = ({
   isContainsUnread,
 }) => (
   <ClickAwayListener onClickAway={handleNotificationsClose}>
-    <NotificationsButton onClick={handleNotificationsOpen} isContainsUnread={isContainsUnread}>
-      <img alt="notifications" src={alertIcon} />
-      {isNotificationsOpen && (
-        <Notifications>
-          {notifications?.length ? (
-            notifications.map((note) => <NotificationPlate note={note} key={`${note._id}`} />)
-          ) : (
-            <TextWrapper>No notifications yet</TextWrapper>
-          )}
-        </Notifications>
-      )}
-    </NotificationsButton>
+    <>
+      <NotificationsButton onClick={handleNotificationsOpen}>
+        <img alt="notifications" src={alertIcon} />
+        {isNotificationsOpen && (
+          <Notifications>
+            {notifications?.length ? (
+              notifications.map((note) => <NotificationPlate note={note} key={`${note._id}`} />)
+            ) : (
+              <TextWrapper>No notifications yet</TextWrapper>
+            )}
+          </Notifications>
+        )}
+      </NotificationsButton>
+      {isContainsUnread && <RedMark />}
+    </>
   </ClickAwayListener>
 );
 

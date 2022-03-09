@@ -81,7 +81,7 @@ const LearningCourseContainer: React.FC = () => {
   const material =
     materialType === MATERIAL.video && clientCourseResponse
       ? optimizeLink(clientCourseResponse.course.materials[stage - 1].content[CONTENT_ELEMENT])
-      : MATERIAL.text;
+      : clientCourseResponse?.course.materials[stage - 1].content[CONTENT_ELEMENT] || MATERIAL.text;
   const videoPreview = getPreviewId(material);
 
   const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -98,6 +98,7 @@ const LearningCourseContainer: React.FC = () => {
   if (isLoading) {
     return <Loader color="primary" />;
   }
+
   return (
     <>
       {clientCourseResponse && (
