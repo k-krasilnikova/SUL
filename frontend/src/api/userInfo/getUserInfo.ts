@@ -5,6 +5,7 @@ import { apiClientWrapper } from 'api/base';
 import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
 import { REQUEST_ERRORS } from 'constants/authConstants';
+import { Notification as NotificationType } from 'types/notification';
 
 interface UserResponse {
   role: string;
@@ -16,7 +17,7 @@ interface UserResponse {
   avatar?: string;
   birthday?: Date;
   skype?: string;
-  notifications?: Notification[];
+  notifications?: NotificationType[];
   error?: unknown;
 }
 

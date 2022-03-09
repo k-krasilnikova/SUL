@@ -18,6 +18,17 @@ interface ICourseWithStatusDb extends ICourse {
   status: [{ status?: string }];
 }
 
+const populateCourses = async (
+  courses: ICourseStatus | ICourseStatus[],
+): Promise<ICourseStatus> => {
+  const populated = await CourseModel.populate(courses, [
+    { path: 'technology', model: 'Skill', select: 'name image maxScore -_id' },
+    { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+  ]);
+
+  return populated;
+};
+
 const getCoursesProvider = async (
   {
     pageN,
@@ -27,7 +38,7 @@ const getCoursesProvider = async (
     nPerPage = DEFAULT_N_PER_PAGE,
   }: IQueryCourses,
   userId: string,
-): Promise<ICourseStatus[]> => {
+) => {
   try {
     const sortingField = { [orderField]: order };
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
@@ -86,7 +97,9 @@ const getCoursesProvider = async (
       return course;
     });
 
-    return courses;
+    const populated = await populateCourses(courses);
+
+    return populated;
   } catch (error) {
     throw new BadRequestError('Invalid query.');
   }
@@ -146,7 +159,9 @@ const getCourseProvider = async (
     delete course.status;
   }
 
-  return course;
+  const populated = await populateCourses(course);
+
+  return populated;
 };
 
 const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {

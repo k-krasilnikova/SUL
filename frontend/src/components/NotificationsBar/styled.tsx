@@ -6,6 +6,10 @@ interface NotificationStyleType {
   isOld?: boolean;
 }
 
+interface UnreadStyleType {
+  isContainsUnread?: boolean;
+}
+
 export const HEADER_HEIGHT = '80px';
 export const HEADER_HEIGHT_IPAD = '60px';
 export const HEADER_HEIGHT_MOBILE = '44px';
@@ -21,28 +25,38 @@ export const Notifications = styled('div')({
   boxShadow: '2px 2px 4px 4px #00000040',
   maxHeight: '250px',
   overflowY: 'auto',
-  [theme.breakpoints.up('xs')]: {
-    top: HEADER_HEIGHT_MOBILE,
-    width: '304px',
-    left: '-270px',
-  },
-  [theme.breakpoints.up('md')]: {
-    top: HEADER_HEIGHT_IPAD,
-    left: '0px',
-  },
-  '@media(min-width: 1110px)': {
-    width: '400px',
-  },
-  '@media(min-width: 1130px)': {
-    width: '350px',
-    left: '-8px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    top: HEADER_HEIGHT,
-    width: '572px',
-    left: '0px',
+  width: '400px',
+  top: '60px',
+  [theme.breakpoints.down('md')]: {
+    width: '300px',
+    top: '40px',
+    right: 0,
   },
 });
+
+export const NotificationsButton = styled('div')<UnreadStyleType>(({ isContainsUnread }) => ({
+  position: 'relative',
+  flexGrow: '0',
+  flexShrink: '0',
+  borderRadius: '3px',
+  backgroundColor: 'rgba(118, 118, 128, 0.12)',
+  width: '40px',
+  height: '40px',
+  margin: '15px 20px 15px 0px',
+  padding: '5px',
+  display: 'flex',
+  justifyContent: 'center',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+  ...(isContainsUnread && {
+    color: '#727272',
+  }),
+  [theme.breakpoints.down('md')]: {
+    width: '35px',
+    height: '35px',
+  },
+}));
 
 export const TextWrapper = styled('h2')({
   color: '#727272',
