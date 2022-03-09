@@ -3,7 +3,7 @@ import { ListItem } from '@mui/material';
 
 import { imageDefault } from 'icons';
 import theme from 'themeSettings';
-import { HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from 'components/Layout/Header/styled';
+import { HEADER_HEIGHT_IPAD } from 'components/Layout/Header/styled';
 
 interface CourseAvatar {
   avatar?: string;
@@ -14,7 +14,7 @@ export const SearchResultWrapper = styled('div')({
   zIndex: '15',
   background: '#FFFFFF',
   borderRadius: '6px',
-  top: '80px',
+  top: '60px',
   left: '40px',
   boxShadow: '0px 4px 4px 0px #00000040',
   minHeight: '39px',
@@ -27,13 +27,10 @@ export const SearchResultWrapper = styled('div')({
     top: HEADER_HEIGHT_IPAD,
   },
   [theme.breakpoints.down(950)]: {
-    top: `calc(${HEADER_HEIGHT_IPAD} + 50px)`,
-  },
-  [theme.breakpoints.down('md')]: {
-    top: `calc(${HEADER_HEIGHT_MOBILE} + 50px)`,
+    top: '30px',
   },
   [theme.breakpoints.down('sm')]: {
-    maxWidth: '280px',
+    maxWidth: '270px',
     padding: '3px',
   },
 });
@@ -41,7 +38,8 @@ export const SearchResultItem = styled(ListItem)({
   fontSize: '14px',
   color: '#131313',
   display: 'flex',
-  marin: '8px',
+  paddingLeft: '3px !important',
+  paddingRight: '3px !important',
 });
 export const Image = styled('div')<CourseAvatar>(({ avatar }) => ({
   width: '82px',

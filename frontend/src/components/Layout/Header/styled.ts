@@ -7,7 +7,6 @@ import theme from 'themeSettings';
 interface MobileMenuProps {
   openMenu: boolean;
 }
-
 export const HEADER_HEIGHT = '80px';
 export const HEADER_HEIGHT_IPAD = '60px';
 export const HEADER_HEIGHT_MOBILE = '44px';
@@ -44,7 +43,7 @@ export const BrandLogoLink = styled(Link)({
     quality: '100',
   },
   '@media(min-width: 1110px)': {
-    margin: '19px 48px 16px 32px',
+    margin: '19px 100px 16px 32px',
   },
   [theme.breakpoints.up('xl')]: {
     width: '130px',
@@ -112,7 +111,7 @@ export const Search = styled(Input)({
   [theme.breakpoints.down('lg')]: {
     width: '300px',
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(950)]: {
     display: 'none!important',
   },
 });

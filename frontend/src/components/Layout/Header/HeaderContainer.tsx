@@ -5,8 +5,7 @@ import { User } from 'types/user';
 import { Course } from 'types/course';
 import { useLogOut } from 'api/logOut/';
 import { searchAllCourses } from 'api/courses';
-
-import Header from './Header';
+import Header from 'components/Layout/Header/Header';
 
 interface MobileMenuProps {
   isMobileMenuOpen: boolean;
