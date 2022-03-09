@@ -6,9 +6,8 @@ import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import { NoContent } from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
 import { SIZE } from 'constants/sizes';
-import { starEmpty, starContained } from 'icons';
-import { GroupedSkills } from 'types/skill';
-import isSkillCompleted from 'utils/helpers/isSkillCompleted';
+import { starContained } from 'icons';
+import { Technologies } from 'types/skill';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
 
@@ -28,7 +27,7 @@ import {
 } from './styled';
 
 interface Props {
-  userSkills?: GroupedSkills;
+  technologies?: Technologies;
   searchSkillInList: (value: string) => void;
   checkSpace: (event: React.KeyboardEvent) => void;
   checkPastedValue: (value: string) => void;
@@ -36,7 +35,7 @@ interface Props {
 }
 
 const UserSkills: React.FC<Props> = ({
-  userSkills,
+  technologies,
   searchSkillInList,
   checkSpace,
   checkPastedValue,
@@ -70,18 +69,18 @@ const UserSkills: React.FC<Props> = ({
         <Divider />
       </SearchWrapper>
       <SkillsList>
-        {userSkills && userSkills.size ? (
-          [...userSkills.keys()].map((group) => (
-            <div key={group}>
+        {technologies && technologies.length ? (
+          technologies.map((techGroup) => (
+            <div key={techGroup.group.name}>
               <SkillsListItem>
                 <SkillTitle>
-                  <Title>{group || 'No group'}</Title>
+                  {techGroup.isPrimary && <Star alt="primary" src={starContained} />}
+                  <Title>{techGroup.group.name || 'No group'}</Title>
                 </SkillTitle>
                 <SkillsInfoList>
-                  {userSkills.get(group)?.map((skill) => (
-                    <React.Fragment key={skill.name}>
-                      <Star alt="skill" src={isSkillCompleted(skill) ? starContained : starEmpty} />
-                      <SkillInfoContainer skillItem={skill} />
+                  {techGroup.achievedSkills.map((skillInfo) => (
+                    <React.Fragment key={skillInfo.skill.name}>
+                      <SkillInfoContainer skillItem={skillInfo} />
                     </React.Fragment>
                   ))}
                 </SkillsInfoList>

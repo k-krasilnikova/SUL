@@ -1,7 +1,7 @@
-import { Skill } from 'types/skill';
+import { UserSkill } from 'types/skill';
 
-const isSkillCompleted = (skill: Skill): boolean => {
-  return skill.score >= skill.maxScore;
+const isSkillCompleted = (uskill: UserSkill): boolean => {
+  return uskill.score >= uskill.skill.maxScore;
 };
 
 export default isSkillCompleted;

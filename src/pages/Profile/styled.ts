@@ -6,14 +6,16 @@ import theme from 'themeSettings';
 
 export const ProfileBox = styled('div')({
   width: '90%',
-  [theme.breakpoints.up('xs')]: {
+  display: 'flex',
+  flexDirection: 'row',
+  margin: '88px 0px 70px 122px',
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
     margin: '16px 19px 14px 16px',
   },
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down('lg')]: {
+    flexDirection: 'row',
     margin: '40px 0px 50px 54px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    margin: '88px 0px 113px 122px',
   },
 });
 export const AvatarWrapper = styled('div')({
@@ -30,7 +32,7 @@ export const AvatarWrapper = styled('div')({
     width: '132px',
   },
   [theme.breakpoints.up('xl')]: {
-    marginRight: '234px',
+    marginRight: '100px',
     marginLeft: '0px',
     width: '219px',
   },
@@ -39,12 +41,10 @@ export const AvatarWrapper = styled('div')({
 export const UserInfoList = styled(List)({
   [theme.breakpoints.up('xs')]: {
     display: 'block',
-    width: '273px',
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('md')]: {
     display: 'inline-block',
     verticalAlign: 'top',
-    width: '400px',
   },
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: '400',
@@ -52,6 +52,8 @@ export const UserInfoList = styled(List)({
   paddingTop: '0px',
 });
 export const UserInfoLabel = styled('span')({
+  color: '#9b9b9b',
+  fontWeight: '500',
   [theme.breakpoints.up('xs')]: {
     width: '82px',
     display: 'inline-block',
@@ -72,7 +74,7 @@ export const UserInfoLabel = styled('span')({
     fontSize: '18px',
     lineHeight: '21px',
     height: '24px',
-    marginBottom: '24px',
+    marginBottom: '20px',
     padding: '0px',
   },
 });
@@ -100,7 +102,7 @@ export const UserInfoText = styled('span')({
     lineHeight: '21px',
     padding: '0px 0px 0px 40px',
     height: '24px',
-    marginBottom: '24px',
+    marginBottom: '20px',
   },
 });
 export const CopyIcon = styled(ContentCopyIcon)({

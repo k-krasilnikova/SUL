@@ -1,28 +1,30 @@
 import { useQuery, UseQueryResult } from 'react-query';
 import { AxiosError } from 'axios';
+import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { REQUEST_ERRORS } from 'constants/authConstants';
-import { Course } from 'types/course';
+import { Course, ICourses } from 'types/course';
+import { errorSnackbar } from 'constants/snackbarVariant';
 
-const useGetCourses = (): UseQueryResult<Array<Course>, AxiosError> =>
-  useQuery(
+const useGetCourses = (): UseQueryResult<Array<Course>, AxiosError> => {
+  const { enqueueSnackbar } = useSnackbar();
+  const handleSubmitError = (error: AxiosError) => {
+    enqueueSnackbar(error?.response?.data, errorSnackbar);
+  };
+  return useQuery(
     'courses',
     async () => {
-      let сoursesResponse: Array<Course>;
       const apiClient = apiClientWrapper();
-      try {
-        const response = await apiClient.get(`${API.getCourses}`);
-        сoursesResponse = response?.data;
-        return сoursesResponse;
-      } catch (error) {
-        throw new Error(`${REQUEST_ERRORS.getError}`);
-      }
+      const response = await apiClient.get(`${API.getCourses}`);
+      const сoursesResponse: ICourses = response?.data;
+      return сoursesResponse;
     },
     {
       refetchOnWindowFocus: false,
+      onError: handleSubmitError,
     },
   );
+};
 
 export default useGetCourses;
