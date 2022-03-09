@@ -5,14 +5,12 @@ import { User } from 'types/user';
 import { Course } from 'types/course';
 import { useLogOut } from 'api/logOut/';
 import { searchAllCourses } from 'api/courses';
-import { PAGES } from 'constants/pages';
 
 import Header from './Header';
 
 interface MobileMenuProps {
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
-  pageName: string;
 }
 
 type Props = User & MobileMenuProps;
@@ -24,7 +22,6 @@ const HeaderContainer: React.FC<Props> = ({
   notifications,
   isMobileMenuOpen,
   toggleMobileMenu,
-  pageName,
 }) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
   const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
@@ -65,9 +62,7 @@ const HeaderContainer: React.FC<Props> = ({
   const searchCourses = (courseName: string): void => {
     setSearchOpen(true);
     if (courseName.length) {
-      if (pageName !== PAGES.myCourses) {
-        searchAllCourses(courseName).then((courses) => setFoundCourses(courses));
-      }
+      searchAllCourses(courseName).then((courses) => setFoundCourses(courses));
     } else {
       setSearchOpen(false);
     }
