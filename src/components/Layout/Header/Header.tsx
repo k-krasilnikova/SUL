@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search as SearchIcon } from '@mui/icons-material';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { ClickAwayListener } from '@mui/material';
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
@@ -23,6 +24,7 @@ import {
   UserName,
   LogOut,
   MobileMenuIcon,
+  RelativeWrapper,
 } from './styled';
 
 interface Props {
@@ -60,6 +62,7 @@ const Header: React.FC<HeaderProps> = ({
     </BrandLogoLink>
     <HeaderContent>
       <ClickAwayListener onClickAway={handleSearchClose}>
+        <RelativeWrapper>
           <Search
             className="search"
             disableUnderline
@@ -71,7 +74,8 @@ const Header: React.FC<HeaderProps> = ({
             }
             onChange={(event) => searchCourses(event.target.value)}
           />
-          {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />
+          {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
+        </RelativeWrapper>
       </ClickAwayListener>
       <Notifications
         notifications={notifications}
