@@ -49,6 +49,7 @@ export const CourseActions = styled('div')({
     justifyContent: 'space-between',
     margin: '0px',
     minWidth: '250px',
+    flexWrap: 'nowrap',
   },
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
@@ -130,7 +131,7 @@ export const CompletedButton = styled(Button)({
   justifySelf: 'flex-start',
   alignSelf: 'center',
   display: 'flex',
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '121px',
     marginRight: '36px !important',
