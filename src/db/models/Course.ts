@@ -6,7 +6,7 @@ const courseSchema = new Schema<ICourse>({
   title: { type: String, required: true, unique: true },
   description: { type: String },
   technologies: [{ type: Schema.Types.ObjectId, required: true }],
-  requiredSkills: [{ type: String }],
+  requiredSkills: [{ type: Schema.Types.ObjectId }],
   duration: { type: Number, required: true },
   materials: [{ stage: { type: Number }, content: [{ type: String }] }],
   lessons: { type: Number },
