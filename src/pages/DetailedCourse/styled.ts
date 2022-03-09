@@ -82,7 +82,7 @@ export const DetailedCourseText = styled(Typography)({
     marginRight: '100px !important',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '24px !important',
+    fontSize: '20px !important',
     lineHeight: '37px !important',
     marginRight: '0px !important',
   },
@@ -94,19 +94,19 @@ export const DetailedCourseTitle = styled(Typography)({
   color: '#2c2525',
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px !important',
-    lineHeight: '21px !important',
+    lineHeight: '28px !important',
     paddingTop: '10px !important',
     marginBottom: '10px !important',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '32px !important',
+    fontSize: '28px !important',
     lineHeight: '28px !important',
     marginBottom: '24px !important',
     paddingTop: '0px !important',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '42px !important',
-    lineHeight: '55px !important',
+    fontSize: '28px !important',
+    lineHeight: '28px !important',
     marginBottom: '13px !important',
   },
 });
@@ -114,7 +114,7 @@ export const DetailedCourseTitle = styled(Typography)({
 export const DetailedCourseActionsBox = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
-  marginTop: '171px',
+  marginTop: '50px',
   [theme.breakpoints.up('xs')]: {
     display: 'block',
     marginTop: '24px',
@@ -126,14 +126,11 @@ export const DetailedCourseActionsBox = styled(Box)({
     marginTop: '56px',
     marginLeft: '0px',
   },
-  [theme.breakpoints.up('xl')]: {
-    marginTop: '171px',
-  },
 });
 
 export const SimilarCoursesWrapper = styled(Grid)({
-  marginTop: '156px',
-  marginBottom: '171px',
+  marginTop: '50px',
+  marginBottom: '50px',
   [theme.breakpoints.up('xs')]: {
     marginTop: '48px',
     marginBottom: '10px',
@@ -142,10 +139,6 @@ export const SimilarCoursesWrapper = styled(Grid)({
   [theme.breakpoints.up('md')]: {
     marginTop: '63px',
     marginBottom: '40px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    marginTop: '156px',
-    marginBottom: '171px',
   },
 });
 
@@ -179,11 +172,11 @@ export const SimilarCoursesTitle = styled(Typography)({
   },
   [theme.breakpoints.up('md')]: {
     fontSize: '24px !important',
-    lineHeight: '31px !important',
+    lineHeight: '24px !important',
     marginLeft: '0px!important',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '40px !important',
+    fontSize: '24px !important',
     lineHeight: '52px !important',
   },
 });
