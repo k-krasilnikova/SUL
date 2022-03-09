@@ -6,9 +6,8 @@ import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import { NoContent } from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
 import { SIZE } from 'constants/sizes';
-import { starEmpty, starContained } from 'icons';
+import { starContained } from 'icons';
 import { Technologies } from 'types/skill';
-import isSkillCompleted from 'utils/helpers/isSkillCompleted';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
 
@@ -75,15 +74,12 @@ const UserSkills: React.FC<Props> = ({
             <div key={techGroup.group.name}>
               <SkillsListItem>
                 <SkillTitle>
+                  {techGroup.isPrimary && <Star alt="primary" src={starContained} />}
                   <Title>{techGroup.group.name || 'No group'}</Title>
                 </SkillTitle>
                 <SkillsInfoList>
                   {techGroup.achievedSkills.map((skillInfo) => (
                     <React.Fragment key={skillInfo.skill.name}>
-                      <Star
-                        alt="skill"
-                        src={isSkillCompleted(skillInfo) ? starContained : starEmpty}
-                      />
                       <SkillInfoContainer skillItem={skillInfo} />
                     </React.Fragment>
                   ))}
