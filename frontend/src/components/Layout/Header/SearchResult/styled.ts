@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { ListItem } from '@mui/material';
 
 import { imageDefault } from 'icons';
+import theme from 'themeSettings';
+import { HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from 'components/Layout/Header/styled';
 
 interface CourseAvatar {
   avatar?: string;
@@ -21,6 +23,19 @@ export const SearchResultWrapper = styled('div')({
   maxWidth: '572px',
   padding: '8px',
   overflowY: 'auto',
+  [theme.breakpoints.down('xl')]: {
+    top: HEADER_HEIGHT_IPAD,
+  },
+  [theme.breakpoints.down(950)]: {
+    top: `calc(${HEADER_HEIGHT_IPAD} + 50px)`,
+  },
+  [theme.breakpoints.down('md')]: {
+    top: `calc(${HEADER_HEIGHT_MOBILE} + 50px)`,
+  },
+  [theme.breakpoints.down('sm')]: {
+    maxWidth: '280px',
+    padding: '3px',
+  },
 });
 export const SearchResultItem = styled(ListItem)({
   fontSize: '14px',
@@ -40,6 +55,10 @@ export const Image = styled('div')<CourseAvatar>(({ avatar }) => ({
   alignItems: 'center',
   background: `no-repeat center url(${avatar || imageDefault})`,
   backgroundSize: 'cover',
+  [theme.breakpoints.down('sm')]: {
+    width: '70px',
+    height: '40px',
+  },
 }));
 export const CourseTitle = styled('span')({
   fontSize: '20px',
@@ -47,4 +66,7 @@ export const CourseTitle = styled('span')({
   lineHeight: '26px',
   letterSpacing: '-0.4px',
   marginLeft: '8px',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '16px',
+  },
 });

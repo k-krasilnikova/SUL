@@ -51,7 +51,6 @@ const AuthorizedLayout: React.FC<Props> = ({
           notifications={notifications}
           isMobileMenuOpen={isMobileMenuOpen}
           toggleMobileMenu={toggleMobileMenu}
-          pageName={pageName}
         />
       </GridHeader>
       {isSqueeze ? (

@@ -13,7 +13,7 @@ import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { backIconMobile } from 'icons';
-import MobileSearch from 'components/Layout/MobileSearch';
+import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 
 import {
@@ -51,9 +51,6 @@ interface IProps {
   toggleFullText: () => void;
   isLoading?: boolean;
   targetId?: string | undefined;
-  isFilterOpen: boolean;
-  handleFilterOpen: () => void;
-  handleFilterClose: () => void;
   isCourseApplicationSubmitted?: boolean;
 }
 
@@ -69,9 +66,6 @@ const DetailedCourse: React.FC<IProps> = ({
   windowWidth,
   isFullTextOpen,
   toggleFullText,
-  isFilterOpen,
-  handleFilterOpen,
-  handleFilterClose,
   isCourseApplicationSubmitted,
 }) => (
   <AuthorizedLayout pageName="Course">
@@ -83,11 +77,7 @@ const DetailedCourse: React.FC<IProps> = ({
         <BackArrow alt="" src={backIconMobile} />
       </BackLink>
       <MobileSearchWrapper>
-        <MobileSearch
-          isFilterOpen={isFilterOpen}
-          handleFilterOpen={handleFilterOpen}
-          handleFilterClose={handleFilterClose}
-        />
+        <MobileSearch />
       </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper>
