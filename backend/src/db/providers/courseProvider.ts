@@ -22,7 +22,7 @@ const populateCourses = async (
   courses: ICourseStatus | ICourseStatus[],
 ): Promise<ICourseStatus | ICourseStatus[]> => {
   const populated = await CourseModel.populate(courses, [
-    { path: 'technology', model: 'Skill', select: 'name image maxScore -_id' },
+    { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
     { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
   ]);
 

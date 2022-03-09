@@ -8,7 +8,7 @@ interface IMaterial {
     content: Array<string>;
     isCompleted: boolean;
   }[];
-  technology: Array<string>;
+  technologies: Array<string>;
 }
 
 type TMaterials = Array<IMaterial>;
