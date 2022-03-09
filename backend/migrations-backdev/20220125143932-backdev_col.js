@@ -67,8 +67,8 @@ const TESTS = [
         question: 'null == undefined',
         answers: [
           { variant: 'true', aN: 1 },
-          { variant: 'false', aN: 1 },
-          { variant: 'undefined', aN: 1 },
+          { variant: 'false', aN: 2 },
+          { variant: 'undefined', aN: 3 },
         ],
         correctAnswer: 1,
       },
@@ -452,7 +452,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['JavaScript', 'HTML', 'CSS'],
+    technologies: ['JavaScript', 'HTML', 'CSS'],
   },
   {
     content: [
@@ -478,7 +478,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['Java'],
+    technologies: ['Java'],
   },
   {
     content: [
@@ -497,7 +497,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['Python'],
+    technologies: ['Python'],
   },
   {
     content: [
@@ -516,7 +516,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['Python'],
+    technologies: ['Python'],
   },
   {
     content: [
@@ -535,7 +535,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['Python'],
+    technologies: ['Python'],
   },
 ];
 
@@ -544,7 +544,7 @@ const MOCKED_COURSES = [
     title: 'JS for beginners',
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
-    technology: ['JavaScript', 'HTML', 'CSS'],
+    technologies: ['JavaScript', 'HTML', 'CSS'],
     requiredSkills: ['HTML', 'CSS'],
     duration: '123124679',
     materials: MATERIALS[0].content,
@@ -555,7 +555,7 @@ const MOCKED_COURSES = [
     title: 'Java for Profi ',
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
-    technology: ['Java', 'SQL'],
+    technologies: ['Java', 'SQL'],
     requiredSkills: ['Java'],
     duration: '123124679',
     materials: MATERIALS[1].content,
@@ -566,7 +566,7 @@ const MOCKED_COURSES = [
     title: 'Python for kids',
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
-    technology: ['Python', 'Pandas', 'Django'],
+    technologies: ['Python', 'Pandas', 'Django'],
     requiredSkills: ['Math', 'English'],
     duration: '12312679',
     materials: MATERIALS[2].content,
@@ -577,7 +577,7 @@ const MOCKED_COURSES = [
     title: 'Kotlin',
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
-    technology: ['Kotlin', 'Java'],
+    technologies: ['Kotlin', 'Java'],
     requiredSkills: ['Math', 'English'],
     duration: '12312679',
     materials: MATERIALS[3].content,
@@ -588,7 +588,7 @@ const MOCKED_COURSES = [
     title: 'Scala',
     description:
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
-    technology: ['Scala'],
+    technologies: ['Scala'],
     requiredSkills: ['Math', 'English'],
     duration: '12312679',
     materials: MATERIALS[4].content,
@@ -601,103 +601,103 @@ const SKILLS = [
   {
     name: 'Java',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968282.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Java')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Java')).length,
     group: 'Languages',
   },
   {
     name: 'JavaScript',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('JavaScript')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('JavaScript')).length,
     group: 'Languages',
   },
   {
     name: 'TypeScript',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968381.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('TypeScript')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('TypeScript')).length,
     group: 'Languages',
   },
   {
     name: 'PHP',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968332.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('PHP')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('PHP')).length,
     group: 'Languages',
   },
   {
     name: 'HTML',
     image: 'https://cdn-icons-png.flaticon.com/512/569/569835.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('HTML')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('HTML')).length,
     group: 'Frontend',
   },
   {
     name: 'ReactJS',
     image: 'https://cdn-icons-png.flaticon.com/512/45/45082.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('ReactJS')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('ReactJS')).length,
     group: 'Frontend',
   },
   {
     name: 'CSS',
     image: 'https://cdn-icons-png.flaticon.com/512/174/174854.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('CSS')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('CSS')).length,
     group: 'Frontend',
   },
   {
     name: 'Angular',
     image: 'https://cdn-icons-png.flaticon.com/512/3522/3522248.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Angular')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Angular')).length,
     group: 'Frontend',
   },
   {
     name: 'MySQL',
     image: 'https://cdn-icons-png.flaticon.com/512/1199/1199128.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('MySQL')).length + 1, // for the default level porpose (testing only)
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('MySQL')).length + 1, // for the default level porpose (testing only)
     group: 'Databases',
   },
   {
     name: 'Kotlin',
     image: 'https://cdn-icons-png.flaticon.com/512/154/154878.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Kotlin')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Kotlin')).length,
     group: 'Languages',
   },
   {
     name: 'Scala',
     image: 'https://cdn-icons-png.flaticon.com/512/919/919834.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Scala')).length + 1, // for the default level porpose (testing only)
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Scala')).length + 1, // for the default level porpose (testing only)
     group: 'Languages',
   },
   {
     name: 'Python',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968350.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Python')).length + 1, // for the default level porpose (testing only)
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Python')).length + 1, // for the default level porpose (testing only)
     group: 'Languages',
   },
   {
     name: 'Math',
     image: 'https://cdn-icons-png.flaticon.com/512/43/43102.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Math')).length + 1,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Math')).length + 1,
     group: 'Others',
   },
   {
     name: 'English',
     image: 'https://cdn-icons-png.flaticon.com/512/197/197374.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('English')).length + 1,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('English')).length + 1,
     group: 'Others',
   },
   {
     name: 'SQL',
     image: 'https://cdn-icons-png.flaticon.com/512/28/28954.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('SQL')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('SQL')).length,
     group: 'Databases',
   },
   {
     name: 'Pandas',
     image: 'https://cdn-icons-png.flaticon.com/512/48/48674.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Pandas')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Pandas')).length,
     group: 'Data Science',
   },
   {
     name: 'Django',
     image: 'https://cdn-icons-png.flaticon.com/512/1822/1822921.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technology.includes('Django')).length,
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Django')).length,
     group: 'Web Frameworks',
   },
 ];
@@ -786,10 +786,10 @@ module.exports = {
     await Promise.all(
       MOCKED_COURSES.map((course, index) => {
         course.test = tests[index].insertedId;
-        const techs = course.technology.map(
+        const techs = course.technologies.map(
           (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
         );
-        course.technology = techs;
+        course.technologies = techs;
         const requiredSkills = course.requiredSkills.map(
           (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
         );

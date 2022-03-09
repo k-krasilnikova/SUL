@@ -1,5 +1,5 @@
 import { Course } from './course';
-import { Skill } from './skill';
+import { Technologies } from './skill';
 import { Notification } from './notification';
 
 export interface User {
@@ -17,6 +17,6 @@ export interface User {
   position?: string;
   courses?: Array<Course>;
   handleLogOut?: () => void;
-  skills?: Array<Skill>;
+  technologies?: Technologies;
   notifications?: Notification[];
 }

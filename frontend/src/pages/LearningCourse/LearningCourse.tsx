@@ -92,7 +92,7 @@ const LearningCourse: React.FC<LearningProps> = ({
               playing
               controls
               width="100%"
-              height="100%"
+              height="680px"
               frameBorder="0"
             />
           ) : (

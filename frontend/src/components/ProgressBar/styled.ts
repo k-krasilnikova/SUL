@@ -10,8 +10,8 @@ interface Size {
 
 export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
   float: 'right',
-  width: '218px',
-  height: '218px',
+  width: '180px',
+  height: '180px',
   margin: '5%',
   fontFamily: theme.typography.fontFamily,
   ...(size === SIZE.xlarge && {

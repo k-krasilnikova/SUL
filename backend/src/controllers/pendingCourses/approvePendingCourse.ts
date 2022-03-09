@@ -24,7 +24,6 @@ const approvePendingCourse = async (
     await updateCourseStatus(clientCourseId, CourseStatus.approved);
     results.updateStatus = 'Course was approved';
     next();
-    return;
   } catch (error) {
     next(error);
   }
