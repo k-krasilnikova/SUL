@@ -54,7 +54,7 @@ type TUserPopulated = IUser & {
     group: string;
     achievedSkills: IUserSkillPopulated[];
     isPrimary: boolean;
-  };
+  }[];
 };
 
 type TUserRole = 'admin' | 'manager' | 'employee';

@@ -42,6 +42,10 @@ const getFullUserInformationProvider = async (userId: string) => {
     ])
     .lean();
 
+  if (!dbUserFullInfo) {
+    throw new NotFoundError('User not found.');
+  }
+
   return dbUserFullInfo;
 };
 

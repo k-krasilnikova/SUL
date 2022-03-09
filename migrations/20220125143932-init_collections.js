@@ -67,8 +67,8 @@ const TESTS = [
         question: 'null == undefined',
         answers: [
           { variant: 'true', aN: 1 },
-          { variant: 'false', aN: 1 },
-          { variant: 'undefined', aN: 1 },
+          { variant: 'false', aN: 2 },
+          { variant: 'undefined', aN: 3 },
         ],
         correctAnswer: 1,
       },
