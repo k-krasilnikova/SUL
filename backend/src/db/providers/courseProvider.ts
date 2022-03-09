@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 
 import {
   DEFAULT_N_PER_PAGE,
@@ -18,6 +18,17 @@ interface ICourseWithStatusDb extends ICourse {
   status: [{ status?: string }];
 }
 
+const populateCourses = async (
+  courses: ICourseStatus | ICourseStatus[],
+): Promise<ICourseStatus> => {
+  const populated = await CourseModel.populate(courses, [
+    { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
+    { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+  ]);
+
+  return populated;
+};
+
 const getCoursesProvider = async (
   {
     pageN,
@@ -27,7 +38,7 @@ const getCoursesProvider = async (
     nPerPage = DEFAULT_N_PER_PAGE,
   }: IQueryCourses,
   userId: string,
-): Promise<ICourseStatus[]> => {
+) => {
   try {
     const sortingField = { [orderField]: order };
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
@@ -86,17 +97,22 @@ const getCoursesProvider = async (
       return course;
     });
 
-    return courses;
+    const populated = await populateCourses(courses);
+
+    return populated;
   } catch (error) {
     throw new BadRequestError('Invalid query.');
   }
 };
 
-const getCourseProvider = async (courseId: string, userId: string): Promise<ICourseStatus> => {
+const getCourseProvider = async (
+  courseId: string | ObjectId,
+  userId: string | ObjectId,
+): Promise<ICourseStatus> => {
   const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
     {
       $match: {
-        _id: new mongoose.Types.ObjectId(courseId),
+        _id: new mongoose.Types.ObjectId(courseId.toString()),
       },
     },
     {
@@ -113,7 +129,7 @@ const getCourseProvider = async (courseId: string, userId: string): Promise<ICou
           {
             $match: {
               $expr: {
-                $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId)] }],
+                $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId.toString())] }],
               },
             },
           },
@@ -143,7 +159,9 @@ const getCourseProvider = async (courseId: string, userId: string): Promise<ICou
     delete course.status;
   }
 
-  return course;
+  const populated = await populateCourses(course);
+
+  return populated;
 };
 
 const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {

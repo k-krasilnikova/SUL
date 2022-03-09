@@ -358,11 +358,7 @@ const DEFAULT_USERS_DOCS = [
     firstName: 'Admin',
     lastName: 'Admin',
     position: 'Software Engineer',
-    skills: [
-      { name: 'java', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'mySQL', image: '', score: 0, maxScore: 5, group: 'databases' },
-    ],
+    technologies: [],
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
@@ -380,11 +376,7 @@ const DEFAULT_USERS_DOCS = [
     firstName: 'Manager',
     lastName: 'Manager',
     position: 'Team Manager',
-    skills: [
-      { name: 'php', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
-    ],
+    technologies: [],
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
@@ -405,12 +397,7 @@ const DEFAULT_EMPLOYEES = [
     firstName: 'User',
     lastName: 'User',
     position: 'Software Engineer',
-    skills: [
-      { name: 'react', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'js', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'css', image: '', score: 0, maxScore: 5, group: 'frontend' },
-    ],
+    technologies: [],
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
@@ -428,12 +415,7 @@ const DEFAULT_EMPLOYEES = [
     firstName: 'User1',
     lastName: 'User1',
     position: 'Software Engineer',
-    skills: [
-      { name: 'angular', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'ts', image: '', score: 0, maxScore: 5, group: 'languages' },
-      { name: 'html', image: '', score: 0, maxScore: 5, group: 'frontend' },
-      { name: 'css', image: '', score: 0, maxScore: 5, group: 'frontend' },
-    ],
+    technologies: [],
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
@@ -470,7 +452,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['js', 'html', 'css'],
+    technologies: ['JavaScript', 'HTML', 'CSS'],
   },
   {
     content: [
@@ -496,7 +478,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['java'],
+    technologies: ['Java'],
   },
   {
     content: [
@@ -515,7 +497,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['python'],
+    technologies: ['Python'],
   },
   {
     content: [
@@ -534,7 +516,7 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['python'],
+    technologies: ['Python'],
   },
   {
     content: [
@@ -553,16 +535,17 @@ const MATERIALS = [
         ],
       },
     ],
-    technology: ['python'],
+    technologies: ['Python'],
   },
 ];
 
 const MOCKED_COURSES = [
   {
     title: 'JS for beginners',
-    description: 'basic course for beginners',
-    technology: ['js', 'html', 'css'],
-    requiredSkills: ['html', 'css'],
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
+    technologies: ['JavaScript', 'HTML', 'CSS'],
+    requiredSkills: ['HTML', 'CSS'],
     duration: '123124679',
     materials: MATERIALS[0].content,
     lessons: 0,
@@ -570,9 +553,10 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Java for Profi ',
-    description: 'course for people who want rise their level in java',
-    technology: ['java', 'sql'],
-    requiredSkills: ['java for beginners'],
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
+    technologies: ['Java', 'SQL'],
+    requiredSkills: ['Java'],
     duration: '123124679',
     materials: MATERIALS[1].content,
     lessons: 0,
@@ -580,9 +564,10 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Python for kids',
-    description: 'school level of python programming',
-    technology: ['python', 'pandas', 'django'],
-    requiredSkills: ['math', 'english'],
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
+    technologies: ['Python', 'Pandas', 'Django'],
+    requiredSkills: ['Math', 'English'],
     duration: '12312679',
     materials: MATERIALS[2].content,
     lessons: 0,
@@ -590,9 +575,10 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Kotlin',
-    description: 'Kotlin programming',
-    technology: ['kotlin', 'java'],
-    requiredSkills: ['math', 'english'],
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
+    technologies: ['Kotlin', 'Java'],
+    requiredSkills: ['Math', 'English'],
     duration: '12312679',
     materials: MATERIALS[3].content,
     lessons: 0,
@@ -600,9 +586,10 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Scala',
-    description: 'school level of Scala programming',
-    technology: ['scala'],
-    requiredSkills: ['math', 'english'],
+    description:
+      'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
+    technologies: ['Scala'],
+    requiredSkills: ['Math', 'English'],
     duration: '12312679',
     materials: MATERIALS[4].content,
     lessons: 0,
@@ -610,8 +597,187 @@ const MOCKED_COURSES = [
   },
 ];
 
+const SKILLS = [
+  {
+    name: 'Java',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968282.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Java')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'JavaScript',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('JavaScript')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'TypeScript',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968381.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('TypeScript')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'PHP',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968332.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('PHP')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'HTML',
+    image: 'https://cdn-icons-png.flaticon.com/512/569/569835.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('HTML')).length,
+    group: 'Frontend',
+  },
+  {
+    name: 'ReactJS',
+    image: 'https://cdn-icons-png.flaticon.com/512/45/45082.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('ReactJS')).length,
+    group: 'Frontend',
+  },
+  {
+    name: 'CSS',
+    image: 'https://cdn-icons-png.flaticon.com/512/174/174854.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('CSS')).length,
+    group: 'Frontend',
+  },
+  {
+    name: 'Angular',
+    image: 'https://cdn-icons-png.flaticon.com/512/3522/3522248.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Angular')).length,
+    group: 'Frontend',
+  },
+  {
+    name: 'MySQL',
+    image: 'https://cdn-icons-png.flaticon.com/512/1199/1199128.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('MySQL')).length + 1, // for the default level porpose (testing only)
+    group: 'Databases',
+  },
+  {
+    name: 'Kotlin',
+    image: 'https://cdn-icons-png.flaticon.com/512/154/154878.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Kotlin')).length,
+    group: 'Languages',
+  },
+  {
+    name: 'Scala',
+    image: 'https://cdn-icons-png.flaticon.com/512/919/919834.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Scala')).length + 1, // for the default level porpose (testing only)
+    group: 'Languages',
+  },
+  {
+    name: 'Python',
+    image: 'https://cdn-icons-png.flaticon.com/512/5968/5968350.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Python')).length + 1, // for the default level porpose (testing only)
+    group: 'Languages',
+  },
+  {
+    name: 'Math',
+    image: 'https://cdn-icons-png.flaticon.com/512/43/43102.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Math')).length + 1,
+    group: 'Others',
+  },
+  {
+    name: 'English',
+    image: 'https://cdn-icons-png.flaticon.com/512/197/197374.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('English')).length + 1,
+    group: 'Others',
+  },
+  {
+    name: 'SQL',
+    image: 'https://cdn-icons-png.flaticon.com/512/28/28954.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('SQL')).length,
+    group: 'Databases',
+  },
+  {
+    name: 'Pandas',
+    image: 'https://cdn-icons-png.flaticon.com/512/48/48674.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Pandas')).length,
+    group: 'Data Science',
+  },
+  {
+    name: 'Django',
+    image: 'https://cdn-icons-png.flaticon.com/512/1822/1822921.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Django')).length,
+    group: 'Web Frameworks',
+  },
+];
+
+const SKILL_GROUPS = [
+  {
+    name: 'Languages',
+    skills: [],
+  },
+  {
+    name: 'Frontend',
+    skills: [],
+  },
+  {
+    name: 'Databases',
+    skills: [],
+  },
+  {
+    name: 'Others',
+    skills: [],
+  },
+  {
+    name: 'Data Science',
+    skills: [],
+  },
+  {
+    name: 'Web Frameworks',
+    skills: [],
+  },
+];
+
+const USER_SKILLS = [
+  {
+    user: 'user',
+    skill: 'Scala',
+    score: 1,
+  },
+  {
+    user: 'user',
+    skill: 'Python',
+    score: 1,
+  },
+  {
+    user: 'user',
+    skill: 'MySQL',
+    score: 1,
+  },
+  {
+    user: 'user',
+    skill: 'Math',
+    score: 1,
+  },
+  {
+    user: 'user',
+    skill: 'English',
+    score: 1,
+  },
+];
+
 module.exports = {
   async up(db) {
+    const groups = await Promise.all(
+      SKILL_GROUPS.map(async (group) => {
+        return { ...(await db.collection('skillGroups').insertOne(group)), name: group.name };
+      }),
+    );
+    const skills = await Promise.all(
+      SKILLS.map(async (skill) => {
+        const { group: groupName } = skill;
+        const { insertedId: groupId } = groups.filter((group) => group.name === groupName)[0];
+        skill.group = groupId;
+        const inserted = await db.collection('skills').insertOne(skill);
+        const { insertedId: skillId } = inserted;
+        db.collection('skillGroups').findOneAndUpdate(
+          { _id: groupId },
+          { $push: { skills: skillId } },
+        );
+        return { ...inserted, name: skill.name, group: groupId };
+      }),
+    );
     const tests = await Promise.all(
       TESTS.map((test) => {
         return db.collection('tests').insertOne(test);
@@ -620,30 +786,107 @@ module.exports = {
     await Promise.all(
       MOCKED_COURSES.map((course, index) => {
         course.test = tests[index].insertedId;
+        const techs = course.technologies.map(
+          (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
+        );
+        course.technologies = techs;
+        const requiredSkills = course.requiredSkills.map(
+          (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
+        );
+        course.requiredSkills = requiredSkills;
         return db.collection('courses').insertOne(course);
       }),
     );
     const users = await Promise.all(
-      DEFAULT_USERS_DOCS.map((doc) => {
+      DEFAULT_USERS_DOCS.map(async (doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
-        return db.collection('users').insertOne(doc);
+        return { ...(await db.collection('users').insertOne(doc)), username: doc.username };
       }),
     );
-    await Promise.all(
-      DEFAULT_EMPLOYEES.map((doc) => {
+    const employees = await Promise.all(
+      DEFAULT_EMPLOYEES.map(async (doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
         doc.managerId = users[1].insertedId;
-        return db.collection('users').insertOne(doc);
+        return { ...(await db.collection('users').insertOne(doc)), username: doc.username };
       }),
     );
+    const totalUsers = users.concat(employees);
+    const userSkills = await Promise.all(
+      USER_SKILLS.map(async (uskill) => {
+        const newSkillRelation = { ...uskill };
+        newSkillRelation.skill = skills.filter(
+          (skill) => skill.name === newSkillRelation.skill,
+        )[0].insertedId;
+        newSkillRelation.user = totalUsers.filter(
+          (user) => user.username === newSkillRelation.user,
+        )[0].insertedId;
+        return {
+          ...(await db.collection('userSkills').insertOne(newSkillRelation)),
+          ...newSkillRelation,
+        };
+      }),
+    );
+    // ONLY FOR 'USER'
+    const userId = totalUsers.filter((u) => u.username === 'user')[0].insertedId;
+    const langGroupId = groups.filter((group) => group.name === 'Languages')[0].insertedId;
+    const dbGroupId = groups.filter((group) => group.name === 'Databases')[0].insertedId;
+    const othersGroupId = groups.filter((group) => group.name === 'Others')[0].insertedId;
+    const TECHS = [
+      {
+        group: langGroupId,
+        achievedSkills: userSkills
+          .filter(
+            (uskill) =>
+              uskill.user === userId &&
+              skills.filter((skill) => skill.insertedId === uskill.skill)[0].group === langGroupId,
+          )
+          .map((uskill) => uskill.insertedId),
+        isPrimary: true,
+      },
+      {
+        group: dbGroupId,
+        achievedSkills: userSkills
+          .filter(
+            (uskill) =>
+              uskill.user === userId &&
+              skills.filter((skill) => skill.insertedId === uskill.skill)[0].group === dbGroupId,
+          )
+          .map((uskill) => uskill.insertedId),
+        isPrimary: false,
+      },
+      {
+        group: othersGroupId,
+        achievedSkills: userSkills
+          .filter(
+            (uskill) =>
+              uskill.user === userId &&
+              skills.filter((skill) => skill.insertedId === uskill.skill)[0].group ===
+                othersGroupId,
+          )
+          .map((uskill) => uskill.insertedId),
+        isPrimary: false,
+      },
+    ];
+    await db.collection('users').findOneAndUpdate(
+      { _id: userId },
+      {
+        $set: {
+          technologies: TECHS,
+        },
+      },
+    );
+    await db.createCollection('clientCourses');
   },
 
   async down(db) {
+    await db.collection('skillGroups').drop();
+    await db.collection('skills').drop();
     await db.collection('courses').drop();
-    // await db.collection('clientCourses').drop();
+    await db.collection('clientCourses').drop();
     await db.collection('users').drop();
     await db.collection('tests').drop();
+    await db.collection('userSkills').drop();
   },
 };

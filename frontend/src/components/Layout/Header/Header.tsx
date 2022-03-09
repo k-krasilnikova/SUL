@@ -1,15 +1,14 @@
 import React from 'react';
-import { Search as SearchIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import { Search as SearchIcon } from '@mui/icons-material';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { AccordionSummary, AccordionDetails, Typography, ClickAwayListener } from '@mui/material';
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
-import { Notification } from 'types/notification';
 import { Course } from 'types/course';
+import { Notification as NotificationType } from 'types/notification';
 import { UserAvatar } from 'components/Avatar';
-import NotificationsBar from 'components/NotificationsBar';
-import { alertIcon, filterIcon, logOutIcon, menuMobileIcon } from 'icons';
+import Notifications from 'components/NotificationsBar';
+import { logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
 import SearchResult from './SearchResult';
 
@@ -20,24 +19,13 @@ import {
   BrandLogo,
   HeaderContent,
   Search,
-  NotificationsButton,
-  FilterButton,
-  Filter,
-  FilterAccordion,
   UserBlock,
   UserName,
   LogOut,
-  RelativeWrapper,
   MobileMenuIcon,
 } from './styled';
 
 interface Props {
-  isNotificationsOpen: boolean;
-  isFilterOpen: boolean;
-  handleNotificationsOpen: () => void;
-  handleFilterOpen: () => void;
-  handleNotificationsClose: () => void;
-  handleFilterClose: () => void;
   handleConfirm: () => void;
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
@@ -47,7 +35,7 @@ interface Props {
   firstName?: string;
   lastName?: string;
   avatar?: string;
-  notifications?: Array<Notification>;
+  notifications?: NotificationType[];
   coursesFound?: Array<Course>;
 }
 
@@ -58,12 +46,6 @@ const Header: React.FC<HeaderProps> = ({
   lastName,
   avatar,
   notifications,
-  isNotificationsOpen,
-  isFilterOpen,
-  handleNotificationsOpen,
-  handleFilterOpen,
-  handleNotificationsClose,
-  handleFilterClose,
   handleConfirm,
   isMobileMenuOpen,
   toggleMobileMenu,
@@ -78,7 +60,6 @@ const Header: React.FC<HeaderProps> = ({
     </BrandLogoLink>
     <HeaderContent>
       <ClickAwayListener onClickAway={handleSearchClose}>
-        <RelativeWrapper>
           <Search
             className="search"
             disableUnderline
@@ -90,40 +71,13 @@ const Header: React.FC<HeaderProps> = ({
             }
             onChange={(event) => searchCourses(event.target.value)}
           />
-          {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
-        </RelativeWrapper>
+          {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />
       </ClickAwayListener>
-      <ClickAwayListener onClickAway={handleNotificationsClose}>
-        <RelativeWrapper>
-          <NotificationsButton onClick={handleNotificationsOpen}>
-            <img alt="notifications" src={alertIcon} />
-          </NotificationsButton>
-          {isNotificationsOpen && <NotificationsBar notifications={notifications} />}
-        </RelativeWrapper>
-      </ClickAwayListener>
-      <ClickAwayListener onClickAway={handleFilterClose}>
-        <RelativeWrapper>
-          <FilterButton onClick={handleFilterOpen}>
-            <img alt="filter" src={filterIcon} />
-          </FilterButton>
-          {isFilterOpen && (
-            <Filter>
-              <FilterAccordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography>Status</Typography>
-                </AccordionSummary>
-                <AccordionDetails>Statuses here</AccordionDetails>
-              </FilterAccordion>
-              <FilterAccordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography>Technology</Typography>
-                </AccordionSummary>
-                <AccordionDetails>Technologies here</AccordionDetails>
-              </FilterAccordion>
-            </Filter>
-          )}
-        </RelativeWrapper>
-      </ClickAwayListener>
+      <Notifications
+        notifications={notifications}
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
+      />
       <SpaceHolder />
       <UserBlock to={PATHS.profile}>
         <UserAvatar avatar={avatar} size="small" />

@@ -7,7 +7,7 @@ import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.up('xs')]: {
-    padding: '0px 8px 0 8px !important',
+    padding: '0px 8px !important',
   },
   '@media(max-width: 1110px)': {
     paddingTop: '40px',
@@ -29,46 +29,18 @@ export const PageContainer = styled(Grid)({
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
+  width: '711px',
   [theme.breakpoints.up('xs')]: {
     width: '100% !important',
     paddingTop: '8px !important',
+    paddingLeft: '0px !important',
   },
   [theme.breakpoints.up('xl')]: {
     maxWidth: '741px !important',
     width: '741px !important',
-    paddingLeft: '30px',
-    paddingTop: '24px',
+    paddingLeft: '30px !important',
+    paddingTop: '24px !important',
   },
-  [theme.breakpoints.down('xl')]: {
-    paddingLeft: '30px',
-    paddingTop: '24px',
-    width: '711px !important',
-  },
-  [theme.breakpoints.up('xs')]: {
-    width: '100%',
-    paddingTop: '8px !important',
-    paddingLeft: '0px',
-  },
-});
-
-export const CourseButton = styled(Button)({
-  [theme.breakpoints.up('xs')]: {
-    margin: '3px',
-    fontSize: '10px',
-    alignSelf: 'center',
-    height: '40px',
-    width: '120px',
-    lineHeight: '10px',
-  },
-  [theme.breakpoints.up('sm')]: {
-    width: '140px',
-    marginLeft: '5px',
-    height: '40px',
-    fontSize: '10px',
-    alignSelf: 'center',
-    lineHeight: '10px',
-  },
-  marginRight: '20px',
 });
 
 export const CourseActions = styled('div')({
@@ -143,7 +115,27 @@ export const MobileSearchWrapper = styled('div')({
   width: '100%',
   margin: '16px 0px 8px 0px',
   height: '30px',
-  '@media(min-width: 1110px)': {
+  [theme.breakpoints.up('md')]: {
     display: 'none',
+  },
+});
+
+export const CompletedButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '40px !important',
+  fontSize: '18px!important',
+  lineHeight: '22px',
+  padding: '12px 12px!important',
+  justifySelf: 'flex-start',
+  alignSelf: 'center',
+  display: 'flex',
+  [theme.breakpoints.down('lg')]: {
+    height: '44px',
+    width: '121px',
+    marginRight: '36px !important',
+    fontSize: '14px!important',
+    lineHeight: '19px',
+    padding: '10px 0px !important',
   },
 });

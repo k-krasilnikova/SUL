@@ -18,5 +18,5 @@ export interface User {
   courses?: Array<Course>;
   handleLogOut?: () => void;
   skills?: Array<Skill>;
-  notifications?: Array<Notification>;
+  notifications?: Notification[];
 }

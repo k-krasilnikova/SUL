@@ -1,1 +1,1 @@
-export { default } from './NotificationsBar';
+export { default } from './NotificationsBarContainer';

@@ -29,23 +29,22 @@ import {
 const SignIn = ({
   formik,
   warningHandler,
+  getFieldName,
+  outOfFocusFiled,
   isLoading,
   labelHandler,
-  getFieldName,
-  getCoordinates,
-  labelStatus,
+  fieldStatus,
 }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
     errors,
-    handleSubmit,
-    handleBlur,
     touched,
+    handleSubmit,
   } = formik;
-  const { loginLabel, passwordLabel, focusedColor } = labelHandler;
+  const { loginLabel, passwordLabel, focusedColor, basicColor } = labelHandler;
 
   return (
-    <SignMain onClick={getCoordinates}>
+    <SignMain>
       <SignMainGrid justifyContent="space-between" container spacing={{ xl: 2, lg: 2 }}>
         <SignPresGrid item xs={12} sm={12} md={6} lg={7} xl={6}>
           <ImageWrapper>
@@ -60,66 +59,39 @@ const SignIn = ({
             <FormBox>
               <ItemsBox component="form" onSubmit={handleSubmit}>
                 <GridWrapper container spacing={1}>
-                  {labelStatus === loginLabel || login ? (
-                    <GridSignInput
-                      onClick={getFieldName}
+                  <GridSignInput
+                    id="login"
+                    item
+                    xs={12}
+                    color={fieldStatus === loginLabel || login ? focusedColor : basicColor}
+                  >
+                    <TextField
+                      value={login}
+                      label="Login"
+                      error={errors}
                       id="login"
-                      item
-                      xs={12}
-                      color={focusedColor}
-                    >
-                      <TextField
-                        value={login}
-                        label="Login"
-                        warningHandler={warningHandler}
-                        handleBlur={handleBlur}
-                        error={errors}
-                        id="login"
-                      />
-                    </GridSignInput>
-                  ) : (
-                    <GridSignInput onClick={getFieldName} id="login" item xs={12}>
-                      <TextField
-                        value={login}
-                        label="Login"
-                        warningHandler={warningHandler}
-                        handleBlur={handleBlur}
-                        error={errors}
-                        id="login"
-                      />
-                    </GridSignInput>
-                  )}
-                  {labelStatus === passwordLabel || password ? (
-                    <GridSignInput
-                      onClick={getFieldName}
+                      warningHandler={warningHandler}
+                      outOfFocusFiled={outOfFocusFiled}
+                      getFieldName={getFieldName}
+                    />
+                  </GridSignInput>
+                  <GridSignInput
+                    id="password"
+                    item
+                    xs={12}
+                    color={fieldStatus === passwordLabel || password ? focusedColor : basicColor}
+                  >
+                    <TextField
+                      value={password}
+                      label="Password"
+                      error={errors}
                       id="password"
-                      item
-                      xs={12}
-                      color={focusedColor}
-                    >
-                      <TextField
-                        value={password}
-                        label="Password"
-                        warningHandler={warningHandler}
-                        handleBlur={handleBlur}
-                        error={errors}
-                        id="password"
-                        type="password"
-                      />
-                    </GridSignInput>
-                  ) : (
-                    <GridSignInput onClick={getFieldName} id="password" item xs={12}>
-                      <TextField
-                        value={password}
-                        label="Password"
-                        warningHandler={warningHandler}
-                        handleBlur={handleBlur}
-                        error={errors}
-                        id="password"
-                        type="password"
-                      />
-                    </GridSignInput>
-                  )}
+                      type="password"
+                      warningHandler={warningHandler}
+                      outOfFocusFiled={outOfFocusFiled}
+                      getFieldName={getFieldName}
+                    />
+                  </GridSignInput>
                   <GridError>
                     <ErrorsMessenger error={errors} touched={touched} />
                   </GridError>

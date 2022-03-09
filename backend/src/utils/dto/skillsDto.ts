@@ -1,9 +1,10 @@
-import { ISkill } from 'interfaces/Ientities/Iusers';
+import ISkill from 'interfaces/Ientities/ISkill';
+import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 
-const specifySkills = (userSkills: ISkill[], techArray: Array<string>) => {
-  const skillsNames = userSkills.map((skill) => skill.name);
-  const newSkills = techArray.filter((skill) => !skillsNames.includes(skill));
-  const oldSkills = techArray.filter((skill) => skillsNames.includes(skill));
+const specifySkills = (userSkills: IUserSkill[], techArray: ISkill[]) => {
+  const skillsIds = userSkills.map((userSkill) => userSkill.skill);
+  const newSkills = techArray.filter((tech) => (tech._id ? !skillsIds.includes(tech._id) : false));
+  const oldSkills = techArray.filter((tech) => (tech._id ? skillsIds.includes(tech._id) : false));
   return { newSkills, oldSkills };
 };
 
