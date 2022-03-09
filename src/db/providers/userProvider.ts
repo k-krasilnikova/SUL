@@ -6,7 +6,6 @@ import UserModel from 'db/models/User';
 import UserSkillModel from 'db/models/UserSkill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
-import { userInfo } from 'os';
 
 const getUserProvider = async (userId: string) => {
   const dbUser = await UserModel.findById(userId).lean();
