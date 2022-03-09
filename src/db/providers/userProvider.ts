@@ -6,6 +6,7 @@ import UserModel from 'db/models/User';
 import UserSkillModel from 'db/models/UserSkill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
+import { userInfo } from 'os';
 
 const getUserProvider = async (userId: string) => {
   const dbUser = await UserModel.findById(userId).lean();
@@ -41,6 +42,10 @@ const getFullUserInformationProvider = async (userId: string) => {
       },
     ])
     .lean();
+
+  if (!dbUserFullInfo) {
+    throw new NotFoundError('User not found.');
+  }
 
   return dbUserFullInfo;
 };
