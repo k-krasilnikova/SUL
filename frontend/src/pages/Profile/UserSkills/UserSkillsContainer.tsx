@@ -14,6 +14,7 @@ const UserSkillsContainer: React.FC<SkillsProps> = ({ technologies }) => {
 
   useEffect(() => {
     if (technologies) {
+      technologies.sort((techGroup) => (techGroup.isPrimary ? -1 : 1));
       setUserSkills(technologies);
     }
   }, [technologies]);
