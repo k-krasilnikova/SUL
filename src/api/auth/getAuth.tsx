@@ -7,12 +7,15 @@ import { AxiosError } from 'axios';
 import { apiClientWrapper } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { COOKIE_VALUES, ITokenResponse } from 'constants/authConstants';
-import { errorSnackbar } from 'constants/snackbarVariant';
+import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
 const useGetAuth = (): UseMutationResult => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
+  };
+  const handleSubmitSuccess = () => {
+    enqueueSnackbar(successSnackbarMessage.authorized, successSnackbar);
   };
   const navigateTo = useNavigate();
   return useMutation(
@@ -24,6 +27,7 @@ const useGetAuth = (): UseMutationResult => {
       const userId = JSON.stringify(tokenResponse._id);
       Cookies.set(COOKIE_VALUES.uniqAccessToken, accessToken, { secure: true });
       Cookies.set(COOKIE_VALUES.uniqUserId, userId, { secure: true });
+      handleSubmitSuccess();
       return tokenResponse;
     },
     {

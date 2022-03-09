@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
-import { errorSnackbar } from 'constants/snackbarVariant';
+import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
 const useStartClientCourse = (params: {
   courseId?: string | undefined;
@@ -15,6 +15,9 @@ const useStartClientCourse = (params: {
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
+  const handleSubmitSuccess = () => {
+    enqueueSnackbar(successSnackbarMessage.courseStarted, successSnackbar);
+  };
   const { courseId, enabled = true } = params;
   return useQuery(
     ['StartClientCourse', courseId],
@@ -22,6 +25,7 @@ const useStartClientCourse = (params: {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.getMyCourses}/${courseId}/start`);
       const courseResponse: Array<ClientCourse> = response.data;
+      handleSubmitSuccess();
       return courseResponse;
     },
     {
