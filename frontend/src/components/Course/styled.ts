@@ -30,6 +30,10 @@ export const CourseContainer = styled(Grid)<InfoContainerTypes>(({ type }) => ({
   },
   [theme.breakpoints.down('sm')]: {
     borderRadius: '4px',
+    ...(type === 'similarCourses' && {
+      maxWidth: '100%',
+      width: '100%',
+    }),
   },
 }));
 
@@ -49,6 +53,7 @@ export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type })
     minHeight: '194px',
     ...(type === 'similarCourses' && {
       minHeight: '207px',
+      maxHeight: '207px',
     }),
   },
   [theme.breakpoints.down('md')]: {
@@ -56,6 +61,10 @@ export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type })
     padding: '10px 15px 10px 10px',
     minHeight: '130px',
     height: 'content-fit',
+    ...(type === 'similarCourses' && {
+      minHeight: '130px',
+      maxHeight: '130px',
+    }),
   },
   [theme.breakpoints.down('sm')]: {
     display: 'flex',

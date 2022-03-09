@@ -137,6 +137,9 @@ export const SimilarCoursesWrapper = styled(Grid)({
   [theme.breakpoints.up('xs')]: {
     marginTop: '48px',
     marginBottom: '10px',
+    width: '100%',
+  },
+  [theme.breakpoints.up('sm')]: {
     width: '80%',
   },
   [theme.breakpoints.up('md')]: {
