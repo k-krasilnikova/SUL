@@ -1,21 +1,29 @@
 import { useQuery, UseQueryResult } from 'react-query';
 import { AxiosError } from 'axios';
+import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { REQUEST_ERRORS } from 'constants/authConstants';
 import { ClientCourse } from 'types/clientCourse';
+import { errorSnackbar } from 'constants/snackbarVariant';
 
-const useGetMyCourses = (): UseQueryResult<Array<ClientCourse>, AxiosError> =>
-  useQuery('myCourses', async () => {
-    const apiClient = apiClientWrapper();
-    try {
+const useGetMyCourses = (): UseQueryResult<Array<ClientCourse>, AxiosError> => {
+  const { enqueueSnackbar } = useSnackbar();
+  const handleSubmitError = (error: AxiosError) => {
+    enqueueSnackbar(error?.response?.data, errorSnackbar);
+  };
+  return useQuery(
+    'myCourses',
+    async () => {
+      const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.getMyCourses}`);
       const myCoursesResponse = response.data;
       return myCoursesResponse;
-    } catch (error) {
-      throw new Error(`${REQUEST_ERRORS.getError}`);
-    }
-  });
+    },
+    {
+      onError: handleSubmitError,
+    },
+  );
+};
 
 export default useGetMyCourses;
