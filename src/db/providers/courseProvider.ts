@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 
 import {
   DEFAULT_N_PER_PAGE,
@@ -20,9 +20,9 @@ interface ICourseWithStatusDb extends ICourse {
 
 const populateCourses = async (
   courses: ICourseStatus | ICourseStatus[],
-): Promise<ICourseStatus | ICourseStatus[]> => {
+): Promise<ICourseStatus> => {
   const populated = await CourseModel.populate(courses, [
-    { path: 'technology', model: 'Skill', select: 'name image maxScore -_id' },
+    { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
     { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
   ]);
 
@@ -105,11 +105,14 @@ const getCoursesProvider = async (
   }
 };
 
-const getCourseProvider = async (courseId: string, userId: string) => {
+const getCourseProvider = async (
+  courseId: string | ObjectId,
+  userId: string | ObjectId,
+): Promise<ICourseStatus> => {
   const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
     {
       $match: {
-        _id: new mongoose.Types.ObjectId(courseId),
+        _id: new mongoose.Types.ObjectId(courseId.toString()),
       },
     },
     {
@@ -126,7 +129,7 @@ const getCourseProvider = async (courseId: string, userId: string) => {
           {
             $match: {
               $expr: {
-                $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId)] }],
+                $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId.toString())] }],
               },
             },
           },
