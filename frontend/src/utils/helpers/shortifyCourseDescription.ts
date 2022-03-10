@@ -20,13 +20,13 @@ export const shortifyCourseDescription = (
     windowWidth === WINDOW_SIZE.lg.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
-    maxLength = 260;
+    maxLength = 190;
   }
   if (
     windowWidth === WINDOW_SIZE.md.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
-    maxLength = 190;
+    maxLength = 320;
   }
   if (
     windowWidth === WINDOW_SIZE.sm.name &&
