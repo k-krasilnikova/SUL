@@ -11,6 +11,7 @@ interface Props {
   isSearchOpen: boolean;
   searchCourses: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchClose: () => void;
+  checkSpace: (event: React.KeyboardEvent) => void;
   coursesFound?: Array<Course>;
 }
 
@@ -19,6 +20,7 @@ const SearchCourses: React.FC<Props> = ({
   searchCourses,
   handleSearchClose,
   coursesFound,
+  checkSpace,
 }) => (
   <ClickAwayListener onClickAway={handleSearchClose}>
     <RelativeWrapper>
@@ -33,6 +35,7 @@ const SearchCourses: React.FC<Props> = ({
           </InputAdornment>
         }
         onChange={searchCourses}
+        onKeyDown={checkSpace}
       />
       {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
     </RelativeWrapper>
