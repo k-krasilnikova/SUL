@@ -1,6 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
+import {
+  getStatusProvider,
+  updateApplyDate,
+  updateCourseStatus,
+} from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
@@ -22,6 +26,7 @@ const declinePendingCourse = async (
       throw new BadRequestError(`Can't decline course with status: ${status}`);
     }
     await updateCourseStatus(clientCourseId, CourseStatus.rejected);
+    await updateApplyDate(clientCourseId);
     results.updateStatus = 'Course was declined';
     next();
   } catch (error) {
