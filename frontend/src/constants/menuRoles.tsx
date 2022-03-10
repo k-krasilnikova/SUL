@@ -25,6 +25,11 @@ const EMPLOYEE_MENU: Array<MenuItemProps> = [
     icon: <Icon fontSize="large" component={myCoursesIcon} />,
   },
   {
+    path: PATHS.skillsMap,
+    title: 'Skills map',
+    icon: <Icon fontSize="large" component={skillsIcon} />,
+  },
+  {
     path: PATHS.help,
     title: 'Help',
     icon: <Icon fontSize="large" component={helpIcon} />,
