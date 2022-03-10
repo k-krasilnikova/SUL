@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Box } from '@mui/material';
 
 import { Course } from 'types/course';
 import { PATHS } from 'constants/routes';
@@ -27,14 +28,14 @@ const SearchResult: React.FC<CoursesFound> = ({ coursesFound }) => (
         <Link key={course._id} to={`${PATHS.coursesList}/${course._id}`}>
           <SearchResultItem divider={id < array.length + LAST_ARRAY_ITEM}>
             <Image avatar={course.avatar} />
-            <>
+            <Box>
               <CourseTitle>{course.title}</CourseTitle>
               <CourseInfo
                 lessons={course.lessons}
                 duration={course.duration}
                 type={INFO.searchCourses}
               />
-            </>
+            </Box>
           </SearchResultItem>
         </Link>
       ))

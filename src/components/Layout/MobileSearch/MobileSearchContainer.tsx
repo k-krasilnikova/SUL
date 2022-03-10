@@ -9,17 +9,24 @@ const MobileSearchContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
   const [coursesFound, setCoursesFound] = useState<Array<Course>>([]);
 
+  const getCoursesFound = async (search: string) => {
+    const searchResponse = await searchAllCourses(search);
+    setCoursesFound(searchResponse);
+  };
+
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchOpen(true);
     if (event.target.value.length) {
-      searchAllCourses(event.target.value).then((courses) => setCoursesFound(courses));
+      getCoursesFound(event.target.value);
     } else {
       setSearchOpen(false);
     }
   };
+
   const handleSearchClose = () => {
     setSearchOpen(false);
   };
+
   return (
     <MobileSearch
       isSearchOpen={isSearchOpen}

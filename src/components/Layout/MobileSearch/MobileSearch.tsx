@@ -26,6 +26,7 @@ const MobileSearch: React.FC<Props> = ({
         className="search"
         disableUnderline
         placeholder="Search"
+        inputProps={{ maxLength: 50 }}
         startAdornment={
           <InputAdornment position="start">
             <SearchIcon color="disabled" fontSize="medium" />
