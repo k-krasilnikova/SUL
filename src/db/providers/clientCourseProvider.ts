@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
-import { IClientCourse, IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
+import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 import CourseStatus from 'enums/coursesEnums';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
@@ -49,7 +49,7 @@ const updateCourseProgress = async (courseId: string, stage: string) => {
   return updatedProgress;
 };
 
-const getStatusProvider = async (courseId: string): Promise<IClientCourse> => {
+const getStatusProvider = async (courseId: string) => {
   const currStatus = await ClientCourseModel.findOne(
     { _id: courseId },
     { status: 1, _id: 0 },
@@ -97,6 +97,17 @@ const updateCourseStatus = async (courseId: string, courseStatus: string) => {
   throw new BadRequestError('Bad request. Check the data being sent');
 };
 
+const updateApplyDate = async (courseId: string) => {
+  const updatedCourse = await ClientCourseModel.findOneAndUpdate(
+    { _id: courseId },
+    { $set: { applyDate: Date.now() } },
+  );
+  if (updatedCourse) {
+    return updatedCourse;
+  }
+  throw new BadRequestError('Bad request. Check the data being sent');
+};
+
 export {
   getClientCoursesProvider,
   getClientCourseProvider,
@@ -105,4 +116,5 @@ export {
   applyCourseProvider,
   updateCourseProgress,
   getCurrentProgress,
+  updateApplyDate,
 };
