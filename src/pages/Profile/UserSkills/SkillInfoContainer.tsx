@@ -15,6 +15,7 @@ const CourseMaterialInfoContainer: React.FC<SkillProps> = ({ skillItem }) => {
   return (
     <SkillInfo
       technologyTitle={skillItem.skill.name}
+      imageUrl={skillItem.skill.image}
       stages={skillItem.skill.maxScore}
       stagesCompleted={skillItem.score}
       progress={progress}
