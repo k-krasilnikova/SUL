@@ -2,27 +2,10 @@ import React from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 
+import { PROGRESS_COLOR, TEXT_COLOR, VARIANTS } from 'constants/progressBar';
+import { ProgressProps } from 'types/progressBar';
+
 import { ProgressBarBox } from './styled';
-
-interface ProgressProps {
-  value?: number;
-  color?: string;
-  textColor?: string;
-  text?: string;
-  size?: string;
-  trailColor?: string;
-  variant?: string | boolean;
-}
-
-const PROGRESS_COLOR = '#1BC02C';
-const TEXT_COLOR = '#9C9C9C';
-
-const VARIANTS = {
-  completed: 'completed',
-  failed: 'failed',
-  mobileCourse: 'mobileCourse',
-  successful: 'successful',
-};
 
 const ProgressBar: React.FC<ProgressProps> = ({
   value,

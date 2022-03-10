@@ -16,7 +16,9 @@ import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
 import { COURSE_LABELS } from 'constants/statuses';
+import { COMPLETED_STATUS_TEXT, OPEN_FULL_TEXT, PERCENTAGE_VALUE } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
+import { VARIANTS } from 'constants/progressBar';
 
 import {
   BackButton,
@@ -39,8 +41,6 @@ import {
   BackLink,
   MobileSearchWrapper,
 } from './styled';
-
-const OPEN_FULL_TEXT = 'Look in full';
 
 const DetailedCourse: React.FC<IDetailedCourse> = ({
   courseData,
@@ -77,9 +77,9 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
         {isCourseApplicationSubmitted && !isCourseStatusPending && (
           <ProgressBar
             size="large"
-            text={isCourseCompleted ? 'Completed' : '0%'}
+            text={isCourseCompleted ? COMPLETED_STATUS_TEXT : PERCENTAGE_VALUE}
             textColor="#131313"
-            variant={isCourseCompleted && 'successful'}
+            variant={isCourseCompleted && VARIANTS.successful}
           />
         )}
         <DetailedCourseTitle>{courseData.title}</DetailedCourseTitle>

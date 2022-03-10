@@ -57,25 +57,29 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
 
   const courseInfo = courseData && 'course' in courseData ? courseData.course : courseData;
 
-  return courseInfo && courseData ? (
-    <DetailedCourse
-      courseData={courseInfo}
-      handleApplyCourse={handleApplyCourse}
-      isLoading={isLoading}
-      buttonId={BUTTON_ID}
-      targetId={targetId}
-      page={page}
-      id={courseData._id}
-      status={courseData.status}
-      windowWidth={windowWidth}
-      isFullTextOpen={isFullTextOpen}
-      toggleFullText={toggleFullText}
-      isCourseApplicationSubmitted={isCourseApplicationSubmitted}
-      isCourseStatusPending={isCourseStatusPending}
-      isCourseCompleted={isCourseCompleted}
-      isCourseLearningDisabled={isCourseLearningDisabled}
-    />
-  ) : null;
+  return (
+    <>
+      {courseInfo && courseData && (
+        <DetailedCourse
+          courseData={courseInfo}
+          handleApplyCourse={handleApplyCourse}
+          isLoading={isLoading}
+          buttonId={BUTTON_ID}
+          targetId={targetId}
+          page={page}
+          id={courseData._id}
+          status={courseData.status}
+          windowWidth={windowWidth}
+          isFullTextOpen={isFullTextOpen}
+          toggleFullText={toggleFullText}
+          isCourseApplicationSubmitted={isCourseApplicationSubmitted}
+          isCourseStatusPending={isCourseStatusPending}
+          isCourseCompleted={isCourseCompleted}
+          isCourseLearningDisabled={isCourseLearningDisabled}
+        />
+      )}
+    </>
+  );
 };
 
 export default DetailedCourseContainer;
