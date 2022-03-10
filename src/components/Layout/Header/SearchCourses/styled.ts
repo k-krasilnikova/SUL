@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ListItem } from '@mui/material';
+import { ListItem, Input, Typography } from '@mui/material';
 
 import { imageDefault } from 'icons';
 import theme from 'themeSettings';
@@ -8,6 +8,32 @@ import { HEADER_HEIGHT_IPAD } from 'components/Layout/Header/styled';
 interface CourseAvatar {
   avatar?: string;
 }
+
+export const Search = styled(Input)({
+  flexGrow: '0',
+  flexShrink: '1',
+  borderRadius: '3px',
+  backgroundColor: 'rgba(118, 118, 128, 0.12)',
+  color: '#3c3c43',
+  height: '40px',
+  width: '460px',
+  padding: '10px',
+  margin: '15px 20px 15px 0px',
+  fontSize: '18px',
+  [theme.breakpoints.up(1920)]: {
+    width: '600px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    width: '300px',
+  },
+  [theme.breakpoints.down(950)]: {
+    display: 'none!important',
+  },
+});
+
+export const RelativeWrapper = styled('div')({
+  position: 'relative',
+});
 
 export const SearchResultWrapper = styled('div')({
   position: 'absolute',
@@ -34,6 +60,7 @@ export const SearchResultWrapper = styled('div')({
     padding: '3px',
   },
 });
+
 export const SearchResultItem = styled(ListItem)({
   fontSize: '14px',
   color: '#131313',
@@ -41,6 +68,7 @@ export const SearchResultItem = styled(ListItem)({
   paddingLeft: '3px !important',
   paddingRight: '3px !important',
 });
+
 export const Image = styled('div')<CourseAvatar>(({ avatar }) => ({
   width: '82px',
   height: '51px',
@@ -58,12 +86,20 @@ export const Image = styled('div')<CourseAvatar>(({ avatar }) => ({
     height: '40px',
   },
 }));
+
 export const CourseTitle = styled('span')({
   fontSize: '20px',
   fontWeight: '700',
   lineHeight: '26px',
   letterSpacing: '-0.4px',
   marginLeft: '8px',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '16px',
+  },
+});
+
+export const NoSearchResults = styled(Typography)({
+  fontSize: '20px',
   [theme.breakpoints.down('sm')]: {
     fontSize: '16px',
   },
