@@ -16,12 +16,14 @@ const MobileSearchContainer: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const getCourses = async (search: string) => {
-        const searchResponse = await searchAllCourses(search);
-        if (searchResponse.data) {
-          setCoursesFound(searchResponse.data);
-          setSearchOpen(true);
-        } else {
-          enqueueSnackbar('Something went wrong');
+        if (searchInputValue.length > 0) {
+          const searchResponse = await searchAllCourses(search);
+          if (searchResponse.data) {
+            setCoursesFound(searchResponse.data);
+            setSearchOpen(true);
+          } else {
+            enqueueSnackbar('Something went wrong');
+          }
         }
       };
       getCourses(searchInputValue);
@@ -31,7 +33,8 @@ const MobileSearchContainer: React.FC = () => {
 
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (event.target.value.length) {
-      setSearchInputValue(event.target.value);
+      const formattedValue = event.target.value.split(/\s+/).join(' ').trimStart().trimEnd();
+      setSearchInputValue(formattedValue);
     } else {
       setSearchOpen(false);
     }
@@ -40,12 +43,21 @@ const MobileSearchContainer: React.FC = () => {
   const handleSearchClose = () => {
     setSearchOpen(false);
   };
+
+  const checkSpace = (event: React.KeyboardEvent) => {
+    const { key } = event;
+    const formattedKey = key.trim();
+    if (!formattedKey && searchInputValue.length === 0) {
+      event.preventDefault();
+    }
+  };
   return (
     <MobileSearch
       isSearchOpen={isSearchOpen}
       searchCourses={searchCourses}
       handleSearchClose={handleSearchClose}
       coursesFound={coursesFound}
+      checkSpace={checkSpace}
     />
   );
 };
