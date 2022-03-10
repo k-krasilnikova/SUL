@@ -3,9 +3,9 @@ import { Search as SearchIcon } from '@mui/icons-material';
 import { ClickAwayListener, InputAdornment } from '@mui/material';
 
 import { Course } from 'types/course';
-import { SearchResult } from 'components/Layout/Header/SearchCourses';
+import SearchResult from 'components/Layout/Header/SearchCourses/SearchResult';
 
-import { Search } from './styled';
+import { Search, RelativeWrapper } from './styled';
 
 interface Props {
   isSearchOpen: boolean;
@@ -14,14 +14,14 @@ interface Props {
   coursesFound?: Array<Course>;
 }
 
-const MobileSearch: React.FC<Props> = ({
+const SearchCourses: React.FC<Props> = ({
   isSearchOpen,
   searchCourses,
   handleSearchClose,
   coursesFound,
 }) => (
   <ClickAwayListener onClickAway={handleSearchClose}>
-    <>
+    <RelativeWrapper>
       <Search
         className="search"
         disableUnderline
@@ -35,8 +35,8 @@ const MobileSearch: React.FC<Props> = ({
         onChange={searchCourses}
       />
       {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
-    </>
+    </RelativeWrapper>
   </ClickAwayListener>
 );
 
-export default MobileSearch;
+export default SearchCourses;

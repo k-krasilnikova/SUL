@@ -112,7 +112,8 @@ export const MobileSearchWrapper = styled('div')({
   width: '100%',
   margin: '16px 0px 8px 0px',
   height: '30px',
-  [theme.breakpoints.up('md')]: {
+  position: 'relative',
+  [theme.breakpoints.up(950)]: {
     display: 'none',
   },
 });
