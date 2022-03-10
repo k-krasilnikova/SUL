@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { useSendTestResult, useGetCourseTest } from 'api/test';
-import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
+import { useGetClientCourseInfo } from 'api/myCourses';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';

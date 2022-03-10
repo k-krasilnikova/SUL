@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-import { useGetCourses } from 'api/courses';
-import useApplyCourse from 'api/courses/applyCourse';
+import { useGetCourses, useApplyCourse } from 'api/courses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 
