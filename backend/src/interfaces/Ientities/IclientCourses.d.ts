@@ -24,7 +24,8 @@ interface IClientCourse {
       isCompleted: boolean;
     },
   ];
-  applyDate: Date;
+  date: Date;
+  applyDate?: Date;
 }
 
 interface IClientCoursePopulated extends IClientCourse {

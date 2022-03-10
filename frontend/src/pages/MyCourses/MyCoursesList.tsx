@@ -20,7 +20,6 @@ import {
   GridItem,
   CourseActionsBox,
   DetailsButton,
-  StartCourseButton,
   MobileLink,
   ContinueTestButton,
   MobileSearchWrapper,
@@ -63,7 +62,7 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
             key={clientCourse._id}
             fallback={<Loader color="primary" type={LOADER.content} key={clientCourse._id} />}
           >
-            <GridItem item xl={6} lg={12} md={12} sm={12}>
+            <GridItem item xl={6} lg={6} md={12} sm={12}>
               <MobileLink to={`${PATHS.myCourses}/${clientCourse._id}`} onClick={disableLink}>
                 <CourseItem
                   key={clientCourse.course._id}
@@ -89,9 +88,9 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                           </ContinueTestButton>
                         </Link>
                       ) : clientCourse.status === COURSE_STATUSES.pending ? (
-                        <StartCourseButton disabled color="primary" variant="mediumContained">
+                        <ContinueTestButton disabled color="primary" variant="mediumContained">
                           Pending
-                        </StartCourseButton>
+                        </ContinueTestButton>
                       ) : [COURSE_STATUSES.completed, COURSE_STATUSES.successful].includes(
                           clientCourse.status,
                         ) ? (
@@ -100,9 +99,9 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                         </CompletedButton>
                       ) : (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
-                          <StartCourseButton color="primary" variant="mediumContained">
+                          <ContinueTestButton color="primary" variant="mediumContained">
                             {COURSE_LABELS[clientCourse.status]}
-                          </StartCourseButton>
+                          </ContinueTestButton>
                         </Link>
                       )}
                     </CourseActions>

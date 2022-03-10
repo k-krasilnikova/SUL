@@ -110,7 +110,7 @@ export const Search = styled(Input)({
     width: '600px',
   },
   [theme.breakpoints.down('lg')]: {
-    width: '300px',
+    width: '230px',
   },
   [theme.breakpoints.down('md')]: {
     display: 'none!important',

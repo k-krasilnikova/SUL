@@ -33,7 +33,7 @@ const globalTheme = createTheme({
       sm: 425,
       md: 770,
       lg: 1025,
-      xl: 1440,
+      xl: 1441,
     },
   },
 });
