@@ -16,6 +16,10 @@ export const successSnackbar: OptionsObject = {
   },
 };
 
+export const errorSnackbarMessage = {
+  requestFailed: 'Something went wrong',
+};
+
 export const successSnackbarMessage = {
   courseStarted: 'Course was successfully started.',
   applied: 'Course was successfully applied.',

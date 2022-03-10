@@ -3,6 +3,8 @@ import { useSnackbar } from 'notistack';
 
 import { searchAllCourses } from 'api/courses';
 import { Course } from 'types/course';
+import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
 
 import MobileSearch from './MobileSearch';
 
@@ -16,13 +18,13 @@ const MobileSearchContainer: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const getCourses = async (search: string) => {
-        if (searchInputValue.length > 0) {
+        if (searchInputValue.length) {
           const searchResponse = await searchAllCourses(search);
           if (searchResponse.data) {
             setCoursesFound(searchResponse.data);
             setSearchOpen(true);
           } else {
-            enqueueSnackbar('Something went wrong');
+            enqueueSnackbar(enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar));
           }
         }
       };
@@ -33,7 +35,7 @@ const MobileSearchContainer: React.FC = () => {
 
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (event.target.value.length) {
-      const formattedValue = event.target.value.split(/\s+/).join(' ').trimStart().trimEnd();
+      const formattedValue = formatInputValue(event.target.value);
       setSearchInputValue(formattedValue);
     } else {
       setSearchOpen(false);
@@ -45,12 +47,9 @@ const MobileSearchContainer: React.FC = () => {
   };
 
   const checkSpace = (event: React.KeyboardEvent) => {
-    const { key } = event;
-    const formattedKey = key.trim();
-    if (!formattedKey && searchInputValue.length === 0) {
-      event.preventDefault();
-    }
+    checkWhitespace(event, searchInputValue);
   };
+
   return (
     <MobileSearch
       isSearchOpen={isSearchOpen}
