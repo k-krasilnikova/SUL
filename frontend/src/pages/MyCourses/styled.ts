@@ -142,6 +142,7 @@ export const ContinueTestButton = styled(Button)({
     padding: '12px 0px!important',
   },
 });
+
 export const MobileSearchWrapper = styled('div')({
   width: '100%',
   margin: '16px 0px 8px 0px',
@@ -155,9 +156,9 @@ export const MobileSearchWrapper = styled('div')({
 export const CompletedButton = styled(Button)({
   height: '50px',
   width: '150px',
-  fontSize: '16px!important',
+  fontSize: '16px !important',
   lineHeight: '22px',
-  padding: '12px 12px!important',
+  padding: '12px !important',
   justifySelf: 'flex-start',
   alignSelf: 'center',
   display: 'flex',

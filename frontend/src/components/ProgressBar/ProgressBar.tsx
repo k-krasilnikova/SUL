@@ -11,7 +11,7 @@ interface ProgressProps {
   text?: string;
   size?: string;
   trailColor?: string;
-  variant?: string;
+  variant?: string | boolean;
 }
 
 const PROGRESS_COLOR = '#1BC02C';
@@ -21,6 +21,7 @@ const VARIANTS = {
   completed: 'completed',
   failed: 'failed',
   mobileCourse: 'mobileCourse',
+  successful: 'successful',
 };
 
 const ProgressBar: React.FC<ProgressProps> = ({
@@ -59,6 +60,11 @@ const ProgressBar: React.FC<ProgressProps> = ({
           pathColor: '#1cc02c',
           trailColor: '#eaeaea',
           textSize: '24px',
+        }),
+        ...(variant === VARIANTS.successful && {
+          textColor: '#000000',
+          textSize: '12px',
+          trailColor: '#36c54480',
         }),
       })}
     />
