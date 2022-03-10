@@ -24,7 +24,7 @@ const MobileSearchContainer: React.FC = () => {
             setCoursesFound(searchResponse.data);
             setSearchOpen(true);
           } else {
-            enqueueSnackbar(enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar));
+            enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar);
           }
         }
       };
