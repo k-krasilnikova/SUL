@@ -26,7 +26,15 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const [targetId, setTargetId] = useState<string | undefined>();
   const [isFullTextOpen, setFullTextOpen] = useState(false);
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
-  const isCourseStatusPending = courseData ? courseData.status === COURSE_STATUSES.pending : false;
+  const isCourseLearningDisabled = courseData
+    ? [
+        COURSE_STATUSES.pending,
+        COURSE_STATUSES.rejected,
+        COURSE_STATUSES.successful,
+        COURSE_STATUSES.completed,
+      ].includes(courseData.status)
+    : false;
+  const isCourseStatusPending = courseData?.status === COURSE_STATUSES.pending;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
@@ -60,6 +68,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
       toggleFullText={toggleFullText}
       isCourseApplicationSubmitted={isCourseApplicationSubmitted}
       isCourseStatusPending={isCourseStatusPending}
+      isCourseLearningDisabled={isCourseLearningDisabled}
     />
   ) : null;
 };

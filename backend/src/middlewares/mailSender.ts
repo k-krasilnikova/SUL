@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { getStatusProvider } from 'db/providers/clientCourseProvider';
+import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { getUserProvider } from 'db/providers/userProvider';
 import Mail from 'classes/Mail/Mail';
 import { getCourseProvider } from 'db/providers/courseProvider';
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 
 const sendMail = async (
   req: Request,
@@ -20,7 +21,14 @@ const sendMail = async (
     if (!clientCourseId) {
       throw new BadRequestError('Invalid query.');
     }
-    const { status, user: userId, course: courseId } = await getStatusProvider(clientCourseId);
+    const {
+      status,
+      user: userId,
+      course: { _id: courseId },
+    } = await getClientCourseProvider(clientCourseId);
+    if (!courseId) {
+      throw new NotFoundError('Course not found');
+    }
     const { email } = await getUserProvider(userId);
     const { title } = await getCourseProvider(courseId, userId);
     if (![CourseStatus.approved, CourseStatus.rejected].includes(status)) {

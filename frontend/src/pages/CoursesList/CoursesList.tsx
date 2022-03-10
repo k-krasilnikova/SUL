@@ -13,7 +13,6 @@ import { buttonSpinner } from 'animations';
 import { LOADER } from 'constants/loaderTypes';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
-import { COURSE_STATUSES } from 'constants/statuses';
 
 import {
   PageContainer,
@@ -24,7 +23,6 @@ import {
   StartCourseButton,
   MobileLink,
   MobileSearchWrapper,
-  CompletedButton,
 } from './styled';
 
 interface Props {
@@ -46,7 +44,7 @@ const CoursesList: React.FC<CoursesProps> = ({
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
-    ) : courses ? (
+    ) : courses?.length ? (
       <PageContainer container>
         <MobileSearchWrapper>
           <MobileSearch />
@@ -56,7 +54,7 @@ const CoursesList: React.FC<CoursesProps> = ({
             key={`${course._id}_item`}
             fallback={<Loader color="primary" type={LOADER.content} />}
           >
-            <GridItem key={course._id} item xl={6} lg={12} md={12} sm={12}>
+            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
               <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
                 <CourseItem
                   title={course?.title}
@@ -74,11 +72,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                           Details
                         </DetailsButton>
                       </Link>
-                      {course.status === COURSE_STATUSES.completed ? (
-                        <CompletedButton variant="completed" disabled>
-                          Completed
-                        </CompletedButton>
-                      ) : targetLoading && targetId === course._id ? (
+                      {targetLoading && targetId === course._id ? (
                         <StartCourseButton variant="mediumOutlined" disabled>
                           <ButtonLoader buttonSpinner={buttonSpinner} />
                         </StartCourseButton>
@@ -88,7 +82,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                           onClick={handleApplyCourse}
                           variant="mediumContained"
                         >
-                          Start the course
+                          Apply the course
                         </StartCourseButton>
                       )}
                     </CourseActions>

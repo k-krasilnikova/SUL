@@ -29,17 +29,13 @@ export const PageContainer = styled(Grid)({
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
-  width: '711px',
-  [theme.breakpoints.up('xs')]: {
-    width: '100% !important',
-    paddingTop: '8px !important',
-    paddingLeft: '0px !important',
-  },
-  [theme.breakpoints.up('xl')]: {
-    maxWidth: '741px !important',
-    width: '741px !important',
-    paddingLeft: '30px !important',
-    paddingTop: '24px !important',
+  width: '711px !important',
+  paddingLeft: '30px',
+  paddingTop: '24px',
+  [theme.breakpoints.down('md')]: {
+    width: '100%',
+    paddingLeft: '0px',
+    paddingTop: '8px',
   },
 });
 
@@ -49,6 +45,7 @@ export const CourseActions = styled('div')({
     justifyContent: 'space-between',
     margin: '0px',
     minWidth: '250px',
+    flexWrap: 'nowrap',
   },
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
@@ -131,7 +128,7 @@ export const CompletedButton = styled(Button)({
   justifySelf: 'flex-start',
   alignSelf: 'center',
   display: 'flex',
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '121px',
     marginRight: '36px !important',

@@ -13,3 +13,4 @@ export const NotFound = React.lazy(() => import('./NotFound'));
 export const DetailedCourse = React.lazy(() => import('./DetailedCourse'));
 export const PassingTest = React.lazy(() => import('./PassingTest'));
 export const TestResult = React.lazy(() => import('./PassingTest/TestResult'));
+export const SkillsMap = React.lazy(() => import('./SkillsMap'));
