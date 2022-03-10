@@ -313,7 +313,7 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   ...(type === 'similarCourses' && {
     display: 'block',
   }),
-  paddingLeft: '30px !important',
+  paddingLeft: '15px !important',
   paddingBottom: '0px !important',
   height: '50px !important',
 }));

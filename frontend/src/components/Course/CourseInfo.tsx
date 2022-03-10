@@ -14,7 +14,7 @@ interface Props {
 const CourseInfo: React.FC<Props> = ({ duration, lessons, type }) => (
   <InfoContainer type={type}>
     <InfoItem>
-      <AccessTimeIcon fontSize="medium" />
+      <AccessTimeIcon fontSize="small" />
       <InfoItemTextBox>
         <InfoItemText>{duration}</InfoItemText>
       </InfoItemTextBox>
