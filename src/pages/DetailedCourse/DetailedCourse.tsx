@@ -32,7 +32,6 @@ import {
   SimilarCoursesTitle,
   SimilarCoursesWrapper,
   StartButton,
-  StartCourseButton,
   DetailedCourseTextMobile,
   ButtonFullText,
   BackArrow,
@@ -52,6 +51,7 @@ interface IProps {
   isFullTextOpen: boolean;
   toggleFullText: () => void;
   isCourseStatusPending: boolean;
+  isCourseLearningDisabled: boolean;
   isLoading?: boolean;
   targetId?: string | undefined;
   isCourseApplicationSubmitted?: boolean;
@@ -72,6 +72,7 @@ const DetailedCourse: React.FC<IProps> = ({
   toggleFullText,
   isCourseApplicationSubmitted,
   isCourseStatusPending,
+  isCourseLearningDisabled,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -86,7 +87,7 @@ const DetailedCourse: React.FC<IProps> = ({
       </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper>
-          <Image />
+          <Image imageUrl={courseData.avatar} />
         </ImageWrapper>
         {isCourseApplicationSubmitted && !isCourseStatusPending && (
           <ProgressBar size="large" text="0%" textColor="#131313" />
@@ -122,7 +123,7 @@ const DetailedCourse: React.FC<IProps> = ({
                   <StartButton
                     color="primary"
                     variant="mediumContained"
-                    disabled={isCourseStatusPending}
+                    disabled={isCourseLearningDisabled}
                   >
                     Start the course
                   </StartButton>
@@ -134,9 +135,8 @@ const DetailedCourse: React.FC<IProps> = ({
                   color="primary"
                   variant="mediumContained"
                   onClick={(event) => handleApplyCourse(event)}
-                  disabled={isCourseStatusPending}
                 >
-                  Start the course
+                  Apply the course
                 </StartButton>
               )}
             </div>
@@ -154,27 +154,13 @@ const DetailedCourse: React.FC<IProps> = ({
                 windowWidth={windowWidth}
                 type={INFO.similarCourses}
                 pageName={PAGES.detailed}
+                imageUrl={courseData.avatar}
               >
                 <CourseActionsBox>
                   <CourseActions>
                     <DetailsButton color="primary" variant="mediumOutlined">
                       Details
                     </DetailsButton>
-                    {isLoading && targetId === buttonId.course ? (
-                      <StartCourseButton variant="mediumOutlined" disabled>
-                        <ButtonLoader buttonSpinner={buttonSpinner} />
-                      </StartCourseButton>
-                    ) : (
-                      <StartCourseButton
-                        id={buttonId.course}
-                        onClick={(event) => {
-                          handleApplyCourse(event);
-                        }}
-                        variant="mediumContained"
-                      >
-                        Start the course
-                      </StartCourseButton>
-                    )}
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>

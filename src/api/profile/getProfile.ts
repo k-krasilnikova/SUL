@@ -1,33 +1,35 @@
 import { useQuery, UseQueryResult } from 'react-query';
 import { AxiosError } from 'axios';
+import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper } from 'api/base';
 import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
-import { REQUEST_ERRORS } from 'constants/authConstants';
 import { User } from 'types/user';
 import { ResponseError } from 'types/serverError';
+import { errorSnackbar } from 'constants/snackbarVariant';
 
 type ProfileResponse = User & ResponseError;
 
-const useGetProfile = (): UseQueryResult<ProfileResponse, AxiosError> =>
-  useQuery(
+const useGetProfile = (): UseQueryResult<ProfileResponse, AxiosError> => {
+  const { enqueueSnackbar } = useSnackbar();
+  const handleSubmitError = (error: AxiosError) => {
+    enqueueSnackbar(error?.response?.data, errorSnackbar);
+  };
+  return useQuery(
     'profile',
     async () => {
-      let profileResponse: ProfileResponse;
       const apiClient = apiClientWrapper();
       const userId = getUserIdCookie();
-      try {
-        const response = await apiClient.get(`${API.getProfile}/${userId}`);
-        profileResponse = response.data;
-        return profileResponse;
-      } catch (error) {
-        throw new Error(`${REQUEST_ERRORS.getError}`);
-      }
+      const response = await apiClient.get(`${API.getProfile}/${userId}`);
+      const profileResponse: ProfileResponse = response.data;
+      return profileResponse;
     },
     {
       staleTime: 600000,
+      onError: handleSubmitError,
     },
   );
+};
 
 export default useGetProfile;

@@ -17,3 +17,7 @@ export interface Course {
   status: string;
   avatar?: string;
 }
+
+export interface ICourses {
+  сoursesResponse: Course[];
+}

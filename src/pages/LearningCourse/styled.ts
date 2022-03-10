@@ -24,7 +24,6 @@ export const BackButton = styled(Button)({
 });
 
 export const LearningWrapper = styled('div')({
-  width: '1218px',
   color: '#131313',
   textAlign: 'right',
   padding: '0px 85px',
@@ -56,7 +55,7 @@ export const Step = styled('p')({
 
 export const MaterialWrapper = styled(Box)({
   width: '100%',
-  height: '615px',
+  minHeight: '200px',
   marginBottom: '40px',
   background: 'rgba(30, 30, 30, 0.12)',
   borderRadius: '5px',

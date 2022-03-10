@@ -6,10 +6,6 @@ interface NotificationStyleType {
   isOld?: boolean;
 }
 
-interface UnreadStyleType {
-  isContainsUnread?: boolean;
-}
-
 export const HEADER_HEIGHT = '80px';
 export const HEADER_HEIGHT_IPAD = '60px';
 export const HEADER_HEIGHT_MOBILE = '44px';
@@ -34,7 +30,7 @@ export const Notifications = styled('div')({
   },
 });
 
-export const NotificationsButton = styled('div')<UnreadStyleType>(({ isContainsUnread }) => ({
+export const NotificationsButton = styled('div')({
   position: 'relative',
   flexGrow: '0',
   flexShrink: '0',
@@ -49,14 +45,11 @@ export const NotificationsButton = styled('div')<UnreadStyleType>(({ isContainsU
   '&:hover': {
     cursor: 'pointer',
   },
-  ...(isContainsUnread && {
-    color: '#727272',
-  }),
   [theme.breakpoints.down('md')]: {
     width: '35px',
     height: '35px',
   },
-}));
+});
 
 export const TextWrapper = styled('h2')({
   color: '#727272',
@@ -92,4 +85,14 @@ export const Title = styled('h2')({
 export const Description = styled('p')({
   fontSize: '14px',
   margin: '5px 0',
+});
+
+export const RedMark = styled('div')({
+  width: '10px',
+  height: '10px',
+  borderRadius: '50%',
+  backgroundColor: '#D43E41',
+  position: 'relative',
+  top: '-18px',
+  right: '30px',
 });

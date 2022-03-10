@@ -9,7 +9,7 @@ import { PATHS } from 'constants/routes';
 import { ResponseDataMyCourses } from 'types/responseDataMyCourses';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
-import { COURSE_STATUSES } from 'constants/statuses';
+import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { PAGES } from 'constants/pages';
 import { MobileSearch } from 'components/Layout/MobileSearch';
@@ -20,7 +20,6 @@ import {
   GridItem,
   CourseActionsBox,
   DetailsButton,
-  StartCourseButton,
   MobileLink,
   ContinueTestButton,
   MobileSearchWrapper,
@@ -53,13 +52,8 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
             key={clientCourse._id}
             fallback={<Loader color="primary" type={LOADER.content} key={clientCourse._id} />}
           >
-            <GridItem item xl={6} lg={12} md={12} sm={12}>
-              <MobileLink
-                to={`${PATHS.myCourses}/${clientCourse._id}`}
-                onClick={(event) => {
-                  disableLink(event);
-                }}
-              >
+            <GridItem item xl={6} lg={6} md={12} sm={12}>
+              <MobileLink to={`${PATHS.myCourses}/${clientCourse._id}`} onClick={disableLink}>
                 <CourseItem
                   key={clientCourse.course._id}
                   title={clientCourse.course.title}
@@ -84,18 +78,20 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                           </ContinueTestButton>
                         </Link>
                       ) : clientCourse.status === COURSE_STATUSES.pending ? (
-                        <StartCourseButton disabled color="primary" variant="mediumContained">
+                        <ContinueTestButton disabled color="primary" variant="mediumContained">
                           Pending
-                        </StartCourseButton>
-                      ) : clientCourse.status === COURSE_STATUSES.completed ? (
+                        </ContinueTestButton>
+                      ) : [COURSE_STATUSES.completed, COURSE_STATUSES.successful].includes(
+                          clientCourse.status,
+                        ) ? (
                         <CompletedButton variant="completed" disabled>
                           Completed
                         </CompletedButton>
                       ) : (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
-                          <StartCourseButton color="primary" variant="mediumContained">
-                            Start the course
-                          </StartCourseButton>
+                          <ContinueTestButton color="primary" variant="mediumContained">
+                            {COURSE_LABELS[clientCourse.status]}
+                          </ContinueTestButton>
                         </Link>
                       )}
                     </CourseActions>
