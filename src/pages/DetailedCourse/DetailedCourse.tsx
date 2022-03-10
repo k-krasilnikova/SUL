@@ -16,7 +16,12 @@ import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
 import { COURSE_LABELS } from 'constants/statuses';
-import { COMPLETED_STATUS_TEXT, OPEN_FULL_TEXT, PERCENTAGE_VALUE } from 'constants/detailedCourse';
+import {
+  COMPLETED_STATUS_TEXT,
+  OPEN_FULL_TEXT,
+  PERCENTAGE_VALUE,
+  PROGRESS_COLOR,
+} from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
 
@@ -78,7 +83,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
           <ProgressBar
             size="large"
             text={isCourseCompleted ? COMPLETED_STATUS_TEXT : PERCENTAGE_VALUE}
-            textColor="#131313"
+            textColor={PROGRESS_COLOR}
             variant={isCourseCompleted && VARIANTS.successful}
           />
         )}
