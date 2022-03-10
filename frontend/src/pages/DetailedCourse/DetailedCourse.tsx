@@ -12,9 +12,10 @@ import { PATHS } from 'constants/routes';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { backIconMobile } from 'icons';
-import MobileSearch from 'components/Layout/MobileSearch';
+import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { Course } from 'types/course';
+import { INFO } from 'constants/coutseInfoTypes';
 
 import {
   BackButton,
@@ -49,9 +50,6 @@ interface IProps {
   windowWidth: string;
   isFullTextOpen: boolean;
   toggleFullText: () => void;
-  isFilterOpen: boolean;
-  handleFilterOpen: () => void;
-  handleFilterClose: () => void;
   isCourseStatusPending: boolean;
   isCourseLearningDisabled: boolean;
   isLoading?: boolean;
@@ -72,9 +70,6 @@ const DetailedCourse: React.FC<IProps> = ({
   windowWidth,
   isFullTextOpen,
   toggleFullText,
-  isFilterOpen,
-  handleFilterOpen,
-  handleFilterClose,
   isCourseApplicationSubmitted,
   isCourseStatusPending,
   isCourseLearningDisabled,
@@ -88,11 +83,7 @@ const DetailedCourse: React.FC<IProps> = ({
         <BackArrow alt="" src={backIconMobile} />
       </BackLink>
       <MobileSearchWrapper>
-        <MobileSearch
-          isFilterOpen={isFilterOpen}
-          handleFilterOpen={handleFilterOpen}
-          handleFilterClose={handleFilterClose}
-        />
+        <MobileSearch />
       </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper>
@@ -118,7 +109,7 @@ const DetailedCourse: React.FC<IProps> = ({
             <CourseInfo
               duration={courseData.duration}
               lessons={courseData.lessons}
-              type="detailedCourse"
+              type={INFO.detailedCourse}
             />
           </CourseInfoBox>
           {isLoading && targetId === buttonId.start ? (
@@ -161,7 +152,7 @@ const DetailedCourse: React.FC<IProps> = ({
                 duration={courseData.duration}
                 lessons={courseData.lessons}
                 windowWidth={windowWidth}
-                type="similarCourses"
+                type={INFO.similarCourses}
                 pageName={PAGES.detailed}
                 imageUrl={courseData.avatar}
               >

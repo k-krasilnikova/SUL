@@ -25,14 +25,6 @@ const CoursesContainer: React.FC = () => {
     mutate((event.target as HTMLElement).id);
   };
 
-  const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
-  const handleFilterOpen = () => {
-    setFilterOpen(!isFilterOpen);
-  };
-  const handleFilterClose = () => {
-    setFilterOpen(false);
-  };
-
   const windowWidth = getWindowWidth();
   const formattedCoursesList = courses?.filter((course) => !course.status);
 
@@ -44,9 +36,6 @@ const CoursesContainer: React.FC = () => {
       targetId={targetId}
       targetLoading={isLoading}
       disableLink={disableLink}
-      isFilterOpen={isFilterOpen}
-      handleFilterOpen={handleFilterOpen}
-      handleFilterClose={handleFilterClose}
       windowWidth={windowWidth}
     />
   );

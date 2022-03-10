@@ -341,11 +341,12 @@ export const MobileSearchWrapper = styled('div')({
   margin: '16px 0px 8px 0px',
   height: '30px',
   display: 'inline-block',
+  position: 'relative',
   [theme.breakpoints.up('md')]: {
     margin: '0px 0px 0px 6px',
     width: 'calc(100% - 80px)',
   },
-  '@media(min-width: 1110px)': {
+  [theme.breakpoints.up(950)]: {
     display: 'none',
   },
 });
