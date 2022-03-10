@@ -87,20 +87,21 @@ export const Image = styled('div')<CourseAvatar>(({ avatar }) => ({
   },
 }));
 
-export const CourseTitle = styled('span')({
-  fontSize: '20px',
-  fontWeight: '700',
+export const CourseTitle = styled(Typography)({
+  fontSize: '20px !important',
+  fontWeight: '700 !important',
   lineHeight: '26px',
   letterSpacing: '-0.4px',
   marginLeft: '8px',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '16px',
+    fontSize: '16px !important',
   },
 });
 
 export const NoSearchResults = styled(Typography)({
-  fontSize: '20px',
+  fontSize: '20px !important',
+  textAlign: 'center',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '16px',
+    fontSize: '16px !important',
   },
 });
