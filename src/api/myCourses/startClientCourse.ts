@@ -1,4 +1,4 @@
-import { useQuery, UseQueryResult } from 'react-query';
+import { useMutation, UseMutationResult } from 'react-query';
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
@@ -7,10 +7,9 @@ import { API } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
-const useStartClientCourse = (params: {
-  courseId?: string | undefined;
-  enabled?: boolean;
-}): UseQueryResult<ClientCourse, AxiosError> => {
+const useStartClientCourse = (
+  courseId?: string | undefined,
+): UseMutationResult<ClientCourse, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -18,18 +17,14 @@ const useStartClientCourse = (params: {
   const handleSubmitSuccess = () => {
     enqueueSnackbar(successSnackbarMessage.courseStarted, successSnackbar);
   };
-  const { courseId, enabled = true } = params;
-  return useQuery(
-    ['StartClientCourse', courseId],
+  return useMutation(
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.getMyCourses}/${courseId}/start`);
-      const courseResponse: Array<ClientCourse> = response.data;
       handleSubmitSuccess();
-      return courseResponse;
+      return response.data;
     },
     {
-      enabled,
       onError: handleSubmitError,
     },
   );
