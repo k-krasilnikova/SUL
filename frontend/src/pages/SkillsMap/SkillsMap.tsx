@@ -19,8 +19,7 @@ const RANKS = [
       },
       {
         title: 'React start to work',
-        avatar:
-          'https://cdn-icons.flaticon.com/png/512/1183/premium/1183672.png?token=exp=1646911212~hmac=188136175f07e1fcd2af1a1fb47e0c48',
+        avatar: 'https://cdn-icons-png.flaticon.com/512/1126/1126012.png',
       },
     ],
   },
@@ -29,13 +28,11 @@ const RANKS = [
     courses: [
       {
         title: 'Deployment on AWS',
-        avatar:
-          'https://cdn-icons.flaticon.com/png/512/2821/premium/2821821.png?token=exp=1646911273~hmac=b9fb582787e78bc506a6396cf354185a',
+        avatar: 'https://cdn-icons-png.flaticon.com/512/1508/1508841.png',
       },
       {
         title: 'Payment integrations',
-        avatar:
-          'https://cdn-icons.flaticon.com/png/512/1052/premium/1052814.png?token=exp=1646911302~hmac=4fbb15c43cd56b59a7d3eaf34b49bb22',
+        avatar: 'https://cdn-icons-png.flaticon.com/512/1086/1086741.png',
       },
     ],
     selected: true,
@@ -45,8 +42,7 @@ const RANKS = [
     courses: [
       {
         title: 'Nest JS',
-        avatar:
-          'https://cdn-icons.flaticon.com/png/512/4494/premium/4494814.png?token=exp=1646911326~hmac=5ad6b8947ada5d502048d4c986228a17',
+        avatar: 'https://cdn-icons-png.flaticon.com/512/1126/1126012.png',
       },
       {
         title: 'Next JS',
@@ -54,8 +50,7 @@ const RANKS = [
       },
       {
         title: 'Course for mentors',
-        avatar:
-          'https://cdn-icons.flaticon.com/png/512/3343/premium/3343974.png?token=exp=1646911362~hmac=1df9e3b6b198623c31307fbff9b47471',
+        avatar: 'https://cdn-icons-png.flaticon.com/512/767/767388.png',
       },
     ],
   },
