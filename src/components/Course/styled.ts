@@ -307,19 +307,19 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
       display: 'none',
     }),
   },
-  display: 'flex',
-  flexDirection: 'row',
-  ...(type !== 'detailedCourse' && {
+  ...(type === INFO.similarCourses && {
+    display: 'block',
+  }),
+  ...(type === INFO.searchCourses && {
+    height: 'auto !important',
+  }),
+  ...(type !== INFO.detailedCourse && {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   }),
-  ...(type === INFO.similarCourses && {
-    display: 'block',
-  }),
-    ...(type === INFO.searchCourses && {
-    height: 'auto !important',
-  }),
+  display: 'flex',
+  flexDirection: 'row',
   paddingLeft: '15px !important',
   paddingBottom: '0px !important',
   height: '50px !important',
