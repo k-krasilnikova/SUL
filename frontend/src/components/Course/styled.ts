@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Typography, Box, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
+import { INFO } from 'constants/coutseInfoTypes';
 
 interface InfoContainerTypes {
   color?: string;
@@ -50,8 +51,8 @@ export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type })
   },
   [theme.breakpoints.up('md')]: {
     padding: '16px 26px 16px 16px',
-    minHeight: '250px',
-    ...(type === 'similarCourses' && {
+    minHeight: '194px',
+    ...(type === INFO.similarCourses && {
       padding: '16px 32px 26px 16px',
       minHeight: '207px',
     }),
@@ -76,7 +77,7 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
   justifyContent: 'space-between',
   padding: '10px 0',
   [theme.breakpoints.down('lg')]: {
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       justifyContent: 'end',
     }),
   },
@@ -132,7 +133,7 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     textAlign: 'left',
     padding: '0px',
     margin: '0px 14px 8px 0px',
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       fontSize: '18px',
       fontWeight: '700',
     }),
@@ -142,14 +143,14 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     fontWeight: '700',
     lineHeight: '22px',
     margin: '9px 38px 16px 0px',
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       margin: '5px 38px 9px 0px',
     }),
   },
   [theme.breakpoints.up('md')]: {
     fontSize: '24px',
     lineHeight: '31px',
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       margin: '0px 0px 9px 0px',
     }),
   },
@@ -175,14 +176,14 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
       textAlign: 'left',
       padding: '0px',
       margin: '0px 35px 9px 7px',
-      ...(type === 'similarCourses' && {
+      ...(type === INFO.similarCourses && {
         margin: '0px 0px 9px 0px',
       }),
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '18px',
       lineHeight: '27px',
-      ...(type === 'similarCourses' && {
+      ...(type === INFO.similarCourses && {
         margin: '0px 0px 9px 0px',
         lineHeight: '21px',
         fontSize: '16px',
@@ -220,8 +221,11 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   alignSelf: 'end !important',
   paddingBottom: '0px !important',
   [theme.breakpoints.down('xl')]: {
-    ...(type !== 'detailedCourse' && {
+    ...(type !== INFO.detailedCourse && {
       flexDirection: 'column',
+    }),
+    ...(type === INFO.searchCourses && {
+      height: 'auto !important',
     }),
     marginLeft: '10px',
   },
@@ -233,7 +237,7 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     margin: '0px',
     padding: '0px',
     flexDirection: 'row',
-    ...(type === 'detailedCourse' && {
+    ...(type === INFO.detailedCourse && {
       marginLeft: '8px',
     }),
   },
@@ -285,7 +289,7 @@ export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type 
     display: 'none',
   },
   [theme.breakpoints.up('sm')]: {
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       margin: '0px 17px 9px 0px',
     }),
   },
@@ -299,7 +303,7 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
     paddingLeft: '12px !important',
   },
   [theme.breakpoints.down('xl')]: {
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       display: 'none',
     }),
   },
@@ -310,8 +314,11 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
     justifyContent: 'center',
     alignItems: 'center',
   }),
-  ...(type === 'similarCourses' && {
+  ...(type === INFO.similarCourses && {
     display: 'block',
+  }),
+    ...(type === INFO.searchCourses && {
+    height: 'auto !important',
   }),
   paddingLeft: '15px !important',
   paddingBottom: '0px !important',
