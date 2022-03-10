@@ -11,6 +11,7 @@ const DEFAULT_EMAIL = 'default@mail.com';
 const DEFAULT_TXT = 'default';
 const DEFAULT_NO_SECRET = 'undefined';
 const PASS_THRESHOLD = 0.7;
+const DESTRUCTION_TIMEOUT = '1h';
 
 const USER_ROLES = {
   ADMIN: 'admin',
@@ -67,4 +68,5 @@ export {
   STATUS_CODES,
   PASS_THRESHOLD,
   TWO_DIGITS,
+  DESTRUCTION_TIMEOUT,
 };
