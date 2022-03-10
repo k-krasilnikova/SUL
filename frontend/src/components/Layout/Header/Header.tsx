@@ -1,17 +1,13 @@
 import React from 'react';
-import { Search as SearchIcon } from '@mui/icons-material';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import { ClickAwayListener } from '@mui/material';
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
-import { Course } from 'types/course';
 import { Notification as NotificationType } from 'types/notification';
 import { UserAvatar } from 'components/Avatar';
 import Notifications from 'components/NotificationsBar';
+import { Search } from 'components/Layout/Header/SearchCourses';
 import { logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
-import SearchResult from './SearchResult';
 
 import {
   LayoutHeader,
@@ -19,26 +15,20 @@ import {
   BrandLogoLink,
   BrandLogo,
   HeaderContent,
-  Search,
   UserBlock,
   UserName,
   LogOut,
   MobileMenuIcon,
-  RelativeWrapper,
 } from './styled';
 
 interface Props {
   handleConfirm: () => void;
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
-  isSearchOpen: boolean;
-  searchCourses: (courseName: string) => void;
-  handleSearchClose: () => void;
   firstName?: string;
   lastName?: string;
   avatar?: string;
   notifications?: NotificationType[];
-  coursesFound?: Array<Course>;
 }
 
 type HeaderProps = User & Props;
@@ -51,32 +41,13 @@ const Header: React.FC<HeaderProps> = ({
   handleConfirm,
   isMobileMenuOpen,
   toggleMobileMenu,
-  isSearchOpen,
-  searchCourses,
-  handleSearchClose,
-  coursesFound,
 }) => (
   <LayoutHeader container>
     <BrandLogoLink to={PATHS.profile}>
       <BrandLogo alt=":iTechArt" src={brandLogo} />
     </BrandLogoLink>
     <HeaderContent>
-      <ClickAwayListener onClickAway={handleSearchClose}>
-        <RelativeWrapper>
-          <Search
-            className="search"
-            disableUnderline
-            placeholder="Search"
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon color="disabled" fontSize="medium" />
-              </InputAdornment>
-            }
-            onChange={(event) => searchCourses(event.target.value)}
-          />
-          {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
-        </RelativeWrapper>
-      </ClickAwayListener>
+      <Search />
       <Notifications
         notifications={notifications}
         isMobileMenuOpen={isMobileMenuOpen}

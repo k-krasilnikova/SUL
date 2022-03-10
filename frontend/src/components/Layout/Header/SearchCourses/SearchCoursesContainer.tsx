@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { searchAllCourses } from 'api/courses';
 import { Course } from 'types/course';
 
-import MobileSearch from './MobileSearch';
+import SearchCourses from './SearchCourses';
 
-const MobileSearchContainer: React.FC = () => {
+const SearchCoursesContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
   const [coursesFound, setCoursesFound] = useState<Array<Course>>([]);
 
@@ -21,7 +21,7 @@ const MobileSearchContainer: React.FC = () => {
     setSearchOpen(false);
   };
   return (
-    <MobileSearch
+    <SearchCourses
       isSearchOpen={isSearchOpen}
       searchCourses={searchCourses}
       handleSearchClose={handleSearchClose}
@@ -30,4 +30,4 @@ const MobileSearchContainer: React.FC = () => {
   );
 };
 
-export default MobileSearchContainer;
+export default SearchCoursesContainer;

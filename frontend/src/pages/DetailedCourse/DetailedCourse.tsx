@@ -15,6 +15,7 @@ import { backIconMobile } from 'icons';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { Course } from 'types/course';
+import { INFO } from 'constants/coutseInfoTypes';
 
 import {
   BackButton,
@@ -107,7 +108,7 @@ const DetailedCourse: React.FC<IProps> = ({
             <CourseInfo
               duration={courseData.duration}
               lessons={courseData.lessons}
-              type="detailedCourse"
+              type={INFO.detailedCourse}
             />
           </CourseInfoBox>
           {isLoading && targetId === buttonId.start ? (
@@ -151,7 +152,7 @@ const DetailedCourse: React.FC<IProps> = ({
                 duration={courseData.duration}
                 lessons={courseData.lessons}
                 windowWidth={windowWidth}
-                type="similarCourses"
+                type={INFO.similarCourses}
                 pageName={PAGES.detailed}
               >
                 <CourseActionsBox>
