@@ -124,9 +124,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               ) : (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
                   {isCourseCompleted ? (
-                    <StartButton variant="completed" disabled>
-                      Completed
-                    </StartButton>
+                    <></>
                   ) : (
                     <StartButton
                       color="primary"
