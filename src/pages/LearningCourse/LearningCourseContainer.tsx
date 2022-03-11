@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
-import usePassClientCourse from 'api/myCourses/passClientCourse';
-import { useStartClientCourse } from 'api/myCourses';
+import { useStartClientCourse, useGetClientCourseInfo, usePassClientCourse } from 'api/myCourses';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
 import { MATERIAL } from 'constants/materials';
@@ -28,11 +26,6 @@ const LearningCourseContainer: React.FC = () => {
 
   const { data: clientCourseResponse, isLoading } = useGetClientCourseInfo(params.courseId);
 
-  useStartClientCourse({
-    courseId: params.courseId,
-    enabled: clientCourseResponse?.status === COURSE_STATUSES.approved,
-  });
-
   const maxStage = clientCourseResponse
     ? clientCourseResponse.course.materials.length
     : MAX_STAGE_INITIAL;
@@ -49,6 +42,17 @@ const LearningCourseContainer: React.FC = () => {
       setForwardDisabled(true);
     }
   }, [stage, maxStage]);
+
+  const { mutate: startCourseMutate } = useStartClientCourse(params.courseId);
+
+  useEffect(() => {
+    const handleStartCourse = () => {
+      if (clientCourseResponse?.status === COURSE_STATUSES.approved) {
+        startCourseMutate(params.courseId);
+      }
+    };
+    handleStartCourse();
+  }, [params.courseId, clientCourseResponse?.status, startCourseMutate]);
 
   const { mutate } = usePassClientCourse(params.courseId);
 
@@ -84,7 +88,7 @@ const LearningCourseContainer: React.FC = () => {
       : clientCourseResponse?.course.materials[stage - 1].content[CONTENT_ELEMENT] || MATERIAL.text;
   const videoPreview = getPreviewId(material);
 
-  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleClickDialogOpen = () => {
     setDialogOpen(true);
@@ -119,6 +123,7 @@ const LearningCourseContainer: React.FC = () => {
           handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
           courseStatus={clientCourseResponse?.status}
+          courseId={clientCourseResponse._id}
         />
       )}
     </>
