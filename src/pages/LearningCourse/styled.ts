@@ -8,6 +8,7 @@ export const LearningPageContainer = styled('div')({
   width: '100%',
   padding: '40px',
 });
+
 export const BackButton = styled(Button)({
   height: '40px',
   width: '85px',
@@ -21,31 +22,40 @@ export const BackButton = styled(Button)({
   textAlign: 'center',
   boxShadow: 'none',
 });
+
 export const LearningWrapper = styled('div')({
-  width: '1218px',
   color: '#131313',
   textAlign: 'right',
   padding: '0px 85px',
 });
-export const StepperController = styled('div')({
-  display: 'inline-flex',
+export const StepperController = styled(Box)({
+  display: 'flex',
+  justifyContent: 'flex-end',
   alignItems: 'center',
-  width: '95px',
-  textAlign: 'center',
   marginBottom: '13px',
-  marginRight: '10px',
+  height: '39px',
 });
+
+export const StyledButton = styled(Button)({
+  color: '#131313',
+  minWidth: '40px !important',
+  minHeight: '39px',
+  '&.MuiButton-root': {
+    padding: '0 !important',
+  },
+});
+
 export const Step = styled('p')({
   color: '#131313',
-  margin: '0px 7px',
+  fontSize: '18px !important',
   fontFamily: '"Ubuntu", sans-serif',
-  fontSize: '18px',
   fontWeight: '400',
-  lineHeight: '22px',
+  lineHeight: '22px !important',
 });
+
 export const MaterialWrapper = styled(Box)({
   width: '100%',
-  height: '615px',
+  minHeight: '200px',
   marginBottom: '40px',
   background: 'rgba(30, 30, 30, 0.12)',
   borderRadius: '5px',
@@ -59,10 +69,12 @@ export const MaterialText = styled('div')({
   fontSize: '24px',
   overflowY: 'auto',
 });
+
 export const MaterialVideo = styled(ReactPlayer)({
   height: '100%',
   width: '100%',
 });
+
 export const Description = styled('div')({
   display: 'inline-block',
   width: 'calc(100% - 196px)',
@@ -74,6 +86,7 @@ export const Description = styled('div')({
   borderRadius: '8px',
   overflowY: 'auto',
 });
+
 export const DescriptionTitle = styled('span')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '32px',
@@ -82,6 +95,7 @@ export const DescriptionTitle = styled('span')({
   lineHeight: '38px',
   letterSpacing: '0em',
 });
+
 export const DescriptionText = styled('p')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '24px',
@@ -91,12 +105,14 @@ export const DescriptionText = styled('p')({
   letterSpacing: '-0.4px',
   margin: '24px 0px 0px 0px',
 });
+
 export const ButtonWrapper = styled('div')({
   display: 'inline-block',
   verticalAlign: 'top',
   width: '155px',
   marginLeft: '40px',
 });
+
 export const StartTestButton = styled(Button)({
   width: '155px',
   height: '50px',
@@ -114,6 +130,7 @@ export const StartTestButton = styled(Button)({
   paddingTop: '8px!important',
   boxShadow: 'none!important',
 });
+
 export const NextButton = styled(Button)({
   width: '86px',
   height: '50px',

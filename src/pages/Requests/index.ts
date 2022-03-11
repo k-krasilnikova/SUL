@@ -1,1 +1,1 @@
-export { default } from './Requests';
+export { default } from './RequestsContainer';

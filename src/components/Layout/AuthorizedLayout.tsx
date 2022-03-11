@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import Loader from 'components/Loader';
+import { Notification as NotificationType } from 'types/notification';
 
 import { Header } from './Header';
 import Menu from './Menu';
@@ -10,14 +11,14 @@ import { MobileMenu } from './MobileMenu';
 import { GridHeader, PageWrapper, GridMenu } from './styled';
 
 interface Props {
-  pageName: string | undefined;
+  pageName: string;
   children: React.ReactNode;
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
   classes: {
     [key: string]: string;
   };
-  notifications?: Array<Notification>;
+  notifications?: NotificationType[];
   firstName?: string;
   lastName?: string;
   avatar?: string;

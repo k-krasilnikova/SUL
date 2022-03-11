@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
-import useGetAuth from 'api/auth/getAuth';
+import { useGetAuth } from 'api/auth';
 import { SIGN_STYLE_PROPS } from 'constants/signStyle';
 
 import SignIn from './SignIn';

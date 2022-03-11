@@ -82,7 +82,7 @@ export const DetailedCourseText = styled(Typography)({
     marginRight: '100px !important',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '24px !important',
+    fontSize: '20px !important',
     lineHeight: '37px !important',
     marginRight: '0px !important',
   },
@@ -94,19 +94,19 @@ export const DetailedCourseTitle = styled(Typography)({
   color: '#2c2525',
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px !important',
-    lineHeight: '21px !important',
+    lineHeight: '28px !important',
     paddingTop: '10px !important',
     marginBottom: '10px !important',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '32px !important',
+    fontSize: '28px !important',
     lineHeight: '28px !important',
     marginBottom: '24px !important',
     paddingTop: '0px !important',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '42px !important',
-    lineHeight: '55px !important',
+    fontSize: '28px !important',
+    lineHeight: '28px !important',
     marginBottom: '13px !important',
   },
 });
@@ -114,7 +114,7 @@ export const DetailedCourseTitle = styled(Typography)({
 export const DetailedCourseActionsBox = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
-  marginTop: '171px',
+  marginTop: '50px',
   [theme.breakpoints.up('xs')]: {
     display: 'block',
     marginTop: '24px',
@@ -126,14 +126,11 @@ export const DetailedCourseActionsBox = styled(Box)({
     marginTop: '56px',
     marginLeft: '0px',
   },
-  [theme.breakpoints.up('xl')]: {
-    marginTop: '171px',
-  },
 });
 
 export const SimilarCoursesWrapper = styled(Grid)({
-  marginTop: '156px',
-  marginBottom: '171px',
+  marginTop: '50px',
+  marginBottom: '50px',
   [theme.breakpoints.up('xs')]: {
     marginTop: '48px',
     marginBottom: '10px',
@@ -142,10 +139,6 @@ export const SimilarCoursesWrapper = styled(Grid)({
   [theme.breakpoints.up('md')]: {
     marginTop: '63px',
     marginBottom: '40px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    marginTop: '156px',
-    marginBottom: '171px',
   },
 });
 
@@ -179,11 +172,11 @@ export const SimilarCoursesTitle = styled(Typography)({
   },
   [theme.breakpoints.up('md')]: {
     fontSize: '24px !important',
-    lineHeight: '31px !important',
+    lineHeight: '24px !important',
     marginLeft: '0px!important',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '40px !important',
+    fontSize: '24px !important',
     lineHeight: '52px !important',
   },
 });
@@ -212,28 +205,27 @@ export const BackButton = styled(Button)({
 export const StartButton = styled(Button)({
   height: '50px',
   width: '150px',
-  [theme.breakpoints.up('xs')]: {
+  fontSize: '18px !important',
+  fontWeight: '700 !important',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '12px !important',
+    height: '37px',
+    width: '112px',
+    padding: '4px 5px !important',
+    margin: '0 50px 0 calc(100% - 162px) !important',
+  },
+  [theme.breakpoints.down('lg')]: {
+    height: '35px',
+    width: '105px',
+    margin: '0 20px 0 calc(100% - 132px) !important',
+  },
+  [theme.breakpoints.down('md')]: {
     height: '44px',
     width: '131px',
-    fontSize: '14px !important',
-    margin: '24px 18px 0px calc(100% - 156px) !important',
-  },
-  [theme.breakpoints.up('md')]: {
-    height: '37px',
-    width: '112px',
-    fontSize: '12px !important',
-    margin: '0px 20px 0px calc(100% - 132px) !important',
-  },
-  [theme.breakpoints.up('lg')]: {
-    height: '37px',
-    width: '112px',
-    fontSize: '12px !important',
-    margin: '0px 50px 0px calc(100% - 162px) !important',
-  },
-  [theme.breakpoints.up('xl')]: {
-    height: '50px !important',
-    width: '150px !important',
-    fontSize: '18px !important',
+    lineHeight: '19px',
+    fontSize: '14px!important',
+    padding: '10px !important',
+    margin: '24px 18px 0 calc(100% - 156px) !important',
   },
 });
 
@@ -345,11 +337,12 @@ export const MobileSearchWrapper = styled('div')({
   margin: '16px 0px 8px 0px',
   height: '30px',
   display: 'inline-block',
+  position: 'relative',
   [theme.breakpoints.up('md')]: {
     margin: '0px 0px 0px 6px',
     width: 'calc(100% - 80px)',
   },
-  '@media(min-width: 1110px)': {
+  [theme.breakpoints.up(950)]: {
     display: 'none',
   },
 });

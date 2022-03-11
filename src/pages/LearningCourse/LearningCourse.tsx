@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import IconButton from '@mui/material/IconButton';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { Back, Forward } from 'components/Arrows';
@@ -23,6 +22,7 @@ import {
   StartTestButton,
   NextButton,
   ButtonWrapper,
+  StyledButton,
 } from './styled';
 import { FormDialog } from './FormDialog';
 
@@ -44,6 +44,8 @@ interface LearningProps {
   material: string;
   materialType: string;
   videoPreview: string | boolean;
+  courseStatus: string;
+  courseId: string;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -61,6 +63,8 @@ const LearningCourse: React.FC<LearningProps> = ({
   handleClickDialogOpen,
   handleDialogClose,
   videoPreview,
+  courseStatus,
+  courseId,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -71,15 +75,15 @@ const LearningCourse: React.FC<LearningProps> = ({
       </Link>
       <LearningWrapper>
         <StepperController>
-          <IconButton onClick={stageBack} disabled={backDisabled}>
+          <StyledButton onClick={stageBack} disabled={backDisabled}>
             <Back arrowDisabled={backDisabled} />
-          </IconButton>
+          </StyledButton>
           <Step>
             {stage}/{maxStage}
           </Step>
-          <IconButton onClick={stageForward} disabled={forwardDisabled}>
+          <StyledButton onClick={stageForward} disabled={forwardDisabled}>
             <Forward arrowDisabled={forwardDisabled} />
-          </IconButton>
+          </StyledButton>
         </StepperController>
         <MaterialWrapper>
           {materialType === MATERIAL.video ? (
@@ -90,7 +94,7 @@ const LearningCourse: React.FC<LearningProps> = ({
               playing
               controls
               width="100%"
-              height="100%"
+              height="680px"
               frameBorder="0"
             />
           ) : (
@@ -109,7 +113,12 @@ const LearningCourse: React.FC<LearningProps> = ({
               <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
                 Start the Test
               </StartTestButton>
-              <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
+              <FormDialog
+                dialogOpen={dialogOpen}
+                handleDialogClose={handleDialogClose}
+                courseStatus={courseStatus}
+                courseId={courseId}
+              />
             </>
           ) : (
             <NextButton variant="contained" onClick={stageForward}>

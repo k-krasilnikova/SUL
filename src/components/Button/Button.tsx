@@ -7,6 +7,7 @@ declare module '@mui/material/Button' {
     mediumOutlined: true;
     mediumContained: true;
     large: true;
+    completed: true;
   }
 }
 

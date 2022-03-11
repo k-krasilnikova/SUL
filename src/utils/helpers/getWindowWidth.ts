@@ -14,7 +14,7 @@ export const getWindowWidth = (): string => {
   if (window.innerWidth < WINDOW_SIZE.xmd.width && window.innerWidth > WINDOW_SIZE.md.width) {
     windowWidth = WINDOW_SIZE.md.name;
   }
-  if (window.innerWidth < WINDOW_SIZE.md.width && window.innerWidth > WINDOW_SIZE.sm.width) {
+  if (window.innerWidth <= WINDOW_SIZE.md.width && window.innerWidth > WINDOW_SIZE.sm.width) {
     windowWidth = WINDOW_SIZE.sm.name;
   }
   return windowWidth;

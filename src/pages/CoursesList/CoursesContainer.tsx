@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
 
-import { useGetCourses } from 'api/courses';
-import useApplyCourse from 'api/courses/applyCourse';
+import { useGetCourses, useApplyCourse } from 'api/courses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 
 import CoursesList from './CoursesList';
 
 const CoursesContainer: React.FC = () => {
-  const params = useParams();
   const { mutate, isLoading } = useApplyCourse();
   const { data: courses, isLoading: isCoursesLoading } = useGetCourses();
   const [targetId, setTargetId] = useState<string | undefined>();
@@ -24,30 +21,20 @@ const CoursesContainer: React.FC = () => {
 
   const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>) => {
     setTargetId((event.target as HTMLElement).id);
-    mutate(params.courseId);
-  };
-
-  const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
-  const handleFilterOpen = () => {
-    setFilterOpen(!isFilterOpen);
-  };
-  const handleFilterClose = () => {
-    setFilterOpen(false);
+    mutate((event.target as HTMLElement).id);
   };
 
   const windowWidth = getWindowWidth();
+  const formattedCoursesList = courses?.filter((course) => !course.status);
 
   return (
     <CoursesList
-      courses={courses}
+      courses={formattedCoursesList}
       isLoading={isCoursesLoading}
       handleApplyCourse={handleApplyCourse}
       targetId={targetId}
       targetLoading={isLoading}
       disableLink={disableLink}
-      isFilterOpen={isFilterOpen}
-      handleFilterOpen={handleFilterOpen}
-      handleFilterClose={handleFilterClose}
       windowWidth={windowWidth}
     />
   );

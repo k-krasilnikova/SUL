@@ -11,7 +11,7 @@ import Loader from 'components/Loader';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { LOADER } from 'constants/loaderTypes';
-import MobileSearch from 'components/Layout/MobileSearch';
+import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 
 import {
@@ -27,9 +27,6 @@ import {
 
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
-  isFilterOpen: boolean;
-  handleFilterOpen: () => void;
-  handleFilterClose: () => void;
   windowWidth: string;
 }
 
@@ -42,29 +39,22 @@ const CoursesList: React.FC<CoursesProps> = ({
   targetLoading,
   targetId,
   disableLink,
-  isFilterOpen,
-  handleFilterOpen,
-  handleFilterClose,
   windowWidth,
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
-    ) : courses ? (
+    ) : courses?.length ? (
       <PageContainer container>
         <MobileSearchWrapper>
-          <MobileSearch
-            isFilterOpen={isFilterOpen}
-            handleFilterOpen={handleFilterOpen}
-            handleFilterClose={handleFilterClose}
-          />
+          <MobileSearch />
         </MobileSearchWrapper>
         {courses.map((course) => (
           <Suspense
             key={`${course._id}_item`}
             fallback={<Loader color="primary" type={LOADER.content} />}
           >
-            <GridItem key={course._id} item xl={6} lg={12} md={12} sm={12}>
+            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
               <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
                 <CourseItem
                   title={course?.title}
@@ -92,7 +82,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                           onClick={handleApplyCourse}
                           variant="mediumContained"
                         >
-                          Start the course
+                          Apply the course
                         </StartCourseButton>
                       )}
                     </CourseActions>

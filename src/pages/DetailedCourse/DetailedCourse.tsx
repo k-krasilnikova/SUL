@@ -9,12 +9,21 @@ import { CourseItem } from 'components/Course';
 import { ProgressBar } from 'components/ProgressBar';
 import { CourseActions } from 'pages/CoursesList/styled';
 import { PATHS } from 'constants/routes';
-import { INITIAL_DETAILED_COURSE } from 'constants/detailedCourse';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { backIconMobile } from 'icons';
-import MobileSearch from 'components/Layout/MobileSearch';
+import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
+import { INFO } from 'constants/coutseInfoTypes';
+import { COURSE_LABELS } from 'constants/statuses';
+import {
+  COMPLETED_STATUS_TEXT,
+  OPEN_FULL_TEXT,
+  PERCENTAGE_VALUE,
+  PROGRESS_COLOR,
+} from 'constants/detailedCourse';
+import { IDetailedCourse } from 'types/detailedCourse';
+import { VARIANTS } from 'constants/progressBar';
 
 import {
   BackButton,
@@ -31,7 +40,6 @@ import {
   SimilarCoursesTitle,
   SimilarCoursesWrapper,
   StartButton,
-  StartCourseButton,
   DetailedCourseTextMobile,
   ButtonFullText,
   BackArrow,
@@ -39,40 +47,22 @@ import {
   MobileSearchWrapper,
 } from './styled';
 
-interface IProps {
-  handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
-  buttonId: {
-    [key: string]: string | undefined;
-  };
-  page: string;
-  id: string;
-  windowWidth: string;
-  isFullTextOpen: boolean;
-  toggleFullText: () => void;
-  isLoading?: boolean;
-  targetId?: string | undefined;
-  isFilterOpen: boolean;
-  handleFilterOpen: () => void;
-  handleFilterClose: () => void;
-  isCourseApplicationSubmitted?: boolean;
-}
-
-const OPEN_FULL_TEXT = 'Look in full';
-
-const DetailedCourse: React.FC<IProps> = ({
+const DetailedCourse: React.FC<IDetailedCourse> = ({
+  courseData,
   handleApplyCourse,
   isLoading,
   targetId,
   buttonId,
   page,
   id,
+  status,
   windowWidth,
   isFullTextOpen,
   toggleFullText,
-  isFilterOpen,
-  handleFilterOpen,
-  handleFilterClose,
   isCourseApplicationSubmitted,
+  isCourseStatusPending,
+  isCourseLearningDisabled,
+  isCourseCompleted,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -83,35 +73,38 @@ const DetailedCourse: React.FC<IProps> = ({
         <BackArrow alt="" src={backIconMobile} />
       </BackLink>
       <MobileSearchWrapper>
-        <MobileSearch
-          isFilterOpen={isFilterOpen}
-          handleFilterOpen={handleFilterOpen}
-          handleFilterClose={handleFilterClose}
-        />
+        <MobileSearch />
       </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper>
-          <Image />
+          <Image imageUrl={courseData.avatar} />
         </ImageWrapper>
-        {isCourseApplicationSubmitted && <ProgressBar size="large" text="0%" textColor="#131313" />}
-        <DetailedCourseTitle>{INITIAL_DETAILED_COURSE.title}</DetailedCourseTitle>
+        {isCourseApplicationSubmitted && !isCourseStatusPending && (
+          <ProgressBar
+            size="large"
+            text={isCourseCompleted ? COMPLETED_STATUS_TEXT : PERCENTAGE_VALUE}
+            textColor={PROGRESS_COLOR}
+            variant={isCourseCompleted && VARIANTS.successful}
+          />
+        )}
+        <DetailedCourseTitle>{courseData.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
-          <DetailedCourseTextMobile>{INITIAL_DETAILED_COURSE.description}</DetailedCourseTextMobile>
+          <DetailedCourseTextMobile>{courseData.description}</DetailedCourseTextMobile>
         ) : (
           <DetailedCourseTextMobile>
-            {INITIAL_DETAILED_COURSE.description.slice(0, 140)}
+            {courseData.description.slice(0, 140)}
             <ButtonFullText onClick={toggleFullText}>
               {!isFullTextOpen && OPEN_FULL_TEXT}
             </ButtonFullText>
           </DetailedCourseTextMobile>
         )}
-        <DetailedCourseText>{INITIAL_DETAILED_COURSE.description}</DetailedCourseText>
+        <DetailedCourseText>{courseData.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
           <CourseInfoBox>
             <CourseInfo
-              duration={INITIAL_DETAILED_COURSE.duration}
-              lessons={INITIAL_DETAILED_COURSE.lessons}
-              type="detailedCourse"
+              duration={courseData.duration}
+              lessons={courseData.lessons}
+              type={INFO.detailedCourse}
             />
           </CourseInfoBox>
           {isLoading && targetId === buttonId.start ? (
@@ -122,19 +115,29 @@ const DetailedCourse: React.FC<IProps> = ({
             <div>
               {page === PAGES.myCourses && (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
-                  <StartButton variant="large" color="primary">
-                    Start the course
-                  </StartButton>
+                  {isCourseCompleted ? (
+                    <StartButton variant="completed" disabled>
+                      Completed
+                    </StartButton>
+                  ) : (
+                    <StartButton
+                      color="primary"
+                      variant="mediumContained"
+                      disabled={isCourseLearningDisabled}
+                    >
+                      {COURSE_LABELS[status]}
+                    </StartButton>
+                  )}
                 </Link>
               )}
               {page === PAGES.coursesList && (
                 <StartButton
                   id={buttonId.start}
-                  variant="large"
                   color="primary"
+                  variant="mediumContained"
                   onClick={(event) => handleApplyCourse(event)}
                 >
-                  Start the course
+                  Apply the course
                 </StartButton>
               )}
             </div>
@@ -145,34 +148,20 @@ const DetailedCourse: React.FC<IProps> = ({
             <SimilarCoursesTitle>Similar courses</SimilarCoursesTitle>
             <SimilarCoursesItemWrapper>
               <CourseItem
-                title={INITIAL_DETAILED_COURSE.title}
-                description={INITIAL_DETAILED_COURSE.description}
-                duration={INITIAL_DETAILED_COURSE.duration}
-                lessons={INITIAL_DETAILED_COURSE.lessons}
+                title={courseData.title}
+                description={courseData.description}
+                duration={courseData.duration}
+                lessons={courseData.lessons}
                 windowWidth={windowWidth}
-                type="similarCourses"
+                type={INFO.similarCourses}
                 pageName={PAGES.detailed}
+                imageUrl={courseData.avatar}
               >
                 <CourseActionsBox>
                   <CourseActions>
                     <DetailsButton color="primary" variant="mediumOutlined">
                       Details
                     </DetailsButton>
-                    {isLoading && targetId === buttonId.course ? (
-                      <StartCourseButton variant="mediumOutlined" disabled>
-                        <ButtonLoader buttonSpinner={buttonSpinner} />
-                      </StartCourseButton>
-                    ) : (
-                      <StartCourseButton
-                        id={buttonId.course}
-                        onClick={(event) => {
-                          handleApplyCourse(event);
-                        }}
-                        variant="mediumContained"
-                      >
-                        Start the course
-                      </StartCourseButton>
-                    )}
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>

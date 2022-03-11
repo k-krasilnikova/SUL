@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Typography, Box, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
+import { INFO } from 'constants/coutseInfoTypes';
 
 interface InfoContainerTypes {
   color?: string;
@@ -51,7 +52,7 @@ export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type })
   [theme.breakpoints.up('md')]: {
     padding: '16px 26px 16px 16px',
     minHeight: '194px',
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       padding: '16px 32px 26px 16px',
       minHeight: '207px',
     }),
@@ -67,24 +68,6 @@ export const CourseTextContainer = styled('div')({
 });
 
 export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => ({
-  [theme.breakpoints.up('xs')]: {
-    display: 'none',
-  },
-  [theme.breakpoints.up('sm')]: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'end',
-    paddingBottom: '16px',
-    marginLeft: '0px',
-  },
-  [theme.breakpoints.up('md')]: {
-    ...(type === 'similarCourses' && {
-      justifyContent: 'end',
-    }),
-  },
-  [theme.breakpoints.up('xl')]: {
-    justifyContent: 'space-between',
-  },
   display: 'flex',
   flexWrap: 'wrap',
   flexDirection: 'row',
@@ -92,6 +75,19 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
   width: '100%',
   fontSize: '12px',
   justifyContent: 'space-between',
+  padding: '10px 0',
+  [theme.breakpoints.down('lg')]: {
+    ...(type === INFO.similarCourses && {
+      justifyContent: 'end',
+    }),
+  },
+  [theme.breakpoints.down('md')]: {
+    alignItems: 'end',
+    paddingBottom: '16px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
 }));
 
 export const ImageWrapper = styled('div')({
@@ -137,7 +133,7 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     textAlign: 'left',
     padding: '0px',
     margin: '0px 14px 8px 0px',
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       fontSize: '18px',
       fontWeight: '700',
     }),
@@ -147,14 +143,14 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     fontWeight: '700',
     lineHeight: '22px',
     margin: '9px 38px 16px 0px',
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       margin: '5px 38px 9px 0px',
     }),
   },
   [theme.breakpoints.up('md')]: {
     fontSize: '24px',
     lineHeight: '31px',
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       margin: '0px 0px 9px 0px',
     }),
   },
@@ -180,14 +176,14 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
       textAlign: 'left',
       padding: '0px',
       margin: '0px 35px 9px 7px',
-      ...(type === 'similarCourses' && {
+      ...(type === INFO.similarCourses && {
         margin: '0px 0px 9px 0px',
       }),
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '18px',
       lineHeight: '27px',
-      ...(type === 'similarCourses' && {
+      ...(type === INFO.similarCourses && {
         margin: '0px 0px 9px 0px',
         lineHeight: '21px',
         fontSize: '16px',
@@ -219,32 +215,44 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
 );
 
 export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
-  [theme.breakpoints.up('xs')]: {
+  display: 'flex',
+  height: '50px',
+  alignItems: 'end !important',
+  alignSelf: 'end !important',
+  paddingBottom: '0px !important',
+  [theme.breakpoints.down('xl')]: {
+    ...(type !== INFO.detailedCourse && {
+      flexDirection: 'column',
+    }),
+    ...(type === INFO.searchCourses && {
+      height: 'auto !important',
+    }),
+    marginLeft: '10px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    display: 'block',
+    alignItems: 'end !important',
+    alignSelf: 'end !important',
+    height: 'fit-content',
+  },
+  [theme.breakpoints.down('md')]: {
     display: 'flex',
     margin: '0px',
     padding: '0px',
     flexDirection: 'row',
-    ...(type === 'detailedCourse' && {
+    ...(type === INFO.detailedCourse && {
       marginLeft: '8px',
     }),
   },
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down(550)]: {
     display: 'block',
   },
-  [theme.breakpoints.up(550)]: {
+  [theme.breakpoints.down('sm')]: {  
     display: 'flex',
-  },
-  [theme.breakpoints.up('md')]: {
-    display: 'block',
-    alignItems: 'end !important',
-    alignSelf: 'end !important',
-    height: '50px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    display: 'flex',
-    height: '50px',
-    paddingBottom: '0px !important',
-  },
+    ...(type === INFO.detailedCourse && {
+      marginLeft: '8px',
+    }),  
+  },  
   [theme.breakpoints.up('xl')]: {
     display: 'block',
     marginLeft: '15px',
@@ -256,30 +264,30 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
 }));
 
 export const InfoItem = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    padding: '0px',
+  [theme.breakpoints.down('xl')]: {
     display: 'inline-flex',
   },
-  [theme.breakpoints.up('sm')]: {
-    padding: '5px',
-    display: 'flex',
-  },
-  [theme.breakpoints.up(550)]: {
-    display: 'inline-flex',
-  },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.down('lg')]: {
     paddingBottom: '0px !important',
     display: 'flex',
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.down('md')]: {
+    display: 'inline-flex',
+  },
+  [theme.breakpoints.down(550)]: {
+    padding: '5px',
+    display: 'flex',
+  },
+  [theme.breakpoints.down('sm')]: {
+    padding: '0px',
     display: 'inline-flex',
   },
   [theme.breakpoints.up('xl')]: {
     display: 'flex',
   },
-  display: 'inline-flex',
   color: 'black',
   alignItems: 'center',
+  marginRight: '10px',
 });
 export const InfoItemText = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
@@ -322,7 +330,7 @@ export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type 
     display: 'none',
   },
   [theme.breakpoints.up('sm')]: {
-    ...(type === 'similarCourses' && {
+    ...(type === INFO.similarCourses && {
       margin: '0px 17px 9px 0px',
     }),
   },
@@ -332,26 +340,30 @@ export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type 
 }));
 
 export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down('md')]: {
     paddingLeft: '12px !important',
   },
-  [theme.breakpoints.up('md')]: {
-    display: 'block',
-    ...(type === 'similarCourses' && {
+  [theme.breakpoints.down('xl')]: {
+    ...(type === INFO.similarCourses && {
       display: 'none',
     }),
   },
-  '@media(min-width: 1680px)': {
+  ...(type === INFO.similarCourses && {
     display: 'block',
-    paddingLeft: '30px !important',
-    ...(type === 'similarCourses' && {
-      display: 'block',
-    }),
-  },
-  paddingLeft: '30px !important',
+  }),
+  ...(type === INFO.searchCourses && {
+    height: 'auto !important',
+  }),
+  ...(type !== INFO.detailedCourse && {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }),
+  display: 'flex',
+  flexDirection: 'row',
+  paddingLeft: '15px !important',
   paddingBottom: '0px !important',
   height: '50px !important',
-  display: 'flex',
 }));
 
 export const MobileCourseInfoBox = styled(Box)({

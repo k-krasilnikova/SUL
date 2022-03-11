@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
+import { useStartClientCourse, useGetClientCourseInfo, usePassClientCourse } from 'api/myCourses';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
 import { MATERIAL } from 'constants/materials';
 import { defineMaterialType } from 'utils/helpers/defineMaterialType';
 import Loader from 'components/Loader';
+import { COURSE_STATUSES } from 'constants/statuses';
 
 import LearningCourse from './LearningCourse';
 
@@ -23,9 +24,11 @@ const LearningCourseContainer: React.FC = () => {
 
   const params = useParams();
 
-  const { data, isLoading } = useGetClientCourseInfo(params.courseId);
+  const { data: clientCourseResponse, isLoading } = useGetClientCourseInfo(params.courseId);
 
-  const maxStage = data ? data.course.materials.length : MAX_STAGE_INITIAL;
+  const maxStage = clientCourseResponse
+    ? clientCourseResponse.course.materials.length
+    : MAX_STAGE_INITIAL;
 
   useEffect(() => {
     if (stage > MIN_STAGE) {
@@ -40,12 +43,30 @@ const LearningCourseContainer: React.FC = () => {
     }
   }, [stage, maxStage]);
 
+  const { mutate: startCourseMutate } = useStartClientCourse(params.courseId);
+
+  useEffect(() => {
+    const handleStartCourse = () => {
+      if (clientCourseResponse?.status === COURSE_STATUSES.approved) {
+        startCourseMutate(params.courseId);
+      }
+    };
+    handleStartCourse();
+  }, [params.courseId, clientCourseResponse?.status, startCourseMutate]);
+
+  const { mutate } = usePassClientCourse(params.courseId);
+
+  const handlePassCourseStage = (courseStage: number) => {
+    mutate(courseStage);
+  };
+
   const stageForward = () => {
     if (stage < maxStage) {
       if (stage + STAGE_CHANGE === maxStage && !testEnabled) {
         setTestEnabled(true);
       }
       setStage(stage + STAGE_CHANGE);
+      handlePassCourseStage(stage);
     }
   };
   const stageBack = () => {
@@ -54,23 +75,24 @@ const LearningCourseContainer: React.FC = () => {
     }
   };
 
-  const courseDescription = data?.course.description
-    ? { title: data?.course.title, info: data?.course.description }
+  const courseDescription = clientCourseResponse?.course.description
+    ? { title: clientCourseResponse?.course.title, info: clientCourseResponse?.course.description }
     : undefined;
 
-  const materialType = data
-    ? defineMaterialType(data.course.materials[stage - 1].content[CONTENT_ELEMENT])
+  const materialType = clientCourseResponse
+    ? defineMaterialType(clientCourseResponse.course.materials[stage - 1].content[CONTENT_ELEMENT])
     : MATERIAL.text;
   const material =
-    materialType === MATERIAL.video && data
-      ? optimizeLink(data.course.materials[stage - 1].content[CONTENT_ELEMENT])
-      : MATERIAL.text;
+    materialType === MATERIAL.video && clientCourseResponse
+      ? optimizeLink(clientCourseResponse.course.materials[stage - 1].content[CONTENT_ELEMENT])
+      : clientCourseResponse?.course.materials[stage - 1].content[CONTENT_ELEMENT] || MATERIAL.text;
   const videoPreview = getPreviewId(material);
 
-  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleClickDialogOpen = () => {
     setDialogOpen(true);
+    handlePassCourseStage(stage);
   };
 
   const handleDialogClose = () => {
@@ -83,9 +105,9 @@ const LearningCourseContainer: React.FC = () => {
 
   return (
     <>
-      {data && (
+      {clientCourseResponse && (
         <LearningCourse
-          key={data.course.materials[stage - 1]._id}
+          key={clientCourseResponse.course.materials[stage - 1]._id}
           stage={stage}
           maxStage={maxStage}
           stageBack={stageBack}
@@ -100,6 +122,8 @@ const LearningCourseContainer: React.FC = () => {
           handleClickDialogOpen={handleClickDialogOpen}
           handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
+          courseStatus={clientCourseResponse?.status}
+          courseId={clientCourseResponse._id}
         />
       )}
     </>
