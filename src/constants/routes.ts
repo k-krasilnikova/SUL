@@ -30,12 +30,18 @@ export const API: {
   getProfile: string;
   getToken: string;
   getCourses: string;
+  getCoursesRequests: string;
+  approveRequest: string;
+  declineRequest: string;
   getMyCourses: string;
   logOut: string;
 } = {
   getProfile: '/api/users',
   getToken: '/api/account/login',
-  getCourses: 'api/courses',
+  getCourses: '/api/courses',
+  getCoursesRequests: '/api/pendingCourses',
+  approveRequest: '/api/pendingCourses/approveCourse',
+  declineRequest: '/api/pendingCourses/declineCourse',
   getMyCourses: '/api/clientCourses',
-  logOut: 'api/account/logout',
+  logOut: '/api/account/logout',
 };
