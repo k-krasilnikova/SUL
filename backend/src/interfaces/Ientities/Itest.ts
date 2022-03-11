@@ -1,4 +1,4 @@
-import ISkill from './ISkill';
+import { IUserSkillPopulated } from './IUserSkill';
 
 interface ITest {
   _id?: string;
@@ -14,8 +14,8 @@ interface ITest {
 }
 
 type TAchievments = {
-  newSkills: Array<ISkill>;
-  updatedSkills: Array<ISkill>;
+  newSkills: Array<IUserSkillPopulated>;
+  updatedSkills: Array<IUserSkillPopulated>;
 };
 
 type TestRuslt = { result: number; testStatus: string };

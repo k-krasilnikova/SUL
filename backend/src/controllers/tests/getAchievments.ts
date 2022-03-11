@@ -1,15 +1,21 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
-import { addUserSkill, getUserSkills, updateUserSkill } from 'db/providers/skillProvider';
+import {
+  addUserSkill,
+  getUserSkills,
+  populateUserSkills,
+  updateUserSkill,
+} from 'db/providers/skillProvider';
 import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
-import { TAchievments } from 'interfaces/Ientities/Itest';
+// import { TAchievments } from 'interfaces/Ientities/Itest';
 import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 
 const getAchievments = async (
   req: Request,
-  res: Response<void, { id: string; achievments: TAchievments }>,
+  // res: Response<void, { id: string; achievments: TAchievments }>,
+  res: Response<void, { id: string; achievments: { newSkills: any; updatedSkills: any } }>,
   next: NextFunction,
 ) => {
   try {
@@ -22,15 +28,26 @@ const getAchievments = async (
 
     if (clientCourse.status === CourseStatus.successful) {
       const userSkills: IUserSkill[] = await getUserSkills(userId);
-      const { oldSkills, newSkills } = specifySkills(userSkills, techsToAchieve);
-      if (oldSkills.length) {
-        await Promise.all(oldSkills.map(async (skill) => updateUserSkill(userId, skill._id)));
-      }
-      if (newSkills.length) {
-        await Promise.all(newSkills.map(async (skill) => addUserSkill(userId, skill._id)));
-      }
+      const { oldSkills = [], newSkills = [] } = specifySkills(userSkills, techsToAchieve);
 
-      res.locals.achievments = { newSkills, updatedSkills: oldSkills };
+      const updatedUserSkills = await Promise.all(
+        oldSkills.map(async (skill) => updateUserSkill(userId, skill._id)),
+      );
+      const insertedUserSkills = await Promise.all(
+        newSkills.map(async (skill) => addUserSkill(userId, skill._id)),
+      );
+
+      const updatedUserSkillsPopulated: IUserSkill[] = await populateUserSkills(updatedUserSkills);
+      const insertedUserSkillsPopulated: IUserSkill[] = await populateUserSkills(
+        insertedUserSkills,
+      );
+
+      console.log(updatedUserSkillsPopulated, insertedUserSkillsPopulated);
+
+      res.locals.achievments = {
+        newSkills: insertedUserSkillsPopulated,
+        updatedSkills: updatedUserSkillsPopulated,
+      };
       next();
     }
     res.locals.achievments = { newSkills: [], updatedSkills: [] };
