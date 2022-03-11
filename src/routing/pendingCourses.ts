@@ -18,7 +18,7 @@ pendingCoursesRouter.put(
   withAuth([USER_ROLES.MANAGER]),
   adapterManager,
   approvePendingCourse,
-  sendMail,
+  // sendMail,
   adapterSender,
 );
 pendingCoursesRouter.put(
@@ -26,7 +26,7 @@ pendingCoursesRouter.put(
   withAuth([USER_ROLES.MANAGER]),
   adapterManager,
   declinePendingCourse,
-  sendMail,
+  // sendMail,
   adapterSender,
 );
 
