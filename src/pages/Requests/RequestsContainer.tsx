@@ -1,21 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 
-import { useGetCoursesRequests, useApproveRequest } from 'api/courses';
+import { useGetCoursesRequests, useApproveRequest, useDeclineRequest } from 'api/courses';
 
 import Requests from './Requests';
 
 const RequestsContainer: React.FC = () => {
+  const [targetId, setTargetId] = useState<string>('');
+
   const { data: requests, isLoading } = useGetCoursesRequests();
-  console.log(requests, isLoading);
-  const { mutateAsync } = useApproveRequest();
+  const { mutateAsync: approveCourse, isLoading: approveLoading } = useApproveRequest();
+  const { mutateAsync: declineCourse, isLoading: declineLoading } = useDeclineRequest();
 
-  useEffect(() => {
-    if (requests) {
-      mutateAsync(requests[0]?._id);
-    }
-  }, [requests, mutateAsync]);
+  const approveRequest = (requestId: string) => {
+    setTargetId(requestId);
+    approveCourse(requestId);
+  };
 
-  return <Requests />;
+  const declineRequest = (requestId: string) => {
+    setTargetId(requestId);
+    declineCourse(requestId);
+  };
+
+  return (
+    <Requests
+      requests={requests}
+      isLoading={isLoading}
+      targetId={targetId}
+      approveRequest={approveRequest}
+      approveLoading={approveLoading}
+      declineRequest={declineRequest}
+      declineLoading={declineLoading}
+    />
+  );
 };
 
 export default RequestsContainer;

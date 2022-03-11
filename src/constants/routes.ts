@@ -32,6 +32,7 @@ export const API: {
   getCourses: string;
   getCoursesRequests: string;
   approveRequest: string;
+  declineRequest: string;
   getMyCourses: string;
   logOut: string;
 } = {
@@ -40,6 +41,7 @@ export const API: {
   getCourses: '/api/courses',
   getCoursesRequests: '/api/pendingCourses',
   approveRequest: '/api/pendingCourses/approveCourse',
+  declineRequest: '/api/pendingCourses/declineCourse',
   getMyCourses: '/api/clientCourses',
   logOut: '/api/account/logout',
 };
