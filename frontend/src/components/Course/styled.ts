@@ -78,7 +78,7 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
   padding: '10px 0',
   [theme.breakpoints.down('lg')]: {
     ...(type === INFO.similarCourses && {
-      justifyContent: 'end',
+      justifyContent: 'start',
     }),
   },
   [theme.breakpoints.down('md')]: {
