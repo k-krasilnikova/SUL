@@ -1,12 +1,11 @@
 import React from 'react';
-import { Search as SearchIcon } from '@mui/icons-material';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { Notification as NotificationType } from 'types/notification';
 import { UserAvatar } from 'components/Avatar';
 import Notifications from 'components/NotificationsBar';
+import { Search } from 'components/Layout/Header/SearchCourses';
 import { logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
 
@@ -16,7 +15,6 @@ import {
   BrandLogoLink,
   BrandLogo,
   HeaderContent,
-  Search,
   UserBlock,
   UserName,
   LogOut,
@@ -24,14 +22,15 @@ import {
 } from './styled';
 
 interface Props {
+  handleConfirm: () => void;
+  isMobileMenuOpen: boolean;
+  toggleMobileMenu: () => void;
   firstName?: string;
   lastName?: string;
   avatar?: string;
   notifications?: NotificationType[];
-  handleConfirm: () => void;
-  isMobileMenuOpen: boolean;
-  toggleMobileMenu: () => void;
 }
+
 type HeaderProps = User & Props;
 
 const Header: React.FC<HeaderProps> = ({
@@ -48,16 +47,7 @@ const Header: React.FC<HeaderProps> = ({
       <BrandLogo alt=":iTechArt" src={brandLogo} />
     </BrandLogoLink>
     <HeaderContent>
-      <Search
-        className="search"
-        disableUnderline
-        placeholder="Search"
-        startAdornment={
-          <InputAdornment position="start">
-            <SearchIcon color="disabled" fontSize="medium" />
-          </InputAdornment>
-        }
-      />
+      <Search />
       <Notifications
         notifications={notifications}
         isMobileMenuOpen={isMobileMenuOpen}

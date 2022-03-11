@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Input, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import theme from 'themeSettings';
@@ -7,7 +7,6 @@ import theme from 'themeSettings';
 interface MobileMenuProps {
   openMenu: boolean;
 }
-
 export const HEADER_HEIGHT = '80px';
 export const HEADER_HEIGHT_IPAD = '60px';
 export const HEADER_HEIGHT_MOBILE = '44px';
@@ -44,7 +43,7 @@ export const BrandLogoLink = styled(Link)({
     quality: '100',
   },
   '@media(min-width: 1110px)': {
-    margin: '19px 48px 16px 32px',
+    margin: '19px 100px 16px 32px',
   },
   [theme.breakpoints.up('xl')]: {
     width: '130px',
@@ -94,30 +93,6 @@ export const SpaceHolder = styled('div')({
     display: 'block',
     maxWidth: '1000px',
   },
-});
-export const Search = styled(Input)({
-  flexGrow: '0',
-  flexShrink: '1',
-  borderRadius: '3px',
-  backgroundColor: 'rgba(118, 118, 128, 0.12)',
-  color: '#3c3c43',
-  height: '40px',
-  width: '460px',
-  padding: '10px',
-  margin: '15px 20px 15px 0px',
-  fontSize: '18px',
-  [theme.breakpoints.up(1920)]: {
-    width: '600px',
-  },
-  [theme.breakpoints.down('lg')]: {
-    width: '230px',
-  },
-  [theme.breakpoints.down('md')]: {
-    display: 'none!important',
-  },
-});
-export const RelativeWrapper = styled('div')({
-  position: 'relative',
 });
 
 export const UserBlock = styled(Link)({

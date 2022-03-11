@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
-import useGetCourseInfo from 'api/courses/getCourseInfo';
-import useApplyCourse from 'api/courses/applyCourse';
-import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
+import { useApplyCourse, useGetCourseInfo } from 'api/courses';
+import { useGetClientCourseInfo } from 'api/myCourses';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import { COURSE_STATUSES } from 'constants/statuses';
 
@@ -34,6 +33,9 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
         COURSE_STATUSES.completed,
       ].includes(courseData.status)
     : false;
+  const isCourseCompleted = courseData
+    ? [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(courseData.status)
+    : false;
   const isCourseStatusPending = courseData?.status === COURSE_STATUSES.pending;
 
   const toggleFullText = () => {
@@ -52,36 +54,31 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
 
   const windowWidth = getWindowWidth();
 
-  const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
-  const handleFilterOpen = () => {
-    setFilterOpen(!isFilterOpen);
-  };
-  const handleFilterClose = () => {
-    setFilterOpen(false);
-  };
-
   const courseInfo = courseData && 'course' in courseData ? courseData.course : courseData;
 
-  return courseInfo && courseData ? (
-    <DetailedCourse
-      courseData={courseInfo}
-      handleApplyCourse={handleApplyCourse}
-      isLoading={isLoading}
-      buttonId={BUTTON_ID}
-      targetId={targetId}
-      page={page}
-      id={courseData._id}
-      windowWidth={windowWidth}
-      isFullTextOpen={isFullTextOpen}
-      toggleFullText={toggleFullText}
-      isFilterOpen={isFilterOpen}
-      handleFilterOpen={handleFilterOpen}
-      handleFilterClose={handleFilterClose}
-      isCourseApplicationSubmitted={isCourseApplicationSubmitted}
-      isCourseStatusPending={isCourseStatusPending}
-      isCourseLearningDisabled={isCourseLearningDisabled}
-    />
-  ) : null;
+  return (
+    <>
+      {courseInfo && courseData && (
+        <DetailedCourse
+          courseData={courseInfo}
+          handleApplyCourse={handleApplyCourse}
+          isLoading={isLoading}
+          buttonId={BUTTON_ID}
+          targetId={targetId}
+          page={page}
+          id={courseData._id}
+          status={courseData.status}
+          windowWidth={windowWidth}
+          isFullTextOpen={isFullTextOpen}
+          toggleFullText={toggleFullText}
+          isCourseApplicationSubmitted={isCourseApplicationSubmitted}
+          isCourseStatusPending={isCourseStatusPending}
+          isCourseCompleted={isCourseCompleted}
+          isCourseLearningDisabled={isCourseLearningDisabled}
+        />
+      )}
+    </>
+  );
 };
 
 export default DetailedCourseContainer;

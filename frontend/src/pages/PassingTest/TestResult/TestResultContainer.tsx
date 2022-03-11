@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { ITestResult } from 'types/test';
 import { PERCENTAGE, TEST_STATUS } from 'constants/test';
 import { COURSE_STATUSES } from 'constants/statuses';
-import useFinishClientCourse from 'api/myCourses/finishClientCourse';
+import { useFinishClientCourse } from 'api/myCourses';
 
 import TestResult from './TestResult';
 
