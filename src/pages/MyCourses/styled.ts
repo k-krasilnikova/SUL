@@ -6,11 +6,11 @@ import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
-  [theme.breakpoints.up('xs')]: {
-    padding: '0px 8px',
-  },
-  '@media(min-width: 1110px)': {
+  [theme.breakpoints.down('xl')]: {
     padding: '16px 30px 0px 30px',
+  },
+  [theme.breakpoints.down(950)]: {
+    padding: '0px 8px',
   },
   [theme.breakpoints.up('xl')]: {
     padding: '16px 0px 0px 0px',
@@ -23,7 +23,7 @@ export const PageContainer = styled(Grid)({
 export const GridItem = styled(Grid)({
   height: 'fit-content',
   width: '711px',
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('xl')]: {
     width: '100%',
     paddingTop: '8px',
   },
@@ -35,7 +35,7 @@ export const GridItem = styled(Grid)({
 });
 
 export const CourseButton = styled(Button)({
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('sm')]: {
     margin: '3px',
     fontSize: '10px',
     alignSelf: 'center',
@@ -73,7 +73,7 @@ export const CourseActionsBox = styled(Box)({
 });
 
 export const DetailsButton = styled(Button)({
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
     marginRight: '9px !important',
@@ -92,7 +92,7 @@ export const DetailsButton = styled(Button)({
 });
 
 export const StartCourseButton = styled(Button)({
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
     marginRight: '26px !important',
@@ -111,7 +111,7 @@ export const StartCourseButton = styled(Button)({
 });
 
 export const MobileLink = styled(Link)({
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('sm')]: {
     '&:hover': {
       cursor: 'pointer',
     },
@@ -124,7 +124,7 @@ export const MobileLink = styled(Link)({
 });
 
 export const ContinueTestButton = styled(Button)({
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
     marginRight: '26px !important',
@@ -145,7 +145,7 @@ export const MobileSearchWrapper = styled('div')({
   width: '100%',
   margin: '16px 0px 8px 0px',
   height: '30px',
-  '@media(min-width: 1110px)': {
+  [theme.breakpoints.up(950)]: {
     display: 'none',
   },
 });

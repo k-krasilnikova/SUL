@@ -20,7 +20,7 @@ export const shortifyCourseDescription = (
     windowWidth === WINDOW_SIZE.xl.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
-    maxLength = 260;
+    maxLength = 250;
   }
   if (
     windowWidth === WINDOW_SIZE.lg.name &&
