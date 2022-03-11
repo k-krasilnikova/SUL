@@ -4,6 +4,8 @@ import { useSnackbar } from 'notistack';
 import { searchAllCourses } from 'api/courses';
 import { Course } from 'types/course';
 import SearchCourses from 'components/Layout/Header/SearchCourses/SearchCourses';
+import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
 
 const SearchCoursesContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
@@ -15,12 +17,14 @@ const SearchCoursesContainer: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const getCourses = async (search: string) => {
-        const searchResponse = await searchAllCourses(search);
-        if (searchResponse.data) {
-          setCoursesFound(searchResponse.data);
-          setSearchOpen(true);
-        } else {
-          enqueueSnackbar('Something went wrong');
+        if (searchInputValue.length) {
+          const searchResponse = await searchAllCourses(search);
+          if (searchResponse.data) {
+            setCoursesFound(searchResponse.data);
+            setSearchOpen(true);
+          } else {
+            enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar);
+          }
         }
       };
       getCourses(searchInputValue);
@@ -30,7 +34,8 @@ const SearchCoursesContainer: React.FC = () => {
 
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (event.target.value.length) {
-      setSearchInputValue(event.target.value);
+      const formattedValue = formatInputValue(event.target.value);
+      setSearchInputValue(formattedValue);
     } else {
       setSearchOpen(false);
     }
@@ -40,12 +45,17 @@ const SearchCoursesContainer: React.FC = () => {
     setSearchOpen(false);
   };
 
+  const checkSpace = (event: React.KeyboardEvent) => {
+    checkWhitespace(event, searchInputValue);
+  };
+
   return (
     <SearchCourses
       isSearchOpen={isSearchOpen}
       searchCourses={searchCourses}
       handleSearchClose={handleSearchClose}
       coursesFound={coursesFound}
+      checkSpace={checkSpace}
     />
   );
 };

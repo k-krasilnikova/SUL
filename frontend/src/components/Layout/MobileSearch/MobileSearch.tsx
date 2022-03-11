@@ -11,6 +11,7 @@ interface Props {
   isSearchOpen: boolean;
   searchCourses: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchClose: () => void;
+  checkSpace: (event: React.KeyboardEvent) => void;
   coursesFound?: Array<Course>;
 }
 
@@ -19,6 +20,7 @@ const MobileSearch: React.FC<Props> = ({
   searchCourses,
   handleSearchClose,
   coursesFound,
+  checkSpace,
 }) => (
   <ClickAwayListener onClickAway={handleSearchClose}>
     <>
@@ -32,6 +34,7 @@ const MobileSearch: React.FC<Props> = ({
             <SearchIcon color="disabled" fontSize="medium" />
           </InputAdornment>
         }
+        onKeyDown={checkSpace}
         onChange={searchCourses}
       />
       {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
