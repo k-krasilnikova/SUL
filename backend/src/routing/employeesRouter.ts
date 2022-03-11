@@ -18,7 +18,6 @@ employeesRouter.post(
   adapterManager,
   applyCourse,
   updatePandingCourse,
-  approvePendingCourse,
   adapterSender,
 );
 employeesRouter.get(`${Params.noParams}`, withAuth([USER_ROLES.MANAGER]), getEmployees);
