@@ -1,13 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 
 import CourseStatus from 'enums/coursesEnums';
-import { getStatusProvider /*, updateCourseStatus */ } from 'db/providers/clientCourseProvider';
+import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
-// import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 
 const approvePendingCourse = async (
   req: Request,
@@ -19,7 +18,6 @@ const approvePendingCourse = async (
 ) => {
   try {
     const { managerId, clientCourseId, results } = res.locals;
-    console.log('LOL 123', managerId, clientCourseId);
     if (!clientCourseId || !managerId) {
       throw new BadRequestError('Invalid query.');
     }
@@ -28,14 +26,13 @@ const approvePendingCourse = async (
       throw new BadRequestError(`Can't approve course in status: ${status}`);
     }
     
-    const { managerId: manager }: IUser = await getUserProvider(managerId);
+    const { _id: manager }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
-    // await updateCourseStatus(clientCourseId, CourseStatus.approved);
+    await updateCourseStatus(clientCourseId, CourseStatus.approved);
     await removeFromPendingFieldCourses(manager, clientCourse._id);
     results.updateStatus = 'Course was approved';
     next();
   } catch (error) {
-    // console.log(123123, error);
     next(error);
   }
 };

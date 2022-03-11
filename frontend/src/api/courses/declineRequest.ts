@@ -6,7 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 
-const useApproveRequest = (): UseMutationResult => {
+const useDeclineRequest = (): UseMutationResult => {
   const { enqueueSnackbar } = useSnackbar();
   const queryClient = useQueryClient();
   const handleSubmitError = (error: AxiosError) => {
@@ -16,7 +16,7 @@ const useApproveRequest = (): UseMutationResult => {
     async (id: string | undefined | unknown) => {
       const data = { id };
       const apiClient = apiClientWrapper();
-      const response = await apiClient.put(API.approveRequest, data);
+      const response = await apiClient.put(API.declineRequest, data);
       return response.data;
     },
     {
@@ -28,4 +28,4 @@ const useApproveRequest = (): UseMutationResult => {
   );
 };
 
-export default useApproveRequest;
+export default useDeclineRequest;
