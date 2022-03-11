@@ -7,13 +7,13 @@ import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.down('xl')]: {
-    padding: '16px 30px 0px 30px',
+    padding: '16px 8px 0px 0px',
   },
   [theme.breakpoints.down(950)]: {
     padding: '0px 8px',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: '16px 0px 0px 0px',
+    padding: '16px 10px 0px 0px',
     margin: '0px 0px 0px -6px !important',
   },
   maxWidth: '1482px',
@@ -25,6 +25,7 @@ export const GridItem = styled(Grid)({
   width: '711px',
   [theme.breakpoints.down('xl')]: {
     width: '100%',
+    paddingLeft: '10px',
     paddingTop: '8px',
   },
   [theme.breakpoints.up('xl')]: {
@@ -163,7 +164,7 @@ export const CompletedButton = styled(Button)({
   [theme.breakpoints.down('xl')]: {
     marginRight: '26px !important',
     height: '44px',
-    width: '121px',
+    width: '131px',
     fontSize: '14px!important',
     lineHeight: '19px',
     padding: '10px 0px !important',

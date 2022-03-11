@@ -7,33 +7,31 @@ import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.down('xl')]: {
-    padding: '16px 30px 0px 30px !important',
+    padding: '16px 8px 0px 0px',
   },
   [theme.breakpoints.down(950)]: {
-    padding: '0px 8px !important',
+    padding: '0px 8px',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: '16px 30px 0px 0px !important',
+    padding: '16px 10px 0px 0px',
+    margin: '0px 0px 0px -6px !important',
   },
-  width: '100%',
-  paddingRight: '30px !important',
-  paddingTop: '1.0% !important',
-  paddingLeft: '0px !important',
+  maxWidth: '1482px',
+  paddingTop: '16px',
 });
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
   width: '711px',
   [theme.breakpoints.down('xl')]: {
-    width: '100% !important',
-    paddingTop: '8px !important',
-    paddingLeft: '0px !important',
+    width: '100%',
+    paddingLeft: '10px',
+    paddingTop: '8px',
   },
   [theme.breakpoints.up('xl')]: {
-    maxWidth: '741px !important',
-    width: '741px !important',
-    paddingLeft: '30px !important',
-    paddingTop: '24px !important',
+    width: '711px',
+    paddingLeft: '30px',
+    paddingTop: '24px',
   },
 });
 
@@ -149,7 +147,7 @@ export const CompletedButton = styled(Button)({
   display: 'flex',
   [theme.breakpoints.down('xl')]: {
     height: '44px',
-    width: '121px',
+    width: '131px',
     marginRight: '36px !important',
     fontSize: '14px!important',
     lineHeight: '19px',
