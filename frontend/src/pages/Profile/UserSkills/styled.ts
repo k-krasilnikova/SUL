@@ -111,36 +111,24 @@ export const Title = styled('div')({
 });
 export const SkillsInfoList = styled('div')({
   [theme.breakpoints.up('md')]: {
-    padding: '0px',
+    margin: '0px',
   },
   [theme.breakpoints.up('sm')]: {
-    padding: '0px 17px',
+    margin: '10px 17px',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: '17px',
+    margin: '17px',
   },
 });
 export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
   display: 'inline-block',
   borderRadius: '5px',
   fontFamily: theme.typography.fontFamily,
-  [theme.breakpoints.up('xs')]: {
-    minWidth: '120px',
-    maxWidth: '150px',
-    height: '60px',
-    padding: '7px 8px 4px 8px',
-    margin: '8px 12px 8px 0px',
-  },
-  [theme.breakpoints.up('sm')]: {
-    margin: '12px 32px 12px 0px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    maxWidth: '200px',
-    width: '200px',
-    height: '100px',
-    padding: '16px',
-    marginRight: '64px',
-  },
+  maxWidth: '210px',
+  width: '210px',
+  height: '100px',
+  padding: '16px',
+  marginRight: '64px',
   background: '#EAEAEA',
   border: '1px solid rgba(0, 0, 0, 0.2)',
   ...(completed && {
@@ -149,31 +137,37 @@ export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
   }),
   fontWeight: 'normal',
   verticalAlign: 'middle',
+  [theme.breakpoints.down('md')]: {
+    minWidth: '120px',
+    maxWidth: '150px',
+    height: '70px',
+    padding: '7px 8px 4px 8px',
+    margin: '8px 12px 8px 0px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    margin: '12px 32px 12px 0px',
+  },
 }));
 export const SkillInfoFlex = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    display: 'flex',
-    flexDirection: 'row',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  height: '56px',
+  width: '175px',
+  [theme.breakpoints.down('md')]: {
     justifyContent: 'flex-start',
     alignItems: 'top',
   },
-  [theme.breakpoints.up('xl')]: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    height: '56px',
-    width: '168px',
-  },
 });
 export const SkillProgress = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
   [theme.breakpoints.up('xs')]: {
-    marginRight: '8px',
     width: '24px',
     height: '24px',
   },
   [theme.breakpoints.up('xl')]: {
-    marginRight: '16px',
     width: '41px',
     height: '56px',
   },
@@ -214,5 +208,12 @@ export const NoSkills = styled('div')({
   },
   [theme.breakpoints.up('lg')]: {
     marginTop: '80px',
+  },
+});
+
+export const ImageWrapper = styled('div')({
+  marginRight: '20px',
+  [theme.breakpoints.down('md')]: {
+    marginRight: '10px',
   },
 });

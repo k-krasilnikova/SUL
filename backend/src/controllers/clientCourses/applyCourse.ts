@@ -27,7 +27,7 @@ const applyCourse = async (
     const materialsCount = await materialsCounterProvider(courseId);
     const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
     const course: IClientCourse = await applyCourseProvider(courseId, userId, progressDto);
-    res.locals.clientCourseId = course._id;
+    res.locals.clientCourseId = String(course._id);
     results.course = course;
     next();
   } catch (err) {

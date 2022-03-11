@@ -1,24 +1,31 @@
 import mongoose from 'mongoose';
 
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
+import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 import CourseStatus from 'enums/coursesEnums';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 import ClientCourseModel from '../models/ClientCourses';
 
-const getClientCoursesProvider = async (userId: string) => {
-  const clientCourses = await ClientCourseModel.find({ user: userId }).populate('course');
+const getClientCoursesProvider = async (userId: string): Promise<IClientCoursePopulated[]> => {
+  const clientCourses: IClientCoursePopulated[] = await ClientCourseModel.find({
+    user: userId,
+  }).populate('course');
   return clientCourses;
 };
 
-const getClientCourseProvider = async (clientCourseId: string) => {
-  const clientCourse = await ClientCourseModel.findOne({ _id: clientCourseId })
+const getClientCourseProvider = async (clientCourseId: string): Promise<IClientCoursePopulated> => {
+  const clientCourse: IClientCoursePopulated = await ClientCourseModel.findOne({
+    _id: clientCourseId,
+  })
     .populate('course')
     .lean();
+
   if (!clientCourse) {
     throw new NotFoundError('Course not found.');
   }
+
   return clientCourse;
 };
 
@@ -90,6 +97,17 @@ const updateCourseStatus = async (courseId: string, courseStatus: string) => {
   throw new BadRequestError('Bad request. Check the data being sent');
 };
 
+const updateApplyDate = async (courseId: string) => {
+  const updatedCourse = await ClientCourseModel.findOneAndUpdate(
+    { _id: courseId },
+    { $set: { applyDate: Date.now() } },
+  );
+  if (updatedCourse) {
+    return updatedCourse;
+  }
+  throw new BadRequestError('Bad request. Check the data being sent');
+};
+
 export {
   getClientCoursesProvider,
   getClientCourseProvider,
@@ -98,4 +116,5 @@ export {
   applyCourseProvider,
   updateCourseProgress,
   getCurrentProgress,
+  updateApplyDate,
 };

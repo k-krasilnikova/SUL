@@ -8,6 +8,7 @@ import approvePendingCourse from 'controllers/pendingCourses/approvePendingCours
 import declinePendingCourse from 'controllers/pendingCourses/declinePendingCourse';
 import adapterManager from 'controllers/manager/adapterManager';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
+import sendMail from 'middlewares/mailSender';
 
 const pendingCoursesRouter = Router();
 
@@ -17,6 +18,7 @@ pendingCoursesRouter.put(
   withAuth([USER_ROLES.MANAGER]),
   adapterManager,
   approvePendingCourse,
+  // sendMail,
   adapterSender,
 );
 pendingCoursesRouter.put(
@@ -24,6 +26,8 @@ pendingCoursesRouter.put(
   withAuth([USER_ROLES.MANAGER]),
   adapterManager,
   declinePendingCourse,
+  // sendMail,
+  adapterSender,
 );
 
 export default pendingCoursesRouter;

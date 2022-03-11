@@ -86,6 +86,7 @@ const SignIn = ({
                       label="Password"
                       error={errors}
                       id="password"
+                      type="password"
                       warningHandler={warningHandler}
                       outOfFocusFiled={outOfFocusFiled}
                       getFieldName={getFieldName}

@@ -1,11 +1,6 @@
-export interface Content {
-  stage: number;
-  content: string;
-  isCompleted: boolean;
-}
-
 export interface Material {
-  content: Array<Content>;
+  _id?: string;
+  content: Array<string>;
   technology: Array<string>;
 }
 
@@ -21,4 +16,8 @@ export interface Course {
   _id: string;
   status: string;
   avatar?: string;
+}
+
+export interface ICourses {
+  сoursesResponse: Course[];
 }

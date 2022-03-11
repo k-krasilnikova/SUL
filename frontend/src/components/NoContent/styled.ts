@@ -14,6 +14,7 @@ export const MessageWrapper = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  padding: '40px',
 });
 
 export const Message = styled('span')<Size>(({ size }) => ({

@@ -5,6 +5,12 @@ interface ICookiesTypes {
   readonly [key: string]: string;
 }
 
+export interface ITokenResponse {
+  accessToken?: string;
+  _id?: string;
+  error?: unknown;
+}
+
 const REQUEST_ERRORS: IRequestErrors = {
   getError: 'Smth went wrong - 404',
   postError: 'Smth went wrong - 500',
