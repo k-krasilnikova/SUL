@@ -2,9 +2,11 @@ import React from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
 
+import { RequestsWrapper } from './styled';
+
 const Requests: React.FC = () => (
   <AuthorizedLayout pageName="Requests">
-    <div>Requests should be here</div>
+    <RequestsWrapper>Requests should be here</RequestsWrapper>
   </AuthorizedLayout>
 );
 
