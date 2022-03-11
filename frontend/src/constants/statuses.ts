@@ -13,7 +13,7 @@ export const COURSE_LABELS: { [key: string]: string } = {
   approved: 'Start the course',
   started: 'Continue',
   successful: 'Completed',
-  testing: 'Continue test',
+  testing: 'Continue the test',
   rejected: 'Declined',
   completed: 'Completed',
 };

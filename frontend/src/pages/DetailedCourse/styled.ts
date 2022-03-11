@@ -205,31 +205,27 @@ export const BackButton = styled(Button)({
 export const StartButton = styled(Button)({
   height: '50px',
   width: '150px',
-  [theme.breakpoints.up('xs')]: {
-    height: '44px',
-    width: '131px',
-    fontSize: '14px !important',
-    lineHeight: '19px',
-    padding: '10px 10px!important',
-    margin: '24px 18px 0px calc(100% - 156px) !important',
-  },
-  [theme.breakpoints.up('md')]: {
-    height: '35px',
-    width: '105px',
+  fontSize: '18px !important',
+  fontWeight: '700 !important',
+  [theme.breakpoints.down('xl')]: {
     fontSize: '12px !important',
-    padding: '4px 5px!important',
-    margin: '0px 20px 0px calc(100% - 132px) !important',
-  },
-  [theme.breakpoints.up('lg')]: {
     height: '37px',
     width: '112px',
-    fontSize: '12px !important',
-    margin: '0px 50px 0px calc(100% - 162px) !important',
+    padding: '4px 5px !important',
+    margin: '0 50px 0 calc(100% - 162px) !important',
   },
-  [theme.breakpoints.up('xl')]: {
-    height: '50px !important',
-    width: '150px !important',
-    fontSize: '18px !important',
+  [theme.breakpoints.down('lg')]: {
+    height: '35px',
+    width: '105px',
+    margin: '0 20px 0 calc(100% - 132px) !important',
+  },
+  [theme.breakpoints.down('md')]: {
+    height: '44px',
+    width: '131px',
+    lineHeight: '19px',
+    fontSize: '14px!important',
+    padding: '10px !important',
+    margin: '24px 18px 0 calc(100% - 156px) !important',
   },
 });
 
