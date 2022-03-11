@@ -6,7 +6,7 @@ import { close } from 'icons';
 import { ConfirmDialog } from 'components/ConfirmDialog';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
-import { useGetCourseTest } from 'api/test';
+import { useGetCourseTest, useStartCourseTest } from 'api/test';
 import { convertTestTimeout } from 'utils/helpers/convertTestTimeout';
 
 import {
@@ -26,15 +26,29 @@ interface IFormDialog {
   dialogOpen: boolean;
   handleDialogClose: () => void;
   courseStatus: string;
+  courseId: string;
 }
 
-const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose, courseStatus }) => {
+const FormDialog: React.FC<IFormDialog> = ({
+  dialogOpen,
+  handleDialogClose,
+  courseStatus,
+  courseId,
+}) => {
   const params = useParams();
   const { data } = useGetCourseTest({
     courseId: params.courseId,
     enabled: dialogOpen && courseStatus === COURSE_STATUSES.started,
   });
   const timeout = data && data[0].test.timeout;
+
+  const { mutate } = useStartCourseTest(params.courseId);
+
+  const handleStartTest = () => {
+    if (courseStatus === COURSE_STATUSES.started) {
+      mutate(courseId);
+    }
+  };
 
   return (
     <>
@@ -57,7 +71,9 @@ const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose, cour
             </SecondaryDialogContentText>
             <StyledButtonBox>
               <Link to={`${PATHS.learnCourse}/${params.courseId}/test`}>
-                <StyledButton variant="medium">Start the Test</StyledButton>
+                <StyledButton variant="medium" onClick={handleStartTest}>
+                  Start the Test
+                </StyledButton>
               </Link>
             </StyledButtonBox>
           </DialogBox>

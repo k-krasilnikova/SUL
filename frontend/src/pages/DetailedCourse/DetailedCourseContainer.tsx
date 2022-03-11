@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
-import useGetCourseInfo from 'api/courses/getCourseInfo';
-import useApplyCourse from 'api/courses/applyCourse';
-import useGetClientCourseInfo from 'api/myCourses/getMyCourseInfo';
+import { useApplyCourse, useGetCourseInfo } from 'api/courses';
+import { useGetClientCourseInfo } from 'api/myCourses';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import { COURSE_STATUSES } from 'constants/statuses';
 

@@ -45,6 +45,7 @@ interface LearningProps {
   materialType: string;
   videoPreview: string | boolean;
   courseStatus: string;
+  courseId: string;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -63,6 +64,7 @@ const LearningCourse: React.FC<LearningProps> = ({
   handleDialogClose,
   videoPreview,
   courseStatus,
+  courseId,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -115,6 +117,7 @@ const LearningCourse: React.FC<LearningProps> = ({
                 dialogOpen={dialogOpen}
                 handleDialogClose={handleDialogClose}
                 courseStatus={courseStatus}
+                courseId={courseId}
               />
             </>
           ) : (
