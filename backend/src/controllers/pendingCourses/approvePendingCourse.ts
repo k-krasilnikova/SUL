@@ -1,30 +1,41 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
+import { getStatusProvider /*, updateCourseStatus */ } from 'db/providers/clientCourseProvider';
+import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
+import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { IUser } from 'interfaces/Ientities/Iusers';
+import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
+// import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 
 const approvePendingCourse = async (
   req: Request,
   res: Response<
     never,
-    { clientCourseId: string | undefined; results: Record<'updateStatus', string> }
+    TCourseLocals & { managerId?: string; clientCourseId: string | undefined; results: Record<'updateStatus', string> }
   >,
   next: NextFunction,
 ) => {
   try {
-    const { clientCourseId, results } = res.locals;
-    if (!clientCourseId) {
+    const { managerId, clientCourseId, results } = res.locals;
+    console.log('LOL 123', managerId, clientCourseId);
+    if (!clientCourseId || !managerId) {
       throw new BadRequestError('Invalid query.');
     }
     const { status } = await getStatusProvider(clientCourseId);
     if (status !== CourseStatus.pending) {
       throw new BadRequestError(`Can't approve course in status: ${status}`);
     }
-    await updateCourseStatus(clientCourseId, CourseStatus.approved);
+    
+    const { managerId: manager }: IUser = await getUserProvider(managerId);
+    const clientCourse = await getClientCourseProvider(clientCourseId);
+    // await updateCourseStatus(clientCourseId, CourseStatus.approved);
+    await removeFromPendingFieldCourses(manager, clientCourse._id);
     results.updateStatus = 'Course was approved';
     next();
   } catch (error) {
+    // console.log(123123, error);
     next(error);
   }
 };
