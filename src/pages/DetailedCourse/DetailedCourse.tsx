@@ -12,9 +12,18 @@ import { PATHS } from 'constants/routes';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { backIconMobile } from 'icons';
-import MobileSearch from 'components/Layout/MobileSearch';
+import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
-import { Course } from 'types/course';
+import { INFO } from 'constants/coutseInfoTypes';
+import { COURSE_LABELS } from 'constants/statuses';
+import {
+  COMPLETED_STATUS_TEXT,
+  OPEN_FULL_TEXT,
+  PERCENTAGE_VALUE,
+  PROGRESS_COLOR,
+} from 'constants/detailedCourse';
+import { IDetailedCourse } from 'types/detailedCourse';
+import { VARIANTS } from 'constants/progressBar';
 
 import {
   BackButton,
@@ -38,30 +47,7 @@ import {
   MobileSearchWrapper,
 } from './styled';
 
-interface IProps {
-  courseData: Course;
-  handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
-  buttonId: {
-    [key: string]: string | undefined;
-  };
-  page: string;
-  id: string;
-  windowWidth: string;
-  isFullTextOpen: boolean;
-  toggleFullText: () => void;
-  isFilterOpen: boolean;
-  handleFilterOpen: () => void;
-  handleFilterClose: () => void;
-  isCourseStatusPending: boolean;
-  isCourseLearningDisabled: boolean;
-  isLoading?: boolean;
-  targetId?: string | undefined;
-  isCourseApplicationSubmitted?: boolean;
-}
-
-const OPEN_FULL_TEXT = 'Look in full';
-
-const DetailedCourse: React.FC<IProps> = ({
+const DetailedCourse: React.FC<IDetailedCourse> = ({
   courseData,
   handleApplyCourse,
   isLoading,
@@ -69,15 +55,14 @@ const DetailedCourse: React.FC<IProps> = ({
   buttonId,
   page,
   id,
+  status,
   windowWidth,
   isFullTextOpen,
   toggleFullText,
-  isFilterOpen,
-  handleFilterOpen,
-  handleFilterClose,
   isCourseApplicationSubmitted,
   isCourseStatusPending,
   isCourseLearningDisabled,
+  isCourseCompleted,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -88,18 +73,19 @@ const DetailedCourse: React.FC<IProps> = ({
         <BackArrow alt="" src={backIconMobile} />
       </BackLink>
       <MobileSearchWrapper>
-        <MobileSearch
-          isFilterOpen={isFilterOpen}
-          handleFilterOpen={handleFilterOpen}
-          handleFilterClose={handleFilterClose}
-        />
+        <MobileSearch />
       </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper>
           <Image imageUrl={courseData.avatar} />
         </ImageWrapper>
         {isCourseApplicationSubmitted && !isCourseStatusPending && (
-          <ProgressBar size="large" text="0%" textColor="#131313" />
+          <ProgressBar
+            size="large"
+            text={isCourseCompleted ? COMPLETED_STATUS_TEXT : PERCENTAGE_VALUE}
+            textColor={PROGRESS_COLOR}
+            variant={isCourseCompleted && VARIANTS.successful}
+          />
         )}
         <DetailedCourseTitle>{courseData.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
@@ -118,7 +104,7 @@ const DetailedCourse: React.FC<IProps> = ({
             <CourseInfo
               duration={courseData.duration}
               lessons={courseData.lessons}
-              type="detailedCourse"
+              type={INFO.detailedCourse}
             />
           </CourseInfoBox>
           {isLoading && targetId === buttonId.start ? (
@@ -129,13 +115,19 @@ const DetailedCourse: React.FC<IProps> = ({
             <div>
               {page === PAGES.myCourses && (
                 <Link to={`${PATHS.learnCourse}/${id}`}>
-                  <StartButton
-                    color="primary"
-                    variant="mediumContained"
-                    disabled={isCourseLearningDisabled}
-                  >
-                    Start the course
-                  </StartButton>
+                  {isCourseCompleted ? (
+                    <StartButton variant="completed" disabled>
+                      Completed
+                    </StartButton>
+                  ) : (
+                    <StartButton
+                      color="primary"
+                      variant="mediumContained"
+                      disabled={isCourseLearningDisabled}
+                    >
+                      {COURSE_LABELS[status]}
+                    </StartButton>
+                  )}
                 </Link>
               )}
               {page === PAGES.coursesList && (
@@ -161,7 +153,7 @@ const DetailedCourse: React.FC<IProps> = ({
                 duration={courseData.duration}
                 lessons={courseData.lessons}
                 windowWidth={windowWidth}
-                type="similarCourses"
+                type={INFO.similarCourses}
                 pageName={PAGES.detailed}
                 imageUrl={courseData.avatar}
               >

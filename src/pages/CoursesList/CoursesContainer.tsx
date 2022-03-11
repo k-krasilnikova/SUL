@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-import { useGetCourses } from 'api/courses';
-import useApplyCourse from 'api/courses/applyCourse';
+import { useGetCourses, useApplyCourse } from 'api/courses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 
@@ -25,14 +24,6 @@ const CoursesContainer: React.FC = () => {
     mutate((event.target as HTMLElement).id);
   };
 
-  const [isFilterOpen, setFilterOpen] = useState<boolean>(false);
-  const handleFilterOpen = () => {
-    setFilterOpen(!isFilterOpen);
-  };
-  const handleFilterClose = () => {
-    setFilterOpen(false);
-  };
-
   const windowWidth = getWindowWidth();
   const formattedCoursesList = courses?.filter((course) => !course.status);
 
@@ -44,9 +35,6 @@ const CoursesContainer: React.FC = () => {
       targetId={targetId}
       targetLoading={isLoading}
       disableLink={disableLink}
-      isFilterOpen={isFilterOpen}
-      handleFilterOpen={handleFilterOpen}
-      handleFilterClose={handleFilterClose}
       windowWidth={windowWidth}
     />
   );

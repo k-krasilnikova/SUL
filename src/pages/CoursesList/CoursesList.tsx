@@ -11,7 +11,7 @@ import Loader from 'components/Loader';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { LOADER } from 'constants/loaderTypes';
-import MobileSearch from 'components/Layout/MobileSearch';
+import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 
 import {
@@ -27,9 +27,6 @@ import {
 
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
-  isFilterOpen: boolean;
-  handleFilterOpen: () => void;
-  handleFilterClose: () => void;
   windowWidth: string;
 }
 
@@ -42,9 +39,6 @@ const CoursesList: React.FC<CoursesProps> = ({
   targetLoading,
   targetId,
   disableLink,
-  isFilterOpen,
-  handleFilterOpen,
-  handleFilterClose,
   windowWidth,
 }) => (
   <AuthorizedLayout pageName="Courses List">
@@ -53,11 +47,7 @@ const CoursesList: React.FC<CoursesProps> = ({
     ) : courses?.length ? (
       <PageContainer container>
         <MobileSearchWrapper>
-          <MobileSearch
-            isFilterOpen={isFilterOpen}
-            handleFilterOpen={handleFilterOpen}
-            handleFilterClose={handleFilterClose}
-          />
+          <MobileSearch />
         </MobileSearchWrapper>
         {courses.map((course) => (
           <Suspense
