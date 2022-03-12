@@ -7,13 +7,13 @@ import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.down('xl')]: {
-    padding: '16px 8px 0px 0px',
+    padding: '16px 24px 16px 0px',
   },
   [theme.breakpoints.down(950)]: {
     padding: '0px 8px',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: '16px 10px 0px 0px',
+    padding: '16px 30px 24px 0px',
     margin: '0px 0px 0px -6px !important',
   },
   maxWidth: '1482px',
