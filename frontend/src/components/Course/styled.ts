@@ -226,6 +226,7 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     }),
     ...(type === INFO.searchCourses && {
       height: 'auto !important',
+      flexDirection: 'row',
     }),
     marginLeft: '10px',
   },
@@ -249,6 +250,7 @@ export const InfoItem = styled('div')({
   alignItems: 'center',
   marginRight: '10px',
 });
+
 export const InfoItemText = styled(Typography)({
   [theme.breakpoints.up('xs')]: {
     width: '55px',
