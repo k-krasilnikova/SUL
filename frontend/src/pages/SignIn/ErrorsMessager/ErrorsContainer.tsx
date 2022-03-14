@@ -17,7 +17,6 @@ const ErrorsMessenger = ({ errors, touched }: ITextFieldTypes): JSX.Element => {
   const FIELD_NAME = {
     loginField: 'login',
     passwordField: 'password',
-    isAuthField: 'isAuthFailed',
   };
 
   const getCurrentError = (): string[] | never[] => {
@@ -34,11 +33,7 @@ const ErrorsMessenger = ({ errors, touched }: ITextFieldTypes): JSX.Element => {
 
   useEffect(() => {
     const currentName = keysQueue.shift();
-    if ('isAuthFailed' in errors) {
-      setFiledKey('isAuthFailed');
-    } else {
-      setFiledKey(currentName);
-    }
+    setFiledKey(currentName);
   }, [errors, keysQueue]);
 
   return (
