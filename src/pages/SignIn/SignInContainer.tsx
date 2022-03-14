@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 
 import signInSchema from 'validations/signInValidationSchema';
@@ -20,7 +20,7 @@ const initSignInvalue: SignInFields = {
 };
 
 const SignInContainer: React.FC = () => {
-  const { mutateAsync, isLoading } = useGetAuth();
+  const { mutateAsync, isLoading, isError: isAuthError } = useGetAuth();
   const FIELD_TOUCHED = true;
   const FIELD_VALIDATE = false;
 
@@ -33,10 +33,16 @@ const SignInContainer: React.FC = () => {
   });
 
   const [fieldStatus, setStatus] = useState<string | boolean>(false);
+  const [authFailed, setAuthFailed] = useState(false);
+
+  useEffect(() => {
+    if (isAuthError) setAuthFailed(true);
+  }, [isAuthError]);
 
   const warningHandler = (name: string, e: string) => {
     formik.handleChange(e);
     formik.setFieldTouched(name, FIELD_TOUCHED, FIELD_VALIDATE);
+    setAuthFailed(false);
   };
 
   const outOfFocusFiled = (e: string) => {
@@ -58,6 +64,7 @@ const SignInContainer: React.FC = () => {
         isLoading={isLoading}
         labelHandler={SIGN_STYLE_PROPS}
         fieldStatus={fieldStatus}
+        isAuthError={authFailed}
       />
     </FormikProvider>
   );
