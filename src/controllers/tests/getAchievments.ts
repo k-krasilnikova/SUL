@@ -9,13 +9,12 @@ import {
 } from 'db/providers/skillProvider';
 import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
-// import { TAchievments } from 'interfaces/Ientities/Itest';
+import { TAchievments } from 'interfaces/Ientities/Itest';
 import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 
 const getAchievments = async (
   req: Request,
-  // res: Response<void, { id: string; achievments: TAchievments }>,
-  res: Response<void, { id: string; achievments: { newSkills: any; updatedSkills: any } }>,
+  res: Response<void, { id: string; achievments: TAchievments }>,
   next: NextFunction,
 ) => {
   try {
@@ -36,10 +35,8 @@ const getAchievments = async (
         newSkills.map(async (skillId) => addUserSkill(userId, skillId)),
       );
 
-      const updatedUserSkillsPopulated: IUserSkill[] = await populateUserSkills(updatedUserSkills);
-      const insertedUserSkillsPopulated: IUserSkill[] = await populateUserSkills(
-        insertedUserSkills,
-      );
+      const updatedUserSkillsPopulated = await populateUserSkills(updatedUserSkills);
+      const insertedUserSkillsPopulated = await populateUserSkills(insertedUserSkills);
 
       res.locals.achievments = {
         newSkills: insertedUserSkillsPopulated,

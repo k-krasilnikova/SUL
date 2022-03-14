@@ -1,7 +1,6 @@
 import CourseStatus from 'enums/coursesEnums';
 import { ObjectId } from 'mongoose';
 
-// import { ICoursePopulated } from './Icourses';
 import { ICourse } from './Icourses';
 
 type TCourseStatus =
