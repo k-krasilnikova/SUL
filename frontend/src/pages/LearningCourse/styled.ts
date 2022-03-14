@@ -28,6 +28,7 @@ export const LearningWrapper = styled('div')({
   textAlign: 'right',
   padding: '0px 85px',
 });
+
 export const StepperController = styled(Box)({
   display: 'flex',
   justifyContent: 'flex-end',
