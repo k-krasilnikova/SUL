@@ -91,7 +91,6 @@ const LearningCourseContainer: React.FC = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleClickDialogOpen = () => {
-    handlePassCourseStage(stage);
     setDialogOpen(true);
   };
 
