@@ -28,9 +28,9 @@ const attachSkillToUserProfile = async (userId: string, userSkillId: ObjectId) =
     throw new NotFoundError('User skill not found.');
   }
 
-  const isGroupExists = !!user.technologies.filter((tech) =>
+  const isGroupExists = user.technologies.some((tech) =>
     isEqualObjectId(tech.group, userSkill.skill.group),
-  ).length;
+  );
 
   if (isGroupExists) {
     user.technologies.map((tech) => {
