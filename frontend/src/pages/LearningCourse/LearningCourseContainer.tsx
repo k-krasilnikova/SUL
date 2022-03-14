@@ -61,14 +61,13 @@ const LearningCourseContainer: React.FC = () => {
   };
 
   const stageForward = () => {
-    if (stage < maxStage) {
-      if (stage + STAGE_CHANGE === maxStage && !testEnabled) {
-        setTestEnabled(true);
-      }
-      setStage(stage + STAGE_CHANGE);
-      handlePassCourseStage(stage);
+    setStage(stage + STAGE_CHANGE);
+    handlePassCourseStage(stage + STAGE_CHANGE);
+    if (stage + STAGE_CHANGE === maxStage && !testEnabled) {
+      setTestEnabled(true);
     }
   };
+
   const stageBack = () => {
     if (stage > MIN_STAGE) {
       setStage(stage - STAGE_CHANGE);
