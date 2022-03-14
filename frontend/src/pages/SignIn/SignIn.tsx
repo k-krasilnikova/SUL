@@ -24,6 +24,7 @@ import {
   DefinitionWrapper,
   ImageWrapper,
   GridError,
+  WarningHelper,
 } from './styled';
 
 const SignIn = ({
@@ -34,6 +35,7 @@ const SignIn = ({
   isLoading,
   labelHandler,
   fieldStatus,
+  isAuthError,
 }: SignTypes): JSX.Element => {
   const {
     values: { login, password },
@@ -93,7 +95,8 @@ const SignIn = ({
                     />
                   </GridSignInput>
                   <GridError>
-                    <ErrorsMessenger error={errors} touched={touched} />
+                    <ErrorsMessenger errors={errors} touched={touched} />
+                    {isAuthError && <WarningHelper>Invalid login or password</WarningHelper>}
                   </GridError>
                   <GridButton item xs={12}>
                     {isLoading ? (
