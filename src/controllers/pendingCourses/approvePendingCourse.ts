@@ -1,9 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 
 import CourseStatus from 'enums/coursesEnums';
-import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
+import {
+  getStatusProvider,
+  updateCourseStatus,
+  getClientCourseProvider,
+} from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
-import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
@@ -12,7 +15,11 @@ const approvePendingCourse = async (
   req: Request,
   res: Response<
     never,
-    TCourseLocals & { managerId?: string; clientCourseId: string | undefined; results: Record<'updateStatus', string> }
+    TCourseLocals & {
+      managerId?: string;
+      clientCourseId: string | undefined;
+      results: Record<'updateStatus', string>;
+    }
   >,
   next: NextFunction,
 ) => {
@@ -25,7 +32,7 @@ const approvePendingCourse = async (
     if (status !== CourseStatus.pending) {
       throw new BadRequestError(`Can't approve course in status: ${status}`);
     }
-    
+
     const { _id: manager }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
     await updateCourseStatus(clientCourseId, CourseStatus.approved);

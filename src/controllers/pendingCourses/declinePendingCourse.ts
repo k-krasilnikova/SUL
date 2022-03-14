@@ -4,7 +4,7 @@ import {
   getStatusProvider,
   updateApplyDate,
   updateCourseStatus,
-  getClientCourseProvider
+  getClientCourseProvider,
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import CourseStatus from 'enums/coursesEnums';
@@ -16,7 +16,11 @@ const declinePendingCourse = async (
   req: Request,
   res: Response<
     never,
-    TCourseLocals & { managerId?: string;  clientCourseId: string | undefined; results: Record<'updateStatus', string> }
+    TCourseLocals & {
+      managerId?: string;
+      clientCourseId: string | undefined;
+      results: Record<'updateStatus', string>;
+    }
   >,
   next: NextFunction,
 ) => {
@@ -29,10 +33,10 @@ const declinePendingCourse = async (
     if (status !== CourseStatus.pending) {
       throw new BadRequestError(`Can't decline course with status: ${status}`);
     }
-    
+
     const { _id: manager }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
-    await updateCourseStatus(clientCourseId, CourseStatus.approved);
+    await updateCourseStatus(clientCourseId, CourseStatus.rejected);
     await removeFromPendingFieldCourses(manager, clientCourse._id);
 
     await updateApplyDate(clientCourseId);
