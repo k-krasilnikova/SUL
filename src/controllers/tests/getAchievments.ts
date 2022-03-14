@@ -29,12 +29,11 @@ const getAchievments = async (
     if (clientCourse.status === CourseStatus.successful) {
       const userSkills: IUserSkill[] = await getUserSkills(userId);
       const { oldSkills = [], newSkills = [] } = specifySkills(userSkills, techsToAchieve);
-
       const updatedUserSkills = await Promise.all(
-        oldSkills.map(async (skill) => updateUserSkill(userId, skill._id)),
+        oldSkills.map(async (skillId) => updateUserSkill(userId, skillId)),
       );
       const insertedUserSkills = await Promise.all(
-        newSkills.map(async (skill) => addUserSkill(userId, skill._id)),
+        newSkills.map(async (skillId) => addUserSkill(userId, skillId)),
       );
 
       const updatedUserSkillsPopulated: IUserSkill[] = await populateUserSkills(updatedUserSkills);
@@ -42,16 +41,15 @@ const getAchievments = async (
         insertedUserSkills,
       );
 
-      console.log(updatedUserSkillsPopulated, insertedUserSkillsPopulated);
-
       res.locals.achievments = {
         newSkills: insertedUserSkillsPopulated,
         updatedSkills: updatedUserSkillsPopulated,
       };
       next();
+    } else {
+      res.locals.achievments = { newSkills: [], updatedSkills: [] };
+      next();
     }
-    res.locals.achievments = { newSkills: [], updatedSkills: [] };
-    next();
   } catch (err) {
     next(err);
   }
