@@ -1,5 +1,3 @@
-import { IUserSkill } from './IUserSkill';
-
 interface ITest {
   _id?: string;
   title: string;
@@ -14,8 +12,8 @@ interface ITest {
 }
 
 type TAchievments = {
-  newSkills: Array<IUserSkill>;
-  updatedSkills: Array<IUserSkill>;
+  newSkills: Array<unknown>;
+  updatedSkills: Array<unknown>;
 };
 
 type TestRuslt = { result: number; testStatus: string };
