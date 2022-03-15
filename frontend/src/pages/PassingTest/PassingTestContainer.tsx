@@ -43,8 +43,8 @@ const PassingTestContainer: React.FC = () => {
     };
     if (clientCourseResponse?.status === COURSE_STATUSES.testing) {
       mutate(resultData);
-      setTestResultPageEnabled(true);
     }
+    setTestResultPageEnabled(true);
   };
 
   const stageBack = () => {
