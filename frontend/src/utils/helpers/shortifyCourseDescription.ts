@@ -7,26 +7,44 @@ export const shortifyCourseDescription = (
   pageName?: string,
 ): string => {
   let maxLength = 420;
+  if (windowWidth === WINDOW_SIZE.xl.name && pageName === PAGES.detailed) {
+    maxLength = 200;
+  }
   if (windowWidth === WINDOW_SIZE.lg.name && pageName === PAGES.detailed) {
     maxLength = 180;
+  }
+  if (windowWidth === WINDOW_SIZE.xmd.name && pageName === PAGES.detailed) {
+    maxLength = 140;
   }
   if (windowWidth === WINDOW_SIZE.md.name && pageName === PAGES.detailed) {
     maxLength = 120;
   }
   if (windowWidth === WINDOW_SIZE.sm.name && pageName === PAGES.detailed) {
-    maxLength = 100;
+    maxLength = 75;
+  }
+  if (
+    windowWidth === WINDOW_SIZE.xl.name &&
+    (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
+  ) {
+    maxLength = 250;
   }
   if (
     windowWidth === WINDOW_SIZE.lg.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
-    maxLength = 190;
+    maxLength = 110;
+  }
+  if (
+    windowWidth === WINDOW_SIZE.xmd.name &&
+    (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
+  ) {
+    maxLength = 110;
   }
   if (
     windowWidth === WINDOW_SIZE.md.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
-    maxLength = 320;
+    maxLength = 60;
   }
   if (
     windowWidth === WINDOW_SIZE.sm.name &&
