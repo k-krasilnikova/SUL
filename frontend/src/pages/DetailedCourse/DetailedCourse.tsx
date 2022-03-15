@@ -45,6 +45,7 @@ import {
   BackArrow,
   BackLink,
   MobileSearchWrapper,
+  ContinueTestButton,
 } from './styled';
 
 const DetailedCourse: React.FC<IDetailedCourse> = ({
@@ -63,6 +64,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   isCourseStatusPending,
   isCourseLearningDisabled,
   isCourseCompleted,
+  isCourseStatusTesting,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -113,22 +115,28 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
             </StartButton>
           ) : (
             <div>
-              {page === PAGES.myCourses && (
-                <Link to={`${PATHS.learnCourse}/${id}`}>
-                  {isCourseCompleted ? (
-                    <StartButton variant="completed" disabled>
-                      Completed
-                    </StartButton>
-                  ) : (
-                    <StartButton
-                      color="primary"
-                      variant="mediumContained"
-                      disabled={isCourseLearningDisabled}
-                    >
-                      {COURSE_LABELS[status]}
-                    </StartButton>
-                  )}
+              {page === PAGES.myCourses && isCourseStatusTesting ? (
+                <Link to={`${PATHS.learnCourse}/${id}/test`}>
+                  <ContinueTestButton color="primary" variant="mediumContained">
+                    Continue the test
+                  </ContinueTestButton>
                 </Link>
+              ) : (
+                page === PAGES.myCourses && (
+                  <Link to={`${PATHS.learnCourse}/${id}`}>
+                    {isCourseCompleted ? (
+                      <></>
+                    ) : (
+                      <StartButton
+                        color="primary"
+                        variant="mediumContained"
+                        disabled={isCourseLearningDisabled}
+                      >
+                        {COURSE_LABELS[status]}
+                      </StartButton>
+                    )}
+                  </Link>
+                )
               )}
               {page === PAGES.coursesList && (
                 <StartButton
