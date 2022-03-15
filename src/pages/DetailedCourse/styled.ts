@@ -182,10 +182,10 @@ export const SimilarCoursesTitle = styled(Typography)({
 });
 
 export const BackButton = styled(Button)({
-  [theme.breakpoints.up('xs')]: {
-    display: 'none!important',
-  },
-  [theme.breakpoints.up('md')]: {
+  height: '39px',
+  width: '84px',
+  fontSize: '16px !important',
+  [theme.breakpoints.down('lg')]: {
     display: 'inline-flex!important',
     height: '32px',
     width: '64px',
@@ -193,30 +193,52 @@ export const BackButton = styled(Button)({
     marginBottom: '15px !important',
   },
   '@media(min-width: 1110px)': {
-    marginBottom: '0px !important',
+    marginBottom: '0 !important',
   },
-  [theme.breakpoints.up('xl')]: {
-    height: '39px',
-    width: '84px',
-    fontSize: '18px !important',
+  [theme.breakpoints.down('sm')]: {
+    display: 'none !important',
   },
 });
 
 export const StartButton = styled(Button)({
   height: '50px',
   width: '150px',
-  fontSize: '18px !important',
+  fontSize: '16px !important',
   fontWeight: '700 !important',
   [theme.breakpoints.down('xl')]: {
+    margin: '0 50px 0 calc(100% - 162px) !important',
+  },
+  [theme.breakpoints.down('lg')]: {
     fontSize: '12px !important',
     height: '37px',
     width: '112px',
     padding: '4px 5px !important',
+    margin: '0 20px 0 calc(100% - 132px) !important',
+  },
+  [theme.breakpoints.down('md')]: {
+    height: '44px',
+    width: '131px',
+    lineHeight: '19px',
+    fontSize: '14px!important',
+    padding: '10px !important',
+    margin: '24px 18px 0 calc(100% - 156px) !important',
+  },
+});
+
+export const ContinueTestButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  fontSize: '16px !important',
+  fontWeight: '700 !important',
+  padding: '4px 5px !important',
+  [theme.breakpoints.down('xl')]: {
     margin: '0 50px 0 calc(100% - 162px) !important',
   },
   [theme.breakpoints.down('lg')]: {
-    height: '35px',
-    width: '105px',
+    fontSize: '12px !important',
+    height: '37px',
+    width: '112px',
+    padding: '4px 5px !important',
     margin: '0 20px 0 calc(100% - 132px) !important',
   },
   [theme.breakpoints.down('md')]: {
@@ -232,52 +254,13 @@ export const StartButton = styled(Button)({
 export const DetailsButton = styled(Button)({
   height: '50px',
   width: '150px',
-  [theme.breakpoints.up('sm')]: {
-    height: '44px',
-    width: '131px',
-    marginRight: '9px !important',
-    fontSize: '14px!important',
-    lineHeight: '19px',
-    padding: '10px 10px!important',
-  },
-  [theme.breakpoints.up('md')]: {
+  marginRight: '16px !important',
+  fontSize: '16px !important',
+  [theme.breakpoints.down('lg')]: {
     height: '35px',
     width: '105px',
-    marginRight: '11px !important',
     fontSize: '12px !important',
     padding: '4px 5px!important',
-  },
-  [theme.breakpoints.up('xl')]: {
-    height: '50px',
-    width: '150px',
-    marginRight: '16px !important',
-    fontSize: '18px !important',
-  },
-});
-
-export const StartCourseButton = styled(Button)({
-  height: '50px',
-  width: '150px',
-  [theme.breakpoints.up('sm')]: {
-    height: '44px',
-    width: '131px',
-    marginRight: '26px !important',
-    fontSize: '14px!important',
-    lineHeight: '19px',
-    padding: '10px 10px!important',
-  },
-  [theme.breakpoints.up('md')]: {
-    height: '35px',
-    width: '105px',
-    marginRight: '28px !important',
-    fontSize: '12px !important',
-    padding: '4px 5px!important',
-  },
-  [theme.breakpoints.up('xl')]: {
-    height: '50px',
-    width: '150px',
-    marginRight: '40px !important',
-    fontSize: '18px !important',
   },
 });
 

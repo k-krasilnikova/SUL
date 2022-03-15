@@ -75,7 +75,7 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
   padding: '10px 0',
   [theme.breakpoints.down('lg')]: {
     ...(type === INFO.similarCourses && {
-      justifyContent: 'end',
+      justifyContent: 'start',
     }),
   },
   [theme.breakpoints.down('md')]: {
@@ -96,6 +96,7 @@ export const ImageWrapper = styled('div')({
   alignSelf: 'center',
   margin: '0px 24px 16px 0px',
   borderRadius: '10px',
+  boxShadow: '2px 2px 2px 2px #00000021',
   [theme.breakpoints.down('xl')]: {
     width: '224px',
     height: '124px',
@@ -106,6 +107,7 @@ export const ImageWrapper = styled('div')({
     height: '100px',
     margin: '0px 14px 4px 0px',
     borderRadius: '8px',
+    boxShadow: '1px 1px 2px 1px #00000021',
   },
   [theme.breakpoints.down('sm')]: {
     flexShrink: '0',
@@ -213,6 +215,7 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     }),
     ...(type === INFO.searchCourses && {
       height: 'auto !important',
+      flexDirection: 'row',
     }),
     marginLeft: '10px',
   },
@@ -271,6 +274,7 @@ export const InfoItem = styled('div')({
   alignItems: 'center',
   marginRight: '10px',
 });
+
 export const InfoItemText = styled(Typography)({
   [theme.breakpoints.down('xl')]: {
     width: '70px',

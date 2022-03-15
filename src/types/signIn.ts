@@ -6,6 +6,7 @@ export interface SignTypes {
     [key: string]: string | undefined;
   };
   value?: string | number;
+  isAuthError: boolean;
   fieldValue?: string | number;
   login?: string;
   password?: string | number;
@@ -17,6 +18,7 @@ export interface SignTypes {
     errors: {
       login?: string;
       password?: string;
+      isAuthFailed?: string;
     };
     handleChange: (e: string) => void;
     isValid: boolean;
