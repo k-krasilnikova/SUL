@@ -1,5 +1,6 @@
-import { CompletedButton } from 'pages/MyCourses/styled';
 import { useState } from 'react';
+
+import { CompletedButton } from 'pages/MyCourses/styled';
 import { ClientCourse } from 'types/clientCourse';
 import { makeLeftTime } from 'utils/helpers/convertTime';
 
