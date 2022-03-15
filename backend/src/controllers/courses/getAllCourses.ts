@@ -15,7 +15,7 @@ const getAllCourses = async (
 
     const allCourses = await getCoursesProvider({ ...params }, userId);
 
-    const allCoursesInfo = convertToCourseInfoArray(allCourses);
+    const allCoursesInfo = await convertToCourseInfoArray(allCourses);
 
     res.json(allCoursesInfo);
   } catch (error) {
