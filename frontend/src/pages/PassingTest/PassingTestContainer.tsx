@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
-import { COURSE_STATUSES } from 'constants/statuses';
 import { useSendTestResult, useGetCourseTest } from 'api/test';
 import { useGetClientCourseInfo } from 'api/myCourses';
 
@@ -41,9 +40,7 @@ const PassingTestContainer: React.FC = () => {
         aN: Number(value),
       })),
     };
-    if (clientCourseResponse?.status === COURSE_STATUSES.testing) {
-      mutate(resultData);
-    }
+    mutate(resultData);
     setTestResultPageEnabled(true);
   };
 
