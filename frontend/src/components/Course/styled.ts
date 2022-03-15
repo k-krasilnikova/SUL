@@ -92,9 +92,27 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
 
 export const ImageWrapper = styled('div')({
   float: 'left',
-  margin: '0px 8px 0px 0px',
   overflow: 'hidden',
-  [theme.breakpoints.up('xs')]: {
+  width: '346px',
+  height: '191px',
+  alignItems: 'center',
+  alignSelf: 'center',
+  margin: '0px 24px 16px 0px',
+  borderRadius: '10px',
+  boxShadow: '2px 2px 2px 2px #00000021',
+  [theme.breakpoints.down('xl')]: {
+    width: '224px',
+    height: '124px',
+    margin: '0px 24px 4px 0px',
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '180px',
+    height: '100px',
+    margin: '0px 14px 4px 0px',
+    borderRadius: '8px',
+    boxShadow: '1px 1px 2px 1px #00000021',
+  },
+  [theme.breakpoints.down('sm')]: {
     flexShrink: '0',
     width: '72px',
     height: '46px',
@@ -102,25 +120,6 @@ export const ImageWrapper = styled('div')({
     alignSelf: 'center',
     margin: '8px 8px 28px 0px',
     borderRadius: '4px',
-  },
-  [theme.breakpoints.up('sm')]: {
-    width: '180px',
-    height: '100px',
-    margin: '0px 14px 4px 0px',
-    borderRadius: '8px',
-  },
-  [theme.breakpoints.up('md')]: {
-    width: '224px',
-    height: '124px',
-    margin: '0px 24px 4px 0px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '346px',
-    height: '191px',
-    alignItems: 'center',
-    alignSelf: 'center',
-    margin: '0px 24px 16px 0px',
-    borderRadius: '10px',
   },
 });
 
