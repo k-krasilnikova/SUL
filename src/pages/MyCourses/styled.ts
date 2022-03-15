@@ -6,41 +6,37 @@ import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
-  [theme.breakpoints.up('xs')]: {
-    padding: '0px 8px !important',
+  [theme.breakpoints.down('xl')]: {
+    padding: '16px 24px 16px 0px',
   },
-  '@media(max-width: 1110px)': {
-    paddingTop: '40px',
+  [theme.breakpoints.down(950)]: {
+    padding: '0px 8px',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: '16px 8px 0 8px !important',
+    padding: '16px 30px 24px 0px',
+    margin: '0px 0px 0px -6px !important',
   },
-  '@media(min-width: 1110px)': {
-    padding: '16px 30px 0px 30px !important',
-  },
-  '@media(min-width: 1440px)': {
-    padding: '16px 30px 0px 0px !important',
-  },
-  width: '100%',
-  paddingRight: '30px !important',
-  paddingTop: '1.0% !important',
-  paddingLeft: '0px !important',
+  maxWidth: '1482px',
+  paddingTop: '16px',
 });
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
-  width: '711px !important',
-  paddingLeft: '30px',
-  paddingTop: '24px',
-  [theme.breakpoints.down('md')]: {
+  width: '711px',
+  [theme.breakpoints.down('xl')]: {
     width: '100%',
-    paddingLeft: '0px',
+    paddingLeft: '10px',
     paddingTop: '8px',
+  },
+  [theme.breakpoints.up('xl')]: {
+    width: '711px',
+    paddingLeft: '30px',
+    paddingTop: '24px',
   },
 });
 
 export const CourseButton = styled(Button)({
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('sm')]: {
     margin: '3px',
     fontSize: '10px',
     alignSelf: 'center',
@@ -72,11 +68,11 @@ export const CourseActions = styled('div')({
 });
 
 export const CourseActionsBox = styled(Box)({
-  marginLeft: '16px !important',
+  marginLeft: '8px !important',
 });
 
 export const DetailsButton = styled(Button)({
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
     marginRight: '9px !important',
@@ -95,24 +91,26 @@ export const DetailsButton = styled(Button)({
 });
 
 export const StartCourseButton = styled(Button)({
-  height: '50px',
-  width: '150px',
-  marginRight: '40px !important',
-  fontSize: '16px!important',
-  lineHeight: '22px',
-  padding: '12px 12px!important',
-  [theme.breakpoints.down('lg')]: {
-    height: '44px !important',
-    width: '131px !important',
+  [theme.breakpoints.down('xl')]: {
+    height: '44px',
+    width: '131px',
     marginRight: '26px !important',
     fontSize: '14px!important',
     lineHeight: '19px',
     padding: '10px 10px!important',
   },
+  [theme.breakpoints.up('xl')]: {
+    height: '50px',
+    width: '150px',
+    marginRight: '40px !important',
+    fontSize: '16px!important',
+    lineHeight: '22px',
+    padding: '12px 12px!important',
+  },
 });
 
 export const MobileLink = styled(Link)({
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('sm')]: {
     '&:hover': {
       cursor: 'pointer',
     },
@@ -125,7 +123,7 @@ export const MobileLink = styled(Link)({
 });
 
 export const ContinueTestButton = styled(Button)({
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
     marginRight: '26px !important',
@@ -144,10 +142,10 @@ export const ContinueTestButton = styled(Button)({
 });
 
 export const MobileSearchWrapper = styled('div')({
+  position: 'relative',
   width: '100%',
   margin: '16px 0px 8px 0px',
   height: '30px',
-  position: 'relative',
   [theme.breakpoints.up(950)]: {
     display: 'none',
   },
@@ -166,7 +164,7 @@ export const CompletedButton = styled(Button)({
   [theme.breakpoints.down('xl')]: {
     marginRight: '26px !important',
     height: '44px',
-    width: '121px',
+    width: '131px',
     fontSize: '14px!important',
     lineHeight: '19px',
     padding: '10px 0px !important',

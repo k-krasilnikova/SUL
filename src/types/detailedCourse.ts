@@ -21,4 +21,5 @@ export interface IDetailedCourse {
   isCourseApplicationSubmitted?: boolean;
   isCourseCompleted?: boolean;
   isCourseDeclined?: boolean;
+  isCourseStatusTesting?: boolean;
 }

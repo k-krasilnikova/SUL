@@ -1,9 +1,15 @@
 import React from 'react';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
-import { videoPlayer } from 'icons';
+import { videoPlayer, clock } from 'icons';
 
-import { InfoContainer, InfoItem, InfoItemText, InfoItemTextBox } from './styled';
+import {
+  InfoContainer,
+  InfoItem,
+  InfoItemText,
+  InfoItemTextBox,
+  DurationIcon,
+  LessonsIcon,
+} from './styled';
 
 interface Props {
   duration: string | undefined;
@@ -14,13 +20,13 @@ interface Props {
 const CourseInfo: React.FC<Props> = ({ duration, lessons, type }) => (
   <InfoContainer type={type}>
     <InfoItem>
-      <AccessTimeIcon fontSize="small" />
+      <DurationIcon alt="lessons" src={clock} />
       <InfoItemTextBox>
         <InfoItemText>{duration}</InfoItemText>
       </InfoItemTextBox>
     </InfoItem>
     <InfoItem>
-      <img alt="lessons" src={videoPlayer} />
+      <LessonsIcon alt="lessons" src={videoPlayer} />
       <InfoItemTextBox>
         <InfoItemText>{`${lessons} lessons`}</InfoItemText>
       </InfoItemTextBox>
