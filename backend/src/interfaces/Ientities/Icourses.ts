@@ -8,9 +8,7 @@ interface ICourse {
   technologies: ObjectId[];
   requiredSkills?: ObjectId[];
   description: string;
-  duration: number;
   materials: { stage: string; content: Array<string> }[];
-  lessons: number;
   test: ObjectId;
   avatar?: string;
 }
