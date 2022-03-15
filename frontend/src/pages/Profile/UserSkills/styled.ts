@@ -129,6 +129,7 @@ export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
   height: '100px',
   padding: '16px',
   marginRight: '64px',
+  marginBottom: '7px',
   background: '#EAEAEA',
   border: '1px solid rgba(0, 0, 0, 0.2)',
   ...(completed && {

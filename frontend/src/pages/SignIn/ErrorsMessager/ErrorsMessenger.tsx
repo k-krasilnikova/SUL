@@ -14,15 +14,17 @@ const ErrorsMessenger = ({
   identificator,
   loginFiled,
   passwordField,
-}: IErrorFieldTypes): JSX.Element => (
-  <>
-    {identificator === loginFiled && (
-      <ErrorMessage component={WarningHelper} name={identificator} />
-    )}
-    {identificator === passwordField && (
-      <ErrorMessage component={WarningHelper} name={identificator} />
-    )}
-  </>
-);
+}: IErrorFieldTypes): JSX.Element => {
+  return (
+    <>
+      {identificator === loginFiled && (
+        <ErrorMessage component={WarningHelper} name={identificator} />
+      )}
+      {identificator === passwordField && (
+        <ErrorMessage component={WarningHelper} name={identificator} />
+      )}
+    </>
+  );
+};
 
 export default ErrorsMessenger;

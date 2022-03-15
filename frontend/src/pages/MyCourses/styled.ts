@@ -6,25 +6,18 @@ import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
 export const PageContainer = styled(Grid)({
-  [theme.breakpoints.up('xs')]: {
-    padding: '0px 8px !important',
+  [theme.breakpoints.down('xl')]: {
+    padding: '16px 24px 16px 0px',
   },
-  '@media(max-width: 1110px)': {
-    paddingTop: '40px',
+  [theme.breakpoints.down(950)]: {
+    padding: '0px 8px',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: '16px 8px 0 8px !important',
+    padding: '16px 30px 24px 0px',
+    margin: '0px 0px 0px -6px !important',
   },
-  '@media(min-width: 1110px)': {
-    padding: '16px 30px 0px 30px !important',
-  },
-  '@media(min-width: 1440px)': {
-    padding: '16px 30px 0px 0px !important',
-  },
-  width: '100%',
-  paddingRight: '30px !important',
-  paddingTop: '1.0% !important',
-  paddingLeft: '0px !important',
+  maxWidth: '1482px',
+  paddingTop: '16px',
 });
 
 export const GridItem = styled(Grid)({
