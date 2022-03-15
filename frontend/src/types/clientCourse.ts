@@ -9,3 +9,5 @@ export interface ClientCourse {
   course: Course;
   applyDate?: string;
 }
+
+export type PureClientCourse = Omit<ClientCourse, 'course'>;

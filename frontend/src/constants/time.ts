@@ -1,1 +1,1 @@
-export const DISABLE_TIMEOUT_DAYS = 7;
+export const DISABLE_TIMEOUT_DAYS = 30;

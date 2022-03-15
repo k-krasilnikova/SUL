@@ -1,3 +1,5 @@
+import { DISABLE_TIMEOUT_DAYS } from 'constants/time';
+
 export const convertTestTimeout = (ms: number): string => {
   const [MS_IN_SEC, SEC_IN_HOUR, SEC_IN_MIN] = [1000, 3600, 60];
   let seconds = Math.round(Math.abs(ms) / MS_IN_SEC);
@@ -14,26 +16,43 @@ export const convertTestTimeout = (ms: number): string => {
 export const formatTimeout = (ms: number, format: string): string => {
   const formatArr = format.split(':');
   const result = [];
-  const [MS_IN_SEC, SEC_IN_HOUR, SEC_IN_MIN] = [1000, 3600, 60];
+  const [MS_IN_SEC, SEC_IN_HOUR, SEC_IN_MIN, SEC_IN_DAY] = [1000, 3600, 60, 86400];
+  let days;
   let hours;
   let minutes;
   let seconds = Math.round(Math.abs(ms) / MS_IN_SEC);
 
-  const prettier = (time: number, mesure: string) =>
-    time < 10 ? `0${time} ${mesure}` : `${time} ${mesure}`;
+  const prettierTime = (time: number, measure: string) =>
+    time < 10 ? `0${time} ${measure}` : `${time} ${measure}`;
 
+  if (formatArr.includes('dd')) {
+    days = Math.floor(seconds / SEC_IN_DAY);
+    result.push(prettierTime(days, 'days'));
+    seconds = Math.floor(seconds % SEC_IN_DAY);
+  }
   if (formatArr.includes('hh')) {
     hours = Math.floor(seconds / SEC_IN_HOUR);
-    result.push(prettier(hours, 'h'));
+    result.push(prettierTime(hours, 'h'));
     seconds = Math.floor(seconds % SEC_IN_HOUR);
   }
   if (formatArr.includes('mm')) {
     minutes = Math.floor(seconds / SEC_IN_MIN);
-    result.push(prettier(minutes, 'min'));
+    result.push(prettierTime(minutes, 'min'));
     seconds = Math.floor(seconds % SEC_IN_MIN);
   }
   if (formatArr.includes('ss')) {
-    result.push(prettier(seconds, 'sec'));
+    result.push(prettierTime(seconds, 'sec'));
   }
   return result.join(' ');
+};
+
+export const makeLeftTime = (date: string | undefined, format: string) => {
+  if (!date) {
+    return date;
+  }
+  const applyDate = new Date(date);
+  return formatTimeout(
+    applyDate.setDate(applyDate.getDate() + DISABLE_TIMEOUT_DAYS) - Date.now(),
+    format,
+  );
 };
