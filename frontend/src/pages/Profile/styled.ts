@@ -9,34 +9,41 @@ export const ProfileBox = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   margin: '88px 0px 70px 122px',
-  [theme.breakpoints.down('md')]: {
-    flexDirection: 'column',
-    margin: '16px 19px 14px 16px',
+  [theme.breakpoints.down('xl')]: {
+    flexDirection: 'row',
+    margin: '60px 0px 60px 40px',
   },
   [theme.breakpoints.down('lg')]: {
     flexDirection: 'row',
-    margin: '40px 0px 50px 54px',
+    margin: '40px 0px 50px 40px',
+  },
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    margin: '30px 20px 15px 60px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    margin: '30px 10px 15px 20px',
   },
 });
 export const AvatarWrapper = styled('div')({
-  [theme.breakpoints.up('xs')]: {
+  textAlign: 'center',
+  marginRight: '100px',
+  marginLeft: '0px',
+  width: '219px',
+  [theme.breakpoints.down('xl')]: {
+    marginRight: '60px',
+    width: '190px',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'inline-block',
+    marginRight: '20px',
+    marginBottom: '0px',
+  },
+  [theme.breakpoints.down('sm')]: {
     display: 'block',
     marginBottom: '14px',
     width: '80px',
   },
-  [theme.breakpoints.up('sm')]: {
-    display: 'inline-block',
-    marginRight: '80px',
-    marginLeft: '19px',
-    marginBottom: '0px',
-    width: '132px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    marginRight: '100px',
-    marginLeft: '0px',
-    width: '219px',
-  },
-  textAlign: 'center',
 });
 export const UserInfoList = styled(List)({
   [theme.breakpoints.up('xs')]: {
