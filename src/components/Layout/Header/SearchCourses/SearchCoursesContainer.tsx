@@ -33,10 +33,9 @@ const SearchCoursesContainer: React.FC = () => {
   }, [searchInputValue, enqueueSnackbar]);
 
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    if (event.target.value.length) {
-      const formattedValue = formatInputValue(event.target.value);
-      setSearchInputValue(formattedValue);
-    } else {
+    const formattedValue = formatInputValue(event.target.value);
+    setSearchInputValue(formattedValue);
+    if (!formattedValue.length) {
       setSearchOpen(false);
     }
   };

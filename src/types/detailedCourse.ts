@@ -18,4 +18,5 @@ export interface IDetailedCourse {
   targetId?: string | undefined;
   isCourseApplicationSubmitted?: boolean;
   isCourseCompleted?: boolean;
+  isCourseStatusTesting?: boolean;
 }
