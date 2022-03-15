@@ -57,10 +57,6 @@ const addUserSkill = async (userId: string, skillId?: ObjectId): Promise<IUserSk
     score: 1,
   });
 
-  if (insertedUserSkill._id) {
-    await attachSkillToUserProfile(userId, insertedUserSkill._id);
-  }
-
   return insertedUserSkill;
 };
 
