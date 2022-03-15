@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthorizedLayout } from 'components/Layout';
@@ -14,6 +14,7 @@ import { countProgress } from 'utils/helpers/countCourseProgress';
 import { PAGES } from 'constants/pages';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 
+import DeclinedButton from 'components/Button/DeclinedButton';
 import {
   PageContainer,
   CourseActions,
@@ -29,9 +30,6 @@ import {
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
-  makeLeftTime: (applyDate: string | undefined) => string | number | undefined;
-  setShowTime: Dispatch<SetStateAction<boolean>>;
-  isShowTime: boolean;
 }
 
 type MyCoursesProps = ResponseDataMyCourses & Props;
@@ -41,9 +39,6 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
   isLoading,
   disableLink,
   windowWidth,
-  setShowTime,
-  isShowTime,
-  makeLeftTime,
 }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
@@ -94,16 +89,7 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                           Completed
                         </CompletedButton>
                       ) : clientCourse.status === COURSE_STATUSES.rejected ? (
-                        <div
-                          onMouseEnter={() => setShowTime(true)}
-                          onMouseLeave={() => setShowTime(false)}
-                        >
-                          <CompletedButton color="primary" variant="mediumContained" disabled>
-                            {isShowTime && clientCourse.applyDate
-                              ? makeLeftTime(clientCourse.applyDate)
-                              : 'Disabled'}
-                          </CompletedButton>
-                        </div>
+                        <DeclinedButton clientCourse={clientCourse} />
                       ) : (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
                           <ContinueTestButton color="primary" variant="mediumContained">
