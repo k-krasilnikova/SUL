@@ -13,7 +13,7 @@ type TCourseStatus =
   | 'successful';
 
 interface IClientCourse {
-  _id?: string;
+  _id?: ObjectId;
   user: ObjectId;
   course: ObjectId;
   status: CourseStatus;

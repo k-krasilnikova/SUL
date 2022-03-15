@@ -74,12 +74,23 @@ const updateUserTechnologies = async (userId: ObjectId | string, techs: ITechnol
       },
     },
   );
+
+const removeFromPendingFieldCourses = async (
+  managerId: ObjectId,
+  approvedCourseId?: ObjectId,
+) => {
+  if (!approvedCourseId) {
+    throw new BadRequestError('Approved course is missing');
+  }
+  
+  await UserModel.updateOne({ _id: managerId }, { $pull: { pendingCourses: approvedCourseId } });
 };
 
 export {
   getUserProvider,
   getFullUserInformationProvider,
   updatePendingFieldCourses,
+  removeFromPendingFieldCourses,
   getEmployeesProvider,
   updateUserTechnologies,
 };
