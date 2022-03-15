@@ -11,6 +11,7 @@ import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
 import { TAchievments } from 'interfaces/Ientities/Itest';
 import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
+import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
 
 const getAchievments = async (
   req: Request,
@@ -39,8 +40,8 @@ const getAchievments = async (
       const insertedUserSkillsPopulated = await populateUserSkills(insertedUserSkills);
 
       res.locals.achievments = {
-        newSkills: insertedUserSkillsPopulated,
-        updatedSkills: updatedUserSkillsPopulated,
+        newSkills: extractCommonUserSkillInfo(insertedUserSkillsPopulated),
+        updatedSkills: extractCommonUserSkillInfo(updatedUserSkillsPopulated),
       };
       next();
     } else {

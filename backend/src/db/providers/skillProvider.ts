@@ -79,12 +79,7 @@ const updateUserSkill = async (userId: string, skillId?: ObjectId): Promise<IUse
 };
 
 const populateUserSkills = async (userSkills: IUserSkill[]): Promise<IUserSkill[]> => {
-  const mappedUserSkills = userSkills.map((uskill) => {
-    const { score, skill } = uskill;
-    return { score, skill };
-  });
-
-  const populatedUserSkills = await UserSkillModel.populate(mappedUserSkills, {
+  const populatedUserSkills = await UserSkillModel.populate(userSkills, {
     path: 'skill',
     model: 'Skill',
     select: '-_id name image maxScore',
