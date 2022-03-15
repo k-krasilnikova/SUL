@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import {
   addUserSkill,
+  attachSkillToUserProfile,
   getUserSkills,
   populateUserSkills,
   updateUserSkill,
@@ -33,7 +34,13 @@ const getAchievments = async (
         oldSkills.map(async (skillId) => updateUserSkill(userId, skillId)),
       );
       const insertedUserSkills = await Promise.all(
-        newSkills.map(async (skillId) => addUserSkill(userId, skillId)),
+        newSkills.map(async (skillId) => {
+          const insertedSkill = await addUserSkill(userId, skillId);
+          if (insertedSkill._id) {
+            await attachSkillToUserProfile(userId, insertedSkill._id);
+          }
+          return insertedSkill;
+        }),
       );
 
       const updatedUserSkillsPopulated = await populateUserSkills(updatedUserSkills);
