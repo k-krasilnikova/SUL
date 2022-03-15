@@ -65,11 +65,10 @@ const LearningCourseContainer: React.FC = () => {
 
   const stageForward = () => {
     setStage(stage + STAGE_CHANGE);
+    handlePassCourseStage(stage);
     if (stage + STAGE_CHANGE === maxStage && !testEnabled) {
       handlePassCourseStage(maxStage);
       setTestEnabled(true);
-    } else {
-      handlePassCourseStage(stage);
     }
   };
 
@@ -126,7 +125,6 @@ const LearningCourseContainer: React.FC = () => {
           handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
           courseStatus={clientCourseResponse?.status}
-          courseId={clientCourseResponse._id}
         />
       )}
     </>
