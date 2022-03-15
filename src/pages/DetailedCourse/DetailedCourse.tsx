@@ -25,8 +25,8 @@ import {
 } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
-
 import DeclinedButton from 'components/Button/DeclinedButton';
+
 import {
   BackButton,
   CourseActionsBox,
