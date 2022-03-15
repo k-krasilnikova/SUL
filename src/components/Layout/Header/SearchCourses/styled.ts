@@ -61,7 +61,7 @@ export const SearchResultWrapper = styled('div')({
   },
 });
 
-export const SearchResultItem = styled(ListItem)({
+export const SearchResultCourse = styled(ListItem)({
   fontSize: '14px',
   color: '#131313',
   display: 'flex',
