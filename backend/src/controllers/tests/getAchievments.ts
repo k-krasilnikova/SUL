@@ -3,7 +3,6 @@ import { NextFunction, Request, Response } from 'express';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import {
   addUserSkill,
-  attachSkillToUserProfile,
   getUserSkills,
   populateUserSkills,
   updateUserSkill,
@@ -13,6 +12,8 @@ import CourseStatus from 'enums/coursesEnums';
 import { TAchievments } from 'interfaces/Ientities/Itest';
 import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
+import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
+import { specifyUserTechnologies } from 'utils/technologies/userTechnologies';
 
 const getAchievments = async (
   req: Request,
@@ -34,14 +35,17 @@ const getAchievments = async (
         oldSkills.map(async (skillId) => updateUserSkill(userId, skillId)),
       );
       const insertedUserSkills = await Promise.all(
-        newSkills.map(async (skillId) => {
-          const insertedSkill = await addUserSkill(userId, skillId);
-          if (insertedSkill._id) {
-            await attachSkillToUserProfile(userId, insertedSkill._id);
-          }
-          return insertedSkill;
-        }),
+        newSkills.map(async (skillId) => addUserSkill(userId, skillId)),
       );
+
+      const user = await getUserProvider(userId);
+
+      const updatedTechnologies = await specifyUserTechnologies(
+        user.technologies,
+        insertedUserSkills,
+      );
+
+      await updateUserTechnologies(userId, updatedTechnologies);
 
       const updatedUserSkillsPopulated = await populateUserSkills(updatedUserSkills);
       const insertedUserSkillsPopulated = await populateUserSkills(insertedUserSkills);

@@ -6,6 +6,7 @@ import UserModel from 'db/models/User';
 import UserSkillModel from 'db/models/UserSkill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
+import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
 
 const getUserProvider = async (userId: string | ObjectId) => {
   const dbUser = await UserModel.findById(userId).lean();
@@ -59,9 +60,20 @@ const updatePendingFieldCourses = async (
   applyedCourseId: string | undefined,
 ) => {
   if (!applyedCourseId) {
-    throw new BadRequestError('Applied course is missing');
+    throw new BadRequestError('Applied course is missing.');
   }
   await UserModel.updateOne({ _id: managerId }, { $push: { pendingCourses: applyedCourseId } });
+};
+
+const updateUserTechnologies = async (userId: ObjectId | string, techs: ITechnologyGroup[]) => {
+  await UserModel.updateOne(
+    { _id: userId },
+    {
+      $set: {
+        technologies: techs,
+      },
+    },
+  );
 };
 
 export {
@@ -69,4 +81,5 @@ export {
   getFullUserInformationProvider,
   updatePendingFieldCourses,
   getEmployeesProvider,
+  updateUserTechnologies,
 };

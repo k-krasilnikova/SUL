@@ -1,11 +1,8 @@
 import mongoose, { ObjectId } from 'mongoose';
 
 import UserSkillModel from 'db/models/UserSkill';
-import UserModel from 'db/models/User';
 import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
-import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })
@@ -14,41 +11,10 @@ const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   return skills;
 };
 
-const attachSkillToUserProfile = async (userId: string, userSkillId: ObjectId) => {
-  const user = await UserModel.findById(userId);
-  if (!user) {
-    throw new NotFoundError('User not found.');
-  }
-
-  const userSkill: IUserSkillPopulated = await UserSkillModel.findById(userSkillId).populate({
-    path: 'skill',
-    model: 'Skill',
-  });
-  if (!userSkill) {
-    throw new NotFoundError('User skill not found.');
-  }
-
-  const isGroupExists = user.technologies.some((tech) =>
-    isEqualObjectId(tech.group, userSkill.skill.group),
-  );
-
-  if (isGroupExists) {
-    user.technologies.map((tech) => {
-      if (isEqualObjectId(tech.group, userSkill.skill.group)) {
-        tech.achievedSkills.push(userSkillId);
-      }
-      return tech;
-    });
-  } else {
-    const newTechnology: ITechnologyGroup = {
-      group: userSkill.skill.group,
-      achievedSkills: [userSkillId],
-      isPrimary: false,
-    };
-    user.technologies.push(newTechnology);
-  }
-  await user.save();
-};
+const getPopulatedUserSkill = async (
+  userSkillId: ObjectId | string,
+): Promise<IUserSkillPopulated> =>
+  UserSkillModel.findById(userSkillId).populate({ path: 'skill', model: 'Skill' }).lean();
 
 const addUserSkill = async (userId: string, skillId?: ObjectId): Promise<IUserSkill> => {
   const insertedUserSkill: IUserSkill = await UserSkillModel.create({
@@ -84,10 +50,4 @@ const populateUserSkills = async (userSkills: IUserSkill[]): Promise<IUserSkill[
   return populatedUserSkills;
 };
 
-export {
-  getUserSkills,
-  addUserSkill,
-  attachSkillToUserProfile,
-  updateUserSkill,
-  populateUserSkills,
-};
+export { getUserSkills, getPopulatedUserSkill, addUserSkill, updateUserSkill, populateUserSkills };
