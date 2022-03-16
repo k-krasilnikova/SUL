@@ -43,10 +43,7 @@ const LearningCourseContainer: React.FC = () => {
     }
   }, [stage, maxStage]);
 
-  const { mutate: startCourseMutate } = useStartClientCourse(
-    params.courseId,
-    clientCourseResponse?.status,
-  );
+  const { mutate: startCourseMutate } = useStartClientCourse(params.courseId);
 
   useEffect(() => {
     const handleStartCourse = () => {
@@ -95,6 +92,7 @@ const LearningCourseContainer: React.FC = () => {
 
   const handleClickDialogOpen = () => {
     setDialogOpen(true);
+    console.log(clientCourseResponse?.status);
   };
 
   const handleDialogClose = () => {
@@ -124,7 +122,6 @@ const LearningCourseContainer: React.FC = () => {
           handleClickDialogOpen={handleClickDialogOpen}
           handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
-          courseStatus={clientCourseResponse?.status}
         />
       )}
     </>

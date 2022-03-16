@@ -6,11 +6,9 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
-import { COURSE_STATUSES } from 'constants/statuses';
 
 const useStartClientCourse = (
   courseId?: string,
-  courseStatus?: string,
 ): UseMutationResult<ClientCourse | undefined, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
@@ -22,8 +20,10 @@ const useStartClientCourse = (
   return useMutation(
     async () => {
       let courseStarted: ClientCourse | undefined;
-      if (courseStatus === COURSE_STATUSES.approved) {
-        const apiClient = apiClientWrapper();
+      const apiClient = apiClientWrapper();
+      const responseCourse = await apiClient.get(`${API.getMyCourses}/${courseId}`);
+      const courseResponse: ClientCourse = responseCourse.data;
+      if (courseResponse?.status === 'approved') {
         const response = await apiClient.get(`${API.getMyCourses}/${courseId}/start`);
         handleSubmitSuccess();
         courseStarted = response.data;
