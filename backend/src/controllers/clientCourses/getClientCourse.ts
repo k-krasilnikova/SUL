@@ -1,12 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
+import { convertToCourseInfo } from 'utils/typeConversion/courses/coursesTypeConversions';
 
 const getClientCourseById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
-    const courses = await getClientCourseProvider(clientCourseId);
-    res.json(courses);
+    const course = await getClientCourseProvider(clientCourseId);
+
+    const clientCourseWithCourseInfo = await convertToCourseInfo(course.course);
+
+    res.json(clientCourseWithCourseInfo);
   } catch (err) {
     next(err);
   }

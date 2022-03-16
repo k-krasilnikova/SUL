@@ -1,6 +1,8 @@
-import CourseStatus from 'enums/coursesEnums';
 import { ObjectId } from 'mongoose';
 
+import CourseStatus from 'enums/coursesEnums';
+
+import { ICourseInfo } from '../ICourses/IQueryCourses';
 import { ICourse } from './Icourses';
 
 type TCourseStatus =
@@ -31,5 +33,7 @@ interface IClientCourse {
 interface IClientCoursePopulated extends IClientCourse {
   course: ICourse;
 }
+
+type IClientCoursePopulatedResponse = IClientCoursePopulated & { course: ICourseInfo };
 
 export { IClientCourse, TCourseStatus, IClientCoursePopulated };
