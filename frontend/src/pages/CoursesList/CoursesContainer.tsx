@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import { useGetCourses, useApplyCourse } from 'api/courses';
+import { Course } from 'types/course';
+import { useApplyCourse } from 'api/courses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
+import useGetPaginatedCourses from 'api/courses/getPaginatedCourses';
 
 import CoursesList from './CoursesList';
 
 const CoursesContainer: React.FC = () => {
   const { mutate, isLoading } = useApplyCourse();
-  const { data: courses, isLoading: isCoursesLoading } = useGetCourses();
+  const {
+    data,
+    isLoading: isCoursesLoading,
+    hasNextPage,
+    fetchNextPage,
+    status,
+  } = useGetPaginatedCourses();
   const [targetId, setTargetId] = useState<string | undefined>();
 
   const disableLinkWidth =
@@ -25,7 +33,10 @@ const CoursesContainer: React.FC = () => {
   };
 
   const windowWidth = getWindowWidth();
-  const formattedCoursesList = courses?.filter((course) => !course.status);
+  const formattedCoursesList = data?.pages.reduce(
+    (prev, page) => [...prev, ...page.courses.filter((course) => !course.status)],
+    [] as Course[],
+  );
 
   return (
     <CoursesList
@@ -36,6 +47,10 @@ const CoursesContainer: React.FC = () => {
       targetLoading={isLoading}
       disableLink={disableLink}
       windowWidth={windowWidth}
+      // loadMoreButtonRef={loadMoreButtonRef}
+      fetchNextPage={fetchNextPage}
+      hasNextPage={hasNextPage}
+      status={status}
     />
   );
 };
