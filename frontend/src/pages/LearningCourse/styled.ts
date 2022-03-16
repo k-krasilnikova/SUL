@@ -1,9 +1,14 @@
 import styled from 'styled-components';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ReactPlayer from 'react-player';
+import { ExpandMore, ExpandLess } from '@mui/icons-material';
 
 import { Button } from 'components/Button';
 import theme from 'themeSettings';
+
+interface DescriptionProps {
+  isDescriptionOpen: boolean;
+}
 
 export const LearningPageContainer = styled('div')({
   width: '100%',
@@ -125,27 +130,45 @@ export const MaterialVideo = styled(ReactPlayer)({
   width: '100%',
 });
 
-export const Description = styled('div')({
+export const DescriptionWrapper = styled('div')<DescriptionProps>(({ isDescriptionOpen }) => ({
   display: 'inline-block',
+  float: 'left',
   width: 'calc(100% - 196px)',
-  maxHeight: '418px',
+  maxHeight: '438px',
+  paddingBottom: '20px',
+  [theme.breakpoints.down('xl')]: {
+    width: 'calc(100% - 193px)',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'block',
+    float: 'none',
+    width: '100%',
+    marginTop: '23px',
+    maxHeight: '290px',
+    paddingBottom: '0px',
+    ...(!isDescriptionOpen && {
+      display: 'none',
+    }),
+  },
+}));
+
+export const Description = styled('div')({
+  display: 'block',
+  width: 'calc(100% - 196px)',
   padding: '31px 238px 31px 54px',
   textAlign: 'left',
   color: 'black',
   border: '1px solid #E0E0E3',
   borderRadius: '8px',
   overflowY: 'auto',
-  float: 'left',
   [theme.breakpoints.down('xl')]: {
-    width: 'calc(100% - 193px)',
+    width: '100%',
     padding: '24px 44px 31px 24px',
   },
   [theme.breakpoints.down('md')]: {
     display: 'block',
-    float: 'none',
     width: '100%',
     padding: '8px 19px 3px 8px',
-    marginTop: '23px',
   },
 });
 
@@ -239,4 +262,29 @@ export const NextButton = styled(Button)({
     width: '70px',
     height: '36px',
   },
+});
+
+export const ToggleDescription = styled(Typography)({
+  display: 'inline-block',
+  marginRight: 'calc(100% - 294px) !important',
+  height: '40px',
+  padding: '8px 0px 12px 0px',
+  fontFamily: '"Ubuntu", sans-serif',
+  fontSize: '16px',
+  lineHeight: '16px',
+  fontWeight: '500',
+  color: '#131313',
+  [theme.breakpoints.up('md')]: {
+    display: 'none',
+  },
+});
+
+export const ExpandMoreIcon = styled(ExpandMore)({
+  color: '#131313',
+  verticalAlign: 'middle',
+});
+
+export const ExpandLessIcon = styled(ExpandLess)({
+  color: '#131313',
+  verticalAlign: 'middle',
 });
