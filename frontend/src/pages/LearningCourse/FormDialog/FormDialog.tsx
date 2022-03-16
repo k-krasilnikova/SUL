@@ -7,7 +7,7 @@ import { ConfirmDialog } from 'components/ConfirmDialog';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { useGetCourseTest, useStartCourseTest } from 'api/test';
-import { convertTestTimeout } from 'utils/helpers/convertTestTimeout';
+import { convertTestTimeout } from 'utils/helpers/convertTime';
 
 import {
   DialogBox,
@@ -26,15 +26,9 @@ interface IFormDialog {
   dialogOpen: boolean;
   handleDialogClose: () => void;
   courseStatus: string;
-  courseId: string;
 }
 
-const FormDialog: React.FC<IFormDialog> = ({
-  dialogOpen,
-  handleDialogClose,
-  courseStatus,
-  courseId,
-}) => {
+const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose, courseStatus }) => {
   const params = useParams();
   const { data } = useGetCourseTest({
     courseId: params.courseId,
@@ -42,12 +36,10 @@ const FormDialog: React.FC<IFormDialog> = ({
   });
   const timeout = data && data[0].test.timeout;
 
-  const { mutate } = useStartCourseTest(params.courseId);
+  const { mutate: startTestMutate } = useStartCourseTest(params.courseId);
 
   const handleStartTest = () => {
-    if (courseStatus === COURSE_STATUSES.started) {
-      mutate(courseId);
-    }
+    startTestMutate(params.courseId);
   };
 
   return (

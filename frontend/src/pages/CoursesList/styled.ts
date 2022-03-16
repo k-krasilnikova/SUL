@@ -22,14 +22,37 @@ export const PageContainer = styled(Grid)({
 
 export const GridItem = styled(Grid)({
   height: 'fit-content',
-  width: '711px !important',
-  paddingLeft: '30px',
-  paddingTop: '24px',
-  [theme.breakpoints.down('md')]: {
+  width: '711px',
+  [theme.breakpoints.down('xl')]: {
     width: '100%',
-    paddingLeft: '0px',
+    paddingLeft: '10px',
     paddingTop: '8px',
   },
+  [theme.breakpoints.up('xl')]: {
+    width: '711px',
+    paddingLeft: '30px',
+    paddingTop: '24px',
+  },
+});
+
+export const CourseButton = styled(Button)({
+  [theme.breakpoints.down('sm')]: {
+    margin: '3px',
+    fontSize: '10px',
+    alignSelf: 'center',
+    height: '40px',
+    width: '120px',
+    lineHeight: '10px',
+  },
+  [theme.breakpoints.up('sm')]: {
+    width: '140px',
+    marginLeft: '5px',
+    height: '40px',
+    fontSize: '10px',
+    alignSelf: 'center',
+    lineHeight: '10px',
+  },
+  marginRight: '20px',
 });
 
 export const CourseActions = styled('div')({
@@ -48,11 +71,11 @@ export const CourseActions = styled('div')({
 });
 
 export const CourseActionsBox = styled(Box)({
-  marginLeft: '16px !important',
+  marginLeft: '8px !important',
 });
 
 export const DetailsButton = styled(Button)({
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
     marginRight: '9px !important',
@@ -71,7 +94,7 @@ export const DetailsButton = styled(Button)({
 });
 
 export const StartCourseButton = styled(Button)({
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
     marginRight: '26px !important',
@@ -90,7 +113,7 @@ export const StartCourseButton = styled(Button)({
 });
 
 export const MobileLink = styled(Link)({
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('sm')]: {
     '&:hover': {
       cursor: 'pointer',
     },
@@ -101,11 +124,12 @@ export const MobileLink = styled(Link)({
     },
   },
 });
+
 export const MobileSearchWrapper = styled('div')({
   width: '100%',
+  position: 'relative',
   margin: '16px 0px 8px 0px',
   height: '30px',
-  position: 'relative',
   [theme.breakpoints.up(950)]: {
     display: 'none',
   },
@@ -123,7 +147,7 @@ export const CompletedButton = styled(Button)({
   display: 'flex',
   [theme.breakpoints.down('xl')]: {
     height: '44px',
-    width: '121px',
+    width: '131px',
     marginRight: '36px !important',
     fontSize: '14px!important',
     lineHeight: '19px',

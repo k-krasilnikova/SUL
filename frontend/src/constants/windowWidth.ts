@@ -11,6 +11,10 @@ export const WINDOW_SIZE = {
     width: 768,
     name: 'md',
   },
+  xmd: {
+    width: 850,
+    name: 'xmd',
+  },
   lg: {
     width: 1024,
     name: 'lg',
@@ -18,5 +22,9 @@ export const WINDOW_SIZE = {
   xl: {
     width: 1440,
     name: 'xl',
+  },
+  xxl: {
+    width: 1700,
+    name: 'xxl',
   },
 };
