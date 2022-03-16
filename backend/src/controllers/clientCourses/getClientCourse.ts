@@ -10,7 +10,7 @@ const getClientCourseById = async (req: Request, res: Response, next: NextFuncti
 
     const clientCourseWithCourseInfo = await convertToCourseInfo(course.course);
 
-    res.json(clientCourseWithCourseInfo);
+    res.json({ ...clientCourseWithCourseInfo, status: course.status });
   } catch (err) {
     next(err);
   }
