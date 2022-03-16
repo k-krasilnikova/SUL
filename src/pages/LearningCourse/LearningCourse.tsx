@@ -101,12 +101,6 @@ const LearningCourse: React.FC<LearningProps> = ({
             <MaterialText>{material}</MaterialText>
           )}
         </MaterialWrapper>
-        {courseDescription && (
-          <Description>
-            <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
-            <DescriptionText>{courseDescription.info}</DescriptionText>
-          </Description>
-        )}
         <ButtonWrapper>
           {testEnabled ? (
             <>
@@ -126,6 +120,12 @@ const LearningCourse: React.FC<LearningProps> = ({
             </NextButton>
           )}
         </ButtonWrapper>
+        {courseDescription && (
+          <Description>
+            <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
+            <DescriptionText>{courseDescription.info}</DescriptionText>
+          </Description>
+        )}
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>

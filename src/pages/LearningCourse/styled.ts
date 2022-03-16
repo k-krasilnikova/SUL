@@ -11,6 +11,9 @@ export const LearningPageContainer = styled('div')({
   [theme.breakpoints.down('xl')]: {
     padding: '30px',
   },
+  [theme.breakpoints.down('md')]: {
+    padding: '16px',
+  },
 });
 
 export const BackButton = styled(Button)({
@@ -30,6 +33,12 @@ export const BackButton = styled(Button)({
     fontSize: '12px!important',
     lineHeight: '16px',
   },
+  [theme.breakpoints.down('md')]: {
+    height: '20px',
+    width: '40px',
+    minWidth: '40px!important',
+    fontSize: '10px!important',
+  },
 });
 
 export const LearningWrapper = styled('div')({
@@ -39,6 +48,10 @@ export const LearningWrapper = styled('div')({
   [theme.breakpoints.down('xl')]: {
     padding: '0px 24px',
     maxWidth: '717px',
+  },
+  [theme.breakpoints.down('md')]: {
+    padding: '8px 0px',
+    maxWidth: '100%',
   },
 });
 
@@ -51,6 +64,9 @@ export const StepperController = styled(Box)({
   [theme.breakpoints.down('xl')]: {
     marginBottom: '9px',
     height: '27px',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
   },
 });
 
@@ -82,6 +98,10 @@ export const MaterialWrapper = styled(Box)({
   background: 'rgba(30, 30, 30, 0.12)',
   borderRadius: '5px',
   overflow: 'hidden',
+  [theme.breakpoints.down('md')]: {
+    minHeight: '167px',
+    marginBottom: '31px',
+  },
 });
 
 export const MaterialText = styled('div')({
@@ -93,6 +113,10 @@ export const MaterialText = styled('div')({
   overflowY: 'auto',
   [theme.breakpoints.down('xl')]: {
     fontSize: '18px',
+  },
+  [theme.breakpoints.down('md')]: {
+    padding: '15px',
+    fontSize: '14px',
   },
 });
 
@@ -111,9 +135,17 @@ export const Description = styled('div')({
   border: '1px solid #E0E0E3',
   borderRadius: '8px',
   overflowY: 'auto',
+  float: 'left',
   [theme.breakpoints.down('xl')]: {
     width: 'calc(100% - 193px)',
     padding: '24px 44px 31px 24px',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'block',
+    float: 'none',
+    width: '100%',
+    padding: '8px 19px 3px 8px',
+    marginTop: '23px',
   },
 });
 
@@ -126,6 +158,10 @@ export const DescriptionTitle = styled('span')({
   [theme.breakpoints.down('xl')]: {
     fontSize: '24px',
     lineHeight: '28px',
+  },
+  [theme.breakpoints.down('md')]: {
+    fontSize: '18px',
+    lineHeight: '21px',
   },
 });
 
@@ -141,6 +177,11 @@ export const DescriptionText = styled('p')({
     lineHeight: '24px',
     margin: '8px 0px 0px 0px',
   },
+  [theme.breakpoints.down('md')]: {
+    fontSize: '14px',
+    lineHeight: '18px',
+    margin: '4px 0px 0px 0px',
+  },
 });
 
 export const ButtonWrapper = styled('div')({
@@ -151,6 +192,10 @@ export const ButtonWrapper = styled('div')({
   color: 'white',
   [theme.breakpoints.down('xl')]: {
     marginLeft: '38px',
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '120px',
+    marginLeft: '70px',
   },
 });
 
@@ -168,6 +213,11 @@ export const StartTestButton = styled(Button)({
   },
   paddingTop: '8px!important',
   boxShadow: 'none!important',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '16px!important',
+    width: '120px',
+    height: '36px',
+  },
 });
 
 export const NextButton = styled(Button)({
@@ -184,4 +234,9 @@ export const NextButton = styled(Button)({
   },
   paddingTop: '8px!important',
   boxShadow: 'none!important',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '16px!important',
+    width: '70px',
+    height: '36px',
+  },
 });
