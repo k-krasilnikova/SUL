@@ -27,6 +27,7 @@ import { IDetailedCourse } from 'types/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
 import DeclinedButton from 'components/Button/DeclinedButton';
 
+import { StartTestButton } from 'pages/LearningCourse/styled';
 import {
   BackButton,
   CourseActionsBox,
@@ -130,13 +131,18 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                   {isCourseDeclined ? (
                     <DeclinedButton clientCourse={clientCourseData as unknown as ClientCourse} />
                   ) : (
-                    <StartButton
-                      color="primary"
-                      variant={!isCourseCompleted ? 'mediumContained' : 'completed'}
-                      disabled={isCourseLearningDisabled}
-                    >
-                      <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
-                    </StartButton>
+                    <div>
+                      <StartTestButton variant="contained" disabled>
+                        Start the Test
+                      </StartTestButton>
+                      <StartButton
+                        color="primary"
+                        variant={!isCourseCompleted ? 'mediumContained' : 'completed'}
+                        disabled={isCourseLearningDisabled}
+                      >
+                        <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
+                      </StartButton>
+                    </div>
                   )}
                 </>
               )}
