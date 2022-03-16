@@ -1,4 +1,5 @@
 import { SortOrder } from 'enums/common';
+import ISkill from 'interfaces/Ientities/ISkill';
 
 import { ICourse } from '../Ientities/Icourses';
 import { ICourseDuration } from '../common/datetime';
@@ -26,4 +27,15 @@ interface IProgress {
   isCompleted: boolean;
 }
 
-export { IQueryCourses, ICourseStatus, ICourseInfo, IProgress };
+type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
+
+type ICourseInfoPopulated = ICourseInfo & { technologies: ISkill[] };
+
+export {
+  IQueryCourses,
+  ICourseStatus,
+  ICourseInfo,
+  ICoursePopulated,
+  ICourseInfoPopulated,
+  IProgress,
+};

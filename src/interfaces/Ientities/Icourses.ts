@@ -1,7 +1,5 @@
 import { ObjectId } from 'mongoose';
 
-import ISkill from './ISkill';
-
 interface ICourse {
   _id?: ObjectId;
   title: string;
@@ -13,8 +11,6 @@ interface ICourse {
   avatar?: string;
 }
 
-type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
-
 type TCourses = Array<ICourse>;
 
-export { ICourse, TCourses, ICoursePopulated };
+export { ICourse, TCourses };
