@@ -26,13 +26,11 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const [isFullTextOpen, setFullTextOpen] = useState(false);
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
   const isCourseLearningDisabled = courseData
-    ? [
-        COURSE_STATUSES.pending,
-        COURSE_STATUSES.rejected,
-        COURSE_STATUSES.successful,
-        COURSE_STATUSES.completed,
-      ].includes(courseData.status)
+    ? [COURSE_STATUSES.pending, COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(
+        courseData.status,
+      )
     : false;
+  const isCourseDeclined = courseData && courseData.status === COURSE_STATUSES.rejected;
   const isCourseCompleted = courseData
     ? [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(courseData.status)
     : false;
@@ -55,13 +53,21 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
 
   const windowWidth = getWindowWidth();
 
-  const courseInfo = courseData && 'course' in courseData ? courseData.course : courseData;
+  let commonCourseInfo;
+  let clientCourseInfo;
+  if (courseData && 'course' in courseData) {
+    const { course, ...clientCourse } = courseData;
+    [commonCourseInfo, clientCourseInfo] = [course, clientCourse];
+  } else {
+    commonCourseInfo = courseData;
+  }
 
   return (
     <>
-      {courseInfo && courseData && (
+      {commonCourseInfo && courseData && (
         <DetailedCourse
-          courseData={courseInfo}
+          commonCourseData={commonCourseInfo}
+          clientCourseData={clientCourseInfo}
           handleApplyCourse={handleApplyCourse}
           isLoading={isLoading}
           buttonId={BUTTON_ID}
@@ -75,6 +81,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
           isCourseApplicationSubmitted={isCourseApplicationSubmitted}
           isCourseStatusPending={isCourseStatusPending}
           isCourseCompleted={isCourseCompleted}
+          isCourseDeclined={isCourseDeclined}
           isCourseLearningDisabled={isCourseLearningDisabled}
           isCourseStatusTesting={isCourseStatusTesting}
         />
