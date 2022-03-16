@@ -26,6 +26,7 @@ import {
 import { IDetailedCourse } from 'types/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
 import DeclinedButton from 'components/Button/DeclinedButton';
+import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import {
   BackButton,
@@ -108,7 +109,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
         <DetailedCourseActionsBox>
           <CourseInfoBox>
             <CourseInfo
-              duration={commonCourseData.duration}
+              duration={convertDurationToString(commonCourseData.duration)}
               lessons={commonCourseData.lessons}
               type={INFO.detailedCourse}
             />
@@ -125,18 +126,22 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                     Continue the test
                   </ContinueTestButton>
                 </Link>
+              ) : page === PAGES.myCourses && isCourseCompleted ? (
+                <></>
               ) : (
                 <>
-                  {isCourseDeclined ? (
+                  {page === PAGES.myCourses && isCourseDeclined ? (
                     <DeclinedButton clientCourse={clientCourseData as unknown as ClientCourse} />
                   ) : (
-                    <StartButton
-                      color="primary"
-                      variant={!isCourseCompleted ? 'mediumContained' : 'completed'}
-                      disabled={isCourseLearningDisabled}
-                    >
-                      <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
-                    </StartButton>
+                    page === PAGES.myCourses && (
+                      <StartButton
+                        color="primary"
+                        variant="mediumContained"
+                        disabled={isCourseLearningDisabled}
+                      >
+                        <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
+                      </StartButton>
+                    )
                   )}
                 </>
               )}
@@ -160,7 +165,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               <CourseItem
                 title={commonCourseData.title}
                 description={commonCourseData.description}
-                duration={commonCourseData.duration}
+                duration={convertDurationToString(commonCourseData.duration)}
                 lessons={commonCourseData.lessons}
                 windowWidth={windowWidth}
                 type={INFO.similarCourses}
