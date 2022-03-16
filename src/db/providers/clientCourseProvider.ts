@@ -86,21 +86,10 @@ const getCurrentProgress = async (clientCourseId: string) => {
   return progress;
 };
 
-const updateCourseStatus = async (courseId: string, courseStatus: string) => {
+const updateClientCourseField = async (courseId: string, field: string, value: unknown) => {
   const updatedCourse = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
-    { $set: { status: courseStatus } },
-  );
-  if (updatedCourse) {
-    return updatedCourse;
-  }
-  throw new BadRequestError('Bad request. Check the data being sent');
-};
-
-const updateApplyDate = async (courseId: string) => {
-  const updatedCourse = await ClientCourseModel.findOneAndUpdate(
-    { _id: courseId },
-    { $set: { applyDate: Date.now() } },
+    { $set: { [field]: value } },
   );
   if (updatedCourse) {
     return updatedCourse;
@@ -112,9 +101,8 @@ export {
   getClientCoursesProvider,
   getClientCourseProvider,
   getStatusProvider,
-  updateCourseStatus,
   applyCourseProvider,
-  updateCourseProgress,
   getCurrentProgress,
-  updateApplyDate,
+  updateCourseProgress,
+  updateClientCourseField,
 };

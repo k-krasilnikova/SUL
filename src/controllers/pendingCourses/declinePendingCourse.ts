@@ -2,9 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 
 import {
   getStatusProvider,
-  updateApplyDate,
-  updateCourseStatus,
   getClientCourseProvider,
+  updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import CourseStatus from 'enums/coursesEnums';
@@ -36,10 +35,10 @@ const declinePendingCourse = async (
 
     const { _id: manager }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
-    await updateCourseStatus(clientCourseId, CourseStatus.rejected);
+    await updateClientCourseField(clientCourseId, 'status', CourseStatus.rejected);
     await removeFromPendingFieldCourses(manager, clientCourse._id);
 
-    await updateApplyDate(clientCourseId);
+    await updateClientCourseField(clientCourseId, 'applyDate', Date.now());
     results.updateStatus = 'Course was declined';
     next();
   } catch (error) {

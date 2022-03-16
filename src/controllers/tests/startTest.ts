@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import {
   getCurrentProgress,
   getStatusProvider,
-  updateCourseStatus,
+  updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { REQUIRED_PCT } from 'config/constants';
@@ -25,7 +25,7 @@ const startTest = async (req: Request, res: Response, next: NextFunction) => {
       throw new BadRequestError("Can not start test till course stages haven't been passed.");
     }
 
-    await updateCourseStatus(clientCourseId, CourseStatus.testing);
+    await updateClientCourseField(clientCourseId, 'status', CourseStatus.testing);
     res.json('Test has been started successfully.');
   } catch (err) {
     next(err);
