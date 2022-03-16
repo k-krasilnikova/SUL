@@ -125,6 +125,8 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                     Continue the test
                   </ContinueTestButton>
                 </Link>
+              ) : page === PAGES.myCourses && isCourseCompleted ? (
+                <></>
               ) : (
                 <>
                   {isCourseDeclined ? (
@@ -132,7 +134,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                   ) : (
                     <StartButton
                       color="primary"
-                      variant={!isCourseCompleted ? 'mediumContained' : 'completed'}
+                      variant="mediumContained"
                       disabled={isCourseLearningDisabled}
                     >
                       <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
