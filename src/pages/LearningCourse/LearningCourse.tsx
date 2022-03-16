@@ -16,6 +16,7 @@ import {
   MaterialWrapper,
   MaterialText,
   MaterialVideo,
+  DescriptionWrapper,
   Description,
   DescriptionTitle,
   DescriptionText,
@@ -23,6 +24,9 @@ import {
   NextButton,
   ButtonWrapper,
   StyledButton,
+  ToggleDescription,
+  ExpandLessIcon,
+  ExpandMoreIcon,
 } from './styled';
 import { FormDialog } from './FormDialog';
 
@@ -46,6 +50,8 @@ interface LearningProps {
   videoPreview: string | boolean;
   courseStatus: string;
   courseId: string;
+  isDescriptionOpen: boolean;
+  toggleDescriptionOpen: () => void;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -65,6 +71,8 @@ const LearningCourse: React.FC<LearningProps> = ({
   videoPreview,
   courseStatus,
   courseId,
+  isDescriptionOpen,
+  toggleDescriptionOpen,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -101,6 +109,10 @@ const LearningCourse: React.FC<LearningProps> = ({
             <MaterialText>{material}</MaterialText>
           )}
         </MaterialWrapper>
+        <ToggleDescription onClick={toggleDescriptionOpen}>
+          Comments
+          {isDescriptionOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        </ToggleDescription>
         <ButtonWrapper>
           {testEnabled ? (
             <>
@@ -121,10 +133,12 @@ const LearningCourse: React.FC<LearningProps> = ({
           )}
         </ButtonWrapper>
         {courseDescription && (
-          <Description>
-            <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
-            <DescriptionText>{courseDescription.info}</DescriptionText>
-          </Description>
+          <DescriptionWrapper isDescriptionOpen={isDescriptionOpen}>
+            <Description>
+              <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
+              <DescriptionText>{courseDescription.info}</DescriptionText>
+            </Description>
+          </DescriptionWrapper>
         )}
       </LearningWrapper>
     </LearningPageContainer>
