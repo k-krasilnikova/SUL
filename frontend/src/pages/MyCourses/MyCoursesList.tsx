@@ -13,6 +13,7 @@ import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { PAGES } from 'constants/pages';
 import { MobileSearch } from 'components/Layout/MobileSearch';
+import DeclinedButton from 'components/Button/DeclinedButton';
 
 import {
   PageContainer,
@@ -87,6 +88,8 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                         <CompletedButton variant="completed" disabled>
                           Completed
                         </CompletedButton>
+                      ) : clientCourse.status === COURSE_STATUSES.rejected ? (
+                        <DeclinedButton clientCourse={clientCourse} />
                       ) : (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
                           <ContinueTestButton color="primary" variant="mediumContained">
