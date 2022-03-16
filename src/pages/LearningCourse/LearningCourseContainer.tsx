@@ -92,7 +92,6 @@ const LearningCourseContainer: React.FC = () => {
 
   const handleClickDialogOpen = () => {
     setDialogOpen(true);
-    console.log(clientCourseResponse?.status);
   };
 
   const handleDialogClose = () => {
