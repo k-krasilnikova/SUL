@@ -3,8 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 import CourseStatus from 'enums/coursesEnums';
 import {
   getStatusProvider,
-  updateCourseStatus,
   getClientCourseProvider,
+  updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
@@ -35,7 +35,7 @@ const approvePendingCourse = async (
 
     const { _id: manager }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
-    await updateCourseStatus(clientCourseId, CourseStatus.approved);
+    await updateClientCourseField(clientCourseId, 'status', CourseStatus.approved);
     await removeFromPendingFieldCourses(manager, clientCourse._id);
     results.updateStatus = 'Course was approved';
     next();
