@@ -32,11 +32,7 @@ interface IUser {
   position: TUserPosition;
   firstName: string;
   lastName: string;
-  technologies: {
-    group: ObjectId;
-    achievedSkills: ObjectId[];
-    isPrimary: boolean;
-  }[];
+  technologies: ITechnologyGroup[];
   courses: ObjectId[];
   group: string;
   employees: ObjectId[];
@@ -47,6 +43,12 @@ interface IUser {
   phone: string;
   managerId: ObjectId;
   notifications?: INotification[];
+}
+
+interface ITechnologyGroup {
+  group: ObjectId;
+  achievedSkills: ObjectId[];
+  isPrimary: boolean;
 }
 
 type TUserPopulated = IUser & {
@@ -61,4 +63,12 @@ type TUserRole = 'admin' | 'manager' | 'employee';
 
 type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
-export { IUser, TUserPopulated, TUserRole, TUserPosition, IPendingCourses, INotification };
+export {
+  IUser,
+  TUserPopulated,
+  TUserRole,
+  TUserPosition,
+  IPendingCourses,
+  INotification,
+  ITechnologyGroup,
+};
