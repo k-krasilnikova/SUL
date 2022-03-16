@@ -46,7 +46,7 @@ export const formatTimeout = (ms: number, format: string): string => {
   return result.join(' ');
 };
 
-export const makeLeftTime = (date: string | undefined, format: string) => {
+export const makeLeftTime = (date: string | undefined, format: string): string | undefined => {
   if (!date) {
     return date;
   }
