@@ -7,7 +7,7 @@ import { ConfirmDialog } from 'components/ConfirmDialog';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { useGetCourseTest, useStartCourseTest } from 'api/test';
-import { convertTestTimeout } from 'utils/helpers/convertTestTimeout';
+import { convertTestTimeout } from 'utils/helpers/convertTime';
 
 import {
   DialogBox,
