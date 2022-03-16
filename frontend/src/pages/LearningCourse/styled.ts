@@ -3,10 +3,14 @@ import { Box } from '@mui/material';
 import ReactPlayer from 'react-player';
 
 import { Button } from 'components/Button';
+import theme from 'themeSettings';
 
 export const LearningPageContainer = styled('div')({
   width: '100%',
   padding: '40px',
+  [theme.breakpoints.down('xl')]: {
+    padding: '30px',
+  },
 });
 
 export const BackButton = styled(Button)({
@@ -15,18 +19,27 @@ export const BackButton = styled(Button)({
   borderRadius: '4px',
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '16px!important',
-  fontStyle: 'normal',
   fontWeight: '500!important',
   lineHeight: '22px',
   letterSpacing: '-0.4px',
   textAlign: 'center',
   boxShadow: 'none',
+  [theme.breakpoints.down('xl')]: {
+    height: '32px',
+    width: '64px',
+    fontSize: '12px!important',
+    lineHeight: '16px',
+  },
 });
 
 export const LearningWrapper = styled('div')({
   color: '#131313',
   textAlign: 'right',
   padding: '0px 85px',
+  [theme.breakpoints.down('xl')]: {
+    padding: '0px 24px',
+    maxWidth: '717px',
+  },
 });
 
 export const StepperController = styled(Box)({
@@ -35,6 +48,10 @@ export const StepperController = styled(Box)({
   alignItems: 'center',
   marginBottom: '13px',
   height: '39px',
+  [theme.breakpoints.down('xl')]: {
+    marginBottom: '9px',
+    height: '27px',
+  },
 });
 
 export const StyledButton = styled(Button)({
@@ -43,6 +60,10 @@ export const StyledButton = styled(Button)({
   minHeight: '39px',
   '&.MuiButton-root': {
     padding: '0 !important',
+  },
+  [theme.breakpoints.down('xl')]: {
+    minWidth: '40px !important',
+    minHeight: '27px',
   },
 });
 
@@ -62,6 +83,7 @@ export const MaterialWrapper = styled(Box)({
   borderRadius: '5px',
   overflow: 'hidden',
 });
+
 export const MaterialText = styled('div')({
   height: '100%',
   textAlign: 'justify',
@@ -69,6 +91,9 @@ export const MaterialText = styled('div')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '24px',
   overflowY: 'auto',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '18px',
+  },
 });
 
 export const MaterialVideo = styled(ReactPlayer)({
@@ -79,32 +104,43 @@ export const MaterialVideo = styled(ReactPlayer)({
 export const Description = styled('div')({
   display: 'inline-block',
   width: 'calc(100% - 196px)',
-  height: '418px',
+  maxHeight: '418px',
   padding: '31px 238px 31px 54px',
   textAlign: 'left',
   color: 'black',
   border: '1px solid #E0E0E3',
   borderRadius: '8px',
   overflowY: 'auto',
+  [theme.breakpoints.down('xl')]: {
+    width: 'calc(100% - 193px)',
+    padding: '24px 44px 31px 24px',
+  },
 });
 
 export const DescriptionTitle = styled('span')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '32px',
-  fontStyle: 'normal',
   fontWeight: '700',
   lineHeight: '38px',
   letterSpacing: '0em',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '24px',
+    lineHeight: '28px',
+  },
 });
 
 export const DescriptionText = styled('p')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '24px',
-  fontStyle: 'normal',
   fontWeight: '400',
   lineHeight: '31px',
   letterSpacing: '-0.4px',
   margin: '24px 0px 0px 0px',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '18px',
+    lineHeight: '24px',
+    margin: '8px 0px 0px 0px',
+  },
 });
 
 export const ButtonWrapper = styled('div')({
@@ -112,14 +148,16 @@ export const ButtonWrapper = styled('div')({
   verticalAlign: 'top',
   width: '155px',
   marginLeft: '40px',
+  color: 'white',
+  [theme.breakpoints.down('xl')]: {
+    marginLeft: '38px',
+  },
 });
 
 export const StartTestButton = styled(Button)({
   width: '155px',
   height: '50px',
-  color: 'white',
   fontSize: '18px!important',
-  fontStyle: 'normal',
   fontWeight: '500!important',
   lineHeight: '22px',
   letterSpacing: '-0.4px',
@@ -135,9 +173,7 @@ export const StartTestButton = styled(Button)({
 export const NextButton = styled(Button)({
   width: '86px',
   height: '50px',
-  color: 'white',
   fontSize: '18px!important',
-  fontStyle: 'normal',
   fontWeight: '500!important',
   lineHeight: '22px',
   letterSpacing: '-0.4px',
