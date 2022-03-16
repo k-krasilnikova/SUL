@@ -129,16 +129,18 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                 <></>
               ) : (
                 <>
-                  {isCourseDeclined ? (
+                  {page === PAGES.myCourses && isCourseDeclined ? (
                     <DeclinedButton clientCourse={clientCourseData as unknown as ClientCourse} />
                   ) : (
-                    <StartButton
-                      color="primary"
-                      variant="mediumContained"
-                      disabled={isCourseLearningDisabled}
-                    >
-                      <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
-                    </StartButton>
+                    page === PAGES.myCourses && (
+                      <StartButton
+                        color="primary"
+                        variant="mediumContained"
+                        disabled={isCourseLearningDisabled}
+                      >
+                        <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
+                      </StartButton>
+                    )
                   )}
                 </>
               )}
