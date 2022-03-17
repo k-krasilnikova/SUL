@@ -30,6 +30,7 @@ import {
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
+  lastCourseRef: (node?: Element | null) => void;
 }
 
 type MyCoursesProps = ResponseDataMyCourses & Props;
@@ -39,6 +40,7 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
   isLoading,
   disableLink,
   windowWidth,
+  lastCourseRef,
 }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
@@ -48,10 +50,10 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
-        {clientCourses?.map((clientCourse) => (
+        {clientCourses?.map((clientCourse, index) => (
           <Suspense
-            key={clientCourse._id}
-            fallback={<Loader color="primary" type={LOADER.content} key={clientCourse._id} />}
+            key={`${clientCourse._id}_item`}
+            fallback={<Loader color="primary" type={LOADER.content} />}
           >
             <GridItem item xl={6} lg={6} md={12} sm={12}>
               <MobileLink to={`${PATHS.myCourses}/${clientCourse._id}`} onClick={disableLink}>
@@ -66,6 +68,7 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                   progress={countProgress(clientCourse.progress)}
                   windowWidth={windowWidth}
                   imageUrl={clientCourse.course.avatar}
+                  courseRef={clientCourses.length - 1 === index ? lastCourseRef : undefined}
                 >
                   <CourseActionsBox>
                     <CourseActions>

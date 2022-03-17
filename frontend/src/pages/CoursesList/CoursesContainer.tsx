@@ -49,7 +49,7 @@ const CoursesContainer: React.FC = () => {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [inView, hasNextPage, fetchNextPage]);
 
   return (
     <CoursesList
