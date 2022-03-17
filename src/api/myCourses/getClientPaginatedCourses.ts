@@ -10,7 +10,7 @@ import { ClientCourse } from 'types/clientCourse';
 interface HookResult {
   fetchNextPage: () => void;
   isLoading: boolean;
-  data: InfiniteData<{ page: number; clientCourses: ClientCourse }> | undefined;
+  data: InfiniteData<{ page: number; clientCourses: ClientCourse[] }> | undefined;
   status: string;
   hasNextPage?: boolean;
 }
