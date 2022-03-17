@@ -123,7 +123,6 @@ const LearningCourse: React.FC<LearningProps> = ({
                 dialogOpen={dialogOpen}
                 handleDialogClose={handleDialogClose}
                 courseStatus={courseStatus}
-                courseId={courseId}
               />
             </>
           ) : (

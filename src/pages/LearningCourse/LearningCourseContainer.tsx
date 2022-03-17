@@ -44,7 +44,10 @@ const LearningCourseContainer: React.FC = () => {
     }
   }, [stage, maxStage]);
 
-  const { mutate: startCourseMutate } = useStartClientCourse(params.courseId);
+  const { mutate: startCourseMutate } = useStartClientCourse(
+    params.courseId,
+    clientCourseResponse?.status,
+  );
 
   useEffect(() => {
     const handleStartCourse = () => {
@@ -63,8 +66,9 @@ const LearningCourseContainer: React.FC = () => {
 
   const stageForward = () => {
     setStage(stage + STAGE_CHANGE);
-    handlePassCourseStage(stage + STAGE_CHANGE);
+    handlePassCourseStage(stage);
     if (stage + STAGE_CHANGE === maxStage && !testEnabled) {
+      handlePassCourseStage(maxStage);
       setTestEnabled(true);
     }
   };

@@ -16,6 +16,7 @@ import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
 import { COURSE_LABELS } from 'constants/statuses';
+import { ClientCourse } from 'types/clientCourse';
 import {
   COMPLETED_STATUS_TEXT,
   OPEN_FULL_TEXT,
@@ -24,6 +25,8 @@ import {
 } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
+import DeclinedButton from 'components/Button/DeclinedButton';
+import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import {
   BackButton,
@@ -49,7 +52,8 @@ import {
 } from './styled';
 
 const DetailedCourse: React.FC<IDetailedCourse> = ({
-  courseData,
+  commonCourseData,
+  clientCourseData,
   handleApplyCourse,
   isLoading,
   targetId,
@@ -64,6 +68,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   isCourseStatusPending,
   isCourseLearningDisabled,
   isCourseCompleted,
+  isCourseDeclined,
   isCourseStatusTesting,
 }) => (
   <AuthorizedLayout pageName="Course">
@@ -79,7 +84,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
       </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper>
-          <Image imageUrl={courseData.avatar} />
+          <Image imageUrl={commonCourseData.avatar} />
         </ImageWrapper>
         {isCourseApplicationSubmitted && !isCourseStatusPending && (
           <ProgressBar
@@ -89,23 +94,23 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
             variant={isCourseCompleted && VARIANTS.successful}
           />
         )}
-        <DetailedCourseTitle>{courseData.title}</DetailedCourseTitle>
+        <DetailedCourseTitle>{commonCourseData.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
-          <DetailedCourseTextMobile>{courseData.description}</DetailedCourseTextMobile>
+          <DetailedCourseTextMobile>{commonCourseData.description}</DetailedCourseTextMobile>
         ) : (
           <DetailedCourseTextMobile>
-            {courseData.description.slice(0, 140)}
+            {commonCourseData.description.slice(0, 140)}
             <ButtonFullText onClick={toggleFullText}>
               {!isFullTextOpen && OPEN_FULL_TEXT}
             </ButtonFullText>
           </DetailedCourseTextMobile>
         )}
-        <DetailedCourseText>{courseData.description}</DetailedCourseText>
+        <DetailedCourseText>{commonCourseData.description}</DetailedCourseText>
         <DetailedCourseActionsBox>
           <CourseInfoBox>
             <CourseInfo
-              duration={courseData.duration}
-              lessons={courseData.lessons}
+              duration={convertDurationToString(commonCourseData.duration)}
+              lessons={commonCourseData.lessons}
               type={INFO.detailedCourse}
             />
           </CourseInfoBox>
@@ -121,22 +126,24 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                     Continue the test
                   </ContinueTestButton>
                 </Link>
+              ) : page === PAGES.myCourses && isCourseCompleted ? (
+                <></>
               ) : (
-                page === PAGES.myCourses && (
-                  <Link to={`${PATHS.learnCourse}/${id}`}>
-                    {isCourseCompleted ? (
-                      <></>
-                    ) : (
+                <>
+                  {page === PAGES.myCourses && isCourseDeclined ? (
+                    <DeclinedButton clientCourse={clientCourseData as unknown as ClientCourse} />
+                  ) : (
+                    page === PAGES.myCourses && (
                       <StartButton
                         color="primary"
                         variant="mediumContained"
                         disabled={isCourseLearningDisabled}
                       >
-                        {COURSE_LABELS[status]}
+                        <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
                       </StartButton>
-                    )}
-                  </Link>
-                )
+                    )
+                  )}
+                </>
               )}
               {page === PAGES.coursesList && (
                 <StartButton
@@ -156,14 +163,14 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
             <SimilarCoursesTitle>Similar courses</SimilarCoursesTitle>
             <SimilarCoursesItemWrapper>
               <CourseItem
-                title={courseData.title}
-                description={courseData.description}
-                duration={courseData.duration}
-                lessons={courseData.lessons}
+                title={commonCourseData.title}
+                description={commonCourseData.description}
+                duration={convertDurationToString(commonCourseData.duration)}
+                lessons={commonCourseData.lessons}
                 windowWidth={windowWidth}
                 type={INFO.similarCourses}
                 pageName={PAGES.detailed}
-                imageUrl={courseData.avatar}
+                imageUrl={commonCourseData.avatar}
               >
                 <CourseActionsBox>
                   <CourseActions>

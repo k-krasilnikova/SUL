@@ -1,10 +1,13 @@
 import { Course } from './course';
 
 export interface ClientCourse {
-  currentStage: 1;
+  currentStage: number;
   progress: [];
   status: string;
-  user: '61e806ea748c709ccdc3e82c';
-  _id: '61e806ea748c709ccdc3e82f';
+  user: string;
+  _id: string;
   course: Course;
+  applyDate?: string;
 }
+
+export type PureClientCourse = Omit<ClientCourse, 'course'>;

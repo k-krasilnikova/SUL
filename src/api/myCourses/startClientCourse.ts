@@ -6,10 +6,12 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
+import { COURSE_STATUSES } from 'constants/statuses';
 
 const useStartClientCourse = (
-  courseId?: string | undefined,
-): UseMutationResult<ClientCourse, AxiosError> => {
+  courseId?: string,
+  courseStatus?: string,
+): UseMutationResult<ClientCourse | undefined, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -19,10 +21,14 @@ const useStartClientCourse = (
   };
   return useMutation(
     async () => {
-      const apiClient = apiClientWrapper();
-      const response = await apiClient.get(`${API.getMyCourses}/${courseId}/start`);
-      handleSubmitSuccess();
-      return response.data;
+      let courseStarted: ClientCourse | undefined;
+      if (courseStatus === COURSE_STATUSES.approved) {
+        const apiClient = apiClientWrapper();
+        const response = await apiClient.get(`${API.getMyCourses}/${courseId}/start`);
+        handleSubmitSuccess();
+        courseStarted = response.data;
+      }
+      return courseStarted;
     },
     {
       onError: handleSubmitError,
