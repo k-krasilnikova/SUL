@@ -48,7 +48,6 @@ interface LearningProps {
   material: string;
   materialType: string;
   videoPreview: string | boolean;
-  courseStatus: string;
   isDescriptionOpen: boolean;
   toggleDescriptionOpen: () => void;
 }
@@ -68,7 +67,6 @@ const LearningCourse: React.FC<LearningProps> = ({
   handleClickDialogOpen,
   handleDialogClose,
   videoPreview,
-  courseStatus,
   isDescriptionOpen,
   toggleDescriptionOpen,
 }) => (
