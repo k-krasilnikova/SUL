@@ -11,10 +11,18 @@ interface ITestResultParams {
   courseId: string | undefined;
 }
 
-const useSendTestResult = ({ courseId }: ITestResultParams): UseMutationResult<IResponseData> => {
+const useSendTestResult = (
+  { courseId }: ITestResultParams,
+  onSubmit?: () => void,
+): UseMutationResult<IResponseData> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
+  };
+  const handleSubmit = () => {
+    if (onSubmit) {
+      onSubmit();
+    }
   };
   return useMutation(
     async (data) => {
@@ -25,6 +33,7 @@ const useSendTestResult = ({ courseId }: ITestResultParams): UseMutationResult<I
     },
     {
       onError: handleSubmitError,
+      onSuccess: handleSubmit,
     },
   );
 };
