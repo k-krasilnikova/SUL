@@ -130,7 +130,6 @@ const LearningCourseContainer: React.FC = () => {
           handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
           courseStatus={clientCourseResponse?.status}
-          courseId={clientCourseResponse._id}
           isDescriptionOpen={isDescriptionOpen}
           toggleDescriptionOpen={toggleDescriptionOpen}
         />
