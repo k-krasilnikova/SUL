@@ -329,3 +329,8 @@ export const MobileSearchWrapper = styled('div')({
     display: 'none',
   },
 });
+
+export const ButtonsWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+});

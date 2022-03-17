@@ -49,6 +49,7 @@ import {
   BackLink,
   MobileSearchWrapper,
   ContinueTestButton,
+  ButtonsWrapper,
 } from './styled';
 
 const DetailedCourse: React.FC<IDetailedCourse> = ({
@@ -131,7 +132,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                   {isCourseDeclined ? (
                     <DeclinedButton clientCourse={clientCourseData as unknown as ClientCourse} />
                   ) : (
-                    <div>
+                    <ButtonsWrapper>
                       <StartTestButton variant="contained" disabled>
                         Start the Test
                       </StartTestButton>
@@ -142,7 +143,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                       >
                         <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
                       </StartButton>
-                    </div>
+                    </ButtonsWrapper>
                   )}
                 </>
               )}
