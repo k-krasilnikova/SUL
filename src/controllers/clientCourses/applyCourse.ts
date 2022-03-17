@@ -19,7 +19,7 @@ const applyCourse = async (
     if (!courseId || !userId) {
       throw new BadRequestError('Invalid query');
     }
-    const applyedCourses = await getClientCoursesProvider(userId);
+    const applyedCourses = await getClientCoursesProvider(userId, {});
     const isDuplicate = checkCourseDuplicates(applyedCourses, courseId);
     if (isDuplicate) {
       throw new BadRequestError('Course already applied.');
