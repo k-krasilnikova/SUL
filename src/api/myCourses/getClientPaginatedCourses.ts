@@ -11,7 +11,6 @@ interface HookResult {
   fetchNextPage: () => void;
   isLoading: boolean;
   data: InfiniteData<{ page: number; clientCourses: ClientCourse[] }> | undefined;
-  status: string;
   hasNextPage?: boolean;
 }
 
@@ -20,7 +19,7 @@ const useGetClientPaginatedCourses = (): HookResult => {
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
-  const getCourses = async ({ pageParam = 1 }) => {
+  const getClientCourses = async ({ pageParam = 1 }) => {
     const apiClient = apiClientWrapper();
     const response = await apiClient.get(`${API.getMyCourses}`, {
       params: {
@@ -29,9 +28,9 @@ const useGetClientPaginatedCourses = (): HookResult => {
     });
     return { page: pageParam, clientCourses: response.data };
   };
-  const { fetchNextPage, hasNextPage, data, isLoading, status } = useInfiniteQuery(
-    'paginatedCoursesList',
-    getCourses,
+  const { fetchNextPage, hasNextPage, data, isLoading } = useInfiniteQuery(
+    'paginatedClientCoursesList',
+    getClientCourses,
     {
       getPreviousPageParam: (firstPage) => (firstPage.page === 1 ? false : firstPage.page - 1),
       getNextPageParam: (lastPage) =>
@@ -40,7 +39,7 @@ const useGetClientPaginatedCourses = (): HookResult => {
       onError: handleSubmitError,
     },
   );
-  return { hasNextPage, fetchNextPage, isLoading, data, status };
+  return { hasNextPage, fetchNextPage, isLoading, data };
 };
 
 export default useGetClientPaginatedCourses;
