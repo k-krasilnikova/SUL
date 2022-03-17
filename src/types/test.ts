@@ -69,6 +69,7 @@ export interface ITestResult {
   skills?: ISkills[];
   percentageValue?: number | undefined;
   handleFinishCourse?: () => void;
+  courseId?: string;
 }
 
 export interface IPassingTestProps {
