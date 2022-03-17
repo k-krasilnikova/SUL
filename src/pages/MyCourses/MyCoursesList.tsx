@@ -14,7 +14,8 @@ import { countProgress } from 'utils/helpers/countCourseProgress';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { PAGES } from 'constants/pages';
 import { MobileSearch } from 'components/Layout/MobileSearch';
-import DeclinedButton from 'components/Button/DeclinedButton';
+import DeclinedWrapper from 'components/Button/DeclinedButton';
+import { MyButton } from 'components/Button/styled';
 
 import {
   PageContainer,
@@ -23,9 +24,7 @@ import {
   CourseActionsBox,
   DetailsButton,
   MobileLink,
-  ContinueTestButton,
   MobileSearchWrapper,
-  CompletedButton,
 } from './styled';
 
 interface Props {
@@ -75,27 +74,27 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                       </Link>
                       {clientCourse.status === COURSE_STATUSES.testing ? (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
-                          <ContinueTestButton color="primary" variant="mediumContained">
+                          <MyButton color="primary" variant="mediumContained">
                             Continue the test
-                          </ContinueTestButton>
+                          </MyButton>
                         </Link>
                       ) : clientCourse.status === COURSE_STATUSES.pending ? (
-                        <ContinueTestButton disabled color="primary" variant="mediumContained">
+                        <MyButton disabled color="primary" variant="mediumContained">
                           Pending
-                        </ContinueTestButton>
+                        </MyButton>
                       ) : [COURSE_STATUSES.completed, COURSE_STATUSES.successful].includes(
                           clientCourse.status,
                         ) ? (
-                        <CompletedButton variant="completed" disabled>
+                        <MyButton variant="completed" disabled>
                           Completed
-                        </CompletedButton>
+                        </MyButton>
                       ) : clientCourse.status === COURSE_STATUSES.rejected ? (
-                        <DeclinedButton clientCourse={clientCourse} />
+                        <DeclinedWrapper clientCourse={clientCourse} />
                       ) : (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
-                          <ContinueTestButton color="primary" variant="mediumContained">
+                          <MyButton color="primary" variant="mediumContained">
                             {COURSE_LABELS[clientCourse.status]}
-                          </ContinueTestButton>
+                          </MyButton>
                         </Link>
                       )}
                     </CourseActions>
