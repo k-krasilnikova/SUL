@@ -29,7 +29,6 @@ const TestResult: React.FC<ITestResult> = ({
   isFailed,
   responseData,
   percentageValue,
-  handleFinishCourse,
   courseId,
 }) => (
   <AuthorizedLayout pageName="Test Result">
@@ -86,9 +85,7 @@ const TestResult: React.FC<ITestResult> = ({
       </ContentBox>
       <ButtonBox>
         <Link to={`${PATHS.myCourses}/${courseId}`}>
-          <SubmitButton onClick={handleFinishCourse} variant="medium">
-            Submit
-          </SubmitButton>
+          <SubmitButton variant="medium">Submit</SubmitButton>
         </Link>
       </ButtonBox>
     </TestResultBox>

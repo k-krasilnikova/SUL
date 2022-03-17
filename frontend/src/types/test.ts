@@ -68,7 +68,6 @@ export interface ITestResult {
   isFailed?: boolean;
   skills?: ISkills[];
   percentageValue?: number | undefined;
-  handleFinishCourse?: () => void;
   courseId?: string;
 }
 
