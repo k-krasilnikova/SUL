@@ -362,7 +362,7 @@ const DEFAULT_USERS_DOCS = [
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
-    avatar: '',
+    avatar: 'https://ucarecdn.com/b059b948-63fe-4a6b-aef2-9b3ebeab605b/admin.png',
     birthday: '1970-01-01T00:00:00Z',
     skype: 'admin',
     phone: '+375(33)1235363',
@@ -380,7 +380,7 @@ const DEFAULT_USERS_DOCS = [
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
-    avatar: '',
+    avatar: 'https://ucarecdn.com/4d836994-de4e-4c48-b750-430f5ff0783d/manager.png',
     birthday: '1970-01-01T00:00:00Z',
     skype: 'user',
     phone: '+375(29)8001190',
@@ -392,19 +392,19 @@ const DEFAULT_EMPLOYEES = [
   {
     username: 'user',
     passwordHash: 'user',
-    email: 'user@itechart-group.com',
+    email: 'k.krasilnikova@itechart-group.com',
     role: 'employee',
-    firstName: 'User',
-    lastName: 'User',
-    position: 'Software Engineer',
+    firstName: 'Katsiaryna',
+    lastName: 'Krasilnikova',
+    position: 'Team Manager / Software Engineer',
     technologies: [],
-    group: 'U4.D4.mocked',
+    group: 'U4.D4.FrontendRocks.T2',
     employees: [],
     pendingCourses: [],
-    avatar: '',
+    avatar: 'https://ucarecdn.com/d1542137-f9f4-496d-ba18-28525c9817d8/empl.png',
     birthday: '1970-01-01T00:00:00Z',
-    skype: 'user',
-    phone: '+375(33)2635213',
+    skype: 'live:123123123123',
+    phone: '+375(33)1231212',
     managerId: '',
   },
   {
@@ -419,7 +419,7 @@ const DEFAULT_EMPLOYEES = [
     group: 'U4.D4.mocked',
     employees: [],
     pendingCourses: [],
-    avatar: '',
+    avatar: 'https://ucarecdn.com/d1542137-f9f4-496d-ba18-28525c9817d8/empl.png',
     birthday: '1970-01-01T00:00:00Z',
     skype: 'user1',
     phone: '+375(33)2635213',
@@ -434,7 +434,7 @@ const MATERIALS = [
         _id: '1',
         stage: 1,
         content: [
-          'https://www.youtube.com/watch?v=VuN8qwZoego&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=1&ab_channel=WesBos',
+          'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui',
         ],
       },
       {
@@ -460,7 +460,7 @@ const MATERIALS = [
         _id: '4',
         stage: 1,
         content: [
-          'https://www.youtube.com/watch?v=ntLJmHOJ0ME&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&ab_channel=CodeWithHarry',
+          'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui',
         ],
       },
       {
@@ -486,7 +486,7 @@ const MATERIALS = [
         _id: '7',
         stage: 1,
         content: [
-          'https://www.youtube.com/watch?v=IU4-19ofajg&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&ab_channel=egoroff_channel',
+          'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui',
         ],
       },
       {
@@ -505,7 +505,7 @@ const MATERIALS = [
         _id: '7',
         stage: 1,
         content: [
-          'https://www.youtube.com/watch?v=IU4-19ofajg&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&ab_channel=egoroff_channel',
+          'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui',
         ],
       },
       {
@@ -524,7 +524,7 @@ const MATERIALS = [
         _id: '7',
         stage: 1,
         content: [
-          'https://www.youtube.com/watch?v=IU4-19ofajg&list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6&ab_channel=egoroff_channel',
+          'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui',
         ],
       },
       {
@@ -546,10 +546,9 @@ const MOCKED_COURSES = [
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
     technologies: ['JavaScript', 'HTML', 'CSS'],
     requiredSkills: ['HTML', 'CSS'],
-    duration: '123124679',
     materials: MATERIALS[0].content,
-    lessons: 0,
     test: '',
+    avatar: 'https://ucarecdn.com/6c336531-1fe4-4daf-ba45-28b76b45ff46/js.png',
   },
   {
     title: 'Java for Profi ',
@@ -557,10 +556,9 @@ const MOCKED_COURSES = [
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
     technologies: ['Java', 'SQL'],
     requiredSkills: ['Java'],
-    duration: '123124679',
     materials: MATERIALS[1].content,
-    lessons: 0,
     test: '',
+    avatar: 'https://ucarecdn.com/ef78d112-c5e8-4829-94eb-777d059f82bf/java.png',
   },
   {
     title: 'Python for kids',
@@ -568,10 +566,9 @@ const MOCKED_COURSES = [
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
     technologies: ['Python', 'Pandas', 'Django'],
     requiredSkills: ['Math', 'English'],
-    duration: '12312679',
     materials: MATERIALS[2].content,
-    lessons: 0,
     test: '',
+    avatar: 'https://ucarecdn.com/0168bc80-6cd0-444f-b173-70ef1ff1071c/python.png',
   },
   {
     title: 'Kotlin',
@@ -579,10 +576,9 @@ const MOCKED_COURSES = [
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
     technologies: ['Kotlin', 'Java'],
     requiredSkills: ['Math', 'English'],
-    duration: '12312679',
     materials: MATERIALS[3].content,
-    lessons: 0,
     test: '',
+    avatar: 'https://ucarecdn.com/f388ccb9-1fc6-4803-97b4-ea7b25629ac8/kotlin.png',
   },
   {
     title: 'Scala',
@@ -590,10 +586,9 @@ const MOCKED_COURSES = [
       'Lorem ipsum dolor sit amet. Et voluptatem optio ex quibusdam inventore id enim pariatur qui neque voluptatem. Quo magni quo nobis dolor ut laudantium voluptatum aut eaque aliquam eos Quis nisi. At facere exercitationem et autem repellat vel eligendi error. Ad quae odit et voluptas ullam sit eveniet voluptas.',
     technologies: ['Scala'],
     requiredSkills: ['Math', 'English'],
-    duration: '12312679',
     materials: MATERIALS[4].content,
-    lessons: 0,
     test: '',
+    avatar: 'https://ucarecdn.com/e5f818ce-1eef-47c8-91a9-7f78d5e96194/scala.png',
   },
 ];
 
@@ -602,25 +597,25 @@ const SKILLS = [
     name: 'Java',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968282.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Java')).length,
-    group: 'Languages',
+    group: 'Common',
   },
   {
     name: 'JavaScript',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('JavaScript')).length,
-    group: 'Languages',
+    group: 'Common',
   },
   {
     name: 'TypeScript',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968381.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('TypeScript')).length,
-    group: 'Languages',
+    group: 'Common',
   },
   {
     name: 'PHP',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968332.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('PHP')).length,
-    group: 'Languages',
+    group: 'Common',
   },
   {
     name: 'HTML',
@@ -656,19 +651,19 @@ const SKILLS = [
     name: 'Kotlin',
     image: 'https://cdn-icons-png.flaticon.com/512/154/154878.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Kotlin')).length,
-    group: 'Languages',
+    group: 'Common',
   },
   {
     name: 'Scala',
     image: 'https://cdn-icons-png.flaticon.com/512/919/919834.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Scala')).length + 1, // for the default level porpose (testing only)
-    group: 'Languages',
+    group: 'Common',
   },
   {
     name: 'Python',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968350.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Python')).length + 1, // for the default level porpose (testing only)
-    group: 'Languages',
+    group: 'Common',
   },
   {
     name: 'Math',
@@ -704,7 +699,7 @@ const SKILLS = [
 
 const SKILL_GROUPS = [
   {
-    name: 'Languages',
+    name: 'Common',
     skills: [],
   },
   {
@@ -830,7 +825,7 @@ module.exports = {
     );
     // ONLY FOR 'USER'
     const userId = totalUsers.filter((u) => u.username === 'user')[0].insertedId;
-    const langGroupId = groups.filter((group) => group.name === 'Languages')[0].insertedId;
+    const langGroupId = groups.filter((group) => group.name === 'Common')[0].insertedId;
     const dbGroupId = groups.filter((group) => group.name === 'Databases')[0].insertedId;
     const othersGroupId = groups.filter((group) => group.name === 'Others')[0].insertedId;
     const TECHS = [

@@ -48,6 +48,13 @@ const SearchCoursesContainer: React.FC = () => {
     checkWhitespace(event, searchInputValue);
   };
 
+  const checkPastedValue = (event: React.ClipboardEvent) => {
+    event.preventDefault();
+    const inputValue = event.clipboardData.getData('Text');
+    const formattedValue = inputValue.split(/\s+/).join(' ').trimStart().trimEnd();
+    setSearchInputValue(formattedValue);
+  };
+
   return (
     <SearchCourses
       isSearchOpen={isSearchOpen}
@@ -55,6 +62,8 @@ const SearchCoursesContainer: React.FC = () => {
       handleSearchClose={handleSearchClose}
       coursesFound={coursesFound}
       checkSpace={checkSpace}
+      checkPastedValue={checkPastedValue}
+      searchInputValue={searchInputValue}
     />
   );
 };
