@@ -13,6 +13,7 @@ import { buttonSpinner } from 'animations';
 import { LOADER } from 'constants/loaderTypes';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
+import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import {
   PageContainer,
@@ -61,7 +62,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                 <CourseItem
                   title={course?.title}
                   description={course?.description}
-                  duration={course?.duration}
+                  duration={convertDurationToString(course?.duration)}
                   lessons={course?.lessons}
                   windowWidth={windowWidth}
                   pageName={PAGES.coursesList}

@@ -9,13 +9,19 @@ export interface Course {
   description: string;
   technology: Array<string>;
   requiredSkills: Array<string>;
-  duration: string;
+  duration: CourseDuration;
   testLink: string;
   lessons: number;
   materials: Array<Material>;
   _id: string;
   status: string;
   avatar?: string;
+}
+
+export interface CourseDuration {
+  days: number;
+  hours: number;
+  minutes: number;
 }
 
 export interface ICourses {
