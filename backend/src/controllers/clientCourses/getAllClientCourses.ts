@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getClientCoursesProvider } from 'db/providers/clientCourseProvider';
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 
 import { convertToCourseInfo } from 'utils/typeConversion/courses/coursesTypeConversions';
@@ -15,12 +14,7 @@ const getClientCourses = async (
     const params: IQueryCourses = req.query;
     const { id: userId } = res.locals;
 
-
-    const courses = await getClientCoursesProvider(userId, { ...params });
-
-    res.json(courses);
-
-    const clientCourses = await getClientCoursesProvider(userId);
+    const clientCourses = await getClientCoursesProvider(userId, { ...params });
 
     const clientCoursesWithCoursesInfo = await Promise.all(
       clientCourses.map(async (clCourse) => {
