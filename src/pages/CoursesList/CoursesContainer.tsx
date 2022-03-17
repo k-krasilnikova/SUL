@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { Course } from 'types/course';
-import { useApplyCourse } from 'api/courses';
+import { useApplyCourse, useGetPaginatedCourses } from 'api/courses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
-import useGetPaginatedCourses from 'api/courses/getPaginatedCourses';
 
 import CoursesList from './CoursesList';
 
@@ -39,8 +38,6 @@ const CoursesContainer: React.FC = () => {
     (prev, page) => [...prev, ...page.courses.filter((course) => !course.status)],
     [] as Course[],
   );
-
-  console.log(formattedCoursesList, 'courseslist');
 
   const { ref: courseRef, inView } = useInView({
     root: null,

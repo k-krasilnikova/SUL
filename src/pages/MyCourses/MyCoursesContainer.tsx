@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import useGetClientPaginatedCourses from 'api/myCourses/getClientPaginatedCourses';
+import { useGetClientPaginatedCourses } from 'api/myCourses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import { ClientCourse } from 'types/clientCourse';
@@ -30,8 +30,6 @@ const MyCoursesContainer: React.FC = () => {
     (prev, page) => [...prev, ...page.clientCourses],
     [] as ClientCourse[],
   );
-
-  console.log('mycorses', formattedClientCourses);
 
   const { ref: clientCourseRef, inView } = useInView({
     root: null,

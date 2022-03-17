@@ -4,4 +4,4 @@ export { default as useApproveRequest } from './approveRequest';
 export { default as useDeclineRequest } from './declineRequest';
 export { default as useGetCourseInfo } from './getCourseInfo';
 export { default as searchAllCourses } from './searchAllCourses';
-export { default as getPaginatedCourses } from './getPaginatedCourses';
+export { default as useGetPaginatedCourses } from './getPaginatedCourses';
