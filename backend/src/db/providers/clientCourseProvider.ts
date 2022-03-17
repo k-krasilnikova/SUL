@@ -1,17 +1,39 @@
 import mongoose from 'mongoose';
 
-import { IProgress } from 'interfaces/ICourses/IQueryCourses';
+import { IProgress, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 import CourseStatus from 'enums/coursesEnums';
+import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import {
+  DEFAULT_N_PER_PAGE,
+  DEFAULT_ORDER_FIELD,
+  FIRST_PAGE,
+  NOTHING,
+  NO_FILTER,
+} from 'config/constants';
 
 import ClientCourseModel from '../models/ClientCourses';
 
-const getClientCoursesProvider = async (userId: string): Promise<IClientCoursePopulated[]> => {
+const getClientCoursesProvider = async (
+  userId: string,
+  {
+    pageN,
+    title,
+    orderField = DEFAULT_ORDER_FIELD,
+    order = SortOrder.asc,
+    nPerPage = DEFAULT_N_PER_PAGE,
+  }: IQueryCourses,
+): Promise<IClientCoursePopulated[]> => {
+  const sortingField = { [orderField]: order };
   const clientCourses: IClientCoursePopulated[] = await ClientCourseModel.find({
     user: userId,
-  }).populate('course');
+    title: title ? { title: { $regex: new RegExp(title), $options: 'i' } } : NO_FILTER,
+  })
+    .sort(sortingField)
+    .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
+    .populate('course');
   return clientCourses;
 };
 
