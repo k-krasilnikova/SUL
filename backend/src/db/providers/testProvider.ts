@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 
 import ClientCourseModel from 'db/models/ClientCourses';
-import { TestDb } from 'interfaces/Ientities/Itest';
+import { ITest, TestDb } from 'interfaces/Ientities/Itest';
 import TestModel from 'db/models/Tests';
 
 const getTestProvider = async (courseId: string) => {
@@ -39,6 +39,9 @@ const getTestProvider = async (courseId: string) => {
   return test;
 };
 
+const getTestById = async (testId: string | ObjectId): Promise<ITest> =>
+  TestModel.findById(testId).lean();
+
 const getTrueAnswersProvider = async (testId: string) => {
   const trueAnswers = await TestModel.findOne(
     { _id: testId },
@@ -54,4 +57,4 @@ const getTrueAnswersProvider = async (testId: string) => {
   return trueAnswers;
 };
 
-export { getTestProvider, getTrueAnswersProvider };
+export { getTestProvider, getTestById, getTrueAnswersProvider };

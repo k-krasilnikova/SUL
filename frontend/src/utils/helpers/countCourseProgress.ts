@@ -1,10 +1,6 @@
-interface ProgressProps {
-  stage: number;
-  isCompleted: boolean;
-  _id: string;
-}
+import { ClientCourse } from 'types/clientCourse';
 
-export const countProgress = (stages: Array<ProgressProps>): number => {
+export const countProgress = (stages: ClientCourse['progress']): number => {
   const maxProgress = stages.length;
   let currentProgress = 0;
   stages.forEach((stage) => {
