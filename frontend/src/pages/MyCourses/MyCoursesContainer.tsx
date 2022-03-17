@@ -26,12 +26,14 @@ const MyCoursesContainer: React.FC = () => {
 
   const windowWidth = getWindowWidth();
 
-  const formattedClientCoursesList = data?.pages.reduce(
-    (prev, page) => [...prev, ...page.clientCourses.filter((item) => item.course)],
+  const formattedClientCourses = data?.pages.reduce(
+    (prev, page) => [...prev, ...page.clientCourses],
     [] as ClientCourse[],
   );
 
-  const { ref, inView } = useInView({
+  console.log('mycorses', formattedClientCourses);
+
+  const { ref: clientCourseRef, inView } = useInView({
     root: null,
     threshold: 1.0,
     rootMargin: '0px',
@@ -41,15 +43,15 @@ const MyCoursesContainer: React.FC = () => {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage]);
+  }, [inView, hasNextPage]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <MyCoursesList
-      clientCourses={formattedClientCoursesList}
+      clientCourses={formattedClientCourses}
       isLoading={isClientCoursesLoading}
       disableLink={disableLink}
       windowWidth={windowWidth}
-      lastCourseRef={ref}
+      lastClientCourseRef={clientCourseRef}
     />
   );
 };

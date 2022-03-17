@@ -34,12 +34,15 @@ const CoursesContainer: React.FC = () => {
   };
 
   const windowWidth = getWindowWidth();
+
   const formattedCoursesList = data?.pages.reduce(
     (prev, page) => [...prev, ...page.courses.filter((course) => !course.status)],
     [] as Course[],
   );
 
-  const { ref, inView } = useInView({
+  console.log(formattedCoursesList, 'courseslist');
+
+  const { ref: courseRef, inView } = useInView({
     root: null,
     threshold: 1.0,
     rootMargin: '0px',
@@ -49,7 +52,7 @@ const CoursesContainer: React.FC = () => {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage]);
+  }, [inView, hasNextPage]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <CoursesList
@@ -60,7 +63,7 @@ const CoursesContainer: React.FC = () => {
       targetLoading={isLoading}
       disableLink={disableLink}
       windowWidth={windowWidth}
-      lastCourseRef={ref}
+      lastCourseRef={courseRef}
     />
   );
 };

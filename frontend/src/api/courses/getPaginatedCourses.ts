@@ -11,7 +11,6 @@ interface HookResult {
   fetchNextPage: () => void;
   isLoading: boolean;
   data: InfiniteData<{ page: number; courses: Course[] }> | undefined;
-  status: string;
   hasNextPage?: boolean;
 }
 
@@ -29,7 +28,7 @@ const useGetPaginatedCourses = (): HookResult => {
     });
     return { page: pageParam, courses: response.data };
   };
-  const { fetchNextPage, hasNextPage, data, isLoading, status } = useInfiniteQuery(
+  const { fetchNextPage, hasNextPage, data, isLoading } = useInfiniteQuery(
     'paginatedCoursesList',
     getCourses,
     {
@@ -39,7 +38,7 @@ const useGetPaginatedCourses = (): HookResult => {
       onError: handleSubmitError,
     },
   );
-  return { hasNextPage, fetchNextPage, isLoading, data, status };
+  return { hasNextPage, fetchNextPage, isLoading, data };
 };
 
 export default useGetPaginatedCourses;
