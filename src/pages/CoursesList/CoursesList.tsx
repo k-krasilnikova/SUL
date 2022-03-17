@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { CourseItem } from 'components/Course';
@@ -29,9 +28,7 @@ import {
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
-  fetchNextPage: () => void;
-  status: string;
-  hasNextPage?: boolean;
+  lastCourseRef: (node?: Element | null) => void;
 }
 
 type CoursesProps = ResponseDataType & Props;
@@ -44,9 +41,7 @@ const CoursesList: React.FC<CoursesProps> = ({
   targetId,
   disableLink,
   windowWidth,
-  fetchNextPage,
-  hasNextPage,
-  status,
+  lastCourseRef,
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
@@ -56,58 +51,50 @@ const CoursesList: React.FC<CoursesProps> = ({
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
-        {status === 'success' && (
-          <InfiniteScroll
-            dataLength={courses.length * 10}
-            next={fetchNextPage}
-            hasMore={hasNextPage!}
-            loader={<h4>Loading...</h4>}
+        {courses.map((course, idx) => (
+          <Suspense
+            key={`${course._id}_item`}
+            fallback={<Loader color="primary" type={LOADER.content} />}
           >
-            {courses.map((course) => (
-              <Suspense
-                key={`${course._id}_item`}
-                fallback={<Loader color="primary" type={LOADER.content} />}
-              >
-                <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
-                  <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
-                    <CourseItem
-                      title={course?.title}
-                      description={course?.description}
-                      duration={course?.duration}
-                      lessons={course?.lessons}
-                      windowWidth={windowWidth}
-                      pageName={PAGES.coursesList}
-                      imageUrl={course?.avatar}
-                    >
-                      <CourseActionsBox key={`${course._id}_box`}>
-                        <CourseActions key={`${course._id}_actions`}>
-                          <Link to={`${PATHS.coursesList}/${course._id}`}>
-                            <DetailsButton color="primary" variant="mediumOutlined">
-                              Details
-                            </DetailsButton>
-                          </Link>
-                          {targetLoading && targetId === course._id ? (
-                            <StartCourseButton variant="mediumOutlined" disabled>
-                              <ButtonLoader buttonSpinner={buttonSpinner} />
-                            </StartCourseButton>
-                          ) : (
-                            <StartCourseButton
-                              id={course._id}
-                              onClick={handleApplyCourse}
-                              variant="mediumContained"
-                            >
-                              Apply the course
-                            </StartCourseButton>
-                          )}
-                        </CourseActions>
-                      </CourseActionsBox>
-                    </CourseItem>
-                  </MobileLink>
-                </GridItem>
-              </Suspense>
-            ))}
-          </InfiniteScroll>
-        )}
+            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
+              <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
+                <CourseItem
+                  title={course?.title}
+                  description={course?.description}
+                  duration={course?.duration}
+                  lessons={course?.lessons}
+                  windowWidth={windowWidth}
+                  pageName={PAGES.coursesList}
+                  imageUrl={course?.avatar}
+                  courseRef={courses.length - 1 === idx ? lastCourseRef : undefined}
+                >
+                  <CourseActionsBox key={`${course._id}_box`}>
+                    <CourseActions key={`${course._id}_actions`}>
+                      <Link to={`${PATHS.coursesList}/${course._id}`}>
+                        <DetailsButton color="primary" variant="mediumOutlined">
+                          Details
+                        </DetailsButton>
+                      </Link>
+                      {targetLoading && targetId === course._id ? (
+                        <StartCourseButton variant="mediumOutlined" disabled>
+                          <ButtonLoader buttonSpinner={buttonSpinner} />
+                        </StartCourseButton>
+                      ) : (
+                        <StartCourseButton
+                          id={course._id}
+                          onClick={handleApplyCourse}
+                          variant="mediumContained"
+                        >
+                          Apply the course
+                        </StartCourseButton>
+                      )}
+                    </CourseActions>
+                  </CourseActionsBox>
+                </CourseItem>
+              </MobileLink>
+            </GridItem>
+          </Suspense>
+        ))}
       </PageContainer>
     ) : (
       <NoContent message={NO_COURSES} />

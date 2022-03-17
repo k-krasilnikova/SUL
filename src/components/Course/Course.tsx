@@ -34,6 +34,7 @@ interface Props {
   windowWidth?: string;
   type?: string;
   imageUrl?: string;
+  courseRef?: (node?: Element | null) => void;
 }
 
 const CourseItem: React.FC<Props> = ({
@@ -48,8 +49,9 @@ const CourseItem: React.FC<Props> = ({
   windowWidth,
   type,
   imageUrl,
+  courseRef,
 }) => (
-  <CourseContainer container direction="column">
+  <CourseContainer container direction="column" ref={courseRef}>
     <AboutCourseContainer type={type}>
       <ImageWrapper>
         <Image imageUrl={imageUrl} />
