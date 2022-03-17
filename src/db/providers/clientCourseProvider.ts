@@ -34,6 +34,10 @@ const getClientCoursesProvider = async (
     .sort(sortingField)
     .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
     .populate('course');
+
+  })
+    .populate('course')
+    .lean();
   return clientCourses;
 };
 

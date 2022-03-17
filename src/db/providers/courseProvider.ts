@@ -8,20 +8,27 @@ import {
   NO_FILTER,
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
+import { ICourse } from 'interfaces/Ientities/Icourses';
 import { ICourseStatus, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import { ICourse } from 'interfaces/Ientities/Icourses';
 import { SortOrder } from 'enums/common';
 
 interface ICourseWithStatusDb extends ICourse {
   status: [{ status?: string }];
 }
 
-const populateCourses = async (
-  courses: ICourseStatus | ICourseStatus[],
-): Promise<ICourseStatus> => {
+const populateCourses = async (courses: ICourseStatus[]): Promise<ICourseStatus[]> => {
   const populated = await CourseModel.populate(courses, [
+    { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
+    { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+  ]);
+
+  return populated;
+};
+
+const populateCourse = async (course: ICourseStatus): Promise<ICourseStatus> => {
+  const populated = await CourseModel.populate(course, [
     { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
     { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
   ]);
@@ -53,11 +60,6 @@ const getCoursesProvider = async (
       },
       {
         $limit: nPerPage,
-      },
-      {
-        $project: {
-          materials: 0,
-        },
       },
       {
         $lookup: {
@@ -105,19 +107,11 @@ const getCoursesProvider = async (
   }
 };
 
-const getCourseProvider = async (
-  courseId: string | ObjectId,
-  userId: string | ObjectId,
-): Promise<ICourseStatus> => {
+const getCourseProvider = async (courseId: string | ObjectId, userId: string | ObjectId) => {
   const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
     {
       $match: {
         _id: new mongoose.Types.ObjectId(courseId.toString()),
-      },
-    },
-    {
-      $project: {
-        materials: 0,
       },
     },
     {
@@ -159,7 +153,7 @@ const getCourseProvider = async (
     delete course.status;
   }
 
-  const populated = await populateCourses(course);
+  const populated = await populateCourse(course);
 
   return populated;
 };
