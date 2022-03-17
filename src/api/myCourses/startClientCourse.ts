@@ -6,6 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
+import { COURSE_STATUSES } from 'constants/statuses';
 
 const useStartClientCourse = (
   courseId?: string,
@@ -23,7 +24,7 @@ const useStartClientCourse = (
       const apiClient = apiClientWrapper();
       const responseCourse = await apiClient.get(`${API.getMyCourses}/${courseId}`);
       const courseResponse: ClientCourse = responseCourse.data;
-      if (courseResponse?.status === 'approved') {
+      if (courseResponse?.status === COURSE_STATUSES.approved) {
         const response = await apiClient.get(`${API.getMyCourses}/${courseId}/start`);
         handleSubmitSuccess();
         courseStarted = response.data;
