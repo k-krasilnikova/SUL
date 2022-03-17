@@ -21,6 +21,7 @@ const LearningCourseContainer: React.FC = () => {
   const [testEnabled, setTestEnabled] = useState(false);
   const [backDisabled, setBackDisabled] = useState(true);
   const [forwardDisabled, setForwardDisabled] = useState(false);
+  const [isDescriptionOpen, setDescriptionOpen] = useState(false);
 
   const params = useParams();
 
@@ -101,6 +102,10 @@ const LearningCourseContainer: React.FC = () => {
     setDialogOpen(false);
   };
 
+  const toggleDescriptionOpen = () => {
+    setDescriptionOpen(!isDescriptionOpen);
+  };
+
   if (isLoading) {
     return <Loader color="primary" />;
   }
@@ -125,6 +130,9 @@ const LearningCourseContainer: React.FC = () => {
           handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
           courseStatus={clientCourseResponse?.status}
+          courseId={clientCourseResponse._id}
+          isDescriptionOpen={isDescriptionOpen}
+          toggleDescriptionOpen={toggleDescriptionOpen}
         />
       )}
     </>

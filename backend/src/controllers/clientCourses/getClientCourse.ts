@@ -6,11 +6,11 @@ import { convertToCourseInfo } from 'utils/typeConversion/courses/coursesTypeCon
 const getClientCourseById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
-    const course = await getClientCourseProvider(clientCourseId);
+    const clientCourse = await getClientCourseProvider(clientCourseId);
 
-    const clientCourseWithCourseInfo = await convertToCourseInfo(course.course);
+    const courseInfo = await convertToCourseInfo(clientCourse.course);
 
-    res.json({ ...clientCourseWithCourseInfo, status: course.status });
+    res.json({ ...clientCourse, course: courseInfo });
   } catch (err) {
     next(err);
   }
