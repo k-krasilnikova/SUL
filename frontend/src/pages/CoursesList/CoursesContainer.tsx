@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import { Course } from 'types/course';
 import { useApplyCourse } from 'api/courses';
@@ -12,11 +13,11 @@ const CoursesContainer: React.FC = () => {
   const { mutate, isLoading } = useApplyCourse();
   const {
     data,
-    isLoading: isCoursesLoading,
     hasNextPage,
     fetchNextPage,
-    status,
+    isLoading: isCoursesLoading,
   } = useGetPaginatedCourses();
+
   const [targetId, setTargetId] = useState<string | undefined>();
 
   const disableLinkWidth =
@@ -38,6 +39,18 @@ const CoursesContainer: React.FC = () => {
     [] as Course[],
   );
 
+  const { ref, inView } = useInView({
+    root: null,
+    threshold: 1.0,
+    rootMargin: '0px',
+  });
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <CoursesList
       courses={formattedCoursesList}
@@ -47,10 +60,7 @@ const CoursesContainer: React.FC = () => {
       targetLoading={isLoading}
       disableLink={disableLink}
       windowWidth={windowWidth}
-      // loadMoreButtonRef={loadMoreButtonRef}
-      fetchNextPage={fetchNextPage}
-      hasNextPage={hasNextPage}
-      status={status}
+      lastCourseRef={ref}
     />
   );
 };
