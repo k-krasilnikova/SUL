@@ -2,7 +2,13 @@ import { Course } from './course';
 
 export interface ClientCourse {
   currentStage: number;
-  progress: [];
+  progress: [
+    {
+      _id: string;
+      stage: string;
+      isCompleted: boolean;
+    },
+  ];
   status: string;
   user: string;
   _id: string;

@@ -124,7 +124,10 @@ export const DetailedCourseActionsBox = styled(Box)({
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: '56px',
-    marginLeft: '0px',
+    marginLeft: '0',
+  },
+  [theme.breakpoints.up('lg')]: {
+    minWidth: '60vw',
   },
 });
 
@@ -205,6 +208,7 @@ export const StartButton = styled(Button)({
   width: '150px',
   fontSize: '16px !important',
   fontWeight: '700 !important',
+  padding: '0 !important',
   [theme.breakpoints.down('xl')]: {
     margin: '0 50px 0 calc(100% - 162px) !important',
   },

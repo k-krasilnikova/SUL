@@ -1,5 +1,5 @@
 const formatInputValue = (inputValue: string): string => {
-  const formattedValue = inputValue.split(/\s+/).join(' ').trimStart().trimEnd();
+  const formattedValue = inputValue.split(/\s+/).join(' ').trimStart();
   return formattedValue;
 };
 

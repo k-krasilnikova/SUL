@@ -26,6 +26,7 @@ import {
 import { IDetailedCourse } from 'types/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
 import DeclinedButton from 'components/Button/DeclinedButton';
+import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import { StartTestButton } from 'pages/LearningCourse/styled';
 import {
@@ -110,7 +111,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
         <DetailedCourseActionsBox>
           <CourseInfoBox>
             <CourseInfo
-              duration={commonCourseData.duration}
+              duration={convertDurationToString(commonCourseData.duration)}
               lessons={commonCourseData.lessons}
               type={INFO.detailedCourse}
             />
@@ -127,23 +128,27 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                     Continue the test
                   </ContinueTestButton>
                 </Link>
+              ) : page === PAGES.myCourses && isCourseCompleted ? (
+                <></>
               ) : (
                 <>
-                  {isCourseDeclined ? (
+                  {page === PAGES.myCourses && isCourseDeclined ? (
                     <DeclinedButton clientCourse={clientCourseData as unknown as ClientCourse} />
                   ) : (
-                    <ButtonsWrapper>
-                      <StartTestButton variant="contained" disabled>
-                        Start the Test
-                      </StartTestButton>
-                      <StartButton
-                        color="primary"
-                        variant={!isCourseCompleted ? 'mediumContained' : 'completed'}
-                        disabled={isCourseLearningDisabled}
-                      >
-                        <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
-                      </StartButton>
-                    </ButtonsWrapper>
+                    page === PAGES.myCourses && (
+                      <ButtonsWrapper>
+                        <StartTestButton variant="contained" disabled>
+                          Start the Test
+                        </StartTestButton>
+                        <StartButton
+                          color="primary"
+                          variant="mediumContained"
+                          disabled={isCourseLearningDisabled}
+                        >
+                          <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
+                        </StartButton>
+                      </ButtonsWrapper>
+                    )
                   )}
                 </>
               )}
@@ -167,7 +172,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               <CourseItem
                 title={commonCourseData.title}
                 description={commonCourseData.description}
-                duration={commonCourseData.duration}
+                duration={convertDurationToString(commonCourseData.duration)}
                 lessons={commonCourseData.lessons}
                 windowWidth={windowWidth}
                 type={INFO.similarCourses}

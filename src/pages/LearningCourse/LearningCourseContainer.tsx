@@ -8,6 +8,7 @@ import { MATERIAL } from 'constants/materials';
 import { defineMaterialType } from 'utils/helpers/defineMaterialType';
 import Loader from 'components/Loader';
 import { COURSE_STATUSES } from 'constants/statuses';
+import { isTestEnable } from 'utils/helpers/isTestEnable';
 
 import LearningCourse from './LearningCourse';
 
@@ -57,6 +58,12 @@ const LearningCourseContainer: React.FC = () => {
     handleStartCourse();
   }, [params.courseId, clientCourseResponse?.status, startCourseMutate]);
 
+  useEffect(() => {
+    if (clientCourseResponse && isTestEnable(clientCourseResponse.progress)) {
+      setTestEnabled(true);
+    }
+  }, [clientCourseResponse]);
+
   const { mutate } = usePassClientCourse(params.courseId);
 
   const handlePassCourseStage = (courseStage: number) => {
@@ -66,10 +73,6 @@ const LearningCourseContainer: React.FC = () => {
   const stageForward = () => {
     setStage(stage + STAGE_CHANGE);
     handlePassCourseStage(stage);
-    if (stage + STAGE_CHANGE === maxStage && !testEnabled) {
-      handlePassCourseStage(maxStage);
-      setTestEnabled(true);
-    }
   };
 
   const stageBack = () => {
