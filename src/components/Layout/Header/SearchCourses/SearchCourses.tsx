@@ -12,6 +12,8 @@ interface Props {
   searchCourses: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchClose: () => void;
   checkSpace: (event: React.KeyboardEvent) => void;
+  checkPastedValue: (event: React.ClipboardEvent) => void;
+  searchInputValue: string;
   coursesFound?: Array<Course>;
 }
 
@@ -21,6 +23,8 @@ const SearchCourses: React.FC<Props> = ({
   handleSearchClose,
   coursesFound,
   checkSpace,
+  checkPastedValue,
+  searchInputValue,
 }) => (
   <ClickAwayListener onClickAway={handleSearchClose}>
     <RelativeWrapper>
@@ -28,7 +32,7 @@ const SearchCourses: React.FC<Props> = ({
         className="search"
         disableUnderline
         placeholder="Search"
-        inputProps={{ maxLength: 50 }}
+        inputProps={{ maxLength: 100 }}
         startAdornment={
           <InputAdornment position="start">
             <SearchIcon color="disabled" fontSize="medium" />
@@ -36,6 +40,8 @@ const SearchCourses: React.FC<Props> = ({
         }
         onChange={searchCourses}
         onKeyDown={checkSpace}
+        onPaste={checkPastedValue}
+        value={searchInputValue}
       />
       {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
     </RelativeWrapper>

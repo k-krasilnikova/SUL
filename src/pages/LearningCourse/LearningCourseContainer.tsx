@@ -21,6 +21,7 @@ const LearningCourseContainer: React.FC = () => {
   const [testEnabled, setTestEnabled] = useState(false);
   const [backDisabled, setBackDisabled] = useState(true);
   const [forwardDisabled, setForwardDisabled] = useState(false);
+  const [isDescriptionOpen, setDescriptionOpen] = useState(false);
 
   const params = useParams();
 
@@ -43,10 +44,7 @@ const LearningCourseContainer: React.FC = () => {
     }
   }, [stage, maxStage]);
 
-  const { mutate: startCourseMutate } = useStartClientCourse(
-    params.courseId,
-    clientCourseResponse?.status,
-  );
+  const { mutate: startCourseMutate } = useStartClientCourse(params.courseId);
 
   useEffect(() => {
     const handleStartCourse = () => {
@@ -101,6 +99,10 @@ const LearningCourseContainer: React.FC = () => {
     setDialogOpen(false);
   };
 
+  const toggleDescriptionOpen = () => {
+    setDescriptionOpen(!isDescriptionOpen);
+  };
+
   if (isLoading) {
     return <Loader color="primary" />;
   }
@@ -124,7 +126,8 @@ const LearningCourseContainer: React.FC = () => {
           handleClickDialogOpen={handleClickDialogOpen}
           handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
-          courseStatus={clientCourseResponse?.status}
+          isDescriptionOpen={isDescriptionOpen}
+          toggleDescriptionOpen={toggleDescriptionOpen}
         />
       )}
     </>

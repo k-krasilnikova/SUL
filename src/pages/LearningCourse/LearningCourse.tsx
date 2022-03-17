@@ -16,6 +16,7 @@ import {
   MaterialWrapper,
   MaterialText,
   MaterialVideo,
+  DescriptionWrapper,
   Description,
   DescriptionTitle,
   DescriptionText,
@@ -23,6 +24,9 @@ import {
   NextButton,
   ButtonWrapper,
   StyledButton,
+  ToggleDescription,
+  ExpandLessIcon,
+  ExpandMoreIcon,
 } from './styled';
 import { FormDialog } from './FormDialog';
 
@@ -44,7 +48,8 @@ interface LearningProps {
   material: string;
   materialType: string;
   videoPreview: string | boolean;
-  courseStatus: string;
+  isDescriptionOpen: boolean;
+  toggleDescriptionOpen: () => void;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -62,7 +67,8 @@ const LearningCourse: React.FC<LearningProps> = ({
   handleClickDialogOpen,
   handleDialogClose,
   videoPreview,
-  courseStatus,
+  isDescriptionOpen,
+  toggleDescriptionOpen,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -99,23 +105,17 @@ const LearningCourse: React.FC<LearningProps> = ({
             <MaterialText>{material}</MaterialText>
           )}
         </MaterialWrapper>
-        {courseDescription && (
-          <Description>
-            <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
-            <DescriptionText>{courseDescription.info}</DescriptionText>
-          </Description>
-        )}
+        <ToggleDescription onClick={toggleDescriptionOpen}>
+          Comments
+          {isDescriptionOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        </ToggleDescription>
         <ButtonWrapper>
           {testEnabled ? (
             <>
               <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
                 Start the Test
               </StartTestButton>
-              <FormDialog
-                dialogOpen={dialogOpen}
-                handleDialogClose={handleDialogClose}
-                courseStatus={courseStatus}
-              />
+              <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
             </>
           ) : (
             <NextButton variant="contained" onClick={stageForward}>
@@ -123,6 +123,14 @@ const LearningCourse: React.FC<LearningProps> = ({
             </NextButton>
           )}
         </ButtonWrapper>
+        {courseDescription && (
+          <DescriptionWrapper isDescriptionOpen={isDescriptionOpen}>
+            <Description>
+              <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
+              <DescriptionText>{courseDescription.info}</DescriptionText>
+            </Description>
+          </DescriptionWrapper>
+        )}
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>

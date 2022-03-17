@@ -11,6 +11,7 @@ import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
 import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
 import { countProgress } from 'utils/helpers/countCourseProgress';
+import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { PAGES } from 'constants/pages';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import DeclinedButton from 'components/Button/DeclinedButton';
@@ -60,7 +61,7 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                 <CourseItem
                   title={clientCourse.course.title}
                   description={clientCourse.course.description}
-                  duration={clientCourse.course.duration}
+                  duration={convertDurationToString(clientCourse.course.duration)}
                   lessons={clientCourse.course.lessons}
                   pageName={PAGES.myCourses}
                   status={clientCourse.status}
