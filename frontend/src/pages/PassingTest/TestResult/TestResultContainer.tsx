@@ -29,6 +29,7 @@ const TestResultContainer: React.FC<ITestResult> = ({ responseData, status }) =>
       responseData={responseData}
       percentageValue={percentageValue}
       handleFinishCourse={handleFinishCourse}
+      courseId={params.courseId}
     />
   );
 };
