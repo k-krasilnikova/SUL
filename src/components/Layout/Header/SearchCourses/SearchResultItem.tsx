@@ -6,6 +6,7 @@ import { PATHS } from 'constants/routes';
 import { INFO } from 'constants/coutseInfoTypes';
 import CourseInfo from 'components/Course/CourseInfo';
 import { Course } from 'types/course';
+import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import { Image, CourseTitle, SearchResultCourse } from './styled';
 
@@ -28,7 +29,11 @@ const SearchResultItem: React.FC<CourseFound> = ({ course, foundInMyCourses, add
       <Image avatar={course.avatar} />
       <Box>
         <CourseTitle>{course.title}</CourseTitle>
-        <CourseInfo lessons={course.lessons} duration={course.duration} type={INFO.searchCourses} />
+        <CourseInfo
+          lessons={course.lessons}
+          duration={convertDurationToString(course.duration)}
+          type={INFO.searchCourses}
+        />
       </Box>
     </SearchResultCourse>
   </Link>
