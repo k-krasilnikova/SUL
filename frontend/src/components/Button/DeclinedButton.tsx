@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
-import { CompletedButton } from 'pages/MyCourses/styled';
 import { ClientCourse } from 'types/clientCourse';
 import { makeLeftTime } from 'utils/helpers/convertTime';
+import { MyButton } from './styled';
 
-const DeclinedButton = ({ clientCourse }: { clientCourse?: ClientCourse }): JSX.Element => {
+const DeclinedWrapper = ({ clientCourse }: { clientCourse?: ClientCourse }): JSX.Element => {
   const [isShowTime, setShowTime] = useState(false);
   return (
     <div onMouseEnter={() => setShowTime(true)} onMouseLeave={() => setShowTime(false)}>
-      <CompletedButton color="primary" variant="mediumContained" disabled>
+      <MyButton color="primary" variant="mediumContained" disabled>
         {isShowTime && clientCourse ? makeLeftTime(clientCourse?.applyDate, 'dd:hh') : 'Declined'}
-      </CompletedButton>
+      </MyButton>
     </div>
   );
 };
 
-export default DeclinedButton;
+export default DeclinedWrapper;
