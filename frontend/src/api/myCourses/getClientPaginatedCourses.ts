@@ -7,6 +7,10 @@ import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { ClientCourse } from 'types/clientCourse';
 
+const PAGE_CHANGE = 1;
+const FIRST_PAGE = 1;
+const EMPTY_LENGTH = 0;
+
 interface HookResult {
   fetchNextPage: () => void;
   isLoading: boolean;
@@ -32,9 +36,10 @@ const useGetClientPaginatedCourses = (): HookResult => {
     'paginatedClientCoursesList',
     getClientCourses,
     {
-      getPreviousPageParam: (firstPage) => (firstPage.page === 1 ? false : firstPage.page - 1),
+      getPreviousPageParam: (firstPage) =>
+        firstPage.page === FIRST_PAGE ? false : firstPage.page - PAGE_CHANGE,
       getNextPageParam: (lastPage) =>
-        lastPage.clientCourses.length > 0 ? lastPage.page + 1 : false,
+        lastPage.clientCourses.length > EMPTY_LENGTH ? lastPage.page + PAGE_CHANGE : false,
       refetchOnWindowFocus: false,
       onError: handleSubmitError,
     },
