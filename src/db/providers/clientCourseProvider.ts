@@ -11,7 +11,9 @@ import ClientCourseModel from '../models/ClientCourses';
 const getClientCoursesProvider = async (userId: string): Promise<IClientCoursePopulated[]> => {
   const clientCourses: IClientCoursePopulated[] = await ClientCourseModel.find({
     user: userId,
-  }).populate('course');
+  })
+    .populate('course')
+    .lean();
   return clientCourses;
 };
 
