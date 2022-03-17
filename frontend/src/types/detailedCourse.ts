@@ -1,7 +1,9 @@
+import { PureClientCourse } from './clientCourse';
 import { Course } from './course';
 
 export interface IDetailedCourse {
-  courseData: Course;
+  commonCourseData: Course;
+  clientCourseData?: PureClientCourse;
   handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
   buttonId: {
     [key: string]: string | undefined;
@@ -18,5 +20,6 @@ export interface IDetailedCourse {
   targetId?: string | undefined;
   isCourseApplicationSubmitted?: boolean;
   isCourseCompleted?: boolean;
+  isCourseDeclined?: boolean;
   isCourseStatusTesting?: boolean;
 }

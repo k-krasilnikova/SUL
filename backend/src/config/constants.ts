@@ -11,7 +11,7 @@ const DEFAULT_EMAIL = 'default@mail.com';
 const DEFAULT_TXT = 'default';
 const DEFAULT_NO_SECRET = 'undefined';
 const PASS_THRESHOLD = 0.7;
-const DESTRUCTION_TIMEOUT = '1h';
+const DESTRUCTION_TIMEOUT = '720h';
 
 const USER_ROLES = {
   ADMIN: 'admin',
@@ -20,6 +20,11 @@ const USER_ROLES = {
 };
 
 const TIME_30D_SEC = 2592000000;
+const TIME_1M_SEC = 60;
+const TIME_1H_SEC = 60 * TIME_1M_SEC;
+const TIME_1D_SEC = 24 * TIME_1H_SEC;
+
+const ESTIMATE_TIME_PER_LESSON = 1 * TIME_1D_SEC;
 
 const SALT_ROUNDS = 10;
 const TWO_DIGITS = 2;
@@ -59,6 +64,10 @@ export {
   SALT_ROUNDS,
   ENVIROMENTS,
   TIME_30D_SEC,
+  TIME_1M_SEC,
+  TIME_1H_SEC,
+  TIME_1D_SEC,
+  ESTIMATE_TIME_PER_LESSON,
   DEFAULT_N_PER_PAGE,
   FIRST_PAGE,
   NOTHING,

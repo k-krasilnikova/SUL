@@ -8,7 +8,7 @@ import approvePendingCourse from 'controllers/pendingCourses/approvePendingCours
 import declinePendingCourse from 'controllers/pendingCourses/declinePendingCourse';
 import adapterManager from 'controllers/manager/adapterManager';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
-import sendMail from 'middlewares/mailSender';
+// import sendMail from 'middlewares/mailSender';
 
 const pendingCoursesRouter = Router();
 
