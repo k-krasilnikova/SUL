@@ -8,15 +8,21 @@ import CourseInfo from 'components/Course/CourseInfo';
 import { Course } from 'types/course';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
-import { Image, CourseTitle, SearchResultCourse } from './styled';
+import { Image, CourseTitle, SearchResultCourse, CourseLabel } from './styled';
 
 interface CourseFound {
   course: Course;
   addDivider: boolean;
   foundInMyCourses: string | undefined;
+  status: string | undefined;
 }
 
-const SearchResultItem: React.FC<CourseFound> = ({ course, foundInMyCourses, addDivider }) => (
+const SearchResultItem: React.FC<CourseFound> = ({
+  course,
+  status,
+  foundInMyCourses,
+  addDivider,
+}) => (
   <Link
     key={course._id}
     to={
@@ -29,6 +35,7 @@ const SearchResultItem: React.FC<CourseFound> = ({ course, foundInMyCourses, add
       <Image avatar={course.avatar} />
       <Box>
         <CourseTitle>{course.title}</CourseTitle>
+        {!status && <CourseLabel label="New" size="small" variant="outlined" color="error" />}
         <CourseInfo
           lessons={course.lessons}
           duration={convertDurationToString(course.duration)}
