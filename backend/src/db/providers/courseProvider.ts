@@ -56,12 +56,6 @@ const getCoursesProvider = async (
         $sort: sortingField,
       },
       {
-        $skip: pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING,
-      },
-      {
-        $limit: nPerPage,
-      },
-      {
         $lookup: {
           from: 'clientCourses',
           localField: '_id',
@@ -83,6 +77,17 @@ const getCoursesProvider = async (
           ],
           as: 'status',
         },
+      },
+      {
+        $sort: {
+          'status.0.status': SortOrder.asc,
+        },
+      },
+      {
+        $skip: pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING,
+      },
+      {
+        $limit: nPerPage,
       },
     ]);
 
