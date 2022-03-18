@@ -126,7 +126,6 @@ const LearningCourseContainer: React.FC = () => {
           handleClickDialogOpen={handleClickDialogOpen}
           handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
-          courseStatus={clientCourseResponse?.status}
           isDescriptionOpen={isDescriptionOpen}
           toggleDescriptionOpen={toggleDescriptionOpen}
         />
