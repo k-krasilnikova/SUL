@@ -3,7 +3,7 @@ import { Button } from 'components/Button';
 
 import theme from 'themeSettings';
 
-const MyButton = styled(Button)({
+export const MyButton = styled(Button)({
   [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
@@ -22,4 +22,10 @@ const MyButton = styled(Button)({
   },
 });
 
-export { MyButton };
+export const ButtonsWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'row',
+  },
+});

@@ -203,70 +203,70 @@ export const BackButton = styled(Button)({
   },
 });
 
-export const StartButton = styled(Button)({
-  height: '50px',
-  width: '150px',
-  fontSize: '16px !important',
-  fontWeight: '700 !important',
-  padding: '0 !important',
-  [theme.breakpoints.down('xl')]: {
-    margin: '0 50px 0 calc(100% - 162px) !important',
-  },
-  [theme.breakpoints.down('lg')]: {
-    fontSize: '12px !important',
-    height: '37px',
-    width: '112px',
-    padding: '4px 5px !important',
-    margin: '0 20px 0 calc(100% - 132px) !important',
-  },
-  [theme.breakpoints.down('md')]: {
-    height: '44px',
-    width: '131px',
-    lineHeight: '19px',
-    fontSize: '14px!important',
-    padding: '10px !important',
-    margin: '24px 18px 0 calc(100% - 156px) !important',
-  },
-});
+// export const StartButton = styled(Button)({
+//   height: '50px',
+//   width: '150px',
+//   fontSize: '16px !important',
+//   fontWeight: '700 !important',
+//   padding: '0 !important',
+//   [theme.breakpoints.down('xl')]: {
+//     margin: '0 50px 0 calc(100% - 162px) !important',
+//   },
+//   [theme.breakpoints.down('lg')]: {
+//     fontSize: '12px !important',
+//     height: '37px',
+//     width: '112px',
+//     padding: '4px 5px !important',
+//     margin: '0 20px 0 calc(100% - 132px) !important',
+//   },
+//   [theme.breakpoints.down('md')]: {
+//     height: '44px',
+//     width: '131px',
+//     lineHeight: '19px',
+//     fontSize: '14px!important',
+//     padding: '10px !important',
+//     margin: '24px 18px 0 calc(100% - 156px) !important',
+//   },
+// });
 
-export const ContinueTestButton = styled(Button)({
-  height: '50px',
-  width: '150px',
-  fontSize: '16px !important',
-  fontWeight: '700 !important',
-  padding: '4px 5px !important',
-  [theme.breakpoints.down('xl')]: {
-    margin: '0 50px 0 calc(100% - 162px) !important',
-  },
-  [theme.breakpoints.down('lg')]: {
-    fontSize: '12px !important',
-    height: '37px',
-    width: '112px',
-    padding: '4px 5px !important',
-    margin: '0 20px 0 calc(100% - 132px) !important',
-  },
-  [theme.breakpoints.down('md')]: {
-    height: '44px',
-    width: '131px',
-    lineHeight: '19px',
-    fontSize: '14px!important',
-    padding: '10px !important',
-    margin: '24px 18px 0 calc(100% - 156px) !important',
-  },
-});
+// export const ContinueTestButton = styled(Button)({
+//   height: '50px',
+//   width: '150px',
+//   fontSize: '16px !important',
+//   fontWeight: '700 !important',
+//   padding: '4px 5px !important',
+//   [theme.breakpoints.down('xl')]: {
+//     margin: '0 50px 0 calc(100% - 162px) !important',
+//   },
+//   [theme.breakpoints.down('lg')]: {
+//     fontSize: '12px !important',
+//     height: '37px',
+//     width: '112px',
+//     padding: '4px 5px !important',
+//     margin: '0 20px 0 calc(100% - 132px) !important',
+//   },
+//   [theme.breakpoints.down('md')]: {
+//     height: '44px',
+//     width: '131px',
+//     lineHeight: '19px',
+//     fontSize: '14px!important',
+//     padding: '10px !important',
+//     margin: '24px 18px 0 calc(100% - 156px) !important',
+//   },
+// });
 
-export const DetailsButton = styled(Button)({
-  height: '50px',
-  width: '150px',
-  marginRight: '16px !important',
-  fontSize: '16px !important',
-  [theme.breakpoints.down('lg')]: {
-    height: '35px',
-    width: '105px',
-    fontSize: '12px !important',
-    padding: '4px 5px!important',
-  },
-});
+// export const DetailsButton = styled(Button)({
+//   height: '50px',
+//   width: '150px',
+//   marginRight: '16px !important',
+//   fontSize: '16px !important',
+//   [theme.breakpoints.down('lg')]: {
+//     height: '35px',
+//     width: '105px',
+//     fontSize: '12px !important',
+//     padding: '4px 5px!important',
+//   },
+// });
 
 export const CourseActionsBox = styled(Box)({
   marginLeft: '16px !important',
@@ -332,9 +332,4 @@ export const MobileSearchWrapper = styled('div')({
   [theme.breakpoints.up(950)]: {
     display: 'none',
   },
-});
-
-export const ButtonsWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
 });
