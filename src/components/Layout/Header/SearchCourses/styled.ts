@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ListItem, Input, Typography, Chip } from '@mui/material';
+import { ListItem, Input, Typography } from '@mui/material';
 
 import { imageDefault } from 'icons';
 import theme from 'themeSettings';
@@ -104,8 +104,4 @@ export const NoSearchResults = styled(Typography)({
   [theme.breakpoints.down('sm')]: {
     fontSize: '16px !important',
   },
-});
-
-export const CourseLabel = styled(Chip)({
-  margin: '5px 0 7px 0',
 });

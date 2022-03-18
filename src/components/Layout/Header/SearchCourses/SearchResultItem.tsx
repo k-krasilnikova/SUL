@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box } from '@mui/material';
 
+import CourseInfo from 'components/Course/CourseInfo';
+import { Label } from 'components/Label';
 import { PATHS } from 'constants/routes';
 import { INFO } from 'constants/coutseInfoTypes';
-import CourseInfo from 'components/Course/CourseInfo';
 import { Course } from 'types/course';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
-import { Image, CourseTitle, SearchResultCourse, CourseLabel } from './styled';
+import { Image, CourseTitle, SearchResultCourse } from './styled';
 
 interface CourseFound {
   course: Course;
@@ -16,6 +17,8 @@ interface CourseFound {
   foundInMyCourses: string | undefined;
   status: string | undefined;
 }
+
+const LABEL_MESSAGE = 'New';
 
 const SearchResultItem: React.FC<CourseFound> = ({
   course,
@@ -35,7 +38,7 @@ const SearchResultItem: React.FC<CourseFound> = ({
       <Image avatar={course.avatar} />
       <Box>
         <CourseTitle>{course.title}</CourseTitle>
-        {!status && <CourseLabel label="New" size="small" variant="outlined" color="error" />}
+        {!status && <Label label={LABEL_MESSAGE} />}
         <CourseInfo
           lessons={course.lessons}
           duration={convertDurationToString(course.duration)}
