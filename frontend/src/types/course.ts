@@ -27,3 +27,13 @@ export interface CourseDuration {
 export interface ICourses {
   сoursesResponse: Course[];
 }
+
+export interface IMaterial {
+  _id: string;
+  stage: number;
+  content: Array<string>;
+}
+export interface ICourseMaterialsResponse {
+  _id: string;
+  materials: IMaterial[];
+}
