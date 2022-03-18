@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -18,14 +19,13 @@ import DeclinedWrapper from 'components/Button/DeclinedButton';
 import { MyButton } from 'components/Button/styled';
 
 import {
-  PageContainer,
   CourseActions,
-  GridItem,
   CourseActionsBox,
-  DetailsButton,
+  GridItem,
   MobileLink,
   MobileSearchWrapper,
-} from './styled';
+} from 'pages/CoursesList/styled';
+import { PageContainer } from './styled';
 
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
@@ -69,9 +69,9 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                 >
                   <CourseActionsBox>
                     <CourseActions>
-                      <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
-                        <DetailsButton variant="mediumOutlined">Details</DetailsButton>
-                      </Link>
+                      {/* <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
+                        <MyButton variant="mediumOutlined">Details</MyButton>
+                      </Link> */}
                       {clientCourse.status === COURSE_STATUSES.testing ? (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}/test`}>
                           <MyButton color="primary" variant="mediumContained">

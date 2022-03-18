@@ -25,10 +25,10 @@ import {
 } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
-import DeclinedButton from 'components/Button/DeclinedButton';
+import DeclinedWrapper from 'components/Button/DeclinedButton';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
+import { ButtonsWrapper, MyButton } from 'components/Button/styled';
 
-import { StartTestButton } from 'pages/LearningCourse/styled';
 import {
   BackButton,
   CourseActionsBox,
@@ -37,20 +37,16 @@ import {
   DetailedCourseText,
   DetailedCourseTitle,
   DetailedCourseWrapper,
-  DetailsButton,
   ImageWrapper,
   InnerWrapper,
   SimilarCoursesItemWrapper,
   SimilarCoursesTitle,
   SimilarCoursesWrapper,
-  StartButton,
   DetailedCourseTextMobile,
   ButtonFullText,
   BackArrow,
   BackLink,
   MobileSearchWrapper,
-  ContinueTestButton,
-  ButtonsWrapper,
 } from './styled';
 
 const DetailedCourse: React.FC<IDetailedCourse> = ({
@@ -117,50 +113,50 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
             />
           </CourseInfoBox>
           {isLoading && targetId === buttonId.start ? (
-            <StartButton id={buttonId.start} variant="mediumOutlined" disabled>
+            <MyButton id={buttonId.start} variant="mediumOutlined" disabled>
               <ButtonLoader buttonSpinner={buttonSpinner} />
-            </StartButton>
+            </MyButton>
           ) : (
             <div>
               {page === PAGES.myCourses && isCourseStatusTesting ? (
                 <Link to={`${PATHS.learnCourse}/${id}/test`}>
-                  <ContinueTestButton color="primary" variant="mediumContained">
+                  <MyButton color="primary" variant="mediumContained">
                     Continue the test
-                  </ContinueTestButton>
+                  </MyButton>
                 </Link>
               ) : page === PAGES.myCourses && isCourseCompleted ? (
                 <></>
               ) : (
                 <>
                   {page === PAGES.myCourses && isCourseDeclined ? (
-                    <DeclinedButton clientCourse={clientCourseData as unknown as ClientCourse} />
+                    <DeclinedWrapper clientCourse={clientCourseData as unknown as ClientCourse} />
                   ) : (
                     page === PAGES.myCourses && (
                       <ButtonsWrapper>
-                        <StartTestButton variant="contained" disabled>
+                        <MyButton variant="contained" disabled>
                           Start the Test
-                        </StartTestButton>
-                        <StartButton
+                        </MyButton>
+                        <MyButton
                           color="primary"
                           variant="mediumContained"
                           disabled={isCourseLearningDisabled}
                         >
                           <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
-                        </StartButton>
+                        </MyButton>
                       </ButtonsWrapper>
                     )
                   )}
                 </>
               )}
               {page === PAGES.coursesList && (
-                <StartButton
+                <MyButton
                   id={buttonId.start}
                   color="primary"
                   variant="mediumContained"
                   onClick={(event) => handleApplyCourse(event)}
                 >
                   Apply the course
-                </StartButton>
+                </MyButton>
               )}
             </div>
           )}
@@ -181,9 +177,9 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               >
                 <CourseActionsBox>
                   <CourseActions>
-                    <DetailsButton color="primary" variant="mediumOutlined">
+                    <MyButton color="primary" variant="mediumOutlined">
                       Details
-                    </DetailsButton>
+                    </MyButton>
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>
