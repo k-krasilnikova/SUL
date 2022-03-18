@@ -53,9 +53,6 @@ const getCoursesProvider = async (
         $match: title ? { title: { $regex: new RegExp(title), $options: 'i' } } : NO_FILTER,
       },
       {
-        $sort: sortingField,
-      },
-      {
         $lookup: {
           from: 'clientCourses',
           localField: '_id',
@@ -81,6 +78,7 @@ const getCoursesProvider = async (
       {
         $sort: {
           'status.0.status': SortOrder.asc,
+          ...sortingField,
         },
       },
       {
