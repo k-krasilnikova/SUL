@@ -27,7 +27,9 @@ const LearningCourseContainer: React.FC = () => {
   const params = useParams();
 
   const { data: clientCourseResponse } = useGetClientCourseInfo(params.courseId);
-  const { data: courseMaterialsResponse, isLoading } = useGetCourseMaterials(params.courseId);
+  const { data: courseMaterialsResponse, isLoading } = useGetCourseMaterials(
+    clientCourseResponse?.course._id,
+  );
 
   const maxStage = courseMaterialsResponse
     ? courseMaterialsResponse.materials.length
