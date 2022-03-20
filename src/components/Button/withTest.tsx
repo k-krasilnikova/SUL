@@ -1,25 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ClientCourse } from 'types/clientCourse';
 import { isTestEnable } from 'utils/helpers/isTestEnable';
-
-type InjectedProps = {
-  isTest: boolean;
-};
 
 type IncommingProps = {
   progress: ClientCourse['progress'];
 };
 
 const withTest =
-  <T extends InjectedProps>(Component: any) =>
-  (incommingProps: IncommingProps & Omit<T, 'progress'> & Omit<T, 'isTest'>) => {
+  <T extends IncommingProps>(Component: React.ComponentType<T>) =>
+  (props: T) => {
     const [isEnable, setAble] = useState(false);
-    const { progress, ...props } = incommingProps;
+    const { progress } = props;
     useEffect(() => {
       setAble(isTestEnable(progress));
     }, [progress]);
 
-    return <Component isTest={isEnable} {...(props as unknown as Omit<T, 'isTest'>)} />;
+    return <Component isTest={isEnable} {...props} />;
   };
 
 export default withTest;

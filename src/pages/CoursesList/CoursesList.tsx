@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +16,8 @@ import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { MyButton } from 'components/Button/styled';
 
 import { countProgress } from 'utils/helpers/countCourseProgress';
-import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
+import { COURSE_LABELS } from 'constants/statuses';
+import ActionButton from 'components/Button/ActionButton';
 import {
   PageContainer,
   CourseActions,
@@ -89,9 +89,13 @@ const CoursesList: React.FC<CoursesProps> = ({
                             <ButtonLoader buttonSpinner={buttonSpinner} />
                           </MyButton>
                         ) : clientCourses ? (
-                          <MyButton variant="mediumContained">
-                            {COURSE_LABELS[clientCourses[indx].status]}
-                          </MyButton>
+                          <ActionButton
+                            label={COURSE_LABELS[clientCourses[indx].status]}
+                            status={clientCourses[indx].status}
+                            progress={clientCourses[indx].progress}
+                            applyDate={clientCourses[indx].applyDate}
+                            courseId={clientCourses[indx]._id}
+                          />
                         ) : (
                           <MyButton
                             id={course._id}
