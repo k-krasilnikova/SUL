@@ -1,12 +1,12 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { PATHS } from 'constants/routes';
 import { getAuthResponseData } from 'utils/helpers/getAuthResponseData';
 
 const PrivateRoute: React.FC<React.ReactNode> = () => {
   const accessToken = getAuthResponseData();
-  return accessToken ? <Outlet /> : <Navigate to={PATHS.signIn} />;
+  return accessToken ? <Navigate to={PATHS.profile} /> : <Navigate to={PATHS.signIn} />;
 };
 
 export default PrivateRoute;

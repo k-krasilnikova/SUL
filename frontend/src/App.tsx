@@ -35,24 +35,24 @@ const App: React.FC = () => (
     <Suspense fallback={<Loader color="primary" type={LOADER.page} />}>
       <BrowserRouter basename={PATHS.home}>
         <Routes>
-          <Route path="/" element={<PrivateRoute />}>
-            <Route path={PATHS.profile} element={<Profile />} />
-            <Route path={PATHS.myCourses}>
-              <Route index element={<MyCourses />} />
-              <Route path=":courseId" element={<DetailedCourse page={PAGES.myCourses} />} />
-              <Route path="learn/:courseId" element={<LearningCourse />} />
-              <Route path="learn/:courseId/test" element={<PassingTest />} />
-            </Route>
-            <Route path={PATHS.coursesList}>
-              <Route index element={<CoursesList />} />
-              <Route path=":courseId" element={<DetailedCourse page={PAGES.coursesList} />} />
-            </Route>
-            <Route path={PATHS.help} element={<Help />} />
-            <Route path={PATHS.employees} element={<Employees />} />
-            <Route path={PATHS.requests} element={<Requests />} />
-            <Route path={PATHS.skills} element={<Skills />} />
-            <Route path={PATHS.skillsMap} element={<SkillsMap />} />
+          <Route path="/" element={<PrivateRoute />} />
+          <Route path={PATHS.profile} element={<Profile />} />
+          <Route path={PATHS.myCourses}>
+            <Route index element={<MyCourses />} />
+            <Route path=":courseId" element={<DetailedCourse page={PAGES.myCourses} />} />
+            <Route path="learn/:courseId" element={<LearningCourse />} />
+            <Route path="learn/:courseId/test" element={<PassingTest />} />
           </Route>
+          <Route path={PATHS.coursesList}>
+            <Route index element={<CoursesList />} />
+            <Route path=":courseId" element={<DetailedCourse page={PAGES.coursesList} />} />
+          </Route>
+          <Route path={PATHS.help} element={<Help />} />
+          <Route path={PATHS.employees} element={<Employees />} />
+          <Route path={PATHS.requests} element={<Requests />} />
+          <Route path={PATHS.skills} element={<Skills />} />
+          <Route path={PATHS.skillsMap} element={<SkillsMap />} />
+          {/* </Route> */}
           <Route
             path={PATHS.signIn}
             element={
