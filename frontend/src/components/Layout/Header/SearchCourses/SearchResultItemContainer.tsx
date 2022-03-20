@@ -31,7 +31,12 @@ const SearchResultItemContainer: React.FC<CoursesFound> = ({ course, addDivider 
   getClientCourses();
 
   return (
-    <SearchResultItem course={course} foundInMyCourses={foundInMyCourses} addDivider={addDivider} />
+    <SearchResultItem
+      course={course}
+      status={course.status}
+      foundInMyCourses={foundInMyCourses}
+      addDivider={addDivider}
+    />
   );
 };
 
