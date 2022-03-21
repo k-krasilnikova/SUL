@@ -6,13 +6,10 @@ import Button from 'components/Button/Button';
 import theme from 'themeSettings';
 
 export const TestResultBox = styled(Box)({
-  margin: '64px 332px 180px 120px',
+  margin: '64px 332px 0 120px',
   display: 'flex',
   flexDirection: 'column',
   [theme.breakpoints.down('xl')]: {
-    margin: '48px 220px 0 48px',
-  },
-  [theme.breakpoints.down('lg')]: {
     margin: '48px 7vw 0 48px',
   },
   [theme.breakpoints.down('sm')]: {
@@ -45,7 +42,7 @@ export const TestResultTitle = styled(Typography)({
 export const ProgressBarBox = styled(Box)({
   display: 'flex',
   justifyContent: 'flex-start',
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('lg')]: {
     marginBottom: '32px !important',
   },
   [theme.breakpoints.down('sm')]: {
@@ -63,6 +60,12 @@ export const TestResultText = styled(Typography)({
   [theme.breakpoints.down('xl')]: {
     fontSize: '28px !important',
     lineHeight: '34px',
+  },
+  [theme.breakpoints.down(1124)]: {
+    whiteSpace: 'normal',
+  },
+  [theme.breakpoints.down('lg')]: {
+    marginRight: '5vw !important',
   },
   [theme.breakpoints.down('sm')]: {
     fontSize: '18px !important',
@@ -97,6 +100,10 @@ export const TestSkillsBox = styled(Box)({
 export const ButtonBox = styled(Box)({
   display: 'flex',
   justifyContent: 'flex-end',
+  marginBottom: '5vh !important',
+  [theme.breakpoints.down('xl')]: {
+    marginRight: '9vw !important',
+  },
 });
 
 export const SubmitButton = styled(Button)({
@@ -118,9 +125,9 @@ export const ContentBox = styled(Box)({
   marginBottom: '220px',
   [theme.breakpoints.down('xl')]: {
     marginTop: '66px',
-    marginBottom: '145px',
+    marginBottom: '112px',
   },
-  [theme.breakpoints.down(520)]: {
+  [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',
     marginTop: '32px !important',
     marginBottom: '32px !important',
@@ -141,7 +148,7 @@ export const AboutSkillsBox = styled(Box)({
   marginTop: '44px !important',
   marginBottom: '32px !important',
   [theme.breakpoints.down('xl')]: {
-    marginBottom: '24px !important',
+    marginBottom: '26px !important',
   },
   [theme.breakpoints.down('sm')]: {
     marginTop: '24px !important',
@@ -168,4 +175,10 @@ export const StyledDivider = styled(Divider)({
 
 export const SkillsInfoList = styled(Box)({
   padding: '0',
+  marginTop: '20px',
+  display: 'flex',
+  flexWrap: 'wrap',
+  [theme.breakpoints.down('lg')]: {
+    marginTop: '12px !important',
+  },
 });
