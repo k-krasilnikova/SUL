@@ -129,7 +129,6 @@ export const BackButton = styled(Button)({
     display: 'none !important',
   },
 });
-
 export const SkillsAndCoursesBox = styled('div')({
   marginLeft: '63px',
   width: '80%',
