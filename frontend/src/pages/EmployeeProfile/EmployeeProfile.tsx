@@ -1,5 +1,5 @@
 import React from 'react';
-import ListItem from '@mui/material/ListItem';
+import { ListItem, ButtonGroup } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { User } from 'types/user';
@@ -7,6 +7,7 @@ import { AuthorizedLayout } from 'components/Layout';
 import { UserAvatar } from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 import { PATHS } from 'constants/routes';
+import { EMPLOYEE_INFO } from 'constants/employeeInfo';
 
 import {
   ProfileBox,
@@ -16,9 +17,21 @@ import {
   UserInfoText,
   UserInfoLabel,
   BackButton,
+  SkillsAndCoursesBox,
+  SkillsAndCoursesButton,
+  AddCourseButton,
 } from './styled';
 
-const ProfileContent: React.FC<User> = ({
+interface Props {
+  employeeInfo: string;
+  toggleEmployeeInfo: (infoToOpen: string) => void;
+  hoveredButton: string | undefined;
+  toggleHover: (buttonHovered: string) => void;
+}
+
+type Employee = User & Props;
+
+const ProfileContent: React.FC<Employee> = ({
   avatar,
   firstName,
   lastName,
@@ -26,6 +39,10 @@ const ProfileContent: React.FC<User> = ({
   group,
   phone,
   skype,
+  employeeInfo,
+  toggleEmployeeInfo,
+  hoveredButton,
+  toggleHover,
 }) => (
   <AuthorizedLayout pageName="Profile">
     <Link to={PATHS.employees}>
@@ -57,6 +74,41 @@ const ProfileContent: React.FC<User> = ({
         </ListItem>
       </UserInfoList>
     </ProfileBox>
+    <SkillsAndCoursesBox>
+      <ButtonGroup
+        variant="contained"
+        style={{
+          height: '40px',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+          alignItems: 'end',
+        }}
+      >
+        <SkillsAndCoursesButton
+          isOpened={
+            (employeeInfo === EMPLOYEE_INFO.skills && !hoveredButton) ||
+            hoveredButton === EMPLOYEE_INFO.skills
+          }
+          onClick={() => toggleEmployeeInfo(EMPLOYEE_INFO.skills)}
+          onMouseEnter={() => toggleHover(EMPLOYEE_INFO.skills)}
+          onMouseLeave={() => toggleHover(EMPLOYEE_INFO.none)}
+        >
+          Skills
+        </SkillsAndCoursesButton>
+        <SkillsAndCoursesButton
+          isOpened={
+            (employeeInfo === EMPLOYEE_INFO.allCourses && !hoveredButton) ||
+            hoveredButton === EMPLOYEE_INFO.allCourses
+          }
+          onClick={() => toggleEmployeeInfo(EMPLOYEE_INFO.allCourses)}
+          onMouseEnter={() => toggleHover(EMPLOYEE_INFO.allCourses)}
+          onMouseLeave={() => toggleHover(EMPLOYEE_INFO.none)}
+        >
+          All courses
+        </SkillsAndCoursesButton>
+      </ButtonGroup>
+      <AddCourseButton variant="contained">+ Add Course</AddCourseButton>
+    </SkillsAndCoursesBox>
+    <div>{employeeInfo === EMPLOYEE_INFO.skills ? 'Skills here' : 'Courses here'}</div>
   </AuthorizedLayout>
 );
 
