@@ -22,4 +22,6 @@ export interface IDetailedCourse {
   isCourseCompleted?: boolean;
   isCourseDeclined?: boolean;
   isCourseStatusTesting?: boolean;
+  handleClickDialogOpen?: () => void;
+  isTestEnable?: boolean;
 }

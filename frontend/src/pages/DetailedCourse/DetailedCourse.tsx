@@ -29,6 +29,7 @@ import DeclinedWrapper from 'components/Button/DeclinedButton';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { ButtonsWrapper, MyButton } from 'components/Button/styled';
 
+import withFormTest from 'pages/LearningCourse/FormDialog/withFormDialog';
 import {
   BackButton,
   CourseActionsBox,
@@ -68,6 +69,8 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   isCourseCompleted,
   isCourseDeclined,
   isCourseStatusTesting,
+  handleClickDialogOpen,
+  isTestEnable,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -133,7 +136,11 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                   ) : (
                     page === PAGES.myCourses && (
                       <ButtonsWrapper>
-                        <MyButton variant="contained" disabled>
+                        <MyButton
+                          variant="contained"
+                          onClick={handleClickDialogOpen}
+                          disabled={isTestEnable}
+                        >
                           Start the Test
                         </MyButton>
                         <MyButton
@@ -191,4 +198,4 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   </AuthorizedLayout>
 );
 
-export default DetailedCourse;
+export default withFormTest<IDetailedCourse>(DetailedCourse);
