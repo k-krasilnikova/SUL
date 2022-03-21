@@ -6,6 +6,10 @@ import { Grid, Typography, Button as TextButton } from '@mui/material';
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
 
+interface Image {
+  imageUrl?: string;
+}
+
 export const DetailedCourseWrapper = styled(Box)({
   [theme.breakpoints.up('md')]: {
     margin: '25px 0 25px 21px',
@@ -17,31 +21,36 @@ export const DetailedCourseWrapper = styled(Box)({
   },
 });
 
-export const ImageWrapper = styled('div')({
-  float: 'left',
-  width: '479px',
-  height: '268px',
-  margin: '0 30px 30px 0',
-  overflow: 'hidden',
-  borderRadius: '10px',
-  [theme.breakpoints.up('xs')]: {
-    width: '64px',
-    height: '46px',
-    margin: '0px 8px 5px 0px',
-    borderRadius: '0px',
-  },
-  [theme.breakpoints.up('md')]: {
-    width: '281px',
-    height: '147px',
-    margin: '5px 25px 105px 0',
-    borderRadius: '8px',
-  },
-  [theme.breakpoints.up('xl')]: {
+export const ImageWrapper = styled('div')<Image>(({ imageUrl }) => {
+  return {
+    background: `no-repeat url(${imageUrl})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    float: 'left',
     width: '479px',
     height: '268px',
     margin: '0 30px 30px 0',
+    overflow: 'hidden',
     borderRadius: '10px',
-  },
+    [theme.breakpoints.up('xs')]: {
+      width: '64px',
+      height: '46px',
+      margin: '0px 8px 5px 0px',
+      borderRadius: '0px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '281px',
+      height: '147px',
+      margin: '5px 25px 105px 0',
+      borderRadius: '8px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '479px',
+      height: '268px',
+      margin: '0 30px 30px 0',
+      borderRadius: '10px',
+    },
+  };
 });
 
 export const InnerWrapper = styled(Box)({
