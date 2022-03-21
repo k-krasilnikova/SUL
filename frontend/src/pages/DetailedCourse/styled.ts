@@ -132,16 +132,12 @@ export const DetailedCourseActionsBox = styled(Box)({
 });
 
 export const SimilarCoursesWrapper = styled(Grid)({
-  marginTop: '50px',
-  marginBottom: '50px',
-  [theme.breakpoints.up('xs')]: {
+  marginTop: '63px',
+  marginBottom: '40px',
+  [theme.breakpoints.down('md')]: {
     marginTop: '48px',
     marginBottom: '10px',
-    width: '80%',
-  },
-  [theme.breakpoints.up('md')]: {
-    marginTop: '63px',
-    marginBottom: '40px',
+    width: '100%',
   },
 });
 
@@ -195,10 +191,7 @@ export const BackButton = styled(Button)({
     fontSize: '12px !important',
     marginBottom: '15px !important',
   },
-  '@media(min-width: 1110px)': {
-    marginBottom: '0 !important',
-  },
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down(950)]: {
     display: 'none !important',
   },
 });
@@ -307,9 +300,9 @@ export const ButtonFullText = styled(TextButton)({
 export const BackArrow = styled('img')({
   [theme.breakpoints.up('xs')]: {
     display: 'inline-block',
-    margin: '16px 23px 5px 16px',
+    margin: '0px 23px -3px 16px',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up(950)]: {
     display: 'none',
   },
 });
