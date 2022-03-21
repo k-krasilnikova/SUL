@@ -897,7 +897,7 @@ const MOCKED_COURSES = [
     requiredSkills: ['Java'],
     materials: MATERIALS[1].content,
     test: '',
-    avatar: 'https://ucarecdn.com/ef78d112-c5e8-4829-94eb-777d059f82bf/java.png',
+    avatar: 'https://www.filepicker.io/api/file/t12BZqmRoulvCTDhoYie',
   },
   {
     title: 'Python for kids',
