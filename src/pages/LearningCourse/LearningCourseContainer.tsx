@@ -8,7 +8,6 @@ import { MATERIAL } from 'constants/materials';
 import { defineMaterialType } from 'utils/helpers/defineMaterialType';
 import Loader from 'components/Loader';
 import { COURSE_STATUSES } from 'constants/statuses';
-import { isTestEnable } from 'utils/helpers/isTestEnable';
 
 import LearningCourse from './LearningCourse';
 
@@ -19,7 +18,6 @@ const CONTENT_ELEMENT = 0;
 
 const LearningCourseContainer: React.FC = () => {
   const [stage, setStage] = useState(1);
-  const [testEnabled, setTestEnabled] = useState(false);
   const [backDisabled, setBackDisabled] = useState(true);
   const [forwardDisabled, setForwardDisabled] = useState(false);
 
@@ -58,12 +56,6 @@ const LearningCourseContainer: React.FC = () => {
     handleStartCourse();
   }, [params.courseId, clientCourseResponse?.status, startCourseMutate]);
 
-  useEffect(() => {
-    if (clientCourseResponse && isTestEnable(clientCourseResponse.progress)) {
-      setTestEnabled(true);
-    }
-  }, [clientCourseResponse]);
-
   const { mutate } = usePassClientCourse(params.courseId);
 
   const handlePassCourseStage = (courseStage: number) => {
@@ -94,16 +86,6 @@ const LearningCourseContainer: React.FC = () => {
       : clientCourseResponse?.course.materials[stage - 1].content[CONTENT_ELEMENT] || MATERIAL.text;
   const videoPreview = getPreviewId(material);
 
-  const [dialogOpen, setDialogOpen] = useState(false);
-
-  const handleClickDialogOpen = () => {
-    setDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setDialogOpen(false);
-  };
-
   if (isLoading) {
     return <Loader color="primary" />;
   }
@@ -118,16 +100,13 @@ const LearningCourseContainer: React.FC = () => {
           stageBack={stageBack}
           stageForward={stageForward}
           courseDescription={courseDescription}
-          testEnabled={testEnabled}
           backDisabled={backDisabled}
           forwardDisabled={forwardDisabled}
           material={material}
           materialType={materialType}
-          dialogOpen={dialogOpen}
-          handleClickDialogOpen={handleClickDialogOpen}
-          handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
-          courseStatus={clientCourseResponse?.status}
+          status={clientCourseResponse?.status}
+          progress={clientCourseResponse.progress}
         />
       )}
     </>

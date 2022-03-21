@@ -7,6 +7,7 @@ import { PATHS } from 'constants/routes';
 import { playVideo } from 'icons';
 import { MATERIAL } from 'constants/materials';
 
+import { ClientCourse } from 'types/clientCourse';
 import {
   LearningPageContainer,
   BackButton,
@@ -24,45 +25,44 @@ import {
   ButtonWrapper,
   StyledButton,
 } from './styled';
-import { FormDialog } from './FormDialog';
+import withFormTest from './FormDialog/withFormDialog';
 
 interface LearningProps {
   stage: number;
   maxStage: number;
-  dialogOpen: boolean;
   stageBack: () => void;
   stageForward: () => void;
-  handleClickDialogOpen: () => void;
-  handleDialogClose: () => void;
   courseDescription?: {
     title: string;
     info: string;
   };
-  testEnabled: boolean;
   backDisabled: boolean;
   forwardDisabled: boolean;
   material: string;
   materialType: string;
   videoPreview: string | boolean;
-  courseStatus: string;
+  isTestEnable?: boolean;
+  handleClickDialogOpen?: () => void;
+}
+
+interface OuterProps {
+  status: string;
+  progress?: ClientCourse['progress'];
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
   stage,
   maxStage,
-  dialogOpen,
   stageBack,
   stageForward,
   courseDescription,
-  testEnabled,
+  isTestEnable,
   backDisabled,
   forwardDisabled,
   material,
   materialType,
   handleClickDialogOpen,
-  handleDialogClose,
   videoPreview,
-  courseStatus,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -106,16 +106,11 @@ const LearningCourse: React.FC<LearningProps> = ({
           </Description>
         )}
         <ButtonWrapper>
-          {testEnabled ? (
+          {isTestEnable ? (
             <>
               <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
                 Start the Test
               </StartTestButton>
-              <FormDialog
-                dialogOpen={dialogOpen}
-                handleDialogClose={handleDialogClose}
-                courseStatus={courseStatus}
-              />
             </>
           ) : (
             <NextButton variant="contained" onClick={stageForward}>
@@ -128,4 +123,4 @@ const LearningCourse: React.FC<LearningProps> = ({
   </AuthorizedLayout>
 );
 
-export default LearningCourse;
+export default withFormTest<OuterProps & LearningProps>(LearningCourse);
