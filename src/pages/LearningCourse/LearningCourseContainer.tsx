@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { useStartClientCourse, usePassClientCourse, useGetClientCourseInfo } from 'api/myCourses';
-import { useGetCourseMaterials } from 'api/courses';
+import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
+import { useGetClientCourseAndMaterials } from 'api/courses';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
 import { MATERIAL } from 'constants/materials';
@@ -26,10 +26,10 @@ const LearningCourseContainer: React.FC = () => {
 
   const params = useParams();
 
-  const { data: clientCourseResponse } = useGetClientCourseInfo(params.courseId);
-  const { data: courseMaterialsResponse, isLoading } = useGetCourseMaterials(
-    clientCourseResponse?.course._id,
+  const { data: clientCourseAndMaterialsData, isLoading } = useGetClientCourseAndMaterials(
+    params.courseId,
   );
+  const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterialsData || [];
 
   const maxStage = courseMaterialsResponse
     ? courseMaterialsResponse.materials.length
