@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Image } from 'components/Image';
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
 import { ProgressBar } from 'components/ProgressBar';
 import { checkIcon } from 'icons';
@@ -51,9 +50,7 @@ const CourseItem: React.FC<Props> = ({
 }) => (
   <CourseContainer container direction="column">
     <AboutCourseContainer type={type}>
-      <ImageWrapper>
-        <Image imageUrl={imageUrl} />
-      </ImageWrapper>
+      <ImageWrapper imageUrl={imageUrl} />
       <CourseTextContainer>
         <CourseTitle type={type}>{title}</CourseTitle>
         <CourseDescriptionWrapper type={type}>
