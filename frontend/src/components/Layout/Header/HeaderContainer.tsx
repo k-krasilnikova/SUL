@@ -53,7 +53,7 @@ const HeaderContainer: React.FC<Props> = ({
         isConfirmOpen={isConfirmOpen}
         cancelLogOut={cancelLogOut}
         isLoading={isLoading}
-        size="medium"
+        size="small"
       />
     </>
   );
