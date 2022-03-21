@@ -17,6 +17,7 @@ import {
   DetailedCourse,
   PassingTest,
   SkillsMap,
+  EmployeeProfile,
 } from 'pages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
