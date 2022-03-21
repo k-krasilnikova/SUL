@@ -1,22 +1,44 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router';
 
+import timeIsOverDialogToggle from 'hooks/useToggle';
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
+import { PATHS } from 'constants/routes';
 import { useSendTestResult, useGetCourseTest } from 'api/test';
 import { useFinishClientCourse, useGetClientCourseInfo } from 'api/myCourses';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
+import ConfirmTimeIsOver from './ConfirmTimeIsOver';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
+  const naviagteTo = useNavigate();
 
   const { data: courseTestData, isLoading } = useGetCourseTest({ courseId: params.courseId });
   const { data: clientCourseResponse } = useGetClientCourseInfo(params.courseId);
 
   const courseTest = courseTestData?.length ? courseTestData[0].test : undefined;
   const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
+
+  const [isOpenedTimeIsOverDialog, seTIsOpenedTimeIsOverDialog] = timeIsOverDialogToggle(false);
+
+  useEffect(() => {
+    if (courseTest?.timeout) {
+      const timeoutId = setTimeout(() => {
+        seTIsOpenedTimeIsOverDialog();
+      }, courseTest?.timeout);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [courseTest?.timeout, seTIsOpenedTimeIsOverDialog]);
+
+  const handleCloseTimeIsOverDialog = () => {
+    seTIsOpenedTimeIsOverDialog();
+    naviagteTo(PATHS.myCourses);
+  };
 
   const [stage, setStage] = useState(1);
   const [values, setValues] = React.useState({});
@@ -66,6 +88,10 @@ const PassingTestContainer: React.FC = () => {
   const cancelLeavePage = (): void => {
     setConfirmOpen(false);
   };
+  const handleLeavePage = (): void => {
+    setConfirmOpen(false);
+    naviagteTo(`${PATHS.myCourses}/${params.courseId}`);
+  };
 
   return (
     <>
@@ -87,11 +113,16 @@ const PassingTestContainer: React.FC = () => {
             handleConfirm={handleConfirm}
           />
           <ConfirmLeavePage
-            courseId={params.courseId}
             isConfirmOpen={isConfirmOpen}
             cancelLeavePage={cancelLeavePage}
+            handleLeavePage={handleLeavePage}
             isLoading={isLoading}
-            size="medium"
+            size="small"
+          />
+          <ConfirmTimeIsOver
+            isOpened={isOpenedTimeIsOverDialog}
+            handleClose={handleCloseTimeIsOverDialog}
+            size="small"
           />
         </>
       )}
