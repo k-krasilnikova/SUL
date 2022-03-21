@@ -115,7 +115,11 @@ const LearningCourse: React.FC<LearningProps> = ({
               <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
                 Start the Test
               </StartTestButton>
-              <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
+              <FormDialog
+                dialogOpen={dialogOpen}
+                handleDialogClose={handleDialogClose}
+                size="medium"
+              />
             </>
           ) : (
             <NextButton variant="contained" onClick={stageForward}>

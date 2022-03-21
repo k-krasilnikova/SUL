@@ -1,20 +1,11 @@
 import React from 'react';
+import { DialogActions } from '@mui/material';
 
 import { ConfirmDialog } from 'components/ConfirmDialog';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
-import { close } from 'icons';
 
-import {
-  ConfirmBox,
-  ButtonBox,
-  ConfirmMessage,
-  ButtonCancel,
-  ButtonExit,
-  CloseButtonBox,
-  CloseButton,
-  CloseIcon,
-} from './styled';
+import { ButtonCancel, ButtonExit } from './styled';
 
 interface IConfirm {
   isConfirmOpen: boolean;
@@ -31,29 +22,20 @@ const ConfirmLogOut: React.FC<IConfirm> = ({
   size,
   isLoading,
 }) => (
-  <ConfirmDialog open={isConfirmOpen} onClose={cancelLogOut} size={size}>
-    <ConfirmBox>
-      <CloseButtonBox>
-        <CloseButton onClick={cancelLogOut}>
-          <CloseIcon alt="close" src={close} />
-        </CloseButton>
-      </CloseButtonBox>
-      <ConfirmMessage>Log out of this account?</ConfirmMessage>
-      <ButtonBox>
-        <ButtonCancel variant="mediumOutlined" onClick={cancelLogOut}>
-          Cancel
-        </ButtonCancel>
-        {isLoading ? (
-          <ButtonExit disabled variant="mediumOutlined">
-            <ButtonLoader buttonSpinner={buttonSpinner} />
-          </ButtonExit>
-        ) : (
-          <ButtonExit onClick={handleLogOut} variant="mediumContained">
-            Exit
-          </ButtonExit>
-        )}
-      </ButtonBox>
-    </ConfirmBox>
+  <ConfirmDialog
+    open={isConfirmOpen}
+    onClose={cancelLogOut}
+    size={size}
+    confirmMessage="Log out of this account?"
+  >
+    <DialogActions>
+      <ButtonCancel variant="mediumOutlined" onClick={cancelLogOut}>
+        Cancel
+      </ButtonCancel>
+      <ButtonExit disabled={isLoading} onClick={handleLogOut} variant="mediumContained">
+        {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : 'Exit'}
+      </ButtonExit>
+    </DialogActions>
   </ConfirmDialog>
 );
 export default ConfirmLogOut;

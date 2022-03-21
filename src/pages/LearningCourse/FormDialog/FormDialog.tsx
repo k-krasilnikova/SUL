@@ -1,35 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 
-import { close } from 'icons';
 import { ConfirmDialog } from 'components/ConfirmDialog';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { useGetCourseTest, useStartCourseTest } from 'api/test';
-import { convertTestTimeout } from 'utils/helpers/convertTime';
 import { useGetClientCourseInfo } from 'api/myCourses';
+import { convertTestTimeout } from 'utils/helpers/convertTime';
 
 import {
-  DialogBox,
   MainDialogContentText,
   SecondaryDialogContentText,
-  StyledButton,
-  StyledDialogTitle,
   WarningDialogContentText,
-  CloseButton,
-  CloseButtonBox,
-  StyledButtonBox,
-  CloseIcon,
+  StyledDialogTitle,
+  StyledButton,
+  StyledDialogActions,
 } from './styled';
 
 interface IFormDialog {
+  size: string;
   dialogOpen: boolean;
   handleDialogClose: () => void;
 }
 
-const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) => {
+const FormDialog: React.FC<IFormDialog> = ({ size, dialogOpen, handleDialogClose }) => {
   const params = useParams();
+  const navigateTo = useNavigate();
 
   const { data: clientCourseResponse } = useGetClientCourseInfo(params.courseId);
 
@@ -43,35 +39,27 @@ const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) =>
 
   const handleStartTest = () => {
     startTestMutate(params.courseId);
+    navigateTo(`${PATHS.learnCourse}/${params.courseId}/test`);
   };
 
   return (
     <>
       {timeout && (
-        <ConfirmDialog open={dialogOpen} onClose={handleDialogClose}>
-          <DialogBox>
-            <CloseButtonBox>
-              <CloseButton onClick={handleDialogClose}>
-                <CloseIcon alt="close" src={close} />
-              </CloseButton>
-            </CloseButtonBox>
-            <StyledDialogTitle>{convertTestTimeout(timeout)}</StyledDialogTitle>
-            <MainDialogContentText>
-              By clicking on the button, you confirm <br /> the end of the course and proceed to
-              testing
-            </MainDialogContentText>
-            <WarningDialogContentText>WARNING</WarningDialogContentText>
-            <SecondaryDialogContentText>
-              It will be impossible to return <br /> to the course materials
-            </SecondaryDialogContentText>
-            <StyledButtonBox>
-              <Link to={`${PATHS.learnCourse}/${params.courseId}/test`}>
-                <StyledButton variant="medium" onClick={handleStartTest}>
-                  Start the Test
-                </StyledButton>
-              </Link>
-            </StyledButtonBox>
-          </DialogBox>
+        <ConfirmDialog open={dialogOpen} onClose={handleDialogClose} size={size}>
+          <StyledDialogTitle>{convertTestTimeout(timeout)}</StyledDialogTitle>
+          <MainDialogContentText>
+            By clicking on the button, you confirm <br /> the end of the course and proceed to
+            testing
+          </MainDialogContentText>
+          <WarningDialogContentText>WARNING</WarningDialogContentText>
+          <SecondaryDialogContentText>
+            It will be impossible to return <br /> to the course materials
+          </SecondaryDialogContentText>
+          <StyledDialogActions>
+            <StyledButton variant="medium" onClick={handleStartTest}>
+              Start the Test
+            </StyledButton>
+          </StyledDialogActions>
         </ConfirmDialog>
       )}
     </>
