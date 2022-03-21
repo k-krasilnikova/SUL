@@ -11,6 +11,9 @@ export const SkillsWrapper = styled('div')({
   [theme.breakpoints.down('lg')]: {
     padding: '20px 10px',
   },
+  [theme.breakpoints.down('md')]: {
+    height: 'auto',
+  },
 });
 
 export const Position = styled('h2')({
