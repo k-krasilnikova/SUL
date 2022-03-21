@@ -6,6 +6,8 @@ import { ProgressBar } from 'components/ProgressBar';
 import { checkIcon } from 'icons';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
+import { COMPLETED_STATUS_TEXT, PERCENTAGE_VALUE } from 'constants/detailedCourse';
+import { VARIANTS } from 'constants/progressBar';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -28,9 +30,8 @@ interface Props {
   description: string;
   duration: string | undefined;
   lessons: number | undefined;
-  pageName?: string;
   status?: string;
-  progress?: number;
+  pageName?: string;
   windowWidth?: string;
   type?: string;
   imageUrl?: string;
@@ -43,7 +44,6 @@ const CourseItem: React.FC<Props> = ({
   lessons,
   pageName,
   status,
-  progress,
   children,
   windowWidth,
   type,
@@ -73,10 +73,18 @@ const CourseItem: React.FC<Props> = ({
       {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed && (
         <MobileCourseProgress>
           <ProgressBar
-            value={progress}
-            text={`${progress}%`}
             size="medium"
-            variant="mobileCourse"
+            variant={
+              (status &&
+                [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(status) &&
+                VARIANTS.successfulMobile) ||
+              VARIANTS.incompleteMobile
+            }
+            text={
+              status && [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(status)
+                ? COMPLETED_STATUS_TEXT
+                : PERCENTAGE_VALUE
+            }
           />
         </MobileCourseProgress>
       )}
