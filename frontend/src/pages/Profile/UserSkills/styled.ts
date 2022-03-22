@@ -13,7 +13,7 @@ export const SearchWrapper = styled('div')({
     marginLeft: '0px',
   },
   [theme.breakpoints.up('xl')]: {
-    marginLeft: '48px',
+    marginLeft: '63px',
   },
 });
 export const SearchIcon = styled(Search)({});
