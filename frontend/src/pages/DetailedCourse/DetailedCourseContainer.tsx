@@ -8,6 +8,8 @@ import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
 
 import DetailedCourse from './DetailedCourse';
+import { COMPLETED_STATUS_TEXT } from '../../constants/detailedCourse';
+import { VARIANTS } from '../../constants/progressBar';
 
 interface Props {
   page: string;
@@ -44,6 +46,35 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     commonCourseInfo = courseData;
   }
 
+  let progressValue;
+  let progressText;
+  let progressVariant;
+
+  if (courseData) {
+    switch (courseData.status) {
+      case COURSE_STATUSES.started:
+        progressValue = 37;
+        progressText = '37%';
+        progressVariant = VARIANTS.failed;
+        break;
+      case COURSE_STATUSES.testing:
+        progressValue = 80;
+        progressText = '80%';
+        progressVariant = VARIANTS.completed;
+        break;
+      case COURSE_STATUSES.completed:
+        progressValue = 100;
+        progressText = COMPLETED_STATUS_TEXT;
+        progressVariant = VARIANTS.completed;
+        break;
+      default:
+        progressValue = 0;
+        progressText = '0%';
+        progressVariant = VARIANTS.failed;
+        break;
+    }
+  }
+
   return (
     <>
       {commonCourseInfo && courseData && (
@@ -56,6 +87,9 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
           page={page}
           id={courseData._id}
           status={courseData.status}
+          progressValue={progressValue}
+          progressText={progressText}
+          progressVariant={progressVariant}
           windowWidth={windowWidth}
           isFullTextOpen={isFullTextOpen}
           toggleFullText={toggleFullText}
