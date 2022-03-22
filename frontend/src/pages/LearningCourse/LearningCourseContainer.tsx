@@ -28,6 +28,10 @@ const LearningCourseContainer: React.FC = () => {
   const { data: clientCourseAndMaterialsData, isLoading } = useGetClientCourseAndMaterials(
     params.courseId,
   );
+
+  const { mutate: startCourseMutate } = useStartClientCourse(params.courseId);
+  const { mutate } = usePassClientCourse(params.courseId);
+
   const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterialsData || [];
 
   const maxStage = courseMaterialsResponse
@@ -47,26 +51,23 @@ const LearningCourseContainer: React.FC = () => {
     }
   }, [stage, maxStage]);
 
-  const { mutate: startCourseMutate } = useStartClientCourse(params.courseId);
+  useEffect(() => {
+    if (clientCourseResponse?.status === COURSE_STATUSES.approved) {
+      startCourseMutate(params.courseId);
+    }
+  }, [clientCourseResponse?.status, params.courseId, startCourseMutate]);
 
   useEffect(() => {
-    const handleStartCourse = () => {
-      if (clientCourseResponse?.status === COURSE_STATUSES.approved) {
-        startCourseMutate(params.courseId);
+    if (clientCourseResponse?.status === COURSE_STATUSES.started) {
+      mutate(stage);
+      if (stage + STAGE_CHANGE === maxStage) {
+        mutate(maxStage);
       }
-    };
-    handleStartCourse();
-  }, [params.courseId, clientCourseResponse?.status, startCourseMutate]);
-
-  const { mutate } = usePassClientCourse(params.courseId);
-
-  const handlePassCourseStage = (courseStage: number) => {
-    mutate(courseStage);
-  };
+    }
+  }, [clientCourseResponse?.status, maxStage, mutate, stage]);
 
   const stageForward = () => {
     setStage(stage + STAGE_CHANGE);
-    handlePassCourseStage(stage);
   };
 
   const stageBack = () => {
@@ -113,6 +114,7 @@ const LearningCourseContainer: React.FC = () => {
           videoPreview={videoPreview}
           progress={clientCourseResponse?.progress}
           isDescriptionOpen={isDescriptionOpen}
+          status={clientCourseResponse?.status}
           toggleDescriptionOpen={toggleDescriptionOpen}
         />
       )}

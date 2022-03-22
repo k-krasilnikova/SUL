@@ -20,6 +20,7 @@ const useStartClientCourse = (
   };
   return useMutation(
     async () => {
+      console.log('start query');
       let courseStarted: ClientCourse | undefined;
       const apiClient = apiClientWrapper();
       const responseCourse = await apiClient.get(`${API.getMyCourses}/${courseId}`);

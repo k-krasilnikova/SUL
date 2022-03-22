@@ -15,12 +15,7 @@ import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
 import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
-import {
-  COMPLETED_STATUS_TEXT,
-  OPEN_FULL_TEXT,
-  PERCENTAGE_VALUE,
-  PROGRESS_COLOR,
-} from 'constants/detailedCourse';
+import { COMPLETED_STATUS_TEXT, OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
@@ -29,6 +24,7 @@ import { ButtonsWrapper, MyButton } from 'components/Button/styled';
 import StartTestButton from 'components/Button/StartTestButton';
 import { COURSE_DISABLE_DAYS, TEST_DISABLE_DAYS } from 'constants/time';
 import ActionButton from 'components/Button/ActionButton';
+import { countProgress } from 'utils/helpers/countCourseProgress';
 import {
   BackButton,
   CourseActionsBox,
@@ -81,7 +77,11 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
         {isCourseApplicationSubmitted && status !== COURSE_STATUSES.pending && (
           <ProgressBar
             size="large"
-            text={isCourseCompleted ? COMPLETED_STATUS_TEXT : PERCENTAGE_VALUE}
+            text={
+              isCourseCompleted
+                ? COMPLETED_STATUS_TEXT
+                : `${countProgress(clientCourseData?.progress)}%`
+            }
             textColor={PROGRESS_COLOR}
             variant={isCourseCompleted && VARIANTS.successful}
           />
@@ -126,6 +126,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                 testDate={clientCourseData?.testDate}
                 progress={clientCourseData?.progress}
                 timeout={TEST_DISABLE_DAYS}
+                status={status}
               />
               <ActionButton
                 label={COURSE_LABELS[status]}

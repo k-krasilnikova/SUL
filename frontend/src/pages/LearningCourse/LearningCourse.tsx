@@ -46,13 +46,14 @@ interface LearningProps {
   materialType: string;
   videoPreview: string | boolean;
   isTestEnable?: boolean;
-  handleClickDialogOpen?: () => void;
+  handleDialogOpen?: () => void;
   isDescriptionOpen: boolean;
   toggleDescriptionOpen: () => void;
 }
 
 interface OuterProps {
   progress?: ClientCourse['progress'];
+  status?: string;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -66,7 +67,7 @@ const LearningCourse: React.FC<LearningProps> = ({
   forwardDisabled,
   material,
   materialType,
-  handleClickDialogOpen,
+  handleDialogOpen,
   videoPreview,
   isDescriptionOpen,
   toggleDescriptionOpen,
@@ -113,7 +114,7 @@ const LearningCourse: React.FC<LearningProps> = ({
         <ButtonWrapper>
           {isTestEnable ? (
             <>
-              <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
+              <StartTestButton variant="contained" onClick={handleDialogOpen}>
                 Start the Test
               </StartTestButton>
             </>

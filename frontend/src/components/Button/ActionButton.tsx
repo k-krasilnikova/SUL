@@ -35,7 +35,7 @@ const ActionButton: React.FC<IProps> = ({ children, courseId, label, isTest, isD
     <MyButton
       variant="mediumContained"
       disabled={isDisable}
-      onClick={isTest ? handleLearninig : handleStartTest}
+      onClick={isTest ? handleStartTest : handleLearninig}
     >
       {children || label}
     </MyButton>
