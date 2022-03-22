@@ -3,11 +3,13 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { Divider } from '@mui/material';
 
 import { NoContent } from 'components/NoContent';
-import { NO_COURSES } from 'constants/messages';
+import { NO_USER_COURSES } from 'constants/messages';
 import { SIZE } from 'constants/sizes';
 import { ClientCourse } from 'types/clientCourse';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
+import { ProgressBar } from 'components/ProgressBar';
+import { countProgress } from 'utils/helpers/countCourseProgress';
 
 import {
   CoursesBox,
@@ -16,6 +18,9 @@ import {
   SearchIcon,
   CoursesList,
   CoursesListItem,
+  CourseItemText,
+  CourseTitle,
+  CourseStatus,
   CoursesDivider,
   NoCourses,
 } from './styled';
@@ -27,6 +32,8 @@ interface Props {
   checkPastedValue: (value: string) => void;
   searchCourse: string;
 }
+
+const PREVIOUS_ITEM = 1;
 
 const UserSkills: React.FC<Props> = ({
   courses,
@@ -64,15 +71,23 @@ const UserSkills: React.FC<Props> = ({
       </SearchWrapper>
       <CoursesList>
         {courses && courses.length ? (
-          courses.map((course) => (
+          courses.map((course, id, coursesArray) => (
             <div key={course.course.title}>
-              <CoursesListItem>{course.course.title}</CoursesListItem>
-              <CoursesDivider />
+              <CoursesListItem>
+                <ProgressBar size={SIZE.small} value={countProgress(course.progress)} />
+                <CourseItemText>
+                  <CourseTitle>{course.course.title}</CourseTitle>
+                  <CourseStatus>
+                    {course.status[0].toUpperCase() + course.status.slice(1)}
+                  </CourseStatus>
+                </CourseItemText>
+              </CoursesListItem>
+              {id !== coursesArray.length - PREVIOUS_ITEM && <CoursesDivider />}
             </div>
           ))
         ) : (
           <NoCourses>
-            <NoContent message={NO_COURSES} size={SIZE.medium} />
+            <NoContent message={NO_USER_COURSES} size={SIZE.medium} />
           </NoCourses>
         )}
       </CoursesList>
