@@ -1,24 +1,37 @@
 import React from 'react';
+import { Box, Divider, InputAdornment } from '@mui/material';
+import { Search } from '@mui/icons-material';
 
-import { SIZE } from 'constants/sizes';
-import { Request } from 'types/request';
-import Loader from 'components/Loader';
 import { buttonSpinner } from 'animations';
-import { UserAvatar } from 'components/Avatar';
+import { SIZE } from 'constants/sizes';
 import { LOADER } from 'constants/loaderTypes';
+import { NO_REQUESTS } from 'constants/messages';
+import Loader from 'components/Loader';
+import { UserAvatar } from 'components/Avatar';
 import { NoContent } from 'components/NoContent';
 import ButtonLoader from 'components/ButtonLoader';
+import Image from 'components/Image/Image';
 import { AuthorizedLayout } from 'components/Layout';
+import { Request } from 'types/request';
 
 import {
   RequestsWrapper,
-  RequstsTable,
   Row,
   Cell,
   UserName,
   ImageWrapper,
-  Text,
   ActionButton,
+  InterviewActionButton,
+  SecondaryText,
+  Position,
+  CourseImageWrapper,
+  RequestsTable,
+  CourseTitle,
+  ButtonCell,
+  TimeCell,
+  CourseCell,
+  SearchWrapper,
+  SearchEmployee,
 } from './styled';
 
 interface IProps {
@@ -31,8 +44,6 @@ interface IProps {
   requests?: Request[];
 }
 
-const HEADER_COLUMNS = ['Employee', 'Position', 'Course', 'Action', 'Action'];
-
 const Requests: React.FC<IProps> = ({
   requests,
   isLoading,
@@ -43,37 +54,51 @@ const Requests: React.FC<IProps> = ({
   declineLoading,
 }) => (
   <AuthorizedLayout pageName="Requests">
+    <SearchWrapper>
+      <SearchEmployee
+        disableUnderline
+        placeholder="Search"
+        inputProps={{ maxLength: 100 }}
+        fullWidth
+        startAdornment={
+          <InputAdornment position="start">
+            <Search color="disabled" fontSize="medium" />
+          </InputAdornment>
+        }
+      />
+      <Divider sx={{ width: '445px' }} />
+    </SearchWrapper>
     <RequestsWrapper>
       {isLoading ? (
         <Loader color="primary" type={LOADER.content} />
       ) : (
-        <RequstsTable>
-          <Row>
-            {HEADER_COLUMNS.map((headerItem) => (
-              <Cell key={headerItem}>
-                <Text bold>{headerItem}</Text>
-              </Cell>
-            ))}
-          </Row>
+        <RequestsTable>
           {requests?.length ? (
             requests.map((request) => {
               const isTargetRequest = targetId === request._id;
-
               return (
                 <Row key={request._id}>
                   <Cell>
                     <ImageWrapper>
                       <UserAvatar size={SIZE.small} avatar={request.user.avatar} />
                     </ImageWrapper>
-                    <UserName>{`${request.user.firstName} ${request.user.lastName}`}</UserName>
+                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                      <UserName>{`${request.user.firstName} ${request.user.lastName}`}</UserName>
+                      <Position>{request.user.position}</Position>
+                    </Box>
                   </Cell>
-                  <Cell>
-                    <Text>{request.user.position}</Text>
-                  </Cell>
-                  <Cell>
-                    <Text>{request.course.title}</Text>
-                  </Cell>
-                  <Cell>
+                  <CourseCell>
+                    <CourseImageWrapper>
+                      <Image imageUrl={request.course.avatar} />
+                    </CourseImageWrapper>
+                    <CourseTitle>{request.course.title}</CourseTitle>
+                  </CourseCell>
+                  <TimeCell>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                      <SecondaryText>{`${request.elapsed.hours}h${request.elapsed.minutes}m`}</SecondaryText>
+                    </Box>
+                  </TimeCell>
+                  <ButtonCell>
                     <ActionButton
                       variant="mediumContained"
                       onClick={() => approveRequest(request._id)}
@@ -85,8 +110,21 @@ const Requests: React.FC<IProps> = ({
                         'Accept'
                       )}
                     </ActionButton>
-                  </Cell>
-                  <Cell>
+                  </ButtonCell>
+                  <ButtonCell>
+                    <InterviewActionButton
+                      variant="mediumContained"
+                      onClick={() => approveRequest(request._id)}
+                      disabled={approveLoading}
+                    >
+                      {approveLoading && isTargetRequest ? (
+                        <ButtonLoader buttonSpinner={buttonSpinner} />
+                      ) : (
+                        'Accept with interview'
+                      )}
+                    </InterviewActionButton>
+                  </ButtonCell>
+                  <ButtonCell>
                     <ActionButton
                       variant="mediumOutlined"
                       onClick={() => declineRequest(request._id)}
@@ -98,14 +136,14 @@ const Requests: React.FC<IProps> = ({
                         'Reject'
                       )}
                     </ActionButton>
-                  </Cell>
+                  </ButtonCell>
                 </Row>
               );
             })
           ) : (
-            <NoContent message="No requests" size={SIZE.medium} />
+            <NoContent message={NO_REQUESTS} size={SIZE.medium} />
           )}
-        </RequstsTable>
+        </RequestsTable>
       )}
     </RequestsWrapper>
   </AuthorizedLayout>
