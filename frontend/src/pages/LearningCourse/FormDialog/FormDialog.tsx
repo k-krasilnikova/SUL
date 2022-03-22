@@ -8,6 +8,7 @@ import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { useGetCourseTest, useStartCourseTest } from 'api/test';
 import { convertTestTimeout } from 'utils/helpers/convertTime';
+import { useGetClientCourseInfo } from 'api/myCourses';
 
 import {
   DialogBox,
@@ -25,14 +26,16 @@ import {
 interface IFormDialog {
   dialogOpen: boolean;
   handleDialogClose: () => void;
-  courseStatus: string;
 }
 
-const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose, courseStatus }) => {
+const FormDialog: React.FC<IFormDialog> = ({ dialogOpen, handleDialogClose }) => {
   const params = useParams();
+
+  const { data: clientCourseResponse } = useGetClientCourseInfo(params.courseId);
+
   const { data } = useGetCourseTest({
     courseId: params.courseId,
-    enabled: dialogOpen && courseStatus === COURSE_STATUSES.started,
+    enabled: dialogOpen && clientCourseResponse?.status === COURSE_STATUSES.started,
   });
   const timeout = data && data[0].test.timeout;
 

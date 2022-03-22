@@ -17,6 +17,7 @@ import {
   MaterialWrapper,
   MaterialText,
   MaterialVideo,
+  DescriptionWrapper,
   Description,
   DescriptionTitle,
   DescriptionText,
@@ -24,6 +25,9 @@ import {
   NextButton,
   ButtonWrapper,
   StyledButton,
+  ToggleDescription,
+  ExpandLessIcon,
+  ExpandMoreIcon,
 } from './styled';
 import withFormTest from './FormDialog/withFormDialog';
 
@@ -43,10 +47,11 @@ interface LearningProps {
   videoPreview: string | boolean;
   isTestEnable?: boolean;
   handleClickDialogOpen?: () => void;
+  isDescriptionOpen: boolean;
+  toggleDescriptionOpen: () => void;
 }
 
 interface OuterProps {
-  status: string;
   progress?: ClientCourse['progress'];
 }
 
@@ -63,6 +68,8 @@ const LearningCourse: React.FC<LearningProps> = ({
   materialType,
   handleClickDialogOpen,
   videoPreview,
+  isDescriptionOpen,
+  toggleDescriptionOpen,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -99,12 +106,10 @@ const LearningCourse: React.FC<LearningProps> = ({
             <MaterialText>{material}</MaterialText>
           )}
         </MaterialWrapper>
-        {courseDescription && (
-          <Description>
-            <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
-            <DescriptionText>{courseDescription.info}</DescriptionText>
-          </Description>
-        )}
+        <ToggleDescription onClick={toggleDescriptionOpen}>
+          Comments
+          {isDescriptionOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        </ToggleDescription>
         <ButtonWrapper>
           {isTestEnable ? (
             <>
@@ -118,6 +123,14 @@ const LearningCourse: React.FC<LearningProps> = ({
             </NextButton>
           )}
         </ButtonWrapper>
+        {courseDescription && (
+          <DescriptionWrapper isDescriptionOpen={isDescriptionOpen}>
+            <Description>
+              <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
+              <DescriptionText>{courseDescription.info}</DescriptionText>
+            </Description>
+          </DescriptionWrapper>
+        )}
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>
