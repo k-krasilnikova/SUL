@@ -6,6 +6,7 @@ interface ProgressProps {
 
 export const countProgress = (stages: Array<ProgressProps>): number => {
   const maxProgress = stages.length;
+
   let currentProgress = 0;
   stages.forEach((stage) => {
     if (stage.isCompleted) {
