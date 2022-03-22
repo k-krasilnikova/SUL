@@ -6,7 +6,6 @@ import { isTestEnable } from 'utils/helpers/isTestEnable';
 import FormDialog from './FormDialog';
 
 type IncomingProps = {
-  status: string;
   progress?: ClientCourse['progress'];
   testDate?: string;
 };
@@ -14,7 +13,7 @@ type IncomingProps = {
 const withFormTest =
   <T extends IncomingProps>(Component: React.ComponentType<T>) =>
   (props: T) => {
-    const { status, progress, testDate } = props;
+    const { progress, testDate } = props;
     const [dialogOpen, setDialogOpen] = useState(false);
     const [testEnabled, setTestEnabled] = useState(false);
 
@@ -48,11 +47,7 @@ const withFormTest =
           isTestEnable={testEnabled}
           {...props}
         />
-        <FormDialog
-          dialogOpen={dialogOpen}
-          handleDialogClose={handleDialogClose}
-          courseStatus={status}
-        />
+        <FormDialog dialogOpen={dialogOpen} handleDialogClose={handleDialogClose} />
       </>
     );
   };

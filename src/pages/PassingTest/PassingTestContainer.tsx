@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 import { useSendTestResult, useGetCourseTest } from 'api/test';
-import { useGetClientCourseInfo } from 'api/myCourses';
+import { useFinishClientCourse, useGetClientCourseInfo } from 'api/myCourses';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
@@ -29,8 +29,14 @@ const PassingTestContainer: React.FC = () => {
     setStage(stage + STAGE_CHANGE);
   };
 
+  const { mutate: sendFinishCourse } = useFinishClientCourse(params.courseId);
+  const handleSendTestResult = () => sendFinishCourse(params.courseId);
+
   const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
-  const { mutate, data: responseData } = useSendTestResult({ courseId: params.courseId });
+  const { mutate, data: responseData } = useSendTestResult(
+    { courseId: params.courseId },
+    handleSendTestResult,
+  );
 
   const handleSubmitResult = () => {
     const resultData = {
