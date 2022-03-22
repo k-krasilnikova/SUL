@@ -37,7 +37,7 @@ interface Props {
 
 type Employee = User & Props;
 
-const ProfileContent: React.FC<Employee> = ({
+const EmployeeProfileContent: React.FC<Employee> = ({
   avatar,
   firstName,
   lastName,
@@ -121,4 +121,4 @@ const ProfileContent: React.FC<Employee> = ({
   </AuthorizedLayout>
 );
 
-export default ProfileContent;
+export default EmployeeProfileContent;

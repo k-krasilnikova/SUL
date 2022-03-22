@@ -1,4 +1,4 @@
-import { Course } from './course';
+import { ClientCourse } from './clientCourse';
 import { Technologies } from './skill';
 import { Notification } from './notification';
 
@@ -15,7 +15,7 @@ export interface User {
   phone?: string;
   skype?: string;
   position?: string;
-  courses?: Array<Course>;
+  courses?: Array<ClientCourse>;
   handleLogOut?: () => void;
   technologies?: Technologies;
   notifications?: Notification[];

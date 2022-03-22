@@ -8,6 +8,7 @@ import { SIZE } from 'constants/sizes';
 import { ClientCourse } from 'types/clientCourse';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
+import { ProgressBar } from 'components/ProgressBar';
 
 import {
   CoursesBox,
@@ -66,7 +67,13 @@ const UserSkills: React.FC<Props> = ({
         {courses && courses.length ? (
           courses.map((course) => (
             <div key={course.course.title}>
-              <CoursesListItem>{course.course.title}</CoursesListItem>
+              <CoursesListItem>
+                <ProgressBar size={SIZE.small} />
+                <div>
+                  <p>{course.course.title}</p>
+                  <p>{course.status[0].toUpperCase() + course.status.slice(1)}</p>
+                </div>
+              </CoursesListItem>
               <CoursesDivider />
             </div>
           ))
