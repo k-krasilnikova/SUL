@@ -36,9 +36,10 @@ interface Props {
   windowWidth?: string;
   type?: string;
   imageUrl?: string;
+  isCourseCompleted?: boolean;
 }
 
-const CourseItem: React.FC<Props> = ({
+const Course: React.FC<Props> = ({
   title,
   description,
   duration,
@@ -49,6 +50,7 @@ const CourseItem: React.FC<Props> = ({
   windowWidth,
   type,
   imageUrl,
+  isCourseCompleted,
 }) => (
   <CourseContainer container direction="column">
     <AboutCourseContainer type={type}>
@@ -75,16 +77,8 @@ const CourseItem: React.FC<Props> = ({
         <MobileCourseProgress>
           <ProgressBar
             size={SIZE.medium}
-            variant={
-              status && [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(status)
-                ? VARIANTS.successfulMobile
-                : VARIANTS.incompleteMobile
-            }
-            text={
-              status && [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(status)
-                ? COMPLETED_STATUS_TEXT
-                : PERCENTAGE_VALUE
-            }
+            variant={isCourseCompleted ? VARIANTS.successfulMobile : VARIANTS.incompleteMobile}
+            text={isCourseCompleted ? COMPLETED_STATUS_TEXT : PERCENTAGE_VALUE}
           />
         </MobileCourseProgress>
       )}
@@ -98,4 +92,4 @@ const CourseItem: React.FC<Props> = ({
   </CourseContainer>
 );
 
-export default CourseItem;
+export default Course;
