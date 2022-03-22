@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItem, ButtonGroup } from '@mui/material';
+import { ListItem } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { User } from 'types/user';
@@ -8,7 +8,10 @@ import { UserAvatar } from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 import { PATHS } from 'constants/routes';
 import { EMPLOYEE_INFO } from 'constants/employeeInfo';
+import { UserSkills } from 'pages/Profile/UserSkills';
+import { ClientCourse } from 'types/clientCourse';
 
+import { EmployeeCourses } from './EmployeeCourses';
 import {
   ProfileBox,
   AvatarWrapper,
@@ -18,11 +21,14 @@ import {
   UserInfoLabel,
   BackButton,
   SkillsAndCoursesBox,
+  EmployeeButtonGroup,
   SkillsAndCoursesButton,
   AddCourseButton,
+  UserSkillsWrapper,
 } from './styled';
 
 interface Props {
+  employeeCourses?: ClientCourse[];
   employeeInfo: string;
   toggleEmployeeInfo: (infoToOpen: string) => void;
   hoveredButton: string | undefined;
@@ -39,12 +45,14 @@ const ProfileContent: React.FC<Employee> = ({
   group,
   phone,
   skype,
+  technologies,
+  employeeCourses,
   employeeInfo,
   toggleEmployeeInfo,
   hoveredButton,
   toggleHover,
 }) => (
-  <AuthorizedLayout pageName="Profile">
+  <AuthorizedLayout pageName="Employee">
     <Link to={PATHS.employees}>
       <BackButton variant="medium" color="primary">
         Back
@@ -75,14 +83,7 @@ const ProfileContent: React.FC<Employee> = ({
       </UserInfoList>
     </ProfileBox>
     <SkillsAndCoursesBox>
-      <ButtonGroup
-        variant="contained"
-        style={{
-          height: '40px',
-          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-          alignItems: 'end',
-        }}
-      >
+      <EmployeeButtonGroup variant="contained">
         <SkillsAndCoursesButton
           isOpened={
             (employeeInfo === EMPLOYEE_INFO.skills && !hoveredButton) ||
@@ -105,10 +106,18 @@ const ProfileContent: React.FC<Employee> = ({
         >
           All courses
         </SkillsAndCoursesButton>
-      </ButtonGroup>
-      <AddCourseButton variant="contained">+ Add Course</AddCourseButton>
+      </EmployeeButtonGroup>
+      <AddCourseButton variant="medium" color="primary">
+        + Add Course
+      </AddCourseButton>
     </SkillsAndCoursesBox>
-    <div>{employeeInfo === EMPLOYEE_INFO.skills ? 'Skills here' : 'Courses here'}</div>
+    <UserSkillsWrapper>
+      {employeeInfo === EMPLOYEE_INFO.skills ? (
+        <UserSkills technologies={technologies} />
+      ) : (
+        <EmployeeCourses courses={employeeCourses} />
+      )}
+    </UserSkillsWrapper>
   </AuthorizedLayout>
 );
 

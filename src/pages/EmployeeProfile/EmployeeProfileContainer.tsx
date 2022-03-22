@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
-import { useGetEmployeeProfile } from 'api/employees';
+import { useGetEmployeeProfile, useGetEmployeeCourses } from 'api/employees';
 import { EMPLOYEE_INFO } from 'constants/employeeInfo';
 
 import ProfileContent from './EmployeeProfile';
@@ -9,6 +9,7 @@ import ProfileContent from './EmployeeProfile';
 const EmployeeProfile: React.FC = () => {
   const params = useParams();
   const { data } = useGetEmployeeProfile(params.employeeId);
+  const { data: employeeCourses } = useGetEmployeeCourses();
 
   const [employeeInfo, setEmployeeInfo] = useState(EMPLOYEE_INFO.skills);
   const [hoveredButton, setHoveredButton] = useState<string | undefined>(undefined);
@@ -30,6 +31,8 @@ const EmployeeProfile: React.FC = () => {
       group={data?.group}
       phone={data?.phone}
       skype={data?.skype}
+      technologies={data?.technologies}
+      employeeCourses={employeeCourses}
       employeeInfo={employeeInfo}
       toggleEmployeeInfo={toggleEmployeeInfo}
       hoveredButton={hoveredButton}
