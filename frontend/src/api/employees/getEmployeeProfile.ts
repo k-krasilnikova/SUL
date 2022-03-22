@@ -18,15 +18,14 @@ const useGetEmployeeProfile = (
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    'profile',
+    'employee',
     async () => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.get(`${API.getProfile}/${employeeId}`);
+      const response = await apiClient.get(`${API.getEmployees}/${employeeId}`);
       const profileResponse: ProfileResponse = response.data;
       return profileResponse;
     },
     {
-      staleTime: 600000,
       onError: handleSubmitError,
     },
   );
