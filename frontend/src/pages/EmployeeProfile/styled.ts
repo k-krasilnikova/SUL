@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { List, ListItem, Button as ToggleButton } from '@mui/material';
+import { List, ListItem, Button as ToggleButton, Input, ButtonGroup } from '@mui/material';
+import { Search } from '@mui/icons-material';
 
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
@@ -72,6 +73,11 @@ export const SkillsAndCoursesBox = styled('div')({
   width: '80%',
   display: 'flex',
 });
+export const EmployeeButtonGroup = styled(ButtonGroup)({
+  height: '40px',
+  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+  alignItems: 'end',
+});
 export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({ isOpened }) => ({
   backgroundColor: '#ffffff !important',
   color: '#000000 !important',
@@ -95,4 +101,18 @@ export const AddCourseButton = styled(Button)({
   fontWeight: '500',
   fontSize: '20px !important',
   padding: '0px !important',
+});
+export const UserSkillsWrapper = styled('div')({
+  width: '100%',
+  marginTop: '52px',
+});
+export const SearchIcon = styled(Search)({});
+export const SearchSkill = styled(Input)({
+  [theme.breakpoints.up('xs')]: {
+    fontSize: '16px!important',
+    lineHeight: '33.61px',
+  },
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '18px!important',
+  },
 });
