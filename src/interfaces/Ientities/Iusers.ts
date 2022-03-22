@@ -51,12 +51,14 @@ interface ITechnologyGroup {
   isPrimary: boolean;
 }
 
+interface ITechnologyGroupPopuldated {
+  group: string;
+  achievedSkills: IUserSkillPopulated[];
+  isPrimary: boolean;
+}
+
 type TUserPopulated = IUser & {
-  technologies: {
-    group: string;
-    achievedSkills: IUserSkillPopulated[];
-    isPrimary: boolean;
-  }[];
+  technologies: ITechnologyGroupPopuldated[];
 };
 
 type TUserRole = 'admin' | 'manager' | 'employee';
@@ -71,4 +73,5 @@ export {
   IPendingCourses,
   INotification,
   ITechnologyGroup,
+  ITechnologyGroupPopuldated,
 };
