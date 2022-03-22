@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { List, ListItem, Button as ToggleButton, Input, ButtonGroup } from '@mui/material';
-import { Search } from '@mui/icons-material';
+import { List, ListItem, Button as ToggleButton, ButtonGroup } from '@mui/material';
 
 import theme from 'themeSettings';
 import { Button } from 'components/Button';
@@ -14,6 +13,9 @@ export const ProfileBox = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   margin: '24px 0px 92px 165px',
+  [theme.breakpoints.down('xl')]: {
+    margin: '8px 0px 50px 112px !important',
+  },
 });
 export const AvatarWrapper = styled('div')({
   textAlign: 'center',
@@ -28,6 +30,11 @@ export const EmployeeName = styled(ListItem)({
   lineHeight: '28px',
   textAlign: 'left',
   marginBottom: '24px',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '22px',
+    lineHeight: '25px',
+    marginBottom: '16px',
+  },
 });
 export const UserInfoList = styled(List)({
   color: '#2C2525',
@@ -49,6 +56,11 @@ export const UserInfoLabel = styled('span')({
   height: '24px',
   marginBottom: '20px',
   padding: '0px',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '18px',
+    lineHeight: '21px',
+    marginBottom: '12px',
+  },
 });
 export const UserInfoText = styled('span')({
   width: '400px',
@@ -58,12 +70,23 @@ export const UserInfoText = styled('span')({
   padding: '0px 0px 0px 40px',
   height: '24px',
   marginBottom: '20px',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '18px',
+    lineHeight: '21px',
+    marginBottom: '12px',
+  },
 });
 export const BackButton = styled(Button)({
   height: '39px',
   width: '84px',
   fontSize: '16px !important',
   margin: '40px 0px 0px 40px !important',
+  [theme.breakpoints.down('xl')]: {
+    height: '32px',
+    width: '64px',
+    fontSize: '12px !important',
+    margin: '32px 0px 0px 36px !important',
+  },
   [theme.breakpoints.down('sm')]: {
     display: 'none !important',
   },
@@ -77,6 +100,9 @@ export const EmployeeButtonGroup = styled(ButtonGroup)({
   height: '40px',
   boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
   alignItems: 'end',
+  [theme.breakpoints.down('xl')]: {
+    height: '36px',
+  },
 });
 export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({ isOpened }) => ({
   backgroundColor: '#ffffff !important',
@@ -93,6 +119,13 @@ export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({
     width: '146px !important',
     height: '44px',
   }),
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '18px !important',
+    height: '36px',
+    ...(isOpened && {
+      height: '40px',
+    }),
+  },
 }));
 export const AddCourseButton = styled(Button)({
   width: '146px',
@@ -101,18 +134,18 @@ export const AddCourseButton = styled(Button)({
   fontWeight: '500',
   fontSize: '20px !important',
   padding: '0px !important',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '18px !important',
+    width: '126px',
+    height: '36px',
+    margin: '-2px 0px 0px 350px !important',
+  },
 });
 export const UserSkillsWrapper = styled('div')({
-  width: '100%',
+  maxWidth: '100%',
   marginTop: '52px',
-});
-export const SearchIcon = styled(Search)({});
-export const SearchSkill = styled(Input)({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '16px!important',
-    lineHeight: '33.61px',
-  },
-  [theme.breakpoints.up('sm')]: {
-    fontSize: '18px!important',
+  [theme.breakpoints.down('xl')]: {
+    paddingTop: '16px',
+    maxWidth: '828px',
   },
 });
