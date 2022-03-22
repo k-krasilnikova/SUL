@@ -11,7 +11,7 @@ const getPendingCoursesProvider = async (managerId: string) => {
         {
           path: 'course',
           model: 'Courses',
-          select: 'title',
+          select: '_id title avatar',
         },
         {
           path: 'user',
