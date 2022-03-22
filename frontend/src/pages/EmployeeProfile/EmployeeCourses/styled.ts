@@ -1,13 +1,10 @@
 import styled from 'styled-components';
-import { Input, Divider } from '@mui/material';
+import { Input, Divider, Typography } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
 import theme from 'themeSettings';
 
 export const SearchWrapper = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    marginLeft: '0px',
-  },
   [theme.breakpoints.up('xl')]: {
     marginLeft: '63px',
   },
@@ -54,6 +51,7 @@ export const CoursesList = styled('div')({
 });
 export const CoursesListItem = styled('div')({
   display: 'flex',
+  alignItems: 'center',
   width: '350px',
   height: '80px',
   background: '#F5F5F5',
@@ -62,10 +60,42 @@ export const CoursesListItem = styled('div')({
   paddingTop: '16px',
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: '400',
-  fontSize: '20px',
-  lineHeight: '26px',
-  color: '#2C2525',
   margin: '24px 0px 16px 63px',
+  padding: '15px',
+  [theme.breakpoints.down('xl')]: {
+    margin: '8px 0px',
+    padding: '8px',
+    width: '215px',
+    height: '53px',
+  },
+});
+
+export const CourseItemText = styled('div')({
+  marginLeft: '17px',
+  [theme.breakpoints.down('xl')]: {
+    marginLeft: '8px',
+  },
+});
+
+export const CourseTitle = styled(Typography)({
+  color: '#2C2525',
+  fontSize: '20px !important',
+  lineHeight: '26px !important',
+  marginBottom: '8px !important',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '16px !important',
+    lineHeight: '20px !important',
+  },
+});
+
+export const CourseStatus = styled(Typography)({
+  color: '#B6B6B6',
+  fontSize: '18px !important',
+  lineHeight: '23px !important',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '14px !important',
+    lineHeight: '18px !important',
+  },
 });
 
 export const CoursesDivider = styled(Divider)({
@@ -74,7 +104,6 @@ export const CoursesDivider = styled(Divider)({
   },
   [theme.breakpoints.up('sm')]: {
     display: 'block',
-    width: '640px',
   },
 });
 export const NoCourses = styled('div')({
