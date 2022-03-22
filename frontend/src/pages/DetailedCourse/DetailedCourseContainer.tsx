@@ -8,7 +8,7 @@ import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
 
 import DetailedCourse from './DetailedCourse';
-import { COMPLETED_STATUS_TEXT } from '../../constants/detailedCourse';
+import { COMPLETED_STATUS_TEXT, FAILED_STATUS_TEXT } from '../../constants/detailedCourse';
 import { VARIANTS } from '../../constants/progressBar';
 
 interface Props {
@@ -66,6 +66,11 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
         progressValue = 100;
         progressText = COMPLETED_STATUS_TEXT;
         progressVariant = VARIANTS.completed;
+        break;
+      case COURSE_STATUSES.failed:
+        progressValue = 0;
+        progressText = FAILED_STATUS_TEXT;
+        progressVariant = VARIANTS.failed;
         break;
       default:
         progressValue = 0;
