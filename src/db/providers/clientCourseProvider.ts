@@ -39,6 +39,14 @@ const getClientCoursesProvider = async (
   return clientCourses;
 };
 
+const getAllClientCoursesProvider = async (userId: string): Promise<IClientCoursePopulated[]> => {
+  const courses: IClientCoursePopulated[] = await ClientCourseModel.find({ user: userId })
+    .populate('course')
+    .lean();
+
+  return courses;
+};
+
 const getClientCourseProvider = async (clientCourseId: string): Promise<IClientCoursePopulated> => {
   const clientCourse: IClientCoursePopulated = await ClientCourseModel.findOne({
     _id: clientCourseId,
@@ -134,6 +142,7 @@ const updateApplyDate = async (courseId: string) => {
 
 export {
   getClientCoursesProvider,
+  getAllClientCoursesProvider,
   getClientCourseProvider,
   getStatusProvider,
   updateCourseStatus,
