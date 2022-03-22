@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Input, Divider, Typography } from '@mui/material';
-import { Search } from '@mui/icons-material';
 
 import theme from 'themeSettings';
 
@@ -9,8 +8,6 @@ export const SearchWrapper = styled('div')({
     marginLeft: '63px',
   },
 });
-
-export const SearchIcon = styled(Search)({});
 
 export const SearchCourse = styled(Input)({
   [theme.breakpoints.up('xs')]: {

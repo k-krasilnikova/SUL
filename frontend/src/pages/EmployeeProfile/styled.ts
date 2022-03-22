@@ -138,7 +138,6 @@ export const SkillsAndCoursesBox = styled('div')({
     width: '100%',
   },
 });
-
 export const EmployeeButtonGroup = styled(ButtonGroup)({
   height: '40px',
   boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
