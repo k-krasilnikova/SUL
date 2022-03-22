@@ -34,8 +34,10 @@ interface IUser {
   refreshToken?: string;
   role: TUserRole;
   position: TUserPosition;
+  rank: TUserRank;
   firstName: string;
   lastName: string;
+  stack: undefined; //!
   technologies: ITechnologyGroup[];
   courses: ObjectId[];
   group: string;
@@ -67,6 +69,8 @@ type TUserPopulated = IUser & {
 
 type TUserRole = 'admin' | 'manager' | 'employee';
 
+type TUserRank = 'Junior' | 'Middle' | 'Senior';
+
 type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
 
 export {
@@ -76,6 +80,7 @@ export {
   TUserPosition,
   TPendingCourses,
   IPendingCourse,
+  TUserRank,
   INotification,
   ITechnologyGroup,
   ITechnologyGroupPopuldated,

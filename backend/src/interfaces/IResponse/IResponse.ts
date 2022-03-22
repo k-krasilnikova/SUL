@@ -1,6 +1,6 @@
 import { ICourse } from '../Ientities/Icourses';
 import { IClientCourse } from '../Ientities/IclientCourses';
-import { ITechnologyGroup, TUserPopulated } from '../Ientities/Iusers';
+import { ITechnologyGroup, IUser, TUserPopulated } from '../Ientities/Iusers';
 
 interface ILocals {
   id: string;
@@ -11,6 +11,13 @@ interface ILocals {
   results: Record<string, never>;
 }
 
+interface IEmployeeShortInfo
+  extends Pick<
+    IUser,
+    '_id' | 'firstName' | 'lastName' | 'position' | 'rank' | 'stack' | 'group' | 'phone' | 'skype'
+  > {
+  courses: undefined;
+}
 interface IEmployeeInfo
   extends Pick<
     TUserPopulated,
