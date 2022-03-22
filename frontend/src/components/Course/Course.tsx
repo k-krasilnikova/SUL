@@ -8,6 +8,7 @@ import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
 import { COMPLETED_STATUS_TEXT, PERCENTAGE_VALUE } from 'constants/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
+import { SIZE } from 'constants/sizes';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -73,12 +74,11 @@ const CourseItem: React.FC<Props> = ({
       {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed && (
         <MobileCourseProgress>
           <ProgressBar
-            size="medium"
+            size={SIZE.medium}
             variant={
-              (status &&
-                [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(status) &&
-                VARIANTS.successfulMobile) ||
-              VARIANTS.incompleteMobile
+              status && [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(status)
+                ? VARIANTS.successfulMobile
+                : VARIANTS.incompleteMobile
             }
             text={
               status && [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(status)
