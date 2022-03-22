@@ -9,7 +9,7 @@ import { errorSnackbar } from 'constants/snackbarVariant';
 import { ClientCourse } from 'types/clientCourse';
 
 const useGetClientCourseAndMaterials = (
-  courseId: string | undefined,
+  courseId?: string,
 ): UseQueryResult<[ClientCourse, ICourseMaterialsResponse], AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
