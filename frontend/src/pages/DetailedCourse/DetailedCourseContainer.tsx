@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
-import convertStatusToProgress from 'utils/helpers/convertStaatusToProgress';
+import convertStatusToProgress from 'utils/helpers/convertStatusToProgress';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
 
