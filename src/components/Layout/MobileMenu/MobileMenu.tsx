@@ -96,7 +96,7 @@ const MobileMenu: React.FC<Props> = ({
         <MobileUserBlock>
           <UserProfile to={PATHS.profile}>
             <AvatarWrapper>
-              <UserAvatar size={SIZE.small} avatar={avatar} />
+              <UserAvatar size={SIZE.xsmall} avatar={avatar} />
             </AvatarWrapper>
             <UserNameWrapper>
               <UserName>{firstName}</UserName>

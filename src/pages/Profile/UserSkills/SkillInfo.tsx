@@ -31,7 +31,7 @@ const CourseMaterialInfo: React.FC<Props> = ({
   <SkillInfo completed={stages === stagesCompleted}>
     <SkillInfoFlex>
       <ImageWrapper>
-        <UserAvatar size={SIZE.small} avatar={imageUrl} />
+        <UserAvatar size={SIZE.xsmall} avatar={imageUrl} />
       </ImageWrapper>
       <div style={{ width: '70px' }}>
         <SkillInfoText>{technologyTitle}</SkillInfoText>

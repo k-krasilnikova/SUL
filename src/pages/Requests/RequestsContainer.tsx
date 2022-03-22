@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { useGetCoursesRequests, useApproveRequest, useDeclineRequest } from 'api/courses';
+import { useGetCoursesRequests } from 'api/courses';
+import { useApproveRequest, useDeclineRequest } from 'api/manager';
 
 import Requests from './Requests';
 
