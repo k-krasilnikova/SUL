@@ -11,7 +11,7 @@ interface IProps {
 }
 
 type TOutterProps = {
-  handleDialogOpen?: () => void;
+  status: string;
   testDate?: string;
   applyDate?: string;
   timeout: number;

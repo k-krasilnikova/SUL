@@ -1,6 +1,9 @@
 import { ClientCourse } from 'types/clientCourse';
 
-export const countProgress = (stages: ClientCourse['progress']): number => {
+export const countProgress = (stages?: ClientCourse['progress']): number => {
+  if (!stages) {
+    return 0;
+  }
   const maxProgress = stages.length;
   let currentProgress = 0;
   stages.forEach((stage) => {

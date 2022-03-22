@@ -24,8 +24,4 @@ export const MyButton = styled(Button)({
 
 export const ButtonsWrapper = styled('div')({
   display: 'flex',
-  flexDirection: 'column',
-  [theme.breakpoints.down('md')]: {
-    flexDirection: 'row',
-  },
 });
