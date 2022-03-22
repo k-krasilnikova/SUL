@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { PASS_THRESHOLD } from 'config/constants';
+import { PASS_THRESHOLD, DISABLE_TEST_DAYS } from 'config/constants';
 import { getStatusProvider, updateClientCourseField } from 'db/providers/clientCourseProvider';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
@@ -32,7 +32,11 @@ const getTestResults = async (
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: 'not passed' };
       await updateClientCourseField(courseId, 'status', CourseStatus.started);
-      await updateClientCourseField(courseId, 'testDate', Date.now());
+      await updateClientCourseField(
+        courseId,
+        'testDate',
+        new Date().setDate(Date.now() + DISABLE_TEST_DAYS),
+      );
       next();
       return;
     }
