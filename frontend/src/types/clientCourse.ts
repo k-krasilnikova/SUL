@@ -14,6 +14,7 @@ export interface ClientCourse {
   _id: string;
   course: Course;
   applyDate?: string;
+  testDate?: string;
 }
 
 export type PureClientCourse = Omit<ClientCourse, 'course'>;

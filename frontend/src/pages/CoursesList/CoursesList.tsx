@@ -18,6 +18,7 @@ import { MyButton } from 'components/Button/styled';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { COURSE_LABELS } from 'constants/statuses';
 import ActionButton from 'components/Button/ActionButton';
+import { COURSE_DISABLE_DAYS } from 'constants/time';
 import {
   PageContainer,
   CourseActions,
@@ -95,6 +96,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                             progress={clientCourses[indx].progress}
                             applyDate={clientCourses[indx].applyDate}
                             courseId={clientCourses[indx]._id}
+                            timeout={COURSE_DISABLE_DAYS}
                           />
                         ) : (
                           <MyButton

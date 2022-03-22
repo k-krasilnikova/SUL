@@ -22,32 +22,17 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const useGetInfo = page === PAGES.coursesList ? useGetCourseInfo : useGetClientCourseInfo;
   const { data: courseData } = useGetInfo(params.courseId);
   const { mutate, isLoading } = useApplyCourse();
-  const [targetId, setTargetId] = useState<string | undefined>();
   const [isFullTextOpen, setFullTextOpen] = useState(false);
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
-  const isCourseLearningDisabled = courseData
-    ? [COURSE_STATUSES.pending, COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(
-        courseData.status,
-      )
-    : false;
-  const isCourseDeclined = courseData && courseData.status === COURSE_STATUSES.rejected;
   const isCourseCompleted = courseData
     ? [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(courseData.status)
     : false;
-  const isCourseStatusPending = courseData?.status === COURSE_STATUSES.pending;
-  const isCourseStatusTesting = courseData?.status === COURSE_STATUSES.testing;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
   };
 
-  const BUTTON_ID = {
-    start: 'start',
-    course: 'course',
-  };
-
-  const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>): void => {
-    setTargetId((event.target as HTMLElement).id);
+  const handleApplyCourse = (): void => {
     mutate(params.courseId);
   };
 
@@ -70,8 +55,6 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
           clientCourseData={clientCourseInfo}
           handleApplyCourse={handleApplyCourse}
           isLoading={isLoading}
-          buttonId={BUTTON_ID}
-          targetId={targetId}
           page={page}
           id={courseData._id}
           status={courseData.status}
@@ -79,11 +62,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
           isFullTextOpen={isFullTextOpen}
           toggleFullText={toggleFullText}
           isCourseApplicationSubmitted={isCourseApplicationSubmitted}
-          isCourseStatusPending={isCourseStatusPending}
           isCourseCompleted={isCourseCompleted}
-          isCourseDeclined={isCourseDeclined}
-          isCourseLearningDisabled={isCourseLearningDisabled}
-          isCourseStatusTesting={isCourseStatusTesting}
         />
       )}
     </>

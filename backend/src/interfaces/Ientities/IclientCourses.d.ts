@@ -28,6 +28,7 @@ interface IClientCourse {
   ];
   date: Date;
   applyDate?: Date;
+  testDate?: Date;
 }
 
 interface IClientCoursePopulated extends IClientCourse {

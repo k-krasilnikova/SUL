@@ -7,7 +7,6 @@ import getEmployees from 'controllers/manager/getEmployees';
 import adapterManager from 'controllers/manager/adapterManager';
 import applyCourse from 'controllers/clientCourses/applyCourse';
 import updatePandingCourse from 'controllers/pendingCourses/updatePendingCourse';
-import approvePendingCourse from 'controllers/pendingCourses/approvePendingCourse';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
 
 const employeesRouter = Router();
