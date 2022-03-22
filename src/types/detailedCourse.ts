@@ -8,6 +8,9 @@ export interface IDetailedCourse {
   page: string;
   id: string;
   status: string;
+  progressValue?: number;
+  progressText?: string;
+  progressVariant?: string;
   windowWidth: string;
   isFullTextOpen: boolean;
   toggleFullText: () => void;
