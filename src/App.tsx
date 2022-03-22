@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { PATHS } from 'constants/routes';
@@ -65,7 +64,6 @@ const App: React.FC = () => (
         </Routes>
       </BrowserRouter>
     </Suspense>
-    <ReactQueryDevtools />
   </QueryClientProvider>
 );
 

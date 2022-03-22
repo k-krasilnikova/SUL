@@ -1,25 +1,38 @@
 import { useEffect, useState } from 'react';
+
 import { ClientCourse } from 'types/clientCourse';
 import { isTestEnable } from 'utils/helpers/isTestEnable';
+
 import FormDialog from './FormDialog';
 
 type IncomingProps = {
   status: string;
   progress?: ClientCourse['progress'];
+  testDate?: string;
 };
 
 const withFormTest =
   <T extends IncomingProps>(Component: React.ComponentType<T>) =>
   (props: T) => {
-    const { status, progress } = props;
+    const { status, progress, testDate } = props;
     const [dialogOpen, setDialogOpen] = useState(false);
     const [testEnabled, setTestEnabled] = useState(false);
 
+    const checkTestDate = (date: string | undefined) => {
+      if (!date) {
+        return true;
+      }
+      return new Date(date).getTime() < Date.now();
+    };
+
     useEffect(() => {
-      if (progress && isTestEnable(progress)) {
+      if (progress && isTestEnable(progress) && checkTestDate(testDate)) {
         setTestEnabled(true);
       }
-    }, [progress]);
+      if (!checkTestDate(testDate)) {
+        setTestEnabled(false);
+      }
+    }, [progress, testDate]);
 
     const handleClickDialogOpen = () => {
       setDialogOpen(true);

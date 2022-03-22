@@ -3,7 +3,7 @@ import { ClientCourse } from 'types/clientCourse';
 import { isTestEnable } from 'utils/helpers/isTestEnable';
 
 type IncommingProps = {
-  progress: ClientCourse['progress'];
+  progress?: ClientCourse['progress'];
 };
 
 const withTest =
@@ -12,7 +12,9 @@ const withTest =
     const [isEnable, setAble] = useState(false);
     const { progress } = props;
     useEffect(() => {
-      setAble(isTestEnable(progress));
+      if (progress) {
+        setAble(isTestEnable(progress));
+      }
     }, [progress]);
 
     return <Component isTest={isEnable} {...props} />;

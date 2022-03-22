@@ -25,6 +25,7 @@ import {
   MobileLink,
   MobileSearchWrapper,
 } from 'pages/CoursesList/styled';
+import { COURSE_DISABLE_DAYS } from 'constants/time';
 import { PageContainer } from './styled';
 
 interface Props {
@@ -89,7 +90,10 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                           Completed
                         </MyButton>
                       ) : clientCourse.status === COURSE_STATUSES.rejected ? (
-                        <DeclinedWrapper clientCourse={clientCourse} />
+                        <DeclinedWrapper
+                          clientCourse={clientCourse}
+                          timeout={COURSE_DISABLE_DAYS}
+                        />
                       ) : (
                         <Link to={`${PATHS.learnCourse}/${clientCourse._id}`}>
                           <MyButton color="primary" variant="mediumContained">

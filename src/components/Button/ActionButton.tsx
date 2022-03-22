@@ -1,7 +1,9 @@
-import { PATHS } from 'constants/routes';
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router';
 import { compose } from 'recompose';
+
+import { PATHS } from 'constants/routes';
+
 import { ClientCourse } from 'types/clientCourse';
 import { MyButton } from './styled';
 import withDisable from './withDisable';
@@ -18,20 +20,16 @@ interface IProps {
 type TOutterProps = {
   label: string;
   status: string;
-  progress: ClientCourse['progress'];
+  progress?: ClientCourse['progress'];
   applyDate?: string;
   courseId: string;
+  timeout: number;
 };
 
 const ActionButton: React.FC<IProps> = ({ children, courseId, label, isTest, isDisable }) => {
   const navigate = useNavigate();
-  const [isOpenForm, setOpenForm] = useState(false);
   const handleLearninig = () => navigate(`${PATHS.learnCourse}/${courseId}`);
-  const handleStartTest = () => setOpenForm(true);
-
-  if (isOpenForm) {
-    console.log('start TEST !!');
-  }
+  const handleStartTest = () => navigate(`${PATHS.learnCourse}/${courseId}/test`);
 
   return (
     <MyButton

@@ -3,24 +3,28 @@ import { makeLeftTime } from 'utils/helpers/convertTime';
 
 type IncommingProps = {
   applyDate?: string;
+  testDate?: string;
+  timeout: number;
 };
 
-const withTimeLeft = (Component: React.ComponentType) => (incommingProps: IncommingProps) => {
-  const [isShowTime, setShowTime] = useState(false);
-  const [time, setTime] = useState<string | undefined>();
-  const { applyDate, ...props } = incommingProps;
+const withTimeLeft =
+  <T extends IncommingProps>(Component: React.ComponentType<T>) =>
+  (props: T) => {
+    const [isShowTime, setShowTime] = useState(false);
+    const [time, setTime] = useState<string | undefined>();
+    const { applyDate, testDate, timeout } = props;
 
-  useEffect(() => {
-    if (applyDate) {
-      setTime(makeLeftTime(applyDate, 'dd:hh'));
-    }
-  }, [applyDate, isShowTime]);
+    useEffect(() => {
+      if (applyDate || testDate) {
+        setTime(makeLeftTime(applyDate || testDate, 'dd:hh', timeout));
+      }
+    }, [applyDate, isShowTime, testDate, timeout]);
 
-  return (
-    <div onMouseEnter={() => setShowTime(true)} onMouseLeave={() => setShowTime(false)}>
-      <Component {...props}>{isShowTime && time}</Component>;
-    </div>
-  );
-};
+    return (
+      <div onMouseEnter={() => setShowTime(true)} onMouseLeave={() => setShowTime(false)}>
+        <Component {...props}>{isShowTime && time}</Component>
+      </div>
+    );
+  };
 
 export default withTimeLeft;
