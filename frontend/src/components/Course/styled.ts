@@ -216,15 +216,14 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   alignSelf: 'end !important',
   paddingBottom: '0px !important',
   [theme.breakpoints.down('xl')]: {
-    ...(type !== INFO.detailedCourse && {
-      flexDirection: 'column',
+    ...(type !== INFO.detailedCourse &&
+      type !== INFO.searchCourses && {
+        flexDirection: 'column',
+      }),
+    ...(type !== INFO.searchCourses && {
+      marginLeft: '10px',
+      height: '50px',
     }),
-    ...(type === INFO.searchCourses && {
-      height: 'auto !important',
-      flexDirection: 'row',
-    }),
-    marginLeft: '10px',
-    height: '50px',
   },
   [theme.breakpoints.down('lg')]: {
     display: 'block',
@@ -252,8 +251,10 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   },
   [theme.breakpoints.up('xl')]: {
     display: 'block',
-    marginLeft: '15px',
     width: '220px',
+    ...(type !== INFO.searchCourses && {
+      marginLeft: '15px',
+    }),
   },
   [theme.breakpoints.up(1680)]: {
     display: 'flex',
@@ -346,7 +347,7 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   ...(type === INFO.searchCourses && {
     height: 'auto !important',
   }),
-  ...(type !== INFO.detailedCourse && {
+  ...(type !== (INFO.detailedCourse || INFO.searchCourses) && {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
