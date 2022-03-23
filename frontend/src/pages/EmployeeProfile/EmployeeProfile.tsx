@@ -25,6 +25,9 @@ import {
   SkillsAndCoursesButton,
   AddCourseButton,
   UserSkillsWrapper,
+  UserInfoListItems,
+  ExpandMore,
+  ExpandLess,
 } from './styled';
 
 interface Props {
@@ -33,6 +36,8 @@ interface Props {
   toggleEmployeeInfo: (infoToOpen: string) => void;
   hoveredButton: string | undefined;
   toggleHover: (buttonHovered: string) => void;
+  profileInfoOpened: boolean;
+  toggleProfileInfoOpened: () => void;
 }
 
 type Employee = User & Props;
@@ -51,6 +56,8 @@ const ProfileContent: React.FC<Employee> = ({
   toggleEmployeeInfo,
   hoveredButton,
   toggleHover,
+  profileInfoOpened,
+  toggleProfileInfoOpened,
 }) => (
   <AuthorizedLayout pageName="Employee">
     <Link to={PATHS.employees}>
@@ -63,23 +70,32 @@ const ProfileContent: React.FC<Employee> = ({
         <UserAvatar avatar={avatar} size={SIZE.medium} />
       </AvatarWrapper>
       <UserInfoList>
-        <EmployeeName disablePadding>{`${firstName} ${lastName} `}</EmployeeName>
-        <ListItem disablePadding>
-          <UserInfoLabel>Position:</UserInfoLabel>
-          <UserInfoText>{position}</UserInfoText>
-        </ListItem>
-        <ListItem disablePadding>
-          <UserInfoLabel>Group:</UserInfoLabel>
-          <UserInfoText>{group}</UserInfoText>
-        </ListItem>
-        <ListItem disablePadding>
-          <UserInfoLabel>Phone:</UserInfoLabel>
-          <UserInfoText>{phone}</UserInfoText>
-        </ListItem>
-        <ListItem disablePadding>
-          <UserInfoLabel>Skype:</UserInfoLabel>
-          <UserInfoText>{skype}</UserInfoText>
-        </ListItem>
+        <EmployeeName disablePadding>
+          {`${firstName} ${lastName} `}
+          {profileInfoOpened ? (
+            <ExpandLess onClick={toggleProfileInfoOpened} />
+          ) : (
+            <ExpandMore onClick={toggleProfileInfoOpened} />
+          )}
+        </EmployeeName>
+        <UserInfoListItems displayInfo={profileInfoOpened}>
+          <ListItem disablePadding>
+            <UserInfoLabel>Position:</UserInfoLabel>
+            <UserInfoText>{position}</UserInfoText>
+          </ListItem>
+          <ListItem disablePadding>
+            <UserInfoLabel>Group:</UserInfoLabel>
+            <UserInfoText>{group}</UserInfoText>
+          </ListItem>
+          <ListItem disablePadding>
+            <UserInfoLabel>Phone:</UserInfoLabel>
+            <UserInfoText>{phone}</UserInfoText>
+          </ListItem>
+          <ListItem disablePadding>
+            <UserInfoLabel>Skype:</UserInfoLabel>
+            <UserInfoText>{skype}</UserInfoText>
+          </ListItem>
+        </UserInfoListItems>
       </UserInfoList>
     </ProfileBox>
     <SkillsAndCoursesBox>

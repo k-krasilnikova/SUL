@@ -13,6 +13,7 @@ const EmployeeProfile: React.FC = () => {
 
   const [employeeInfo, setEmployeeInfo] = useState(EMPLOYEE_INFO.skills);
   const [hoveredButton, setHoveredButton] = useState<string | undefined>(undefined);
+  const [profileInfoOpened, setProfileInfoOpened] = useState<boolean>(false);
 
   const toggleEmployeeInfo = (infoToOpen: string) => {
     setEmployeeInfo(infoToOpen);
@@ -20,6 +21,10 @@ const EmployeeProfile: React.FC = () => {
 
   const toggleHover = (buttonHovered: string) => {
     setHoveredButton(buttonHovered === EMPLOYEE_INFO.none ? undefined : buttonHovered);
+  };
+
+  const toggleProfileInfoOpened = () => {
+    setProfileInfoOpened(!profileInfoOpened);
   };
 
   return (
@@ -37,6 +42,8 @@ const EmployeeProfile: React.FC = () => {
       toggleEmployeeInfo={toggleEmployeeInfo}
       hoveredButton={hoveredButton}
       toggleHover={toggleHover}
+      profileInfoOpened={profileInfoOpened}
+      toggleProfileInfoOpened={toggleProfileInfoOpened}
     />
   );
 };
