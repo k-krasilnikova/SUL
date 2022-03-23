@@ -11,7 +11,7 @@ export const SkillsWrapper = styled('div')({
   [theme.breakpoints.down('lg')]: {
     padding: '20px 10px',
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(960)]: {
     height: 'auto',
   },
 });
@@ -34,7 +34,7 @@ export const Map = styled('div')({
   '& div:last-child': {
     marginRight: 0,
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(960)]: {
     width: '100%',
     flexDirection: 'column',
   },
@@ -55,7 +55,7 @@ export const Rank = styled('div')<{ selected?: boolean }>(({ selected }) => ({
   [theme.breakpoints.down('lg')]: {
     marginRight: '15px',
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(960)]: {
     width: '100%',
     marginTop: '10px',
     marginBottom: '10px',
