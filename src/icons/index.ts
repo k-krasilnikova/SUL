@@ -16,3 +16,5 @@ export { default as checkIcon } from './checkIcon.svg';
 export { default as backIconMobile } from './backIconMobile.svg';
 export { default as warningIcon } from './warning.svg';
 export { default as redWarningIcon } from './redWarning.svg';
+export { default as arrowDown } from './arrowDown.svg';
+export { default as arrowUp } from './arrowUp.svg';
