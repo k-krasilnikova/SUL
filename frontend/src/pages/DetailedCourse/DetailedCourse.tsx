@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { Image } from 'components/Image';
 import CourseInfo from 'components/Course/CourseInfo';
 import { CourseItem } from 'components/Course';
 import { ProgressBar } from 'components/ProgressBar';
@@ -71,9 +70,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
         <MobileSearch />
       </MobileSearchWrapper>
       <InnerWrapper>
-        <ImageWrapper>
-          <Image imageUrl={commonCourseData.avatar} />
-        </ImageWrapper>
+        <ImageWrapper imageUrl={commonCourseData.avatar} />
         {isCourseApplicationSubmitted && status !== COURSE_STATUSES.pending && (
           <ProgressBar
             size="large"

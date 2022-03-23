@@ -6,7 +6,7 @@ export const shortifyCourseDescription = (
   windowWidth?: string,
   pageName?: string,
 ): string => {
-  let maxLength = 420;
+  let maxLength = 220;
   if (windowWidth === WINDOW_SIZE.xl.name && pageName === PAGES.detailed) {
     maxLength = 200;
   }
@@ -26,13 +26,13 @@ export const shortifyCourseDescription = (
     windowWidth === WINDOW_SIZE.xl.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
-    maxLength = 250;
+    maxLength = 120;
   }
   if (
     windowWidth === WINDOW_SIZE.lg.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
-    maxLength = 110;
+    maxLength = 95;
   }
   if (
     windowWidth === WINDOW_SIZE.xmd.name &&

@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { Image } from 'components/Image';
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
 import { ProgressBar } from 'components/ProgressBar';
 import { checkIcon } from 'icons';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
+import { COMPLETED_STATUS_TEXT } from 'constants/detailedCourse';
+import { VARIANTS } from 'constants/progressBar';
+import { SIZE } from 'constants/sizes';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -28,32 +30,40 @@ interface Props {
   description: string;
   duration: string | undefined;
   lessons: number | undefined;
-  pageName?: string;
   status?: string;
-  progress?: number;
+  pageName?: string;
   windowWidth?: string;
   type?: string;
   imageUrl?: string;
+  isCourseCompleted?: boolean;
+  courseRef?: (node?: Element | null) => void;
+  clientCourseRef?: (node?: Element | null) => void;
+  progress?: number;
 }
 
-const CourseItem: React.FC<Props> = ({
+const Course: React.FC<Props> = ({
   title,
   description,
   duration,
   lessons,
   pageName,
   status,
-  progress,
   children,
   windowWidth,
   type,
   imageUrl,
+  isCourseCompleted,
+  courseRef,
+  clientCourseRef,
+  progress,
 }) => (
-  <CourseContainer container direction="column">
+  <CourseContainer
+    container
+    direction="column"
+    ref={pageName === PAGES.coursesList ? courseRef : clientCourseRef}
+  >
     <AboutCourseContainer type={type}>
-      <ImageWrapper>
-        <Image imageUrl={imageUrl} />
-      </ImageWrapper>
+      <ImageWrapper imageUrl={imageUrl} />
       <CourseTextContainer>
         <CourseTitle type={type}>{title}</CourseTitle>
         <CourseDescriptionWrapper type={type}>
@@ -73,10 +83,9 @@ const CourseItem: React.FC<Props> = ({
       {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed && (
         <MobileCourseProgress>
           <ProgressBar
-            value={progress}
-            text={`${progress}%`}
-            size="medium"
-            variant="mobileCourse"
+            size={SIZE.medium}
+            variant={isCourseCompleted ? VARIANTS.successfulMobile : VARIANTS.incompleteMobile}
+            text={isCourseCompleted ? COMPLETED_STATUS_TEXT : `${progress}%`}
           />
         </MobileCourseProgress>
       )}
@@ -90,4 +99,4 @@ const CourseItem: React.FC<Props> = ({
   </CourseContainer>
 );
 
-export default CourseItem;
+export default Course;

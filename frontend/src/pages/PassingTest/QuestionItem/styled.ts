@@ -61,11 +61,11 @@ export const StageWrapper = styled(Box)({
     marginLeft: '146px !important',
   },
   [theme.breakpoints.down('md')]: {
-    marginRight: '15vw !important',
+    marginRight: '5vw !important',
+    marginLeft: '27px !important',
   },
   [theme.breakpoints.down('sm')]: {
     marginRight: '11px !important',
-    marginLeft: '27px !important',
   },
 });
 
@@ -81,6 +81,12 @@ export const AnswersBox = styled(Box)({
   marginTop: '25px !important',
   display: 'flex',
   flexDirection: 'column',
+  [theme.breakpoints.down('md')]: {
+    marginRight: '5vw !important',
+  },
+  [theme.breakpoints.down('sm')]: {
+    marginRight: '11px !important',
+  },
 });
 
 export const StyledRadio = styled(Radio)({

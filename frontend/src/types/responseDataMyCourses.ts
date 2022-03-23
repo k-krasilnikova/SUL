@@ -1,7 +1,7 @@
 import { ClientCourse } from './clientCourse';
 
 export interface ResponseDataMyCourses {
-  clientCourses?: Array<ClientCourse>;
+  clientCourses?: ClientCourse[];
   isLoading?: boolean;
   isError?: boolean;
   isFetching?: boolean;

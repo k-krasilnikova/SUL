@@ -682,7 +682,9 @@ const MATERIALS = [
       {
         _id: '1',
         stage: 1,
-        content: ['https://www.youtube.com/watch?v=DOEtVdkKwcU'],
+        content: [
+          'https://www.youtube.com/watch?v=VuN8qwZoego&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=1&ab_channel=WesBos',
+        ],
       },
       {
         _id: '2',
@@ -706,7 +708,9 @@ const MATERIALS = [
       {
         _id: '4',
         stage: 1,
-        content: ['https://www.youtube.com/watch?v=eIrMbAQSU34'],
+        content: [
+          'https://www.youtube.com/watch?v=ntLJmHOJ0ME&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&index=1&ab_channel=CodeWithHarry',
+        ],
       },
       {
         _id: '5',
@@ -840,12 +844,16 @@ const MATERIALS = [
       {
         _id: '7',
         stage: 1,
-        content: ['https://www.youtube.com/watch?v=T4AZLYMiYMw'],
+        content: [
+          'https://www.youtube.com/watch?v=Hp9wUEDasY4&list=PLD6SPjEPomaustGSgYNsn3V62BTQeH85X',
+        ],
       },
       {
         _id: '8',
         stage: 2,
-        content: ['https://www.youtube.com/watch?v=kotoNOAvNGk'],
+        content: [
+          'https://www.youtube.com/watch?v=jMCOyUgKhqU&list=PLD6SPjEPomaustGSgYNsn3V62BTQeH85X&index=2',
+        ],
       },
     ],
     technologies: ['English'],
@@ -889,7 +897,7 @@ const MOCKED_COURSES = [
     requiredSkills: ['Java'],
     materials: MATERIALS[1].content,
     test: '',
-    avatar: 'https://ucarecdn.com/ef78d112-c5e8-4829-94eb-777d059f82bf/java.png',
+    avatar: 'https://www.filepicker.io/api/file/t12BZqmRoulvCTDhoYie',
   },
   {
     title: 'Python for kids',

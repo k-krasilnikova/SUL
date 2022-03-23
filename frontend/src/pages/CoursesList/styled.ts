@@ -6,7 +6,7 @@ import theme from 'themeSettings';
 
 export const PageContainer = styled(Grid)({
   [theme.breakpoints.down('xl')]: {
-    padding: '16px 24px 16px 0px',
+    padding: '16px 24px 16px 14px',
   },
   [theme.breakpoints.down(950)]: {
     padding: '0px 8px',
@@ -26,6 +26,9 @@ export const GridItem = styled(Grid)({
     width: '100%',
     paddingLeft: '10px',
     paddingTop: '8px',
+  },
+  [theme.breakpoints.down('md')]: {
+    paddingLeft: '0px',
   },
   [theme.breakpoints.up('xl')]: {
     width: '711px',
