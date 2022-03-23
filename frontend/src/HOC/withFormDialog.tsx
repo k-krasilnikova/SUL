@@ -1,10 +1,10 @@
-import { COURSE_STATUSES } from 'constants/statuses';
 import { useEffect, useState } from 'react';
 
+import { COURSE_STATUSES } from 'constants/statuses';
 import { ClientCourse } from 'types/clientCourse';
 import { isTestEnable } from 'utils/helpers/isTestEnable';
 
-import FormDialog from './FormDialog';
+import FormDialog from '../pages/LearningCourse/FormDialog/FormDialog';
 
 type IncomingProps = {
   status?: string;
@@ -38,11 +38,11 @@ const withFormTest =
       }
       if (!checkTestDate(testDate)) {
         setTestEnabled(false);
+        return;
       }
       if (progress && isTestEnable(progress)) {
         setTestEnabled(true);
       }
-      console.log('effect progress', progress);
     }, [progress, status, testDate]);
 
     const handleDialogOpen = () => {
@@ -52,8 +52,7 @@ const withFormTest =
     const handleDialogClose = () => {
       setDialogOpen(false);
     };
-    console.log('progress', progress);
-    console.log('eneble', testEnabled, status);
+
     return (
       <>
         <Component handleDialogOpen={handleDialogOpen} isTestEnable={testEnabled} {...props} />

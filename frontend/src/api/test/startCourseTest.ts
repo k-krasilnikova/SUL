@@ -2,7 +2,7 @@ import { useMutation, UseMutationResult } from 'react-query';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
-import { apiClientWrapper } from 'api/base';
+import { apiClientWrapper, queryClient } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
@@ -23,6 +23,7 @@ const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosE
     },
     {
       onError: handleSubmitError,
+      onSuccess: () => queryClient.refetchQueries(['ClientCourseInfo', courseId]),
     },
   );
 };

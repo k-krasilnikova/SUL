@@ -1,19 +1,16 @@
-import { COURSE_STATUSES } from 'constants/statuses';
 import { useEffect, useState } from 'react';
 
-type InjectedProps = {
-  isDisable: boolean;
-};
+import { COURSE_STATUSES } from 'constants/statuses';
 
 type IncommingProps = {
   status: string;
 };
 
 const withDisable =
-  <T extends InjectedProps>(Component: any) =>
-  (incommingProps: IncommingProps & Omit<T, 'progress'> & Omit<T, 'isDisable'>) => {
+  <T extends IncommingProps>(Component: React.ComponentType<T>) =>
+  (props: T) => {
     const [isDisable, setDisable] = useState(false);
-    const { status, ...props } = incommingProps;
+    const { status } = props;
     useEffect(() => {
       if (
         [
@@ -27,7 +24,7 @@ const withDisable =
       }
     }, [status]);
 
-    return <Component isDisable={isDisable} {...(props as unknown as Omit<T, 'isDisable'>)} />;
+    return <Component isDisable={isDisable} {...props} />;
   };
 
 export default withDisable;

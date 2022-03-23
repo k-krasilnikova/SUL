@@ -57,17 +57,14 @@ const LearningCourseContainer: React.FC = () => {
     }
   }, [clientCourseResponse?.status, params.courseId, startCourseMutate]);
 
-  useEffect(() => {
+  const stageForward = () => {
+    setStage(stage + STAGE_CHANGE);
     if (clientCourseResponse?.status === COURSE_STATUSES.started) {
       mutate(stage);
       if (stage + STAGE_CHANGE === maxStage) {
         mutate(maxStage);
       }
     }
-  }, [clientCourseResponse?.status, maxStage, mutate, stage]);
-
-  const stageForward = () => {
-    setStage(stage + STAGE_CHANGE);
   };
 
   const stageBack = () => {

@@ -6,8 +6,10 @@ import { Back, Forward } from 'components/Arrows';
 import { PATHS } from 'constants/routes';
 import { playVideo } from 'icons';
 import { MATERIAL } from 'constants/materials';
-
 import { ClientCourse } from 'types/clientCourse';
+import { CustomButton } from 'components/Button/styled';
+import withFormTest from 'HOC/withFormDialog';
+
 import {
   LearningPageContainer,
   BackButton,
@@ -22,14 +24,12 @@ import {
   DescriptionTitle,
   DescriptionText,
   StartTestButton,
-  NextButton,
   ButtonWrapper,
   StyledButton,
   ToggleDescription,
   ExpandLessIcon,
   ExpandMoreIcon,
 } from './styled';
-import withFormTest from './FormDialog/withFormDialog';
 
 interface LearningProps {
   stage: number;
@@ -119,9 +119,9 @@ const LearningCourse: React.FC<LearningProps> = ({
               </StartTestButton>
             </>
           ) : (
-            <NextButton variant="contained" onClick={stageForward}>
+            <CustomButton variant="contained" onClick={stageForward}>
               Next
-            </NextButton>
+            </CustomButton>
           )}
         </ButtonWrapper>
         {courseDescription && (

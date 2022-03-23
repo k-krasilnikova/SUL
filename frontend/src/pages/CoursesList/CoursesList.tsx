@@ -13,7 +13,7 @@ import { buttonSpinner } from 'animations';
 import { LOADER } from 'constants/loaderTypes';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
-import { MyButton } from 'components/Button/styled';
+import { CustomButton } from 'components/Button/styled';
 
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { COURSE_LABELS } from 'constants/statuses';
@@ -81,14 +81,14 @@ const CoursesList: React.FC<CoursesProps> = ({
                               : `${PATHS.coursesList}/${course._id}`
                           }
                         >
-                          <MyButton color="primary" variant="mediumOutlined">
+                          <CustomButton color="primary" variant="mediumOutlined">
                             Details
-                          </MyButton>
+                          </CustomButton>
                         </Link>
                         {targetLoading && targetId === course._id ? (
-                          <MyButton variant="mediumOutlined" disabled>
+                          <CustomButton variant="mediumOutlined" disabled>
                             <ButtonLoader buttonSpinner={buttonSpinner} />
-                          </MyButton>
+                          </CustomButton>
                         ) : clientCourses ? (
                           <ActionButton
                             label={COURSE_LABELS[clientCourses[indx].status]}
@@ -99,13 +99,13 @@ const CoursesList: React.FC<CoursesProps> = ({
                             timeout={COURSE_DISABLE_DAYS}
                           />
                         ) : (
-                          <MyButton
+                          <CustomButton
                             id={course._id}
                             onClick={handleApplyCourse}
                             variant="mediumContained"
                           >
                             Apply the course
-                          </MyButton>
+                          </CustomButton>
                         )}
                       </CourseActions>
                     </CourseActionsBox>

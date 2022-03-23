@@ -27,12 +27,10 @@ const useGetClientCourseAndMaterials = (
         `${API.getCourses}/${courseData.course._id}/materials`,
       );
       const materialsData: ICourseMaterialsResponse = materialsResponse.data;
-      console.log('feth in hook', courseResponse);
       return [courseData, materialsData];
     },
     {
       refetchOnWindowFocus: false,
-      refetchOnMount: true,
       onError: handleSubmitError,
     },
   );
