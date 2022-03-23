@@ -66,9 +66,7 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                   status={clientCourse.status}
                   windowWidth={windowWidth}
                   imageUrl={clientCourse.course.avatar}
-                  clientCourseRef={
-                    clientCourses.length - 1 === index ? lastClientCourseRef : undefined
-                  }
+                  courseRef={clientCourses.length - 1 === index ? lastClientCourseRef : undefined}
                 >
                   <CourseActionsBox key={`${clientCourse._id}_box`}>
                     <CourseActions key={`${clientCourse._id}_actions`}>
