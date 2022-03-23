@@ -26,18 +26,18 @@ import {
   AddCourseButton,
   UserSkillsWrapper,
   UserInfoListItems,
-  ExpandMore,
-  ExpandLess,
+  ExpandMoreIcon,
+  ExpandLessIcon,
 } from './styled';
 
 interface Props {
-  employeeCourses?: ClientCourse[];
   employeeInfo: string;
   toggleEmployeeInfo: (infoToOpen: string) => void;
   hoveredButton: string | undefined;
   toggleHover: (buttonHovered: string) => void;
   profileInfoOpened: boolean;
   toggleProfileInfoOpened: () => void;
+  employeeCourses?: ClientCourse[];
 }
 
 type Employee = User & Props;
@@ -73,9 +73,9 @@ const ProfileContent: React.FC<Employee> = ({
         <EmployeeName disablePadding>
           {`${firstName} ${lastName} `}
           {profileInfoOpened ? (
-            <ExpandLess onClick={toggleProfileInfoOpened} />
+            <ExpandLessIcon onClick={toggleProfileInfoOpened} />
           ) : (
-            <ExpandMore onClick={toggleProfileInfoOpened} />
+            <ExpandMoreIcon onClick={toggleProfileInfoOpened} />
           )}
         </EmployeeName>
         <UserInfoListItems displayInfo={profileInfoOpened}>

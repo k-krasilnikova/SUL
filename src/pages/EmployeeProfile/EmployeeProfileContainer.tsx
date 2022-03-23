@@ -19,7 +19,7 @@ const EmployeeProfile: React.FC = () => {
     setEmployeeInfo(infoToOpen);
   };
 
-  const toggleHover = (buttonHovered: string) => {
+  const toggleHover = (buttonHovered: string): void => {
     setHoveredButton(buttonHovered === EMPLOYEE_INFO.none ? undefined : buttonHovered);
   };
 
