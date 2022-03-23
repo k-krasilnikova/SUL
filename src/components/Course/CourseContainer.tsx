@@ -14,6 +14,7 @@ interface Props {
   windowWidth?: string;
   type?: string;
   imageUrl?: string;
+  courseRef?: (node?: Element | null) => void;
 }
 
 const CourseItem: React.FC<Props> = ({
@@ -27,6 +28,7 @@ const CourseItem: React.FC<Props> = ({
   windowWidth,
   type,
   imageUrl,
+  courseRef,
 }) => {
   const isCourseCompleted = !!(
     status && [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(status)
@@ -43,6 +45,7 @@ const CourseItem: React.FC<Props> = ({
       type={type}
       imageUrl={imageUrl}
       isCourseCompleted={isCourseCompleted}
+      courseRef={courseRef}
     >
       {children}
     </Course>
