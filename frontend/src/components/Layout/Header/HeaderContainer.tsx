@@ -50,8 +50,8 @@ const HeaderContainer: React.FC<Props> = ({
       />
       <ConfirmLogOutModalWindow
         handleLogOut={handleLogOut}
-        isConfirmOpen={isConfirmOpen}
-        cancelLogOut={cancelLogOut}
+        isOpened={isConfirmOpen}
+        handleCancelLogOut={cancelLogOut}
         isLoading={isLoading}
         size="small"
       />

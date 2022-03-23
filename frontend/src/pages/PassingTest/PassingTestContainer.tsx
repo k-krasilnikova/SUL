@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 
-import timeIsOverDialogToggle from 'hooks/useToggle';
-import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
-import { PATHS } from 'constants/routes';
 import { useSendTestResult, useGetCourseTest } from 'api/test';
 import { useFinishClientCourse, useGetClientCourseInfo } from 'api/myCourses';
+import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
+import { PATHS } from 'constants/routes';
+import { useToggle } from 'hooks';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
@@ -22,21 +22,21 @@ const PassingTestContainer: React.FC = () => {
   const courseTest = courseTestData?.length ? courseTestData[0].test : undefined;
   const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
 
-  const [isOpenedTimeIsOverDialog, seTIsOpenedTimeIsOverDialog] = timeIsOverDialogToggle(false);
+  const [isOpenedTestTimeotDialog, setIsOpenedTestTimeotDialog] = useToggle(false);
 
   useEffect(() => {
     if (courseTest?.timeout) {
       const timeoutId = setTimeout(() => {
-        seTIsOpenedTimeIsOverDialog();
+        setIsOpenedTestTimeotDialog();
       }, courseTest?.timeout);
       return () => {
         clearTimeout(timeoutId);
       };
     }
-  }, [courseTest?.timeout, seTIsOpenedTimeIsOverDialog]);
+  }, [courseTest?.timeout, setIsOpenedTestTimeotDialog]);
 
   const handleCloseTimeIsOverDialog = () => {
-    seTIsOpenedTimeIsOverDialog();
+    setIsOpenedTestTimeotDialog();
     naviagteTo(PATHS.myCourses);
   };
 
@@ -113,14 +113,14 @@ const PassingTestContainer: React.FC = () => {
             handleConfirm={handleConfirm}
           />
           <ConfirmLeavePage
-            isConfirmOpen={isConfirmOpen}
-            cancelLeavePage={cancelLeavePage}
+            isOpened={isConfirmOpen}
+            handleCancelLeavePage={cancelLeavePage}
             handleLeavePage={handleLeavePage}
             isLoading={isLoading}
             size="small"
           />
           <ConfirmTimeIsOver
-            isOpened={isOpenedTimeIsOverDialog}
+            isOpened={isOpenedTestTimeotDialog}
             handleClose={handleCloseTimeIsOverDialog}
             size="small"
           />
