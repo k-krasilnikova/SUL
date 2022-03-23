@@ -10,9 +10,6 @@ export const RequestsWrapper = styled('div')({
   height: 'calc(100% - 100px)',
   maxWidth: '1800px',
   width: '100%',
-  [theme.breakpoints.down('lg')]: {
-    padding: '20px 10px',
-  },
 });
 
 export const RequestsTable = styled('div')({
@@ -68,7 +65,7 @@ export const ImageWrapper = styled('div')({
 export const CourseImageWrapper = styled('div')({
   marginRight: '8px',
   height: '14.25px',
-  width: '19px',
+  minWidth: '19px',
   marginLeft: '64px',
 });
 
@@ -123,8 +120,7 @@ export const InterviewActionButton = styled(ActionButton)({
 });
 
 export const SearchWrapper = styled('div')({
-  marginLeft: '82px',
-  marginTop: '21px',
+  marginRight: '330px',
 });
 
 export const SearchEmployee = styled(Input)({

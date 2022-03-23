@@ -33,6 +33,7 @@ import {
   SearchWrapper,
   SearchEmployee,
 } from './styled';
+import FilterMenu from './FilterMenu';
 
 interface IProps {
   isLoading: boolean;
@@ -54,20 +55,6 @@ const Requests: React.FC<IProps> = ({
   declineLoading,
 }) => (
   <AuthorizedLayout pageName="Requests">
-    <SearchWrapper>
-      <SearchEmployee
-        disableUnderline
-        placeholder="Search"
-        inputProps={{ maxLength: 100 }}
-        fullWidth
-        startAdornment={
-          <InputAdornment position="start">
-            <Search color="disabled" fontSize="medium" />
-          </InputAdornment>
-        }
-      />
-      <Divider sx={{ width: '445px' }} />
-    </SearchWrapper>
     <RequestsWrapper>
       {isLoading ? (
         <Loader color="primary" type={LOADER.content} />
@@ -77,67 +64,92 @@ const Requests: React.FC<IProps> = ({
             requests.map((request) => {
               const isTargetRequest = targetId === request._id;
               return (
-                <Row key={request._id}>
-                  <Cell>
-                    <ImageWrapper>
-                      <UserAvatar size={SIZE.small} avatar={request.user.avatar} />
-                    </ImageWrapper>
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                      <UserName>{`${request.user.firstName} ${request.user.lastName}`}</UserName>
-                      <Position>{request.user.position}</Position>
-                    </Box>
-                  </Cell>
-                  <CourseCell>
-                    <CourseImageWrapper>
-                      <Image imageUrl={request.course.avatar} />
-                    </CourseImageWrapper>
-                    <CourseTitle>{request.course.title}</CourseTitle>
-                  </CourseCell>
-                  <TimeCell>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                      <SecondaryText>{`${request.elapsed.hours}h${request.elapsed.minutes}m`}</SecondaryText>
-                    </Box>
-                  </TimeCell>
-                  <ButtonCell>
-                    <ActionButton
-                      variant="mediumContained"
-                      onClick={() => approveRequest(request._id)}
-                      disabled={approveLoading}
-                    >
-                      {approveLoading && isTargetRequest ? (
-                        <ButtonLoader buttonSpinner={buttonSpinner} />
-                      ) : (
-                        'Accept'
-                      )}
-                    </ActionButton>
-                  </ButtonCell>
-                  <ButtonCell>
-                    <InterviewActionButton
-                      variant="mediumContained"
-                      onClick={() => approveRequest(request._id)}
-                      disabled={approveLoading}
-                    >
-                      {approveLoading && isTargetRequest ? (
-                        <ButtonLoader buttonSpinner={buttonSpinner} />
-                      ) : (
-                        'Accept with interview'
-                      )}
-                    </InterviewActionButton>
-                  </ButtonCell>
-                  <ButtonCell>
-                    <ActionButton
-                      variant="mediumOutlined"
-                      onClick={() => declineRequest(request._id)}
-                      disabled={declineLoading}
-                    >
-                      {declineLoading && isTargetRequest ? (
-                        <ButtonLoader buttonSpinner={buttonSpinner} />
-                      ) : (
-                        'Reject'
-                      )}
-                    </ActionButton>
-                  </ButtonCell>
-                </Row>
+                <>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'flex-start',
+                      marginLeft: '82px',
+                      mb: '21px',
+                    }}
+                  >
+                    <SearchWrapper>
+                      <SearchEmployee
+                        disableUnderline
+                        placeholder="Search"
+                        inputProps={{ maxLength: 100 }}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <Search color="disabled" fontSize="medium" />
+                          </InputAdornment>
+                        }
+                      />
+                      <Divider sx={{ width: '445px' }} />
+                    </SearchWrapper>
+                    <FilterMenu />
+                  </Box>
+                  <Row key={request._id}>
+                    <Cell>
+                      <ImageWrapper>
+                        <UserAvatar size={SIZE.small} avatar={request.user.avatar} />
+                      </ImageWrapper>
+                      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                        <UserName>{`${request.user.firstName} ${request.user.lastName}`}</UserName>
+                        <Position>{request.user.position}</Position>
+                      </Box>
+                    </Cell>
+                    <CourseCell>
+                      <CourseImageWrapper>
+                        <Image imageUrl={request.course.avatar} />
+                      </CourseImageWrapper>
+                      <CourseTitle>{request.course.title}</CourseTitle>
+                    </CourseCell>
+                    <TimeCell>
+                      <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                        <SecondaryText>{`${request.elapsed.hours}h${request.elapsed.minutes}m`}</SecondaryText>
+                      </Box>
+                    </TimeCell>
+                    <ButtonCell>
+                      <ActionButton
+                        variant="mediumContained"
+                        onClick={() => approveRequest(request._id)}
+                        disabled={approveLoading}
+                      >
+                        {approveLoading && isTargetRequest ? (
+                          <ButtonLoader buttonSpinner={buttonSpinner} />
+                        ) : (
+                          'Accept'
+                        )}
+                      </ActionButton>
+                    </ButtonCell>
+                    <ButtonCell>
+                      <InterviewActionButton
+                        variant="mediumContained"
+                        onClick={() => approveRequest(request._id)}
+                        disabled={approveLoading}
+                      >
+                        {approveLoading && isTargetRequest ? (
+                          <ButtonLoader buttonSpinner={buttonSpinner} />
+                        ) : (
+                          'Accept with interview'
+                        )}
+                      </InterviewActionButton>
+                    </ButtonCell>
+                    <ButtonCell>
+                      <ActionButton
+                        variant="mediumOutlined"
+                        onClick={() => declineRequest(request._id)}
+                        disabled={declineLoading}
+                      >
+                        {declineLoading && isTargetRequest ? (
+                          <ButtonLoader buttonSpinner={buttonSpinner} />
+                        ) : (
+                          'Reject'
+                        )}
+                      </ActionButton>
+                    </ButtonCell>
+                  </Row>
+                </>
               );
             })
           ) : (
