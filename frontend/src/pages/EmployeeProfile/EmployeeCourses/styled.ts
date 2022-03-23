@@ -10,16 +10,17 @@ export const SearchWrapper = styled('div')({
 });
 
 export const SearchCourse = styled(Input)({
-  [theme.breakpoints.up('xs')]: {
+  fontSize: '18px!important',
+  [theme.breakpoints.down('sm')]: {
     fontSize: '16px!important',
     lineHeight: '33.61px',
-  },
-  [theme.breakpoints.up('sm')]: {
-    fontSize: '18px!important',
   },
 });
 
 export const CoursesBox = styled('div')({
+  maxWidth: '100%',
+  marginLeft: '0',
+  marginRight: '0',
   [theme.breakpoints.down('xl')]: {
     maxWidth: '828px',
     marginLeft: '54px',
@@ -34,14 +35,10 @@ export const CoursesBox = styled('div')({
     marginLeft: '13px',
     marginRight: '19px',
   },
-  [theme.breakpoints.up('xl')]: {
-    maxWidth: '100%',
-    marginLeft: '0px',
-    marginRight: '0px',
-  },
 });
 
 export const CoursesList = styled('div')({
+  maxWidth: '100%',
   [theme.breakpoints.down('xl')]: {
     paddingTop: '16px',
     maxWidth: '828px',
@@ -49,9 +46,6 @@ export const CoursesList = styled('div')({
   [theme.breakpoints.down('sm')]: {
     paddingTop: '10px',
     maxWidth: '288px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    maxWidth: '100%',
   },
 });
 
@@ -64,12 +58,11 @@ export const CoursesListItem = styled('div')({
   border: '1px solid #EFEFEF',
   borderRadius: '5px',
   paddingTop: '16px',
-  fontFamily: '"Ubuntu", sans-serif',
   fontWeight: '400',
-  margin: '24px 0px 16px 63px',
+  margin: '24px 0 16px 63px',
   padding: '15px',
   [theme.breakpoints.down('xl')]: {
-    margin: '8px 0px',
+    margin: '8px 0',
     padding: '8px',
     width: '215px',
     height: '53px',
@@ -107,19 +100,15 @@ export const CourseStatus = styled(Typography)({
 });
 
 export const CoursesDivider = styled(Divider)({
+  display: 'block',
   [theme.breakpoints.down('sm')]: {
     display: 'none',
-  },
-  [theme.breakpoints.up('sm')]: {
-    display: 'block',
   },
 });
 
 export const NoCourses = styled('div')({
+  marginTop: '80px',
   [theme.breakpoints.down('lg')]: {
     marginTop: '50px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    marginTop: '80px',
   },
 });

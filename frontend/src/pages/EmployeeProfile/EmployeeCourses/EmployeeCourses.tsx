@@ -26,11 +26,11 @@ import {
 } from './styled';
 
 interface Props {
-  courses?: ClientCourse[];
   searchCourseInList: (value: string) => void;
   checkSpace: (event: React.KeyboardEvent) => void;
   checkPastedValue: (value: string) => void;
   searchCourse: string;
+  courses?: ClientCourse[];
 }
 
 const UserSkills: React.FC<Props> = ({
@@ -68,7 +68,7 @@ const UserSkills: React.FC<Props> = ({
         <Divider />
       </SearchWrapper>
       <CoursesList>
-        {courses && courses.length ? (
+        {courses?.length ? (
           courses.map((course, id, coursesArray) => (
             <div key={course.course.title}>
               <CoursesListItem>
