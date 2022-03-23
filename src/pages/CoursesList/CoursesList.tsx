@@ -29,6 +29,7 @@ import {
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
+  lastCourseRef: (node?: Element | null) => void;
 }
 
 type CoursesProps = ResponseDataType & Props;
@@ -41,6 +42,7 @@ const CoursesList: React.FC<CoursesProps> = ({
   targetId,
   disableLink,
   windowWidth,
+  lastCourseRef,
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
@@ -50,7 +52,7 @@ const CoursesList: React.FC<CoursesProps> = ({
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
-        {courses.map((course) => (
+        {courses.map((course, index) => (
           <Suspense
             key={`${course._id}_item`}
             fallback={<Loader color="primary" type={LOADER.content} />}
@@ -65,6 +67,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                   windowWidth={windowWidth}
                   pageName={PAGES.coursesList}
                   imageUrl={course?.avatar}
+                  courseRef={courses.length - 1 === index ? lastCourseRef : undefined}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>
