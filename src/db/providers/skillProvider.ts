@@ -2,7 +2,9 @@ import mongoose, { ObjectId } from 'mongoose';
 
 import UserSkillModel from 'db/models/UserSkill';
 import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
+import { IUser } from 'interfaces/Ientities/Iusers';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import UserModel from 'db/models/User';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })
@@ -50,4 +52,36 @@ const populateUserSkills = async (userSkills: IUserSkill[]): Promise<IUserSkill[
   return populatedUserSkills;
 };
 
-export { getUserSkills, getPopulatedUserSkill, addUserSkill, updateUserSkill, populateUserSkills };
+const populateUserTechnologies = async (employee: IUser): Promise<IUser> =>
+  UserModel.populate(employee, [
+    {
+      path: 'technologies',
+      populate: {
+        path: 'group',
+        model: 'SkillGroup',
+        select: 'name -_id',
+      },
+    },
+    {
+      path: 'technologies',
+      populate: {
+        path: 'achievedSkills',
+        model: 'UserSkill',
+        populate: {
+          path: 'skill',
+          model: 'Skill',
+          select: 'name maxScore image -_id',
+        },
+        select: 'score skill -_id',
+      },
+    },
+  ]);
+
+export {
+  getUserSkills,
+  getPopulatedUserSkill,
+  addUserSkill,
+  updateUserSkill,
+  populateUserSkills,
+  populateUserTechnologies,
+};
