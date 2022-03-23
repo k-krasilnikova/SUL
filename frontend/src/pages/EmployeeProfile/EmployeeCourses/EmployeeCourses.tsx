@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import { Divider } from '@mui/material';
+import { Divider, InputAdornment } from '@mui/material';
+import { Search } from '@mui/icons-material';
 
 import { NoContent } from 'components/NoContent';
 import { NO_USER_COURSES } from 'constants/messages';
@@ -15,7 +15,6 @@ import {
   CoursesBox,
   SearchWrapper,
   SearchCourse,
-  SearchIcon,
   CoursesList,
   CoursesListItem,
   CourseItemText,
@@ -26,11 +25,11 @@ import {
 } from './styled';
 
 interface Props {
-  courses?: ClientCourse[];
   searchCourseInList: (value: string) => void;
   checkSpace: (event: React.KeyboardEvent) => void;
   checkPastedValue: (value: string) => void;
   searchCourse: string;
+  courses?: ClientCourse[];
 }
 
 const PREVIOUS_ITEM = 1;
@@ -52,7 +51,7 @@ const UserSkills: React.FC<Props> = ({
           fullWidth
           startAdornment={
             <InputAdornment position="start">
-              <SearchIcon color="disabled" fontSize="medium" />
+              <Search color="disabled" fontSize="medium" />
             </InputAdornment>
           }
           onKeyDown={(event) => {
@@ -70,7 +69,7 @@ const UserSkills: React.FC<Props> = ({
         <Divider />
       </SearchWrapper>
       <CoursesList>
-        {courses && courses.length ? (
+        {courses?.length ? (
           courses.map((course, id, coursesArray) => (
             <div key={course.course.title}>
               <CoursesListItem>
