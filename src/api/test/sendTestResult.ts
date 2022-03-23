@@ -2,7 +2,7 @@ import { useMutation, UseMutationResult } from 'react-query';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
-import { apiClientWrapper } from 'api/base';
+import { apiClientWrapper, queryClient } from 'api/base';
 import { API } from 'constants/routes';
 import { IResponseData } from 'types/test';
 import { errorSnackbar } from 'constants/snackbarVariant';
@@ -22,6 +22,7 @@ const useSendTestResult = (
   const handleSubmit = () => {
     if (onSubmit) {
       onSubmit();
+      queryClient.invalidateQueries('profile');
     }
   };
   return useMutation(
