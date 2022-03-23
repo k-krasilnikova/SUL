@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { DialogActions } from '@mui/material';
 
 import { ConfirmDialog } from 'components/ConfirmDialog';
@@ -7,33 +7,36 @@ import { buttonSpinner } from 'animations';
 
 import { ButtonCancel, ButtonExit } from './styled';
 
-interface IConfirm {
-  isConfirmOpen: boolean;
+interface IProps {
+  isOpened: boolean;
   isLoading?: boolean;
   size?: string;
-  cancelLeavePage: () => void;
+  handleCancelLeavePage: () => void;
   handleLeavePage: () => void;
 }
 
-const ConfirmLeavePage: React.FC<IConfirm> = ({
-  isConfirmOpen,
+const CONFIRM_MESSAGE = 'Are you sure you want to leave this page?';
+const BUTTON_EXIT_TEXT = 'Exit';
+
+const ConfirmLeavePage: FC<IProps> = ({
+  isOpened,
   isLoading,
   size,
-  cancelLeavePage,
+  handleCancelLeavePage,
   handleLeavePage,
 }) => (
   <ConfirmDialog
-    open={isConfirmOpen}
-    onClose={cancelLeavePage}
+    open={isOpened}
+    onClose={handleCancelLeavePage}
     size={size}
-    confirmMessage="Are you sure you want to leave this page?"
+    confirmMessage={CONFIRM_MESSAGE}
   >
     <DialogActions>
-      <ButtonCancel variant="mediumOutlined" onClick={cancelLeavePage}>
+      <ButtonCancel variant="mediumOutlined" onClick={handleCancelLeavePage}>
         Stay
       </ButtonCancel>
       <ButtonExit disabled={isLoading} variant="mediumContained" onClick={handleLeavePage}>
-        {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : 'Exit'}
+        {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : BUTTON_EXIT_TEXT}
       </ButtonExit>
     </DialogActions>
   </ConfirmDialog>

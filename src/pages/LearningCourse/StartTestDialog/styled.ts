@@ -7,83 +7,68 @@ import { Button } from 'components/Button';
 export const StyledDialogTitle = styled(DialogTitle)({
   '&.MuiDialogTitle-root': {
     padding: '4px 0 0 ',
-    [theme.breakpoints.up('xs')]: {
+    fontSize: '22px',
+    [theme.breakpoints.down('md')]: {
       fontSize: '18px',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '22px',
     },
   },
 });
 
 export const MainDialogContentText = styled(DialogContentText)({
   '&.MuiDialogContentText-root': {
-    [theme.breakpoints.up('xs')]: {
+    fontSize: '20px',
+    marginBottom: '32px',
+    padding: '24px 90px 0',
+    [theme.breakpoints.down('md')]: {
       marginBottom: '28px',
       padding: '24px 12px 0',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '20px',
-      marginBottom: '32px',
-      padding: '24px 90px 0',
     },
   },
 });
 
 export const WarningDialogContentText = styled(DialogContentText)({
   '&.MuiDialogContentText-root': {
-    margin: '0',
+    margin: '0 0 8px',
     color: '#d43e41',
-    [theme.breakpoints.up('xs')]: {
+    fontSize: '16px',
+    [theme.breakpoints.down('md')]: {
       marginBottom: '4px',
       fontSize: '14px',
-    },
-    [theme.breakpoints.up('md')]: {
-      marginBottom: '8px',
-      fontSize: '16px',
     },
   },
 });
 
 export const SecondaryDialogContentText = styled(DialogContentText)({
   '&.MuiDialogContentText-root': {
+    marginBottom: '16px',
+    fontSize: '16px',
     fontWeight: '400',
-    [theme.breakpoints.up('xs')]: {
+    [theme.breakpoints.down('md')]: {
       marginBottom: '32px',
       fontSize: '14px',
-    },
-    [theme.breakpoints.up('md')]: {
-      marginBottom: '16px',
-      fontSize: '16px',
     },
   },
 });
 
 export const StyledDialogActions = styled(DialogActions)({
   '&.MuiDialogActions-root': {
-    marginTop: '8px',
-    marginBottom: '24px',
-    [theme.breakpoints.up('xs')]: {
+    height: '50px',
+    margin: '8px 0 24px',
+    [theme.breakpoints.down('md')]: {
       height: '40px',
-    },
-    [theme.breakpoints.up('md')]: {
-      height: '50px',
     },
   },
 });
 
 export const StyledButton = styled(Button)({
   '&.MuiButton-root': {
-    [theme.breakpoints.up('xs')]: {
-      height: '40px',
-      width: '134px',
+    height: '100%',
+    minWidth: '155px',
+    fontSize: '18px',
+    [theme.breakpoints.down('md')]: {
+      minWidth: '134px',
       padding: '6px 16px',
       fontSize: '16px',
-    },
-    [theme.breakpoints.up('md')]: {
-      height: '50px',
-      width: '155px',
-      fontSize: '18px',
     },
   },
 });

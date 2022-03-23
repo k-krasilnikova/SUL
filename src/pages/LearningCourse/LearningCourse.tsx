@@ -28,7 +28,7 @@ import {
   ExpandLessIcon,
   ExpandMoreIcon,
 } from './styled';
-import { FormDialog } from './FormDialog';
+import { StartTestDialog } from './StartTestDialog';
 
 interface LearningProps {
   stage: number;
@@ -37,12 +37,14 @@ interface LearningProps {
   stageBack: () => void;
   stageForward: () => void;
   handleClickDialogOpen: () => void;
+  handleStartTest: () => void;
   handleDialogClose: () => void;
   courseDescription?: {
     title: string;
     info: string;
   };
   testEnabled: boolean;
+  testTimeout?: number;
   backDisabled: boolean;
   forwardDisabled: boolean;
   material: string;
@@ -59,11 +61,13 @@ const LearningCourse: React.FC<LearningProps> = ({
   stageBack,
   stageForward,
   courseDescription,
+  testTimeout,
   testEnabled,
   backDisabled,
   forwardDisabled,
   material,
   materialType,
+  handleStartTest,
   handleClickDialogOpen,
   handleDialogClose,
   videoPreview,
@@ -115,9 +119,11 @@ const LearningCourse: React.FC<LearningProps> = ({
               <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
                 Start the Test
               </StartTestButton>
-              <FormDialog
-                dialogOpen={dialogOpen}
-                handleDialogClose={handleDialogClose}
+              <StartTestDialog
+                isOpened={dialogOpen}
+                testTimeout={testTimeout}
+                handleClose={handleDialogClose}
+                handleStartTest={handleStartTest}
                 size="medium"
               />
             </>

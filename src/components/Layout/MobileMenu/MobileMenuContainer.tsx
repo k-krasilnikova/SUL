@@ -63,8 +63,8 @@ const MobileMenuContainer: React.FC<MobileMenuProps> = ({
       />
       <ConfirmLogOutModalWindow
         handleLogOut={handleLogOut}
-        isConfirmOpen={isConfirmOpen}
-        cancelLogOut={cancelLogOut}
+        isOpened={isConfirmOpen}
+        handleCancelLogOut={cancelLogOut}
         size="small"
       />
     </>
