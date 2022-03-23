@@ -6,8 +6,8 @@ import { Button } from 'components/Button';
 
 interface IProps {
   isOpened: boolean;
-  size?: string;
   handleClose: () => void;
+  size?: string;
 }
 
 const CONFIRM_MESSAGE =

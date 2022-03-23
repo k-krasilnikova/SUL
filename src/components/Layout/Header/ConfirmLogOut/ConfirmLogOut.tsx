@@ -9,10 +9,10 @@ import { ButtonCancel, ButtonExit } from './styled';
 
 interface IProps {
   isOpened: boolean;
-  isLoading?: boolean;
-  size?: string;
   handleCancelLogOut: () => void;
   handleLogOut: () => void;
+  isLoading?: boolean;
+  size?: string;
 }
 
 const CONFIRM_MESSAGE = 'Log out of this account?';
