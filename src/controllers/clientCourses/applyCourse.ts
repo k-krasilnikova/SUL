@@ -1,6 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { applyCourseProvider, getClientCoursesProvider } from 'db/providers/clientCourseProvider';
+import {
+  applyCourseProvider,
+  getAllClientCoursesProvider,
+} from 'db/providers/clientCourseProvider';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
 import { INITIAL_INDX } from 'config/constants';
 import { materialsCounterProvider } from 'db/providers/courseProvider';
@@ -19,7 +22,7 @@ const applyCourse = async (
     if (!courseId || !userId) {
       throw new BadRequestError('Invalid query');
     }
-    const applyedCourses = await getClientCoursesProvider(userId);
+    const applyedCourses = await getAllClientCoursesProvider(userId);
     const isDuplicate = checkCourseDuplicates(applyedCourses, courseId);
     if (isDuplicate) {
       throw new BadRequestError('Course already applied.');
