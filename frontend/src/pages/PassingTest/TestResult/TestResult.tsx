@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import ProgressBar from 'components/ProgressBar/ProgressBar';
 import { AuthorizedLayout } from 'components/Layout';
 import { ITestResult } from 'types/test';
 import CourseMaterialInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
+import { PATHS } from 'constants/routes';
 
 import {
   AboutSkillsBox,
@@ -27,7 +29,7 @@ const TestResult: React.FC<ITestResult> = ({
   isFailed,
   responseData,
   percentageValue,
-  handleFinishCourse,
+  courseId,
 }) => (
   <AuthorizedLayout pageName="Test Result">
     <TestResultBox>
@@ -82,9 +84,9 @@ const TestResult: React.FC<ITestResult> = ({
         </ResultBox>
       </ContentBox>
       <ButtonBox>
-        <SubmitButton onClick={handleFinishCourse} variant="medium">
-          Submit
-        </SubmitButton>
+        <Link to={`${PATHS.myCourses}/${courseId}`}>
+          <SubmitButton variant="medium">Submit</SubmitButton>
+        </Link>
       </ButtonBox>
     </TestResultBox>
   </AuthorizedLayout>

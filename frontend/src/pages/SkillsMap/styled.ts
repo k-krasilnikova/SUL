@@ -11,6 +11,9 @@ export const SkillsWrapper = styled('div')({
   [theme.breakpoints.down('lg')]: {
     padding: '20px 10px',
   },
+  [theme.breakpoints.down('md')]: {
+    height: 'auto',
+  },
 });
 
 export const Position = styled('h2')({
@@ -18,6 +21,10 @@ export const Position = styled('h2')({
   fontWeight: '500',
   lineHeight: '31px',
   marginTop: 0,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '20px',
+    lineHeight: '25px',
+  },
 });
 
 export const Map = styled('div')({
@@ -26,6 +33,10 @@ export const Map = styled('div')({
   height: '100%',
   '& div:last-child': {
     marginRight: 0,
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '100%',
+    flexDirection: 'column',
   },
 });
 
@@ -42,13 +53,12 @@ export const Rank = styled('div')<{ selected?: boolean }>(({ selected }) => ({
     border: '4px solid rgb(212 62 65 / 20%)',
   }),
   [theme.breakpoints.down('lg')]: {
-    marginRight: '20px',
+    marginRight: '15px',
   },
   [theme.breakpoints.down('md')]: {
     width: '100%',
-    ...(!selected && {
-      display: 'none',
-    }),
+    marginTop: '10px',
+    marginBottom: '10px',
   },
 }));
 

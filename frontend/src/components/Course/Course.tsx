@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Image } from 'components/Image';
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
 import { ProgressBar } from 'components/ProgressBar';
 import { checkIcon } from 'icons';
@@ -37,6 +36,8 @@ interface Props {
   type?: string;
   imageUrl?: string;
   isCourseCompleted?: boolean;
+  courseRef?: (node?: Element | null) => void;
+  clientCourseRef?: (node?: Element | null) => void;
 }
 
 const Course: React.FC<Props> = ({
@@ -51,12 +52,16 @@ const Course: React.FC<Props> = ({
   type,
   imageUrl,
   isCourseCompleted,
+  courseRef,
+  clientCourseRef,
 }) => (
-  <CourseContainer container direction="column">
+  <CourseContainer
+    container
+    direction="column"
+    ref={pageName === PAGES.coursesList ? courseRef : clientCourseRef}
+  >
     <AboutCourseContainer type={type}>
-      <ImageWrapper>
-        <Image imageUrl={imageUrl} />
-      </ImageWrapper>
+      <ImageWrapper imageUrl={imageUrl} />
       <CourseTextContainer>
         <CourseTitle type={type}>{title}</CourseTitle>
         <CourseDescriptionWrapper type={type}>

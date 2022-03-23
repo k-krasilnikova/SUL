@@ -4,26 +4,29 @@ import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { ClientCourse } from 'types/clientCourse';
+import { ICourseMaterialsResponse } from 'types/course';
 import { errorSnackbar } from 'constants/snackbarVariant';
 
-const useGetMyCourses = (): UseQueryResult<Array<ClientCourse>, AxiosError> => {
+const useGetCourseMaterials = (
+  courseId: string | undefined,
+): UseQueryResult<ICourseMaterialsResponse, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    'myCourses',
+    ['CourseInfo', courseId],
     async () => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.get(`${API.getMyCourses}`);
-      const myCoursesResponse = response.data;
-      return myCoursesResponse;
+      const response = await apiClient.get(`${API.getCourses}/${courseId}/materials`);
+      const courseMaterialsResponse: Array<ICourseMaterialsResponse> = response.data;
+      return courseMaterialsResponse;
     },
     {
+      refetchOnWindowFocus: false,
       onError: handleSubmitError,
     },
   );
 };
 
-export default useGetMyCourses;
+export default useGetCourseMaterials;

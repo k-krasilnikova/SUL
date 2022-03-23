@@ -30,6 +30,7 @@ import {
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
+  lastClientCourseRef: (node?: Element | null) => void;
 }
 
 type MyCoursesProps = ResponseDataMyCourses & Props;
@@ -39,6 +40,7 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
   isLoading,
   disableLink,
   windowWidth,
+  lastClientCourseRef,
 }) => (
   <AuthorizedLayout pageName="My Courses">
     {isLoading ? (
@@ -48,15 +50,14 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
-        {clientCourses?.map((clientCourse) => (
+        {clientCourses?.map((clientCourse, index) => (
           <Suspense
-            key={clientCourse._id}
-            fallback={<Loader color="primary" type={LOADER.content} key={clientCourse._id} />}
+            key={`${clientCourse.course._id}_item`}
+            fallback={<Loader color="primary" type={LOADER.content} />}
           >
-            <GridItem item xl={6} lg={6} md={12} sm={12}>
+            <GridItem key={clientCourse._id} item xl={6} lg={6} md={12} sm={12}>
               <MobileLink to={`${PATHS.myCourses}/${clientCourse._id}`} onClick={disableLink}>
                 <CourseItem
-                  key={clientCourse.course._id}
                   title={clientCourse.course.title}
                   description={clientCourse.course.description}
                   duration={convertDurationToString(clientCourse.course.duration)}
@@ -65,9 +66,12 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                   status={clientCourse.status}
                   windowWidth={windowWidth}
                   imageUrl={clientCourse.course.avatar}
+                  clientCourseRef={
+                    clientCourses.length - 1 === index ? lastClientCourseRef : undefined
+                  }
                 >
-                  <CourseActionsBox>
-                    <CourseActions>
+                  <CourseActionsBox key={`${clientCourse._id}_box`}>
+                    <CourseActions key={`${clientCourse._id}_actions`}>
                       <Link to={`${PATHS.myCourses}/${clientCourse._id}`}>
                         <DetailsButton variant="mediumOutlined">Details</DetailsButton>
                       </Link>

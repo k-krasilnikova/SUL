@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { useStartClientCourse, useGetClientCourseInfo, usePassClientCourse } from 'api/myCourses';
+import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
+import { useGetClientCourseAndMaterials } from 'api/courses';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
 import { MATERIAL } from 'constants/materials';
@@ -21,13 +22,17 @@ const LearningCourseContainer: React.FC = () => {
   const [testEnabled, setTestEnabled] = useState(false);
   const [backDisabled, setBackDisabled] = useState(true);
   const [forwardDisabled, setForwardDisabled] = useState(false);
+  const [isDescriptionOpen, setDescriptionOpen] = useState(false);
 
   const params = useParams();
 
-  const { data: clientCourseResponse, isLoading } = useGetClientCourseInfo(params.courseId);
+  const { data: clientCourseAndMaterialsData, isLoading } = useGetClientCourseAndMaterials(
+    params.courseId,
+  );
+  const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterialsData || [];
 
-  const maxStage = clientCourseResponse
-    ? clientCourseResponse.course.materials.length
+  const maxStage = courseMaterialsResponse
+    ? courseMaterialsResponse.materials.length
     : MAX_STAGE_INITIAL;
 
   useEffect(() => {
@@ -43,10 +48,7 @@ const LearningCourseContainer: React.FC = () => {
     }
   }, [stage, maxStage]);
 
-  const { mutate: startCourseMutate } = useStartClientCourse(
-    params.courseId,
-    clientCourseResponse?.status,
-  );
+  const { mutate: startCourseMutate } = useStartClientCourse(params.courseId);
 
   useEffect(() => {
     const handleStartCourse = () => {
@@ -82,13 +84,13 @@ const LearningCourseContainer: React.FC = () => {
     ? { title: clientCourseResponse?.course.title, info: clientCourseResponse?.course.description }
     : undefined;
 
-  const materialType = clientCourseResponse
-    ? defineMaterialType(clientCourseResponse.course.materials[stage - 1].content[CONTENT_ELEMENT])
+  const materialType = courseMaterialsResponse
+    ? defineMaterialType(courseMaterialsResponse.materials[stage - 1].content[CONTENT_ELEMENT])
     : MATERIAL.text;
   const material =
-    materialType === MATERIAL.video && clientCourseResponse
-      ? optimizeLink(clientCourseResponse.course.materials[stage - 1].content[CONTENT_ELEMENT])
-      : clientCourseResponse?.course.materials[stage - 1].content[CONTENT_ELEMENT] || MATERIAL.text;
+    materialType === MATERIAL.video && courseMaterialsResponse
+      ? optimizeLink(courseMaterialsResponse.materials[stage - 1].content[CONTENT_ELEMENT])
+      : courseMaterialsResponse?.materials[stage - 1].content[CONTENT_ELEMENT] || MATERIAL.text;
   const videoPreview = getPreviewId(material);
 
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -101,15 +103,19 @@ const LearningCourseContainer: React.FC = () => {
     setDialogOpen(false);
   };
 
+  const toggleDescriptionOpen = () => {
+    setDescriptionOpen(!isDescriptionOpen);
+  };
+
   if (isLoading) {
     return <Loader color="primary" />;
   }
 
   return (
     <>
-      {clientCourseResponse && (
+      {courseMaterialsResponse && (
         <LearningCourse
-          key={clientCourseResponse.course.materials[stage - 1]._id}
+          key={courseMaterialsResponse.materials[stage - 1]._id}
           stage={stage}
           maxStage={maxStage}
           stageBack={stageBack}
@@ -124,7 +130,8 @@ const LearningCourseContainer: React.FC = () => {
           handleClickDialogOpen={handleClickDialogOpen}
           handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
-          courseStatus={clientCourseResponse?.status}
+          isDescriptionOpen={isDescriptionOpen}
+          toggleDescriptionOpen={toggleDescriptionOpen}
         />
       )}
     </>
