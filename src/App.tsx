@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { PATHS } from 'constants/routes';
 import {
@@ -36,6 +36,7 @@ const App: React.FC = () => (
       <BrowserRouter basename={PATHS.home}>
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<Navigate replace to="/profile" />} />
             <Route path={PATHS.profile} element={<Profile />} />
             <Route path={PATHS.myCourses}>
               <Route index element={<MyCourses />} />
