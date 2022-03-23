@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { getClientCoursesProvider } from 'db/providers/clientCourseProvider';
+import { getAllClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { populateUserTechnologies } from 'db/providers/skillProvider';
 import { IUser } from 'interfaces/Ientities/Iusers';
@@ -17,7 +17,7 @@ const getEmployeeInfo = async (
     const { id: userId } = req.params;
 
     const employee: IUser = await getUserProvider(userId);
-    const courses: IClientCoursePopulated[] = await getClientCoursesProvider(userId);
+    const courses: IClientCoursePopulated[] = await getAllClientCoursesProvider(userId);
     const employeePopulated = await populateUserTechnologies(employee);
 
     const employeeInfo = mapEmployeeInfo(employeePopulated, courses);
