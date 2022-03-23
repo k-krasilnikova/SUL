@@ -3,7 +3,6 @@ import { Grid } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
 import CourseInfo from 'components/Course/CourseInfo';
-import { CourseItem } from 'components/Course';
 import { ProgressBar } from 'components/ProgressBar';
 import { CourseActions } from 'pages/CoursesList/styled';
 import { PATHS } from 'constants/routes';
@@ -24,6 +23,7 @@ import { COURSE_DISABLE_DAYS, TEST_DISABLE_DAYS } from 'constants/time';
 import ActionButton from 'components/Button/ActionButton';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 
+import { CourseItem } from 'components/Course';
 import {
   BackButton,
   CourseActionsBox,
@@ -81,6 +81,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
             }
             textColor={PROGRESS_COLOR}
             variant={isCourseCompleted && VARIANTS.successful}
+            value={!isCourseCompleted ? countProgress(clientCourseData?.progress) : undefined}
           />
         )}
         <DetailedCourseTitle>{commonCourseData.title}</DetailedCourseTitle>

@@ -70,7 +70,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                   windowWidth={windowWidth}
                   pageName={window.location.pathname.split('/').pop()}
                   imageUrl={course?.avatar}
-                  status={course.status}
+                  status={clientCourses && clientCourses[indx].status}
                   progress={clientCourses && countProgress(clientCourses[indx].progress)}
                   courseRef={courses.length - 1 === indx ? lastCourseRef : undefined}
                 >
