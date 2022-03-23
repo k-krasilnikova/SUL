@@ -9,10 +9,10 @@ import { ButtonCancel, ButtonExit } from './styled';
 
 interface IProps {
   isOpened: boolean;
-  isLoading?: boolean;
-  size?: string;
   handleCancelLeavePage: () => void;
   handleLeavePage: () => void;
+  isLoading?: boolean;
+  size?: string;
 }
 
 const CONFIRM_MESSAGE = 'Are you sure you want to leave this page?';

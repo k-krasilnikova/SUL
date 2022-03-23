@@ -22,21 +22,21 @@ const PassingTestContainer: React.FC = () => {
   const courseTest = courseTestData?.length ? courseTestData[0].test : undefined;
   const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
 
-  const [isOpenedTestTimeotDialog, setIsOpenedTestTimeotDialog] = useToggle(false);
+  const [isTestTimeoutDialogOpen, setTestTimeoutDialogOpen] = useToggle();
 
   useEffect(() => {
     if (courseTest?.timeout) {
       const timeoutId = setTimeout(() => {
-        setIsOpenedTestTimeotDialog();
+        setTestTimeoutDialogOpen();
       }, courseTest?.timeout);
       return () => {
         clearTimeout(timeoutId);
       };
     }
-  }, [courseTest?.timeout, setIsOpenedTestTimeotDialog]);
+  }, [courseTest?.timeout, setTestTimeoutDialogOpen]);
 
   const handleCloseTimeIsOverDialog = () => {
-    setIsOpenedTestTimeotDialog();
+    setTestTimeoutDialogOpen();
     naviagteTo(PATHS.myCourses);
   };
 
@@ -120,7 +120,7 @@ const PassingTestContainer: React.FC = () => {
             size="small"
           />
           <ConfirmTimeIsOver
-            isOpened={isOpenedTestTimeotDialog}
+            isOpened={isTestTimeoutDialogOpen}
             handleClose={handleCloseTimeIsOverDialog}
             size="small"
           />
