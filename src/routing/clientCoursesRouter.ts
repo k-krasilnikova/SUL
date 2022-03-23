@@ -13,8 +13,15 @@ import getAchievments from 'controllers/tests/getAchievments';
 import startTest from 'controllers/tests/startTest';
 import getTestResults from 'controllers/tests/getTestResults';
 import unitTestResults from 'controllers/tests/sendTestResults';
+import getTestTime from 'controllers/tests/getTestTime';
 
 const clientCoursesRouter = Router();
+
+clientCoursesRouter.get(
+  `${Params.id}${SubRoutes.test}/time`,
+  withAuth([USER_ROLES.EMPLOYEE]),
+  getTestTime,
+);
 
 clientCoursesRouter.put(
   `${Params.id}${SubRoutes.test}${SubRoutes.result}`,
