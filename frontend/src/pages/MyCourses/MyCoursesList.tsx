@@ -10,7 +10,6 @@ import { ResponseDataMyCourses } from 'types/responseDataMyCourses';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
 import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
-import { countProgress } from 'utils/helpers/countCourseProgress';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { PAGES } from 'constants/pages';
 import { MobileSearch } from 'components/Layout/MobileSearch';
@@ -65,7 +64,6 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                   lessons={clientCourse.course.lessons}
                   pageName={PAGES.myCourses}
                   status={clientCourse.status}
-                  progress={countProgress(clientCourse.progress)}
                   windowWidth={windowWidth}
                   imageUrl={clientCourse.course.avatar}
                   clientCourseRef={
