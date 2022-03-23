@@ -1,59 +1,44 @@
-import React from 'react';
+import { FC } from 'react';
+import { DialogActions } from '@mui/material';
 
 import { ConfirmDialog } from 'components/ConfirmDialog';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
-import { close } from 'icons';
 
-import {
-  ConfirmBox,
-  ButtonBox,
-  ConfirmMessage,
-  ButtonCancel,
-  ButtonExit,
-  CloseButtonBox,
-  CloseButton,
-  CloseIcon,
-} from './styled';
+import { ButtonCancel, ButtonExit } from './styled';
 
-interface IConfirm {
-  isConfirmOpen: boolean;
+interface IProps {
+  isOpened: boolean;
+  handleCancelLogOut: () => void;
   handleLogOut: () => void;
-  cancelLogOut: () => void;
   isLoading?: boolean;
   size?: string;
 }
 
-const ConfirmLogOut: React.FC<IConfirm> = ({
-  handleLogOut,
-  cancelLogOut,
-  isConfirmOpen,
-  size,
+const CONFIRM_MESSAGE = 'Log out of this account?';
+const BUTTON_EXIT_TEXT = 'Exit';
+
+const ConfirmLogOut: FC<IProps> = ({
+  isOpened,
   isLoading,
+  size,
+  handleLogOut,
+  handleCancelLogOut,
 }) => (
-  <ConfirmDialog open={isConfirmOpen} onClose={cancelLogOut} size={size}>
-    <ConfirmBox>
-      <CloseButtonBox>
-        <CloseButton onClick={cancelLogOut}>
-          <CloseIcon alt="close" src={close} />
-        </CloseButton>
-      </CloseButtonBox>
-      <ConfirmMessage>Log out of this account?</ConfirmMessage>
-      <ButtonBox>
-        <ButtonCancel variant="mediumOutlined" onClick={cancelLogOut}>
-          Cancel
-        </ButtonCancel>
-        {isLoading ? (
-          <ButtonExit disabled variant="mediumOutlined">
-            <ButtonLoader buttonSpinner={buttonSpinner} />
-          </ButtonExit>
-        ) : (
-          <ButtonExit onClick={handleLogOut} variant="mediumContained">
-            Exit
-          </ButtonExit>
-        )}
-      </ButtonBox>
-    </ConfirmBox>
+  <ConfirmDialog
+    confirmMessage={CONFIRM_MESSAGE}
+    open={isOpened}
+    onClose={handleCancelLogOut}
+    size={size}
+  >
+    <DialogActions>
+      <ButtonCancel variant="mediumOutlined" onClick={handleCancelLogOut}>
+        Cancel
+      </ButtonCancel>
+      <ButtonExit disabled={isLoading} variant="mediumContained" onClick={handleLogOut}>
+        {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : BUTTON_EXIT_TEXT}
+      </ButtonExit>
+    </DialogActions>
   </ConfirmDialog>
 );
 export default ConfirmLogOut;
