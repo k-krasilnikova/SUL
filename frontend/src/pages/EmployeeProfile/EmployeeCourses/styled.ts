@@ -9,7 +9,9 @@ export const SearchWrapper = styled('div')({
     marginLeft: '63px',
   },
 });
+
 export const SearchIcon = styled(Search)({});
+
 export const SearchCourse = styled(Input)({
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px!important',
@@ -19,16 +21,21 @@ export const SearchCourse = styled(Input)({
     fontSize: '18px!important',
   },
 });
+
 export const CoursesBox = styled('div')({
-  [theme.breakpoints.down('sm')]: {
-    maxWidth: '288px',
-    marginLeft: '13px',
-    marginRight: '19px',
-  },
   [theme.breakpoints.down('xl')]: {
     maxWidth: '828px',
     marginLeft: '54px',
     marginRight: '47px',
+  },
+  [theme.breakpoints.down('md')]: {
+    marginLeft: '54px',
+    marginRight: '19px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    maxWidth: '288px',
+    marginLeft: '13px',
+    marginRight: '19px',
   },
   [theme.breakpoints.up('xl')]: {
     maxWidth: '100%',
@@ -36,19 +43,21 @@ export const CoursesBox = styled('div')({
     marginRight: '0px',
   },
 });
+
 export const CoursesList = styled('div')({
-  [theme.breakpoints.down('sm')]: {
-    paddingTop: '10px',
-    maxWidth: '288px',
-  },
   [theme.breakpoints.down('xl')]: {
     paddingTop: '16px',
     maxWidth: '828px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    paddingTop: '10px',
+    maxWidth: '288px',
   },
   [theme.breakpoints.up('xl')]: {
     maxWidth: '100%',
   },
 });
+
 export const CoursesListItem = styled('div')({
   display: 'flex',
   alignItems: 'center',
@@ -67,6 +76,7 @@ export const CoursesListItem = styled('div')({
     padding: '8px',
     width: '215px',
     height: '53px',
+    alignItems: 'start',
   },
 });
 
@@ -85,6 +95,7 @@ export const CourseTitle = styled(Typography)({
   [theme.breakpoints.down('xl')]: {
     fontSize: '16px !important',
     lineHeight: '20px !important',
+    marginBottom: '4px !important',
   },
 });
 
@@ -106,6 +117,7 @@ export const CoursesDivider = styled(Divider)({
     display: 'block',
   },
 });
+
 export const NoCourses = styled('div')({
   [theme.breakpoints.down('lg')]: {
     marginTop: '50px',
