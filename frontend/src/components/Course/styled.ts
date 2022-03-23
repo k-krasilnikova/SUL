@@ -11,6 +11,10 @@ interface InfoContainerTypes {
   type?: string;
 }
 
+interface Image {
+  imageUrl?: string;
+}
+
 export const CourseContainer = styled(Grid)({
   backgroundColor: 'rgba(118, 118, 128, 0.12);',
   fontFamily: '"Ubuntu", sans-serif',
@@ -87,37 +91,42 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
   },
 }));
 
-export const ImageWrapper = styled('div')({
-  float: 'left',
-  overflow: 'hidden',
-  width: '346px',
-  height: '191px',
-  alignItems: 'center',
-  alignSelf: 'center',
-  margin: '0px 24px 16px 0px',
-  borderRadius: '10px',
-  boxShadow: '2px 2px 2px 2px #00000021',
-  [theme.breakpoints.down('xl')]: {
-    width: '224px',
-    height: '124px',
-    margin: '0px 24px 4px 0px',
-  },
-  [theme.breakpoints.down('md')]: {
-    width: '180px',
-    height: '100px',
-    margin: '0px 14px 4px 0px',
-    borderRadius: '8px',
-    boxShadow: '1px 1px 2px 1px #00000021',
-  },
-  [theme.breakpoints.down('sm')]: {
-    flexShrink: '0',
-    width: '72px',
-    height: '46px',
+export const ImageWrapper = styled('div')<Image>(({ imageUrl }) => {
+  return {
+    float: 'left',
+    background: `no-repeat url(${imageUrl})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    overflow: 'hidden',
+    width: '346px',
+    height: '191px',
     alignItems: 'center',
     alignSelf: 'center',
-    margin: '8px 8px 28px 0px',
-    borderRadius: '4px',
-  },
+    margin: '0px 24px 16px 0px',
+    borderRadius: '10px',
+    boxShadow: '2px 2px 2px 2px #00000021',
+    [theme.breakpoints.down('xl')]: {
+      width: '224px',
+      height: '124px',
+      margin: '0px 24px 4px 0px',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '180px',
+      height: '100px',
+      margin: '0px 14px 4px 0px',
+      borderRadius: '8px',
+      boxShadow: '1px 1px 2px 1px #00000021',
+    },
+    [theme.breakpoints.down('sm')]: {
+      flexShrink: '0',
+      width: '72px',
+      height: '46px',
+      alignItems: 'center',
+      alignSelf: 'center',
+      margin: '8px 8px 28px 0px',
+      borderRadius: '4px',
+    },
+  };
 });
 
 export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({

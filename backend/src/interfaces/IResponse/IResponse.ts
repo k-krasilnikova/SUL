@@ -1,3 +1,7 @@
+import { ICourse } from '../Ientities/Icourses';
+import { IClientCourse } from '../Ientities/IclientCourses';
+import { ITechnologyGroup, TUserPopulated } from '../Ientities/Iusers';
+
 interface ILocals {
   id: string;
   courseId: string | undefined;
@@ -7,7 +11,30 @@ interface ILocals {
   results: Record<string, never>;
 }
 
+interface IEmployeeInfo
+  extends Pick<
+    TUserPopulated,
+    | '_id'
+    | 'firstName'
+    | 'lastName'
+    | 'position'
+    | 'group'
+    | 'avatar'
+    | 'birthday'
+    | 'skype'
+    | 'phone'
+  > {
+  courses: IEmployeeClientCourse[];
+  technologies: ITechnologyGroup[];
+}
+
+interface IEmployeeClientCourse extends Pick<IClientCourse, 'status' | 'progress' | 'date'> {
+  course: TEmployeeCourse;
+}
+
+type TEmployeeCourse = Pick<ICourse, 'title' | 'avatar'>;
+
 type TLocalsManager = ILocals;
 type TLocalsUser = Omit<ILocals, 'managerId'>;
 
-export { TLocalsManager, TLocalsUser };
+export { TLocalsManager, TLocalsUser, IEmployeeInfo, IEmployeeClientCourse, TEmployeeCourse };

@@ -133,10 +133,10 @@ export const ButtonsBox = styled(Box)({
     marginLeft: '88px',
   },
   [theme.breakpoints.down('md')]: {
-    marginRight: '15vw !important',
+    marginTop: '28px',
+    marginRight: '5vw !important',
   },
   [theme.breakpoints.down('sm')]: {
-    marginTop: '48px',
     marginRight: '11px !important',
     marginLeft: '0',
   },
