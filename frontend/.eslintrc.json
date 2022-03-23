@@ -39,7 +39,12 @@
     "no-restricted-exports": "off",
     "import/prefer-default-export": "off",
     "no-nested-ternary": "off",
-    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": ["_id"]
+      }
+    ],
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "react/jsx-uses-react": "off",
