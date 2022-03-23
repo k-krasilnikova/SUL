@@ -36,6 +36,10 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
       width: '40px',
       height: '40px',
     }),
+    ...(size === SIZE.medium && {
+      width: '60px',
+      height: '60px',
+    }),
     ...(size === SIZE.large && {
       width: '130px',
       height: '130px',
@@ -45,10 +49,6 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
     ...(size === SIZE.large && {
       width: '130px',
       height: '130px',
-    }),
-    ...(size === SIZE.medium && {
-      width: '60px',
-      height: '60px',
     }),
     ...(size === SIZE.small && {
       width: '30px',
