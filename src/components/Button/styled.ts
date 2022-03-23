@@ -3,7 +3,7 @@ import { Button } from 'components/Button';
 
 import theme from 'themeSettings';
 
-export const MyButton = styled(Button)({
+export const CustomButton = styled(Button)({
   [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',

@@ -19,12 +19,12 @@ import { COMPLETED_STATUS_TEXT, OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants
 import { IDetailedCourse } from 'types/detailedCourse';
 import { VARIANTS } from 'constants/progressBar';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
-import { ButtonsWrapper, MyButton } from 'components/Button/styled';
-
+import { ButtonsWrapper, CustomButton } from 'components/Button/styled';
 import StartTestButton from 'components/Button/StartTestButton';
 import { COURSE_DISABLE_DAYS, TEST_DISABLE_DAYS } from 'constants/time';
 import ActionButton from 'components/Button/ActionButton';
 import { countProgress } from 'utils/helpers/countCourseProgress';
+
 import {
   BackButton,
   CourseActionsBox,
@@ -108,17 +108,17 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
           </CourseInfoBox>
 
           {isLoading ? (
-            <MyButton variant="mediumOutlined" disabled>
+            <CustomButton variant="mediumOutlined" disabled>
               <ButtonLoader buttonSpinner={buttonSpinner} />
-            </MyButton>
+            </CustomButton>
           ) : page === PAGES.coursesList ? (
-            <MyButton
+            <CustomButton
               color="primary"
               variant="mediumContained"
               onClick={(event) => handleApplyCourse(event)}
             >
               Apply the course
-            </MyButton>
+            </CustomButton>
           ) : (
             <ButtonsWrapper>
               <StartTestButton
@@ -155,9 +155,9 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               >
                 <CourseActionsBox>
                   <CourseActions>
-                    <MyButton color="primary" variant="mediumOutlined">
+                    <CustomButton color="primary" variant="mediumOutlined">
                       Details
-                    </MyButton>
+                    </CustomButton>
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>

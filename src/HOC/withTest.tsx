@@ -1,5 +1,6 @@
-import { COURSE_STATUSES } from 'constants/statuses';
 import { useEffect, useState } from 'react';
+
+import { COURSE_STATUSES } from 'constants/statuses';
 import { ClientCourse } from 'types/clientCourse';
 import { isTestEnable } from 'utils/helpers/isTestEnable';
 

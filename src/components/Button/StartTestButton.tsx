@@ -1,9 +1,11 @@
-import withFormTest from 'pages/LearningCourse/FormDialog/withFormDialog';
 import React from 'react';
 import { compose } from 'recompose';
+
+import withFormTest from 'HOC/withFormDialog';
 import { ClientCourse } from 'types/clientCourse';
-import { MyButton } from './styled';
-import withTimeLeft from './withTimeLeft';
+import withTimeLeft from 'HOC/withTimeLeft';
+
+import { CustomButton } from './styled';
 
 interface IProps {
   handleDialogOpen?: () => void;
@@ -18,11 +20,11 @@ type TOutterProps = {
   progress?: ClientCourse['progress'];
 };
 
-const StartTestButton: React.FC<IProps> = ({ handleDialogOpen, isTestEnable }) => {
+const StartTestButton: React.FC<IProps> = ({ children, handleDialogOpen, isTestEnable }) => {
   return (
-    <MyButton variant="mediumContained" disabled={!isTestEnable} onClick={handleDialogOpen}>
-      Start Test
-    </MyButton>
+    <CustomButton variant="mediumContained" disabled={!isTestEnable} onClick={handleDialogOpen}>
+      {children || 'Start Test'}
+    </CustomButton>
   );
 };
 

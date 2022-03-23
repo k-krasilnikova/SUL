@@ -5,10 +5,11 @@ import { compose } from 'recompose';
 import { PATHS } from 'constants/routes';
 
 import { ClientCourse } from 'types/clientCourse';
-import { MyButton } from './styled';
-import withDisable from './withDisable';
-import withTest from './withTest';
-import withTimeLeft from './withTimeLeft';
+import withDisable from 'HOC/withDisable';
+import withTest from 'HOC/withTest';
+import withTimeLeft from 'HOC/withTimeLeft';
+
+import { CustomButton } from './styled';
 
 interface IProps {
   label: string;
@@ -32,13 +33,13 @@ const ActionButton: React.FC<IProps> = ({ children, courseId, label, isTest, isD
   const handleStartTest = () => navigate(`${PATHS.learnCourse}/${courseId}/test`);
 
   return (
-    <MyButton
+    <CustomButton
       variant="mediumContained"
       disabled={isDisable}
       onClick={isTest ? handleStartTest : handleLearninig}
     >
       {children || label}
-    </MyButton>
+    </CustomButton>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { makeLeftTime } from 'utils/helpers/convertTime';
 
 type IncommingProps = {
@@ -13,7 +14,6 @@ const withTimeLeft =
     const [isShowTime, setShowTime] = useState(false);
     const [time, setTime] = useState<string | undefined>();
     const { applyDate, testDate, timeout } = props;
-
     useEffect(() => {
       if (applyDate || testDate) {
         setTime(makeLeftTime(applyDate || testDate, 'dd:hh', timeout));
