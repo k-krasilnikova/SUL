@@ -9,7 +9,6 @@ import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constant
 
 const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
-  // const { removeQueries } = useQueryClient();
   const navigateTo = useNavigate();
 
   const handleSubmitError = (error: AxiosError) => {
@@ -17,7 +16,6 @@ const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosE
   };
 
   const handleSubmitSuccess = () => {
-    // removeQueries(['ClientCourseInfo', courseId]);
     enqueueSnackbar(successSnackbarMessage.testStarted, successSnackbar);
     navigateTo(`${PATHS.learnCourse}/${courseId}/test`);
   };
