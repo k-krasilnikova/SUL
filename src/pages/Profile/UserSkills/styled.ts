@@ -148,6 +148,9 @@ export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
   [theme.breakpoints.down('lg')]: {
     margin: '12px 32px 12px 0px',
   },
+  [theme.breakpoints.down(1200)]: {
+    marginRight: '32px',
+  },
 }));
 export const SkillInfoFlex = styled('div')({
   display: 'flex',

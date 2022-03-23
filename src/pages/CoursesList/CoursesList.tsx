@@ -31,6 +31,7 @@ import {
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
+  lastCourseRef: (node?: Element | null) => void;
 }
 
 type CoursesProps = ResponseDataType & Props;
@@ -44,6 +45,7 @@ const CoursesList: React.FC<CoursesProps> = ({
   targetId,
   disableLink,
   windowWidth,
+  lastCourseRef,
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
@@ -53,68 +55,67 @@ const CoursesList: React.FC<CoursesProps> = ({
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
-        {courses.map((course, indx) => {
-          return (
-            <Suspense
-              key={`${course._id}_item`}
-              fallback={<Loader color="primary" type={LOADER.content} />}
-            >
-              <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
-                <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
-                  <CourseItem
-                    title={course?.title}
-                    description={course?.description}
-                    duration={convertDurationToString(course?.duration)}
-                    lessons={course?.lessons}
-                    windowWidth={windowWidth}
-                    pageName={window.location.pathname.split('/').pop()}
-                    imageUrl={course?.avatar}
-                    status={course.status}
-                    progress={clientCourses && countProgress(clientCourses[indx].progress)}
-                  >
-                    <CourseActionsBox key={`${course._id}_box`}>
-                      <CourseActions key={`${course._id}_actions`}>
-                        <Link
-                          to={
-                            clientCourses
-                              ? `${PATHS.myCourses}/${clientCourses[indx]._id}`
-                              : `${PATHS.coursesList}/${course._id}`
-                          }
+        {courses.map((course, indx) => (
+          <Suspense
+            key={`${course._id}_item`}
+            fallback={<Loader color="primary" type={LOADER.content} />}
+          >
+            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
+              <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
+                <CourseItem
+                  title={course?.title}
+                  description={course?.description}
+                  duration={convertDurationToString(course?.duration)}
+                  lessons={course?.lessons}
+                  windowWidth={windowWidth}
+                  pageName={window.location.pathname.split('/').pop()}
+                  imageUrl={course?.avatar}
+                  status={course.status}
+                  progress={clientCourses && countProgress(clientCourses[indx].progress)}
+                  courseRef={courses.length - 1 === indx ? lastCourseRef : undefined}
+                >
+                  <CourseActionsBox key={`${course._id}_box`}>
+                    <CourseActions key={`${course._id}_actions`}>
+                      <Link
+                        to={
+                          clientCourses
+                            ? `${PATHS.myCourses}/${clientCourses[indx]._id}`
+                            : `${PATHS.coursesList}/${course._id}`
+                        }
+                      >
+                        <CustomButton color="primary" variant="mediumOutlined">
+                          Details
+                        </CustomButton>
+                      </Link>
+                      {targetLoading && targetId === course._id ? (
+                        <CustomButton variant="mediumOutlined" disabled>
+                          <ButtonLoader buttonSpinner={buttonSpinner} />
+                        </CustomButton>
+                      ) : clientCourses ? (
+                        <ActionButton
+                          label={COURSE_LABELS[clientCourses[indx].status]}
+                          status={clientCourses[indx].status}
+                          progress={clientCourses[indx].progress}
+                          applyDate={clientCourses[indx].applyDate}
+                          courseId={clientCourses[indx]._id}
+                          timeout={COURSE_DISABLE_DAYS}
+                        />
+                      ) : (
+                        <CustomButton
+                          id={course._id}
+                          onClick={handleApplyCourse}
+                          variant="mediumContained"
                         >
-                          <CustomButton color="primary" variant="mediumOutlined">
-                            Details
-                          </CustomButton>
-                        </Link>
-                        {targetLoading && targetId === course._id ? (
-                          <CustomButton variant="mediumOutlined" disabled>
-                            <ButtonLoader buttonSpinner={buttonSpinner} />
-                          </CustomButton>
-                        ) : clientCourses ? (
-                          <ActionButton
-                            label={COURSE_LABELS[clientCourses[indx].status]}
-                            status={clientCourses[indx].status}
-                            progress={clientCourses[indx].progress}
-                            applyDate={clientCourses[indx].applyDate}
-                            courseId={clientCourses[indx]._id}
-                            timeout={COURSE_DISABLE_DAYS}
-                          />
-                        ) : (
-                          <CustomButton
-                            id={course._id}
-                            onClick={handleApplyCourse}
-                            variant="mediumContained"
-                          >
-                            Apply the course
-                          </CustomButton>
-                        )}
-                      </CourseActions>
-                    </CourseActionsBox>
-                  </CourseItem>
-                </MobileLink>
-              </GridItem>
-            </Suspense>
-          );
-        })}
+                          Apply the course
+                        </CustomButton>
+                      )}
+                    </CourseActions>
+                  </CourseActionsBox>
+                </CourseItem>
+              </MobileLink>
+            </GridItem>
+          </Suspense>
+        ))}
       </PageContainer>
     ) : (
       <NoContent message={NO_COURSES} />
