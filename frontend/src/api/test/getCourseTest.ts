@@ -14,8 +14,8 @@ interface IParams {
 
 const useGetCourseTest = ({
   courseId,
-  enabled,
-}: IParams): UseQueryResult<Array<ITestResponse>, AxiosError> => {
+  enabled = true,
+}: IParams): UseQueryResult<ITestResponse[], AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -26,7 +26,7 @@ const useGetCourseTest = ({
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.getMyCourses}/${courseId}/test`);
-      const testResponse: Array<ITestResponse> = response.data;
+      const testResponse: ITestResponse[] = response.data;
       return testResponse;
     },
     {
