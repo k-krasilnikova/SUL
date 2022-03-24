@@ -50,7 +50,6 @@ const CoursesContainer: React.FC = () => {
       fetchNextPage();
     }
   }, [inView, hasNextPage]); // eslint-disable-line react-hooks/exhaustive-deps
-  console.log('courses', formattedCoursesList);
   return (
     <CoursesList
       courses={formattedCoursesList}
