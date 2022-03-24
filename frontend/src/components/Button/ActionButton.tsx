@@ -5,10 +5,10 @@ import { compose } from 'recompose';
 import { PATHS } from 'constants/routes';
 
 import { ClientCourse } from 'types/clientCourse';
-import withDisable from 'HOC/withDisable';
-import withTest from 'HOC/withTest';
-import withTimeLeft from 'HOC/withTimeLeft';
+import withDisable from 'components/Button/HOC/withDisable';
 
+import withTest from './HOC/withTest';
+import withTimeLeft from './HOC/withTimeLeft';
 import { CustomButton } from './styled';
 
 interface IProps {
@@ -21,10 +21,10 @@ interface IProps {
 type TOutterProps = {
   label: string;
   status: string;
-  progress?: ClientCourse['progress'];
-  applyDate?: string;
   courseId: string;
   timeout: number;
+  progress?: ClientCourse['progress'];
+  applyDate?: string;
 };
 
 const ActionButton: React.FC<IProps> = ({ children, courseId, label, isTest, isDisable }) => {

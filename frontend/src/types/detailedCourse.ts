@@ -1,3 +1,4 @@
+import { NavigateFunction } from 'react-router';
 import { PureClientCourse } from './clientCourse';
 import { Course } from './course';
 
@@ -11,6 +12,7 @@ export interface IDetailedCourse {
   windowWidth: string;
   isFullTextOpen: boolean;
   toggleFullText: () => void;
+  navigate: NavigateFunction;
   isLoading?: boolean;
   isCourseApplicationSubmitted?: boolean;
   isCourseCompleted?: boolean;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
@@ -19,6 +19,7 @@ const PAGES = {
 
 const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const params = useParams();
+  const navigate = useNavigate();
   const useGetInfo = page === PAGES.coursesList ? useGetCourseInfo : useGetClientCourseInfo;
   const { data: courseData } = useGetInfo(params.courseId);
   const { mutate, isLoading } = useApplyCourse();
@@ -51,6 +52,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     <>
       {commonCourseInfo && courseData && (
         <DetailedCourse
+          navigate={navigate}
           commonCourseData={commonCourseInfo}
           clientCourseData={clientCourseInfo}
           handleApplyCourse={handleApplyCourse}

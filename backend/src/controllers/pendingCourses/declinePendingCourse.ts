@@ -10,6 +10,7 @@ import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
+import { COURSE_FILEDS } from 'config/constants';
 
 const declinePendingCourse = async (
   req: Request,
@@ -35,10 +36,10 @@ const declinePendingCourse = async (
 
     const { _id: manager }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
-    await updateClientCourseField(clientCourseId, 'status', CourseStatus.rejected);
+    await updateClientCourseField(clientCourseId, COURSE_FILEDS.status, CourseStatus.rejected);
     await removeFromPendingFieldCourses(manager, clientCourse._id);
 
-    await updateClientCourseField(clientCourseId, 'applyDate', Date.now());
+    await updateClientCourseField(clientCourseId, COURSE_FILEDS.applyDate, Date.now());
     results.updateStatus = 'Course was declined';
     next();
   } catch (error) {

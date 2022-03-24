@@ -6,7 +6,13 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 
-const useGetTestTime = (courseId?: string): UseQueryResult<number, AxiosError> => {
+const useGetTestTime = ({
+  courseId,
+  enabled,
+}: {
+  courseId?: string;
+  enabled?: boolean;
+}): UseQueryResult<number, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -19,6 +25,7 @@ const useGetTestTime = (courseId?: string): UseQueryResult<number, AxiosError> =
       return response.data;
     },
     {
+      enabled,
       onError: handleSubmitError,
     },
   );

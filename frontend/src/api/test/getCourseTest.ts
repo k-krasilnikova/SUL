@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient, UseQueryResult } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
@@ -7,16 +7,20 @@ import { ITestResponse } from 'types/test';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 
-const useGetCourseTest = (params: {
-  courseId?: string | undefined;
+interface IParams {
+  courseId?: string;
   enabled?: boolean;
-}): UseQueryResult<Array<ITestResponse>, AxiosError> => {
+}
+
+const useGetCourseTest = ({
+  courseId,
+  enabled,
+}: IParams): UseQueryResult<Array<ITestResponse>, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
-  const { courseId, enabled = true } = params;
-  const queryClient = useQueryClient();
+
   return useQuery(
     ['CourseTest'],
     async () => {
@@ -28,7 +32,6 @@ const useGetCourseTest = (params: {
     {
       enabled,
       refetchOnWindowFocus: false,
-      onSuccess: () => queryClient.removeQueries(['ClientCourseInfo', courseId]),
       onError: handleSubmitError,
     },
   );

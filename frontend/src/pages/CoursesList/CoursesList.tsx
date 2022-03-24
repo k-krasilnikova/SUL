@@ -14,11 +14,12 @@ import { LOADER } from 'constants/loaderTypes';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { CustomButton } from 'components/Button/styled';
-
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { COURSE_LABELS } from 'constants/statuses';
 import ActionButton from 'components/Button/ActionButton';
 import { COURSE_DISABLE_DAYS } from 'constants/time';
+import getCurrentPageName from 'utils/helpers/getCurentPageName';
+
 import {
   PageContainer,
   CourseActions,
@@ -55,7 +56,7 @@ const CoursesList: React.FC<CoursesProps> = ({
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
-        {courses.map((course, indx) => (
+        {courses.map((course, index) => (
           <Suspense
             key={`${course._id}_item`}
             fallback={<Loader color="primary" type={LOADER.content} />}
@@ -68,18 +69,18 @@ const CoursesList: React.FC<CoursesProps> = ({
                   duration={convertDurationToString(course?.duration)}
                   lessons={course?.lessons}
                   windowWidth={windowWidth}
-                  pageName={window.location.pathname.split('/').pop()}
+                  pageName={getCurrentPageName()}
                   imageUrl={course?.avatar}
-                  status={clientCourses && clientCourses[indx].status}
-                  progress={clientCourses && countProgress(clientCourses[indx].progress)}
-                  courseRef={courses.length - 1 === indx ? lastCourseRef : undefined}
+                  status={clientCourses && clientCourses[index].status}
+                  progress={clientCourses && countProgress(clientCourses[index].progress)}
+                  courseRef={courses.length - 1 === index ? lastCourseRef : undefined}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>
                       <Link
                         to={
                           clientCourses
-                            ? `${PATHS.myCourses}/${clientCourses[indx]._id}`
+                            ? `${PATHS.myCourses}/${clientCourses[index]._id}`
                             : `${PATHS.coursesList}/${course._id}`
                         }
                       >
@@ -93,11 +94,11 @@ const CoursesList: React.FC<CoursesProps> = ({
                         </CustomButton>
                       ) : clientCourses ? (
                         <ActionButton
-                          label={COURSE_LABELS[clientCourses[indx].status]}
-                          status={clientCourses[indx].status}
-                          progress={clientCourses[indx].progress}
-                          applyDate={clientCourses[indx].applyDate}
-                          courseId={clientCourses[indx]._id}
+                          label={COURSE_LABELS[clientCourses[index].status]}
+                          status={clientCourses[index].status}
+                          progress={clientCourses[index].progress}
+                          applyDate={clientCourses[index].applyDate}
+                          courseId={clientCourses[index]._id}
                           timeout={COURSE_DISABLE_DAYS}
                         />
                       ) : (

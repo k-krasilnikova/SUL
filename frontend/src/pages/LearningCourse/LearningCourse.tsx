@@ -8,7 +8,7 @@ import { playVideo } from 'icons';
 import { MATERIAL } from 'constants/materials';
 import { ClientCourse } from 'types/clientCourse';
 import { CustomButton } from 'components/Button/styled';
-import withFormTest from 'HOC/withFormDialog';
+import withStartTest from 'components/StartTestDialog/withStartTest';
 
 import {
   LearningPageContainer,
@@ -23,7 +23,6 @@ import {
   Description,
   DescriptionTitle,
   DescriptionText,
-  StartTestButton,
   ButtonWrapper,
   StyledButton,
   ToggleDescription,
@@ -36,19 +35,19 @@ interface LearningProps {
   maxStage: number;
   stageBack: () => void;
   stageForward: () => void;
-  courseDescription?: {
-    title: string;
-    info: string;
-  };
   backDisabled: boolean;
   forwardDisabled: boolean;
   material: string;
   materialType: string;
   videoPreview: string | boolean;
-  isTestEnable?: boolean;
-  handleDialogOpen?: () => void;
   isDescriptionOpen: boolean;
   toggleDescriptionOpen: () => void;
+  isTestEnable?: boolean;
+  handleDialogOpen?: () => void;
+  courseDescription?: {
+    title: string;
+    info: string;
+  };
 }
 
 interface OuterProps {
@@ -114,9 +113,9 @@ const LearningCourse: React.FC<LearningProps> = ({
         <ButtonWrapper>
           {isTestEnable ? (
             <>
-              <StartTestButton variant="contained" onClick={handleDialogOpen}>
+              <CustomButton variant="contained" onClick={handleDialogOpen}>
                 Start the Test
-              </StartTestButton>
+              </CustomButton>
             </>
           ) : (
             <CustomButton variant="contained" onClick={stageForward}>
@@ -137,4 +136,4 @@ const LearningCourse: React.FC<LearningProps> = ({
   </AuthorizedLayout>
 );
 
-export default withFormTest<OuterProps & LearningProps>(LearningCourse);
+export default withStartTest<OuterProps & LearningProps>(LearningCourse);
