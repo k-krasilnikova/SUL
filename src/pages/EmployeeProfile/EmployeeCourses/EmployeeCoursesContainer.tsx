@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import { ClientCourse } from 'types/clientCourse';
+import { formatInputValue, checkWhitespace, checkPastedText } from 'utils/helpers/searchHelpers';
+import { compareStrings } from 'utils/helpers/compareStrings';
 
 import EmployeeCourses from './EmployeeCourses';
 
@@ -14,33 +16,26 @@ const EmployeeCoursesContainer: React.FC<CoursesProps> = ({ courses }) => {
 
   useEffect(() => {
     if (courses) {
-      const filteredCourses = courses.filter(
-        (course) =>
-          course.course.title
-            .toLocaleLowerCase()
-            .includes(searchCourse.trimEnd().toLocaleLowerCase()) ||
-          course.course.title.toLowerCase().includes(searchCourse.toLowerCase()),
-      );
+      const filteredCourses = courses.filter((course) => {
+        const isFound = compareStrings(course.course.title, searchCourse);
+        return isFound;
+      });
       setEmployeeCourses(filteredCourses);
     }
   }, [searchCourse, courses]);
 
-  const searchCourseInList = (value: string) => {
-    const formattedValue = value.split(/\s+/).join(' ').trimStart();
+  const searchCourseInList = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedValue = formatInputValue(event.target.value);
     setSearchCourse(formattedValue);
   };
 
-  const checkPastedValue = (value: string) => {
-    const formattedValue = value.split(/\s+/).join(' ').trimStart().trimEnd();
+  const checkPastedValue = (event: React.ClipboardEvent) => {
+    const formattedValue = checkPastedText(event);
     setSearchCourse(formattedValue);
   };
 
   const checkSpace = (event: React.KeyboardEvent) => {
-    const { key } = event;
-    const formattedKey = key.trim();
-    if (!formattedKey && searchCourse.length === 0) {
-      event.preventDefault();
-    }
+    checkWhitespace(event, searchCourse);
   };
 
   return (
