@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import ProgressBar from 'components/ProgressBar/ProgressBar';
 import { UserAvatar } from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 
 import {
+  HoverSkillInfoText,
   SkillInfo,
   SkillInfoFlex,
   ImageWrapper,
@@ -27,23 +28,35 @@ const CourseMaterialInfo: React.FC<Props> = ({
   stagesCompleted,
   progress,
   imageUrl,
-}) => (
-  <SkillInfo completed={stages === stagesCompleted}>
-    <SkillInfoFlex>
-      <ImageWrapper>
-        <UserAvatar size={SIZE.small} avatar={imageUrl} />
-      </ImageWrapper>
-      <div style={{ width: '70px' }}>
-        <SkillInfoText>{technologyTitle}</SkillInfoText>
-        <SkillInfoStage>
-          {stagesCompleted}/{stages}
-        </SkillInfoStage>
-      </div>
-      <SkillProgress>
-        <ProgressBar value={progress} size={SIZE.small} />
-      </SkillProgress>
-    </SkillInfoFlex>
-  </SkillInfo>
-);
+}) => {
+  const [isShown, setIsShown] = useState(false);
+
+  return (
+    <SkillInfo completed={stages === stagesCompleted}>
+      <SkillInfoFlex>
+        <ImageWrapper>
+          <UserAvatar size={SIZE.small} avatar={imageUrl} />
+        </ImageWrapper>
+        <div style={{ position: 'relative' }}>
+          <div style={{ width: '70px' }}>
+            <SkillInfoText
+              onMouseEnter={() => setIsShown(true)}
+              onMouseLeave={() => setIsShown(false)}
+            >
+              {technologyTitle}
+            </SkillInfoText>
+            <SkillInfoStage>
+              {stagesCompleted}/{stages}
+            </SkillInfoStage>
+          </div>
+          {isShown && <HoverSkillInfoText>{technologyTitle}</HoverSkillInfoText>}
+        </div>
+        <SkillProgress>
+          <ProgressBar value={progress} size={SIZE.small} />
+        </SkillProgress>
+      </SkillInfoFlex>
+    </SkillInfo>
+  );
+};
 
 export default CourseMaterialInfo;
