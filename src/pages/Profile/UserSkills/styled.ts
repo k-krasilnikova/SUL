@@ -177,14 +177,11 @@ export const SkillProgress = styled('div')({
   },
 });
 export const SkillInfoText = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '16px',
-    lineHeight: '16px',
-  },
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   [theme.breakpoints.up('xl')]: {
     fontSize: '16px',
-    lineHeight: '120%',
-    width: '110px',
+    lineHeight: '20px',
   },
 });
 export const SkillInfoStage = styled('div')({
