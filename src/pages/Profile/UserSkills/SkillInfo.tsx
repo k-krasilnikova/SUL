@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import ProgressBar from 'components/ProgressBar/ProgressBar';
 import { UserAvatar } from 'components/Avatar';
@@ -20,6 +20,9 @@ interface Props {
   stagesCompleted?: number;
   progress?: number;
   imageUrl?: string;
+  isShown?: boolean;
+  showSkillInfo?: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  hideSkillInfo?: (event: React.MouseEvent<Element, MouseEvent>) => void;
 }
 
 const CourseMaterialInfo: React.FC<Props> = ({
@@ -28,35 +31,31 @@ const CourseMaterialInfo: React.FC<Props> = ({
   stagesCompleted,
   progress,
   imageUrl,
-}) => {
-  const [isShown, setIsShown] = useState(false);
-
-  return (
-    <SkillInfo completed={stages === stagesCompleted}>
-      <SkillInfoFlex>
-        <ImageWrapper>
-          <UserAvatar size={SIZE.small} avatar={imageUrl} />
-        </ImageWrapper>
-        <div style={{ position: 'relative' }}>
-          <div style={{ width: '70px' }}>
-            <SkillInfoText
-              onMouseEnter={() => setIsShown(true)}
-              onMouseLeave={() => setIsShown(false)}
-            >
-              {technologyTitle}
-            </SkillInfoText>
-            <SkillInfoStage>
-              {stagesCompleted}/{stages}
-            </SkillInfoStage>
-          </div>
-          {isShown && <HoverSkillInfoText>{technologyTitle}</HoverSkillInfoText>}
+  isShown,
+  showSkillInfo,
+  hideSkillInfo,
+}) => (
+  <SkillInfo completed={stages === stagesCompleted}>
+    <SkillInfoFlex>
+      <ImageWrapper>
+        <UserAvatar size={SIZE.small} avatar={imageUrl} />
+      </ImageWrapper>
+      <div style={{ position: 'relative' }}>
+        <div style={{ width: '70px' }}>
+          <SkillInfoText onMouseEnter={showSkillInfo} onMouseLeave={hideSkillInfo}>
+            {technologyTitle}
+          </SkillInfoText>
+          <SkillInfoStage>
+            {stagesCompleted}/{stages}
+          </SkillInfoStage>
         </div>
-        <SkillProgress>
-          <ProgressBar value={progress} size={SIZE.small} />
-        </SkillProgress>
-      </SkillInfoFlex>
-    </SkillInfo>
-  );
-};
+        {isShown && <HoverSkillInfoText>{technologyTitle}</HoverSkillInfoText>}
+      </div>
+      <SkillProgress>
+        <ProgressBar value={progress} size={SIZE.small} />
+      </SkillProgress>
+    </SkillInfoFlex>
+  </SkillInfo>
+);
 
 export default CourseMaterialInfo;
