@@ -11,6 +11,7 @@ import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
 import { ProgressBar } from 'components/ProgressBar';
 import { countProgress } from 'utils/helpers/countCourseProgress';
+import { setFirstLetterUppercase } from 'utils/helpers/setFirstLetterUppercase';
 
 import {
   CoursesBox,
@@ -26,9 +27,9 @@ import {
 } from './styled';
 
 interface Props {
-  searchCourseInList: (value: string) => void;
+  searchCourseInList: (event: React.ChangeEvent<HTMLInputElement>) => void;
   checkSpace: (event: React.KeyboardEvent) => void;
-  checkPastedValue: (value: string) => void;
+  checkPastedValue: (event: React.ClipboardEvent) => void;
   searchCourse: string;
   courses?: ClientCourse[];
 }
@@ -53,16 +54,9 @@ const UserSkills: React.FC<Props> = ({
               <Search color="disabled" fontSize="medium" />
             </InputAdornment>
           }
-          onKeyDown={(event) => {
-            checkSpace(event);
-          }}
-          onChange={(event) => {
-            searchCourseInList(event.target.value);
-          }}
-          onPaste={(event) => {
-            event.preventDefault();
-            checkPastedValue(event.clipboardData.getData('Text'));
-          }}
+          onKeyDown={checkSpace}
+          onChange={searchCourseInList}
+          onPaste={checkPastedValue}
           value={searchCourse}
         />
         <Divider />
@@ -75,9 +69,7 @@ const UserSkills: React.FC<Props> = ({
                 <ProgressBar size={SIZE.small} value={countProgress(course.progress)} />
                 <CourseItemText>
                   <CourseTitle>{course.course.title}</CourseTitle>
-                  <CourseStatus>
-                    {course.status[0].toUpperCase() + course.status.slice(1)}
-                  </CourseStatus>
+                  <CourseStatus>{setFirstLetterUppercase(course.status)}</CourseStatus>
                 </CourseItemText>
               </CoursesListItem>
               {id < coursesArray.length - 1 && <CoursesDivider />}

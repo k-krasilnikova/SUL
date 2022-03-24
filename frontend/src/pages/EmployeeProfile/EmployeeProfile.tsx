@@ -33,10 +33,11 @@ import {
 interface Props {
   employeeInfo: string;
   toggleEmployeeInfo: (infoToOpen: string) => void;
-  hoveredButton: string | undefined;
   toggleHover: (buttonHovered: string) => void;
   profileInfoOpened: boolean;
   toggleProfileInfoOpened: () => void;
+  isSkillOpened: boolean;
+  isCourseOpened: boolean;
   employeeCourses?: ClientCourse[];
 }
 
@@ -54,10 +55,11 @@ const EmployeeProfileContent: React.FC<Employee> = ({
   employeeCourses,
   employeeInfo,
   toggleEmployeeInfo,
-  hoveredButton,
   toggleHover,
   profileInfoOpened,
   toggleProfileInfoOpened,
+  isSkillOpened,
+  isCourseOpened,
 }) => (
   <AuthorizedLayout pageName="Employee">
     <Link to={PATHS.employees}>
@@ -101,10 +103,7 @@ const EmployeeProfileContent: React.FC<Employee> = ({
     <SkillsAndCoursesBox>
       <EmployeeButtonGroup variant="contained">
         <SkillsAndCoursesButton
-          isOpened={
-            (employeeInfo === EMPLOYEE_INFO.skills && !hoveredButton) ||
-            hoveredButton === EMPLOYEE_INFO.skills
-          }
+          isOpened={isSkillOpened}
           onClick={() => toggleEmployeeInfo(EMPLOYEE_INFO.skills)}
           onMouseEnter={() => toggleHover(EMPLOYEE_INFO.skills)}
           onMouseLeave={() => toggleHover(EMPLOYEE_INFO.none)}
@@ -112,10 +111,7 @@ const EmployeeProfileContent: React.FC<Employee> = ({
           Skills
         </SkillsAndCoursesButton>
         <SkillsAndCoursesButton
-          isOpened={
-            (employeeInfo === EMPLOYEE_INFO.allCourses && !hoveredButton) ||
-            hoveredButton === EMPLOYEE_INFO.allCourses
-          }
+          isOpened={isCourseOpened}
           onClick={() => toggleEmployeeInfo(EMPLOYEE_INFO.allCourses)}
           onMouseEnter={() => toggleHover(EMPLOYEE_INFO.allCourses)}
           onMouseLeave={() => toggleHover(EMPLOYEE_INFO.none)}

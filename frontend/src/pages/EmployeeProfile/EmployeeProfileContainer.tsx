@@ -26,6 +26,13 @@ const EmployeeProfile: React.FC = () => {
     setProfileInfoOpened(!profileInfoOpened);
   };
 
+  const isSkillOpened =
+    (employeeInfo === EMPLOYEE_INFO.skills && !hoveredButton) ||
+    hoveredButton === EMPLOYEE_INFO.skills;
+  const isCourseOpened =
+    (employeeInfo === EMPLOYEE_INFO.allCourses && !hoveredButton) ||
+    hoveredButton === EMPLOYEE_INFO.allCourses;
+
   return (
     <EmployeeProfileContent
       avatar={data?.avatar}
@@ -39,10 +46,11 @@ const EmployeeProfile: React.FC = () => {
       employeeCourses={data?.courses}
       employeeInfo={employeeInfo}
       toggleEmployeeInfo={toggleEmployeeInfo}
-      hoveredButton={hoveredButton}
       toggleHover={toggleHover}
       profileInfoOpened={profileInfoOpened}
       toggleProfileInfoOpened={toggleProfileInfoOpened}
+      isSkillOpened={isSkillOpened}
+      isCourseOpened={isCourseOpened}
     />
   );
 };
