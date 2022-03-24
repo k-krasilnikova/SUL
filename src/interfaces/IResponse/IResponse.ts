@@ -18,6 +18,7 @@ interface IEmployeeShortInfo
   > {
   courses: undefined;
 }
+
 interface IEmployeeInfo
   extends Pick<
     TUserPopulated,
