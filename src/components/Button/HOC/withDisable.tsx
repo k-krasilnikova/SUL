@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 
 import { COURSE_STATUSES } from 'constants/statuses';
 
-type IncommingProps = {
+type IncomingProps = {
   status: string;
 };
 
 const withDisable =
-  <T extends IncommingProps>(Component: React.ComponentType<T>) =>
+  <T extends IncomingProps>(Component: React.ComponentType<T>) =>
   (props: T) => {
     const [isDisable, setDisable] = useState(false);
     const { status } = props;

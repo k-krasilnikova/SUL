@@ -35,7 +35,7 @@ const CoursesContainer: React.FC = () => {
   const windowWidth = getWindowWidth();
 
   const formattedCoursesList = data?.pages.reduce(
-    (prev, page) => [...prev, ...page.courses],
+    (prev, page) => [...prev, ...page.courses.filter((course) => !course.status)],
     [] as Course[],
   );
 
@@ -50,7 +50,7 @@ const CoursesContainer: React.FC = () => {
       fetchNextPage();
     }
   }, [inView, hasNextPage]); // eslint-disable-line react-hooks/exhaustive-deps
-
+  console.log('courses', formattedCoursesList);
   return (
     <CoursesList
       courses={formattedCoursesList}

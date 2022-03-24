@@ -4,15 +4,15 @@ import { COURSE_STATUSES } from 'constants/statuses';
 import { ClientCourse } from 'types/clientCourse';
 import { isTestEnable } from 'utils/helpers/isTestEnable';
 
-type IncommingProps = {
-  progress?: ClientCourse['progress'];
+type IncomingProps = {
   status: string;
+  progress?: ClientCourse['progress'];
 };
 
 const withTest =
-  <T extends IncommingProps>(Component: React.ComponentType<T>) =>
+  <T extends IncomingProps>(Component: React.ComponentType<T>) =>
   (props: T) => {
-    const [isEnable, setAble] = useState(false);
+    const [isEnable, setAble] = useState<boolean>(false);
     const { progress, status } = props;
     useEffect(() => {
       if (progress && status === COURSE_STATUSES.testing) {

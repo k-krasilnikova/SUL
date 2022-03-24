@@ -19,7 +19,7 @@ export const CourseWrapper = styled('div')({
   background: '#fafafa',
   display: 'flex',
   alignItems: 'center',
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(960)]: {
     width: '100%',
     maxWidth: '100%',
   },

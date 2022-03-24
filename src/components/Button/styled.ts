@@ -1,9 +1,15 @@
-import { styled } from '@material-ui/core';
+import styled from 'styled-components';
 import { Button } from 'components/Button';
 
 import theme from 'themeSettings';
 
 export const CustomButton = styled(Button)({
+  height: '50px',
+  width: '150px',
+  marginRight: '16px !important',
+  fontSize: '16px !important',
+  lineHeight: '22px',
+  padding: '12px !important',
   [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
@@ -11,14 +17,6 @@ export const CustomButton = styled(Button)({
     fontSize: '14px!important',
     lineHeight: '19px',
     padding: '10px 10px!important',
-  },
-  [theme.breakpoints.up('xl')]: {
-    height: '50px',
-    width: '150px',
-    marginRight: '16px !important',
-    fontSize: '16px!important',
-    lineHeight: '22px',
-    padding: '12px 12px!important',
   },
 });
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import { useGetClientCourseAndMaterials } from 'api/courses';
+import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
 import { MATERIAL } from 'constants/materials';
@@ -18,19 +18,18 @@ const MAX_STAGE_INITIAL = 1;
 const CONTENT_ELEMENT = 0;
 
 const LearningCourseContainer: React.FC = () => {
+  const { courseId } = useParams();
+
   const [stage, setStage] = useState(1);
   const [backDisabled, setBackDisabled] = useState(true);
   const [forwardDisabled, setForwardDisabled] = useState(false);
   const [isDescriptionOpen, setDescriptionOpen] = useState(false);
 
-  const params = useParams();
+  const { data: clientCourseAndMaterialsData, isLoading } =
+    useGetClientCourseAndMaterials(courseId);
 
-  const { data: clientCourseAndMaterialsData, isLoading } = useGetClientCourseAndMaterials(
-    params.courseId,
-  );
-
-  const { mutate: startCourseMutate } = useStartClientCourse(params.courseId);
-  const { mutate } = usePassClientCourse(params.courseId);
+  const { mutate: startCourseMutate } = useStartClientCourse(courseId);
+  const { mutate: passCourseMutate } = usePassClientCourse(courseId);
 
   const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterialsData || [];
 
@@ -53,16 +52,16 @@ const LearningCourseContainer: React.FC = () => {
 
   useEffect(() => {
     if (clientCourseResponse?.status === COURSE_STATUSES.approved) {
-      startCourseMutate(params.courseId);
+      startCourseMutate(courseId);
     }
-  }, [clientCourseResponse?.status, params.courseId, startCourseMutate]);
+  }, [clientCourseResponse?.status, courseId, startCourseMutate]);
 
   const stageForward = () => {
     setStage(stage + STAGE_CHANGE);
     if (clientCourseResponse?.status === COURSE_STATUSES.started) {
-      mutate(stage);
+      passCourseMutate(stage);
       if (stage + STAGE_CHANGE === maxStage) {
-        mutate(maxStage);
+        passCourseMutate(maxStage);
       }
     }
   };
