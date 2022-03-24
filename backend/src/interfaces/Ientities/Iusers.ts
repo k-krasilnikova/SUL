@@ -3,6 +3,8 @@ import { ObjectId } from 'mongoose';
 import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 import { IUserSkillPopulated } from './IUserSkill';
+import { IStackMember } from './IStackMember';
+import { TUserPosition, TUserRank, TUserRole } from '../common/users';
 
 interface INotification {
   _id: ObjectId;
@@ -33,7 +35,7 @@ interface IUser {
   rank: TUserRank;
   firstName: string;
   lastName: string;
-  stack: undefined; //!
+  stack: IStackMember[];
   technologies: ITechnologyGroup[];
   courses: ObjectId[];
   group: string;
@@ -63,20 +65,4 @@ type TUserPopulated = IUser & {
   technologies: ITechnologyGroupPopuldated[];
 };
 
-type TUserRole = 'admin' | 'manager' | 'employee';
-
-type TUserRank = 'Junior' | 'Middle' | 'Senior';
-
-type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
-
-export {
-  IUser,
-  TUserPopulated,
-  TUserRole,
-  TUserPosition,
-  TUserRank,
-  IPendingCourses,
-  INotification,
-  ITechnologyGroup,
-  ITechnologyGroupPopuldated,
-};
+export { IUser, TUserPopulated, IPendingCourses, INotification, ITechnologyGroup };
