@@ -3,26 +3,34 @@ export const PATHS: {
   profile: string;
   coursesList: string;
   myCourses: string;
+  course: string;
   help: string;
   signIn: string;
   requests: string;
   employees: string;
+  employee: string;
   skills: string;
   notFound: string;
   learnCourse: string;
+  learnClientCourse: string;
+  courseTest: string;
   skillsMap: string;
 } = {
   home: '/',
   profile: '/profile',
   coursesList: '/courses-list',
   myCourses: '/my-courses',
+  course: ':courseId',
   help: '/help',
   signIn: '/signin',
   requests: '/pending-requests',
   employees: '/employees',
+  employee: ':employeeId',
   skills: '/skills',
   notFound: '/not-found',
   learnCourse: '/my-courses/learn',
+  learnClientCourse: 'learn/:courseId',
+  courseTest: 'learn/:courseId/test',
   skillsMap: '/skills-map',
 };
 
