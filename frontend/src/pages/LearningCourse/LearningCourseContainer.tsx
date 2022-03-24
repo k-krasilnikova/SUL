@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { useGetCourseMaterials } from 'api/courses';
-import { useStartClientCourse, usePassClientCourse, useGetClientCourseInfo } from 'api/myCourses';
+import { useGetClientCourseAndMaterials } from 'api/courses';
+import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import { useGetCourseTest, useStartCourseTest } from 'api/test';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
@@ -28,10 +28,10 @@ const LearningCourseContainer: React.FC = () => {
   const [isDescriptionOpen, setDescriptionOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const { data: clientCourseResponse } = useGetClientCourseInfo(courseId);
-  const { data: courseMaterialsResponse, isLoading } = useGetCourseMaterials(
-    clientCourseResponse?.course._id,
-  );
+  const { data: clientCourseAndMaterialsData, isLoading } =
+    useGetClientCourseAndMaterials(courseId);
+  const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterialsData || [];
+
   const { data: courseTestResponse } = useGetCourseTest({
     courseId,
     enabled: dialogOpen && clientCourseResponse?.status === COURSE_STATUSES.started,
