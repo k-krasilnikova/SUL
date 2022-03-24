@@ -1,10 +1,13 @@
 import { ObjectId } from 'mongoose';
 
+import { TUserRank } from '../common/users';
+
 interface ICourse {
   _id?: ObjectId;
   title: string;
   technologies: ObjectId[];
   requiredSkills?: ObjectId[];
+  complexity: TUserRank[];
   description: string;
   materials: { stage: string; content: Array<string> }[];
   test: ObjectId;
