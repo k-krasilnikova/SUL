@@ -37,16 +37,19 @@ const App: React.FC = () => (
             <Route path={PATHS.profile} element={<Profile />} />
             <Route path={PATHS.myCourses}>
               <Route index element={<MyCourses />} />
-              <Route path=":courseId" element={<DetailedCourse page={PAGES.myCourses} />} />
-              <Route path="learn/:courseId" element={<LearningCourse />} />
-              <Route path="learn/:courseId/test" element={<PassingTest />} />
+              <Route path={PATHS.course} element={<DetailedCourse page={PAGES.myCourses} />} />
+              <Route path={PATHS.learnClientCourse} element={<LearningCourse />} />
+              <Route path={PATHS.courseTest} element={<PassingTest />} />
             </Route>
             <Route path={PATHS.coursesList}>
               <Route index element={<CoursesList />} />
-              <Route path=":courseId" element={<DetailedCourse page={PAGES.coursesList} />} />
+              <Route path={PATHS.course} element={<DetailedCourse page={PAGES.coursesList} />} />
             </Route>
             <Route path={PATHS.help} element={<Help />} />
-            <Route path={PATHS.employees} element={<Employees />} />
+            <Route path={PATHS.employees}>
+              <Route index element={<Employees />} />
+              <Route path={PATHS.employee} element={<EmployeeProfile />} />
+            </Route>
             <Route path={PATHS.requests} element={<Requests />} />
             <Route path={PATHS.skills} element={<Skills />} />
             <Route path={PATHS.skillsMap} element={<SkillsMap />} />
