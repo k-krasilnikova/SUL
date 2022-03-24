@@ -179,10 +179,28 @@ export const SkillProgress = styled('div')({
 export const SkillInfoText = styled('div')({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  '&: hover': {
+    cursor: 'pointer',
+  },
   [theme.breakpoints.up('xl')]: {
     fontSize: '16px',
     lineHeight: '20px',
   },
+});
+export const HoverSkillInfoText = styled('div')({
+  width: 'fit-content',
+  padding: '3px',
+  display: 'flex',
+  justifyContent: 'center',
+  position: 'absolute',
+  top: '16px',
+  right: '-35px',
+  fontSize: '12px',
+  backgroundColor: '#000',
+  color: '#fff',
+  overflow: 'inherit',
+  textOverflow: 'unset',
+  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
 });
 export const SkillInfoStage = styled('div')({
   [theme.breakpoints.up('xs')]: {
