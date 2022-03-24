@@ -30,8 +30,8 @@ const LearningCourseContainer: React.FC = () => {
 
   const { data: clientCourseAndMaterialsData, isLoading } =
     useGetClientCourseAndMaterials(courseId);
-
   const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterialsData || [];
+
   const { data: courseTestResponse } = useGetCourseTest({
     courseId,
     enabled: dialogOpen && clientCourseResponse?.status === COURSE_STATUSES.started,
