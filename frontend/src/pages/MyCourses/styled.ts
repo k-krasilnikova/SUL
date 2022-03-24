@@ -10,7 +10,7 @@ export const PageContainer = styled(Grid)({
     padding: '16px 24px 16px 14px',
   },
   [theme.breakpoints.down(950)]: {
-    padding: '0px 8px',
+    padding: '0px 8px 8px 8px',
   },
   [theme.breakpoints.up('xl')]: {
     padding: '16px 30px 24px 0px',
