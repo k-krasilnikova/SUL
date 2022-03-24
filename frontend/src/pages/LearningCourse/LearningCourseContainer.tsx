@@ -1,62 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { useGetCourseMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse, useGetClientCourseInfo } from 'api/myCourses';
 import { useGetCourseTest, useStartCourseTest } from 'api/test';
-import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
-import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
-import { MATERIAL } from 'constants/materials';
-import { defineMaterialType } from 'utils/helpers/defineMaterialType';
+
 import Loader from 'components/Loader';
 import { COURSE_STATUSES } from 'constants/statuses';
+import { useToggle } from 'hooks';
 
 import LearningCourse from './LearningCourse';
+import Material from './Material';
+import CourseInfo from './CourseInfo';
+import CourseInfoToggle from './CourseInfoToggle';
+import StageControllButton from './StageControllButton';
+import StageController from './StageController';
+import { StartTestDialog } from './StartTestDialog';
 
 const MIN_STAGE = 1;
 const STAGE_CHANGE = 1;
 const MAX_STAGE_INITIAL = 1;
 const CONTENT_ELEMENT = 0;
 
-const LearningCourseContainer: React.FC = () => {
+const LearningCourseContainer: FC = () => {
   const { courseId } = useParams();
 
   const [stage, setStage] = useState(1);
-  const [testEnabled, setTestEnabled] = useState(false);
-  const [backDisabled, setBackDisabled] = useState(true);
-  const [forwardDisabled, setForwardDisabled] = useState(false);
-  const [isDescriptionOpen, setDescriptionOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
 
-  const { data: clientCourseResponse } = useGetClientCourseInfo(courseId);
-  const { data: courseMaterialsResponse, isLoading } = useGetCourseMaterials(
-    clientCourseResponse?.course._id,
-  );
+  const [isCourseInfoOpen, setCourseInfoOpen] = useToggle();
+  const [isStartTestDialognOpen, setStartTestDialognOpen] = useToggle();
+
+  const { data: clientCourseResponse, isLoading: clientCourseIsLoading } =
+    useGetClientCourseInfo(courseId);
+
+  const { data: courseMaterialsResponse, isLoading: courseMaterialsIsLoading } =
+    useGetCourseMaterials(clientCourseResponse?.course?._id);
+
   const { data: courseTestResponse } = useGetCourseTest({
     courseId,
-    enabled: dialogOpen && clientCourseResponse?.status === COURSE_STATUSES.started,
+    enabled: isStartTestDialognOpen && clientCourseResponse?.status === COURSE_STATUSES.started,
   });
 
   const { mutate: startClienCourseMutate } = useStartClientCourse(courseId);
   const { mutate: startTestMutate } = useStartCourseTest(courseId);
   const { mutate: passCourseStageMutate } = usePassClientCourse(courseId);
-
-  const maxStage = courseMaterialsResponse
-    ? courseMaterialsResponse.materials.length
-    : MAX_STAGE_INITIAL;
-
-  useEffect(() => {
-    if (stage > MIN_STAGE) {
-      setBackDisabled(false);
-    } else {
-      setBackDisabled(true);
-    }
-    if (stage < maxStage) {
-      setForwardDisabled(false);
-    } else {
-      setForwardDisabled(true);
-    }
-  }, [stage, maxStage]);
 
   useEffect(() => {
     const handleStartCourse = () => {
@@ -67,85 +54,78 @@ const LearningCourseContainer: React.FC = () => {
     handleStartCourse();
   }, [courseId, clientCourseResponse?.status, startClienCourseMutate]);
 
+  const isQueriesLoading = clientCourseIsLoading || courseMaterialsIsLoading;
+
+  if (isQueriesLoading) {
+    return <Loader color="primary" />;
+  }
+
+  const isResponsesDefined = clientCourseResponse && courseMaterialsResponse;
+
+  if (!isResponsesDefined) {
+    return null;
+  }
+
   const testTimeout = courseTestResponse && courseTestResponse[0]?.test?.timeout;
 
-  const courseDescription = clientCourseResponse?.course.description
-    ? { title: clientCourseResponse?.course.title, info: clientCourseResponse?.course.description }
-    : undefined;
+  const {
+    course: { title: courseTitle, description: courseDescription },
+  } = clientCourseResponse;
 
-  const materialType = courseMaterialsResponse
-    ? defineMaterialType(courseMaterialsResponse.materials[stage - 1].content[CONTENT_ELEMENT])
-    : MATERIAL.text;
-  const material =
-    materialType === MATERIAL.video && courseMaterialsResponse
-      ? optimizeLink(courseMaterialsResponse.materials[stage - 1].content[CONTENT_ELEMENT])
-      : courseMaterialsResponse?.materials[stage - 1].content[CONTENT_ELEMENT] || MATERIAL.text;
-  const videoPreview = getPreviewId(material);
+  const courseInfo = { title: courseTitle, description: courseDescription };
+
+  const { materials: courseMaterials } = courseMaterialsResponse;
+
+  const courseMaterial = courseMaterials[stage - 1]?.content[CONTENT_ELEMENT];
+
+  const maxStage = courseMaterials?.length || MAX_STAGE_INITIAL;
 
   const handleStartTest = () => {
     startTestMutate(courseId);
   };
 
-  const handlePassCourseStage = (courseStage: number) => {
-    passCourseStageMutate(courseStage);
-  };
-
-  const stageForward = () => {
+  const handleStageForward = () => {
     setStage(stage + STAGE_CHANGE);
-    handlePassCourseStage(stage);
-    if (stage + STAGE_CHANGE === maxStage && !testEnabled) {
-      handlePassCourseStage(maxStage);
-      setTestEnabled(true);
+    passCourseStageMutate(stage);
+    if (stage + STAGE_CHANGE === maxStage) {
+      passCourseStageMutate(maxStage);
     }
   };
 
-  const stageBack = () => {
-    if (stage > MIN_STAGE) {
-      setStage(stage - STAGE_CHANGE);
-    }
+  const handleStageBack = () => {
+    setStage(stage - STAGE_CHANGE);
   };
-
-  const handleClickDialogOpen = () => {
-    setDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setDialogOpen(false);
-  };
-
-  const toggleDescriptionOpen = () => {
-    setDescriptionOpen(!isDescriptionOpen);
-  };
-
-  if (isLoading) {
-    return <Loader color="primary" />;
-  }
 
   return (
     <>
-      {courseMaterialsResponse && (
-        <LearningCourse
-          key={courseMaterialsResponse.materials[stage - 1]._id}
-          stage={stage}
+      <LearningCourse key={courseMaterialsResponse.materials[stage - 1]._id}>
+        <StageController
+          isBackDisabled={stage <= MIN_STAGE}
+          isForwardDisabled={stage >= maxStage}
           maxStage={maxStage}
-          stageBack={stageBack}
-          stageForward={stageForward}
-          courseDescription={courseDescription}
-          testEnabled={testEnabled}
-          testTimeout={testTimeout}
-          backDisabled={backDisabled}
-          forwardDisabled={forwardDisabled}
-          material={material}
-          materialType={materialType}
-          dialogOpen={dialogOpen}
-          handleStartTest={handleStartTest}
-          handleClickDialogOpen={handleClickDialogOpen}
-          handleDialogClose={handleDialogClose}
-          videoPreview={videoPreview}
-          isDescriptionOpen={isDescriptionOpen}
-          toggleDescriptionOpen={toggleDescriptionOpen}
+          stage={stage}
+          handleStageBack={handleStageBack}
+          handleStageForward={handleStageForward}
         />
-      )}
+        <Material courseMaterial={courseMaterial} />
+        <CourseInfoToggle
+          isCourseInfoOpen={isCourseInfoOpen}
+          toggleCourseInfoOpen={setCourseInfoOpen}
+        />
+        <StageControllButton
+          isTestEnabled={stage === maxStage}
+          handleStageForward={handleStageForward}
+          handleStartTestDialogOpen={setStartTestDialognOpen}
+        />
+        <CourseInfo isCourseInfoOpen={isCourseInfoOpen} courseInfo={courseInfo} />
+      </LearningCourse>
+      <StartTestDialog
+        isOpened={isStartTestDialognOpen}
+        size="medium"
+        testTimeout={testTimeout}
+        handleClose={setStartTestDialognOpen}
+        handleStartTest={handleStartTest}
+      />
     </>
   );
 };

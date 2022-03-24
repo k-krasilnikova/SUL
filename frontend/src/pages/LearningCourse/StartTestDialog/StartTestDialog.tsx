@@ -20,7 +20,7 @@ interface IProps {
   testTimeout?: number;
 }
 
-const WarningStartTestDialog: FC<IProps> = ({
+const StartTestDialog: FC<IProps> = ({
   isOpened,
   size,
   testTimeout,
@@ -48,4 +48,4 @@ const WarningStartTestDialog: FC<IProps> = ({
   </>
 );
 
-export default WarningStartTestDialog;
+export default StartTestDialog;
