@@ -4,13 +4,13 @@ import { Grid } from '@mui/material';
 import Loader from 'components/Loader';
 import { NoContent } from 'components/NoContent';
 import { AuthorizedLayout } from 'components/Layout';
-import { SIZE } from 'constants/sizes';
 import { LOADER } from 'constants/loaderTypes';
 import { NO_REQUESTS } from 'constants/messages';
+import { SIZE } from 'constants/sizes';
 import { IRequestsProps } from 'types/request';
 
-import { RequestsWrapper } from './styled';
 import RequestItem from './RequestItem';
+import { RequestsWrapper } from './styled';
 
 const Requests: React.FC<IRequestsProps> = ({
   requests,
