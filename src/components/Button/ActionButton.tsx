@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { compose } from 'recompose';
 
@@ -7,15 +7,17 @@ import { PATHS } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
 import withDisable from 'components/Button/HOC/withDisable';
 
-import withTest from './HOC/withTest';
+import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import { COURSE_STATUSES } from 'constants/statuses';
 import withTimeLeft from './HOC/withTimeLeft';
 import { CustomButton } from './styled';
 
 interface IProps {
   label: string;
   courseId: string;
-  isTest?: boolean;
+  status: string;
   isDisable?: boolean;
+  progress?: ClientCourse['progress'];
 }
 
 type TOutterProps = {
@@ -27,20 +29,34 @@ type TOutterProps = {
   applyDate?: string;
 };
 
-const ActionButton: React.FC<IProps> = ({ children, courseId, label, isTest, isDisable }) => {
+const ActionButton: React.FC<IProps> = ({
+  children,
+  courseId,
+  label,
+  isDisable,
+  progress,
+  status,
+}) => {
   const navigate = useNavigate();
+  const [isContinueTest, setContinues] = useState<boolean>(false);
   const handleLearninig = () => navigate(`${PATHS.learnCourse}/${courseId}`);
-  const handleStartTest = () => navigate(`${PATHS.learnCourse}/${courseId}/test`);
+  const handleContinueTest = () => navigate(`${PATHS.learnCourse}/${courseId}/test`);
+
+  useEffect(() => {
+    if (progress && status === COURSE_STATUSES.testing) {
+      setContinues(isProgressCompleted(progress));
+    }
+  }, [progress, status]);
 
   return (
     <CustomButton
       variant="mediumContained"
       disabled={isDisable}
-      onClick={isTest ? handleStartTest : handleLearninig}
+      onClick={isContinueTest ? handleContinueTest : handleLearninig}
     >
       {children || label}
     </CustomButton>
   );
 };
 
-export default compose<IProps, TOutterProps>(withTest, withTimeLeft, withDisable)(ActionButton);
+export default compose<IProps, TOutterProps>(withTimeLeft, withDisable)(ActionButton);

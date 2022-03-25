@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { useGetClientCourseAndMaterials } from 'api/courses';
@@ -10,6 +10,7 @@ import { defineMaterialType } from 'utils/helpers/defineMaterialType';
 import Loader from 'components/Loader';
 import { COURSE_STATUSES } from 'constants/statuses';
 
+import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 import LearningCourse from './LearningCourse';
 
 const MIN_STAGE = 1;
@@ -89,6 +90,11 @@ const LearningCourseContainer: React.FC = () => {
     setDescriptionOpen(!isDescriptionOpen);
   };
 
+  const checkProgress = useCallback(
+    () => isProgressCompleted(clientCourseResponse?.progress),
+    [clientCourseResponse?.progress],
+  );
+
   if (isLoading) {
     return <Loader color="primary" />;
   }
@@ -106,11 +112,11 @@ const LearningCourseContainer: React.FC = () => {
           backDisabled={backDisabled}
           forwardDisabled={forwardDisabled}
           material={material}
+          clientCourse={clientCourseResponse}
           materialType={materialType}
           videoPreview={videoPreview}
-          progress={clientCourseResponse?.progress}
+          isProgressCompleted={checkProgress()}
           isDescriptionOpen={isDescriptionOpen}
-          status={clientCourseResponse?.status}
           toggleDescriptionOpen={toggleDescriptionOpen}
         />
       )}

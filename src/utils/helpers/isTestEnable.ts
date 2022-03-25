@@ -1,4 +1,4 @@
 import { ClientCourse } from 'types/clientCourse';
 
-export const isTestEnable = (progress?: ClientCourse['progress']) =>
+export const isProgressCompleted = (progress?: ClientCourse['progress']) =>
   !progress ? false : progress.every((stage) => stage.isCompleted);

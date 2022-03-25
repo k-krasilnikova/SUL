@@ -1,17 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import { useParams } from 'react-router';
 
 import { COURSE_STATUSES } from 'constants/statuses';
 import { ClientCourse } from 'types/clientCourse';
-import { isTestEnable } from 'utils/helpers/isTestEnable';
-
-import { useParams } from 'react-router';
+import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 import useGetTestTime from 'api/test/getTestTime';
 import { useStartCourseTest } from 'api/test';
-
 import checkTestDate from 'utils/helpers/checkTestDate';
+import { useToggle } from 'hooks';
+
 import WarningStartTestDialog from './StartTestDialog';
 
 type IncomingProps = {
+  timeout?: number;
   status?: string;
   progress?: ClientCourse['progress'];
   testDate?: string;
@@ -22,23 +23,14 @@ const withStartTest =
   (props: T) => {
     const { courseId } = useParams();
 
-    const { progress, testDate, status } = props;
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [testEnabled, setTestEnabled] = useState(false);
+    const { progress, testDate, status, timeout } = props;
+    const [state, toggle] = useToggle();
 
     const { mutate: startTestMutate } = useStartCourseTest(courseId);
-    const { data: testTimeout } = useGetTestTime({ courseId, enabled: dialogOpen });
+    const { data: testTimeout } = useGetTestTime({ courseId, enabled: state });
 
     const handleStartTest = () => {
       startTestMutate(courseId);
-    };
-
-    const handleDialogOpen = () => {
-      setDialogOpen(true);
-    };
-
-    const handleDialogClose = () => {
-      setDialogOpen(false);
     };
 
     const isTestDisabled = useCallback(
@@ -47,27 +39,23 @@ const withStartTest =
           [COURSE_STATUSES.completed, COURSE_STATUSES.successful, COURSE_STATUSES.testing].includes(
             status,
           )) ||
-        !checkTestDate(testDate) ||
-        !isTestEnable(progress),
-      [progress, status, testDate],
+        !checkTestDate(testDate, timeout) ||
+        !isProgressCompleted(progress),
+      [progress, status, testDate, timeout],
     );
-
-    useEffect(() => {
-      if (isTestDisabled()) {
-        setTestEnabled(false);
-        return;
-      }
-      setTestEnabled(true);
-    }, [isTestDisabled, progress, status, testDate]);
 
     return (
       <>
-        <Component handleDialogOpen={handleDialogOpen} isTestEnable={testEnabled} {...props} />
+        <Component
+          handleDialogOpen={() => toggle(true)}
+          isTestEnable={!isTestDisabled()}
+          {...props}
+        />
         <WarningStartTestDialog
           handleStartTest={handleStartTest}
-          isOpened={dialogOpen}
+          isOpened={state}
           testTimeout={testTimeout}
-          handleClose={handleDialogClose}
+          handleClose={() => toggle(false)}
         />
       </>
     );

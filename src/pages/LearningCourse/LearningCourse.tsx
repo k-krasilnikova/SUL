@@ -8,8 +8,9 @@ import { playVideo } from 'icons';
 import { MATERIAL } from 'constants/materials';
 import { ClientCourse } from 'types/clientCourse';
 import { CustomButton } from 'components/Button/styled';
-import withStartTest from 'components/StartTestDialog/withStartTest';
 
+import StartTestButton from 'components/Button/StartTestButton';
+import { TEST_DISABLE_DAYS } from 'constants/time';
 import {
   LearningPageContainer,
   BackButton,
@@ -42,17 +43,12 @@ interface LearningProps {
   videoPreview: string | boolean;
   isDescriptionOpen: boolean;
   toggleDescriptionOpen: () => void;
-  isTestEnable?: boolean;
-  handleDialogOpen?: () => void;
+  isProgressCompleted: boolean;
+  clientCourse?: ClientCourse;
   courseDescription?: {
     title: string;
     info: string;
   };
-}
-
-interface OuterProps {
-  progress?: ClientCourse['progress'];
-  status?: string;
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
@@ -61,14 +57,14 @@ const LearningCourse: React.FC<LearningProps> = ({
   stageBack,
   stageForward,
   courseDescription,
-  isTestEnable,
+  isProgressCompleted,
   backDisabled,
   forwardDisabled,
   material,
   materialType,
-  handleDialogOpen,
   videoPreview,
   isDescriptionOpen,
+  clientCourse,
   toggleDescriptionOpen,
 }) => (
   <AuthorizedLayout pageName="Learning course">
@@ -111,12 +107,13 @@ const LearningCourse: React.FC<LearningProps> = ({
           {isDescriptionOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </ToggleDescription>
         <ButtonWrapper>
-          {isTestEnable ? (
-            <>
-              <CustomButton variant="contained" onClick={handleDialogOpen}>
-                Start the Test
-              </CustomButton>
-            </>
+          {isProgressCompleted ? (
+            <StartTestButton
+              status={clientCourse?.status}
+              testDate={clientCourse?.testDate}
+              progress={clientCourse?.progress}
+              timeout={TEST_DISABLE_DAYS}
+            />
           ) : (
             <CustomButton variant="contained" onClick={stageForward}>
               Next
@@ -136,4 +133,4 @@ const LearningCourse: React.FC<LearningProps> = ({
   </AuthorizedLayout>
 );
 
-export default withStartTest<OuterProps & LearningProps>(LearningCourse);
+export default LearningCourse;

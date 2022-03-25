@@ -5,17 +5,13 @@ import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import { COURSE_STATUSES } from 'constants/statuses';
+import { PAGES } from 'constants/pages';
 
 import DetailedCourse from './DetailedCourse';
 
 interface Props {
   page: string;
 }
-
-const PAGES = {
-  myCourses: 'myCourses',
-  coursesList: 'coursesList',
-};
 
 const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const params = useParams();
