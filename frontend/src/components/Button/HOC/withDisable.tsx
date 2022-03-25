@@ -24,7 +24,9 @@ const withDisable =
       }
     }, [status]);
 
-    return <Component isDisable={isDisable} {...props} />;
+    const isCompleted = status === COURSE_STATUSES.completed;
+
+    return <Component variant={isCompleted && 'completed'} isDisable={isDisable} {...props} />;
   };
 
 export default withDisable;
