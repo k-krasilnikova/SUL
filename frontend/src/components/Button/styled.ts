@@ -1,14 +1,12 @@
 import styled from 'styled-components';
-import { Button } from 'components/Button';
 
+import { Button } from 'components/Button';
 import theme from 'themeSettings';
 
 export const CustomButton = styled(Button)({
   height: '50px',
   width: '150px',
   marginRight: '16px !important',
-  fontSize: '16px !important',
-  lineHeight: '22px',
   padding: '12px !important',
   [theme.breakpoints.down('xl')]: {
     height: '44px',

@@ -5,7 +5,7 @@ import { ProgressBar } from 'components/ProgressBar';
 import { checkIcon } from 'icons';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
-import { PROGRESS_COLOR } from 'constants/progressBar';
+import { TEXT_COLOR } from 'constants/progressBar';
 import { SIZE } from 'constants/sizes';
 
 import CourseInfo from './CourseInfo';
@@ -78,16 +78,16 @@ const Course: React.FC<Props> = ({
             </MobileCourseCompleted>
           )}
         </CourseTextContainer>
-        {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed ? (
+        {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed && (
           <MobileCourseProgress>
             <ProgressBar
               size={SIZE.medium}
               text={`${progress}%`}
               value={progress}
-              textColor={PROGRESS_COLOR}
+              textColor={TEXT_COLOR}
             />
           </MobileCourseProgress>
-        ) : null}
+        )}
       </AboutCourseContainer>
       <ButtonsContainer type={type}>
         <CourseInfoBox type={type}>

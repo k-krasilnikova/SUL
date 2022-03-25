@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router';
 import { compose } from 'recompose';
 
 import { PATHS } from 'constants/routes';
-
 import { ClientCourse } from 'types/clientCourse';
 import withDisable from 'components/Button/HOC/withDisable';
-
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 import { COURSE_STATUSES } from 'constants/statuses';
+
 import withTimeLeft from './HOC/withTimeLeft';
 import { CustomButton } from './styled';
 
@@ -39,7 +38,7 @@ const ActionButton: React.FC<IProps> = ({
 }) => {
   const navigate = useNavigate();
   const [isContinueTest, setContinue] = useState<boolean>(false);
-  const handleLearninig = () => navigate(`${PATHS.learnCourse}/${courseId}`);
+  const handleLearning = () => navigate(`${PATHS.learnCourse}/${courseId}`);
   const handleContinueTest = () => navigate(`${PATHS.learnCourse}/${courseId}/test`);
 
   useEffect(() => {
@@ -52,7 +51,7 @@ const ActionButton: React.FC<IProps> = ({
     <CustomButton
       variant="mediumContained"
       disabled={isDisable}
-      onClick={isContinueTest ? handleContinueTest : handleLearninig}
+      onClick={isContinueTest ? handleContinueTest : handleLearning}
     >
       {children || label}
     </CustomButton>
