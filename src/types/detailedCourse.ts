@@ -4,8 +4,7 @@ import { Course } from './course';
 
 export interface IDetailedCourse {
   commonCourseData: Course;
-  clientCourseData?: PureClientCourse;
-  handleApplyCourse: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  handleApplyCourse: () => void;
   page: string;
   id: string;
   status: string;
@@ -13,6 +12,7 @@ export interface IDetailedCourse {
   isFullTextOpen: boolean;
   toggleFullText: () => void;
   navigate: NavigateFunction;
+  clientCourseData?: PureClientCourse;
   isLoading?: boolean;
   isCourseApplicationSubmitted?: boolean;
   isCourseCompleted?: boolean;

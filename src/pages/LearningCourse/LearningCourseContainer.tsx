@@ -5,12 +5,12 @@ import { useGetClientCourseAndMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
-import { MATERIAL } from 'constants/materials';
 import { defineMaterialType } from 'utils/helpers/defineMaterialType';
-import Loader from 'components/Loader';
-import { COURSE_STATUSES } from 'constants/statuses';
-
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import { MATERIAL } from 'constants/materials';
+import { COURSE_STATUSES } from 'constants/statuses';
+import Loader from 'components/Loader';
+
 import LearningCourse from './LearningCourse';
 
 const MIN_STAGE = 1;

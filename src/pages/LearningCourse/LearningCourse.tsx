@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { Back, Forward } from 'components/Arrows';
-import { PATHS } from 'constants/routes';
-import { playVideo } from 'icons';
 import { MATERIAL } from 'constants/materials';
 import { ClientCourse } from 'types/clientCourse';
 import { CustomButton } from 'components/Button/styled';
-
+import { ButtonLabels } from 'components/Button/ButtonsEnums';
 import StartTestButton from 'components/Button/StartTestButton';
+import { playVideo } from 'icons';
+import { PATHS } from 'constants/routes';
 import { TEST_DISABLE_DAYS } from 'constants/time';
+
 import {
   LearningPageContainer,
   BackButton,
@@ -71,7 +72,7 @@ const LearningCourse: React.FC<LearningProps> = ({
     <LearningPageContainer>
       <Link to={PATHS.myCourses}>
         <BackButton disableElevation variant="contained">
-          Back
+          {ButtonLabels.back}
         </BackButton>
       </Link>
       <LearningWrapper>
@@ -116,7 +117,7 @@ const LearningCourse: React.FC<LearningProps> = ({
             />
           ) : (
             <CustomButton variant="contained" onClick={stageForward}>
-              Next
+              {ButtonLabels.next}
             </CustomButton>
           )}
         </ButtonWrapper>

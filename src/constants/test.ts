@@ -9,5 +9,3 @@ export const TEST_STATUS = {
   successful: 'successful',
   testing: 'testing',
 };
-
-export const TEST_LABEL = 'Start Test';

@@ -3,10 +3,10 @@ import { compose } from 'recompose';
 
 import withStartTest from 'components/StartTestDialog/withStartTest';
 import { ClientCourse } from 'types/clientCourse';
-import { TEST_LABEL } from 'constants/test';
 
 import withTimeLeft from './HOC/withTimeLeft';
 import { CustomButton } from './styled';
+import { ButtonLabels } from './ButtonsEnums';
 
 interface IProps {
   isTestEnable: boolean;
@@ -23,7 +23,7 @@ type TOutterProps = {
 const StartTestButton: React.FC<IProps> = ({ children, handleDialogOpen, isTestEnable }) => {
   return (
     <CustomButton variant="mediumContained" disabled={!isTestEnable} onClick={handleDialogOpen}>
-      {children || TEST_LABEL}
+      {children || ButtonLabels.startTest}
     </CustomButton>
   );
 };

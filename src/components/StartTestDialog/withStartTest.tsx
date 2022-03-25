@@ -24,10 +24,10 @@ const withStartTest =
     const { courseId } = useParams();
 
     const { progress, testDate, status, timeout } = props;
-    const [isOpened, setOpen] = useToggle();
+    const [isOpen, setOpen] = useToggle();
 
     const { mutate: startTestMutate } = useStartCourseTest(courseId);
-    const { data: testTimeout } = useGetTestTime({ courseId, enabled: isOpened });
+    const { data: testTimeout } = useGetTestTime({ courseId, enabled: isOpen });
 
     const handleStartTest = () => {
       startTestMutate(courseId);
@@ -53,7 +53,7 @@ const withStartTest =
         />
         <WarningStartTestDialog
           handleStartTest={handleStartTest}
-          isOpened={isOpened}
+          isOpened={isOpen}
           testTimeout={testTimeout}
           handleClose={() => setOpen(false)}
         />

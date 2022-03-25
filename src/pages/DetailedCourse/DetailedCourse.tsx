@@ -22,8 +22,9 @@ import StartTestButton from 'components/Button/StartTestButton';
 import { COURSE_DISABLE_DAYS, TEST_DISABLE_DAYS } from 'constants/time';
 import ActionButton from 'components/Button/ActionButton';
 import { countProgress } from 'utils/helpers/countCourseProgress';
-
 import { CourseItem } from 'components/Course';
+import { ButtonLabels } from 'components/Button/ButtonsEnums';
+
 import {
   BackButton,
   CourseActionsBox,
@@ -62,7 +63,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
     <DetailedCourseWrapper>
       <BackLink to={page === PAGES.coursesList ? PATHS.coursesList : PATHS.myCourses}>
         <BackButton variant="medium" color="primary">
-          Back
+          {ButtonLabels.back}
         </BackButton>
         <BackArrow alt="" src={backIconMobile} />
       </BackLink>
@@ -104,18 +105,13 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               type={INFO.detailedCourse}
             />
           </CourseInfoBox>
-
           {isLoading ? (
             <CustomButton variant="mediumOutlined" disabled>
               <ButtonLoader buttonSpinner={buttonSpinner} />
             </CustomButton>
           ) : page === PAGES.coursesList ? (
-            <CustomButton
-              color="primary"
-              variant="mediumContained"
-              onClick={(event) => handleApplyCourse(event)}
-            >
-              Apply the course
+            <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
+              {ButtonLabels.applyCourse}
             </CustomButton>
           ) : (
             <ButtonsWrapper>
@@ -153,7 +149,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                 <CourseActionsBox>
                   <CourseActions>
                     <CustomButton color="primary" variant="mediumOutlined">
-                      Details
+                      {ButtonLabels.next}
                     </CustomButton>
                   </CourseActions>
                 </CourseActionsBox>
