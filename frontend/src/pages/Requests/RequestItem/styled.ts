@@ -10,7 +10,6 @@ interface IStatus {
 }
 
 export const ImageWrapper = styled('div')({
-  marginRight: '6px',
   height: '50px',
   width: '50px',
 });
@@ -114,6 +113,11 @@ export const UserContainer = styled(Box)({
 
 export const CustomGrid = styled(Grid)({
   display: 'flex',
+});
+
+export const DisabledContainer = styled(CustomGrid)({
+  display: 'flex',
+  justifyContent: 'center',
 });
 
 export const CourseContainer = styled(CustomGrid)({
