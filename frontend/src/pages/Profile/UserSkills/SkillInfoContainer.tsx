@@ -14,13 +14,11 @@ const CourseMaterialInfoContainer: React.FC<SkillProps> = ({ skillItem }) => {
   const progress = (skillItem.score / skillItem.skill.maxScore) * PERCENTAGE;
   const [isShown, setIsShown] = useState(false);
 
-  const showSkillInfo = (event: React.MouseEvent<Element, MouseEvent>) => {
-    event.preventDefault();
+  const showSkillInfo = () => {
     setIsShown(true);
   };
 
-  const hideSkillInfo = (event: React.MouseEvent<Element, MouseEvent>) => {
-    event.preventDefault();
+  const hideSkillInfo = () => {
     setIsShown(false);
   };
 

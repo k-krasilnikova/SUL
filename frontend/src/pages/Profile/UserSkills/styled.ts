@@ -176,6 +176,12 @@ export const SkillProgress = styled('div')({
     height: '56px',
   },
 });
+export const SkillInfoTextWrapper = styled('div')({
+  position: 'relative',
+});
+export const SkillInfoTextWidth = styled('div')({
+  width: '70px',
+});
 export const SkillInfoText = styled('div')({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
