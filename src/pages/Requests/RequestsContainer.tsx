@@ -7,7 +7,6 @@ import Requests from './Requests';
 
 const RequestsContainer: React.FC = () => {
   const [targetId, setTargetId] = useState<string>('');
-  // const [searchRequest, setSearchRequest] = useState<string>('');
 
   const { data: requests, isLoading } = useGetCoursesRequests();
   const { mutateAsync: approveCourse, isLoading: approveLoading } = useApproveRequest();
