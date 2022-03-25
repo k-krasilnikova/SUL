@@ -3,8 +3,8 @@ export const PAGES = {
   coursesList: 'courses-list',
   myCourses: 'my-courses',
   help: 'help',
-  signIn: 'signIn',
-  notFound: 'notFound',
-  learnCourse: 'learnCourse',
-  detailed: 'detailedCourse',
+  signIn: 'signin',
+  notFound: 'not-found',
+  learnCourse: 'learn',
+  detailed: 'detailed-course',
 };
