@@ -56,3 +56,23 @@ export const makeLeftTime = (date: string | undefined, format: string): string |
     format,
   );
 };
+
+interface ITime {
+  days: number;
+  hours: number;
+  minutes: number;
+}
+
+const NO_TIME = 0;
+
+export const convertRequestTime = (time?: ITime): string | undefined => {
+  let convertedTime;
+  if (time && time.days > NO_TIME) {
+    convertedTime = `${time.days} d`;
+  } else if (time && time.hours > NO_TIME) {
+    convertedTime = `${time.hours} h`;
+  } else if (time && time.minutes > NO_TIME && time.hours === NO_TIME) {
+    convertedTime = `${time.minutes} m`;
+  }
+  return convertedTime;
+};
