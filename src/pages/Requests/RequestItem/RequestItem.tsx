@@ -1,12 +1,12 @@
 import React from 'react';
 
+import { buttonSpinner } from 'animations';
 import { UserAvatar } from 'components/Avatar';
 import { Image } from 'components/Image';
-import { BUTTON_CONTENT, REQUEST_STATUS } from 'constants/requests';
 import ButtonLoader from 'components/ButtonLoader';
-import { buttonSpinner } from 'animations';
-import { IRequest } from 'types/request';
+import { BUTTON_CONTENT, REQUEST_STATUS } from 'constants/requests';
 import { SIZE } from 'constants/sizes';
+import { IRequest } from 'types/request';
 import { convertRequestTime } from 'utils/helpers/convertTime';
 
 import {
