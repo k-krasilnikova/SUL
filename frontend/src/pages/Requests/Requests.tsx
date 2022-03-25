@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 
-import { SIZE } from 'constants/sizes';
-import { LOADER } from 'constants/loaderTypes';
-import { NO_REQUESTS } from 'constants/messages';
 import Loader from 'components/Loader';
 import { NoContent } from 'components/NoContent';
 import { AuthorizedLayout } from 'components/Layout';
+import { SIZE } from 'constants/sizes';
+import { LOADER } from 'constants/loaderTypes';
+import { NO_REQUESTS } from 'constants/messages';
 import { IRequestsProps } from 'types/request';
 
 import { RequestsWrapper } from './styled';

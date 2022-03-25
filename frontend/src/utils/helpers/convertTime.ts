@@ -1,4 +1,10 @@
-import { DISABLE_TIMEOUT_DAYS } from 'constants/time';
+import { DISABLE_TIMEOUT_DAYS, NO_TIME } from 'constants/time';
+
+interface ITime {
+  days: number;
+  hours: number;
+  minutes: number;
+}
 
 export const convertTestTimeout = (ms: number): string => {
   const [MS_IN_SEC, SEC_IN_HOUR, SEC_IN_MIN] = [1000, 3600, 60];
@@ -56,14 +62,6 @@ export const makeLeftTime = (date: string | undefined, format: string): string |
     format,
   );
 };
-
-interface ITime {
-  days: number;
-  hours: number;
-  minutes: number;
-}
-
-const NO_TIME = 0;
 
 export const convertRequestTime = (time?: ITime): string | undefined => {
   let convertedTime;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import { Box, Grid } from '@mui/material';
 
 import { Button } from 'components/Button';
-import { Box, Grid } from '@mui/material';
 import { REQUEST_STATUS } from 'constants/requests';
 import theme from 'themeSettings';
 
@@ -31,8 +31,6 @@ export const Text = styled('p')({
 
 export const DisabledText = styled(Text)({
   color: '#8e8e93',
-  display: 'flex',
-  justifyContent: 'center',
   fontSize: '16px',
 });
 
