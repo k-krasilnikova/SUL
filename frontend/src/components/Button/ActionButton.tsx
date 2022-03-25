@@ -40,13 +40,13 @@ const ActionButton: React.FC<IProps> = ({
   variant,
 }) => {
   const navigate = useNavigate();
-  const [isContinueTest, setContinue] = useState<boolean>(false);
+  const [isContinueTest, setContinueTest] = useState<boolean>(false);
   const handleLearning = () => navigate(`${PATHS.learnCourse}/${courseId}`);
   const handleContinueTest = () => navigate(`${PATHS.learnCourse}/${courseId}/test`);
 
   useEffect(() => {
     if (progress && status === COURSE_STATUSES.testing) {
-      setContinue(isProgressCompleted(progress));
+      setContinueTest(isProgressCompleted(progress));
     }
   }, [progress, status]);
 
