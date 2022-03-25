@@ -9,6 +9,8 @@ import {
   SkillInfo,
   SkillInfoFlex,
   ImageWrapper,
+  SkillInfoTextWrapper,
+  SkillInfoTextWidth,
   SkillInfoText,
   SkillProgress,
   SkillInfoStage,
@@ -21,8 +23,8 @@ interface Props {
   progress?: number;
   imageUrl?: string;
   isShown?: boolean;
-  showSkillInfo?: (event: React.MouseEvent<Element, MouseEvent>) => void;
-  hideSkillInfo?: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  showSkillInfo?: () => void;
+  hideSkillInfo?: () => void;
 }
 
 const CourseMaterialInfo: React.FC<Props> = ({
@@ -40,17 +42,17 @@ const CourseMaterialInfo: React.FC<Props> = ({
       <ImageWrapper>
         <UserAvatar size={SIZE.small} avatar={imageUrl} />
       </ImageWrapper>
-      <div style={{ position: 'relative' }}>
-        <div style={{ width: '70px' }}>
+      <SkillInfoTextWrapper>
+        <SkillInfoTextWidth>
           <SkillInfoText onMouseEnter={showSkillInfo} onMouseLeave={hideSkillInfo}>
             {technologyTitle}
           </SkillInfoText>
           <SkillInfoStage>
             {stagesCompleted}/{stages}
           </SkillInfoStage>
-        </div>
+        </SkillInfoTextWidth>
         {isShown && <HoverSkillInfoText>{technologyTitle}</HoverSkillInfoText>}
-      </div>
+      </SkillInfoTextWrapper>
       <SkillProgress>
         <ProgressBar value={progress} size={SIZE.small} />
       </SkillProgress>
