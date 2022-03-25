@@ -1,11 +1,13 @@
 import { ObjectId } from 'mongoose';
 
+import { UserRank } from 'enums/users';
+
 import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 import { IUserSkillPopulated } from './IUserSkill';
 import { IStackMember } from './IStackMember';
 import { ITimePeriod } from '../common/datetime';
-import { TUserPosition, TUserRank, TUserRole } from '../common/users';
+import { TUserPosition, TUserRole } from '../common/users';
 
 interface INotification {
   _id: ObjectId;
@@ -36,7 +38,7 @@ interface IUser {
   refreshToken?: string;
   role: TUserRole;
   position: TUserPosition;
-  rank: TUserRank;
+  rank: UserRank;
   firstName: string;
   lastName: string;
   stack: IStackMember[];

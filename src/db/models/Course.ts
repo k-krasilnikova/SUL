@@ -7,7 +7,7 @@ const courseSchema = new Schema<ICourse>({
   description: { type: String },
   technologies: [{ type: Schema.Types.ObjectId, required: true }],
   requiredSkills: [{ type: Schema.Types.ObjectId }],
-  complexity: [{ type: String, required: true }],
+  complexity: { type: Number, required: true },
   materials: [{ stage: { type: Number }, content: [{ type: String }] }],
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
 });
