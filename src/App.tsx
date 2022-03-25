@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { PATHS } from 'constants/routes';
+
 import {
   Profile,
   MyCourses,
@@ -23,6 +23,7 @@ import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
 import Loader from 'components/Loader';
 import { queryClient } from 'api/base';
 import { LOADER } from 'constants/loaderTypes';
+import { PATHS } from 'constants/routes';
 import { PAGES } from 'constants/pages';
 
 const App: React.FC = () => (
