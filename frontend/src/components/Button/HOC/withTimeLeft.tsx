@@ -1,7 +1,7 @@
-import { TIME_FORMAT } from 'constants/time';
 import { useToggle } from 'hooks';
 import React, { useEffect, useState } from 'react';
 
+import { TIME_FORMAT } from 'constants/time';
 import { makeLeftTime } from 'utils/helpers/convertTime';
 
 type IncomingProps = {
@@ -13,7 +13,7 @@ type IncomingProps = {
 const withTimeLeft =
   <T extends IncomingProps>(Component: React.ComponentType<T>) =>
   (props: T) => {
-    const [state, toggle] = useToggle(false);
+    const [isTimeVisible, setTimeVisible] = useToggle(false);
     const [time, setTime] = useState<string | undefined>();
     const { applyDate, testDate, timeout } = props;
     useEffect(() => {
@@ -25,8 +25,8 @@ const withTimeLeft =
     }, [applyDate, testDate, timeout]);
 
     return (
-      <div onMouseEnter={() => toggle(true)} onMouseLeave={() => toggle(false)}>
-        <Component {...props}>{state && time}</Component>
+      <div onMouseEnter={() => setTimeVisible(true)} onMouseLeave={() => setTimeVisible(false)}>
+        <Component {...props}>{isTimeVisible && time}</Component>
       </div>
     );
   };

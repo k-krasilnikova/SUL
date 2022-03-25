@@ -24,10 +24,10 @@ const withStartTest =
     const { courseId } = useParams();
 
     const { progress, testDate, status, timeout } = props;
-    const [state, toggle] = useToggle();
+    const [isOpened, setOpen] = useToggle();
 
     const { mutate: startTestMutate } = useStartCourseTest(courseId);
-    const { data: testTimeout } = useGetTestTime({ courseId, enabled: state });
+    const { data: testTimeout } = useGetTestTime({ courseId, enabled: isOpened });
 
     const handleStartTest = () => {
       startTestMutate(courseId);
@@ -47,15 +47,15 @@ const withStartTest =
     return (
       <>
         <Component
-          handleDialogOpen={() => toggle(true)}
+          handleDialogOpen={() => setOpen(true)}
           isTestEnable={!isTestDisabled()}
           {...props}
         />
         <WarningStartTestDialog
           handleStartTest={handleStartTest}
-          isOpened={state}
+          isOpened={isOpened}
           testTimeout={testTimeout}
-          handleClose={() => toggle(false)}
+          handleClose={() => setOpen(false)}
         />
       </>
     );
