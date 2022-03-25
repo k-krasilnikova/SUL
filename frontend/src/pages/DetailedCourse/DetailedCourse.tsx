@@ -120,7 +120,6 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
           ) : (
             <ButtonsWrapper>
               <StartTestButton
-                applyDate={clientCourseData?.applyDate}
                 testDate={clientCourseData?.testDate}
                 progress={clientCourseData?.progress}
                 timeout={TEST_DISABLE_DAYS}

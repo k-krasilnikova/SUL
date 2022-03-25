@@ -25,7 +25,7 @@ const withTimeLeft =
     }, [applyDate, testDate, timeout]);
 
     return (
-      <div onMouseEnter={() => toggle(false)} onMouseLeave={() => toggle(true)}>
+      <div onMouseEnter={() => toggle(true)} onMouseLeave={() => toggle(false)}>
         <Component {...props}>{state && time}</Component>
       </div>
     );
