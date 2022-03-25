@@ -12,6 +12,7 @@ const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosE
   const navigateTo = useNavigate();
 
   const handleSubmitError = (error: AxiosError) => {
+    queryClient.refetchQueries(['ClientCourseInfo', courseId]);
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
 
@@ -28,10 +29,7 @@ const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosE
     },
     {
       onError: handleSubmitError,
-      onSuccess: () => {
-        queryClient.refetchQueries(['ClientCourseInfo', courseId]);
-        handleSubmitSuccess();
-      },
+      onSuccess: handleSubmitSuccess,
     },
   );
 };
