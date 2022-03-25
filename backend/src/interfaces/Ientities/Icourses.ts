@@ -1,13 +1,13 @@
 import { ObjectId } from 'mongoose';
 
-import { TUserRank } from '../common/users';
+import { UserRank } from 'enums/users';
 
 interface ICourse {
   _id?: ObjectId;
   title: string;
   technologies: ObjectId[];
   requiredSkills?: ObjectId[];
-  complexity: TUserRank[];
+  complexity: UserRank;
   description: string;
   materials: { stage: string; content: Array<string> }[];
   test: ObjectId;
