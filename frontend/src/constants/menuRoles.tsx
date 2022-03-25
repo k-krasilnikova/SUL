@@ -75,11 +75,6 @@ const ADMIN_MENU: Array<MenuItemProps> = [
     title: 'Skills',
     icon: <Icon fontSize="large" component={skillsIcon} />,
   },
-  {
-    path: PATHS.help,
-    title: 'Help',
-    icon: <Icon fontSize="large" component={helpIcon} />,
-  },
 ];
 
 export const ROLES_MENU: IRolesMenu = {
