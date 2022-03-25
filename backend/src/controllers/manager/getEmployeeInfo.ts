@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { getAllClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
-import { populateUserTechnologies } from 'db/providers/skillProvider';
+import { populateUserStack, populateUserTechnologies } from 'db/providers/skillProvider';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 import { IEmployeeInfo } from 'interfaces/IResponse/IResponse';
@@ -18,7 +18,8 @@ const getEmployeeInfo = async (
 
     const employee: IUser = await getUserProvider(userId);
     const courses: IClientCoursePopulated[] = await getAllClientCoursesProvider(userId);
-    const employeePopulated = await populateUserTechnologies(employee);
+    const employeeTechs = await populateUserTechnologies(employee);
+    const employeePopulated = await populateUserStack(employeeTechs);
 
     const employeeInfo = mapEmployeeInfo(employeePopulated, courses);
 

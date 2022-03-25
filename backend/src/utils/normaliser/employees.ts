@@ -1,4 +1,5 @@
 import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
+import { IStackMember } from 'interfaces/Ientities/IStackMember';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import {
   IEmployeeClientCourse,
@@ -14,6 +15,9 @@ const mapEmployeeClientCourse = (clientCourse: IClientCoursePopulated): IEmploye
   return emplooyeeClientCourse;
 };
 
+const mapEmployeeStack = (stack: IStackMember[]): Pick<IStackMember, 'name'>[] =>
+  stack.map((member) => ({ name: member.name }));
+
 const mapEmployeeInfo = (employee: IUser, courses: IClientCoursePopulated[]): IEmployeeInfo => ({
   _id: employee._id,
   firstName: employee.firstName,
@@ -26,6 +30,7 @@ const mapEmployeeInfo = (employee: IUser, courses: IClientCoursePopulated[]): IE
   skype: employee.skype,
   phone: employee.phone,
   courses: courses.map(mapEmployeeClientCourse),
+  stack: mapEmployeeStack(employee.stack),
 });
 
 export { mapEmployeeInfo };

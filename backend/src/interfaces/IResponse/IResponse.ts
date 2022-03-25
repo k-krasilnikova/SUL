@@ -1,3 +1,4 @@
+import { IStackMember } from '../Ientities/IStackMember';
 import { ICourse } from '../Ientities/Icourses';
 import { IClientCourse } from '../Ientities/IclientCourses';
 import { ITechnologyGroup, TUserPopulated } from '../Ientities/Iusers';
@@ -26,6 +27,7 @@ interface IEmployeeInfo
   > {
   courses: IEmployeeClientCourse[];
   technologies: ITechnologyGroup[];
+  stack: Pick<IStackMember, 'name'>[];
 }
 
 interface IEmployeeClientCourse extends Pick<IClientCourse, 'status' | 'progress' | 'date'> {
