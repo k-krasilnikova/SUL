@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { compose } from 'recompose';
 
-import { PATHS } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
+import { VariantProps } from 'types/muiTypes';
 import withDisable from 'components/Button/HOC/withDisable';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
 
 import withTimeLeft from './HOC/withTimeLeft';
@@ -15,6 +16,7 @@ interface IProps {
   label: string;
   courseId: string;
   status: string;
+  variant?: VariantProps;
   isDisable?: boolean;
   progress?: ClientCourse['progress'];
 }
@@ -35,6 +37,7 @@ const ActionButton: React.FC<IProps> = ({
   isDisable,
   progress,
   status,
+  variant,
 }) => {
   const navigate = useNavigate();
   const [isContinueTest, setContinue] = useState<boolean>(false);
@@ -49,7 +52,7 @@ const ActionButton: React.FC<IProps> = ({
 
   return (
     <CustomButton
-      variant="mediumContained"
+      variant={variant || 'mediumContained'}
       disabled={isDisable}
       onClick={isContinueTest ? handleContinueTest : handleLearning}
     >
