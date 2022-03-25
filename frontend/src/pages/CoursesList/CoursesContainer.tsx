@@ -5,6 +5,7 @@ import { Course } from 'types/course';
 import { useApplyCourse, useGetPaginatedCourses } from 'api/courses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
+
 import CoursesList from './CoursesList';
 
 const CoursesContainer: React.FC = () => {
@@ -50,6 +51,7 @@ const CoursesContainer: React.FC = () => {
       fetchNextPage();
     }
   }, [inView, hasNextPage]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <CoursesList
       courses={formattedCoursesList}

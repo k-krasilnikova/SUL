@@ -19,6 +19,7 @@ import { COURSE_LABELS } from 'constants/statuses';
 import ActionButton from 'components/Button/ActionButton';
 import { COURSE_DISABLE_DAYS } from 'constants/time';
 import getCurrentPageName from 'utils/helpers/getCurentPageName';
+import { chooseListPath } from 'utils/helpers/paths/choosePath';
 
 import {
   PageContainer,
@@ -77,13 +78,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>
-                      <Link
-                        to={
-                          clientCourses
-                            ? `${PATHS.myCourses}/${clientCourses[index]._id}`
-                            : `${PATHS.coursesList}/${course._id}`
-                        }
-                      >
+                      <Link to={chooseListPath(course, index, clientCourses)}>
                         <CustomButton color="primary" variant="mediumOutlined">
                           Details
                         </CustomButton>
