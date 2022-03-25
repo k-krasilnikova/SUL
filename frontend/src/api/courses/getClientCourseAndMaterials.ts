@@ -4,8 +4,8 @@ import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { ICourseMaterialsResponse } from 'types/course';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { ICourseMaterialsResponse } from 'types/course';
 import { ClientCourse } from 'types/clientCourse';
 
 const useGetClientCourseAndMaterials = (

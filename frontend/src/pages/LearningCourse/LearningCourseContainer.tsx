@@ -3,19 +3,18 @@ import { useParams } from 'react-router';
 
 import { useGetClientCourseAndMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
-import { useGetCourseTest, useStartCourseTest } from 'api/test';
 
 import Loader from 'components/Loader';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { useToggle } from 'hooks';
 
-import LearningCourse from './LearningCourse';
-import Material from './Material';
 import CourseInfo from './CourseInfo';
 import CourseInfoToggle from './CourseInfoToggle';
-import StageControllButton from './StageControllButton';
+import LearningCourse from './LearningCourse';
+import Material from './Material';
+import StageControllButton from './ActionButton';
 import StageController from './StageController';
-import { StartTestDialog } from './StartTestDialog';
+import StartTestDialog from './StartTestDialog';
 
 const MIN_STAGE = 1;
 const STAGE_CHANGE = 1;
@@ -30,16 +29,13 @@ const LearningCourseContainer: FC = () => {
   const [isCourseInfoOpen, setCourseInfoOpen] = useToggle();
   const [isStartTestDialognOpen, setStartTestDialognOpen] = useToggle();
 
-  const { data: clientCourseAndMaterialsData, isLoading: clientCourseAndMaterialsIsLoading } =
+  const { data: clientCourseAndMaterials, isLoading: clientCourseAndMaterialsIsLoading } =
     useGetClientCourseAndMaterials(courseId);
-  const { data: courseTestResponse } = useGetCourseTest({
-    courseId,
-    enabled: isStartTestDialognOpen && clientCourseResponse?.status === COURSE_STATUSES.started,
-  });
 
   const { mutate: startClienCourseMutate } = useStartClientCourse(courseId);
-  const { mutate: startTestMutate } = useStartCourseTest(courseId);
   const { mutate: passCourseStageMutate } = usePassClientCourse(courseId);
+
+  const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterials || [];
 
   useEffect(() => {
     const handleStartCourse = () => {
@@ -54,15 +50,11 @@ const LearningCourseContainer: FC = () => {
     return <Loader color="primary" />;
   }
 
-  const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterialsData || [];
-
   const isResponsesDefined = clientCourseResponse && courseMaterialsResponse;
 
   if (!isResponsesDefined) {
     return null;
   }
-
-  const testTimeout = courseTestResponse && courseTestResponse[0]?.test?.timeout;
 
   const {
     course: { title: courseTitle, description: courseDescription },
@@ -76,14 +68,13 @@ const LearningCourseContainer: FC = () => {
 
   const maxStage = courseMaterials?.length || MAX_STAGE_INITIAL;
 
-  const handleStartTest = () => {
-    startTestMutate(courseId);
-  };
-
   const handleStageForward = () => {
-    setStage(stage + STAGE_CHANGE);
+    const nextStage = stage + STAGE_CHANGE;
+
+    setStage(nextStage);
     passCourseStageMutate(stage);
-    if (stage + STAGE_CHANGE === maxStage) {
+
+    if (nextStage === maxStage) {
       passCourseStageMutate(maxStage);
     }
   };
@@ -96,8 +87,8 @@ const LearningCourseContainer: FC = () => {
     <>
       <LearningCourse key={courseMaterialsResponse.materials[stage - 1]._id}>
         <StageController
-          isBackDisabled={stage <= MIN_STAGE}
-          isForwardDisabled={stage >= maxStage}
+          isBackDisabled={stage === MIN_STAGE}
+          isForwardDisabled={stage === maxStage}
           maxStage={maxStage}
           stage={stage}
           handleStageBack={handleStageBack}
@@ -115,13 +106,7 @@ const LearningCourseContainer: FC = () => {
         />
         <CourseInfo isCourseInfoOpen={isCourseInfoOpen} courseInfo={courseInfo} />
       </LearningCourse>
-      <StartTestDialog
-        isOpened={isStartTestDialognOpen}
-        size="medium"
-        testTimeout={testTimeout}
-        handleClose={setStartTestDialognOpen}
-        handleStartTest={handleStartTest}
-      />
+      <StartTestDialog isOpened={isStartTestDialognOpen} handleClose={setStartTestDialognOpen} />
     </>
   );
 };

@@ -1,1 +1,1 @@
-export { default as StartTestDialog } from './StartTestDialog';
+export { default } from './StartTestDialogContainer';

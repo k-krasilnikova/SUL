@@ -2,17 +2,20 @@ import { useMutation, UseMutationResult } from 'react-query';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
-import { apiClientWrapper } from 'api/base';
+import { apiClientWrapper, queryClient } from 'api/base';
 import { API } from 'constants/routes';
 import { IPassingTestResponse } from 'types/test';
 import { errorSnackbar } from 'constants/snackbarVariant';
 
 const usePassClientCourse = (
-  courseId: string | undefined,
-): UseMutationResult<IPassingTestResponse> => {
+  courseId?: string,
+): UseMutationResult<IPassingTestResponse, AxiosError, number> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
+  };
+  const handleSubmitSuccess = () => {
+    queryClient.invalidateQueries(['ClientCourseInfo', courseId]);
   };
   return useMutation(
     async (stage) => {
@@ -23,6 +26,7 @@ const usePassClientCourse = (
     },
     {
       onError: handleSubmitError,
+      onSuccess: handleSubmitSuccess,
     },
   );
 };

@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 
 import theme from 'themeSettings';
 
-export const StageControllButtonWrapper = styled('div')({
+export const ActionButtonWrapper = styled('div')({
   display: 'inline-block',
   verticalAlign: 'top',
   width: '155px',
@@ -18,7 +18,7 @@ export const StageControllButtonWrapper = styled('div')({
   },
 });
 
-export const StageButton = styled(Button)({
+export const StyledButton = styled(Button)({
   maxWidth: '155px',
   minWidth: '86px!important',
   height: '50px',

@@ -7,17 +7,13 @@ interface IProps {
   isCourseInfoOpen: boolean;
 }
 
-const CourseInfo: FC<IProps> = ({ isCourseInfoOpen, courseInfo }) => {
-  const { title, description } = courseInfo;
-
-  return (
-    <CourseInfoWrapper isCourseInfoOpen={isCourseInfoOpen}>
-      <CourseInfoContent>
-        <CourseInfoTitle>{title}</CourseInfoTitle>
-        <CourseInfoText>{description}</CourseInfoText>
-      </CourseInfoContent>
-    </CourseInfoWrapper>
-  );
-};
+const CourseInfo: FC<IProps> = ({ isCourseInfoOpen, courseInfo: { title, description } }) => (
+  <CourseInfoWrapper isCourseInfoOpen={isCourseInfoOpen}>
+    <CourseInfoContent>
+      <CourseInfoTitle>{title}</CourseInfoTitle>
+      <CourseInfoText>{description}</CourseInfoText>
+    </CourseInfoContent>
+  </CourseInfoWrapper>
+);
 
 export default CourseInfo;
