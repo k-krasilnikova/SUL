@@ -20,12 +20,10 @@ type TOutterProps = {
   progress?: ClientCourse['progress'];
 };
 
-const StartTestButton: React.FC<IProps> = ({ children, handleDialogOpen, isTestEnable }) => {
-  return (
-    <CustomButton variant="mediumContained" disabled={!isTestEnable} onClick={handleDialogOpen}>
-      {children || ButtonLabels.startTest}
-    </CustomButton>
-  );
-};
+const StartTestButton: React.FC<IProps> = ({ children, handleDialogOpen, isTestEnable }) => (
+  <CustomButton variant="mediumContained" disabled={!isTestEnable} onClick={handleDialogOpen}>
+    {children || ButtonLabels.startTest}
+  </CustomButton>
+);
 
 export default compose<IProps, TOutterProps>(withStartTest, withTimeLeft)(StartTestButton);
