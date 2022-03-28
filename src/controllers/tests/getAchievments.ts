@@ -22,15 +22,19 @@ const getAchievments = async (
 ) => {
   try {
     const { id: clientCourseId } = req.params;
-    const { id: userId } = res.locals;
 
     const clientCourse = await getClientCourseProvider(clientCourseId);
     const { course } = clientCourse;
     const { technologies: techsToAchieve } = course;
+    const userId = clientCourse.user.toString();
 
-    if (clientCourse.status === CourseStatus.successful) {
+    if (
+      clientCourse.status === CourseStatus.successful ||
+      clientCourse.status === CourseStatus.completed
+    ) {
       const userSkills: IUserSkill[] = await getUserSkills(userId);
       const { oldSkills = [], newSkills = [] } = specifySkills(userSkills, techsToAchieve);
+
       const updatedUserSkills = await Promise.all(
         oldSkills.map(async (skillId) => updateUserSkill(userId, skillId)),
       );
@@ -54,6 +58,7 @@ const getAchievments = async (
         newSkills: extractCommonUserSkillInfo(insertedUserSkillsPopulated),
         updatedSkills: extractCommonUserSkillInfo(updatedUserSkillsPopulated),
       };
+
       next();
     } else {
       res.locals.achievments = { newSkills: [], updatedSkills: [] };
