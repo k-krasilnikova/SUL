@@ -81,6 +81,7 @@ export const AddButtonWrapper = styled('div')({
   width: '100%',
   display: 'flex',
   justifyContent: 'end',
+  margin: '20px 0',
   [theme.breakpoints.down(950)]: {
     display: 'none',
   },
