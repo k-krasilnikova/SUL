@@ -70,6 +70,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   isCourseDeclined,
   isCourseStatusTesting,
   isCourseStatusAssessment,
+  isCourseFailed,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -130,6 +131,12 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                 <>
                   <ContinueTestButton disabled color="primary" variant="mediumContained">
                     Assessment
+                  </ContinueTestButton>
+                </>
+              ) : page === PAGES.myCourses && isCourseFailed ? (
+                <>
+                  <ContinueTestButton disabled color="primary" variant="mediumContained">
+                    Failed
                   </ContinueTestButton>
                 </>
               ) : (

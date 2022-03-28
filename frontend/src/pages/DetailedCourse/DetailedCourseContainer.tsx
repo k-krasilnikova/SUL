@@ -37,6 +37,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const isCourseStatusPending = courseData?.status === COURSE_STATUSES.pending;
   const isCourseStatusTesting = courseData?.status === COURSE_STATUSES.testing;
   const isCourseStatusAssessment = courseData?.status === COURSE_STATUSES.assessment;
+  const isCourseFailed = courseData?.status === COURSE_STATUSES.failed;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
@@ -86,6 +87,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
           isCourseLearningDisabled={isCourseLearningDisabled}
           isCourseStatusTesting={isCourseStatusTesting}
           isCourseStatusAssessment={isCourseStatusAssessment}
+          isCourseFailed={isCourseFailed}
         />
       )}
     </>
