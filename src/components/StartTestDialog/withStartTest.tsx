@@ -20,7 +20,7 @@ type IncomingProps = {
 
 const withStartTest =
   <T extends IncomingProps>(Component: React.ComponentType<T>) =>
-  (props: T) => {
+  (props: T): JSX.Element => {
     const { courseId } = useParams();
 
     const { progress, testDate, status, timeout } = props;
