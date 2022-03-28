@@ -46,7 +46,6 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     commonCourseInfo = courseData;
   }
 
-
   const { data: check } = useGetProfile();
   const adminRole = check?.role === 'admin' ?? null;
 
