@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Grid, Box } from '@mui/material';
 
+import { Button } from 'components/Button';
 import theme from 'themeSettings';
 
 export const PageContainer = styled(Grid)({
@@ -73,5 +74,34 @@ export const MobileSearchWrapper = styled('div')({
   height: '30px',
   [theme.breakpoints.up(950)]: {
     display: 'none',
+  },
+});
+
+export const AddButtonWrapper = styled('div')({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'end',
+  [theme.breakpoints.down(950)]: {
+    display: 'none',
+  },
+});
+
+export const AddButton = styled(Button)({
+  width: '85px',
+  height: '40px',
+  fontFamily: '"Ubuntu", sans-serif',
+  fontSize: '16px!important',
+  fontWeight: '500!important',
+  lineHeight: '22px',
+  letterSpacing: '-0.4px',
+  textAlign: 'center',
+  borderRadius: '4px',
+  boxShadow: 'none',
+  [theme.breakpoints.down('xl')]: {
+    width: '69px',
+    height: '40px',
+    fontSize: '14px!important',
+    lineHeight: '16px',
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)!important',
   },
 });

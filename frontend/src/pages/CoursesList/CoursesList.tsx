@@ -14,6 +14,7 @@ import { LOADER } from 'constants/loaderTypes';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { CustomButton } from 'components/Button/styled';
+import { ButtonLabels } from 'components/Button/ButtonsEnums';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { COURSE_LABELS } from 'constants/statuses';
 import ActionButton from 'components/Button/ActionButton';
@@ -28,6 +29,8 @@ import {
   CourseActionsBox,
   MobileLink,
   MobileSearchWrapper,
+  AddButtonWrapper,
+  AddButton,
 } from './styled';
 
 interface Props {
@@ -59,6 +62,15 @@ const CoursesList: React.FC<CoursesProps> = ({
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
+        {adminRole ? (
+          <AddButtonWrapper>
+            <Link to={PATHS.coursesList}>
+              <AddButton disableElevation variant="contained">
+                {ButtonLabels.add}
+              </AddButton>
+            </Link>
+          </AddButtonWrapper>
+        ) : null}
         {courses.map((course, index) => (
           <Suspense
             key={`${course._id}_item`}
