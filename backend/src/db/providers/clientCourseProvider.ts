@@ -87,9 +87,18 @@ const getStatusProvider = async (courseId: string) => {
     { status: 1, _id: 0 },
   ).lean();
   if (!currStatus) {
-    throw new NotFoundError('course not found');
+    throw new NotFoundError('Course not found.');
   }
   return currStatus;
+};
+
+const getAssessmentProvider = async (courseId: string) => {
+  const course = await ClientCourseModel.findById(courseId).select('withAssessment -_id');
+  if (!course) {
+    throw new NotFoundError('Course not found.');
+  }
+  const { withAssessment } = course;
+  return withAssessment;
 };
 
 const getCurrentProgress = async (clientCourseId: string) => {
@@ -155,6 +164,7 @@ export {
   getAllClientCoursesProvider,
   getClientCourseProvider,
   getStatusProvider,
+  getAssessmentProvider,
   updateCourseStatus,
   applyCourseProvider,
   updateCourseProgress,
