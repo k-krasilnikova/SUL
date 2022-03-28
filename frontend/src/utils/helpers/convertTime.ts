@@ -1,4 +1,4 @@
-import { DISABLE_TIMEOUT_DAYS, NO_TIME } from 'constants/time';
+import { NO_TIME } from 'constants/time';
 
 interface ITime {
   days: number;
