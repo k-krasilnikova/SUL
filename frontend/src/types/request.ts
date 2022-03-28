@@ -1,6 +1,7 @@
 interface Course {
-  _id?: string;
   title: string;
+  avatar: string;
+  _id?: string;
 }
 
 interface User {
@@ -16,8 +17,38 @@ export interface Request {
   status: string;
   course: Course;
   user: User;
+  elapsed: {
+    days: number;
+    hours: number;
+    minutes: number;
+  };
 }
 
 export interface IRequests {
   requestsResponse: Request[];
+}
+
+export interface IRequestsProps {
+  approveRequest: (requestId: string) => void;
+  approveLoading: boolean;
+  declineRequest: (requestId: string) => void;
+  declineLoading: boolean;
+  requests?: Request[];
+  isLoading?: boolean;
+  targetId?: string;
+}
+
+export interface IRequest {
+  approveRequest: (requestId: string) => void;
+  approveLoading: boolean;
+  declineRequest: (requestId: string) => void;
+  declineLoading: boolean;
+  elapsed?: {
+    days: number;
+    hours: number;
+    minutes: number;
+  };
+  request?: Request;
+  isTargetRequest?: boolean;
+  status?: string;
 }

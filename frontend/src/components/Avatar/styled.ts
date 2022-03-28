@@ -29,10 +29,13 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
     ...(size === SIZE.small && {
       width: '50px',
       height: '50px',
+    ...(size === SIZE.xsmall && {
+      width: '30px',
+      height: '30px',
     }),
   },
   [theme.breakpoints.down('lg')]: {
-    ...(size === SIZE.small && {
+    ...(size === SIZE.xsmall && {
       width: '40px',
       height: '40px',
     }),
@@ -43,6 +46,10 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
     ...(size === SIZE.large && {
       width: '130px',
       height: '130px',
+    }),
+    ...(size === SIZE.small && {
+      width: '50px',
+      height: '50px',
     }),
   },
   [theme.breakpoints.down('md')]: {
@@ -64,7 +71,7 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
       width: '150px',
       height: '150px',
     }),
-    ...(size === SIZE.small && {
+    ...(size === SIZE.xsmall && {
       width: '50px',
       height: '50px',
     }),
