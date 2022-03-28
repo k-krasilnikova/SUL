@@ -12,16 +12,20 @@ import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 import { LOADER } from 'constants/loaderTypes';
 import { MobileSearch } from 'components/Layout/MobileSearch';
-import { PAGES } from 'constants/pages';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
+import { CustomButton } from 'components/Button/styled';
+import { countProgress } from 'utils/helpers/countCourseProgress';
+import { COURSE_LABELS } from 'constants/statuses';
+import ActionButton from 'components/Button/ActionButton';
+import { COURSE_DISABLE_DAYS } from 'constants/time';
+import getCurrentPageName from 'utils/helpers/getCurentPageName';
+import { chooseListPath } from 'utils/helpers/paths/choosePath';
 
 import {
   PageContainer,
   CourseActions,
   GridItem,
   CourseActionsBox,
-  DetailsButton,
-  StartCourseButton,
   MobileLink,
   MobileSearchWrapper,
 } from './styled';
@@ -36,6 +40,7 @@ type CoursesProps = ResponseDataType & Props;
 
 const CoursesList: React.FC<CoursesProps> = ({
   courses,
+  clientCourses,
   isLoading,
   handleApplyCourse,
   targetLoading,
@@ -65,29 +70,40 @@ const CoursesList: React.FC<CoursesProps> = ({
                   duration={convertDurationToString(course?.duration)}
                   lessons={course?.lessons}
                   windowWidth={windowWidth}
-                  pageName={PAGES.coursesList}
+                  pageName={getCurrentPageName()}
                   imageUrl={course?.avatar}
+                  status={clientCourses && clientCourses[index].status}
+                  progress={clientCourses && countProgress(clientCourses[index].progress)}
                   courseRef={courses.length - 1 === index ? lastCourseRef : undefined}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>
-                      <Link to={`${PATHS.coursesList}/${course._id}`}>
-                        <DetailsButton color="primary" variant="mediumOutlined">
+                      <Link to={chooseListPath(course, index, clientCourses)}>
+                        <CustomButton color="primary" variant="mediumOutlined">
                           Details
-                        </DetailsButton>
+                        </CustomButton>
                       </Link>
                       {targetLoading && targetId === course._id ? (
-                        <StartCourseButton variant="mediumOutlined" disabled>
+                        <CustomButton variant="mediumOutlined" disabled>
                           <ButtonLoader buttonSpinner={buttonSpinner} />
-                        </StartCourseButton>
+                        </CustomButton>
+                      ) : clientCourses ? (
+                        <ActionButton
+                          label={COURSE_LABELS[clientCourses[index].status]}
+                          status={clientCourses[index].status}
+                          progress={clientCourses[index].progress}
+                          applyDate={clientCourses[index].applyDate}
+                          courseId={clientCourses[index]._id}
+                          timeout={COURSE_DISABLE_DAYS}
+                        />
                       ) : (
-                        <StartCourseButton
+                        <CustomButton
                           id={course._id}
                           onClick={handleApplyCourse}
                           variant="mediumContained"
                         >
                           Apply the course
-                        </StartCourseButton>
+                        </CustomButton>
                       )}
                     </CourseActions>
                   </CourseActionsBox>

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { useGetClientCourseAndMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
-import { useGetCourseTest, useStartCourseTest } from 'api/test';
 import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
-import { MATERIAL } from 'constants/materials';
 import { defineMaterialType } from 'utils/helpers/defineMaterialType';
-import Loader from 'components/Loader';
+import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import { MATERIAL } from 'constants/materials';
 import { COURSE_STATUSES } from 'constants/statuses';
+import Loader from 'components/Loader';
 
 import LearningCourse from './LearningCourse';
 
@@ -22,24 +22,17 @@ const LearningCourseContainer: React.FC = () => {
   const { courseId } = useParams();
 
   const [stage, setStage] = useState(1);
-  const [testEnabled, setTestEnabled] = useState(false);
   const [backDisabled, setBackDisabled] = useState(true);
   const [forwardDisabled, setForwardDisabled] = useState(false);
   const [isDescriptionOpen, setDescriptionOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
 
   const { data: clientCourseAndMaterialsData, isLoading } =
     useGetClientCourseAndMaterials(courseId);
+
+  const { mutate: startCourseMutate } = useStartClientCourse(courseId);
+  const { mutate: passCourseMutate } = usePassClientCourse(courseId);
+
   const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterialsData || [];
-
-  const { data: courseTestResponse } = useGetCourseTest({
-    courseId,
-    enabled: dialogOpen && clientCourseResponse?.status === COURSE_STATUSES.started,
-  });
-
-  const { mutate: startClienCourseMutate } = useStartClientCourse(courseId);
-  const { mutate: startTestMutate } = useStartCourseTest(courseId);
-  const { mutate: passCourseStageMutate } = usePassClientCourse(courseId);
 
   const maxStage = courseMaterialsResponse
     ? courseMaterialsResponse.materials.length
@@ -59,15 +52,26 @@ const LearningCourseContainer: React.FC = () => {
   }, [stage, maxStage]);
 
   useEffect(() => {
-    const handleStartCourse = () => {
-      if (clientCourseResponse?.status === COURSE_STATUSES.approved) {
-        startClienCourseMutate(courseId);
-      }
-    };
-    handleStartCourse();
-  }, [courseId, clientCourseResponse?.status, startClienCourseMutate]);
+    if (clientCourseResponse?.status === COURSE_STATUSES.approved) {
+      startCourseMutate(courseId);
+    }
+  }, [clientCourseResponse?.status, courseId, startCourseMutate]);
 
-  const testTimeout = courseTestResponse && courseTestResponse[0]?.test?.timeout;
+  const stageForward = () => {
+    setStage(stage + STAGE_CHANGE);
+    if (clientCourseResponse?.status === COURSE_STATUSES.started) {
+      passCourseMutate(stage);
+      if (stage + STAGE_CHANGE === maxStage) {
+        passCourseMutate(maxStage);
+      }
+    }
+  };
+
+  const stageBack = () => {
+    if (stage > MIN_STAGE) {
+      setStage(stage - STAGE_CHANGE);
+    }
+  };
 
   const courseDescription = clientCourseResponse?.course.description
     ? { title: clientCourseResponse?.course.title, info: clientCourseResponse?.course.description }
@@ -82,40 +86,14 @@ const LearningCourseContainer: React.FC = () => {
       : courseMaterialsResponse?.materials[stage - 1].content[CONTENT_ELEMENT] || MATERIAL.text;
   const videoPreview = getPreviewId(material);
 
-  const handleStartTest = () => {
-    startTestMutate(courseId);
-  };
-
-  const handlePassCourseStage = (courseStage: number) => {
-    passCourseStageMutate(courseStage);
-  };
-
-  const stageForward = () => {
-    setStage(stage + STAGE_CHANGE);
-    handlePassCourseStage(stage);
-    if (stage + STAGE_CHANGE === maxStage && !testEnabled) {
-      handlePassCourseStage(maxStage);
-      setTestEnabled(true);
-    }
-  };
-
-  const stageBack = () => {
-    if (stage > MIN_STAGE) {
-      setStage(stage - STAGE_CHANGE);
-    }
-  };
-
-  const handleClickDialogOpen = () => {
-    setDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setDialogOpen(false);
-  };
-
   const toggleDescriptionOpen = () => {
     setDescriptionOpen(!isDescriptionOpen);
   };
+
+  const checkProgress = useCallback(
+    () => isProgressCompleted(clientCourseResponse?.progress),
+    [clientCourseResponse?.progress],
+  );
 
   if (isLoading) {
     return <Loader color="primary" />;
@@ -131,17 +109,13 @@ const LearningCourseContainer: React.FC = () => {
           stageBack={stageBack}
           stageForward={stageForward}
           courseDescription={courseDescription}
-          testEnabled={testEnabled}
-          testTimeout={testTimeout}
           backDisabled={backDisabled}
           forwardDisabled={forwardDisabled}
           material={material}
+          clientCourse={clientCourseResponse}
           materialType={materialType}
-          dialogOpen={dialogOpen}
-          handleStartTest={handleStartTest}
-          handleClickDialogOpen={handleClickDialogOpen}
-          handleDialogClose={handleDialogClose}
           videoPreview={videoPreview}
+          isProgressCompleted={checkProgress()}
           isDescriptionOpen={isDescriptionOpen}
           toggleDescriptionOpen={toggleDescriptionOpen}
         />

@@ -186,16 +186,40 @@ export const SkillProgress = styled('div')({
   },
 });
 
+export const SkillInfoTextWrapper = styled('div')({
+  position: 'relative',
+});
+
+export const SkillInfoTextWidth = styled('div')({
+  width: '70px',
+});
+
 export const SkillInfoText = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '16px',
-    lineHeight: '16px',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  '&: hover': {
+    cursor: 'pointer',
   },
   [theme.breakpoints.up('xl')]: {
     fontSize: '16px',
-    lineHeight: '120%',
-    width: '110px',
+    lineHeight: '20px',
   },
+});
+
+export const HoverSkillInfoText = styled('div')({
+  width: 'fit-content',
+  padding: '3px',
+  display: 'flex',
+  justifyContent: 'center',
+  position: 'absolute',
+  top: '16px',
+  right: '-35px',
+  fontSize: '12px',
+  backgroundColor: '#000',
+  color: '#fff',
+  overflow: 'inherit',
+  textOverflow: 'unset',
+  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
 });
 
 export const SkillInfoStage = styled('div')({

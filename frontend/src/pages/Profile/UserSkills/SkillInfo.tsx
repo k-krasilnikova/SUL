@@ -5,9 +5,12 @@ import { UserAvatar } from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 
 import {
+  HoverSkillInfoText,
   SkillInfo,
   SkillInfoFlex,
   ImageWrapper,
+  SkillInfoTextWrapper,
+  SkillInfoTextWidth,
   SkillInfoText,
   SkillProgress,
   SkillInfoStage,
@@ -19,6 +22,9 @@ interface Props {
   stagesCompleted?: number;
   progress?: number;
   imageUrl?: string;
+  isShown?: boolean;
+  showSkillInfo?: () => void;
+  hideSkillInfo?: () => void;
 }
 
 const CourseMaterialInfo: React.FC<Props> = ({
@@ -27,18 +33,26 @@ const CourseMaterialInfo: React.FC<Props> = ({
   stagesCompleted,
   progress,
   imageUrl,
+  isShown,
+  showSkillInfo,
+  hideSkillInfo,
 }) => (
   <SkillInfo completed={stages === stagesCompleted}>
     <SkillInfoFlex>
       <ImageWrapper>
         <UserAvatar size={SIZE.xsmall} avatar={imageUrl} />
       </ImageWrapper>
-      <div style={{ width: '70px' }}>
-        <SkillInfoText>{technologyTitle}</SkillInfoText>
-        <SkillInfoStage>
-          {stagesCompleted}/{stages}
-        </SkillInfoStage>
-      </div>
+      <SkillInfoTextWrapper>
+        <SkillInfoTextWidth>
+          <SkillInfoText onMouseEnter={showSkillInfo} onMouseLeave={hideSkillInfo}>
+            {technologyTitle}
+          </SkillInfoText>
+          <SkillInfoStage>
+            {stagesCompleted}/{stages}
+          </SkillInfoStage>
+        </SkillInfoTextWidth>
+        {isShown && <HoverSkillInfoText>{technologyTitle}</HoverSkillInfoText>}
+      </SkillInfoTextWrapper>
       <SkillProgress>
         <ProgressBar value={progress} size={SIZE.small} />
       </SkillProgress>

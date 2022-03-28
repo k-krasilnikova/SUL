@@ -10,7 +10,8 @@ const searchAllCourses = async (
 ): Promise<AxiosResponse<Course[], AxiosError>> => {
   const apiClient = apiClientWrapper();
   try {
-    const response = await apiClient.get(`${API.getCourses}?title=${courseName}`);
+    const courseNameEncoded = encodeURIComponent(courseName);
+    const response = await apiClient.get(`${API.getCourses}?title=${courseNameEncoded}`);
     const searchResponse = response;
     return searchResponse;
   } catch (error) {

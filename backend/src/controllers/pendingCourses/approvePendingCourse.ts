@@ -3,13 +3,14 @@ import { NextFunction, Request, Response } from 'express';
 import CourseStatus from 'enums/coursesEnums';
 import {
   getStatusProvider,
-  updateCourseStatus,
   getClientCourseProvider,
+  updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
+import { COURSE_FILEDS } from 'config/constants';
 
 const approvePendingCourse = async (
   req: Request,
@@ -35,7 +36,7 @@ const approvePendingCourse = async (
 
     const { _id: manager }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
-    await updateCourseStatus(clientCourseId, CourseStatus.approved);
+    await updateClientCourseField(clientCourseId, COURSE_FILEDS.status, CourseStatus.approved);
     await removeFromPendingFieldCourses(manager, clientCourse._id);
     results.updateStatus = 'Course was approved';
     next();

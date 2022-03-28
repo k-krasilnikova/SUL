@@ -21,6 +21,7 @@ const CoursesContainer: React.FC = () => {
 
   const disableLinkWidth =
     window.innerWidth < WINDOW_SIZE.sm.width ? WINDOW_SIZE.xs.name : WINDOW_SIZE.sm.name;
+
   const disableLink = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (disableLinkWidth === WINDOW_SIZE.sm.name) {
       event.preventDefault();
