@@ -12,18 +12,14 @@ import { backIconMobile } from 'icons';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
-import { COURSE_LABELS } from 'constants/statuses';
-import { ClientCourse } from 'types/clientCourse';
+import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
 import { OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
-import { VARIANTS } from 'constants/progressBar';
-import DeclinedButton from 'components/Button/DeclinedButton';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { ButtonsWrapper, CustomButton } from 'components/Button/styled';
 import StartTestButton from 'components/Button/StartTestButton';
 import { COURSE_DISABLE_DAYS, TEST_DISABLE_DAYS } from 'constants/time';
 import ActionButton from 'components/Button/ActionButton';
-import { countProgress } from 'utils/helpers/countCourseProgress';
 import { CourseItem } from 'components/Course';
 import { ButtonLabels } from 'components/Button/ButtonsEnums';
 
@@ -62,7 +58,6 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   isFullTextOpen,
   toggleFullText,
   isCourseApplicationSubmitted,
-  isCourseCompleted,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>

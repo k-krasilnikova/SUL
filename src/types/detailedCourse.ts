@@ -1,3 +1,5 @@
+import { NavigateFunction } from 'react-router';
+
 import { PureClientCourse } from './clientCourse';
 import { Course } from './course';
 
