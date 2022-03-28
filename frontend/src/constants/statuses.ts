@@ -18,6 +18,7 @@ export const COURSE_LABELS: { [key: string]: string } = {
   testing: 'Continue the test',
   rejected: 'Declined',
   completed: 'Completed',
+  assessment: 'Assessment',
 };
 
 export const NOTIFICATION_STATUSES = {
