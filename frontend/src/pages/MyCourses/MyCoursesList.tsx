@@ -83,6 +83,10 @@ const MyCoursesList: React.FC<MyCoursesProps> = ({
                         <ContinueTestButton disabled color="primary" variant="mediumContained">
                           Pending
                         </ContinueTestButton>
+                      ) : clientCourse.status === COURSE_STATUSES.assessment ? (
+                        <ContinueTestButton disabled color="primary" variant="mediumContained">
+                          Assessment
+                        </ContinueTestButton>
                       ) : [COURSE_STATUSES.completed, COURSE_STATUSES.successful].includes(
                           clientCourse.status,
                         ) ? (

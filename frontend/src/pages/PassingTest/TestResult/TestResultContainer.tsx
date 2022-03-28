@@ -11,10 +11,12 @@ const TestResultContainer: React.FC<ITestResult> = ({ responseData }) => {
 
   const testStatus = responseData ? responseData.result.testStatus : undefined;
   const isFailed = testStatus === TEST_STATUS.notPassed;
+  const assessmentRequired = testStatus === TEST_STATUS.assessment;
   const percentageValue = responseData ? responseData?.result?.result * PERCENTAGE : undefined;
 
   return (
     <TestResult
+      assessment={assessmentRequired}
       isFailed={isFailed}
       responseData={responseData}
       percentageValue={percentageValue}
