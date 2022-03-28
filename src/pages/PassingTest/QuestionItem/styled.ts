@@ -16,18 +16,27 @@ export const StyledFormControlLabel = styled(FormControlLabel)({
     lineHeight: '24px !important',
     letterSpacing: 'normal',
     fontWeight: '400 !important',
-    maxWidth: '501px',
+    maxWidth: '55vw',
     marginLeft: '28px',
     fontFamily: theme.typography.fontFamily,
     color: theme.palette.text.primary,
     [theme.breakpoints.down('xl')]: {
       fontSize: '18px !important',
       marginLeft: '24px',
-      maxWidth: '447px',
+      maxWidth: '50vw',
+    },
+    [theme.breakpoints.down(1240)]: {
+      maxWidth: '44vw',
+    },
+    [theme.breakpoints.down('lg')]: {
+      maxWidth: '30vw',
+    },
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '66vw',
     },
     [theme.breakpoints.down('sm')]: {
       fontSize: '14px !important',
-      maxWidth: '258px',
+      maxWidth: '64vw',
       marginLeft: '8px',
     },
   },
@@ -82,7 +91,7 @@ export const AnswersBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   [theme.breakpoints.down('md')]: {
-    marginRight: '5vw !important',
+    marginRight: '15vw !important',
   },
   [theme.breakpoints.down('sm')]: {
     marginRight: '11px !important',

@@ -27,7 +27,6 @@ const useGetClientCourseAndMaterials = (
         `${API.getCourses}/${courseData.course._id}/materials`,
       );
       const materialsData: ICourseMaterialsResponse = materialsResponse.data;
-
       return [courseData, materialsData];
     },
     {

@@ -5,8 +5,7 @@ import { useGetClientPaginatedCourses } from 'api/myCourses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import { ClientCourse } from 'types/clientCourse';
-
-import MyCoursesList from './MyCoursesList';
+import CoursesList from 'pages/CoursesList/CoursesList';
 
 const MyCoursesContainer: React.FC = () => {
   const {
@@ -18,6 +17,7 @@ const MyCoursesContainer: React.FC = () => {
 
   const disableLinkWidth =
     window.innerWidth < WINDOW_SIZE.sm.width ? WINDOW_SIZE.xs.name : WINDOW_SIZE.sm.name;
+
   const disableLink = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (disableLinkWidth === WINDOW_SIZE.sm.name) {
       event.preventDefault();
@@ -30,6 +30,7 @@ const MyCoursesContainer: React.FC = () => {
     (prev, page) => [...prev, ...page.clientCourses],
     [] as ClientCourse[],
   );
+  const commonCourses = formattedClientCourses?.map((item) => item.course);
 
   const { ref: clientCourseRef, inView } = useInView({
     root: null,
@@ -44,12 +45,13 @@ const MyCoursesContainer: React.FC = () => {
   }, [inView, hasNextPage]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <MyCoursesList
+    <CoursesList
+      courses={commonCourses}
       clientCourses={formattedClientCourses}
       isLoading={isClientCoursesLoading}
       disableLink={disableLink}
       windowWidth={windowWidth}
-      lastClientCourseRef={clientCourseRef}
+      lastCourseRef={clientCourseRef}
     />
   );
 };
