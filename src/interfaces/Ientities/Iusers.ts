@@ -3,6 +3,7 @@ import { ObjectId } from 'mongoose';
 import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 import { IUserSkillPopulated } from './IUserSkill';
+import { ITimePeriod } from '../common/datetime';
 
 interface INotification {
   _id: ObjectId;
@@ -13,14 +14,17 @@ interface INotification {
 }
 
 type TUserForPendingCourses = Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
-type TCourseForPendingCourses = Pick<ICourse, 'title'>;
+type TCourseForPendingCourses = Pick<ICourse, 'title' | 'avatar'>;
 
-interface IPendingCourses {
+interface IPendingCourse {
   user: TUserForPendingCourses;
   course: TCourseForPendingCourses;
   status: TCourseStatus;
-  date: Date;
+  date?: Date;
+  elapsed?: ITimePeriod;
 }
+
+type TPendingCourses = IPendingCourse[];
 
 interface IUser {
   _id: ObjectId;
@@ -36,7 +40,7 @@ interface IUser {
   courses: ObjectId[];
   group: string;
   employees: ObjectId[];
-  pendingCourses: ObjectId[] | IPendingCourses;
+  pendingCourses: ObjectId[] | TPendingCourses;
   avatar: string;
   birthday: Date;
   skype: string;
@@ -70,7 +74,8 @@ export {
   TUserPopulated,
   TUserRole,
   TUserPosition,
-  IPendingCourses,
+  TPendingCourses,
+  IPendingCourse,
   INotification,
   ITechnologyGroup,
   ITechnologyGroupPopuldated,
