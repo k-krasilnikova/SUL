@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { UserSkill } from 'types/skill';
 
@@ -12,8 +12,21 @@ interface SkillProps {
 
 const CourseMaterialInfoContainer: React.FC<SkillProps> = ({ skillItem }) => {
   const progress = (skillItem.score / skillItem.skill.maxScore) * PERCENTAGE;
+  const [isShown, setIsShown] = useState(false);
+
+  const showSkillInfo = () => {
+    setIsShown(true);
+  };
+
+  const hideSkillInfo = () => {
+    setIsShown(false);
+  };
+
   return (
     <SkillInfo
+      isShown={isShown}
+      showSkillInfo={showSkillInfo}
+      hideSkillInfo={hideSkillInfo}
       technologyTitle={skillItem.skill.name}
       imageUrl={skillItem.skill.image}
       stages={skillItem.skill.maxScore}
