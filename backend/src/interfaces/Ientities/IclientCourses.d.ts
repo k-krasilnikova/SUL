@@ -12,6 +12,7 @@ type TCourseStatus =
   | 'completed'
   | 'rejected'
   | 'testing'
+  | 'assessment'
   | 'successful';
 
 interface IClientCourse {
@@ -19,6 +20,7 @@ interface IClientCourse {
   user: ObjectId;
   course: ObjectId;
   status: CourseStatus;
+  withAssessment: boolean;
   testResult: string;
   progress: [
     {
