@@ -8,6 +8,7 @@ interface ILocals {
   clientCourseId: string | undefined;
   userId: string | undefined;
   managerId: string | undefined;
+  withAssessment?: boolean;
   results: Record<string, never>;
 }
 
