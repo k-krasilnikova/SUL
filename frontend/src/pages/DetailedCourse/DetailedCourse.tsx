@@ -45,7 +45,13 @@ import {
   MobileSearchWrapper,
 } from './styled';
 
-const DetailedCourse: React.FC<IDetailedCourse> = ({
+interface Props {
+  adminRole?: boolean;
+}
+
+type DetailProps = IDetailedCourse & Props;
+
+const DetailedCourse: React.FC<DetailProps> = ({
   commonCourseData,
   clientCourseData,
   handleApplyCourse,
@@ -58,6 +64,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   toggleFullText,
   isCourseApplicationSubmitted,
   isCourseCompleted,
+  adminRole,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -110,9 +117,11 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               <ButtonLoader buttonSpinner={buttonSpinner} />
             </CustomButton>
           ) : page === PAGES.coursesList ? (
-            <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
-              {ButtonLabels.applyCourse}
-            </CustomButton>
+            adminRole || (
+              <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
+                {ButtonLabels.applyCourse}
+              </CustomButton>
+            )
           ) : (
             <ButtonsWrapper>
               <StartTestButton

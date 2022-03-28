@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
+import { useGetProfile } from 'api/profile';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
@@ -44,10 +45,14 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     commonCourseInfo = courseData;
   }
 
+  const { data: check } = useGetProfile();
+  const adminRole = check?.role === 'admin' ?? null;
+
   return (
     <>
       {commonCourseInfo && courseData && (
         <DetailedCourse
+          adminRole={adminRole}
           navigate={navigate}
           commonCourseData={commonCourseInfo}
           clientCourseData={clientCourseInfo}
