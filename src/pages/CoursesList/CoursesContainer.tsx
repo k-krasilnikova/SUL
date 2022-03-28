@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 import { Course } from 'types/course';
 import { useApplyCourse, useGetPaginatedCourses } from 'api/courses';
+import { useGetProfile } from 'api/profile';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 
@@ -16,6 +17,9 @@ const CoursesContainer: React.FC = () => {
     fetchNextPage,
     isLoading: isCoursesLoading,
   } = useGetPaginatedCourses();
+
+  const { data: check } = useGetProfile();
+  const adminRole = check?.role === 'admin' ?? null;
 
   const [targetId, setTargetId] = useState<string | undefined>();
 
@@ -54,6 +58,7 @@ const CoursesContainer: React.FC = () => {
 
   return (
     <CoursesList
+      adminRole={adminRole}
       courses={formattedCoursesList}
       isLoading={isCoursesLoading}
       handleApplyCourse={handleApplyCourse}

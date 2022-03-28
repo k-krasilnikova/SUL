@@ -31,6 +31,7 @@ import {
 } from './styled';
 
 interface Props {
+  adminRole?: boolean;
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
   lastCourseRef: (node?: Element | null) => void;
@@ -39,6 +40,7 @@ interface Props {
 type CoursesProps = ResponseDataType & Props;
 
 const CoursesList: React.FC<CoursesProps> = ({
+  adminRole,
   courses,
   clientCourses,
   isLoading,
@@ -97,13 +99,15 @@ const CoursesList: React.FC<CoursesProps> = ({
                           timeout={COURSE_DISABLE_DAYS}
                         />
                       ) : (
-                        <CustomButton
-                          id={course._id}
-                          onClick={handleApplyCourse}
-                          variant="mediumContained"
-                        >
-                          Apply the course
-                        </CustomButton>
+                        adminRole || (
+                          <CustomButton
+                            id={course._id}
+                            onClick={handleApplyCourse}
+                            variant="mediumContained"
+                          >
+                            Apply the course
+                          </CustomButton>
+                        )
                       )}
                     </CourseActions>
                   </CourseActionsBox>
