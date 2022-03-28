@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
-import { apiClientWrapper } from 'api/base';
+import { apiClientWrapper, queryClient } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
@@ -12,6 +12,7 @@ const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosE
   const navigateTo = useNavigate();
 
   const handleSubmitError = (error: AxiosError) => {
+    queryClient.refetchQueries(['ClientCourseInfo', courseId]);
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
 

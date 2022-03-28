@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { PASS_THRESHOLD } from 'config/constants';
 import {
   getAssessmentProvider,
   getStatusProvider,
-  updateCourseStatus,
+  updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
+import { COURSE_FILEDS, PASS_THRESHOLD } from 'config/constants';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
@@ -36,21 +36,22 @@ const getTestResults = async (
     const result = countTestResult(userWrongAnswers, correctAnswers.questions);
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: TestStatus.notPassed };
-      await updateCourseStatus(courseId, CourseStatus.started);
+      await updateClientCourseField(courseId, COURSE_FILEDS.status, CourseStatus.started);
+      await updateClientCourseField(courseId, COURSE_FILEDS.testDate, Date.now());
       next();
-      return;
+    } else {
+      const assessmentRequired = await getAssessmentProvider(courseId);
+      res.locals.result = {
+        result,
+        testStatus: assessmentRequired ? TestStatus.assessment : TestStatus.successful,
+      };
+      await updateClientCourseField(
+        courseId,
+        COURSE_FILEDS.status,
+        assessmentRequired ? CourseStatus.assessment : CourseStatus.successful,
+      );
+      next();
     }
-
-    const assessmentRequired = await getAssessmentProvider(courseId);
-    res.locals.result = {
-      result,
-      testStatus: assessmentRequired ? TestStatus.assessment : TestStatus.successful,
-    };
-    await updateCourseStatus(
-      courseId,
-      assessmentRequired ? CourseStatus.assessment : CourseStatus.successful,
-    );
-    next();
   } catch (err) {
     next(err);
   }

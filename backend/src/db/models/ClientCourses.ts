@@ -12,6 +12,7 @@ const clientCourseSchema = new Schema<IClientCourse>({
   progress: [{ stage: { type: String }, isCompleted: { type: Boolean } }],
   date: { type: Date },
   applyDate: { type: Date, expires: DESTRUCTION_TIMEOUT },
+  testDate: { type: Date },
 });
 
 const ClientCourseModel = model<IClientCourse>(

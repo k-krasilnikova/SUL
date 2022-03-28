@@ -15,8 +15,15 @@ import getTestResults from 'controllers/tests/getTestResults';
 import unitTestResults from 'controllers/tests/sendTestResults';
 import manageAssessment from 'controllers/clientCourses/manageAssessment';
 import sendAssessmentResult from 'controllers/clientCourses/sendAssessmentResult';
+import getTestTime from 'controllers/tests/getTestTime';
 
 const clientCoursesRouter = Router();
+
+clientCoursesRouter.get(
+  `${Params.id}${SubRoutes.test}/time`,
+  withAuth([USER_ROLES.EMPLOYEE]),
+  getTestTime,
+);
 
 clientCoursesRouter.put(
   `${Params.id}${SubRoutes.test}${SubRoutes.result}`,
