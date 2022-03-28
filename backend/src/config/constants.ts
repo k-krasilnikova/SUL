@@ -23,6 +23,7 @@ const TIME_30D_SEC = 2592000000;
 const TIME_1M_SEC = 60;
 const TIME_1H_SEC = 60 * TIME_1M_SEC;
 const TIME_1D_SEC = 24 * TIME_1H_SEC;
+const DISABLE_TEST_DAYS = 7;
 
 const ESTIMATE_TIME_PER_LESSON = 1 * TIME_1D_SEC;
 
@@ -51,6 +52,16 @@ const STATUS_CODES = {
     SERVICE_UNAVAILABLE: 503,
   },
 };
+const COURSE_FILEDS = {
+  user: 'user',
+  course: 'course',
+  status: 'status',
+  testResult: 'testResult',
+  progress: 'progress',
+  date: 'date',
+  applyDate: 'applyDate',
+  testDate: 'testDate',
+} as const;
 
 export {
   DEFAULT_CONNECTION_STRING,
@@ -78,4 +89,6 @@ export {
   PASS_THRESHOLD,
   TWO_DIGITS,
   DESTRUCTION_TIMEOUT,
+  DISABLE_TEST_DAYS,
+  COURSE_FILEDS,
 };
