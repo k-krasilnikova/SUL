@@ -69,6 +69,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   isCourseCompleted,
   isCourseDeclined,
   isCourseStatusTesting,
+  isCourseStatusAssessment,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -125,6 +126,12 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
                 </Link>
               ) : page === PAGES.myCourses && isCourseCompleted ? (
                 <></>
+              ) : page === PAGES.myCourses && isCourseStatusAssessment ? (
+                <>
+                  <ContinueTestButton disabled color="primary" variant="mediumContained">
+                    Assessment
+                  </ContinueTestButton>
+                </>
               ) : (
                 <>
                   {page === PAGES.myCourses && isCourseDeclined ? (
