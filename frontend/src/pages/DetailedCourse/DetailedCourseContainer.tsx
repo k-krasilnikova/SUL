@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
-import convertStatusToProgress from 'utils/helpers/convertStatusToProgress';
+import convertStatusToProgress, { ConvertedProgress } from 'utils/helpers/convertStatusToProgress';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
 
@@ -49,11 +49,19 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   let progressText;
   let progressVariant;
 
-  if (courseData) {
-    const progress = convertStatusToProgress(courseData.status);
-    progressValue = progress.progressValue;
-    progressText = progress.progressText;
-    progressVariant = progress.progressVariant;
+  const [currentProgress, setCurrentProgress] = useState<ConvertedProgress>();
+
+  useEffect(() => {
+    if (courseData) {
+      const progress = convertStatusToProgress(courseData.status);
+      setCurrentProgress(progress);
+    }
+  }, [courseData]);
+
+  if (currentProgress) {
+    progressValue = currentProgress.progressValue;
+    progressText = currentProgress.progressText;
+    progressVariant = currentProgress.progressVariant;
   }
 
   return (
