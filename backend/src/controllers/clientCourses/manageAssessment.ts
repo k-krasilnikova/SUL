@@ -16,8 +16,8 @@ const manageAssessment = async (
   try {
     const { status } = await getStatusProvider(courseId);
 
-    if (status !== CourseStatus.successful) {
-      throw new BadRequestError(`Can not manage assessment while course in status "${status}".`);
+    if (status !== CourseStatus.assessment) {
+      throw new BadRequestError(`Can not manage assessment while course in status: ${status}.`);
     }
 
     let statusToSet: CourseStatus;
