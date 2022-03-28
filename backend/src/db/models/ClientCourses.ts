@@ -7,7 +7,7 @@ const clientCourseSchema = new Schema<IClientCourse>({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   course: { type: Schema.Types.ObjectId, ref: 'Courses' },
   status: { type: String },
-  withAssessment: { type: Boolean },
+  withAssessment: { type: Boolean, default: false },
   testResult: { type: String },
   progress: [{ stage: { type: String }, isCompleted: { type: Boolean } }],
   date: { type: Date },

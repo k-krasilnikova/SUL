@@ -140,6 +140,16 @@ const updateApplyDate = async (courseId: string) => {
   throw new BadRequestError('Bad request. Check the data being sent');
 };
 
+const arrangeAssessment = async (courseId: string) => {
+  const updatedCourse = await ClientCourseModel.findByIdAndUpdate(courseId, {
+    $set: { withAssessment: true },
+  });
+
+  if (!updatedCourse) {
+    throw new NotFoundError('Client course not found.');
+  }
+};
+
 export {
   getClientCoursesProvider,
   getAllClientCoursesProvider,
@@ -150,4 +160,5 @@ export {
   updateCourseProgress,
   getCurrentProgress,
   updateApplyDate,
+  arrangeAssessment,
 };
