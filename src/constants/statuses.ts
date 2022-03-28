@@ -7,6 +7,7 @@ export const COURSE_STATUSES = {
   completed: 'completed',
   successful: 'successful',
   assessment: 'assessment',
+  failed: 'failed',
 };
 
 export const COURSE_LABELS: { [key: string]: string } = {
