@@ -234,8 +234,6 @@ export const ButtonWrapper = styled('div')({
 export const StartTestButton = styled(Button)({
   width: '155px',
   height: '50px',
-  fontSize: '18px!important',
-  fontWeight: '500!important',
   lineHeight: '22px',
   letterSpacing: '-0.4px',
   textAlign: 'center',
@@ -243,21 +241,26 @@ export const StartTestButton = styled(Button)({
   '&hover': {
     background: '#D43E41',
   },
-  paddingTop: '8px!important',
-  boxShadow: 'none!important',
+
+  '&.MuiButtonBase-root': {
+    padding: '0',
+    boxShadow: 'none',
+    fontSize: '18px',
+    fontWeight: '500',
+  },
   [theme.breakpoints.down('md')]: {
-    fontSize: '16px!important',
-    padding: '0 !important',
+    fontSize: '16px',
     width: '120px',
     height: '36px',
+    '&.MuiButtonBase-root': {
+      padding: '0',
+    },
   },
 });
 
 export const NextButton = styled(Button)({
   width: '86px',
   height: '50px',
-  fontSize: '18px!important',
-  fontWeight: '500!important',
   lineHeight: '22px',
   letterSpacing: '-0.4px',
   textAlign: 'center',
@@ -265,19 +268,24 @@ export const NextButton = styled(Button)({
   '&hover': {
     background: '#D43E41',
   },
-  paddingTop: '8px!important',
-  boxShadow: 'none!important',
+  '&.MuiButtonBase-root': {
+    fontSize: '18px',
+    fontWeight: '500',
+    paddingTop: '8px',
+    boxShadow: 'none',
+  },
   [theme.breakpoints.down('md')]: {
-    fontSize: '16px!important',
+    '&.MuiButtonBase-root': {
+      fontSize: '16px',
+    },
     width: '70px',
     height: '36px',
   },
 });
 
 export const ToggleDescription = styled(Typography)({
-  display: 'inline-block !important',
+  display: 'inline-block',
   minWidth: '105px',
-  marginRight: 'calc(100% - 295px) !important',
   height: '40px',
   padding: '8px 0px 12px 0px',
   fontFamily: '"Ubuntu", sans-serif',
@@ -285,8 +293,11 @@ export const ToggleDescription = styled(Typography)({
   lineHeight: '16px',
   fontWeight: '500',
   color: '#131313',
+  '&.MuiTypography-root': {
+    marginRight: 'calc(100% - 295px)',
+  },
   [theme.breakpoints.up('md')]: {
-    display: 'none !important',
+    display: 'none',
   },
 });
 
