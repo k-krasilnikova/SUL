@@ -3,7 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 import { AssessmentAction } from 'enums/common';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
+import { getStatusProvider, updateClientCourseField } from 'db/providers/clientCourseProvider';
+import { COURSE_FILEDS } from 'config/constants';
 
 const manageAssessment = async (
   req: Request<{ id: string }, unknown, { action: AssessmentAction }>,
@@ -33,7 +34,7 @@ const manageAssessment = async (
         throw new BadRequestError('Bad assessment action.');
     }
 
-    await updateCourseStatus(courseId, statusToSet);
+    await updateClientCourseField(courseId, COURSE_FILEDS.status, statusToSet);
     res.locals.status = statusToSet;
     next();
   } catch (err) {
