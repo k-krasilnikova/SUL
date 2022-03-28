@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { Back, Forward } from 'components/Arrows';
-import { PATHS } from 'constants/routes';
-import { playVideo } from 'icons';
 import { MATERIAL } from 'constants/materials';
+import { ClientCourse } from 'types/clientCourse';
+import { CustomButton } from 'components/Button/styled';
+import { ButtonLabels } from 'components/Button/ButtonsEnums';
+import StartTestButton from 'components/Button/StartTestButton';
+import { playVideo } from 'icons';
+import { PATHS } from 'constants/routes';
+import { TEST_DISABLE_DAYS } from 'constants/time';
 
 import {
   LearningPageContainer,
@@ -20,31 +25,18 @@ import {
   Description,
   DescriptionTitle,
   DescriptionText,
-  StartTestButton,
-  NextButton,
   ButtonWrapper,
   StyledButton,
   ToggleDescription,
   ExpandLessIcon,
   ExpandMoreIcon,
 } from './styled';
-import { StartTestDialog } from './StartTestDialog';
 
 interface LearningProps {
   stage: number;
   maxStage: number;
-  dialogOpen: boolean;
   stageBack: () => void;
   stageForward: () => void;
-  handleClickDialogOpen: () => void;
-  handleStartTest: () => void;
-  handleDialogClose: () => void;
-  courseDescription?: {
-    title: string;
-    info: string;
-  };
-  testEnabled: boolean;
-  testTimeout?: number;
   backDisabled: boolean;
   forwardDisabled: boolean;
   material: string;
@@ -52,33 +44,35 @@ interface LearningProps {
   videoPreview: string | boolean;
   isDescriptionOpen: boolean;
   toggleDescriptionOpen: () => void;
+  isProgressCompleted: boolean;
+  clientCourse?: ClientCourse;
+  courseDescription?: {
+    title: string;
+    info: string;
+  };
 }
 
 const LearningCourse: React.FC<LearningProps> = ({
   stage,
   maxStage,
-  dialogOpen,
   stageBack,
   stageForward,
   courseDescription,
-  testTimeout,
-  testEnabled,
+  isProgressCompleted,
   backDisabled,
   forwardDisabled,
   material,
   materialType,
-  handleStartTest,
-  handleClickDialogOpen,
-  handleDialogClose,
   videoPreview,
   isDescriptionOpen,
+  clientCourse,
   toggleDescriptionOpen,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
       <Link to={PATHS.myCourses}>
         <BackButton disableElevation variant="contained">
-          Back
+          {ButtonLabels.back}
         </BackButton>
       </Link>
       <LearningWrapper>
@@ -114,23 +108,17 @@ const LearningCourse: React.FC<LearningProps> = ({
           {isDescriptionOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </ToggleDescription>
         <ButtonWrapper>
-          {testEnabled ? (
-            <>
-              <StartTestButton variant="contained" onClick={handleClickDialogOpen}>
-                Start the Test
-              </StartTestButton>
-              <StartTestDialog
-                isOpened={dialogOpen}
-                testTimeout={testTimeout}
-                handleClose={handleDialogClose}
-                handleStartTest={handleStartTest}
-                size="medium"
-              />
-            </>
+          {isProgressCompleted ? (
+            <StartTestButton
+              status={clientCourse?.status}
+              testDate={clientCourse?.testDate}
+              progress={clientCourse?.progress}
+              timeout={TEST_DISABLE_DAYS}
+            />
           ) : (
-            <NextButton variant="contained" onClick={stageForward}>
-              Next
-            </NextButton>
+            <CustomButton variant="contained" onClick={stageForward}>
+              {ButtonLabels.next}
+            </CustomButton>
           )}
         </ButtonWrapper>
         {courseDescription && (
