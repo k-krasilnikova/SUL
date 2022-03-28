@@ -6,6 +6,7 @@ enum CourseStatus {
   rejected = 'rejected',
   successful = 'successful',
   completed = 'completed',
+  failed = 'failed',
 }
 
 export default CourseStatus;
