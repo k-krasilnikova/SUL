@@ -6,6 +6,7 @@ enum CourseStatus {
   assessment = 'assessment',
   rejected = 'rejected',
   successful = 'successful',
+  failed = 'failed',
   completed = 'completed',
 }
 

@@ -4,15 +4,17 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const adapterSender = async (
   req: Request,
-  res: Response<unknown, { results: unknown }>,
+  res: Response<unknown, { results: Record<'updateStatus', string> }>,
   next: NextFunction,
 ) => {
   try {
-    const { results } = res.locals;
-    if (!results) {
+    const {
+      results: { updateStatus },
+    } = res.locals;
+    if (!updateStatus) {
       throw new BadRequestError('Invalid query.');
     }
-    res.json(results);
+    res.json(updateStatus);
   } catch (err) {
     next(err);
   }

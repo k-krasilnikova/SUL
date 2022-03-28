@@ -17,7 +17,7 @@ import { specifyUserTechnologies } from 'utils/technologies/userTechnologies';
 
 const getAchievments = async (
   req: Request,
-  res: Response<void, { id: string; achievments: TAchievments }>,
+  res: Response<void, { id: string; achievments: TAchievments; status?: CourseStatus }>,
   next: NextFunction,
 ) => {
   try {
