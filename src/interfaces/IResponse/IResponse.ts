@@ -12,14 +12,6 @@ interface ILocals {
   results: Record<string, never>;
 }
 
-interface IEmployeeShortInfo
-  extends Pick<
-    IUser,
-    '_id' | 'firstName' | 'lastName' | 'position' | 'rank' | 'stack' | 'group' | 'phone' | 'skype'
-  > {
-  courses: undefined;
-}
-
 interface IEmployeeInfo
   extends Pick<
     TUserPopulated,
@@ -32,10 +24,19 @@ interface IEmployeeInfo
     | 'birthday'
     | 'skype'
     | 'phone'
+    | 'rank'
   > {
   courses: IEmployeeClientCourse[];
   technologies: ITechnologyGroup[];
   stack: Pick<IStackMember, 'name'>[];
+}
+
+interface IEmployeeShortInfo
+  extends Pick<
+    IUser,
+    '_id' | 'firstName' | 'lastName' | 'position' | 'rank' | 'group' | 'avatar' | 'phone' | 'skype'
+  > {
+  stack: IEmployeeInfo['stack'];
 }
 
 interface IEmployeeClientCourse extends Pick<IClientCourse, 'status' | 'progress' | 'date'> {
@@ -47,4 +48,11 @@ type TEmployeeCourse = Pick<ICourse, 'title' | 'avatar'>;
 type TLocalsManager = ILocals;
 type TLocalsUser = Omit<ILocals, 'managerId'>;
 
-export { TLocalsManager, TLocalsUser, IEmployeeInfo, IEmployeeClientCourse, TEmployeeCourse };
+export {
+  TLocalsManager,
+  TLocalsUser,
+  IEmployeeInfo,
+  IEmployeeShortInfo,
+  IEmployeeClientCourse,
+  TEmployeeCourse,
+};
