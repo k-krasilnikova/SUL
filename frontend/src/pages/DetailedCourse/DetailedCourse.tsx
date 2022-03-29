@@ -13,15 +13,13 @@ import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
 import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
-import { COMPLETED_STATUS_TEXT, OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants/detailedCourse';
+import { OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
-import { VARIANTS } from 'constants/progressBar';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { ButtonsWrapper, CustomButton } from 'components/Button/styled';
 import StartTestButton from 'components/Button/StartTestButton';
 import { COURSE_DISABLE_DAYS, TEST_DISABLE_DAYS } from 'constants/time';
 import ActionButton from 'components/Button/ActionButton';
-import { countProgress } from 'utils/helpers/countCourseProgress';
 import { CourseItem } from 'components/Course';
 import { ButtonLabels } from 'components/Button/ButtonsEnums';
 
@@ -53,11 +51,13 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   page,
   id,
   status,
+  progressValue,
+  progressText,
+  progressVariant,
   windowWidth,
   isFullTextOpen,
   toggleFullText,
   isCourseApplicationSubmitted,
-  isCourseCompleted,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -75,14 +75,10 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
         {isCourseApplicationSubmitted && status !== COURSE_STATUSES.pending && (
           <ProgressBar
             size="large"
-            text={
-              isCourseCompleted
-                ? COMPLETED_STATUS_TEXT
-                : `${countProgress(clientCourseData?.progress)}%`
-            }
+            text={progressText}
             textColor={PROGRESS_COLOR}
-            variant={isCourseCompleted && VARIANTS.successful}
-            value={!isCourseCompleted ? countProgress(clientCourseData?.progress) : undefined}
+            variant={progressVariant}
+            value={progressValue}
           />
         )}
         <DetailedCourseTitle>{commonCourseData.title}</DetailedCourseTitle>

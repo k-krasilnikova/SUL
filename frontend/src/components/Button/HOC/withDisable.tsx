@@ -8,7 +8,7 @@ type IncomingProps = {
 
 const withDisable =
   <T extends IncomingProps>(Component: React.ComponentType<T>) =>
-  (props: T) => {
+  (props: T): JSX.Element => {
     const [isDisable, setDisable] = useState(false);
     const { status } = props;
     useEffect(() => {

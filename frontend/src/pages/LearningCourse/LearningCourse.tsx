@@ -30,6 +30,7 @@ import {
   ToggleDescription,
   ExpandLessIcon,
   ExpandMoreIcon,
+  PlayVideoIcon,
 } from './styled';
 
 interface LearningProps {
@@ -91,12 +92,12 @@ const LearningCourse: React.FC<LearningProps> = ({
           {materialType === MATERIAL.video ? (
             <MaterialVideo
               url={material}
-              playIcon={<img src={playVideo} alt="play" />}
+              playIcon={<PlayVideoIcon src={playVideo} alt="play" />}
               light={videoPreview}
               playing
               controls
               width="100%"
-              height="680px"
+              height="100%"
               frameBorder="0"
             />
           ) : (
