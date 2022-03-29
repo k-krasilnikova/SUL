@@ -6,7 +6,7 @@ import { PERCENTAGE, TEST_STATUS } from 'constants/test';
 
 import TestResult from './TestResult';
 
-const TestResultContainer: React.FC<ITestResult> = ({ responseData }) => {
+const TestResultContainer: React.FC<ITestResult> = ({ responseData, isLoading }) => {
   const params = useParams();
 
   const testStatus = responseData ? responseData.result.testStatus : undefined;
@@ -18,6 +18,7 @@ const TestResultContainer: React.FC<ITestResult> = ({ responseData }) => {
     <TestResult
       assessment={assessmentRequired}
       isFailed={isFailed}
+      isLoading={isLoading}
       responseData={responseData}
       percentageValue={percentageValue}
       courseId={params.courseId}
