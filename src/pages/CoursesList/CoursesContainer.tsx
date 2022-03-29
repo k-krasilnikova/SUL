@@ -18,8 +18,8 @@ const CoursesContainer: React.FC = () => {
     isLoading: isCoursesLoading,
   } = useGetPaginatedCourses();
 
-  const { data: check } = useGetProfile();
-  const adminRole = check?.role === 'admin' ?? null;
+  const { data: profileResponse } = useGetProfile();
+  const isAdmin = profileResponse?.role === 'admin';
 
   const [targetId, setTargetId] = useState<string | undefined>();
 
@@ -58,7 +58,7 @@ const CoursesContainer: React.FC = () => {
 
   return (
     <CoursesList
-      adminRole={adminRole}
+      isAdmin={isAdmin}
       courses={formattedCoursesList}
       isLoading={isCoursesLoading}
       handleApplyCourse={handleApplyCourse}
