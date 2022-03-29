@@ -63,6 +63,7 @@ const DetailedCourse: React.FC<IProps> = ({
   toggleFullText,
   isCourseApplicationSubmitted,
   isAdmin,
+  isCourseCompleted,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -117,6 +118,8 @@ const DetailedCourse: React.FC<IProps> = ({
               </CustomButton>
             ) : (
               <ButtonsWrapper>
+                {!isCourseCompleted && (
+                    <>
                 <StartTestButton
                   testDate={clientCourseData?.testDate}
                   progress={clientCourseData?.progress}
@@ -131,6 +134,8 @@ const DetailedCourse: React.FC<IProps> = ({
                   courseId={id}
                   applyDate={clientCourseData?.applyDate}
                 />
+                    </>
+                )}
               </ButtonsWrapper>
             ))}
         </DetailedCourseActionsBox>
