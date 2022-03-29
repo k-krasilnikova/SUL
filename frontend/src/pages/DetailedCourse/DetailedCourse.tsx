@@ -43,13 +43,11 @@ import {
   MobileSearchWrapper,
 } from './styled';
 
-interface Props {
-  adminRole?: boolean;
+interface IProps extends IDetailedCourse {
+  isAdmin: boolean;
 }
 
-type DetailProps = IDetailedCourse & Props;
-
-const DetailedCourse: React.FC<DetailProps> = ({
+const DetailedCourse: React.FC<IProps> = ({
   commonCourseData,
   clientCourseData,
   handleApplyCourse,
@@ -64,7 +62,7 @@ const DetailedCourse: React.FC<DetailProps> = ({
   isFullTextOpen,
   toggleFullText,
   isCourseApplicationSubmitted,
-  adminRole,
+  isAdmin,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -108,34 +106,33 @@ const DetailedCourse: React.FC<DetailProps> = ({
               type={INFO.detailedCourse}
             />
           </CourseInfoBox>
-          {isLoading ? (
-            <CustomButton variant="mediumOutlined" disabled>
-              <ButtonLoader buttonSpinner={buttonSpinner} />
-            </CustomButton>
-          ) : page === PAGES.coursesList ? (
-            adminRole || (
+          {!isAdmin &&
+            (isLoading ? (
+              <CustomButton variant="mediumOutlined" disabled>
+                <ButtonLoader buttonSpinner={buttonSpinner} />
+              </CustomButton>
+            ) : page === PAGES.coursesList ? (
               <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
                 {ButtonLabels.applyCourse}
               </CustomButton>
-            )
-          ) : (
-            <ButtonsWrapper>
-              <StartTestButton
-                testDate={clientCourseData?.testDate}
-                progress={clientCourseData?.progress}
-                timeout={TEST_DISABLE_DAYS}
-                status={status}
-              />
-              <ActionButton
-                label={COURSE_LABELS[status]}
-                status={status}
-                progress={clientCourseData?.progress}
-                timeout={COURSE_DISABLE_DAYS}
-                courseId={id}
-                applyDate={clientCourseData?.applyDate}
-              />
-            </ButtonsWrapper>
-          )}
+            ) : (
+              <ButtonsWrapper>
+                <StartTestButton
+                  testDate={clientCourseData?.testDate}
+                  progress={clientCourseData?.progress}
+                  timeout={TEST_DISABLE_DAYS}
+                  status={status}
+                />
+                <ActionButton
+                  label={COURSE_LABELS[status]}
+                  status={status}
+                  progress={clientCourseData?.progress}
+                  timeout={COURSE_DISABLE_DAYS}
+                  courseId={id}
+                  applyDate={clientCourseData?.applyDate}
+                />
+              </ButtonsWrapper>
+            ))}
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
           <Grid item xs={12}>

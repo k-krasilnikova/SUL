@@ -34,7 +34,7 @@ import {
 } from './styled';
 
 interface Props {
-  adminRole?: boolean;
+  isAdmin?: boolean;
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
   lastCourseRef: (node?: Element | null) => void;
@@ -43,7 +43,7 @@ interface Props {
 type CoursesProps = ResponseDataType & Props;
 
 const CoursesList: React.FC<CoursesProps> = ({
-  adminRole,
+  isAdmin,
   courses,
   clientCourses,
   isLoading,
@@ -62,7 +62,7 @@ const CoursesList: React.FC<CoursesProps> = ({
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
-        {adminRole ? (
+        {isAdmin && (
           <AddButtonWrapper>
             <Link to={PATHS.coursesList}>
               <AddButton disableElevation variant="contained">
@@ -70,7 +70,7 @@ const CoursesList: React.FC<CoursesProps> = ({
               </AddButton>
             </Link>
           </AddButtonWrapper>
-        ) : null}
+        )}
         {courses.map((course, index) => (
           <Suspense
             key={`${course._id}_item`}
@@ -97,21 +97,21 @@ const CoursesList: React.FC<CoursesProps> = ({
                           Details
                         </CustomButton>
                       </Link>
-                      {targetLoading && targetId === course._id ? (
-                        <CustomButton variant="mediumOutlined" disabled>
-                          <ButtonLoader buttonSpinner={buttonSpinner} />
-                        </CustomButton>
-                      ) : clientCourses ? (
-                        <ActionButton
-                          label={COURSE_LABELS[clientCourses[index].status]}
-                          status={clientCourses[index].status}
-                          progress={clientCourses[index].progress}
-                          applyDate={clientCourses[index].applyDate}
-                          courseId={clientCourses[index]._id}
-                          timeout={COURSE_DISABLE_DAYS}
-                        />
-                      ) : (
-                        adminRole || (
+                      {!isAdmin &&
+                        (targetLoading && targetId === course._id ? (
+                          <CustomButton variant="mediumOutlined" disabled>
+                            <ButtonLoader buttonSpinner={buttonSpinner} />
+                          </CustomButton>
+                        ) : clientCourses ? (
+                          <ActionButton
+                            label={COURSE_LABELS[clientCourses[index].status]}
+                            status={clientCourses[index].status}
+                            progress={clientCourses[index].progress}
+                            applyDate={clientCourses[index].applyDate}
+                            courseId={clientCourses[index]._id}
+                            timeout={COURSE_DISABLE_DAYS}
+                          />
+                        ) : (
                           <CustomButton
                             id={course._id}
                             onClick={handleApplyCourse}
@@ -119,8 +119,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                           >
                             Apply the course
                           </CustomButton>
-                        )
-                      )}
+                        ))}
                     </CourseActions>
                   </CourseActionsBox>
                 </CourseItem>

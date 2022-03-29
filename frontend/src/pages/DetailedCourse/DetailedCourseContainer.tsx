@@ -46,8 +46,8 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     commonCourseInfo = courseData;
   }
 
-  const { data: check } = useGetProfile();
-  const adminRole = check?.role === 'admin' ?? null;
+  const { data: profileResponse } = useGetProfile();
+  const isAdmin = profileResponse?.role === 'admin';
 
   let progressValue;
   let progressText;
@@ -72,7 +72,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     <>
       {commonCourseInfo && courseData && (
         <DetailedCourse
-          adminRole={adminRole}
+          isAdmin={isAdmin}
           navigate={navigate}
           commonCourseData={commonCourseInfo}
           clientCourseData={clientCourseInfo}
