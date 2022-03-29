@@ -29,6 +29,7 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
     ...(size === SIZE.small && {
       width: '50px',
       height: '50px',
+    }),
     ...(size === SIZE.xsmall && {
       width: '30px',
       height: '30px',
