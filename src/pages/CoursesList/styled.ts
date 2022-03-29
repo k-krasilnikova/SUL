@@ -90,14 +90,6 @@ export const AddButtonWrapper = styled('div')({
 export const AddButton = styled(Button)({
   width: '85px',
   height: '40px',
-  fontFamily: '"Ubuntu", sans-serif',
-  fontSize: '16px!important',
-  fontWeight: '500!important',
-  lineHeight: '22px',
-  letterSpacing: '-0.4px',
-  textAlign: 'center',
-  borderRadius: '4px',
-  boxShadow: 'none',
   [theme.breakpoints.down('xl')]: {
     width: '69px',
     height: '40px',
