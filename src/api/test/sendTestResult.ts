@@ -11,19 +11,14 @@ interface ITestResultParams {
   courseId: string | undefined;
 }
 
-const useSendTestResult = (
-  { courseId }: ITestResultParams,
-  onSubmit?: () => void,
-): UseMutationResult<IResponseData> => {
+const useSendTestResult = ({ courseId }: ITestResultParams): UseMutationResult<IResponseData> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   const handleSubmit = () => {
-    if (onSubmit) {
-      onSubmit();
-      queryClient.invalidateQueries('profile');
-    }
+    queryClient.invalidateQueries('profile');
+    queryClient.refetchQueries(['clientCourseInfo', courseId]);
   };
   return useMutation(
     async (data) => {
