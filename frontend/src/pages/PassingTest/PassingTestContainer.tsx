@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router';
 
 import { useSendTestResult, useGetCourseTest } from 'api/test';
@@ -7,6 +7,7 @@ import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 import { PATHS } from 'constants/routes';
 import { useToggle } from 'hooks';
 
+import { COURSE_STATUSES } from 'constants/statuses';
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
@@ -35,11 +36,6 @@ const PassingTestContainer: React.FC = () => {
     }
   }, [courseTest?.timeout, setTestTimeoutDialogOpen]);
 
-  const handleCloseTimeIsOverDialog = () => {
-    setTestTimeoutDialogOpen();
-    naviagteTo(PATHS.myCourses);
-  };
-
   const [stage, setStage] = useState(1);
   const [values, setValues] = React.useState({});
 
@@ -52,13 +48,21 @@ const PassingTestContainer: React.FC = () => {
   };
 
   const { mutate: sendFinishCourse } = useFinishClientCourse(params.courseId);
-  const handleSendTestResult = () => sendFinishCourse(params.courseId);
+  const handleFinishCourse = useCallback(
+    () => sendFinishCourse(params.courseId),
+    [params.courseId, sendFinishCourse],
+  );
 
   const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
-  const { mutate, data: responseData } = useSendTestResult(
-    { courseId: params.courseId },
-    handleSendTestResult,
-  );
+  const { mutate: sendTestResult, data: responseData } = useSendTestResult({
+    courseId: params.courseId,
+  });
+
+  useEffect(() => {
+    if (clientCourseResponse?.status === COURSE_STATUSES.successful) {
+      handleFinishCourse();
+    }
+  }, [clientCourseResponse?.status, handleFinishCourse]);
 
   const handleSubmitResult = () => {
     const resultData = {
@@ -68,8 +72,13 @@ const PassingTestContainer: React.FC = () => {
         aN: Number(value),
       })),
     };
-    mutate(resultData);
+    sendTestResult(resultData);
     setTestResultPageEnabled(true);
+  };
+
+  const handleCloseTimeIsOverDialog = () => {
+    setTestTimeoutDialogOpen();
+    handleSubmitResult();
   };
 
   const stageBack = () => {
