@@ -84,10 +84,11 @@ const PassingTestContainer: React.FC = () => {
   };
   const resultEnabled = stage === maxStage;
   const questionStageItem = courseTest?.questions[stage - 1];
+  const courseStatus = clientCourseResponse?.status;
+
   const isShouldRedirect =
     !clientCourseResponseIsLoading &&
-    (clientCourseResponse?.status === COURSE_STATUSES.started ||
-      clientCourseResponse?.status === COURSE_STATUSES.successful);
+    (courseStatus === COURSE_STATUSES.failed || courseStatus === COURSE_STATUSES.successful);
 
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
