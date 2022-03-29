@@ -9,7 +9,7 @@ import { LOADER } from 'constants/loaderTypes';
 import { SIZE } from 'constants/sizes';
 import { IEmployeesProps } from 'types/employee';
 
-import { EmployeesWrapper } from './styled';
+import { EmployeesWrapper, HeaderCell, HeaderText } from './styled';
 import EmployeeItem from './EmployeeItem';
 
 const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading }) => (
@@ -19,20 +19,23 @@ const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading }) => (
         <Loader color="primary" type={LOADER.content} />
       ) : (
         <Grid container>
-          <Grid item container xs={12}>
-            <Grid item xs={3} />
-            <Grid item xs={2}>
-              <p>Position</p>
-            </Grid>
-            <Grid item xs={2}>
-              <p>Group</p>
-            </Grid>
-            <Grid item xs={2}>
-              <p>Phone</p>
-            </Grid>
-            <Grid item xs={2}>
-              <p>Skype</p>
-            </Grid>
+          <Grid item container xs={12} columnSpacing={2} wrap="nowrap">
+            <HeaderCell item xs={1} xl={2} />
+            <HeaderCell item xs={1}>
+              <HeaderText>Stack</HeaderText>
+            </HeaderCell>
+            <HeaderCell item xs={1}>
+              <HeaderText>Rank</HeaderText>
+            </HeaderCell>
+            <HeaderCell item xs={1}>
+              <HeaderText>Group</HeaderText>
+            </HeaderCell>
+            <HeaderCell item xs={1}>
+              <HeaderText>Phone</HeaderText>
+            </HeaderCell>
+            <HeaderCell item xs={1}>
+              <HeaderText>Skype</HeaderText>
+            </HeaderCell>
           </Grid>
           {employees?.length ? (
             employees.map((employee) => <EmployeeItem employee={employee} />)

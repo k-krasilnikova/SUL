@@ -34,3 +34,7 @@ export interface IEmployeesProps {
   employees?: IEmployee[];
   isLoading?: boolean;
 }
+
+export interface IEmployeeItemProps {
+  employee: IEmployee;
+}
