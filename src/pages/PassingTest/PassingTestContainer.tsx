@@ -55,10 +55,11 @@ const PassingTestContainer: React.FC = () => {
   const handleSendTestResult = () => sendFinishCourse(params.courseId);
 
   const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
-  const { mutate, data: responseData } = useSendTestResult(
-    { courseId: params.courseId },
-    handleSendTestResult,
-  );
+  const {
+    mutate,
+    data: responseData,
+    isLoading: sendTestResultIsLoading,
+  } = useSendTestResult({ courseId: params.courseId }, handleSendTestResult);
 
   const handleSubmitResult = () => {
     const resultData = {
@@ -127,7 +128,11 @@ const PassingTestContainer: React.FC = () => {
         </>
       )}
       {isTestResultPageEnabled && (
-        <TestResult responseData={responseData} status={clientCourseResponse?.status} />
+        <TestResult
+          isLoading={sendTestResultIsLoading}
+          responseData={responseData}
+          status={clientCourseResponse?.status}
+        />
       )}
     </>
   );
