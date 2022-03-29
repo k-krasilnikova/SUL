@@ -7,6 +7,7 @@ import { useGetProfile } from 'api/profile';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import convertStatusToProgress, { ConvertedProgress } from 'utils/helpers/convertStatusToProgress';
 import { COURSE_STATUSES } from 'constants/statuses';
+import { ACTIVE_ROLES } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
 
 import DetailedCourse from './DetailedCourse';
@@ -47,7 +48,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   }
 
   const { data: profileResponse } = useGetProfile();
-  const isAdmin = profileResponse?.role === 'admin';
+  const isAdmin = profileResponse?.role === ACTIVE_ROLES.ADMIN;
 
   let progressValue;
   let progressText;
