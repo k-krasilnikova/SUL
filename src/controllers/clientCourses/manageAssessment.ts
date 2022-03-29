@@ -5,10 +5,11 @@ import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { getStatusProvider, updateClientCourseField } from 'db/providers/clientCourseProvider';
 import { COURSE_FILEDS } from 'config/constants';
+import { TAchievments } from 'interfaces/Ientities/Itest';
 
 const manageAssessment = async (
   req: Request<{ id: string }, unknown, { action: AssessmentAction }>,
-  res: Response<never, { status?: CourseStatus }>,
+  res: Response<never, { id: string; achievments: TAchievments; results: string }>,
   next: NextFunction,
 ) => {
   const { id: courseId } = req.params;
@@ -35,7 +36,11 @@ const manageAssessment = async (
     }
 
     await updateClientCourseField(courseId, COURSE_FILEDS.status, statusToSet);
-    res.locals.status = statusToSet;
+
+    res.locals.results = `Assessment has been successfully ${
+      statusToSet === CourseStatus.completed ? 'approved' : 'declined'
+    }.`;
+
     next();
   } catch (err) {
     next(err);
