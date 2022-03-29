@@ -50,7 +50,7 @@ export const shortifyCourseDescription = (
     windowWidth === WINDOW_SIZE.sm.name &&
     (pageName === PAGES.myCourses || pageName === PAGES.coursesList)
   ) {
-    maxLength = 60;
+    maxLength = 80;
   }
   return str.length > maxLength ? `${str.slice(0, maxLength)}...` : str;
 };

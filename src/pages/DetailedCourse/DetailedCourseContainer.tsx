@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
+import convertStatusToProgress, { ConvertedProgress } from 'utils/helpers/convertStatusToProgress';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
 
@@ -44,6 +45,25 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     commonCourseInfo = courseData;
   }
 
+  let progressValue;
+  let progressText;
+  let progressVariant;
+
+  const [currentProgress, setCurrentProgress] = useState<ConvertedProgress>();
+
+  useEffect(() => {
+    if (courseData) {
+      const progress = convertStatusToProgress(courseData.status);
+      setCurrentProgress(progress);
+    }
+  }, [courseData]);
+
+  if (currentProgress) {
+    progressValue = currentProgress.progressValue;
+    progressText = currentProgress.progressText;
+    progressVariant = currentProgress.progressVariant;
+  }
+
   return (
     <>
       {commonCourseInfo && courseData && (
@@ -56,6 +76,9 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
           page={page}
           id={courseData._id}
           status={courseData.status}
+          progressValue={progressValue}
+          progressText={progressText}
+          progressVariant={progressVariant}
           windowWidth={windowWidth}
           isFullTextOpen={isFullTextOpen}
           toggleFullText={toggleFullText}

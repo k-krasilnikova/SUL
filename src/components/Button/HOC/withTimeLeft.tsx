@@ -12,7 +12,7 @@ type IncomingProps = {
 
 const withTimeLeft =
   <T extends IncomingProps>(Component: React.ComponentType<T>) =>
-  (props: T) => {
+  (props: T): JSX.Element => {
     const [isTimeVisible, setTimeVisible] = useToggle(false);
     const [time, setTime] = useState<string | undefined>();
     const { applyDate, testDate, timeout } = props;

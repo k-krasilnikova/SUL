@@ -1,6 +1,6 @@
 import { TEST_DISABLE_DAYS } from 'constants/time';
 
-const checkTestDate = (date: string | undefined, timeout = TEST_DISABLE_DAYS) => {
+const checkTestDate = (date: string | undefined, timeout = TEST_DISABLE_DAYS): boolean => {
   if (!date) {
     return true;
   }
