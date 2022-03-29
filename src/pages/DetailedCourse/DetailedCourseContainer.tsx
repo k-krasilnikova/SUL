@@ -48,7 +48,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   }
 
   const { data: profileResponse } = useGetProfile();
-  const isAdmin = profileResponse?.role === ACTIVE_ROLES.ADMIN;
+  const isAdmin = profileResponse?.role === ACTIVE_ROLES.admin;
 
   let progressValue;
   let progressText;
