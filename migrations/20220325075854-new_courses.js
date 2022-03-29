@@ -740,4 +740,17 @@ module.exports = {
       }),
     );
   },
+
+  async down(db) {
+    await Promise.all(
+      MOCKED_COURSES.map((course) => {
+        return db.collection('courses').findOneAndDelete({ title: course.title });
+      }),
+    );
+    await Promise.all(
+      TESTS.map((test) => {
+        return db.collection('tests').findOneAndDelete({ title: test.title });
+      }),
+    );
+  },
 };
