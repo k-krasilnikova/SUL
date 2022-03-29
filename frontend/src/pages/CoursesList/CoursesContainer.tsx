@@ -20,7 +20,7 @@ const CoursesContainer: React.FC = () => {
   } = useGetPaginatedCourses();
 
   const { data: profileResponse } = useGetProfile();
-  const isAdmin = profileResponse?.role === ACTIVE_ROLES.ADMIN;
+  const isAdmin = profileResponse?.role === ACTIVE_ROLES.admin;
 
   const [targetId, setTargetId] = useState<string | undefined>();
 
