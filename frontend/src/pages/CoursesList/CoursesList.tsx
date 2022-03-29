@@ -34,16 +34,15 @@ import {
 } from './styled';
 
 interface Props {
-  isAdmin?: boolean;
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
   lastCourseRef: (node?: Element | null) => void;
+  isAdmin?: boolean;
 }
 
 type CoursesProps = ResponseDataType & Props;
 
 const CoursesList: React.FC<CoursesProps> = ({
-  isAdmin,
   courses,
   clientCourses,
   isLoading,
@@ -53,6 +52,7 @@ const CoursesList: React.FC<CoursesProps> = ({
   disableLink,
   windowWidth,
   lastCourseRef,
+  isAdmin,
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
@@ -65,7 +65,7 @@ const CoursesList: React.FC<CoursesProps> = ({
         {isAdmin && (
           <AddButtonWrapper>
             <Link to={PATHS.coursesList}>
-              <AddButton disableElevation variant="contained">
+              <AddButton disableElevation variant="mediumContained">
                 {ButtonLabels.add}
               </AddButton>
             </Link>
