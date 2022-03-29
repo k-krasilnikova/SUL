@@ -39,16 +39,28 @@ export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type })
   width: '100%',
   [theme.breakpoints.down('xl')]: {
     padding: '16px 26px 16px 16px',
-    height: '213px',
+    height: '218px',
     ...(type === INFO.similarCourses && {
       padding: '16px 32px 26px 16px',
       maxHeight: '207px',
     }),
   },
+  [theme.breakpoints.down(1200)]: {
+    height: '205px',
+  },
+  [theme.breakpoints.down(1115)]: {
+    height: '242px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    height: '160px',
+  },
+  [theme.breakpoints.down(950)]: {
+    height: '178px',
+  },
   [theme.breakpoints.down('md')]: {
     display: 'block',
-    padding: '10px 15px 10px 10px',
-    height: '126px',
+    padding: '10px 15px 5px 10px',
+    height: '140px',
   },
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
@@ -109,6 +121,10 @@ export const ImageWrapper = styled('div')<Image>(({ imageUrl }) => {
       width: '224px',
       height: '124px',
       margin: '0px 24px 4px 0px',
+    },
+    [theme.breakpoints.down(1200)]: {
+      width: '194px',
+      height: '100px',
     },
     [theme.breakpoints.down('md')]: {
       width: '180px',
