@@ -43,7 +43,11 @@ import {
   MobileSearchWrapper,
 } from './styled';
 
-const DetailedCourse: React.FC<IDetailedCourse> = ({
+interface IProps extends IDetailedCourse {
+  isAdmin: boolean;
+}
+
+const DetailedCourse: React.FC<IProps> = ({
   commonCourseData,
   clientCourseData,
   handleApplyCourse,
@@ -58,6 +62,7 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
   isFullTextOpen,
   toggleFullText,
   isCourseApplicationSubmitted,
+  isAdmin,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
@@ -101,32 +106,33 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               type={INFO.detailedCourse}
             />
           </CourseInfoBox>
-          {isLoading ? (
-            <CustomButton variant="mediumOutlined" disabled>
-              <ButtonLoader buttonSpinner={buttonSpinner} />
-            </CustomButton>
-          ) : page === PAGES.coursesList ? (
-            <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
-              {ButtonLabels.applyCourse}
-            </CustomButton>
-          ) : (
-            <ButtonsWrapper>
-              <StartTestButton
-                testDate={clientCourseData?.testDate}
-                progress={clientCourseData?.progress}
-                timeout={TEST_DISABLE_DAYS}
-                status={status}
-              />
-              <ActionButton
-                label={COURSE_LABELS[status]}
-                status={status}
-                progress={clientCourseData?.progress}
-                timeout={COURSE_DISABLE_DAYS}
-                courseId={id}
-                applyDate={clientCourseData?.applyDate}
-              />
-            </ButtonsWrapper>
-          )}
+          {!isAdmin &&
+            (isLoading ? (
+              <CustomButton variant="mediumOutlined" disabled>
+                <ButtonLoader buttonSpinner={buttonSpinner} />
+              </CustomButton>
+            ) : page === PAGES.coursesList ? (
+              <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
+                {ButtonLabels.applyCourse}
+              </CustomButton>
+            ) : (
+              <ButtonsWrapper>
+                <StartTestButton
+                  testDate={clientCourseData?.testDate}
+                  progress={clientCourseData?.progress}
+                  timeout={TEST_DISABLE_DAYS}
+                  status={status}
+                />
+                <ActionButton
+                  label={COURSE_LABELS[status]}
+                  status={status}
+                  progress={clientCourseData?.progress}
+                  timeout={COURSE_DISABLE_DAYS}
+                  courseId={id}
+                  applyDate={clientCourseData?.applyDate}
+                />
+              </ButtonsWrapper>
+            ))}
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
           <Grid item xs={12}>

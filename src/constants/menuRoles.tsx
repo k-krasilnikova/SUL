@@ -82,3 +82,9 @@ export const ROLES_MENU: IRolesMenu = {
   manager: MANAGER_MENU,
   admin: ADMIN_MENU,
 };
+
+export const ACTIVE_ROLES = {
+  admin: 'admin',
+  manager: 'manager',
+  employee: 'employee',
+};
