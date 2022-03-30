@@ -742,9 +742,14 @@ module.exports = {
   },
 
   async down(db) {
-    await Promise.all(
+    const courses = await Promise.all(
       MOCKED_COURSES.map((course) => {
         return db.collection('courses').findOneAndDelete({ title: course.title });
+      }),
+    );
+    await Promise.all(
+      courses.map((course) => {
+        return db.collection('clientCourses').findOneAndDelete({ course: course._id });
       }),
     );
     await Promise.all(
