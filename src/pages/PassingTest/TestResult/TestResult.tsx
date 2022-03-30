@@ -27,6 +27,7 @@ import {
 } from './styled';
 
 const TestResult: React.FC<ITestResult> = ({
+  assessment,
   isLoading,
   isFailed,
   responseData,
@@ -61,14 +62,15 @@ const TestResult: React.FC<ITestResult> = ({
           </ProgressBarBox>
           <ResultBox>
             <TestResultText>
-              {isFailed ? 'Course failed' : 'Course successfully completed'}
+              {isFailed ? 'Test failed' : 'Test successfully completed'}
             </TestResultText>
             <AboutSkillsBox>
               <SkillsText>Acquired skills:</SkillsText>
               <TestSkillsBox>
-                {isFailed ? (
+                {isFailed || assessment ? (
                   <>
                     <FailedCourseText>None</FailedCourseText>
+                    {assessment && <FailedCourseText>Assessment arranged</FailedCourseText>}
                     <StyledDivider />
                   </>
                 ) : (

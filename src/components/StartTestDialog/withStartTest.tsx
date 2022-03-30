@@ -36,9 +36,12 @@ const withStartTest =
     const isTestDisabled = useCallback(
       () =>
         (status &&
-          [COURSE_STATUSES.completed, COURSE_STATUSES.successful, COURSE_STATUSES.testing].includes(
-            status,
-          )) ||
+          [
+            COURSE_STATUSES.completed,
+            COURSE_STATUSES.successful,
+            COURSE_STATUSES.testing,
+            COURSE_STATUSES.assessment,
+          ].includes(status)) ||
         !checkTestDate(testDate, timeout) ||
         !isProgressCompleted(progress),
       [progress, status, testDate, timeout],

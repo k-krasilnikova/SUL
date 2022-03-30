@@ -3,9 +3,11 @@ import { useNavigate, useParams } from 'react-router';
 
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
+import { useGetProfile } from 'api/profile';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import convertStatusToProgress, { ConvertedProgress } from 'utils/helpers/convertStatusToProgress';
 import { COURSE_STATUSES } from 'constants/statuses';
+import { ACTIVE_ROLES } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
 
 import DetailedCourse from './DetailedCourse';
@@ -45,6 +47,9 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     commonCourseInfo = courseData;
   }
 
+  const { data: profileResponse } = useGetProfile();
+  const isAdmin = profileResponse?.role === ACTIVE_ROLES.admin;
+
   let progressValue;
   let progressText;
   let progressVariant;
@@ -68,6 +73,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     <>
       {commonCourseInfo && courseData && (
         <DetailedCourse
+          isAdmin={isAdmin}
           navigate={navigate}
           commonCourseData={commonCourseInfo}
           clientCourseData={clientCourseInfo}
