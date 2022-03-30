@@ -78,15 +78,16 @@ const DetailedCourse: React.FC<IProps> = ({
       </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper imageUrl={commonCourseData.avatar} />
-        {isCourseApplicationSubmitted && status !== COURSE_STATUSES.pending && (
-          <ProgressBar
-            size="large"
-            text={progressText}
-            textColor={PROGRESS_COLOR}
-            variant={progressVariant}
-            value={progressValue}
-          />
-        )}
+        {(isCourseApplicationSubmitted && status !== COURSE_STATUSES.pending) ||
+          (status !== COURSE_STATUSES.rejected && (
+            <ProgressBar
+              size="large"
+              text={progressText}
+              textColor={PROGRESS_COLOR}
+              variant={progressVariant}
+              value={progressValue}
+            />
+          ))}
         <DetailedCourseTitle>{commonCourseData.title}</DetailedCourseTitle>
         {isFullTextOpen ? (
           <DetailedCourseTextMobile>{commonCourseData.description}</DetailedCourseTextMobile>
@@ -156,7 +157,7 @@ const DetailedCourse: React.FC<IProps> = ({
                 <CourseActionsBox>
                   <CourseActions>
                     <CustomButton color="primary" variant="mediumOutlined">
-                      {ButtonLabels.next}
+                      {ButtonLabels.details}
                     </CustomButton>
                   </CourseActions>
                 </CourseActionsBox>
