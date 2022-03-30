@@ -1,12 +1,10 @@
 import React from 'react';
-import { Grid } from '@mui/material';
 
 import Loader from 'components/Loader';
 import { NoContent } from 'components/NoContent';
 import { AuthorizedLayout } from 'components/Layout';
 import { LOADER } from 'constants/loaderTypes';
 import { NO_REQUESTS } from 'constants/messages';
-import { SIZE } from 'constants/sizes';
 import { IRequestsProps } from 'types/request';
 
 import RequestItem from './RequestItem';
@@ -22,33 +20,29 @@ const Requests: React.FC<IRequestsProps> = ({
   declineLoading,
 }) => (
   <AuthorizedLayout pageName="Requests">
-    <RequestsWrapper>
-      {isLoading ? (
-        <Loader color="primary" type={LOADER.content} />
-      ) : (
-        <Grid container>
-          {requests?.length ? (
-            requests.map((request) => {
-              const isTargetRequest = targetId === request._id;
-              return (
-                <RequestItem
-                  key={request._id}
-                  request={request}
-                  approveRequest={approveRequest}
-                  approveLoading={approveLoading}
-                  declineRequest={declineRequest}
-                  declineLoading={declineLoading}
-                  isTargetRequest={isTargetRequest}
-                  status={request.status}
-                />
-              );
-            })
-          ) : (
-            <NoContent message={NO_REQUESTS} size={SIZE.medium} />
-          )}
-        </Grid>
-      )}
-    </RequestsWrapper>
+    {isLoading ? (
+      <Loader color="primary" type={LOADER.content} />
+    ) : requests?.length ? (
+      <RequestsWrapper container>
+        {requests.map((request) => {
+          const isTargetRequest = targetId === request._id;
+          return (
+            <RequestItem
+              key={request._id}
+              request={request}
+              approveRequest={approveRequest}
+              approveLoading={approveLoading}
+              declineRequest={declineRequest}
+              declineLoading={declineLoading}
+              isTargetRequest={isTargetRequest}
+              status={request.status}
+            />
+          );
+        })}
+      </RequestsWrapper>
+    ) : (
+      <NoContent message={NO_REQUESTS} />
+    )}
   </AuthorizedLayout>
 );
 
