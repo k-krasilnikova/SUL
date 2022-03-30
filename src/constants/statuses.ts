@@ -13,6 +13,7 @@ export const COURSE_LABELS: { [key: string]: string } = {
   pending: 'Pending',
   approved: 'Start the course',
   started: 'Continue',
+  failed: 'Continue',
   successful: 'Completed',
   testing: 'Continue the test',
   rejected: 'Declined',
