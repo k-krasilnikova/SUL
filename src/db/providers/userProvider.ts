@@ -7,6 +7,7 @@ import UserSkillModel from 'db/models/UserSkill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
 import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
+import StackMemberModel from 'db/models/StackMember';
 
 const getUserProvider = async (userId: string | ObjectId) => {
   const dbUser = await UserModel.findById(userId).lean();
@@ -39,6 +40,11 @@ const getFullUserInformationProvider = async (userId: string) => {
           },
           select: 'score skill -_id',
         },
+      },
+      {
+        path: 'stack',
+        model: StackMemberModel,
+        select: '-_id name',
       },
     ])
     .lean();

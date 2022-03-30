@@ -77,6 +77,9 @@ const populateUserTechnologies = async (employee: IUser): Promise<IUser> =>
     },
   ]);
 
+const populateUserStack = async (user: IUser): Promise<IUser> =>
+  UserModel.populate(user, { path: 'stack', select: '-_id name' });
+
 export {
   getUserSkills,
   getPopulatedUserSkill,
@@ -84,4 +87,5 @@ export {
   updateUserSkill,
   populateUserSkills,
   populateUserTechnologies,
+  populateUserStack,
 };

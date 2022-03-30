@@ -13,6 +13,7 @@ type TCourseStatus =
   | 'completed'
   | 'rejected'
   | 'testing'
+  | 'assessment'
   | 'successful';
 
 export type TFileds = keyof typeof COURSE_FILEDS;
@@ -22,6 +23,7 @@ interface IClientCourse {
   user: ObjectId;
   course: ObjectId;
   status: CourseStatus;
+  withAssessment: boolean;
   testResult: string;
   progress: [
     {

@@ -1,9 +1,13 @@
 import { ObjectId } from 'mongoose';
 
+import { UserRank } from 'enums/users';
+
 import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 import { IUserSkillPopulated } from './IUserSkill';
+import { IStackMember } from './IStackMember';
 import { ITimePeriod } from '../common/datetime';
+import { TUserPosition, TUserRole } from '../common/users';
 
 interface INotification {
   _id: ObjectId;
@@ -34,8 +38,10 @@ interface IUser {
   refreshToken?: string;
   role: TUserRole;
   position: TUserPosition;
+  rank: UserRank;
   firstName: string;
   lastName: string;
+  stack: IStackMember[];
   technologies: ITechnologyGroup[];
   courses: ObjectId[];
   group: string;
@@ -65,18 +71,4 @@ type TUserPopulated = IUser & {
   technologies: ITechnologyGroupPopuldated[];
 };
 
-type TUserRole = 'admin' | 'manager' | 'employee';
-
-type TUserPosition = 'Software Engineer' | 'QA Engineer' | 'Team Manager';
-
-export {
-  IUser,
-  TUserPopulated,
-  TUserRole,
-  TUserPosition,
-  TPendingCourses,
-  IPendingCourse,
-  INotification,
-  ITechnologyGroup,
-  ITechnologyGroupPopuldated,
-};
+export { IUser, TUserPopulated, IPendingCourse, TPendingCourses, INotification, ITechnologyGroup };
