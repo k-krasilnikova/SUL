@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router';
 
 import { useSendTestResult, useGetCourseTest } from 'api/test';
@@ -39,11 +39,6 @@ const PassingTestContainer: React.FC = () => {
     }
   }, [courseTest?.timeout, setTestTimeoutDialogOpen]);
 
-  const handleCloseTimeIsOverDialog = () => {
-    setTestTimeoutDialogOpen();
-    naviagteTo(PATHS.myCourses);
-  };
-
   const [stage, setStage] = useState(1);
   const [values, setValues] = React.useState({});
 
@@ -56,14 +51,25 @@ const PassingTestContainer: React.FC = () => {
   };
 
   const { mutate: sendFinishCourse } = useFinishClientCourse(params.courseId);
-  const handleSendTestResult = () => sendFinishCourse(params.courseId);
+  const handleFinishCourse = useCallback(
+    () => sendFinishCourse(params.courseId),
+    [params.courseId, sendFinishCourse],
+  );
 
   const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
   const {
-    mutate,
+    mutate: sendTestResult,
     data: responseData,
     isLoading: sendTestResultIsLoading,
-  } = useSendTestResult({ courseId: params.courseId }, handleSendTestResult);
+  } = useSendTestResult({
+    courseId: params.courseId,
+  });
+
+  useEffect(() => {
+    if (clientCourseResponse?.status === COURSE_STATUSES.successful) {
+      handleFinishCourse();
+    }
+  }, [clientCourseResponse?.status, handleFinishCourse]);
 
   const handleSubmitResult = () => {
     const resultData = {
@@ -73,8 +79,13 @@ const PassingTestContainer: React.FC = () => {
         aN: Number(value),
       })),
     };
-    mutate(resultData);
+    sendTestResult(resultData);
     setTestResultPageEnabled(true);
+  };
+
+  const handleCloseTimeIsOverDialog = () => {
+    setTestTimeoutDialogOpen();
+    handleSubmitResult();
   };
 
   const stageBack = () => {
