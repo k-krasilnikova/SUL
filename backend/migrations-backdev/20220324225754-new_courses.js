@@ -728,9 +728,13 @@ module.exports = {
         course.test = tests[index].insertedId;
 
         const techs = course.technologies.map(
-          (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
+          (techName) => skills.filter((skill) => skill.name === techName)[0]._id,
         );
         course.technologies = techs;
+
+        techs.map((tech) => {
+          return db.collection('skills').findOneAndUpdate({ _id: tech }, { $inc: { maxScore: 1 } });
+        });
 
         const requiredSkills = course.requiredSkills.map(
           (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
@@ -749,7 +753,7 @@ module.exports = {
     );
     await Promise.all(
       courses.map((course) => {
-        return db.collection('clientCourses').findOneAndDelete({ course: course._id });
+        return db.collection('clientCourses').findOneAndDelete({ course: course.value._id });
       }),
     );
     await Promise.all(
