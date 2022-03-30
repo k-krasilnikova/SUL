@@ -314,6 +314,8 @@ export const ExpandLessIcon = styled(ExpandLess)({
 export const PlayVideoIcon = styled('img')({
   height: '154px',
   width: '154px',
+  backgroundColor: '#e8e8e8de',
+  borderRadius: '50%',
   [theme.breakpoints.down('lg')]: {
     height: '73px',
     width: '73px',
