@@ -14,7 +14,6 @@ import startTest from 'controllers/tests/startTest';
 import getTestResults from 'controllers/tests/getTestResults';
 import unitTestResults from 'controllers/tests/sendTestResults';
 import manageAssessment from 'controllers/clientCourses/manageAssessment';
-// import sendAssessmentResult from 'controllers/clientCourses/sendAssessmentResult';
 import getTestTime from 'controllers/tests/getTestTime';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
 
