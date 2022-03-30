@@ -4,7 +4,7 @@ import { AssessmentAction } from 'enums/common';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { getStatusProvider, updateClientCourseField } from 'db/providers/clientCourseProvider';
-import { COURSE_FILEDS } from 'config/constants';
+import { ASSESSMENT_RESULTS, COURSE_FILEDS } from 'config/constants';
 import { TAchievments } from 'interfaces/Ientities/Itest';
 
 const manageAssessment = async (
@@ -38,7 +38,9 @@ const manageAssessment = async (
     await updateClientCourseField(courseId, COURSE_FILEDS.status, statusToSet);
 
     res.locals.results = `Assessment has been successfully ${
-      statusToSet === CourseStatus.completed ? 'approved' : 'declined'
+      statusToSet === CourseStatus.completed
+        ? ASSESSMENT_RESULTS.approved
+        : ASSESSMENT_RESULTS.declined
     }.`;
 
     next();
