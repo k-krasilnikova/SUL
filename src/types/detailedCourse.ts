@@ -20,6 +20,8 @@ export interface IDetailedCourse {
   isCourseCompleted?: boolean;
   isCourseDeclined?: boolean;
   isCourseStatusTesting?: boolean;
+  isCourseStatusAssessment?: boolean;
+  isCourseFailed?: boolean;
   progressValue?: number;
   progressText?: string;
   progressVariant?: string;
