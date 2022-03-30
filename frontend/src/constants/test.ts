@@ -7,5 +7,6 @@ export const NOTHING = 0;
 export const TEST_STATUS = {
   notPassed: 'not passed',
   successful: 'successful',
+  assessment: 'assessment',
   testing: 'testing',
 };

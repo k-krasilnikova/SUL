@@ -1,17 +1,26 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getEmployeesProvider } from 'db/providers/userProvider';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { populateUserStack } from 'db/providers/skillProvider';
+import { mapEmployeesShortInfo } from 'utils/normaliser/employees';
+import { IEmployeeShortInfo } from 'interfaces/IResponse/IResponse';
 
 const getEmployees = async (
   req: Request,
-  res: Response<IUser[], { id: string }>,
+  res: Response<IEmployeeShortInfo[], { id: string }>,
   next: NextFunction,
 ) => {
   try {
     const { id: managerId } = res.locals;
+
     const employees = await getEmployeesProvider(managerId);
-    res.json(employees);
+    const employeesWithStack = await Promise.all(
+      employees.map((employee) => populateUserStack(employee)),
+    );
+
+    const mappedEmployees = mapEmployeesShortInfo(employeesWithStack);
+
+    res.json(mappedEmployees);
   } catch (error) {
     next(error);
   }

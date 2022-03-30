@@ -14,6 +14,7 @@ import { LOADER } from 'constants/loaderTypes';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { CustomButton } from 'components/Button/styled';
+import { ButtonLabels } from 'components/Button/ButtonsEnums';
 import { countProgress } from 'utils/helpers/countCourseProgress';
 import { COURSE_LABELS } from 'constants/statuses';
 import ActionButton from 'components/Button/ActionButton';
@@ -28,12 +29,15 @@ import {
   CourseActionsBox,
   MobileLink,
   MobileSearchWrapper,
+  AddButtonWrapper,
+  AddButton,
 } from './styled';
 
 interface Props {
   disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   windowWidth: string;
   lastCourseRef: (node?: Element | null) => void;
+  isAdmin?: boolean;
 }
 
 type CoursesProps = ResponseDataType & Props;
@@ -48,6 +52,7 @@ const CoursesList: React.FC<CoursesProps> = ({
   disableLink,
   windowWidth,
   lastCourseRef,
+  isAdmin,
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
@@ -57,6 +62,15 @@ const CoursesList: React.FC<CoursesProps> = ({
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
+        {isAdmin && (
+          <AddButtonWrapper>
+            <Link to={PATHS.coursesList}>
+              <AddButton disableElevation variant="mediumContained">
+                {ButtonLabels.add}
+              </AddButton>
+            </Link>
+          </AddButtonWrapper>
+        )}
         {courses.map((course, index) => (
           <Suspense
             key={`${course._id}_item`}
@@ -83,28 +97,29 @@ const CoursesList: React.FC<CoursesProps> = ({
                           Details
                         </CustomButton>
                       </Link>
-                      {targetLoading && targetId === course._id ? (
-                        <CustomButton variant="mediumOutlined" disabled>
-                          <ButtonLoader buttonSpinner={buttonSpinner} />
-                        </CustomButton>
-                      ) : clientCourses ? (
-                        <ActionButton
-                          label={COURSE_LABELS[clientCourses[index].status]}
-                          status={clientCourses[index].status}
-                          progress={clientCourses[index].progress}
-                          applyDate={clientCourses[index].applyDate}
-                          courseId={clientCourses[index]._id}
-                          timeout={COURSE_DISABLE_DAYS}
-                        />
-                      ) : (
-                        <CustomButton
-                          id={course._id}
-                          onClick={handleApplyCourse}
-                          variant="mediumContained"
-                        >
-                          Apply the course
-                        </CustomButton>
-                      )}
+                      {!isAdmin &&
+                        (targetLoading && targetId === course._id ? (
+                          <CustomButton variant="mediumOutlined" disabled>
+                            <ButtonLoader buttonSpinner={buttonSpinner} />
+                          </CustomButton>
+                        ) : clientCourses ? (
+                          <ActionButton
+                            label={COURSE_LABELS[clientCourses[index].status]}
+                            status={clientCourses[index].status}
+                            progress={clientCourses[index].progress}
+                            applyDate={clientCourses[index].applyDate}
+                            courseId={clientCourses[index]._id}
+                            timeout={COURSE_DISABLE_DAYS}
+                          />
+                        ) : (
+                          <CustomButton
+                            id={course._id}
+                            onClick={handleApplyCourse}
+                            variant="mediumContained"
+                          >
+                            Apply the course
+                          </CustomButton>
+                        ))}
                     </CourseActions>
                   </CourseActionsBox>
                 </CourseItem>
