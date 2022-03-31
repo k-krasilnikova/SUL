@@ -3,6 +3,7 @@ import { ObjectId } from 'mongoose';
 import CourseStatus from 'enums/coursesEnums';
 import { ICourseInfo } from 'interfaces/ICourses/IQueryCourses';
 
+import { COURSE_FILEDS } from 'config/constants';
 import { ICourse } from './Icourses';
 
 type TCourseStatus =
@@ -12,13 +13,17 @@ type TCourseStatus =
   | 'completed'
   | 'rejected'
   | 'testing'
+  | 'assessment'
   | 'successful';
+
+export type TFileds = keyof typeof COURSE_FILEDS;
 
 interface IClientCourse {
   _id?: ObjectId;
   user: ObjectId;
   course: ObjectId;
   status: CourseStatus;
+  withAssessment: boolean;
   testResult: string;
   progress: [
     {
@@ -28,6 +33,7 @@ interface IClientCourse {
   ];
   date: Date;
   applyDate?: Date;
+  testDate?: Date;
 }
 
 interface IClientCoursePopulated extends IClientCourse {
