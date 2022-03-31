@@ -28,10 +28,14 @@ const addUserSkill = async (userId: string, skillId?: ObjectId): Promise<IUserSk
   return insertedUserSkill;
 };
 
-const updateUserSkill = async (userId: string, skillId?: ObjectId): Promise<IUserSkill> => {
+const updateUserSkill = async (
+  userId: string,
+  points: number,
+  skillId?: ObjectId,
+): Promise<IUserSkill> => {
   const updatedUserSkill: IUserSkill | null = await UserSkillModel.findOneAndUpdate(
     { user: userId, skill: skillId },
-    { $inc: { score: 1 } },
+    { $inc: { score: points } },
     { new: true },
   ).lean();
 
