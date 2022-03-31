@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
-import { apiClientWrapper } from 'api/base';
+import { apiClientWrapper, queryClient } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { logOutHandler } from 'utils/helpers/logOutHandler';
@@ -25,6 +25,7 @@ const useLogOut = (): UseMutationResult => {
       onSuccess: () => {
         logOutHandler();
         removeMenuStatus();
+        queryClient.clear();
         navigateTo(PATHS.signIn);
       },
       onError: handleSubmitError,

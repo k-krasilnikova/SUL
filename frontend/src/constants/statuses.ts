@@ -6,6 +6,8 @@ export const COURSE_STATUSES = {
   rejected: 'rejected',
   completed: 'completed',
   successful: 'successful',
+  assessment: 'assessment',
+  failed: 'failed',
 };
 
 export const COURSE_LABELS: { [key: string]: string } = {
@@ -16,6 +18,8 @@ export const COURSE_LABELS: { [key: string]: string } = {
   testing: 'Continue the test',
   rejected: 'Declined',
   completed: 'Completed',
+  assessment: 'Assessment',
+  failed: 'Failed',
 };
 
 export const NOTIFICATION_STATUSES = {

@@ -16,7 +16,7 @@ const CoursePlate: React.FC<Course> = ({ course }) => {
   return (
     <CourseWrapper>
       <ImageWrapper>
-        <UserAvatar size={SIZE.small} avatar={course.avatar} />
+        <UserAvatar size={SIZE.xsmall} avatar={course.avatar} />
       </ImageWrapper>
       {course.title}
     </CourseWrapper>

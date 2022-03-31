@@ -1,43 +1,57 @@
 :root {
   --layout-background-color: #ffffff;
 }
+
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
   text-transform: none !important;
 }
+
 body {
   overflow-y: hidden;
   margin: 0;
   background-color: var(--layout-background-color);
   scrollbar-color: #b6b6b6 #f1f1f1;
 }
+
+body > iframe {
+  pointer-events: none;
+}
+
 body:hover {
   scrollbar-color: #7e7e7e;
   font-family: 'Ubuntu';
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 ::-webkit-scrollbar {
   width: 7px;
 }
+
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
   width: 7px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #b6b6b6;
   width: 7px;
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #7e7e7e;
 }
+
 .search {
   font-size: inherit !important;
 }
+
 img {
   image-rendering: initial;
   filter: none;
@@ -45,4 +59,9 @@ img {
   -moz-filter: blur(0px);
   -ms-filter: blur(0px);
   filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
+}
+
+.react-player__preview {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
 }

@@ -4,4 +4,10 @@ interface ICourseDuration {
   minutes: number;
 }
 
-export { ICourseDuration };
+interface ITimePeriod {
+  days?: number;
+  hours?: number;
+  minutes?: number;
+}
+
+export { ICourseDuration, ITimePeriod };

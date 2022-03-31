@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Divider } from '@mui/material';
+import { Search } from '@mui/icons-material';
 
 import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import { NoContent } from 'components/NoContent';
@@ -13,7 +14,6 @@ import { LOADER } from 'constants/loaderTypes';
 
 import {
   SearchWrapper,
-  SearchIcon,
   SearchSkill,
   SkillsBox,
   SkillsList,
@@ -51,7 +51,7 @@ const UserSkills: React.FC<Props> = ({
           fullWidth
           startAdornment={
             <InputAdornment position="start">
-              <SearchIcon color="disabled" fontSize="medium" />
+              <Search color="disabled" fontSize="medium" />
             </InputAdornment>
           }
           onKeyDown={(event) => {

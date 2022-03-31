@@ -6,6 +6,7 @@ import { ICourse } from './Icourses';
 import { TCourseStatus } from './IclientCourses';
 import { IUserSkillPopulated } from './IUserSkill';
 import { IStackMember } from './IStackMember';
+import { ITimePeriod } from '../common/datetime';
 import { TUserPosition, TUserRole } from '../common/users';
 
 interface INotification {
@@ -17,14 +18,17 @@ interface INotification {
 }
 
 type TUserForPendingCourses = Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
-type TCourseForPendingCourses = Pick<ICourse, 'title'>;
+type TCourseForPendingCourses = Pick<ICourse, 'title' | 'avatar'>;
 
-interface IPendingCourses {
+interface IPendingCourse {
   user: TUserForPendingCourses;
   course: TCourseForPendingCourses;
   status: TCourseStatus;
-  date: Date;
+  date?: Date;
+  elapsed?: ITimePeriod;
 }
+
+type TPendingCourses = IPendingCourse[];
 
 interface IUser {
   _id: ObjectId;
@@ -42,7 +46,7 @@ interface IUser {
   courses: ObjectId[];
   group: string;
   employees: ObjectId[];
-  pendingCourses: ObjectId[] | IPendingCourses;
+  pendingCourses: ObjectId[] | TPendingCourses;
   avatar: string;
   birthday: Date;
   skype: string;
@@ -67,4 +71,4 @@ type TUserPopulated = IUser & {
   technologies: ITechnologyGroupPopuldated[];
 };
 
-export { IUser, TUserPopulated, IPendingCourses, INotification, ITechnologyGroup };
+export { IUser, TUserPopulated, IPendingCourse, TPendingCourses, INotification, ITechnologyGroup };

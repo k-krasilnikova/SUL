@@ -14,7 +14,6 @@ import {
 
 interface IProps {
   isOpened: boolean;
-  size: string;
   handleClose: () => void;
   handleStartTest: () => void;
   testTimeout?: number;
@@ -22,14 +21,13 @@ interface IProps {
 
 const WarningStartTestDialog: FC<IProps> = ({
   isOpened,
-  size,
   testTimeout,
   handleClose,
   handleStartTest,
 }) => (
   <>
     {testTimeout && (
-      <ConfirmDialog open={isOpened} onClose={handleClose} size={size}>
+      <ConfirmDialog open={isOpened} onClose={handleClose} size="medium">
         <StyledDialogTitle>{convertTestTimeout(testTimeout)}</StyledDialogTitle>
         <MainDialogContentText>
           By clicking on the button, you confirm <br /> the end of the course and proceed to testing

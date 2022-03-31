@@ -1,12 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { PASS_THRESHOLD } from 'config/constants';
-import { getStatusProvider, updateCourseStatus } from 'db/providers/clientCourseProvider';
+import {
+  getAssessmentProvider,
+  getStatusProvider,
+  updateClientCourseField,
+} from 'db/providers/clientCourseProvider';
+import { COURSE_FILEDS, PASS_THRESHOLD } from 'config/constants';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
 import { TestRuslt } from 'interfaces/Ientities/Itest';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { TestStatus } from 'enums/common';
 
 const getTestResults = async (
   req: Request<
@@ -30,14 +35,23 @@ const getTestResults = async (
     const userWrongAnswers = checkTestResults(answers, correctAnswers.questions);
     const result = countTestResult(userWrongAnswers, correctAnswers.questions);
     if (result < PASS_THRESHOLD) {
-      res.locals.result = { result, testStatus: 'not passed' };
-      await updateCourseStatus(courseId, CourseStatus.started);
+      res.locals.result = { result, testStatus: TestStatus.notPassed };
+      await updateClientCourseField(courseId, COURSE_FILEDS.status, CourseStatus.started);
+      await updateClientCourseField(courseId, COURSE_FILEDS.testDate, Date.now());
       next();
-      return;
+    } else {
+      const assessmentRequired = await getAssessmentProvider(courseId);
+      res.locals.result = {
+        result,
+        testStatus: assessmentRequired ? TestStatus.assessment : TestStatus.successful,
+      };
+      await updateClientCourseField(
+        courseId,
+        COURSE_FILEDS.status,
+        assessmentRequired ? CourseStatus.assessment : CourseStatus.successful,
+      );
+      next();
     }
-    res.locals.result = { result, testStatus: 'successful' };
-    await updateCourseStatus(courseId, CourseStatus.successful);
-    next();
   } catch (err) {
     next(err);
   }

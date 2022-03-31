@@ -19,10 +19,12 @@ const USER_ROLES = {
   EMPLOYEE: 'employee',
 };
 
+const TIME_1S_MS = 1000;
 const TIME_30D_SEC = 2592000000;
 const TIME_1M_SEC = 60;
 const TIME_1H_SEC = 60 * TIME_1M_SEC;
 const TIME_1D_SEC = 24 * TIME_1H_SEC;
+const DISABLE_TEST_DAYS = 7;
 
 const ESTIMATE_TIME_PER_LESSON = 1 * TIME_1D_SEC;
 
@@ -35,6 +37,11 @@ const NOTHING = 0;
 const INITIAL_INDX = 0;
 const NO_FILTER = {};
 const DEFAULT_ORDER_FIELD = '_id';
+
+const ASSESSMENT_RESULTS = {
+  approved: 'approved',
+  declined: 'declined',
+};
 
 const STATUS_CODES = {
   success: {
@@ -52,6 +59,17 @@ const STATUS_CODES = {
   },
 };
 
+const COURSE_FILEDS = {
+  user: 'user',
+  course: 'course',
+  status: 'status',
+  testResult: 'testResult',
+  progress: 'progress',
+  date: 'date',
+  applyDate: 'applyDate',
+  testDate: 'testDate',
+} as const;
+
 export {
   DEFAULT_CONNECTION_STRING,
   DEFAULT_ACCESS_TIMEOUT,
@@ -63,6 +81,7 @@ export {
   USER_ROLES,
   SALT_ROUNDS,
   ENVIROMENTS,
+  TIME_1S_MS,
   TIME_30D_SEC,
   TIME_1M_SEC,
   TIME_1H_SEC,
@@ -74,8 +93,11 @@ export {
   NO_FILTER,
   INITIAL_INDX,
   REQUIRED_PCT,
+  ASSESSMENT_RESULTS,
   STATUS_CODES,
   PASS_THRESHOLD,
   TWO_DIGITS,
   DESTRUCTION_TIMEOUT,
+  DISABLE_TEST_DAYS,
+  COURSE_FILEDS,
 };

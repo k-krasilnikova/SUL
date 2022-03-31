@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Input, Divider } from '@mui/material';
-import { Search } from '@mui/icons-material';
 
 import theme from 'themeSettings';
 
@@ -13,10 +12,10 @@ export const SearchWrapper = styled('div')({
     marginLeft: '0px',
   },
   [theme.breakpoints.up('xl')]: {
-    marginLeft: '48px',
+    marginLeft: '63px',
   },
 });
-export const SearchIcon = styled(Search)({});
+
 export const SearchSkill = styled(Input)({
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px!important',
@@ -26,6 +25,7 @@ export const SearchSkill = styled(Input)({
     fontSize: '18px!important',
   },
 });
+
 export const SkillsBox = styled('div')({
   [theme.breakpoints.up('xs')]: {
     maxWidth: '288px',
@@ -43,6 +43,7 @@ export const SkillsBox = styled('div')({
     marginRight: '0px',
   },
 });
+
 export const SkillsList = styled('div')({
   [theme.breakpoints.up('xs')]: {
     paddingTop: '10px',
@@ -56,6 +57,7 @@ export const SkillsList = styled('div')({
     maxWidth: '100%',
   },
 });
+
 export const SkillsListItem = styled('div')({
   [theme.breakpoints.up('xs')]: {
     paddingTop: '4px',
@@ -70,6 +72,7 @@ export const SkillsListItem = styled('div')({
   fontWeight: 'bold',
   color: '#2C2525',
 });
+
 export const SkillTitle = styled('div')({
   display: 'flex',
   flexDirection: 'row',
@@ -86,6 +89,7 @@ export const SkillTitle = styled('div')({
     height: '23px',
   },
 });
+
 export const Star = styled('img')({
   [theme.breakpoints.up('xs')]: {
     width: '10px',
@@ -94,6 +98,7 @@ export const Star = styled('img')({
     width: '16px',
   },
 });
+
 export const Title = styled('div')({
   fontWeight: 'bold',
   marginLeft: '5px',
@@ -109,6 +114,7 @@ export const Title = styled('div')({
     paddingTop: '3px',
   },
 });
+
 export const SkillsInfoList = styled('div')({
   [theme.breakpoints.up('md')]: {
     margin: '0px',
@@ -120,6 +126,7 @@ export const SkillsInfoList = styled('div')({
     margin: '17px',
   },
 });
+
 export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
   display: 'inline-block',
   borderRadius: '5px',
@@ -152,6 +159,7 @@ export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
     marginRight: '32px',
   },
 }));
+
 export const SkillInfoFlex = styled('div')({
   display: 'flex',
   flexDirection: 'row',
@@ -164,6 +172,7 @@ export const SkillInfoFlex = styled('div')({
     alignItems: 'top',
   },
 });
+
 export const SkillProgress = styled('div')({
   display: 'flex',
   alignItems: 'center',
@@ -176,17 +185,43 @@ export const SkillProgress = styled('div')({
     height: '56px',
   },
 });
+
+export const SkillInfoTextWrapper = styled('div')({
+  position: 'relative',
+});
+
+export const SkillInfoTextWidth = styled('div')({
+  width: '70px',
+});
+
 export const SkillInfoText = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '16px',
-    lineHeight: '16px',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  '&: hover': {
+    cursor: 'pointer',
   },
   [theme.breakpoints.up('xl')]: {
     fontSize: '16px',
-    lineHeight: '120%',
-    width: '110px',
+    lineHeight: '20px',
   },
 });
+
+export const HoverSkillInfoText = styled('div')({
+  width: 'fit-content',
+  padding: '3px',
+  display: 'flex',
+  justifyContent: 'center',
+  position: 'absolute',
+  top: '16px',
+  right: '-35px',
+  fontSize: '12px',
+  backgroundColor: '#000',
+  color: '#fff',
+  overflow: 'inherit',
+  textOverflow: 'unset',
+  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+});
+
 export const SkillInfoStage = styled('div')({
   [theme.breakpoints.up('xs')]: {
     fontSize: '12px',
@@ -198,6 +233,7 @@ export const SkillInfoStage = styled('div')({
     lineHeight: '15px',
   },
 });
+
 export const SkillsDivider = styled(Divider)({
   [theme.breakpoints.up('xs')]: {
     display: 'none',
@@ -206,6 +242,7 @@ export const SkillsDivider = styled(Divider)({
     display: 'block',
   },
 });
+
 export const NoSkills = styled('div')({
   [theme.breakpoints.up('xs')]: {
     marginTop: '50px',
