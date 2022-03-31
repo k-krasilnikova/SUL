@@ -1,12 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
-import {
-  addUserSkill,
-  getUserSkills,
-  populateUserSkills,
-  updateUserSkill,
-} from 'db/providers/skillProvider';
+import { addUserSkill, getUserSkills, populateUserSkills } from 'db/providers/skillProvider';
 import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
 import { TAchievments } from 'interfaces/Ientities/Itest';
@@ -14,8 +9,7 @@ import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
 import { specifyUserTechnologies } from 'utils/technologies/userTechnologies';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import { UserRank } from 'enums/users';
+import { addPointToUserSkill, calculatePoints } from 'utils/skillsUtils';
 
 const getAchievments = async (
   req: Request,
@@ -34,13 +28,12 @@ const getAchievments = async (
       const userSkills: IUserSkill[] = await getUserSkills(userId);
       const user = await getUserProvider(userId);
       const { oldSkills = [], newSkills = [] } = specifySkills(userSkills, techsToAchieve);
-      const calculatePoints = (userRank: IUser['rank'], courseRank: UserRank) =>
-        userRank < courseRank ? 1 : 0;
-
+      console.log('before iterate');
       const updatedUserSkills = await Promise.all(
-        oldSkills.map(async (skillId) =>
-          updateUserSkill(userId, calculatePoints(user.rank, complexity), skillId),
-        ),
+        oldSkills.map(addPointToUserSkill(calculatePoints(user.rank, complexity), userId)),
+      );
+      const filterUpdatedUserSkills = updatedUserSkills.filter(
+        (skill): skill is IUserSkill => !!skill,
       );
       const insertedUserSkills = await Promise.all(
         newSkills.map(async (skillId) => addUserSkill(userId, skillId)),
@@ -50,11 +43,11 @@ const getAchievments = async (
         user.technologies,
         insertedUserSkills,
       );
-
       await updateUserTechnologies(userId, updatedTechnologies);
-
-      const updatedUserSkillsPopulated = await populateUserSkills(updatedUserSkills);
+      console.log('before');
+      const updatedUserSkillsPopulated = await populateUserSkills(filterUpdatedUserSkills);
       const insertedUserSkillsPopulated = await populateUserSkills(insertedUserSkills);
+      console.log('after', updatedUserSkillsPopulated);
 
       res.locals.achievments = {
         newSkills: extractCommonUserSkillInfo(insertedUserSkillsPopulated),

@@ -31,7 +31,7 @@ const addUserSkill = async (userId: string, skillId?: ObjectId): Promise<IUserSk
 const updateUserSkill = async (
   userId: string,
   points: number,
-  skillId?: ObjectId,
+  skillId?: ObjectId | string,
 ): Promise<IUserSkill> => {
   const updatedUserSkill: IUserSkill | null = await UserSkillModel.findOneAndUpdate(
     { user: userId, skill: skillId },
@@ -47,11 +47,13 @@ const updateUserSkill = async (
 };
 
 const populateUserSkills = async (userSkills: IUserSkill[]): Promise<IUserSkill[]> => {
+  console.log('inside', userSkills);
   const populatedUserSkills = await UserSkillModel.populate(userSkills, {
     path: 'skill',
     model: 'Skill',
     select: '-_id name image maxScore',
   });
+  console.log('inside after', populateUserSkills);
 
   return populatedUserSkills;
 };
