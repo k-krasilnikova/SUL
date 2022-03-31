@@ -1,8 +1,8 @@
 import { ObjectId } from 'mongoose';
 
 import CourseStatus from 'enums/coursesEnums';
+import { ICourseInfo } from 'interfaces/ICourses/IQueryCourses';
 
-import { ICourseInfo } from '../ICourses/IQueryCourses';
 import { ICourse } from './Icourses';
 
 type TCourseStatus =
