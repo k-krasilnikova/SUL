@@ -21,6 +21,10 @@ export const Dialog = styled(MuiDialog)<Size>(({ size }) => ({
       ...(size === SIZE.medium && {
         width: '256px',
       }),
+      ...(size === SIZE.large && {
+        width: '288px',
+        minHeight: '436px',
+      }),
     },
     [theme.breakpoints.up('md')]: {
       ...(size === SIZE.small && {
@@ -29,11 +33,17 @@ export const Dialog = styled(MuiDialog)<Size>(({ size }) => ({
       ...(size === SIZE.medium && {
         width: '660px',
       }),
+      ...(size === SIZE.large && {
+        width: '575px',
+      }),
     },
     [theme.breakpoints.up('xl')]: {
       ...(size === SIZE.small && {
         width: '520px',
         minHeight: '260px',
+      }),
+      ...(size === SIZE.large && {
+        width: '660px',
       }),
     },
   },
@@ -55,7 +65,10 @@ export const CloseIcon = styled('img')({
 });
 
 export const DialogBodyWrapper = styled('div')({
-  padding: '8px 14px',
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: '1',
+  padding: '8px',
   textAlign: 'center',
   '& .MuiDialogContentText-root': {
     color: '#131313',
