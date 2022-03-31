@@ -630,7 +630,7 @@ const MOCKED_COURSES = [
   {
     title: 'NodeJS',
     description: 'NodeJS for junior',
-    technologies: ['NodeJS'],
+    technologies: ['NodeJS', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[1].content,
     test: '',
@@ -649,7 +649,7 @@ const MOCKED_COURSES = [
   {
     title: 'Vue JS',
     description: 'Vue JS for beginners',
-    technologies: ['VueJS'],
+    technologies: ['VueJS', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[3].content,
     test: '',
@@ -659,7 +659,7 @@ const MOCKED_COURSES = [
   {
     title: 'Django',
     description: 'Django for beginners',
-    technologies: ['Django'],
+    technologies: ['Django', 'Python'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[4].content,
     test: '',
@@ -668,7 +668,7 @@ const MOCKED_COURSES = [
   {
     title: 'Unity',
     description: 'Unity course',
-    technologies: ['Unity'],
+    technologies: ['Unity', 'C#'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[5].content,
     test: '',
@@ -678,7 +678,7 @@ const MOCKED_COURSES = [
   {
     title: 'Android',
     description: 'Android with Java',
-    technologies: ['Android'],
+    technologies: ['Android', 'Java'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[6].content,
     test: '',
@@ -687,7 +687,7 @@ const MOCKED_COURSES = [
   {
     title: 'Bootstrap for frontend',
     description: 'Bootstrap for frontend',
-    technologies: ['Bootstrap'],
+    technologies: ['Bootstrap', 'HTML'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[7].content,
     test: '',
@@ -705,7 +705,7 @@ const MOCKED_COURSES = [
   {
     title: 'jQuery',
     description: 'jQuery',
-    technologies: ['jQuery'],
+    technologies: ['jQuery', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[9].content,
     test: '',
