@@ -16,6 +16,7 @@ export interface IEmployees {
 }
 
 export interface IEmployeesProps {
+  handleNavigate: (_id: string) => void;
   employees?: IEmployee[];
   isLoading?: boolean;
 }

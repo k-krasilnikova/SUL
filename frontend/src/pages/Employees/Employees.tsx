@@ -1,6 +1,5 @@
 import React from 'react';
-import { TableBody, TableHead, TableRow } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { TableBody, TableHead } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { NoContent } from 'components/NoContent';
@@ -9,7 +8,6 @@ import { UserAvatar } from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 import { NO_EMPLOYEES } from 'constants/messages';
 import { LOADER } from 'constants/loaderTypes';
-import { PATHS } from 'constants/routes';
 import { EMPLOYEE_RANK, HEADER_COLUMNS } from 'constants/employeeInfo';
 import { IEmployeesProps } from 'types/employee';
 
@@ -24,9 +22,10 @@ import {
   InfoContainer,
   Position,
   UserName,
+  Row,
 } from './styled';
 
-const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading }) => (
+const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading, handleNavigate }) => (
   <AuthorizedLayout pageName="Employees">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
@@ -35,18 +34,16 @@ const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading }) => (
         <EmployeesTable stickyHeader>
           <TableHead>
             <HeaderRow>
-              {HEADER_COLUMNS.map((columnName) => (
-                <Cell variant="head">{columnName}</Cell>
+              {HEADER_COLUMNS.map((columnName: string) => (
+                <Cell key={columnName} variant="head">
+                  {columnName}
+                </Cell>
               ))}
             </HeaderRow>
           </TableHead>
           <TableBody>
             {employees.map((employee) => (
-              <TableRow
-                key={employee._id}
-                component={Link}
-                to={`${PATHS.employees}/${employee._id}`}
-              >
+              <Row key={employee._id} onClick={() => handleNavigate(employee._id)}>
                 <Cell variant="body">
                   <UserInfo>
                     <ImageWrapper>
@@ -67,7 +64,7 @@ const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading }) => (
                 <Cell variant="body">{employee.group}</Cell>
                 <Cell variant="body">{employee.phone}</Cell>
                 <Cell variant="body">{employee.skype}</Cell>
-              </TableRow>
+              </Row>
             ))}
           </TableBody>
         </EmployeesTable>
