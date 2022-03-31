@@ -69,8 +69,6 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     progressVariant = currentProgress.progressVariant;
   }
 
-  console.log(progressValue, progressText, progressVariant);
-
   return (
     <>
       {commonCourseInfo && courseData && (
