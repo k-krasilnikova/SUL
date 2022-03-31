@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
 
 import { AuthorizedLayout } from 'components/Layout';
 import CourseInfo from 'components/Course/CourseInfo';
-import { CourseItem } from 'components/Course';
 import { ProgressBar } from 'components/ProgressBar';
 import { CourseActions } from 'pages/CoursesList/styled';
 import { PATHS } from 'constants/routes';
@@ -14,18 +12,16 @@ import { backIconMobile } from 'icons';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
-import { COURSE_LABELS } from 'constants/statuses';
-import { ClientCourse } from 'types/clientCourse';
-import {
-  COMPLETED_STATUS_TEXT,
-  OPEN_FULL_TEXT,
-  PERCENTAGE_VALUE,
-  PROGRESS_COLOR,
-} from 'constants/detailedCourse';
+import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
+import { OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
-import { VARIANTS } from 'constants/progressBar';
-import DeclinedButton from 'components/Button/DeclinedButton';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
+import { ButtonsWrapper, CustomButton } from 'components/Button/styled';
+import StartTestButton from 'components/Button/StartTestButton';
+import { COURSE_DISABLE_DAYS, TEST_DISABLE_DAYS } from 'constants/time';
+import ActionButton from 'components/Button/ActionButton';
+import { CourseItem } from 'components/Course';
+import { ButtonLabels } from 'components/Button/ButtonsEnums';
 
 import {
   BackButton,
@@ -35,46 +31,45 @@ import {
   DetailedCourseText,
   DetailedCourseTitle,
   DetailedCourseWrapper,
-  DetailsButton,
   ImageWrapper,
   InnerWrapper,
   SimilarCoursesItemWrapper,
   SimilarCoursesTitle,
   SimilarCoursesWrapper,
-  StartButton,
   DetailedCourseTextMobile,
   ButtonFullText,
   BackArrow,
   BackLink,
   MobileSearchWrapper,
-  ContinueTestButton,
 } from './styled';
 
-const DetailedCourse: React.FC<IDetailedCourse> = ({
+interface IProps extends IDetailedCourse {
+  isAdmin: boolean;
+}
+
+const DetailedCourse: React.FC<IProps> = ({
   commonCourseData,
   clientCourseData,
   handleApplyCourse,
   isLoading,
-  targetId,
-  buttonId,
   page,
   id,
   status,
+  progressValue,
+  progressText,
+  progressVariant,
   windowWidth,
   isFullTextOpen,
   toggleFullText,
   isCourseApplicationSubmitted,
-  isCourseStatusPending,
-  isCourseLearningDisabled,
+  isAdmin,
   isCourseCompleted,
-  isCourseDeclined,
-  isCourseStatusTesting,
 }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
       <BackLink to={page === PAGES.coursesList ? PATHS.coursesList : PATHS.myCourses}>
         <BackButton variant="medium" color="primary">
-          Back
+          {ButtonLabels.back}
         </BackButton>
         <BackArrow alt="" src={backIconMobile} />
       </BackLink>
@@ -83,12 +78,13 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
       </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper imageUrl={commonCourseData.avatar} />
-        {isCourseApplicationSubmitted && !isCourseStatusPending && (
+        {isCourseApplicationSubmitted && status !== COURSE_STATUSES.pending && (
           <ProgressBar
             size="large"
-            text={isCourseCompleted ? COMPLETED_STATUS_TEXT : PERCENTAGE_VALUE}
+            text={progressText}
             textColor={PROGRESS_COLOR}
-            variant={isCourseCompleted && VARIANTS.successful}
+            variant={progressVariant}
+            value={progressValue}
           />
         )}
         <DetailedCourseTitle>{commonCourseData.title}</DetailedCourseTitle>
@@ -111,49 +107,37 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               type={INFO.detailedCourse}
             />
           </CourseInfoBox>
-          {isLoading && targetId === buttonId.start ? (
-            <StartButton id={buttonId.start} variant="mediumOutlined" disabled>
-              <ButtonLoader buttonSpinner={buttonSpinner} />
-            </StartButton>
-          ) : (
-            <div>
-              {page === PAGES.myCourses && isCourseStatusTesting ? (
-                <Link to={`${PATHS.learnCourse}/${id}/test`}>
-                  <ContinueTestButton color="primary" variant="mediumContained">
-                    Continue the test
-                  </ContinueTestButton>
-                </Link>
-              ) : page === PAGES.myCourses && isCourseCompleted ? (
-                <></>
-              ) : (
-                <>
-                  {page === PAGES.myCourses && isCourseDeclined ? (
-                    <DeclinedButton clientCourse={clientCourseData as unknown as ClientCourse} />
-                  ) : (
-                    page === PAGES.myCourses && (
-                      <StartButton
-                        color="primary"
-                        variant="mediumContained"
-                        disabled={isCourseLearningDisabled}
-                      >
-                        <Link to={`${PATHS.learnCourse}/${id}`}>{COURSE_LABELS[status]}</Link>
-                      </StartButton>
-                    )
-                  )}
-                </>
-              )}
-              {page === PAGES.coursesList && (
-                <StartButton
-                  id={buttonId.start}
-                  color="primary"
-                  variant="mediumContained"
-                  onClick={(event) => handleApplyCourse(event)}
-                >
-                  Apply the course
-                </StartButton>
-              )}
-            </div>
-          )}
+          {!isAdmin &&
+            (isLoading ? (
+              <CustomButton variant="mediumOutlined" disabled>
+                <ButtonLoader buttonSpinner={buttonSpinner} />
+              </CustomButton>
+            ) : page === PAGES.coursesList ? (
+              <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
+                {ButtonLabels.applyCourse}
+              </CustomButton>
+            ) : (
+              <ButtonsWrapper>
+                {!isCourseCompleted && (
+                  <>
+                    <StartTestButton
+                      testDate={clientCourseData?.testDate}
+                      progress={clientCourseData?.progress}
+                      timeout={TEST_DISABLE_DAYS}
+                      status={status}
+                    />
+                    <ActionButton
+                      label={COURSE_LABELS[status]}
+                      status={status}
+                      progress={clientCourseData?.progress}
+                      timeout={COURSE_DISABLE_DAYS}
+                      courseId={id}
+                      applyDate={clientCourseData?.applyDate}
+                    />
+                  </>
+                )}
+              </ButtonsWrapper>
+            ))}
         </DetailedCourseActionsBox>
         <SimilarCoursesWrapper container xs={12}>
           <Grid item xs={12}>
@@ -171,9 +155,9 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
               >
                 <CourseActionsBox>
                   <CourseActions>
-                    <DetailsButton color="primary" variant="mediumOutlined">
-                      Details
-                    </DetailsButton>
+                    <CustomButton color="primary" variant="mediumOutlined">
+                      {ButtonLabels.next}
+                    </CustomButton>
                   </CourseActions>
                 </CourseActionsBox>
               </CourseItem>

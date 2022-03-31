@@ -17,34 +17,50 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
   overflow: 'hidden',
   background: `no-repeat center url(${avatar})`,
   backgroundSize: 'cover',
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('xl')]: {
     ...(size === SIZE.large && {
-      width: '130px',
-      height: '130px',
+      width: '150px',
+      height: '150px',
+    }),
+    ...(size === SIZE.medium && {
+      width: '100px',
+      height: '100px',
+    }),
+    ...(size === SIZE.small && {
+      width: '50px',
+      height: '50px',
+    }),
+    ...(size === SIZE.xsmall && {
+      width: '30px',
+      height: '30px',
+    }),
+  },
+  [theme.breakpoints.down('lg')]: {
+    ...(size === SIZE.xsmall && {
+      width: '40px',
+      height: '40px',
     }),
     ...(size === SIZE.medium && {
       width: '60px',
       height: '60px',
     }),
-    ...(size === SIZE.small && {
-      width: '30px',
-      height: '30px',
-    }),
-  },
-  [theme.breakpoints.up('md')]: {
-    ...(size === SIZE.small && {
-      width: '40px',
-      height: '40px',
-    }),
     ...(size === SIZE.large && {
       width: '130px',
       height: '130px',
     }),
+    ...(size === SIZE.small && {
+      width: '50px',
+      height: '50px',
+    }),
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.down('md')]: {
     ...(size === SIZE.large && {
-      width: '150px',
-      height: '150px',
+      width: '130px',
+      height: '130px',
+    }),
+    ...(size === SIZE.small && {
+      width: '30px',
+      height: '30px',
     }),
   },
   [theme.breakpoints.up('xl')]: {
@@ -53,8 +69,12 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
       height: '220px',
     }),
     ...(size === SIZE.medium && {
-      width: '100px',
-      height: '100px',
+      width: '150px',
+      height: '150px',
+    }),
+    ...(size === SIZE.xsmall && {
+      width: '50px',
+      height: '50px',
     }),
     ...(size === SIZE.small && {
       width: '50px',

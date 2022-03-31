@@ -1,17 +1,17 @@
-interface ProgressProps {
-  stage: number;
-  isCompleted: boolean;
-  _id: string;
-}
+import { MIN_STAGE, NOTHING, PERCENTAGE } from 'constants/test';
+import { ClientCourse } from 'types/clientCourse';
 
-export const countProgress = (stages: Array<ProgressProps>): number => {
+export const countProgress = (stages?: ClientCourse['progress']): number => {
+  if (!stages) {
+    return NOTHING;
+  }
   const maxProgress = stages.length;
-  let currentProgress = 0;
+  let currentProgress = NOTHING;
   stages.forEach((stage) => {
     if (stage.isCompleted) {
-      currentProgress += 1;
+      currentProgress += MIN_STAGE;
     }
   });
-  const progress = Math.round((currentProgress / maxProgress) * 100);
+  const progress = Math.round((currentProgress / maxProgress) * PERCENTAGE);
   return progress;
 };

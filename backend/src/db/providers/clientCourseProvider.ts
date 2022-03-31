@@ -87,9 +87,18 @@ const getStatusProvider = async (courseId: string) => {
     { status: 1, _id: 0 },
   ).lean();
   if (!currStatus) {
-    throw new NotFoundError('course not found');
+    throw new NotFoundError('Course not found.');
   }
   return currStatus;
+};
+
+const getAssessmentProvider = async (courseId: string) => {
+  const course = await ClientCourseModel.findById(courseId).select('withAssessment -_id');
+  if (!course) {
+    throw new NotFoundError('Course not found.');
+  }
+  const { withAssessment } = course;
+  return withAssessment;
 };
 
 const getCurrentProgress = async (clientCourseId: string) => {
@@ -118,10 +127,10 @@ const getCurrentProgress = async (clientCourseId: string) => {
   return progress;
 };
 
-const updateCourseStatus = async (courseId: string, courseStatus: string) => {
+const updateClientCourseField = async (courseId: string, field: string, value: unknown) => {
   const updatedCourse = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
-    { $set: { status: courseStatus } },
+    { $set: { [field]: value } },
   );
   if (updatedCourse) {
     return updatedCourse;
@@ -129,15 +138,14 @@ const updateCourseStatus = async (courseId: string, courseStatus: string) => {
   throw new BadRequestError('Bad request. Check the data being sent');
 };
 
-const updateApplyDate = async (courseId: string) => {
-  const updatedCourse = await ClientCourseModel.findOneAndUpdate(
-    { _id: courseId },
-    { $set: { applyDate: Date.now() } },
-  );
-  if (updatedCourse) {
-    return updatedCourse;
+const arrangeAssessment = async (courseId: string) => {
+  const updatedCourse = await ClientCourseModel.findByIdAndUpdate(courseId, {
+    $set: { withAssessment: true },
+  });
+
+  if (!updatedCourse) {
+    throw new NotFoundError('Client course not found.');
   }
-  throw new BadRequestError('Bad request. Check the data being sent');
 };
 
 export {
@@ -145,9 +153,10 @@ export {
   getAllClientCoursesProvider,
   getClientCourseProvider,
   getStatusProvider,
-  updateCourseStatus,
+  getAssessmentProvider,
   applyCourseProvider,
-  updateCourseProgress,
   getCurrentProgress,
-  updateApplyDate,
+  arrangeAssessment,
+  updateCourseProgress,
+  updateClientCourseField,
 };

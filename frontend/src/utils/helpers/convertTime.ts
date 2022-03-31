@@ -1,4 +1,10 @@
-import { DISABLE_TIMEOUT_DAYS } from 'constants/time';
+import { NO_TIME } from 'constants/time';
+
+interface ITime {
+  days: number;
+  hours: number;
+  minutes: number;
+}
 
 export const convertTestTimeout = (ms: number): string => {
   const [MS_IN_SEC, SEC_IN_HOUR, SEC_IN_MIN] = [1000, 3600, 60];
@@ -46,13 +52,26 @@ export const formatTimeout = (ms: number, format: string): string => {
   return result.join(' ');
 };
 
-export const makeLeftTime = (date: string | undefined, format: string): string | undefined => {
+export const makeLeftTime = (
+  date: string | undefined,
+  format: string,
+  timeout: number,
+): string | undefined => {
   if (!date) {
     return date;
   }
   const applyDate = new Date(date);
-  return formatTimeout(
-    applyDate.setDate(applyDate.getDate() + DISABLE_TIMEOUT_DAYS) - Date.now(),
-    format,
-  );
+  return formatTimeout(applyDate.setDate(applyDate.getDate() + timeout) - Date.now(), format);
+};
+
+export const convertRequestTime = (time?: ITime): string | undefined => {
+  let convertedTime;
+  if (time && time.days > NO_TIME) {
+    convertedTime = `${time.days} d`;
+  } else if (time && time.hours > NO_TIME) {
+    convertedTime = `${time.hours} h`;
+  } else if (time && time.minutes > NO_TIME && time.hours === NO_TIME) {
+    convertedTime = `${time.minutes} m`;
+  }
+  return convertedTime;
 };

@@ -9,7 +9,7 @@ const getProfileInformation = async (req: Request, res: Response, next: NextFunc
     const { id } = req.params;
     const profileInfo = await getFullUserInformationProvider(id);
     const notifications = await getUserNotifications(id);
-    profileInfo['notifications'] = notifications;
+    profileInfo.notifications = notifications;
     res.json(generateInitialDto(profileInfo));
   } catch (error) {
     next(error);

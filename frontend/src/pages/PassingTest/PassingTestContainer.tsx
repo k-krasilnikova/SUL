@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useParams, useNavigate, Navigate } from 'react-router';
 
 import { useSendTestResult, useGetCourseTest } from 'api/test';
 import { useFinishClientCourse, useGetClientCourseInfo } from 'api/myCourses';
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 import { PATHS } from 'constants/routes';
+import { COURSE_STATUSES } from 'constants/statuses';
 import { useToggle } from 'hooks';
 
 import PassingTest from './PassingTest';
@@ -16,10 +17,13 @@ const PassingTestContainer: React.FC = () => {
   const params = useParams();
   const naviagteTo = useNavigate();
 
-  const { data: courseTestData, isLoading } = useGetCourseTest({ courseId: params.courseId });
-  const { data: clientCourseResponse } = useGetClientCourseInfo(params.courseId);
+  const { data: courseTestResponse, isLoading: courseTestResponseIsLoading } = useGetCourseTest({
+    courseId: params.courseId,
+  });
+  const { data: clientCourseResponse, isLoading: clientCourseResponseIsLoading } =
+    useGetClientCourseInfo(params.courseId);
 
-  const courseTest = courseTestData?.length ? courseTestData[0].test : undefined;
+  const courseTest = courseTestResponse?.length ? courseTestResponse[0].test : undefined;
   const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
 
   const [isTestTimeoutDialogOpen, setTestTimeoutDialogOpen] = useToggle();
@@ -35,11 +39,6 @@ const PassingTestContainer: React.FC = () => {
     }
   }, [courseTest?.timeout, setTestTimeoutDialogOpen]);
 
-  const handleCloseTimeIsOverDialog = () => {
-    setTestTimeoutDialogOpen();
-    naviagteTo(PATHS.myCourses);
-  };
-
   const [stage, setStage] = useState(1);
   const [values, setValues] = React.useState({});
 
@@ -52,13 +51,25 @@ const PassingTestContainer: React.FC = () => {
   };
 
   const { mutate: sendFinishCourse } = useFinishClientCourse(params.courseId);
-  const handleSendTestResult = () => sendFinishCourse(params.courseId);
+  const handleFinishCourse = useCallback(
+    () => sendFinishCourse(params.courseId),
+    [params.courseId, sendFinishCourse],
+  );
 
   const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
-  const { mutate, data: responseData } = useSendTestResult(
-    { courseId: params.courseId },
-    handleSendTestResult,
-  );
+  const {
+    mutate: sendTestResult,
+    data: responseData,
+    isLoading: sendTestResultIsLoading,
+  } = useSendTestResult({
+    courseId: params.courseId,
+  });
+
+  useEffect(() => {
+    if (clientCourseResponse?.status === COURSE_STATUSES.successful) {
+      handleFinishCourse();
+    }
+  }, [clientCourseResponse?.status, handleFinishCourse]);
 
   const handleSubmitResult = () => {
     const resultData = {
@@ -68,8 +79,13 @@ const PassingTestContainer: React.FC = () => {
         aN: Number(value),
       })),
     };
-    mutate(resultData);
+    sendTestResult(resultData);
     setTestResultPageEnabled(true);
+  };
+
+  const handleCloseTimeIsOverDialog = () => {
+    setTestTimeoutDialogOpen();
+    handleSubmitResult();
   };
 
   const stageBack = () => {
@@ -79,6 +95,11 @@ const PassingTestContainer: React.FC = () => {
   };
   const resultEnabled = stage === maxStage;
   const questionStageItem = courseTest?.questions[stage - 1];
+  const courseStatus = clientCourseResponse?.status;
+
+  const isShouldRedirect =
+    !clientCourseResponseIsLoading &&
+    (courseStatus === COURSE_STATUSES.failed || courseStatus === COURSE_STATUSES.successful);
 
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
@@ -108,7 +129,7 @@ const PassingTestContainer: React.FC = () => {
             stageBack={stageBack}
             testItem={courseTest}
             questionStageItem={questionStageItem}
-            isLoading={isLoading}
+            isLoading={courseTestResponseIsLoading}
             handleSubmitResult={handleSubmitResult}
             handleConfirm={handleConfirm}
           />
@@ -116,7 +137,7 @@ const PassingTestContainer: React.FC = () => {
             isOpened={isConfirmOpen}
             handleCancelLeavePage={cancelLeavePage}
             handleLeavePage={handleLeavePage}
-            isLoading={isLoading}
+            isLoading={courseTestResponseIsLoading}
             size="small"
           />
           <ConfirmTimeIsOver
@@ -127,8 +148,13 @@ const PassingTestContainer: React.FC = () => {
         </>
       )}
       {isTestResultPageEnabled && (
-        <TestResult responseData={responseData} status={clientCourseResponse?.status} />
+        <TestResult
+          isLoading={sendTestResultIsLoading}
+          responseData={responseData}
+          status={clientCourseResponse?.status}
+        />
       )}
+      {isShouldRedirect && <Navigate replace to={`${PATHS.myCourses}/${params?.courseId}`} />}
     </>
   );
 };

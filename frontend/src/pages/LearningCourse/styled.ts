@@ -52,11 +52,10 @@ export const LearningWrapper = styled('div')({
   padding: '0px 85px',
   [theme.breakpoints.down('xl')]: {
     padding: '0px 24px',
-    maxWidth: '717px',
+    maxWidth: '100%',
   },
   [theme.breakpoints.down('md')]: {
     padding: '8px 0px',
-    maxWidth: '100%',
   },
 });
 
@@ -98,14 +97,29 @@ export const Step = styled('p')({
 
 export const MaterialWrapper = styled(Box)({
   width: '100%',
-  minHeight: '200px',
+  height: '680px',
   marginBottom: '40px',
   background: 'rgba(30, 30, 30, 0.12)',
   borderRadius: '5px',
   overflow: 'hidden',
+  [theme.breakpoints.down('xl')]: {
+    height: '520px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    height: '363px',
+  },
+  [theme.breakpoints.down(900)]: {
+    height: '300px',
+  },
   [theme.breakpoints.down('md')]: {
-    minHeight: '167px',
+    height: '363px',
     marginBottom: '31px',
+  },
+  [theme.breakpoints.down(600)]: {
+    height: '240px',
+  },
+  [theme.breakpoints.down(400)]: {
+    height: '170px',
   },
 });
 
@@ -136,9 +150,6 @@ export const DescriptionWrapper = styled('div')<DescriptionProps>(({ isDescripti
   width: 'calc(100% - 196px)',
   maxHeight: '438px',
   paddingBottom: '20px',
-  [theme.breakpoints.down('xl')]: {
-    width: 'calc(100% - 193px)',
-  },
   [theme.breakpoints.down('md')]: {
     display: 'block',
     float: 'none',
@@ -154,7 +165,7 @@ export const DescriptionWrapper = styled('div')<DescriptionProps>(({ isDescripti
 
 export const Description = styled('div')({
   display: 'block',
-  width: 'calc(100% - 196px)',
+  width: '100%',
   padding: '31px 238px 31px 54px',
   textAlign: 'left',
   color: 'black',
@@ -162,12 +173,10 @@ export const Description = styled('div')({
   borderRadius: '8px',
   overflowY: 'auto',
   [theme.breakpoints.down('xl')]: {
-    width: '100%',
     padding: '24px 44px 31px 24px',
   },
   [theme.breakpoints.down('md')]: {
     display: 'block',
-    width: '100%',
     padding: '8px 19px 3px 8px',
   },
 });
@@ -225,8 +234,6 @@ export const ButtonWrapper = styled('div')({
 export const StartTestButton = styled(Button)({
   width: '155px',
   height: '50px',
-  fontSize: '18px!important',
-  fontWeight: '500!important',
   lineHeight: '22px',
   letterSpacing: '-0.4px',
   textAlign: 'center',
@@ -234,20 +241,26 @@ export const StartTestButton = styled(Button)({
   '&hover': {
     background: '#D43E41',
   },
-  paddingTop: '8px!important',
-  boxShadow: 'none!important',
+
+  '&.MuiButtonBase-root': {
+    padding: '0',
+    boxShadow: 'none',
+    fontSize: '18px',
+    fontWeight: '500',
+  },
   [theme.breakpoints.down('md')]: {
-    fontSize: '16px!important',
+    fontSize: '16px',
     width: '120px',
     height: '36px',
+    '&.MuiButtonBase-root': {
+      padding: '0',
+    },
   },
 });
 
 export const NextButton = styled(Button)({
   width: '86px',
   height: '50px',
-  fontSize: '18px!important',
-  fontWeight: '500!important',
   lineHeight: '22px',
   letterSpacing: '-0.4px',
   textAlign: 'center',
@@ -255,10 +268,16 @@ export const NextButton = styled(Button)({
   '&hover': {
     background: '#D43E41',
   },
-  paddingTop: '8px!important',
-  boxShadow: 'none!important',
+  '&.MuiButtonBase-root': {
+    fontSize: '18px',
+    fontWeight: '500',
+    paddingTop: '8px',
+    boxShadow: 'none',
+  },
   [theme.breakpoints.down('md')]: {
-    fontSize: '16px!important',
+    '&.MuiButtonBase-root': {
+      fontSize: '16px',
+    },
     width: '70px',
     height: '36px',
   },
@@ -266,7 +285,7 @@ export const NextButton = styled(Button)({
 
 export const ToggleDescription = styled(Typography)({
   display: 'inline-block',
-  marginRight: 'calc(100% - 294px) !important',
+  minWidth: '105px',
   height: '40px',
   padding: '8px 0px 12px 0px',
   fontFamily: '"Ubuntu", sans-serif',
@@ -274,6 +293,9 @@ export const ToggleDescription = styled(Typography)({
   lineHeight: '16px',
   fontWeight: '500',
   color: '#131313',
+  '&.MuiTypography-root': {
+    marginRight: 'calc(100% - 295px)',
+  },
   [theme.breakpoints.up('md')]: {
     display: 'none',
   },
@@ -287,4 +309,19 @@ export const ExpandMoreIcon = styled(ExpandMore)({
 export const ExpandLessIcon = styled(ExpandLess)({
   color: '#131313',
   verticalAlign: 'middle',
+});
+
+export const PlayVideoIcon = styled('img')({
+  height: '154px',
+  width: '154px',
+  backgroundColor: '#e8e8e8de',
+  borderRadius: '50%',
+  [theme.breakpoints.down('lg')]: {
+    height: '73px',
+    width: '73px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    height: '64px',
+    width: '64px',
+  },
 });

@@ -3,4 +3,15 @@ enum SortOrder {
   desc = -1,
 }
 
-export { SortOrder };
+enum AssessmentAction {
+  approve = 'approve',
+  decline = 'decline',
+}
+
+enum TestStatus {
+  notPassed = 'not passed',
+  successful = 'successful',
+  assessment = 'assessment',
+}
+
+export { SortOrder, AssessmentAction, TestStatus };
