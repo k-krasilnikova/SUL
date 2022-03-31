@@ -95,3 +95,7 @@ export const Position = styled('p')({
     marginTop: '10px',
   },
 });
+
+export const Row = styled(TableRow)({
+  cursor: 'pointer',
+});
