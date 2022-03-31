@@ -14,6 +14,8 @@ import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
 import { specifyUserTechnologies } from 'utils/technologies/userTechnologies';
+import { IUser } from 'interfaces/Ientities/Iusers';
+import { UserRank } from 'enums/users';
 
 const getAchievments = async (
   req: Request,
@@ -26,19 +28,23 @@ const getAchievments = async (
 
     const clientCourse = await getClientCourseProvider(clientCourseId);
     const { course } = clientCourse;
-    const { technologies: techsToAchieve } = course;
+    const { technologies: techsToAchieve, complexity } = course;
 
     if (clientCourse.status === CourseStatus.successful) {
       const userSkills: IUserSkill[] = await getUserSkills(userId);
+      const user = await getUserProvider(userId);
       const { oldSkills = [], newSkills = [] } = specifySkills(userSkills, techsToAchieve);
+      const calculatePoints = (userRank: IUser['rank'], courseRank: UserRank) =>
+        userRank < courseRank ? 1 : 0;
+
       const updatedUserSkills = await Promise.all(
-        oldSkills.map(async (skillId) => updateUserSkill(userId, skillId)),
+        oldSkills.map(async (skillId) =>
+          updateUserSkill(userId, calculatePoints(user.rank, complexity), skillId),
+        ),
       );
       const insertedUserSkills = await Promise.all(
         newSkills.map(async (skillId) => addUserSkill(userId, skillId)),
       );
-
-      const user = await getUserProvider(userId);
 
       const updatedTechnologies = await specifyUserTechnologies(
         user.technologies,
