@@ -4,26 +4,17 @@ export interface ITechnology {
   isPrimary: boolean;
   _id: string;
 }
-
 export interface IEmployee {
   _id: string;
-  username: string;
-  passwordHash: string;
-  email: string;
-  role: string;
   firstName: string;
   lastName: string;
   position: string;
-  technologies: ITechnology[];
   group: string;
-  employees: IEmployee[];
-  pendingCourses: [];
+  rank: number;
+  stack: { name: string }[];
   avatar: string;
-  birthday: string;
   skype: string;
   phone: string;
-  managerId: string;
-  refreshToken: string;
 }
 
 export interface IEmployees {

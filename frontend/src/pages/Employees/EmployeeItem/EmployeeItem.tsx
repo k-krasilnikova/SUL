@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { UserAvatar } from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 import { PATHS } from 'constants/routes';
+import { EMPLOYEE_RANK } from 'constants/employeeRank';
 import { IEmployeeItemProps } from 'types/employee';
 
 import {
@@ -21,8 +22,8 @@ import {
 const EmployeeItem: React.FC<IEmployeeItemProps> = ({ employee }) => (
   <>
     <Link to={`${PATHS.employees}/${employee._id}`}>
-      <Grid item container xs={12} columnSpacing={2} wrap="nowrap">
-        <EmployeeContainer item xs={1} xl={2}>
+      <Grid item container xs={12} wrap="nowrap" columnSpacing={{ xs: 4, md: 2, xl: 1 }}>
+        <EmployeeContainer item xs={3} md={2} xl={1}>
           <ImageWrapper>
             <UserAvatar size={SIZE.small} avatar={employee.avatar} />
           </ImageWrapper>
@@ -32,10 +33,12 @@ const EmployeeItem: React.FC<IEmployeeItemProps> = ({ employee }) => (
           </InfoContainer>
         </EmployeeContainer>
         <Cell item xs={1}>
-          <Text>{employee.position}</Text>
+          {employee.stack.map((stackItem) => (
+            <Text key={stackItem.name}>{stackItem.name}</Text>
+          ))}
         </Cell>
         <Cell item xs={1}>
-          <Text>Rank</Text>
+          <Text>{EMPLOYEE_RANK[employee.rank]}</Text>
         </Cell>
         <Cell item xs={1}>
           <Text>{employee.group}</Text>
