@@ -632,7 +632,7 @@ const MOCKED_COURSES = [
   {
     title: 'NodeJS',
     description: 'NodeJS for junior',
-    technologies: ['NodeJS'],
+    technologies: ['NodeJS', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[1].content,
@@ -655,7 +655,7 @@ const MOCKED_COURSES = [
   {
     title: 'Vue JS',
     description: 'Vue JS for beginners',
-    technologies: ['VueJS'],
+    technologies: ['VueJS', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[3].content,
@@ -667,7 +667,7 @@ const MOCKED_COURSES = [
   {
     title: 'Django',
     description: 'Django for beginners',
-    technologies: ['Django'],
+    technologies: ['Django', 'Python'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[4].content,
@@ -678,7 +678,7 @@ const MOCKED_COURSES = [
   {
     title: 'Unity',
     description: 'Unity course',
-    technologies: ['Unity'],
+    technologies: ['Unity', 'C#'],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[5].content,
@@ -690,7 +690,7 @@ const MOCKED_COURSES = [
   {
     title: 'Android',
     description: 'Android with Java',
-    technologies: ['Android'],
+    technologies: ['Android', 'Java'],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[6].content,
@@ -701,7 +701,7 @@ const MOCKED_COURSES = [
   {
     title: 'Bootstrap for frontend',
     description: 'Bootstrap for frontend',
-    technologies: ['Bootstrap'],
+    technologies: ['Bootstrap', 'HTML'],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[7].content,
@@ -723,7 +723,7 @@ const MOCKED_COURSES = [
   {
     title: 'jQuery',
     description: 'jQuery',
-    technologies: ['jQuery'],
+    technologies: ['jQuery', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[9].content,
@@ -748,9 +748,13 @@ module.exports = {
         course.test = tests[index].insertedId;
 
         const techs = course.technologies.map(
-          (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
+          (techName) => skills.filter((skill) => skill.name === techName)[0]._id,
         );
         course.technologies = techs;
+
+        techs.map((tech) => {
+          return db.collection('skills').findOneAndUpdate({ _id: tech }, { $inc: { maxScore: 1 } });
+        });
 
         const requiredSkills = course.requiredSkills.map(
           (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
@@ -785,12 +789,101 @@ module.exports = {
   },
 
   async down(db) {
-    await db.collection('skillGroups').deleteMany({});
-    await db.collection('skills').deleteMany({});
-    await db.collection('courses').deleteMany({});
-    await db.collection('clientCourses').deleteMany({});
-    await db.collection('users').deleteMany({});
-    await db.collection('tests').deleteMany({});
-    await db.collection('userSkills').deleteMany({});
+    const deletedCourses = (
+      await Promise.all(
+        MOCKED_COURSES.map((course) =>
+          db.collection('courses').findOneAndDelete({ title: course.title }),
+        ),
+      )
+    ).filter((doc) => doc.value);
+
+    const deletedClientCourses = (
+      await Promise.all(
+        deletedCourses.map((course) =>
+          db.collection('clientCourses').findOneAndDelete({ course: course.value?._id }),
+        ),
+      )
+    ).filter((doc) => doc.value);
+
+    // decrement skills max scores
+    await Promise.all(
+      deletedCourses.map(async ({ value: course }) => {
+        const technologies = course?.technologies;
+        technologies?.map(async (techId) => {
+          await db.collection('skills').findOneAndUpdate(
+            { _id: techId },
+            {
+              $inc: {
+                maxScore: -1,
+              },
+            },
+          );
+        });
+      }),
+    );
+
+    // decrement userskill scores if client course completed
+    await Promise.all(
+      deletedClientCourses.map(async ({ value: clientCourse }) => {
+        if (clientCourse?.status === 'completed') {
+          const [
+            {
+              value: { technologies: relatedCourseTechs },
+            },
+          ] = deletedCourses.filter(
+            ({ value: course }) => course._id.toString() === clientCourse.course.toString(),
+          );
+          const { technologies } = await db.collection('users').findOne({ _id: clientCourse.user });
+          relatedCourseTechs.map(async (techId) => {
+            const { value: uskill } = await db
+              .collection('userSkills')
+              .findOneAndUpdate(
+                { skill: techId, user: clientCourse.user },
+                { $inc: { score: -1 } },
+                { returnDocument: 'after' },
+              );
+
+            if (uskill?.score < 1) {
+              const {
+                value: { _id: deletedUserSkillId },
+              } = await db.collection('userSkills').findOneAndDelete({ _id: uskill._id });
+
+              const newTechs = technologies
+                .map((techGroup) => {
+                  const indexToDelete = techGroup.achievedSkills.findIndex(
+                    (skill) => skill === deletedUserSkillId,
+                  );
+                  if (indexToDelete > -1) {
+                    techGroup.achievedSkills.splice(indexToDelete, 1);
+                    if (!techGroup.achievedSkills.length) {
+                      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                      techGroup === undefined;
+                    }
+                  }
+                  return techGroup;
+                })
+                // only groups left
+                .filter((group) => group);
+
+              await db.collection('users').findOneAndUpdate(
+                { _id: uskill.user },
+                {
+                  $set: {
+                    technologies: newTechs,
+                  },
+                },
+              );
+            }
+          });
+        }
+      }),
+    );
+
+    // deleting related tests
+    await Promise.all(
+      TESTS.map((test) => {
+        return db.collection('tests').findOneAndDelete({ title: test.title });
+      }),
+    );
   },
 };
