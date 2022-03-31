@@ -6,6 +6,7 @@ import theme from 'themeSettings';
 export const CustomButton = styled(Button)({
   height: '50px',
   width: '150px',
+  minWidth: '131px !important',
   marginRight: '16px !important',
   padding: '12px !important',
   [theme.breakpoints.down('xl')]: {
@@ -15,6 +16,10 @@ export const CustomButton = styled(Button)({
     fontSize: '14px!important',
     lineHeight: '19px',
     padding: '10px 10px!important',
+  },
+  [theme.breakpoints.down('md')]: {
+    height: '36px',
+    width: '120px',
   },
 });
 
