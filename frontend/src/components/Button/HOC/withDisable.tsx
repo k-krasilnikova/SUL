@@ -26,7 +26,8 @@ const withDisable =
       }
     }, [status]);
 
-    const isCompleted = status === COURSE_STATUSES.completed;
+    const isCompleted =
+      status === COURSE_STATUSES.completed || status === COURSE_STATUSES.successful;
 
     return <Component variant={isCompleted && 'completed'} isDisable={isDisable} {...props} />;
   };
