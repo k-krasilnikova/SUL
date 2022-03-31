@@ -18,6 +18,16 @@ export interface Course {
   avatar?: string;
 }
 
+export interface ICheckedCourse {
+  _id: string;
+  title: string;
+}
+
+export enum CoursesListType {
+  COURSES = 'COURSER',
+  CHECKED_COURSES = 'CHECKED_COURSES',
+}
+
 export interface CourseDuration {
   days: number;
   hours: number;

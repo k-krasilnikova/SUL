@@ -44,6 +44,7 @@ export const API: {
   declineRequest: string;
   getMyCourses: string;
   logOut: string;
+  employees: string;
 } = {
   getProfile: '/api/users',
   getToken: '/api/account/login',
@@ -54,4 +55,5 @@ export const API: {
   declineRequest: '/api/pendingCourses/declineCourse',
   getMyCourses: '/api/clientCourses',
   logOut: '/api/account/logout',
+  employees: '/api/employees',
 };

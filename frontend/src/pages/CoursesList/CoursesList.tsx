@@ -66,7 +66,7 @@ const CoursesList: React.FC<CoursesProps> = ({
           <AddButtonWrapper>
             <Link to={PATHS.coursesList}>
               <AddButton disableElevation variant="mediumContained">
-                {ButtonLabels.add}
+                {ButtonLabels.addWithPlus}
               </AddButton>
             </Link>
           </AddButtonWrapper>
