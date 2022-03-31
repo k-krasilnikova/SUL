@@ -7,7 +7,7 @@ import getAllCourses from 'controllers/courses/getAllCourses';
 import getCourseById from 'controllers/courses/getCourse';
 import getMaterials from 'controllers/courses/getMaterials';
 import applyCourse from 'controllers/clientCourses/applyCourse';
-import updatePandingCourse from 'controllers/pendingCourses/updatePendingCourse';
+import updatePendingCourse from 'controllers/pendingCourses/updatePendingCourse';
 import adapterUser from 'controllers/user/adapterUser';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
 
@@ -24,10 +24,10 @@ coursesRouter.get(
 );
 coursesRouter.post(
   `${Params.noParams}`,
-  withAuth([USER_ROLES.EMPLOYEE]),
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   adapterUser,
   applyCourse,
-  updatePandingCourse,
+  updatePendingCourse,
   adapterSender,
 );
 coursesRouter.get(
