@@ -879,6 +879,12 @@ module.exports = {
       }),
     );
 
+    // clearing stackMembers
+    const deletedCoursesIds = deletedCourses.map(({ value: course }) => course._id);
+    await db
+      .collection('stackMembers')
+      .updateMany({}, { $pull: { relatedCourses: { $in: deletedCoursesIds } } });
+
     // deleting related tests
     await Promise.all(
       TESTS.map((test) => {
