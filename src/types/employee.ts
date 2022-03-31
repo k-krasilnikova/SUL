@@ -1,9 +1,3 @@
-export interface ITechnology {
-  group: string;
-  achievedSkills: string[];
-  isPrimary: boolean;
-  _id: string;
-}
 export interface IEmployee {
   _id: string;
   firstName: string;
@@ -24,8 +18,4 @@ export interface IEmployees {
 export interface IEmployeesProps {
   employees?: IEmployee[];
   isLoading?: boolean;
-}
-
-export interface IEmployeeItemProps {
-  employee: IEmployee;
 }
