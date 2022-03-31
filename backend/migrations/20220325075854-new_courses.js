@@ -757,6 +757,30 @@ module.exports = {
       }),
     );
     await Promise.all(
+      courses.map(({ value: { technologies } }) =>
+        technologies.map(async (techId) => {
+          const uskill = await db
+            .collection('userSkills')
+            .findOneAndUpdate(
+              { skill: techId },
+              { $inc: { score: -1 } },
+              { returnNewDocument: true },
+            );
+          if (!uskill.score) {
+            await db.collection('userSkills').findOneAndDelete({ skill: techId });
+          }
+          await db.collection('skills').findOneAndUpdate(
+            { _id: techId },
+            {
+              $inc: {
+                maxScore: -1,
+              },
+            },
+          );
+        }),
+      ),
+    );
+    await Promise.all(
       TESTS.map((test) => {
         return db.collection('tests').findOneAndDelete({ title: test.title });
       }),
