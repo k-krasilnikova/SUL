@@ -22,6 +22,7 @@ enum SubRoutes {
   result = '/result',
   approveCourse = '/approveCourse',
   declineCourse = '/declineCourse',
+  assessment = '/assessment',
 }
 
 enum Params {
