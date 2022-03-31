@@ -1,15 +1,30 @@
 import React from 'react';
-import { Box, Grid } from '@mui/material';
+import { TableBody, TableHead, TableRow } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import { AuthorizedLayout } from 'components/Layout';
 import { NoContent } from 'components/NoContent';
 import Loader from 'components/Loader';
+import { UserAvatar } from 'components/Avatar';
+import { SIZE } from 'constants/sizes';
 import { NO_EMPLOYEES } from 'constants/messages';
 import { LOADER } from 'constants/loaderTypes';
+import { PATHS } from 'constants/routes';
+import { EMPLOYEE_RANK, HEADER_COLUMNS } from 'constants/employeeInfo';
 import { IEmployeesProps } from 'types/employee';
 
-import { EmployeesWrapper, HeaderCell, HeaderText } from './styled';
-import EmployeeItem from './EmployeeItem';
+import {
+  Cell,
+  EmployeesTable,
+  EmployeesWrapper,
+  HeaderRow,
+  StackItem,
+  UserInfo,
+  ImageWrapper,
+  InfoContainer,
+  Position,
+  UserName,
+} from './styled';
 
 const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading }) => (
   <AuthorizedLayout pageName="Employees">
@@ -17,31 +32,45 @@ const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading }) => (
       <Loader color="primary" type={LOADER.content} />
     ) : employees?.length ? (
       <EmployeesWrapper>
-        <Grid item container xs={12} wrap="nowrap" columnSpacing={{ xs: 4, md: 2, xl: 1 }}>
-          <HeaderCell item xs={3} md={2} xl={1}>
-            <Box sx={{ width: '200px' }} />
-          </HeaderCell>
-          <HeaderCell item xs={1}>
-            <Box sx={{ width: '200px' }}>
-              <HeaderText>Stack</HeaderText>
-            </Box>
-          </HeaderCell>
-          <HeaderCell item xs={1}>
-            <HeaderText>Rank</HeaderText>
-          </HeaderCell>
-          <HeaderCell item xs={1}>
-            <HeaderText>Group</HeaderText>
-          </HeaderCell>
-          <HeaderCell item xs={1}>
-            <HeaderText>Phone</HeaderText>
-          </HeaderCell>
-          <HeaderCell item xs={1}>
-            <HeaderText>Skype</HeaderText>
-          </HeaderCell>
-        </Grid>
-        {employees.map((employee) => (
-          <EmployeeItem employee={employee} />
-        ))}
+        <EmployeesTable stickyHeader>
+          <TableHead>
+            <HeaderRow>
+              {HEADER_COLUMNS.map((columnName) => (
+                <Cell variant="head">{columnName}</Cell>
+              ))}
+            </HeaderRow>
+          </TableHead>
+          <TableBody>
+            {employees.map((employee) => (
+              <TableRow
+                key={employee._id}
+                component={Link}
+                to={`${PATHS.employees}/${employee._id}`}
+              >
+                <Cell variant="body">
+                  <UserInfo>
+                    <ImageWrapper>
+                      <UserAvatar size={SIZE.small} avatar={employee.avatar} />
+                    </ImageWrapper>
+                    <InfoContainer>
+                      <UserName>{`${employee.firstName} ${employee.lastName}`}</UserName>
+                      <Position>{employee.position}</Position>
+                    </InfoContainer>
+                  </UserInfo>
+                </Cell>
+                <Cell variant="body">
+                  {employee.stack.map((stackItem) => (
+                    <StackItem key={stackItem.name}>{stackItem.name}</StackItem>
+                  ))}
+                </Cell>
+                <Cell variant="body">{EMPLOYEE_RANK[employee.rank]}</Cell>
+                <Cell variant="body">{employee.group}</Cell>
+                <Cell variant="body">{employee.phone}</Cell>
+                <Cell variant="body">{employee.skype}</Cell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </EmployeesTable>
       </EmployeesWrapper>
     ) : (
       <NoContent message={NO_EMPLOYEES} />
