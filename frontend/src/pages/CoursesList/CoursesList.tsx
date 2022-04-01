@@ -89,6 +89,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                   status={clientCourses && clientCourses[index].status}
                   progress={clientCourses && countProgress(clientCourses[index].progress)}
                   courseRef={courses.length - 1 === index ? lastCourseRef : undefined}
+                  clientCourseRef={courses.length - 1 === index ? lastCourseRef : undefined}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>
