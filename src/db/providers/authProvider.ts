@@ -38,7 +38,7 @@ const addTokenToBlackList = async (accessToken: string): Promise<void> => {
 };
 
 const checkTokenInBlacklist = async (accessToken: string) => {
-  const notValidToken = await AccessTokenBlacklistModel.findOne({ accessToken });
+  const notValidToken = await AccessTokenBlacklistModel.findOne({ accessToken }).lean();
   return notValidToken;
 };
 
