@@ -623,94 +623,114 @@ const MOCKED_COURSES = [
     description: 'Salesforce for people',
     technologies: ['Salesforce'],
     requiredSkills: ['Math', 'English'],
+    complexity: 1,
     materials: MATERIALS[0].content,
     test: '',
     avatar: 'https://techcrunch.com/wp-content/uploads/2015/02/salesforce-earnings.png?resize=768',
+    stackTemp: ['Salesforce'],
   },
   {
     title: 'NodeJS',
     description: 'NodeJS for junior',
     technologies: ['NodeJS', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
+    complexity: 1,
     materials: MATERIALS[1].content,
     test: '',
     avatar:
       'https://avatars.mds.yandex.net/i?id=8c95c4a532c4b5a8d9895ccd94408b04-5876970-images-thumbs&n=13',
+    stackTemp: ['Full-stack JS developer', 'Back-end JS developer'],
   },
   {
     title: 'Ruby',
     description: 'Ruby for developers',
     technologies: ['Ruby'],
     requiredSkills: ['Math', 'English'],
+    complexity: 1,
     materials: MATERIALS[2].content,
     test: '',
     avatar: 'https://miro.medium.com/max/1200/1*vD8E78oDxrJmHJ6VALmlSQ.png',
+    stackTemp: ['Ruby developer'],
   },
   {
     title: 'Vue JS',
     description: 'Vue JS for beginners',
     technologies: ['VueJS', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
+    complexity: 1,
     materials: MATERIALS[3].content,
     test: '',
     avatar:
       'https://hsto.org/getpro/habr/post_images/d4c/9e7/fe6/d4c9e7fe6d3eda87c2ae0c8275cf62b8.png',
+    stackTemp: ['Front-end developer', 'Full-stack JS developer'],
   },
   {
     title: 'Django',
     description: 'Django for beginners',
     technologies: ['Django', 'Python'],
     requiredSkills: ['Math', 'English'],
+    complexity: 1,
     materials: MATERIALS[4].content,
     test: '',
     avatar: 'https://ghorz.com/static/website/images/utils/django.png',
+    stackTemp: ['Python developer'],
   },
   {
     title: 'Unity',
     description: 'Unity course',
     technologies: ['Unity', 'C#'],
     requiredSkills: ['Math', 'English'],
+    complexity: 2,
     materials: MATERIALS[5].content,
     test: '',
     avatar:
       'https://sun9-1.userapi.com/impf/qlsuWr2Hs_KQ1barQRsroLm4kPgOBikzZugHUA/WMsXc19KPe8.jpg?size=0x0&quality=90&proxy=1&sign=a123263684154a9d51a8cfe51342a950&c_uniq_tag=EsQq0KZpzYubfshPX2sTe1fCF1GLano0QdZPIc9JK_c&type=video_thumb',
+    stackTemp: ['GameDev'],
   },
   {
     title: 'Android',
     description: 'Android with Java',
     technologies: ['Android', 'Java'],
     requiredSkills: ['Math', 'English'],
+    complexity: 2,
     materials: MATERIALS[6].content,
     test: '',
     avatar: 'http://neutr10.com/wp-content/uploads/2015/12/android-java.jpg',
+    stackTemp: ['Java developer'],
   },
   {
     title: 'Bootstrap for frontend',
     description: 'Bootstrap for frontend',
     technologies: ['Bootstrap', 'HTML'],
     requiredSkills: ['Math', 'English'],
+    complexity: 2,
     materials: MATERIALS[7].content,
     test: '',
     avatar: 'https://denis-creative.com/wp-content/uploads/2018/02/bootstrap4.jpg',
+    stackTemp: ['Front-end developer', 'Full-stack JS developer'],
   },
   {
     title: 'SQL',
     description: 'SQL for backend developers',
     technologies: ['SQL'],
     requiredSkills: ['Math', 'English'],
+    complexity: 2,
     materials: MATERIALS[8].content,
     test: '',
     avatar: 'https://cdn.hackersandslackers.com/2019/02/SQLpt1-3.jpg',
+    stackTemp: ['Database engineer'],
   },
   {
     title: 'jQuery',
     description: 'jQuery',
     technologies: ['jQuery', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
+    complexity: 1,
     materials: MATERIALS[9].content,
     test: '',
     avatar:
       'https://codecondo.com/wp-content/uploads/2014/02/11-Free-jQuery-Photo-Gallery-Lightbox-Plugins.jpg',
+    stackTemp: ['Front-end developer', 'Full-stack JS developer'],
   },
 ];
 
@@ -724,7 +744,7 @@ module.exports = {
       }),
     );
     await Promise.all(
-      MOCKED_COURSES.map((course, index) => {
+      MOCKED_COURSES.map(async (course, index) => {
         course.test = tests[index].insertedId;
 
         const techs = course.technologies.map(
@@ -740,7 +760,30 @@ module.exports = {
           (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
         );
         course.requiredSkills = requiredSkills;
-        return db.collection('courses').insertOne(course);
+
+        const stack = course.stackTemp;
+        delete course.stackTemp;
+        const inserted = await db.collection('courses').insertOne(course);
+
+        await Promise.all(
+          stack.map(async (memberName) => {
+            const member = await db.collection('stackMembers').findOne({ name: memberName });
+            if (member) {
+              await db
+                .collection('stackMembers')
+                .findOneAndUpdate(
+                  { _id: member._id },
+                  { $push: { relatedCourses: inserted.insertedId } },
+                );
+            } else {
+              await db
+                .collection('stackMembers')
+                .insertOne({ name: memberName, relatedCourses: [inserted.insertedId] });
+            }
+          }),
+        );
+
+        return inserted;
       }),
     );
   },
@@ -835,6 +878,12 @@ module.exports = {
         }
       }),
     );
+
+    // clearing stackMembers
+    const deletedCoursesIds = deletedCourses.map(({ value: course }) => course._id);
+    await db
+      .collection('stackMembers')
+      .updateMany({}, { $pull: { relatedCourses: { $in: deletedCoursesIds } } });
 
     // deleting related tests
     await Promise.all(
