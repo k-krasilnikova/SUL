@@ -24,6 +24,11 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const { mutate, isLoading } = useApplyCourse();
   const [isFullTextOpen, setFullTextOpen] = useState(false);
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
+  const isProgressBarDisplayed = courseData
+    ? isCourseApplicationSubmitted &&
+      courseData.status !== COURSE_STATUSES.pending &&
+      courseData.status !== COURSE_STATUSES.rejected
+    : false;
   const isCourseCompleted = courseData
     ? [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(courseData.status)
     : false;
@@ -88,7 +93,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
           windowWidth={windowWidth}
           isFullTextOpen={isFullTextOpen}
           toggleFullText={toggleFullText}
-          isCourseApplicationSubmitted={isCourseApplicationSubmitted}
+          isProgressBarDisplayed={isProgressBarDisplayed}
           isCourseCompleted={isCourseCompleted}
         />
       )}
