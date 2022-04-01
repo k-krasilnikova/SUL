@@ -36,7 +36,7 @@ const getTestResults = async (
     const result = countTestResult(userWrongAnswers, correctAnswers.questions);
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: TestStatus.notPassed };
-      await updateClientCourseField(courseId, COURSE_FILEDS.status, CourseStatus.started);
+      await updateClientCourseField(courseId, COURSE_FILEDS.status, CourseStatus.failed);
       await updateClientCourseField(courseId, COURSE_FILEDS.testDate, Date.now());
       next();
     } else {
