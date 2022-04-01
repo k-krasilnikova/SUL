@@ -39,6 +39,7 @@ export const API: {
   getToken: string;
   getCourses: string;
   getCoursesRequests: string;
+  getEmployeesList: string;
   approveRequest: string;
   declineRequest: string;
   getMyCourses: string;
@@ -48,6 +49,7 @@ export const API: {
   getToken: '/api/account/login',
   getCourses: '/api/courses',
   getCoursesRequests: '/api/pendingCourses',
+  getEmployeesList: '/api/employees',
   approveRequest: '/api/pendingCourses/approveCourse',
   declineRequest: '/api/pendingCourses/declineCourse',
   getMyCourses: '/api/clientCourses',
