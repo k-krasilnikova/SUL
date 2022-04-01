@@ -11,6 +11,7 @@
         "backdev": "cross-env NODE_ENV=dev nodemon ./src/app.ts",
         "build": "cross-env NODE_ENV=production tsc && npx tsc-alias",
         "test": "cross-env NODE_ENV=test jest --coverage",
+        "qa": "cross-env NODE_ENV=test nodemon ./src/app.ts",
         "migrate": "migrate-mongo up",
         "migrate:undo-last": "migrate-mongo down",
         "migrate:status": "migrate-mongo status",
