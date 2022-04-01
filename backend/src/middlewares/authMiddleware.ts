@@ -13,7 +13,7 @@ const withAuth =
 
       let notValidToken;
       if (accessToken) {
-        notValidToken = checkTokenInBlacklist(accessToken);
+        notValidToken = await checkTokenInBlacklist(accessToken);
       }
 
       if (!accessToken || notValidToken) {
