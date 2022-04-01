@@ -12,7 +12,7 @@ import { backIconMobile } from 'icons';
 import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
-import { COURSE_LABELS, COURSE_STATUSES } from 'constants/statuses';
+import { COURSE_LABELS } from 'constants/statuses';
 import { OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
@@ -61,7 +61,7 @@ const DetailedCourse: React.FC<IProps> = ({
   windowWidth,
   isFullTextOpen,
   toggleFullText,
-  isCourseApplicationSubmitted,
+  isProgressBarDisplayed,
   isAdmin,
   isCourseCompleted,
 }) => (
@@ -78,7 +78,7 @@ const DetailedCourse: React.FC<IProps> = ({
       </MobileSearchWrapper>
       <InnerWrapper>
         <ImageWrapper imageUrl={commonCourseData.avatar} />
-        {isCourseApplicationSubmitted && status !== COURSE_STATUSES.pending && (
+        {isProgressBarDisplayed && (
           <ProgressBar
             size="large"
             text={progressText}
@@ -156,7 +156,7 @@ const DetailedCourse: React.FC<IProps> = ({
                 <CourseActionsBox>
                   <CourseActions>
                     <CustomButton color="primary" variant="mediumOutlined">
-                      {ButtonLabels.next}
+                      {ButtonLabels.details}
                     </CustomButton>
                   </CourseActions>
                 </CourseActionsBox>

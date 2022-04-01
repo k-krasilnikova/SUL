@@ -74,7 +74,7 @@ const TESTS = [
       },
       {
         qN: 7,
-        question: 'null >= 0 ',
+        question: 'null >= 0',
         answers: [
           { variant: 'false', aN: 1 },
           { variant: 'true', aN: 2 },
@@ -301,7 +301,7 @@ const TESTS = [
       },
       {
         qN: 4,
-        question: 'Is the variable written correctly? var number: Float = 45 ',
+        question: 'Is the variable written correctly? var number: Float = 45',
         answers: [
           { variant: "Yes, that's right", aN: 1 },
           { variant: 'Not true, because after 45 it is necessary to add the character "f"', aN: 2 },
@@ -595,6 +595,57 @@ const TESTS = [
       },
     ],
     timeout: 90000,
+  },
+];
+
+const DEFAULT_STACK_MEMBERS = [
+  {
+    name: 'Full-stack JS developer',
+    relatedCourses: ['JS for beginners'],
+  },
+  {
+    name: 'Front-end developer',
+    relatedCourses: ['JS for beginners'],
+  },
+  {
+    name: 'Back-end JS developer',
+    relatedCourses: [],
+  },
+  {
+    name: 'QA',
+    relatedCourses: ['QA for everyone'],
+  },
+  {
+    name: 'QA Automation',
+    relatedCourses: [],
+  },
+  {
+    name: 'Java developer',
+    relatedCourses: ['Java for Professionals'],
+  },
+  {
+    name: 'C# developer',
+    relatedCourses: ['C# for students'],
+  },
+  {
+    name: 'Python developer',
+    relatedCourses: ['Python for kids'],
+  },
+  {
+    name: 'C++ developer',
+    relatedCourses: ['C++ for kettle'],
+  },
+  {
+    name: 'Scala developer',
+    relatedCourses: ['Scala'],
+  },
+  {
+    name: 'Kotlin developer',
+    relatedCourses: ['Kotlin'],
+  },
+  {
+    name: 'GO developer',
+    relatedCourses: ['GO'],
   },
 ];
 
@@ -893,16 +944,18 @@ const MOCKED_COURSES = [
     description: 'Go from zero to ninjas in this JavaScript for Beginners complete course',
     technologies: ['JavaScript', 'HTML', 'CSS'],
     requiredSkills: ['HTML', 'CSS'],
+    complexity: 1,
     materials: MATERIALS[0].content,
     test: '',
     avatar: 'https://ucarecdn.com/6c336531-1fe4-4daf-ba45-28b76b45ff46/js.png',
   },
   {
-    title: 'Java for Professionals ',
+    title: 'Java for Professionals',
     description:
       'The Java Notes for Professionals course is compiled from Stack Overflow Documentation, the content is written by the beautiful people at Stack Overflow',
     technologies: ['Java', 'SQL'],
     requiredSkills: ['Java'],
+    complexity: 2,
     materials: MATERIALS[1].content,
     test: '',
     avatar: 'https://www.filepicker.io/api/file/t12BZqmRoulvCTDhoYie',
@@ -913,6 +966,7 @@ const MOCKED_COURSES = [
       'Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.',
     technologies: ['Python', 'Pandas', 'Django'],
     requiredSkills: ['Math', 'English'],
+    complexity: 1,
     materials: MATERIALS[2].content,
     test: '',
     avatar: 'https://ucarecdn.com/0168bc80-6cd0-444f-b173-70ef1ff1071c/python.png',
@@ -923,6 +977,7 @@ const MOCKED_COURSES = [
       'Kotlin is a cross-platform, statically typed, general-purpose programming language with type inference',
     technologies: ['Kotlin', 'Java'],
     requiredSkills: ['Math', 'English'],
+    complexity: 2,
     materials: MATERIALS[3].content,
     test: '',
     avatar: 'https://ucarecdn.com/f388ccb9-1fc6-4803-97b4-ea7b25629ac8/kotlin.png',
@@ -933,6 +988,7 @@ const MOCKED_COURSES = [
       'Scala is a strong statically typed general-purpose programming language which supports both object-oriented programming and functional programming.',
     technologies: ['Scala'],
     requiredSkills: ['Math', 'English'],
+    complexity: 2,
     materials: MATERIALS[4].content,
     test: '',
     avatar: 'https://ucarecdn.com/e5f818ce-1eef-47c8-91a9-7f78d5e96194/scala.png',
@@ -942,6 +998,7 @@ const MOCKED_COURSES = [
     description: 'Learn GO and leave RB',
     technologies: ['Go'],
     requiredSkills: ['Math', 'English'],
+    complexity: 2,
     materials: MATERIALS[5].content,
     test: '',
     avatar: 'https://i.pinimg.com/originals/c8/90/63/c89063ba4d2373292f6f31de67932d33.png',
@@ -951,6 +1008,7 @@ const MOCKED_COURSES = [
     description: 'Learn С++ and be happy',
     technologies: ['C++'],
     requiredSkills: ['Math', 'English'],
+    complexity: 3,
     materials: MATERIALS[6].content,
     test: '',
     avatar:
@@ -961,6 +1019,7 @@ const MOCKED_COURSES = [
     description: 'Learn С# and make money',
     technologies: ['C#'],
     requiredSkills: ['Math', 'English'],
+    complexity: 1,
     materials: MATERIALS[7].content,
     test: '',
     avatar: 'https://it-black.ru/wp-content/uploads/2019/01/obrabotka-iskljuchenij-v-si-charp.png',
@@ -971,6 +1030,7 @@ const MOCKED_COURSES = [
       'Why does the developer needs English. The answer is obvious: English is needed to understand terminology, work with English-language interfaces, read technical documentation, study professional literature, conferences and webinars',
     technologies: ['English'],
     requiredSkills: ['English'],
+    complexity: 1,
     materials: MATERIALS[8].content,
     test: '',
     avatar: 'https://ddnews.ru/wp-content/uploads/2020/11/eMrKS_cSuXE.jpg',
@@ -980,6 +1040,7 @@ const MOCKED_COURSES = [
     description: 'Keep calm and learn QA',
     technologies: ['English'],
     requiredSkills: ['English'],
+    complexity: 1,
     materials: MATERIALS[9].content,
     test: '',
     avatar: 'https://pbs.twimg.com/media/EAyWcddWkAAD_tO.jpg',
@@ -1110,6 +1171,62 @@ const SKILLS = [
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('C#')).length,
     group: 'Web Frameworks',
   },
+  {
+    name: 'Salesforce',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Salesforce')).length,
+    group: 'Web Frameworks',
+  },
+  {
+    name: 'NodeJS',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('NodeJS')).length,
+    group: 'Data Science',
+  },
+  {
+    name: 'Ruby',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Ruby')).length,
+    group: 'Common',
+  },
+  {
+    name: 'VueJS',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('VueJS')).length,
+    group: 'Web Frameworks',
+  },
+  {
+    name: 'Unity',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Unity')).length,
+    group: 'Common',
+  },
+  {
+    name: 'Android',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Android')).length,
+    group: 'Common',
+  },
+  {
+    name: 'Bootstrap',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Bootstrap')).length,
+    group: 'Web Frameworks',
+  },
+  {
+    name: 'jQuery',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('jQuery')).length,
+    group: 'Web Frameworks',
+  },
 ];
 
 const SKILL_GROUPS = [
@@ -1193,8 +1310,8 @@ module.exports = {
         return db.collection('tests').insertOne(test);
       }),
     );
-    await Promise.all(
-      MOCKED_COURSES.map((course, index) => {
+    const courses = await Promise.all(
+      MOCKED_COURSES.map(async (course, index) => {
         course.test = tests[index].insertedId;
         const techs = course.technologies.map(
           (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
@@ -1204,14 +1321,28 @@ module.exports = {
           (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
         );
         course.requiredSkills = requiredSkills;
-        return db.collection('courses').insertOne(course);
+        const inserted = await db.collection('courses').insertOne(course);
+        return { ...inserted, name: course.title };
+      }),
+    );
+    const stackMembers = await Promise.all(
+      DEFAULT_STACK_MEMBERS.map(async (member) => {
+        const courseIds = member.relatedCourses.map(
+          (courseName) => courses.filter((course) => course.name === courseName)[0].insertedId,
+        );
+        const newMember = { ...member, relatedCourses: courseIds };
+        return { ...(await db.collection('stackMembers').insertOne(newMember)), name: member.name };
       }),
     );
     const users = await Promise.all(
       DEFAULT_USERS_DOCS.map(async (doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
-        return { ...(await db.collection('users').insertOne(doc)), username: doc.username };
+        const stack = doc.stack.map(
+          (memberName) => stackMembers.filter((member) => member.name === memberName)[0].insertedId,
+        );
+        const newUserDoc = { ...doc, stack };
+        return { ...(await db.collection('users').insertOne(newUserDoc)), username: doc.username };
       }),
     );
     const employees = await Promise.all(
@@ -1219,7 +1350,11 @@ module.exports = {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
         doc.managerId = users[1].insertedId;
-        return { ...(await db.collection('users').insertOne(doc)), username: doc.username };
+        const stack = doc.stack.map(
+          (memberName) => stackMembers.filter((member) => member.name === memberName)[0].insertedId,
+        );
+        const newUserDoc = { ...doc, stack };
+        return { ...(await db.collection('users').insertOne(newUserDoc)), username: doc.username };
       }),
     );
     const totalUsers = users.concat(employees);
@@ -1300,12 +1435,13 @@ module.exports = {
   },
 
   async down(db) {
+    await db.collection('courses').drop();
     await db.collection('skillGroups').drop();
     await db.collection('skills').drop();
-    await db.collection('courses').drop();
+    await db.collection('tests').drop();
     await db.collection('clientCourses').drop();
     await db.collection('users').drop();
-    await db.collection('tests').drop();
     await db.collection('userSkills').drop();
+    await db.collection('stackMembers').drop();
   },
 };
