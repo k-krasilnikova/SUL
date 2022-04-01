@@ -12,9 +12,11 @@ import {
   FIRST_PAGE,
   NOTHING,
   NO_FILTER,
+  USER_ROLES,
 } from 'config/constants';
 
 import ClientCourseModel from '../models/ClientCourses';
+import UserModel from '../models/User';
 
 const getClientCoursesProvider = async (
   userId: string,
@@ -62,10 +64,15 @@ const getClientCourseProvider = async (clientCourseId: string): Promise<IClientC
 };
 
 const applyCourseProvider = async (courseId: string, userId: string, progressDto: IProgress[]) => {
+  const dbUser = await UserModel.findById(userId).lean();
+
+  const courseStatus =
+    dbUser && dbUser.role === USER_ROLES.EMPLOYEE ? CourseStatus.pending : CourseStatus.approved;
+
   const applyedCourse = await ClientCourseModel.create({
     user: userId,
     course: courseId,
-    status: CourseStatus.pending,
+    status: courseStatus,
     progress: progressDto,
     date: new Date(),
   });
@@ -87,9 +94,18 @@ const getStatusProvider = async (courseId: string) => {
     { status: 1, _id: 0 },
   ).lean();
   if (!currStatus) {
-    throw new NotFoundError('course not found');
+    throw new NotFoundError('Course not found.');
   }
   return currStatus;
+};
+
+const getAssessmentProvider = async (courseId: string) => {
+  const course = await ClientCourseModel.findById(courseId).select('withAssessment -_id');
+  if (!course) {
+    throw new NotFoundError('Course not found.');
+  }
+  const { withAssessment } = course;
+  return withAssessment;
 };
 
 const getCurrentProgress = async (clientCourseId: string) => {
@@ -129,13 +145,25 @@ const updateClientCourseField = async (courseId: string, field: string, value: u
   throw new BadRequestError('Bad request. Check the data being sent');
 };
 
+const arrangeAssessment = async (courseId: string) => {
+  const updatedCourse = await ClientCourseModel.findByIdAndUpdate(courseId, {
+    $set: { withAssessment: true },
+  });
+
+  if (!updatedCourse) {
+    throw new NotFoundError('Client course not found.');
+  }
+};
+
 export {
   getClientCoursesProvider,
   getAllClientCoursesProvider,
   getClientCourseProvider,
   getStatusProvider,
+  getAssessmentProvider,
   applyCourseProvider,
   getCurrentProgress,
+  arrangeAssessment,
   updateCourseProgress,
   updateClientCourseField,
 };

@@ -226,8 +226,7 @@ export const ButtonWrapper = styled('div')({
     marginLeft: '38px',
   },
   [theme.breakpoints.down('md')]: {
-    width: '120px',
-    marginLeft: '70px',
+    width: '131px',
   },
 });
 
@@ -294,7 +293,7 @@ export const ToggleDescription = styled(Typography)({
   fontWeight: '500',
   color: '#131313',
   '&.MuiTypography-root': {
-    marginRight: 'calc(100% - 295px)',
+    marginRight: 'calc(100% - 274px)',
   },
   [theme.breakpoints.up('md')]: {
     display: 'none',
@@ -314,6 +313,8 @@ export const ExpandLessIcon = styled(ExpandLess)({
 export const PlayVideoIcon = styled('img')({
   height: '154px',
   width: '154px',
+  backgroundColor: '#e8e8e8de',
+  borderRadius: '50%',
   [theme.breakpoints.down('lg')]: {
     height: '73px',
     width: '73px',
