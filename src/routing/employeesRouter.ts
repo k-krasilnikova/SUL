@@ -6,7 +6,7 @@ import withAuth from 'middlewares/authMiddleware';
 import getEmployees from 'controllers/manager/getEmployees';
 import adapterManager from 'controllers/manager/adapterManager';
 import applyCourse from 'controllers/clientCourses/applyCourse';
-import updatePandingCourse from 'controllers/pendingCourses/updatePendingCourse';
+import updatePendingCourse from 'controllers/pendingCourses/updatePendingCourse';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
 import getEmployeeInfo from 'controllers/manager/getEmployeeInfo';
 
@@ -17,7 +17,7 @@ employeesRouter.post(
   withAuth([USER_ROLES.MANAGER]),
   adapterManager,
   applyCourse,
-  updatePandingCourse,
+  updatePendingCourse,
   adapterSender,
 );
 employeesRouter.get(`${Params.noParams}`, withAuth([USER_ROLES.MANAGER]), getEmployees);
