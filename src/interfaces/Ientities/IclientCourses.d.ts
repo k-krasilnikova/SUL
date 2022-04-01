@@ -1,9 +1,9 @@
 import { ObjectId } from 'mongoose';
 
 import CourseStatus from 'enums/coursesEnums';
-
+import { ICourseInfo } from 'interfaces/ICourses/IQueryCourses';
 import { COURSE_FILEDS } from 'config/constants';
-import { ICourseInfo } from '../ICourses/IQueryCourses';
+
 import { ICourse } from './Icourses';
 
 type TCourseStatus =
@@ -13,6 +13,7 @@ type TCourseStatus =
   | 'completed'
   | 'rejected'
   | 'testing'
+  | 'assessment'
   | 'successful';
 
 export type TFileds = keyof typeof COURSE_FILEDS;
@@ -22,6 +23,7 @@ interface IClientCourse {
   user: ObjectId;
   course: ObjectId;
   status: CourseStatus;
+  withAssessment: boolean;
   testResult: string;
   progress: [
     {

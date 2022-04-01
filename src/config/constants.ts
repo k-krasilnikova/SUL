@@ -38,6 +38,11 @@ const INITIAL_INDX = 0;
 const NO_FILTER = {};
 const DEFAULT_ORDER_FIELD = '_id';
 
+const ASSESSMENT_RESULTS = {
+  approved: 'approved',
+  declined: 'declined',
+};
+
 const STATUS_CODES = {
   success: {
     OK: 200,
@@ -53,6 +58,7 @@ const STATUS_CODES = {
     SERVICE_UNAVAILABLE: 503,
   },
 };
+
 const COURSE_FILEDS = {
   user: 'user',
   course: 'course',
@@ -87,6 +93,7 @@ export {
   NO_FILTER,
   INITIAL_INDX,
   REQUIRED_PCT,
+  ASSESSMENT_RESULTS,
   STATUS_CODES,
   PASS_THRESHOLD,
   TWO_DIGITS,
