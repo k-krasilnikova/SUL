@@ -35,7 +35,7 @@ interface Props {
   type?: string;
   imageUrl?: string;
   courseRef?: (node?: Element | null) => void;
-  clientCourseRef?: (node?: Element | null) => void;
+  // clientCourseRef?: (node?: Element | null) => void;
   progress?: number;
 }
 
@@ -51,15 +51,11 @@ const Course: React.FC<Props> = ({
   type,
   imageUrl,
   courseRef,
-  clientCourseRef,
+  // clientCourseRef,
   progress,
 }) => {
   return (
-    <CourseContainer
-      container
-      direction="column"
-      ref={pageName === PAGES.coursesList ? courseRef : clientCourseRef}
-    >
+    <CourseContainer container direction="column" ref={courseRef}>
       <AboutCourseContainer type={type}>
         <ImageWrapper imageUrl={imageUrl} />
         <CourseTextContainer>
