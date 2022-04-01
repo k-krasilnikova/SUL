@@ -9,7 +9,7 @@ import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
 import { specifyUserTechnologies } from 'utils/technologies/userTechnologies';
-import { addPointToUserSkill, calculatePoints } from 'utils/skillsUtils';
+import { addPointToUserSkill } from 'utils/skillsUtils';
 
 const getAchievments = async (
   req: Request,
@@ -28,9 +28,8 @@ const getAchievments = async (
       const userSkills: IUserSkill[] = await getUserSkills(userId);
       const user = await getUserProvider(userId);
       const { oldSkills = [], newSkills = [] } = specifySkills(userSkills, techsToAchieve);
-      console.log('before iterate');
       const updatedUserSkills = await Promise.all(
-        oldSkills.map(addPointToUserSkill(calculatePoints(user.rank, complexity), userId)),
+        oldSkills.map(addPointToUserSkill(complexity, userId)),
       );
       const filterUpdatedUserSkills = updatedUserSkills.filter(
         (skill): skill is IUserSkill => !!skill,
@@ -44,10 +43,9 @@ const getAchievments = async (
         insertedUserSkills,
       );
       await updateUserTechnologies(userId, updatedTechnologies);
-      console.log('before');
+
       const updatedUserSkillsPopulated = await populateUserSkills(filterUpdatedUserSkills);
       const insertedUserSkillsPopulated = await populateUserSkills(insertedUserSkills);
-      console.log('after', updatedUserSkillsPopulated);
 
       res.locals.achievments = {
         newSkills: extractCommonUserSkillInfo(insertedUserSkillsPopulated),

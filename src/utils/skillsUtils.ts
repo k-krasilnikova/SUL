@@ -1,16 +1,14 @@
-import { getPopulatedUserSkill, updateUserSkill } from 'db/providers/skillProvider';
-import { UserRank } from 'enums/users';
-import { IUser } from 'interfaces/Ientities/Iusers';
 import { ObjectId } from 'mongoose';
 
-export const addPointToUserSkill =
-  (points: number, userId: string) => async (skillId: string | ObjectId) => {
-    const {
-      skill: { maxScore },
-      score,
-    } = await getPopulatedUserSkill(skillId);
-    return score < maxScore && updateUserSkill(userId, points, skillId);
-  };
+import { getCommonSkill, getUserSkill, updateUserSkill } from 'db/providers/skillProvider';
 
-export const calculatePoints = (userRank: IUser['rank'], courseRank: UserRank) =>
-  Number(userRank < courseRank);
+const calculatePoints = (courseComplexity: number, userScore: number) =>
+  courseComplexity > userScore && courseComplexity - userScore;
+
+export const addPointToUserSkill =
+  (complexity: number, userId: string) => async (commonSkillId: string | ObjectId) => {
+    const { score } = await getUserSkill(userId, commonSkillId);
+    const { maxScore } = await getCommonSkill(commonSkillId);
+    const points = calculatePoints(complexity, score);
+    return points && score < maxScore && updateUserSkill(userId, points, commonSkillId);
+  };
