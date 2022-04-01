@@ -36,6 +36,11 @@ const ProgressBar: React.FC<ProgressProps> = ({
           pathColor: '#ff9494',
           trailColor: '#eaeaea',
         }),
+        ...(variant === VARIANTS.failedWithPercentage && {
+          textColor: '#000000',
+          pathColor: '#d43e41',
+          trailColor: '#eaeaea',
+        }),
         ...(variant === VARIANTS.incompleteMobile && {
           textColor: ' #131313',
           pathColor: '#1cc02c',

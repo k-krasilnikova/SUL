@@ -16,7 +16,7 @@ const convertStatusToProgress = (status?: string): ConvertedProgress => {
     case COURSE_STATUSES.started:
       progressValue = 37;
       progressText = '37%';
-      progressVariant = VARIANTS.failed;
+      progressVariant = VARIANTS.failedWithPercentage;
       break;
     case COURSE_STATUSES.testing:
       progressValue = 80;
@@ -24,6 +24,11 @@ const convertStatusToProgress = (status?: string): ConvertedProgress => {
       progressVariant = VARIANTS.completed;
       break;
     case COURSE_STATUSES.completed:
+      progressValue = 100;
+      progressText = COMPLETED_STATUS_TEXT;
+      progressVariant = VARIANTS.completed;
+      break;
+    case COURSE_STATUSES.successful:
       progressValue = 100;
       progressText = COMPLETED_STATUS_TEXT;
       progressVariant = VARIANTS.completed;

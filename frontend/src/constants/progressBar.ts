@@ -4,6 +4,7 @@ export const TEXT_COLOR = '#9C9C9C';
 export const VARIANTS = {
   completed: 'completed',
   failed: 'failed',
+  failedWithPercentage: 'failedWithPercentage',
   successful: 'successful',
   successfulMobile: 'successfulMobile',
   incompleteMobile: 'incompleteMobile',
