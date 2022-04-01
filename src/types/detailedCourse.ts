@@ -16,7 +16,7 @@ export interface IDetailedCourse {
   clientCourseData?: PureClientCourse;
   isLoading?: boolean;
   targetId?: string | undefined;
-  isCourseApplicationSubmitted?: boolean;
+  isProgressBarDisplayed?: boolean;
   isCourseCompleted?: boolean;
   isCourseDeclined?: boolean;
   isCourseStatusTesting?: boolean;
