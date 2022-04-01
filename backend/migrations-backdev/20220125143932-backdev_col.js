@@ -1110,6 +1110,62 @@ const SKILLS = [
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('C#')).length,
     group: 'Web Frameworks',
   },
+  {
+    name: 'Salesforce',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Salesforce')).length,
+    group: 'Web Frameworks',
+  },
+  {
+    name: 'NodeJS',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('NodeJS')).length,
+    group: 'Data Science',
+  },
+  {
+    name: 'Ruby',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Ruby')).length,
+    group: 'Common',
+  },
+  {
+    name: 'VueJS',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('VueJS')).length,
+    group: 'Web Frameworks',
+  },
+  {
+    name: 'Unity',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Unity')).length,
+    group: 'Common',
+  },
+  {
+    name: 'Android',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Android')).length,
+    group: 'Common',
+  },
+  {
+    name: 'Bootstrap',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Bootstrap')).length,
+    group: 'Web Frameworks',
+  },
+  {
+    name: 'jQuery',
+    image:
+      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('jQuery')).length,
+    group: 'Web Frameworks',
+  },
 ];
 
 const SKILL_GROUPS = [
