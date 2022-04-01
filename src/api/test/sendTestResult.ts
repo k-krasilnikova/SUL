@@ -18,7 +18,7 @@ const useSendTestResult = ({ courseId }: ITestResultParams): UseMutationResult<I
   };
   const handleSubmit = () => {
     queryClient.invalidateQueries('profile');
-    queryClient.refetchQueries(['clientCourseInfo', courseId]);
+    queryClient.refetchQueries(['ClientCourseInfo', courseId]);
   };
   return useMutation(
     async (data) => {
