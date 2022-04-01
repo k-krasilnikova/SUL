@@ -35,7 +35,6 @@ interface Props {
   type?: string;
   imageUrl?: string;
   courseRef?: (node?: Element | null) => void;
-  // clientCourseRef?: (node?: Element | null) => void;
   progress?: number;
 }
 
@@ -51,7 +50,6 @@ const Course: React.FC<Props> = ({
   type,
   imageUrl,
   courseRef,
-  // clientCourseRef,
   progress,
 }) => {
   return (
