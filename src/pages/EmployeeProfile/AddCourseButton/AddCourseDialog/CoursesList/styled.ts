@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { List } from '@mui/material';
+import { List, Divider } from '@mui/material';
 
 import { CoursesListType } from 'types/course';
 
@@ -19,6 +19,6 @@ export const StyledList = styled(List)<IPropsCoursesList>(({ type }) => ({
   }),
 }));
 
-export const StyledHorizontalLine = styled('hr')({
+export const StyledHorizontalLine = styled(Divider)({
   margin: '16px 0',
 });

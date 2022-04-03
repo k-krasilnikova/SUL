@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 interface IProps {
-  hasNextPage?: boolean;
   fetchNextPage: () => void;
+  hasNextPage?: boolean;
 }
 
 const useFetchNextPage: (props: IProps) => (node?: Element | null) => void = ({

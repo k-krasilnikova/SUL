@@ -1,16 +1,16 @@
 import { FC, BaseSyntheticEvent } from 'react';
 
 import { ConfirmDialog } from 'components/ConfirmDialog';
+import { SIZE } from 'constants/sizes';
 import { Course, ICheckedCourse, CoursesListType } from 'types/course';
 
 import { CoursesList } from './CoursesList';
 import { SearchInput } from './SearchInput';
 import { ActionButton } from './ActionButton';
-
 import { ContentWrapper } from './styled';
 
 interface IProps {
-  checkedCoursesList: ICheckedCourse[];
+  selectedCoursesList: ICheckedCourse[];
   foundedCoursesList: Course[];
   isOpened: boolean;
   isNoSearchResult: boolean;
@@ -25,7 +25,7 @@ interface IProps {
 }
 
 const AddCourseDialog: FC<IProps> = ({
-  checkedCoursesList,
+  selectedCoursesList,
   foundedCoursesList,
   isNoSearchResult,
   isCoursesLoading,
@@ -38,7 +38,7 @@ const AddCourseDialog: FC<IProps> = ({
   handleCheckboxChange,
   lastCourseRef,
 }) => (
-  <ConfirmDialog open={isOpened} onClose={handleClose} size="large">
+  <ConfirmDialog open={isOpened} onClose={handleClose} size={SIZE.large}>
     <ContentWrapper>
       <SearchInput
         isNoResult={isNoSearchResult}
@@ -48,7 +48,7 @@ const AddCourseDialog: FC<IProps> = ({
       <CoursesList
         type={CoursesListType.COURSES}
         courses={foundedCoursesList}
-        checkedCourses={checkedCoursesList}
+        checkedCourses={selectedCoursesList}
         isCoursesLoading={isCoursesLoading}
         lastCourseRef={lastCourseRef}
         handleCheckboxChange={handleCheckboxChange}
@@ -56,13 +56,13 @@ const AddCourseDialog: FC<IProps> = ({
       <CoursesList
         withUpperLine
         type={CoursesListType.CHECKED_COURSES}
-        courses={checkedCoursesList}
-        checkedCourses={checkedCoursesList}
+        courses={selectedCoursesList}
+        checkedCourses={selectedCoursesList}
         handleCheckboxChange={handleCheckboxChange}
       />
     </ContentWrapper>
     <ActionButton
-      isDisabled={!checkedCoursesList.length || isAddCourseToEmployeeLoading}
+      isDisabled={!selectedCoursesList.length || isAddCourseToEmployeeLoading}
       isLoading={isAddCourseToEmployeeLoading}
       handleClick={handleAddCourse}
     />

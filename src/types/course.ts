@@ -24,7 +24,7 @@ export interface ICheckedCourse {
 }
 
 export enum CoursesListType {
-  COURSES = 'COURSER',
+  COURSES = 'COURSES',
   CHECKED_COURSES = 'CHECKED_COURSES',
 }
 
