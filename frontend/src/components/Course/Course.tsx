@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
+import { convertStatus } from 'utils/helpers/convertStatus';
 import { ProgressBar } from 'components/ProgressBar';
 import { checkIcon } from 'icons';
 import { COURSE_STATUSES } from 'constants/statuses';
@@ -36,7 +37,6 @@ interface Props {
   imageUrl?: string;
   courseRef?: (node?: Element | null) => void;
   clientCourseRef?: (node?: Element | null) => void;
-  progress?: number;
 }
 
 const Course: React.FC<Props> = ({
@@ -52,7 +52,6 @@ const Course: React.FC<Props> = ({
   imageUrl,
   courseRef,
   clientCourseRef,
-  progress,
 }) => {
   return (
     <CourseContainer
@@ -82,8 +81,8 @@ const Course: React.FC<Props> = ({
           <MobileCourseProgress>
             <ProgressBar
               size={SIZE.medium}
-              text={`${progress}%`}
-              value={progress}
+              text={`${convertStatus(status)}%`}
+              value={Number(convertStatus(status))}
               textColor={TEXT_COLOR}
             />
           </MobileCourseProgress>
