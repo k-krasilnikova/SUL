@@ -9,16 +9,16 @@ interface IProps {
   checkboxValue: string;
   isChecked: boolean;
   title: string;
-  courseRef?: (node?: Element | null) => void;
   handleCheckboxChange: (event: BaseSyntheticEvent) => void;
+  courseRef?: (node?: Element | null) => void;
 }
 
 const CourseItem: FC<IProps> = ({
   checkboxValue,
   isChecked,
   title,
-  courseRef,
   handleCheckboxChange,
+  courseRef,
 }) => (
   <StyledItem ref={courseRef}>
     <StyledLabel

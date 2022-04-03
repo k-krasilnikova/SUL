@@ -5,12 +5,12 @@ import { useToggle } from 'hooks';
 import AddCourseButton from './AddCourseButton';
 
 const AddCourseButtonContainer: FC = () => {
-  const [isAddCourseDiaologOpen, setAddCourseDiaologOpen] = useToggle();
+  const [isAddCourseDialogOpen, setAddCourseDialogOpen] = useToggle();
 
   return (
     <AddCourseButton
-      isAddCourseDiaologOpen={isAddCourseDiaologOpen}
-      toggleAddCourseDiaologOpen={setAddCourseDiaologOpen}
+      isAddCourseDialogOpen={isAddCourseDialogOpen}
+      toggleAddCourseDiaologOpen={setAddCourseDialogOpen}
     />
   );
 };

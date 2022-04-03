@@ -1,9 +1,11 @@
 import { FC, useState, BaseSyntheticEvent } from 'react';
+import { useParams } from 'react-router';
 
 import { useGetPaginatedCourses } from 'api/courses';
 import { useAddCourseToEmployee } from 'api/manager';
 import { useDebounce, useFetchNextPage } from 'hooks';
 import { Course, ICheckedCourse } from 'types/course';
+import { formatInputValue } from 'utils/helpers/searchHelpers';
 
 import AddCourseDialog from './AddCourseDialog';
 
@@ -12,16 +14,16 @@ export interface IProps {
   handleClose: () => void;
 }
 
-const TEST_EMPLOYEE_ID = '624563549f71553a7b7f17d2';
-
 const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) => {
+  const { employeeId } = useParams();
+
   const [searchInputValue, setSearchInputValue] = useState('');
-  const [checkedCoursesList, setCheckedCoursesList] = useState<ICheckedCourse[]>([]);
+  const [selectedCoursesList, setSelectedCoursesList] = useState<ICheckedCourse[]>([]);
 
   const debouncedSearchInputValue = useDebounce(searchInputValue);
 
   const {
-    data: coursesListResponce,
+    data: coursesListResponse,
     hasNextPage,
     fetchNextPage,
     isLoading: isCoursesLoading,
@@ -29,20 +31,20 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
 
   const handleDialogClose = () => {
     setSearchInputValue('');
-    setCheckedCoursesList([]);
+    setSelectedCoursesList([]);
     handleClose();
   };
 
   const { mutate: addCourseToEmployee, isLoading: isAddCourseToEmployeeLoading } =
     useAddCourseToEmployee({
-      courseId: checkedCoursesList[0]?._id,
+      courseId: selectedCoursesList[0]?._id,
       onSuccess: handleDialogClose,
     });
 
   const lastCourseRef = useFetchNextPage({ hasNextPage, fetchNextPage });
 
   const foundedCoursesList =
-    coursesListResponce?.pages?.reduce(
+    coursesListResponse?.pages?.reduce(
       (list, currentPage) => [...list, ...currentPage?.courses],
       [] as Course[],
     ) || [];
@@ -51,28 +53,28 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
     !foundedCoursesList.length && !!debouncedSearchInputValue.length && !isCoursesLoading;
 
   const handleSearchInputChange = ({ target }: BaseSyntheticEvent) => {
-    setSearchInputValue(target.value.replace(/\s\s+/g, ' ').trimStart());
+    setSearchInputValue(formatInputValue(target.value));
   };
 
   const handleCheckboxChange = ({ target }: BaseSyntheticEvent) => {
     if (!target.checked) {
-      setCheckedCoursesList(
-        checkedCoursesList.filter(
+      setSelectedCoursesList(
+        selectedCoursesList.filter(
           ({ _id: checkedCourseId }) => checkedCourseId !== JSON.parse(target.value)._id,
         ),
       );
     } else {
-      setCheckedCoursesList([JSON.parse(target.value)]);
+      setSelectedCoursesList([JSON.parse(target.value)]);
     }
   };
 
   const handleAddCourse = () => {
-    addCourseToEmployee(TEST_EMPLOYEE_ID);
+    addCourseToEmployee(employeeId);
   };
 
   return (
     <AddCourseDialog
-      checkedCoursesList={checkedCoursesList}
+      selectedCoursesList={selectedCoursesList}
       foundedCoursesList={foundedCoursesList}
       isAddCourseToEmployeeLoading={isAddCourseToEmployeeLoading}
       isCoursesLoading={isCoursesLoading}

@@ -13,7 +13,12 @@ interface IProps {
 }
 
 const ActionButton: FC<IProps> = ({ isDisabled, isLoading, handleClick }) => (
-  <StyledButton variant="mediumContained" disabled={isDisabled} onClick={handleClick}>
+  <StyledButton
+    variant="mediumContained"
+    color="primary"
+    disabled={isDisabled}
+    onClick={handleClick}
+  >
     {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.add}
   </StyledButton>
 );

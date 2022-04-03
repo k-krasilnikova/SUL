@@ -11,6 +11,7 @@ import { EMPLOYEE_INFO } from 'constants/employeeInfo';
 import { UserSkills } from 'pages/Profile/UserSkills';
 import { ClientCourse } from 'types/clientCourse';
 
+import { AddCourseButton } from './AddCourseButton';
 import { EmployeeCourses } from './EmployeeCourses';
 import {
   ProfileBox,
@@ -23,7 +24,6 @@ import {
   SkillsAndCoursesBox,
   EmployeeButtonGroup,
   SkillsAndCoursesButton,
-  AddCourseButton,
   UserSkillsWrapper,
   UserInfoListItems,
   ExpandMoreIcon,
@@ -119,9 +119,7 @@ const ProfileContent: React.FC<Employee> = ({
           All courses
         </SkillsAndCoursesButton>
       </EmployeeButtonGroup>
-      <AddCourseButton variant="medium" color="primary">
-        + Add Course
-      </AddCourseButton>
+      <AddCourseButton />
     </SkillsAndCoursesBox>
     <UserSkillsWrapper>
       {employeeInfo === EMPLOYEE_INFO.skills ? (
