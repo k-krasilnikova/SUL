@@ -86,6 +86,7 @@ const PassingTestContainer: React.FC = () => {
   const handleCloseTimeIsOverDialog = () => {
     setTestTimeoutDialogOpen();
     handleSubmitResult();
+    naviagteTo(`${PATHS.myCourses}/${params.courseId}`);
   };
 
   const stageBack = () => {
