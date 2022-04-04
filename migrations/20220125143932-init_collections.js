@@ -931,7 +931,7 @@ const MOCKED_COURSES = [
   },
   {
     title: 'GO',
-    description: 'Learn GO and leave RB',
+    description: 'Go is a statically typed, compiled programming language designed at Google.',
     technologies: ['Go'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[5].content,
@@ -940,7 +940,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'C++ for kettle',
-    description: 'Learn С++ and be happy',
+    description:
+      'С++  is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".',
     technologies: ['C++'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[6].content,
@@ -950,7 +951,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'C# for students',
-    description: 'Learn С# and make money',
+    description:
+      'C# is a general-purpose, multi-paradigm programming language. C# encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented (class-based), and component-oriented programming disciplines.',
     technologies: ['C#'],
     requiredSkills: ['Math', 'English'],
     materials: MATERIALS[7].content,
@@ -969,7 +971,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'QA for everyone',
-    description: 'Keep calm and learn QA',
+    description:
+      'Quality assurance (QA) is a way of preventing mistakes and defects in manufactured products and avoiding problems when delivering products or services to customers.',
     technologies: ['English'],
     requiredSkills: ['English'],
     materials: MATERIALS[9].content,
