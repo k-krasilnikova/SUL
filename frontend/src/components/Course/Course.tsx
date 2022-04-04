@@ -1,12 +1,11 @@
 import React from 'react';
 
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
-import { convertStatus } from 'utils/helpers/convertStatus';
+import convertStatusToProgress from 'utils/helpers/convertStatusToProgress';
 import { ProgressBar } from 'components/ProgressBar';
 import { checkIcon } from 'icons';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
-import { TEXT_COLOR } from 'constants/progressBar';
 import { SIZE } from 'constants/sizes';
 
 import CourseInfo from './CourseInfo';
@@ -81,9 +80,9 @@ const Course: React.FC<Props> = ({
           <MobileCourseProgress>
             <ProgressBar
               size={SIZE.medium}
-              text={`${convertStatus(status)}%`}
-              value={Number(convertStatus(status))}
-              textColor={TEXT_COLOR}
+              text={convertStatusToProgress(status).progressText}
+              value={convertStatusToProgress(status).progressValue}
+              variant={convertStatusToProgress(status).progressVariant}
             />
           </MobileCourseProgress>
         )}
