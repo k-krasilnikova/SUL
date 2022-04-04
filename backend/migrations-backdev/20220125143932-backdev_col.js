@@ -1159,71 +1159,65 @@ const SKILLS = [
   },
   {
     name: 'C++',
-    image:
-      'https://c0.klipartz.com/pngpicture/680/436/gratis-png-lenguaje-de-programacion-programador-programacion-de-computadora-iconos-de-computadora-cobol-tecnologia.png',
+    image: 'https://coderrect.com/wp-content/uploads/2020/09/cpp_logo1-3.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('C++')).length,
     group: 'Web Frameworks',
   },
   {
     name: 'C#',
     image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+      'https://yt3.ggpht.com/ytc/AKedOLTJzpyndCHuGt9hgSIwy61XcSJ2W0RnFpNVlV62lQ=s900-c-k-c0x00ffffff-no-rj',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('C#')).length,
     group: 'Web Frameworks',
   },
   {
     name: 'Salesforce',
     image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+      'https://marketingtechnews.net/wp-content/uploads/sites/6/2020/03/SALESFORCE_LOGO_NEW_F2QUoeb-scaled.jpg',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Salesforce')).length,
     group: 'Web Frameworks',
   },
   {
     name: 'NodeJS',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://www.logolynx.com/images/logolynx/cb/cbbf0bae5516456e79b8c31f67bcb837.jpeg',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('NodeJS')).length,
     group: 'Data Science',
   },
   {
     name: 'Ruby',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://cdn.iconscout.com/icon/free/png-512/ruby-2752084-2284901.png',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Ruby')).length,
     group: 'Common',
   },
   {
     name: 'VueJS',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://pbs.twimg.com/profile_images/920561100604825600/k8sQjqio.jpg',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('VueJS')).length,
     group: 'Web Frameworks',
   },
   {
     name: 'Unity',
     image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+      'https://yt3.ggpht.com/a/AATXAJxUeEd5HL-LChGVjqoCWKggaWptOGF7S_dG2g0=s900-c-k-c0xffffffff-no-rj-mo',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Unity')).length,
     group: 'Common',
   },
   {
     name: 'Android',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://i.playground.ru/p/17DpGFS55XPqjLrO8-B3Bw.jpeg',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Android')).length,
     group: 'Common',
   },
   {
     name: 'Bootstrap',
     image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+      'https://yt3.ggpht.com/ytc/AKedOLSh4sUIflnFeLMihKm3yhnHArZMikNvcVMT80Ax=s900-c-k-c0x00ffffff-no-rj',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Bootstrap')).length,
     group: 'Web Frameworks',
   },
   {
     name: 'jQuery',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://fb.ru/misc/i/gallery/45074/2221539.jpg',
     maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('jQuery')).length,
     group: 'Web Frameworks',
   },
