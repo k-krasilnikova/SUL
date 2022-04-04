@@ -8,6 +8,7 @@
     },
     "scripts": {
         "dev": "cross-env NODE_ENV=local nodemon ./src/app.ts",
+        "devdebug": "cross-env NODE_ENV=test nodemon ./src/app.ts",
         "backdev": "cross-env NODE_ENV=dev nodemon ./src/app.ts",
         "build": "cross-env NODE_ENV=production tsc && npx tsc-alias",
         "test": "cross-env NODE_ENV=test jest --coverage",
