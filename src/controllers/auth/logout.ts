@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { addTokenToBlackList, clearTokenProvider } from 'db/providers/authProvider';
-import { extractAccessTokenValue } from '../../utils/auth/authUtils';
+import { extractAccessTokenValue } from 'utils/auth/authUtils';
 
 const logout = async (
   req: Request,
