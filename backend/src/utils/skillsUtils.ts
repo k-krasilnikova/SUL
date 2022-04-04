@@ -3,16 +3,17 @@ import { ObjectId } from 'mongoose';
 import { getCommonSkill, getUserSkill, updateUserSkill } from 'db/providers/skillProvider';
 import { NOTHING } from 'config/constants';
 
-const calculatePoints = (courseComplexity: number, userScore: number) => {
-  const isAdditionalScore = courseComplexity > userScore;
-  return isAdditionalScore ? courseComplexity - userScore : NOTHING;
+const calculatePoints = (skillPoints: number, userScore: number) => {
+  const isAdditionalScore = skillPoints > userScore;
+  return isAdditionalScore ? skillPoints - userScore : NOTHING;
 };
 
 export const addPointToUserSkill =
-  (complexity: number, userId: string) => async (commonSkillId: string | ObjectId) => {
-    const { score } = await getUserSkill(userId, commonSkillId);
-    const { maxScore } = await getCommonSkill(commonSkillId);
+  (userId: string) =>
+  async ({ skill, points }: { skill: string | ObjectId; points: number }) => {
+    const { score } = await getUserSkill(userId, skill);
+    const { maxScore } = await getCommonSkill(skill);
     const isSkillIncomplete = score < maxScore;
-    const points = calculatePoints(complexity, score);
-    return isSkillIncomplete && updateUserSkill(userId, points, commonSkillId);
+    const newPoints = calculatePoints(points, score);
+    return isSkillIncomplete && updateUserSkill(userId, newPoints, skill);
   };

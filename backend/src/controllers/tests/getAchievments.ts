@@ -21,7 +21,7 @@ const getAchievments = async (
 
     const clientCourse = await getClientCourseProvider(clientCourseId);
     const { course } = clientCourse;
-    const { technologies: techsToAchieve, complexity } = course;
+    const { technologies: techsToAchieve } = course;
     const userId = clientCourse.user.toString();
 
     if (
@@ -32,14 +32,12 @@ const getAchievments = async (
       const user = await getUserProvider(userId);
       const { oldSkills = [], newSkills = [] } = specifySkills(userSkills, techsToAchieve);
 
-      const updatedUserSkills = await Promise.all(
-        oldSkills.map(addPointToUserSkill(complexity, userId)),
-      );
+      const updatedUserSkills = await Promise.all(oldSkills.map(addPointToUserSkill(userId)));
       const filterUpdatedUserSkills = updatedUserSkills.filter(
         (skill): skill is IUserSkill => !!skill,
       );
       const insertedUserSkills = await Promise.all(
-        newSkills.map(async (skillId) => addUserSkill(userId, skillId)),
+        newSkills.map(async (newSkill) => addUserSkill(userId, newSkill.skill)),
       );
 
       const updatedTechnologies = await specifyUserTechnologies(
