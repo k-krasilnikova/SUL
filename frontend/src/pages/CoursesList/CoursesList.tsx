@@ -21,6 +21,8 @@ import ActionButton from 'components/Button/ActionButton';
 import { COURSE_DISABLE_DAYS } from 'constants/time';
 import getCurrentPageName from 'utils/helpers/getCurentPageName';
 import { chooseListPath } from 'utils/helpers/paths/choosePath';
+import isLastElem from 'utils/helpers/arrays/isLastElem';
+import { Course } from 'types/course';
 
 import {
   PageContainer,
@@ -88,7 +90,7 @@ const CoursesList: React.FC<CoursesProps> = ({
                   imageUrl={course?.avatar}
                   status={clientCourses && clientCourses[index].status}
                   progress={clientCourses && countProgress(clientCourses[index].progress)}
-                  courseRef={courses.length - 1 === index ? lastCourseRef : undefined}
+                  courseRef={isLastElem<Course>(courses, index) ? lastCourseRef : undefined}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
                     <CourseActions key={`${course._id}_actions`}>
