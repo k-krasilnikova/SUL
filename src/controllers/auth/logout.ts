@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { addTokenToBlackList, clearTokenProvider } from 'db/providers/authProvider';
+import { extractAccessTokenValue } from '../../utils/auth/authUtils';
 
 const logout = async (
   req: Request,
@@ -12,7 +13,8 @@ const logout = async (
     await clearTokenProvider(userId);
     res.clearCookie('refreshToken');
 
-    const accessToken = req.headers.authorization?.split(' ')[1];
+    const accessToken = extractAccessTokenValue(req);
+
     if (accessToken) {
       await addTokenToBlackList(accessToken);
     }
