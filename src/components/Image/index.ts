@@ -1,3 +1,1 @@
-import React from 'react';
-
-export const Image = React.lazy(() => import('./Image'));
+export { default as Image } from './Image';
