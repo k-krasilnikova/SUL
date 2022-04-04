@@ -180,31 +180,6 @@ export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({
   },
 }));
 
-export const AddCourseButton = styled(Button)({
-  width: '146px',
-  height: '40px',
-  margin: '-2px 0 0 500px !important',
-  fontWeight: '500',
-  fontSize: '20px !important',
-  padding: '0x !important',
-  [theme.breakpoints.down('xl')]: {
-    fontSize: '18px !important',
-    width: '126px',
-    height: '36px',
-    margin: '-2px 0 0 35% !important',
-  },
-  [theme.breakpoints.down('lg')]: {
-    fontSize: '14px !important',
-    height: '32px',
-    margin: '-2px 0 0 10% !important',
-  },
-  [theme.breakpoints.down('md')]: {
-    width: '86px',
-    height: '28px',
-    margin: '0 0 0 7% !important',
-  },
-});
-
 export const UserSkillsWrapper = styled('div')({
   maxWidth: '100%',
   marginTop: '52px',
