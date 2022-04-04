@@ -58,7 +58,7 @@ clientCoursesRouter.get(
   getClientCourseById,
 );
 clientCoursesRouter.put(
-  SubRoutes.passCourse,
+  SubRoutes.passCourseStage,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   passCourse,
 );
