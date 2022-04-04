@@ -7,4 +7,6 @@ export enum ButtonLabels {
   add = 'Add',
   addWithPlus = '+Add',
   addCourse = '+ Add course',
+  skills = 'Skills',
+  allCourses = 'All courses',
 }
