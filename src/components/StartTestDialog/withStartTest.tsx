@@ -49,16 +49,12 @@ const withStartTest =
 
     return (
       <>
-        <Component
-          handleDialogOpen={() => setOpen(true)}
-          isTestEnable={!isTestDisabled()}
-          {...props}
-        />
+        <Component handleDialogOpen={setOpen} isTestEnable={!isTestDisabled()} {...props} />
         <WarningStartTestDialog
           handleStartTest={handleStartTest}
           isOpened={isOpen}
           testTimeout={testTimeout}
-          handleClose={() => setOpen(false)}
+          handleClose={setOpen}
         />
       </>
     );
