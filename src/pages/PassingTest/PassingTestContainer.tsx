@@ -17,7 +17,11 @@ const PassingTestContainer: React.FC = () => {
   const params = useParams();
   const naviagteTo = useNavigate();
 
-  const { data: courseTestResponse, isLoading: courseTestResponseIsLoading } = useGetCourseTest({
+  const {
+    data: courseTestResponse,
+    isLoading: courseTestResponseIsLoading,
+    isError: courseTestResponseIsError,
+  } = useGetCourseTest({
     courseId: params.courseId,
   });
   const { data: clientCourseResponse, isLoading: clientCourseResponseIsLoading } =
@@ -99,7 +103,8 @@ const PassingTestContainer: React.FC = () => {
 
   const isShouldRedirect =
     !clientCourseResponseIsLoading &&
-    (courseStatus === COURSE_STATUSES.failed || courseStatus === COURSE_STATUSES.successful);
+    (courseStatus === COURSE_STATUSES.failed || courseStatus === COURSE_STATUSES.successful) &&
+    courseTestResponseIsError;
 
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
