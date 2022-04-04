@@ -22,37 +22,37 @@ const ProgressBar: React.FC<ProgressProps> = ({
       text={text}
       strokeWidth={10}
       styles={buildStyles({
-        textSize: '24px',
+        textSize: '14px',
         textColor: textColor || TEXT_COLOR,
         pathColor: color || PROGRESS_COLOR,
         trailColor: trailColor || '#d6d6d6',
         ...(variant === VARIANTS.completed && {
           textColor: '#000000',
-          pathColor: '#1cc02c',
+          pathColor: '#9be2a2',
           trailColor: '#eaeaea',
-          textSize: '20px',
         }),
         ...(variant === VARIANTS.failed && {
           textColor: '#000000',
+          pathColor: '#ff9494',
+          trailColor: '#ff9494',
+        }),
+        ...(variant === VARIANTS.failedWithPercentage && {
+          textColor: '#000000',
           pathColor: '#d43e41',
           trailColor: '#eaeaea',
-          textSize: '20px',
         }),
         ...(variant === VARIANTS.incompleteMobile && {
           textColor: ' #131313',
           pathColor: '#1cc02c',
           trailColor: '#eaeaea',
-          textSize: '15px',
         }),
         ...(variant === VARIANTS.successfulMobile && {
           textColor: ' #131313',
           pathColor: '#1cc02c',
           trailColor: '#36c54480',
-          textSize: '15px',
         }),
         ...(variant === VARIANTS.successful && {
           textColor: '#000000',
-          textSize: '15px',
           trailColor: '#36c54480',
         }),
       })}

@@ -6,6 +6,7 @@ export const COURSE_STATUSES = {
   rejected: 'rejected',
   completed: 'completed',
   successful: 'successful',
+  assessment: 'assessment',
   failed: 'failed',
 };
 
@@ -13,11 +14,12 @@ export const COURSE_LABELS: { [key: string]: string } = {
   pending: 'Pending',
   approved: 'Start the course',
   started: 'Continue',
-  failed: 'Continue',
   successful: 'Completed',
   testing: 'Continue the test',
   rejected: 'Declined',
   completed: 'Completed',
+  assessment: 'Assessment',
+  failed: 'Failed',
 };
 
 export const NOTIFICATION_STATUSES = {
