@@ -8,6 +8,7 @@ import { PATHS } from 'constants/routes';
 import { INFO } from 'constants/coutseInfoTypes';
 import { Course } from 'types/course';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
+import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import { Image, CourseTitle, SearchResultCourse } from './styled';
 
@@ -30,8 +31,8 @@ const SearchResultItem: React.FC<CourseFound> = ({
     key={course._id}
     to={
       foundInMyCourses
-        ? `${PATHS.myCourses}/${foundInMyCourses}`
-        : `${PATHS.coursesList}/${course._id}`
+        ? transformRoute(PATHS.myCourseDetails, foundInMyCourses)
+        : transformRoute(PATHS.courseDetails, course._id)
     }
   >
     <SearchResultCourse divider={addDivider}>
