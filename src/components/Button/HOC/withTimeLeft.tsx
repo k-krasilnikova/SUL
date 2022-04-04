@@ -13,7 +13,7 @@ type IncomingProps = {
 const withTimeLeft =
   <T extends IncomingProps>(Component: React.ComponentType<T>) =>
   (props: T): JSX.Element => {
-    const [isTimeVisible, setTimeVisible] = useToggle(false);
+    const [isTimeVisible, setTimeVisible] = useToggle();
     const [time, setTime] = useState<string | undefined>();
     const { applyDate, testDate, timeout } = props;
     useEffect(() => {
@@ -25,7 +25,7 @@ const withTimeLeft =
     }, [applyDate, testDate, timeout]);
 
     return (
-      <div onMouseEnter={() => setTimeVisible(true)} onMouseLeave={() => setTimeVisible(false)}>
+      <div onMouseEnter={setTimeVisible} onMouseLeave={setTimeVisible}>
         <Component {...props}>{isTimeVisible && time}</Component>
       </div>
     );

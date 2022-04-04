@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
 
 import { Course } from 'types/course';
 import { useApplyCourse, useGetPaginatedCourses } from 'api/courses';
 import { useGetProfile } from 'api/profile';
+import { useFetchNextPage } from 'hooks';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { ACTIVE_ROLES } from 'constants/menuRoles';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
@@ -45,17 +45,7 @@ const CoursesContainer: React.FC = () => {
     [] as Course[],
   );
 
-  const { ref: courseRef, inView } = useInView({
-    root: null,
-    threshold: 1.0,
-    rootMargin: '0px',
-  });
-
-  useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [inView, hasNextPage]); // eslint-disable-line react-hooks/exhaustive-deps
+  const courseRef = useFetchNextPage({ hasNextPage, fetchNextPage });
 
   return (
     <CoursesList
