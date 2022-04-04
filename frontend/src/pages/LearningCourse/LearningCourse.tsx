@@ -1,73 +1,46 @@
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { Back, Forward } from 'components/Arrows';
-import { MATERIAL } from 'constants/materials';
-import { ClientCourse } from 'types/clientCourse';
-import { CustomButton } from 'components/Button/styled';
 import { ButtonLabels } from 'components/Button/ButtonsEnums';
-import StartTestButton from 'components/Button/StartTestButton';
-import { playVideo } from 'icons';
 import { PATHS } from 'constants/routes';
-import { TEST_DISABLE_DAYS } from 'constants/time';
+import { ClientCourse, ICourseInfo } from 'types/clientCourse';
 
-import {
-  LearningPageContainer,
-  BackButton,
-  LearningWrapper,
-  StepperController,
-  Step,
-  MaterialWrapper,
-  MaterialText,
-  MaterialVideo,
-  DescriptionWrapper,
-  Description,
-  DescriptionTitle,
-  DescriptionText,
-  ButtonWrapper,
-  StyledButton,
-  ToggleDescription,
-  ExpandLessIcon,
-  ExpandMoreIcon,
-  PlayVideoIcon,
-} from './styled';
+import ActionButton from './ActionButton';
+import CourseInfo from './CourseInfo';
+import CourseInfoToggle from './CourseInfoToggle';
+import Material from './Material';
+import StageController from './StageController';
+import { LearningPageContainer, BackButton, LearningWrapper } from './styled';
 
-interface LearningProps {
+interface IProps {
   stage: number;
   maxStage: number;
-  stageBack: () => void;
-  stageForward: () => void;
-  backDisabled: boolean;
-  forwardDisabled: boolean;
-  material: string;
-  materialType: string;
-  videoPreview: string | boolean;
-  isDescriptionOpen: boolean;
-  toggleDescriptionOpen: () => void;
-  isProgressCompleted: boolean;
+  isBackDisabled: boolean;
+  isForwardDisabled: boolean;
+  isCourseInfoOpen: boolean;
+  isTestEnabled: boolean;
+  courseInfo: ICourseInfo;
+  courseMaterial: string;
+  handleStageBack: () => void;
+  handleStageForward: () => void;
+  togglCourseInfOpen: () => void;
   clientCourse?: ClientCourse;
-  courseDescription?: {
-    title: string;
-    info: string;
-  };
 }
 
-const LearningCourse: React.FC<LearningProps> = ({
+const LearningCourse: FC<IProps> = ({
   stage,
   maxStage,
-  stageBack,
-  stageForward,
-  courseDescription,
-  isProgressCompleted,
-  backDisabled,
-  forwardDisabled,
-  material,
-  materialType,
-  videoPreview,
-  isDescriptionOpen,
+  isTestEnabled,
+  isBackDisabled,
+  isForwardDisabled,
+  isCourseInfoOpen,
+  courseInfo,
+  courseMaterial,
+  handleStageBack,
+  handleStageForward,
+  togglCourseInfOpen,
   clientCourse,
-  toggleDescriptionOpen,
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
@@ -77,59 +50,25 @@ const LearningCourse: React.FC<LearningProps> = ({
         </BackButton>
       </Link>
       <LearningWrapper>
-        <StepperController>
-          <StyledButton onClick={stageBack} disabled={backDisabled}>
-            <Back arrowDisabled={backDisabled} />
-          </StyledButton>
-          <Step>
-            {stage}/{maxStage}
-          </Step>
-          <StyledButton onClick={stageForward} disabled={forwardDisabled}>
-            <Forward arrowDisabled={forwardDisabled} />
-          </StyledButton>
-        </StepperController>
-        <MaterialWrapper>
-          {materialType === MATERIAL.video ? (
-            <MaterialVideo
-              url={material}
-              playIcon={<PlayVideoIcon src={playVideo} alt="play" />}
-              light={videoPreview}
-              playing
-              controls
-              width="100%"
-              height="100%"
-              frameBorder="0"
-            />
-          ) : (
-            <MaterialText>{material}</MaterialText>
-          )}
-        </MaterialWrapper>
-        <ToggleDescription onClick={toggleDescriptionOpen}>
-          Comments
-          {isDescriptionOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-        </ToggleDescription>
-        <ButtonWrapper>
-          {isProgressCompleted ? (
-            <StartTestButton
-              status={clientCourse?.status}
-              testDate={clientCourse?.testDate}
-              progress={clientCourse?.progress}
-              timeout={TEST_DISABLE_DAYS}
-            />
-          ) : (
-            <CustomButton variant="contained" onClick={stageForward}>
-              {ButtonLabels.next}
-            </CustomButton>
-          )}
-        </ButtonWrapper>
-        {courseDescription && (
-          <DescriptionWrapper isDescriptionOpen={isDescriptionOpen}>
-            <Description>
-              <DescriptionTitle>{courseDescription.title}</DescriptionTitle>
-              <DescriptionText>{courseDescription.info}</DescriptionText>
-            </Description>
-          </DescriptionWrapper>
-        )}
+        <StageController
+          stage={stage}
+          maxStage={maxStage}
+          isBackDisabled={isBackDisabled}
+          isForwardDisabled={isForwardDisabled}
+          handleStageBack={handleStageBack}
+          handleStageForward={handleStageForward}
+        />
+        <Material courseMaterial={courseMaterial} />
+        <CourseInfoToggle
+          isCourseInfoOpen={isCourseInfoOpen}
+          toggleCourseInfoOpen={togglCourseInfOpen}
+        />
+        <ActionButton
+          isTestEnabled={isTestEnabled}
+          handleStageForward={handleStageForward}
+          clientCourse={clientCourse}
+        />
+        <CourseInfo courseInfo={courseInfo} isCourseInfoOpen={isCourseInfoOpen} />
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>

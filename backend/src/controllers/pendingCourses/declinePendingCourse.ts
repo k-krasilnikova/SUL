@@ -31,7 +31,7 @@ const declinePendingCourse = async (
     }
     const { status } = await getStatusProvider(clientCourseId);
     if (status !== CourseStatus.pending) {
-      throw new BadRequestError(`Can't decline course with status: ${status}`);
+      throw new BadRequestError(`Can't decline course with status: ${status}.`);
     }
 
     const { _id: manager }: IUser = await getUserProvider(managerId);
@@ -39,8 +39,8 @@ const declinePendingCourse = async (
     await updateClientCourseField(clientCourseId, COURSE_FILEDS.status, CourseStatus.rejected);
     await removeFromPendingFieldCourses(manager, clientCourse._id);
 
+    results.updateStatus = 'Course was declined.';
     await updateClientCourseField(clientCourseId, COURSE_FILEDS.applyDate, Date.now());
-    results.updateStatus = 'Course was declined';
     next();
   } catch (error) {
     next(error);

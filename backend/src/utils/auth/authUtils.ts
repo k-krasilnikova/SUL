@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { Request } from 'express';
 
 import {
   DEFAULT_ACCESS_TIMEOUT,
@@ -44,6 +45,10 @@ const verifyRefreshToken = (refreshToken: string): IRefreshJwtPayload => {
 
   const payload = jwt.verify(refreshToken, secret) as IRefreshJwtPayload;
   return payload;
+};
+
+export const extractAccessTokenValue = (req: Request) => {
+  return req.headers.authorization?.split(' ')[1];
 };
 
 export { generateJWT, verifyAccessToken, verifyRefreshToken };

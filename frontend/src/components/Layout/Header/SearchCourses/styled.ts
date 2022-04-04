@@ -1,15 +1,16 @@
 import styled from 'styled-components';
-import { ListItem, Input, Typography } from '@mui/material';
+import { ListItem, Typography } from '@mui/material';
 
 import { imageDefault } from 'icons';
 import theme from 'themeSettings';
 import { HEADER_HEIGHT_IPAD } from 'components/Layout/Header/styled';
+import { SearchInput } from 'components/SearchInput';
 
 interface CourseAvatar {
   avatar?: string;
 }
 
-export const Search = styled(Input)({
+export const Search = styled(SearchInput)({
   flexGrow: '0',
   flexShrink: '1',
   borderRadius: '3px',

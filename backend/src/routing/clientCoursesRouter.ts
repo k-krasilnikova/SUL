@@ -13,41 +13,66 @@ import getAchievments from 'controllers/tests/getAchievments';
 import startTest from 'controllers/tests/startTest';
 import getTestResults from 'controllers/tests/getTestResults';
 import unitTestResults from 'controllers/tests/sendTestResults';
+import manageAssessment from 'controllers/clientCourses/manageAssessment';
 import getTestTime from 'controllers/tests/getTestTime';
+import adapterSender from 'controllers/pendingCourses/adapterSender';
 
 const clientCoursesRouter = Router();
 
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.test}/time`,
-  withAuth([USER_ROLES.EMPLOYEE]),
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getTestTime,
 );
 
 clientCoursesRouter.put(
   `${Params.id}${SubRoutes.test}${SubRoutes.result}`,
-  withAuth([USER_ROLES.EMPLOYEE]),
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getTestResults,
   getAchievments,
   unitTestResults,
 );
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.test}${SubRoutes.start}`,
-  withAuth([USER_ROLES.EMPLOYEE]),
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   startTest,
 );
-clientCoursesRouter.get(`${Params.id}${SubRoutes.test}`, withAuth([USER_ROLES.EMPLOYEE]), getTest);
+clientCoursesRouter.get(
+  `${Params.id}${SubRoutes.test}`,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
+  getTest,
+);
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.start}`,
-  withAuth([USER_ROLES.EMPLOYEE]),
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   startCourse,
 );
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.finish}`,
-  withAuth([USER_ROLES.EMPLOYEE]),
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   finishCourse,
 );
-clientCoursesRouter.get(`${Params.id}`, withAuth([USER_ROLES.EMPLOYEE]), getClientCourseById);
-clientCoursesRouter.put(`${Params.id}`, withAuth([USER_ROLES.EMPLOYEE]), passCourse);
-clientCoursesRouter.get(`${Params.noParams}`, withAuth([USER_ROLES.EMPLOYEE]), getClientCourses);
+clientCoursesRouter.get(
+  `${Params.id}`,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
+  getClientCourseById,
+);
+clientCoursesRouter.put(
+  `${Params.id}`,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
+  passCourse,
+);
+clientCoursesRouter.get(
+  `${Params.noParams}`,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
+  getClientCourses,
+);
+clientCoursesRouter.put(
+  `${Params.id}${SubRoutes.assessment}`,
+  withAuth([USER_ROLES.MANAGER]),
+  manageAssessment,
+  getAchievments,
+  adapterSender,
+);
 
 export default clientCoursesRouter;

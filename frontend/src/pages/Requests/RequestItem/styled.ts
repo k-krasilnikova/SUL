@@ -16,8 +16,8 @@ export const ImageWrapper = styled('div')({
 
 export const CourseImageWrapper = styled('div')({
   margin: '2px 8px 0 35px !important',
-  height: '14.25px',
-  width: '19px',
+  height: '20px',
+  width: '30px',
 });
 
 export const Text = styled('p')({
@@ -77,11 +77,12 @@ export const SecondaryText = styled(Text)<IStatus>(({ status }) => ({
 }));
 
 export const ActionButton = styled(Button)({
-  height: '32px',
+  height: '34px',
   width: '64px',
   '&.MuiButton-root': {
     fontWeight: '400',
-    fontSize: '14px',
+    fontSize: '16px',
+    lineHeight: '14px',
   },
   [theme.breakpoints.down('xl')]: {
     marginLeft: '10px !important',
@@ -89,14 +90,13 @@ export const ActionButton = styled(Button)({
   [theme.breakpoints.down(1200)]: {
     '&.MuiButton-root': {
       fontSize: '12px',
-      lineHeight: '10px',
     },
   },
 });
 
 export const InterviewActionButton = styled(ActionButton)({
-  height: '32px',
-  width: '158px',
+  height: '34px',
+  width: '165px',
   '&.MuiButton-root': {
     padding: '0',
   },

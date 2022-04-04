@@ -1,8 +1,10 @@
 export enum ButtonLabels {
   applyCourse = 'Apply the Course',
-  startTest = 'Start Test',
+  startTest = 'Start the Test',
   details = 'Details',
   back = 'Back',
   next = 'Next',
-  add = '+Add',
+  add = 'Add',
+  addWithPlus = '+Add',
+  addCourse = '+ Add course',
 }

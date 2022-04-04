@@ -18,6 +18,8 @@ const withDisable =
           COURSE_STATUSES.rejected,
           COURSE_STATUSES.completed,
           COURSE_STATUSES.successful,
+          COURSE_STATUSES.assessment,
+          COURSE_STATUSES.failed,
         ].includes(status)
       ) {
         setDisable(true);
