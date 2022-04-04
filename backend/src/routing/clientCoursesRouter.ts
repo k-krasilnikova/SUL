@@ -37,7 +37,11 @@ clientCoursesRouter.get(
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   startTest,
 );
-clientCoursesRouter.get(`${Params.id}${SubRoutes.test}`, withAuth([USER_ROLES.EMPLOYEE]), getTest);
+clientCoursesRouter.get(
+  `${Params.id}${SubRoutes.test}`,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
+  getTest,
+);
 clientCoursesRouter.get(
   `${Params.id}${SubRoutes.start}`,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
