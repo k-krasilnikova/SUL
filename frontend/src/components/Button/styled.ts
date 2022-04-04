@@ -6,6 +6,7 @@ import theme from 'themeSettings';
 export const CustomButton = styled(Button)({
   height: '50px',
   width: '150px',
+  fontSize: '16px !important',
   minWidth: '131px !important',
   marginRight: '16px !important',
   padding: '12px !important',
