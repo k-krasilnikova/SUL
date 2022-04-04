@@ -19,7 +19,6 @@ export const PATHS: {
   learnClientCourse: string;
   courseTest: string;
   skillsMap: string;
-  id: string;
 } = {
   home: '/',
   profile: '/profile',
@@ -41,7 +40,6 @@ export const PATHS: {
   learnClientCourse: 'learn/:courseId',
   courseTest: 'learn/:courseId/test',
   skillsMap: '/skills-map',
-  id: ':id',
 };
 
 export const API: {
