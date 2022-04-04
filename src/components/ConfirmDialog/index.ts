@@ -1,3 +1,1 @@
-import React from 'react';
-
-export const ConfirmDialog = React.lazy(() => import('./ConfirmDialog'));
+export { default as ConfirmDialog } from './ConfirmDialog';
