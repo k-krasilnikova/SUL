@@ -19,18 +19,17 @@ export const Cell = styled(TableCell)({
   },
   '&.MuiTableCell-head': {
     color: '#6c6c6c',
-    fontSize: '18px',
+    fontSize: '16px',
     fontWeight: '400',
     lineHeight: '21px',
     paddingBottom: '30px',
     [theme.breakpoints.down('xl')]: {
-      fontSize: '16px',
       lineHeight: '18px',
       paddingBottom: '26px',
     },
   },
   '&.MuiTableCell-body': {
-    fontSize: '24px !important',
+    fontSize: '18px',
     fontWeight: '400',
     letterSpacing: '0.01em',
     color: '#131313',
@@ -38,7 +37,6 @@ export const Cell = styled(TableCell)({
     paddingBottom: '23px',
     paddingTop: '16px',
     [theme.breakpoints.down('xl')]: {
-      fontSize: '16px !important',
       paddingBottom: '16px',
       paddingTop: '14px',
     },
@@ -80,17 +78,15 @@ export const UserName = styled('p')({
   padding: '0',
   [theme.breakpoints.down('xl')]: {
     lineHeight: '21px',
-    fontSize: '18px',
   },
 });
 
 export const Position = styled('p')({
-  fontSize: '20px',
+  fontSize: '16px',
   lineHeight: '23px',
   marginTop: '8px',
   color: '#131313',
   [theme.breakpoints.down('xl')]: {
-    fontSize: '16px !important',
     lineHeight: '18px',
     marginTop: '10px',
   },
