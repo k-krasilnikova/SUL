@@ -1,5 +1,5 @@
 import { FC } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { AuthorizedLayout } from 'components/Layout';
 
@@ -47,11 +47,11 @@ const LearningCourse: FC<IProps> = ({
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
-      {/* <Link to={PATHS.myCourses}> */}
-      <BackButton disableElevation variant="contained" to={PATHS.myCourses}>
-        {ButtonLabels.back}
-      </BackButton>
-      {/* </Link> */}
+      <Link to={PATHS.myCourses}>
+        <BackButton disableElevation variant="contained">
+          {ButtonLabels.back}
+        </BackButton>
+      </Link>
       <LearningWrapper>
         <StageController
           stage={stage}
