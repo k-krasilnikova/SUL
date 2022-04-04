@@ -32,7 +32,19 @@ const getTestResults = async (
     }
 
     const correctAnswers = await getTrueAnswersProvider(testId);
+
     const userWrongAnswers = checkTestResults(answers, correctAnswers.questions);
+
+    const testResultWithAnswers = correctAnswers.questions.map((correctAnswer) => {
+      const result = userWrongAnswers.find((item) => correctAnswer.qN === item.qN);
+      if (result) {
+        return { qN: correctAnswer.qN, aN: false };
+      }
+      return { qN: correctAnswer.qN, aN: true };
+    });
+
+    await updateClientCourseField(courseId, COURSE_FILEDS.testResult, testResultWithAnswers);
+
     const result = countTestResult(userWrongAnswers, correctAnswers.questions);
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: TestStatus.notPassed };
