@@ -17,8 +17,7 @@ import { OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { ButtonsWrapper, CustomButton } from 'components/Button/styled';
-import StartTestButton from 'components/Button/StartTestButton';
-import { COURSE_DISABLE_DAYS, TEST_DISABLE_DAYS } from 'constants/time';
+import { COURSE_DISABLE_DAYS } from 'constants/time';
 import ActionButton from 'components/Button/ActionButton';
 import { CourseItem } from 'components/Course';
 import { ButtonLabels } from 'components/Button/ButtonsEnums';
@@ -119,22 +118,14 @@ const DetailedCourse: React.FC<IProps> = ({
             ) : (
               <ButtonsWrapper>
                 {!isCourseCompleted && (
-                  <>
-                    <StartTestButton
-                      testDate={clientCourseData?.testDate}
-                      progress={clientCourseData?.progress}
-                      timeout={TEST_DISABLE_DAYS}
-                      status={status}
-                    />
-                    <ActionButton
-                      label={COURSE_LABELS[status]}
-                      status={status}
-                      progress={clientCourseData?.progress}
-                      timeout={COURSE_DISABLE_DAYS}
-                      courseId={id}
-                      applyDate={clientCourseData?.applyDate}
-                    />
-                  </>
+                  <ActionButton
+                    label={COURSE_LABELS[status]}
+                    status={status}
+                    progress={clientCourseData?.progress}
+                    timeout={COURSE_DISABLE_DAYS}
+                    courseId={id}
+                    applyDate={clientCourseData?.applyDate}
+                  />
                 )}
               </ButtonsWrapper>
             ))}
