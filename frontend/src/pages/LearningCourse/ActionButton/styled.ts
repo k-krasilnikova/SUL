@@ -7,7 +7,6 @@ export const ActionButtonWrapper = styled('div')({
   verticalAlign: 'top',
   width: '155px',
   marginLeft: '40px',
-  color: 'white',
   [theme.breakpoints.down('xl')]: {
     marginLeft: '38px',
   },

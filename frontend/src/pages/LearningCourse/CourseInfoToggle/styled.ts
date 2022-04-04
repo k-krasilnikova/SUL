@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
 
 import theme from 'themeSettings';
@@ -9,7 +8,6 @@ export const CourseInfoToggleButton = styled('div')({
   marginRight: 'calc(100% - 294px) !important',
   height: '40px',
   padding: '8px 0px 12px 0px',
-  fontFamily: '"Ubuntu", sans-serif',
   fontSize: '16px',
   lineHeight: '16px',
   fontWeight: '500',
