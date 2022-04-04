@@ -7,13 +7,11 @@ interface IProps {
   toggleCourseInfoOpen: () => void;
 }
 
-const CourseInfoToggle: FC<IProps> = ({ isCourseInfoOpen, toggleCourseInfoOpen }) => {
-  return (
-    <CourseInfoToggleButton onClick={toggleCourseInfoOpen}>
-      Comments
-      {isCourseInfoOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-    </CourseInfoToggleButton>
-  );
-};
+const CourseInfoToggle: FC<IProps> = ({ isCourseInfoOpen, toggleCourseInfoOpen }) => (
+  <CourseInfoToggleButton onClick={toggleCourseInfoOpen}>
+    Comments
+    {isCourseInfoOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+  </CourseInfoToggleButton>
+);
 
 export default CourseInfoToggle;
