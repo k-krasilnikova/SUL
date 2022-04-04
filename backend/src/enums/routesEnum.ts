@@ -22,7 +22,7 @@ enum SubRoutes {
   finishCourse = '/:id/finish',
   getClientCourse = '/:id',
   getClientCourses = '',
-  passCourse = '/:id',
+  passCourseStage = '/:id',
   manageCourseAssessment = '/:id/assessment',
   getCourseMaterials = '/:id/materials',
   getCourse = '/:id',
