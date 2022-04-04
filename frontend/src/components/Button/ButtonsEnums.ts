@@ -4,5 +4,7 @@ export enum ButtonLabels {
   details = 'Details',
   back = 'Back',
   next = 'Next',
-  add = '+Add',
+  add = 'Add',
+  addWithPlus = '+Add',
+  addCourse = '+ Add course',
 }

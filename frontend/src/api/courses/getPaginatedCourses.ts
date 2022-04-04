@@ -17,7 +17,7 @@ interface HookResult {
   hasNextPage?: boolean;
 }
 
-const useGetPaginatedCourses = (): HookResult => {
+const useGetPaginatedCourses = (title?: string): HookResult => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -26,15 +26,17 @@ const useGetPaginatedCourses = (): HookResult => {
     const apiClient = apiClientWrapper();
     const response = await apiClient.get(`${API.getCourses}`, {
       params: {
+        title,
         pageN: pageParam,
       },
     });
     return { page: pageParam, courses: response.data };
   };
   const { fetchNextPage, hasNextPage, data, isLoading } = useInfiniteQuery(
-    'paginatedCoursesList',
+    ['paginatedCoursesList', title],
     getCourses,
     {
+      enabled: title === undefined ? true : !!title,
       getPreviousPageParam: (firstPage) =>
         firstPage.page === FIRST_PAGE ? false : firstPage.page - PAGE_CHANGE,
       getNextPageParam: (lastPage) =>

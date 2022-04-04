@@ -1,6 +1,5 @@
 import React from 'react';
-import { Search as SearchIcon } from '@mui/icons-material';
-import { ClickAwayListener, InputAdornment } from '@mui/material';
+import { ClickAwayListener } from '@mui/material';
 
 import { Course } from 'types/course';
 import SearchResult from 'components/Layout/Header/SearchCourses/SearchResult';
@@ -31,13 +30,6 @@ const SearchCourses: React.FC<Props> = ({
       <Search
         className="search"
         disableUnderline
-        placeholder="Search"
-        inputProps={{ maxLength: 100 }}
-        startAdornment={
-          <InputAdornment position="start">
-            <SearchIcon color="disabled" fontSize="medium" />
-          </InputAdornment>
-        }
         onChange={searchCourses}
         onKeyDown={checkSpace}
         onPaste={checkPastedValue}
