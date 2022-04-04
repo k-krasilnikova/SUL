@@ -4,6 +4,7 @@ import { TErrorHandler } from 'interfaces/commonErrorHandling';
 import CommonHttpError from 'classes/errors/common/CommonHttpError';
 import InternalServerError from 'classes/errors/serverErrors/InternalServerError';
 import logger from 'utils/log/logger';
+import { isLogsDisplayed } from 'utils/log/loggerHelper';
 
 const handleError: TErrorHandler = (
   error: CommonHttpError,
@@ -13,10 +14,14 @@ const handleError: TErrorHandler = (
 ) => {
   const { statusCode, message } = error;
   if (!statusCode && next) {
-    logger.error(error);
+    if (isLogsDisplayed()) {
+      logger.error(error);
+    }
     next();
   } else {
-    logger.warn(error);
+    if (isLogsDisplayed()) {
+      logger.warn(error);
+    }
     res.status(statusCode).json(message);
   }
 };
