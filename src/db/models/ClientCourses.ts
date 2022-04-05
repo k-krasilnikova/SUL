@@ -8,7 +8,7 @@ const clientCourseSchema = new Schema<IClientCourse>({
   course: { type: Schema.Types.ObjectId, ref: 'Courses' },
   status: { type: String },
   withAssessment: { type: Boolean, default: false },
-  testResult: { type: String },
+  testResult: [{ qN: { type: Number }, aN: { type: Boolean } }],
   progress: [{ stage: { type: String }, isCompleted: { type: Boolean } }],
   date: { type: Date },
   applyDate: { type: Date, expires: DESTRUCTION_TIMEOUT },

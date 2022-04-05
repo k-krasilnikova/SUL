@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
-import { Params, SubRoutes } from 'enums/routesEnum';
+import { SubRoutes } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
 import getAllCourses from 'controllers/courses/getAllCourses';
 import getCourseById from 'controllers/courses/getCourse';
@@ -13,17 +13,17 @@ import adapterSender from 'controllers/pendingCourses/adapterSender';
 
 const coursesRouter = Router();
 coursesRouter.get(
-  `${Params.id}${SubRoutes.materials}`,
+  SubRoutes.getCourseMaterials,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getMaterials,
 );
 coursesRouter.get(
-  `${Params.id}`,
+  SubRoutes.getCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getCourseById,
 );
 coursesRouter.post(
-  `${Params.noParams}`,
+  SubRoutes.applyCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   adapterUser,
   applyCourse,
@@ -31,7 +31,7 @@ coursesRouter.post(
   adapterSender,
 );
 coursesRouter.get(
-  `${Params.noParams}`,
+  SubRoutes.getCourses,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getAllCourses,
 );

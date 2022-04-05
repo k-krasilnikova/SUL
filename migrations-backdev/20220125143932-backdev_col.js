@@ -93,7 +93,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 900000,
+    timeout: 1200000,
   },
   {
     title: 'test for course "Java for profi"',
@@ -189,7 +189,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 450000,
+    timeout: 1200000,
   },
   {
     title: 'test for course "Python for kids"',
@@ -241,7 +241,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
   {
     title: 'Test for "Kotlin" course',
@@ -309,7 +309,7 @@ const TESTS = [
         correctAnswer: 2,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
   {
     title: 'test for course "Scala"',
@@ -358,7 +358,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
   {
     title: 'Test for course "Go"',
@@ -413,7 +413,7 @@ const TESTS = [
         correctAnswer: 2,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
   {
     title: 'Test for course "C++"',
@@ -480,7 +480,7 @@ const TESTS = [
         correctAnswer: 3,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
   {
     title: 'Test for course "C#"',
@@ -532,7 +532,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
   {
     title: 'English test',
@@ -561,7 +561,7 @@ const TESTS = [
         correctAnswer: 3,
       },
     ],
-    timeout: 30000,
+    timeout: 600000,
   },
   {
     title: 'Test for QA',
@@ -594,7 +594,7 @@ const TESTS = [
         correctAnswer: 3,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
 ];
 
@@ -1009,7 +1009,7 @@ const MOCKED_COURSES = [
   },
   {
     title: 'GO',
-    description: 'Learn GO and leave RB',
+    description: 'Go is a statically typed, compiled programming language designed at Google.',
     technologies: [{ skill: 'Go', points: 2 }],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
@@ -1019,7 +1019,7 @@ const MOCKED_COURSES = [
   },
   {
     title: 'C++ for kettle',
-    description: 'Learn С++ and be happy',
+    description: 'С++  is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".',
     technologies: [{ skill: 'C++', points: 1 }],
     requiredSkills: ['Math', 'English'],
     complexity: 3,
@@ -1030,7 +1030,7 @@ const MOCKED_COURSES = [
   },
   {
     title: 'C# for students',
-    description: 'Learn С# and make money',
+    description: 'C# is a general-purpose, multi-paradigm programming language. C# encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented (class-based), and component-oriented programming disciplines.',
     technologies: [{ skill: 'C#', points: 2 }],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
@@ -1051,7 +1051,7 @@ const MOCKED_COURSES = [
   },
   {
     title: 'QA for everyone',
-    description: 'Keep calm and learn QA',
+    description: 'Quality assurance (QA) is a way of preventing mistakes and defects in manufactured products and avoiding problems when delivering products or services to customers.',
     technologies: [{ skill: 'English', points: 2 }],
     requiredSkills: ['English'],
     complexity: 1,
@@ -1174,70 +1174,63 @@ const SKILLS = [
   {
     name: 'C++',
     image:
-      'https://c0.klipartz.com/pngpicture/680/436/gratis-png-lenguaje-de-programacion-programador-programacion-de-computadora-iconos-de-computadora-cobol-tecnologia.png',
+      'https://coderrect.com/wp-content/uploads/2020/09/cpp_logo1-3.png',
     maxScore: 8,
     group: 'Web Frameworks',
   },
   {
     name: 'C#',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://yt3.ggpht.com/ytc/AKedOLTJzpyndCHuGt9hgSIwy61XcSJ2W0RnFpNVlV62lQ=s900-c-k-c0x00ffffff-no-rj',
     maxScore: 8,
     group: 'Web Frameworks',
   },
   {
     name: 'Salesforce',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://marketingtechnews.net/wp-content/uploads/sites/6/2020/03/SALESFORCE_LOGO_NEW_F2QUoeb-scaled.jpg',
     maxScore: 5,
     group: 'Web Frameworks',
   },
   {
     name: 'NodeJS',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://www.logolynx.com/images/logolynx/cb/cbbf0bae5516456e79b8c31f67bcb837.jpeg',
     maxScore: 5,
     group: 'Data Science',
   },
   {
     name: 'Ruby',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://cdn.iconscout.com/icon/free/png-512/ruby-2752084-2284901.png',
     maxScore: 5,
     group: 'Common',
   },
   {
     name: 'VueJS',
     image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+      'https://pbs.twimg.com/profile_images/920561100604825600/k8sQjqio.jpg',
     maxScore: 5,
     group: 'Web Frameworks',
   },
   {
     name: 'Unity',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://yt3.ggpht.com/a/AATXAJxUeEd5HL-LChGVjqoCWKggaWptOGF7S_dG2g0=s900-c-k-c0xffffffff-no-rj-mo',
     maxScore: 5,
     group: 'Common',
   },
   {
     name: 'Android',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://i.playground.ru/p/17DpGFS55XPqjLrO8-B3Bw.jpeg',
     maxScore: 2,
     group: 'Common',
   },
   {
     name: 'Bootstrap',
-    image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+    image: 'https://yt3.ggpht.com/ytc/AKedOLSh4sUIflnFeLMihKm3yhnHArZMikNvcVMT80Ax=s900-c-k-c0x00ffffff-no-rj',
     maxScore: 3,
     group: 'Web Frameworks',
   },
   {
     name: 'jQuery',
     image:
-      'https://e7.pngegg.com/pngimages/340/226/png-clipart-purple-and-white-logo-c-computer-programming-software-development-programmer-marklogic-coder-miscellaneous-purple.png',
+      'https://fb.ru/misc/i/gallery/45074/2221539.jpg',
     maxScore: 2,
     group: 'Web Frameworks',
   },
