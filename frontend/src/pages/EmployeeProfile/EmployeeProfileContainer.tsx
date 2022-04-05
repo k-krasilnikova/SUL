@@ -4,11 +4,11 @@ import { useParams } from 'react-router';
 import { useGetEmployeeProfile, useGetEmployeeCourses } from 'api/employees';
 import { EMPLOYEE_INFO } from 'constants/employeeInfo';
 
-import ProfileContent from './EmployeeProfile';
+import EmployeeProfile from './EmployeeProfile';
 
-const EmployeeProfile: React.FC = () => {
+const EmployeeProfileContainer: React.FC = () => {
   const params = useParams();
-  const { data } = useGetEmployeeProfile(params.employeeId);
+  const { data: employeeResponse } = useGetEmployeeProfile(params.employeeId);
   const { data: employeeCourses } = useGetEmployeeCourses();
 
   const [employeeInfo, setEmployeeInfo] = useState(EMPLOYEE_INFO.skills);
@@ -35,15 +35,8 @@ const EmployeeProfile: React.FC = () => {
     hoveredButton === EMPLOYEE_INFO.allCourses;
 
   return (
-    <ProfileContent
-      avatar={data?.avatar}
-      firstName={data?.firstName}
-      lastName={data?.lastName}
-      position={data?.position}
-      group={data?.group}
-      phone={data?.phone}
-      skype={data?.skype}
-      technologies={data?.technologies}
+    <EmployeeProfile
+      employee={employeeResponse}
       employeeCourses={employeeCourses}
       employeeInfo={employeeInfo}
       toggleEmployeeInfo={toggleEmployeeInfo}
@@ -56,4 +49,4 @@ const EmployeeProfile: React.FC = () => {
   );
 };
 
-export default EmployeeProfile;
+export default EmployeeProfileContainer;

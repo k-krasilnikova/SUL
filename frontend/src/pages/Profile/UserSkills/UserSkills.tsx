@@ -71,7 +71,7 @@ const UserSkills: React.FC<Props> = ({
       <SkillsList>
         {technologies && technologies.length ? (
           technologies.map((techGroup) => (
-            <div key={techGroup.group.name}>
+            <div key={`${techGroup.group.name}_id`}>
               <SkillsListItem>
                 <SkillTitle>
                   {techGroup.isPrimary && <Star alt="primary" src={starContained} />}
@@ -79,7 +79,7 @@ const UserSkills: React.FC<Props> = ({
                 </SkillTitle>
                 <SkillsInfoList>
                   {techGroup.achievedSkills.map((skillInfo) => (
-                    <React.Fragment key={skillInfo.skill.name}>
+                    <React.Fragment key={`${skillInfo.skill.name}_id`}>
                       <SkillInfoContainer skillItem={skillInfo} />
                     </React.Fragment>
                   ))}
