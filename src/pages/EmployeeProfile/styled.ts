@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { List, ListItem, Button as ToggleButton, ButtonGroup } from '@mui/material';
+import { List, ListItem, Button as ToggleButton, ButtonGroup, Box } from '@mui/material';
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
 
 import theme from 'themeSettings';
@@ -12,6 +12,14 @@ interface ToggleButtonProps {
 interface ShowOnMobile {
   displayInfo: boolean;
 }
+
+export const EmployeeProfileWrapper = styled('div')({
+  padding: '40px',
+  fontFamily: theme.typography.fontFamily,
+  [theme.breakpoints.down('xl')]: {
+    padding: '24px',
+  },
+});
 
 export const ProfileBox = styled('div')({
   width: '90%',
@@ -91,14 +99,12 @@ export const UserInfoLabel = styled('span')({
   },
 });
 
-export const UserInfoText = styled('span')({
+export const UserInfoText = styled('p')({
   width: '400px',
-  display: 'inline-flex',
   fontSize: '20px',
   lineHeight: '23px',
   padding: '0 0 0 40px',
-  height: '24px',
-  marginBottom: '20px',
+  margin: '0 0 20px 0',
   [theme.breakpoints.down('xl')]: {
     fontSize: '18px',
     lineHeight: '21px',
@@ -109,16 +115,18 @@ export const UserInfoText = styled('span')({
   },
 });
 
+export const EmployeeInfoItem = styled(ListItem)({
+  alignItems: 'baseline !important',
+});
+
 export const BackButton = styled(Button)({
   height: '39px',
   width: '84px',
   fontSize: '16px !important',
-  margin: '40px 0 0 40px !important',
   [theme.breakpoints.down('xl')]: {
     height: '32px',
     width: '64px',
     fontSize: '12px !important',
-    margin: '32px 0 0 36px !important',
   },
   [theme.breakpoints.down('md')]: {
     display: 'none !important',
@@ -209,14 +217,22 @@ export const UserInfoListItems = styled('div')<ShowOnMobile>(({ displayInfo }) =
 
 export const ExpandMoreIcon = styled(ExpandMore)({
   marginLeft: '16px',
-  [theme.breakpoints.up('md')]: {
-    display: 'none',
-  },
 });
 
 export const ExpandLessIcon = styled(ExpandLess)({
   marginLeft: '16px',
-  [theme.breakpoints.up('md')]: {
+});
+
+export const MobileIconWrapper = styled(Box)({
+  [theme.breakpoints.up('lg')]: {
     display: 'none',
+  },
+});
+
+export const StackItem = styled('p')({
+  margin: '0 0 10px 0',
+  fontSize: '20px',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '18px',
   },
 });

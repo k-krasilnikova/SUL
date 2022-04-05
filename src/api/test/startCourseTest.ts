@@ -6,6 +6,7 @@ import { AxiosError } from 'axios';
 import { apiClientWrapper, queryClient } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
+import transformRoute from 'utils/helpers/paths/transformRoute';
 
 const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
@@ -18,7 +19,7 @@ const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosE
 
   const handleSubmitSuccess = () => {
     enqueueSnackbar(successSnackbarMessage.testStarted, successSnackbar);
-    navigateTo(`${PATHS.learnCourse}/${courseId}/test`);
+    navigateTo(transformRoute(PATHS.learnCourseTest, courseId));
   };
 
   return useMutation(

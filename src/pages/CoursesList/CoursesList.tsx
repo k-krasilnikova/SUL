@@ -15,11 +15,11 @@ import { MobileSearch } from 'components/Layout/MobileSearch';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { CustomButton } from 'components/Button/styled';
 import { ButtonLabels } from 'components/Button/ButtonsEnums';
-import { countProgress } from 'utils/helpers/countCourseProgress';
 import { COURSE_LABELS } from 'constants/statuses';
 import ActionButton from 'components/Button/ActionButton';
 import { COURSE_DISABLE_DAYS } from 'constants/time';
 import getCurrentPageName from 'utils/helpers/getCurentPageName';
+import transformRoute from 'utils/helpers/paths/transformRoute';
 import { chooseListPath } from 'utils/helpers/paths/choosePath';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { Course } from 'types/course';
@@ -79,7 +79,10 @@ const CoursesList: React.FC<CoursesProps> = ({
             fallback={<Loader color="primary" type={LOADER.content} />}
           >
             <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
-              <MobileLink to={`${PATHS.coursesList}/${course._id}`} onClick={disableLink}>
+              <MobileLink
+                to={transformRoute(PATHS.courseDetails, course._id)}
+                onClick={disableLink}
+              >
                 <CourseItem
                   title={course?.title}
                   description={course?.description}
@@ -89,7 +92,6 @@ const CoursesList: React.FC<CoursesProps> = ({
                   pageName={getCurrentPageName()}
                   imageUrl={course?.avatar}
                   status={clientCourses && clientCourses[index].status}
-                  progress={clientCourses && countProgress(clientCourses[index].progress)}
                   courseRef={isLastElem<Course>(courses, index) ? lastCourseRef : undefined}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
