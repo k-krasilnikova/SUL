@@ -6,6 +6,7 @@ import { apiClientWrapper, queryClient } from 'api/base';
 import { API } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
+import { queryKeyConstants } from 'constants/queryKeyConstants';
 
 const useFinishClientCourse = (
   courseId: string | undefined,
@@ -27,8 +28,8 @@ const useFinishClientCourse = (
     {
       onError: handleSubmitError,
       onSuccess: () => {
-        queryClient.invalidateQueries('profile');
-        queryClient.invalidateQueries(['clientCourseInfo', courseId]);
+        queryClient.invalidateQueries([queryKeyConstants.profile]);
+        queryClient.invalidateQueries([queryKeyConstants.clientCourseInfo, courseId]);
       },
     },
   );
