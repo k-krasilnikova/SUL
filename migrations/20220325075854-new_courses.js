@@ -50,7 +50,7 @@ const TESTS = [
         correctAnswer: 2,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
   {
     title: 'Test NodeJS',
@@ -98,7 +98,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
   {
     title: 'Test Ruby',
@@ -142,7 +142,7 @@ const TESTS = [
         correctAnswer: 4,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
   {
     title: 'Test Vue JS',
@@ -186,7 +186,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 90000,
+    timeout: 1200000,
   },
   {
     title: 'Test Django',
@@ -234,7 +234,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 90000,
+    timeout: 1200000,
   },
   {
     title: 'Test Unity',
@@ -283,7 +283,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 90000,
+    timeout: 1800000,
   },
   {
     title: 'Test Android',
@@ -327,7 +327,7 @@ const TESTS = [
         correctAnswer: 4,
       },
     ],
-    timeout: 90000,
+    timeout: 1800000,
   },
   {
     title: 'Test Bootstrap',
@@ -367,7 +367,7 @@ const TESTS = [
         correctAnswer: 4,
       },
     ],
-    timeout: 90000,
+    timeout: 1800000,
   },
   {
     title: 'Test SQL',
@@ -415,7 +415,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 90000,
+    timeout: 1200000,
   },
   {
     title: 'Test jQuery',
@@ -460,7 +460,7 @@ const TESTS = [
         correctAnswer: 4,
       },
     ],
-    timeout: 90000,
+    timeout: 600000,
   },
 ];
 
@@ -708,7 +708,7 @@ const MOCKED_COURSES = [
     complexity: 2,
     materials: MATERIALS[6].content,
     test: '',
-    avatar: 'http://neutr10.com/wp-content/uploads/2015/12/android-java.jpg',
+    avatar: 'https://a.d-cd.net/JAAAAgHu7-A-1920.jpg',
     stackTemp: ['Java developer'],
   },
   {
