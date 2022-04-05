@@ -1,14 +1,14 @@
 import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
-import { Params } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
 import getProfileInformation from 'controllers/user/getProfileInfo';
+import { SubRoutes } from 'enums/routesEnum';
 
 const userRouter = Router();
 
 userRouter.get(
-  `${Params.id}`,
+  SubRoutes.getUserInfo,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getProfileInformation,
 );

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
-import { Params, SubRoutes } from 'enums/routesEnum';
+import { SubRoutes } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
 import getClientCourses from 'controllers/clientCourses/getAllClientCourses';
 import passCourse from 'controllers/clientCourses/passCourse';
@@ -20,55 +20,55 @@ import adapterSender from 'controllers/pendingCourses/adapterSender';
 const clientCoursesRouter = Router();
 
 clientCoursesRouter.get(
-  `${Params.id}${SubRoutes.test}/time`,
+  SubRoutes.getTestTime,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getTestTime,
 );
 
 clientCoursesRouter.put(
-  `${Params.id}${SubRoutes.test}${SubRoutes.result}`,
+  SubRoutes.getTestResult,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getTestResults,
   getAchievments,
   unitTestResults,
 );
 clientCoursesRouter.get(
-  `${Params.id}${SubRoutes.test}${SubRoutes.start}`,
+  SubRoutes.startTest,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   startTest,
 );
 clientCoursesRouter.get(
-  `${Params.id}${SubRoutes.test}`,
+  SubRoutes.getCourseTest,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getTest,
 );
 clientCoursesRouter.get(
-  `${Params.id}${SubRoutes.start}`,
+  SubRoutes.startCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   startCourse,
 );
 clientCoursesRouter.get(
-  `${Params.id}${SubRoutes.finish}`,
+  SubRoutes.finishCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   finishCourse,
 );
 clientCoursesRouter.get(
-  `${Params.id}`,
+  SubRoutes.getClientCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getClientCourseById,
 );
 clientCoursesRouter.put(
-  `${Params.id}`,
+  SubRoutes.passCourseStage,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   passCourse,
 );
 clientCoursesRouter.get(
-  `${Params.noParams}`,
+  SubRoutes.getClientCourses,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getClientCourses,
 );
 clientCoursesRouter.put(
-  `${Params.id}${SubRoutes.assessment}`,
+  SubRoutes.manageCourseAssessment,
   withAuth([USER_ROLES.MANAGER]),
   manageAssessment,
   getAchievments,
