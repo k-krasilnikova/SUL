@@ -36,11 +36,15 @@ const getTestResults = async (
     const userWrongAnswers = checkTestResults(answers, correctAnswers.questions);
 
     const testResultWithAnswers = correctAnswers.questions.map((correctAnswer) => {
-      const result = userWrongAnswers.find((item) => correctAnswer.qN === item.qN);
+      const result = userWrongAnswers.find((wrongAnswer) => correctAnswer.qN === wrongAnswer.qN);
+
+      let resultObject;
       if (result) {
-        return { qN: correctAnswer.qN, aN: false };
+        resultObject = { qN: correctAnswer.qN, aN: false };
+      } else {
+        resultObject = { qN: correctAnswer.qN, aN: true };
       }
-      return { qN: correctAnswer.qN, aN: true };
+      return resultObject;
     });
 
     await updateClientCourseField(courseId, COURSE_FILEDS.testResult, testResultWithAnswers);
