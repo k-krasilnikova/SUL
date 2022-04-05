@@ -9,15 +9,22 @@ import updatePendingCourse from 'controllers/pendingCourses/updatePendingCourse'
 import adapterSender from 'controllers/pendingCourses/adapterSender';
 import getEmployeeInfo from 'controllers/manager/getEmployeeInfo';
 import { SubRoutes } from 'enums/routesEnum';
+import assignEmployeeCourses from 'controllers/manager/assignEmployeeCourses';
 
 const employeesRouter = Router();
 
 employeesRouter.post(
-  SubRoutes.applyEmployeeCourse,
+  SubRoutes.assignEmployeeCourse,
   withAuth([USER_ROLES.MANAGER]),
   adapterManager,
   applyCourse,
   updatePendingCourse,
+  adapterSender,
+);
+employeesRouter.post(
+  SubRoutes.assignEmployeeCourses,
+  withAuth([USER_ROLES.MANAGER]),
+  assignEmployeeCourses,
   adapterSender,
 );
 employeesRouter.get(SubRoutes.getEmployees, withAuth([USER_ROLES.MANAGER]), getEmployees);
