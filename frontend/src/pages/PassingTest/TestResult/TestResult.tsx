@@ -7,6 +7,7 @@ import { AuthorizedLayout } from 'components/Layout';
 import { ITestResult } from 'types/test';
 import CourseMaterialInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import { PATHS } from 'constants/routes';
+import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import {
   AboutSkillsBox,
@@ -91,7 +92,7 @@ const TestResult: React.FC<ITestResult> = ({
           </ResultBox>
         </ContentBox>
         <ButtonBox>
-          <Link to={`${PATHS.myCourses}/${courseId}`}>
+          <Link to={transformRoute(PATHS.myCourseDetails, courseId)}>
             <SubmitButton variant="medium">Submit</SubmitButton>
           </Link>
         </ButtonBox>
