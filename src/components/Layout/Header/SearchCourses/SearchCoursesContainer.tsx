@@ -6,6 +6,7 @@ import { Course } from 'types/course';
 import SearchCourses from 'components/Layout/Header/SearchCourses/SearchCourses';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
+import { useDebounce } from 'hooks';
 
 const SearchCoursesContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
@@ -14,10 +15,12 @@ const SearchCoursesContainer: React.FC = () => {
 
   const { enqueueSnackbar } = useSnackbar();
 
+  const debouncedSearchValue = useDebounce(searchInputValue, 2000);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+    if (debouncedSearchValue) {
       const getCourses = async (search: string) => {
-        if (searchInputValue.length) {
+        if (debouncedSearchValue.length) {
           const searchResponse = await searchAllCourses(search);
           if (searchResponse.data) {
             setCoursesFound(searchResponse.data);
@@ -27,10 +30,10 @@ const SearchCoursesContainer: React.FC = () => {
           }
         }
       };
-      getCourses(searchInputValue);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [searchInputValue, enqueueSnackbar]);
+      getCourses(debouncedSearchValue);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearchValue]);
 
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const formattedValue = formatInputValue(event.target.value);
