@@ -1019,7 +1019,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'C++ for kettle',
-    description: 'С++  is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".',
+    description:
+      'С++  is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".',
     technologies: [{ skill: 'C++', points: 1 }],
     requiredSkills: ['Math', 'English'],
     complexity: 3,
@@ -1030,7 +1031,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'C# for students',
-    description: 'C# is a general-purpose, multi-paradigm programming language. C# encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented (class-based), and component-oriented programming disciplines.',
+    description:
+      'C# is a general-purpose, multi-paradigm programming language. C# encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented (class-based), and component-oriented programming disciplines.',
     technologies: [{ skill: 'C#', points: 2 }],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
@@ -1051,7 +1053,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'QA for everyone',
-    description: 'Quality assurance (QA) is a way of preventing mistakes and defects in manufactured products and avoiding problems when delivering products or services to customers.',
+    description:
+      'Quality assurance (QA) is a way of preventing mistakes and defects in manufactured products and avoiding problems when delivering products or services to customers.',
     technologies: [{ skill: 'English', points: 2 }],
     requiredSkills: ['English'],
     complexity: 1,
@@ -1173,20 +1176,21 @@ const SKILLS = [
   },
   {
     name: 'C++',
-    image:
-      'https://coderrect.com/wp-content/uploads/2020/09/cpp_logo1-3.png',
+    image: 'https://coderrect.com/wp-content/uploads/2020/09/cpp_logo1-3.png',
     maxScore: 8,
     group: 'Web Frameworks',
   },
   {
     name: 'C#',
-    image: 'https://yt3.ggpht.com/ytc/AKedOLTJzpyndCHuGt9hgSIwy61XcSJ2W0RnFpNVlV62lQ=s900-c-k-c0x00ffffff-no-rj',
+    image:
+      'https://yt3.ggpht.com/ytc/AKedOLTJzpyndCHuGt9hgSIwy61XcSJ2W0RnFpNVlV62lQ=s900-c-k-c0x00ffffff-no-rj',
     maxScore: 8,
     group: 'Web Frameworks',
   },
   {
     name: 'Salesforce',
-    image: 'https://marketingtechnews.net/wp-content/uploads/sites/6/2020/03/SALESFORCE_LOGO_NEW_F2QUoeb-scaled.jpg',
+    image:
+      'https://marketingtechnews.net/wp-content/uploads/sites/6/2020/03/SALESFORCE_LOGO_NEW_F2QUoeb-scaled.jpg',
     maxScore: 5,
     group: 'Web Frameworks',
   },
@@ -1204,14 +1208,14 @@ const SKILLS = [
   },
   {
     name: 'VueJS',
-    image:
-      'https://pbs.twimg.com/profile_images/920561100604825600/k8sQjqio.jpg',
+    image: 'https://pbs.twimg.com/profile_images/920561100604825600/k8sQjqio.jpg',
     maxScore: 5,
     group: 'Web Frameworks',
   },
   {
     name: 'Unity',
-    image: 'https://yt3.ggpht.com/a/AATXAJxUeEd5HL-LChGVjqoCWKggaWptOGF7S_dG2g0=s900-c-k-c0xffffffff-no-rj-mo',
+    image:
+      'https://yt3.ggpht.com/a/AATXAJxUeEd5HL-LChGVjqoCWKggaWptOGF7S_dG2g0=s900-c-k-c0xffffffff-no-rj-mo',
     maxScore: 5,
     group: 'Common',
   },
@@ -1223,14 +1227,14 @@ const SKILLS = [
   },
   {
     name: 'Bootstrap',
-    image: 'https://yt3.ggpht.com/ytc/AKedOLSh4sUIflnFeLMihKm3yhnHArZMikNvcVMT80Ax=s900-c-k-c0x00ffffff-no-rj',
+    image:
+      'https://yt3.ggpht.com/ytc/AKedOLSh4sUIflnFeLMihKm3yhnHArZMikNvcVMT80Ax=s900-c-k-c0x00ffffff-no-rj',
     maxScore: 3,
     group: 'Web Frameworks',
   },
   {
     name: 'jQuery',
-    image:
-      'https://fb.ru/misc/i/gallery/45074/2221539.jpg',
+    image: 'https://fb.ru/misc/i/gallery/45074/2221539.jpg',
     maxScore: 2,
     group: 'Web Frameworks',
   },
