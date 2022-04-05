@@ -14,20 +14,27 @@ enum SubRoutes {
   login = '/login',
   logout = '/logout',
   refresh = '/refresh',
-  profile = '/profile',
-  materials = '/materials',
-  start = '/start',
-  finish = '/finish',
-  test = '/test',
-  result = '/result',
-  approveCourse = '/approveCourse',
-  declineCourse = '/declineCourse',
-  assessment = '/assessment',
+  getTestTime = '/:id/test/time',
+  getTestResult = '/:id/test/result',
+  startTest = '/:id/test/start',
+  getCourseTest = '/:id/test',
+  startCourse = '/:id/start',
+  finishCourse = '/:id/finish',
+  getClientCourse = '/:id',
+  getClientCourses = '',
+  passCourseStage = '/:id',
+  manageCourseAssessment = '/:id/assessment',
+  getCourseMaterials = '/:id/materials',
+  getCourse = '/:id',
+  getCourses = '',
+  applyCourse = '',
+  applyEmployeeCourse = '',
+  getEmployeeInfo = '/:id',
+  getEmployees = '',
+  getPendingCourses = '',
+  approvePendingCourse = '/approveCourse',
+  declinePendingCourse = '/declineCourse',
+  getUserInfo = '/:id',
 }
 
-enum Params {
-  noParams = '',
-  id = '/:id',
-}
-
-export { Routes, SubRoutes, Params };
+export { Routes, SubRoutes };

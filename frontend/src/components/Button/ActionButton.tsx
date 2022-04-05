@@ -6,6 +6,7 @@ import { ClientCourse } from 'types/clientCourse';
 import { VariantProps } from 'types/muiTypes';
 import withDisable from 'components/Button/HOC/withDisable';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import transformRoute from 'utils/helpers/paths/transformRoute';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
 
@@ -41,8 +42,8 @@ const ActionButton: React.FC<IProps> = ({
 }) => {
   const navigate = useNavigate();
   const [isContinueTest, setContinueTest] = useState<boolean>(false);
-  const handleLearning = () => navigate(`${PATHS.learnCourse}/${courseId}`);
-  const handleContinueTest = () => navigate(`${PATHS.learnCourse}/${courseId}/test`);
+  const handleLearning = () => navigate(transformRoute(PATHS.learnCourse, courseId));
+  const handleContinueTest = () => navigate(transformRoute(PATHS.learnCourseTest, courseId));
   useEffect(() => {
     if (progress && status === COURSE_STATUSES.testing) {
       setContinueTest(isProgressCompleted(progress));

@@ -7,6 +7,7 @@ import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { useToggle } from 'hooks';
+import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
@@ -17,7 +18,11 @@ const PassingTestContainer: React.FC = () => {
   const params = useParams();
   const naviagteTo = useNavigate();
 
-  const { data: courseTestResponse, isLoading: courseTestResponseIsLoading } = useGetCourseTest({
+  const {
+    data: courseTestResponse,
+    isLoading: courseTestResponseIsLoading,
+    isError: courseTestResponseIsError,
+  } = useGetCourseTest({
     courseId: params.courseId,
   });
   const { data: clientCourseResponse, isLoading: clientCourseResponseIsLoading } =
@@ -86,6 +91,7 @@ const PassingTestContainer: React.FC = () => {
   const handleCloseTimeIsOverDialog = () => {
     setTestTimeoutDialogOpen();
     handleSubmitResult();
+    naviagteTo(transformRoute(PATHS.myCourseDetails, params.courseId));
   };
 
   const stageBack = () => {
@@ -99,7 +105,8 @@ const PassingTestContainer: React.FC = () => {
 
   const isShouldRedirect =
     !clientCourseResponseIsLoading &&
-    (courseStatus === COURSE_STATUSES.failed || courseStatus === COURSE_STATUSES.successful);
+    (courseStatus === COURSE_STATUSES.failed || courseStatus === COURSE_STATUSES.successful) &&
+    courseTestResponseIsError;
 
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
@@ -111,7 +118,7 @@ const PassingTestContainer: React.FC = () => {
   };
   const handleLeavePage = (): void => {
     setConfirmOpen(false);
-    naviagteTo(`${PATHS.myCourses}/${params.courseId}`);
+    naviagteTo(transformRoute(PATHS.myCourseDetails, params.courseId));
   };
 
   return (
@@ -154,7 +161,9 @@ const PassingTestContainer: React.FC = () => {
           status={clientCourseResponse?.status}
         />
       )}
-      {isShouldRedirect && <Navigate replace to={`${PATHS.myCourses}/${params?.courseId}`} />}
+      {isShouldRedirect && (
+        <Navigate replace to={transformRoute(PATHS.myCourseDetails, params.courseId)} />
+      )}
     </>
   );
 };

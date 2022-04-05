@@ -1,3 +1,1 @@
-import React from 'react';
-
-export const Button = React.lazy(() => import('./Button'));
+export { default as Button } from './Button';
