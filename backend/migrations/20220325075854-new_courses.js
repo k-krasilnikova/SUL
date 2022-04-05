@@ -470,7 +470,9 @@ const MATERIALS = [
       {
         _id: '7',
         stage: 1,
-        content: ['https://www.youtube.com/watch?v=hUtOd16GqSI'],
+        content: [
+          'Salesforce is an American company, the developer of the CRM system of the same name, provided to customers exclusively using the SaaS model. Under the name Force the company provides a PaaS system for self-development of applications, and under the brand Database — cloud database management system. Among the products acquired as a result of acquisitions are the Heroku platform service, the MuleESB service bus, the replicated Tableau data visualization system, and the Slack corporate messenger.',
+        ],
       },
       {
         _id: '8',
@@ -500,7 +502,9 @@ const MATERIALS = [
       {
         _id: '7',
         stage: 1,
-        content: ['https://www.youtube.com/watch?v=1MYbDz06B1E'],
+        content: [
+          'Ruby is a dynamic, reflective, interpreted high—level programming language[8][9]. The language has an operating system-independent implementation of multithreading, strong dynamic typing, garbage collector and many other features[⇨]. In terms of syntax features, it is close to the Perl and Eiffel languages, in terms of an object-oriented approach, it is similar to Smalltalk. Also some features of the language are taken from Python, Lisp, Dylan and Club.',
+        ],
       },
       {
         _id: '8',
@@ -560,7 +564,9 @@ const MATERIALS = [
       {
         _id: '7',
         stage: 1,
-        content: ['https://www.youtube.com/watch?v=tZvjSl9dswg'],
+        content: [
+          'Android is an operating system for smartphones, tablets, e-books, digital players, wristwatches, fitness bracelets, game consoles, laptops, netbooks, smartbooks, Google glasses, televisions, projectors and other devices (in 2015, support for car entertainment systems and household robots appeared).',
+        ],
       },
       {
         _id: '8',
@@ -620,7 +626,8 @@ const MATERIALS = [
 const MOCKED_COURSES = [
   {
     title: 'Salesforce',
-    description: 'Salesforce for people',
+    description:
+      'Salesforce, Inc. is an American cloud-based software company headquartered in San Francisco, California. It provides customer relationship management (CRM) software and applications focused on sales, customer service, marketing automation, analytics, and application development.',
     technologies: ['Salesforce'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
@@ -631,7 +638,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'NodeJS',
-    description: 'NodeJS for junior',
+    description:
+      'Node.js is an open-source, cross-platform, back-end JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser.',
     technologies: ['NodeJS', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
@@ -643,7 +651,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Ruby',
-    description: 'Ruby for developers',
+    description:
+      'Ruby is an interpreted, high-level, general-purpose programming language which supports multiple programming paradigms. It was designed with an emphasis on programming productivity and simplicity. In Ruby, everything is an object, including primitive data types. It was developed in the mid-1990s by Yukihiro "Matz" Matsumoto in Japan.',
     technologies: ['Ruby'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
@@ -654,7 +663,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Vue JS',
-    description: 'Vue JS for beginners',
+    description:
+      'Vue.js (commonly referred to as Vue; pronounced "view") is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members.',
     technologies: ['VueJS', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
@@ -666,7 +676,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Django',
-    description: 'Django for beginners',
+    description:
+      'Django is a Python-based free and open-source web framework that follows the model–template–views (MTV) architectural pattern.',
     technologies: ['Django', 'Python'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
@@ -677,7 +688,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Unity',
-    description: 'Unity course',
+    description:
+      'UNITY is a programming language constructed by K. Mani Chandy and Jayadev Misra for their book Parallel Program Design: A Foundation. It is a theoretical language which focuses on what, instead of where, when or how.',
     technologies: ['Unity', 'C#'],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
@@ -689,7 +701,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Android',
-    description: 'Android with Java',
+    description:
+      'Android is a mobile operating system based on a modified version of the Linux kernel and other open source software, designed primarily for touchscreen mobile devices such as smartphones and tablets.',
     technologies: ['Android', 'Java'],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
@@ -700,7 +713,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'Bootstrap for frontend',
-    description: 'Bootstrap for frontend',
+    description:
+      'Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains HTML, CSS and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.',
     technologies: ['Bootstrap', 'HTML'],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
@@ -711,7 +725,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'SQL',
-    description: 'SQL for backend developers',
+    description:
+      'SQL is a domain-specific language used in programming and designed for managing data held in a relational database management system (RDBMS), or for stream processing in a relational data stream management system (RDSMS). It is particularly useful in handling structured data, i.e. data incorporating relations among entities and variables.',
     technologies: ['SQL'],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
@@ -722,7 +737,8 @@ const MOCKED_COURSES = [
   },
   {
     title: 'jQuery',
-    description: 'jQuery',
+    description:
+      'jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax.',
     technologies: ['jQuery', 'JavaScript'],
     requiredSkills: ['Math', 'English'],
     complexity: 1,

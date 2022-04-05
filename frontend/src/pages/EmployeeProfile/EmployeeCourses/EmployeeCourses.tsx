@@ -33,7 +33,7 @@ interface Props {
   courses?: ClientCourse[];
 }
 
-const UserSkills: React.FC<Props> = ({
+const EmployeeCourses: React.FC<Props> = ({
   courses,
   searchCourseInList,
   checkSpace,
@@ -84,4 +84,4 @@ const UserSkills: React.FC<Props> = ({
   </CoursesBox>
 );
 
-export default UserSkills;
+export default EmployeeCourses;

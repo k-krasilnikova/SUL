@@ -4,29 +4,22 @@ import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { User } from 'types/user';
-import { ResponseError } from 'types/serverError';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { IEmployee } from 'types/employee';
 
-type ProfileResponse = User & ResponseError;
-
-const useGetEmployeeProfile = (
-  employeeId?: string,
-): UseQueryResult<ProfileResponse, AxiosError> => {
+const useGetEmployeeProfile = (employeeId?: string): UseQueryResult<IEmployee, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    'profile',
+    ['EmployeeProfile', employeeId],
     async () => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.get(`${API.getProfile}/${employeeId}`);
-      const profileResponse: ProfileResponse = response.data;
-      return profileResponse;
+      const response = await apiClient.get(`${API.getEmployeesList}/${employeeId}`);
+      return response.data;
     },
     {
-      staleTime: 600000,
       onError: handleSubmitError,
     },
   );

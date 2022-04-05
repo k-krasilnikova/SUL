@@ -81,7 +81,10 @@ export const AddButtonWrapper = styled('div')({
   width: '100%',
   display: 'flex',
   justifyContent: 'end',
-  margin: '16px 0',
+  margin: '16px 0 0',
+  [theme.breakpoints.down('xl')]: {
+    margin: '16px 0',
+  },
   [theme.breakpoints.down(950)]: {
     display: 'none',
   },

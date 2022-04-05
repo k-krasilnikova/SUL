@@ -19,7 +19,7 @@ export const COURSE_LABELS: { [key: string]: string } = {
   rejected: 'Declined',
   completed: 'Completed',
   assessment: 'Assessment',
-  failed: 'Failed',
+  failed: 'Continue',
 };
 
 export const NOTIFICATION_STATUSES = {
