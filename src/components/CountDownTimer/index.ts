@@ -1,3 +1,1 @@
-import React from 'react';
-
-export const CountDownTimer = React.lazy(() => import('./CountDownTimer'));
+export { default as CountDownTimer } from './CountDownTimer';
