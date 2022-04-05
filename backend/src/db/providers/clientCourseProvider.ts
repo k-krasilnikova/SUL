@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 
 import { IProgress, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
@@ -155,6 +155,25 @@ const arrangeAssessment = async (courseId: string) => {
   }
 };
 
+const assignCourseToEmployee = async (
+  assignTo: string | ObjectId,
+  courseId: string | ObjectId,
+  progressDto: IProgress[],
+  withAssessment?: boolean,
+) => {
+  const createdDoc = await ClientCourseModel.create({
+    user: assignTo,
+    course: courseId,
+    status: CourseStatus.approved,
+    withAssessment: withAssessment || false,
+    testResult: '',
+    progress: progressDto,
+    date: Date.now(),
+  });
+
+  return createdDoc;
+};
+
 export {
   getClientCoursesProvider,
   getAllClientCoursesProvider,
@@ -166,4 +185,5 @@ export {
   arrangeAssessment,
   updateCourseProgress,
   updateClientCourseField,
+  assignCourseToEmployee,
 };
