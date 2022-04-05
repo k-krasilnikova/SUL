@@ -5,7 +5,7 @@ import { AxiosError } from 'axios';
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
-import { queryKeyConstants } from 'constants/queryKeyConstants';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const useGetTestTime = ({
   courseId,
@@ -19,7 +19,7 @@ const useGetTestTime = ({
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    [queryKeyConstants.getTestTime, courseId],
+    [QUERY_KEYS.getTestTime, courseId],
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.getMyCourses}/${courseId}/test/time`);

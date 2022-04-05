@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
-import { queryKeyConstants } from 'constants/queryKeyConstants';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { IEmployee, IEmployees } from 'types/employee';
 
 const useGetEmployeesList = (): UseQueryResult<IEmployee[], AxiosError> => {
@@ -14,7 +14,7 @@ const useGetEmployeesList = (): UseQueryResult<IEmployee[], AxiosError> => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    [queryKeyConstants.employeesLis],
+    [QUERY_KEYS.employeesLis],
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(API.getEmployeesList);

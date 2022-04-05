@@ -7,7 +7,7 @@ import { API } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 import { COURSE_STATUSES } from 'constants/statuses';
-import { queryKeyConstants } from 'constants/queryKeyConstants';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const useStartClientCourse = (
   courseId?: string,
@@ -34,7 +34,7 @@ const useStartClientCourse = (
     },
     {
       onError: handleSubmitError,
-      onSuccess: () => queryClient.refetchQueries([queryKeyConstants.courseAndMaterials, courseId]),
+      onSuccess: () => queryClient.refetchQueries([QUERY_KEYS.courseAndMaterials, courseId]),
     },
   );
 };

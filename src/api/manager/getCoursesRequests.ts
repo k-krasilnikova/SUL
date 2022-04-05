@@ -6,7 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { Request, IRequests } from 'types/request';
 import { errorSnackbar } from 'constants/snackbarVariant';
-import { queryKeyConstants } from 'constants/queryKeyConstants';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const useGetCoursesRequests = (): UseQueryResult<Array<Request>, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
@@ -14,7 +14,7 @@ const useGetCoursesRequests = (): UseQueryResult<Array<Request>, AxiosError> => 
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    [queryKeyConstants.courseRequests],
+    [QUERY_KEYS.courseRequests],
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(API.getCoursesRequests);
