@@ -155,6 +155,12 @@ const arrangeAssessment = async (courseId: string) => {
   }
 };
 
+const getClientCoursesByCourseId = async (courseId: string) => {
+  const allClientCoursesByCourseId = await ClientCourseModel.find({ course: courseId });
+
+  return allClientCoursesByCourseId;
+};
+
 const assignCourseToEmployee = async (
   assignTo: string | ObjectId,
   courseId: string | ObjectId,
@@ -185,5 +191,6 @@ export {
   arrangeAssessment,
   updateCourseProgress,
   updateClientCourseField,
+  getClientCoursesByCourseId,
   assignCourseToEmployee,
 };
