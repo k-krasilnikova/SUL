@@ -628,7 +628,7 @@ const MOCKED_COURSES = [
     title: 'Salesforce',
     description:
       'Salesforce, Inc. is an American cloud-based software company headquartered in San Francisco, California. It provides customer relationship management (CRM) software and applications focused on sales, customer service, marketing automation, analytics, and application development.',
-    technologies: ['Salesforce'],
+    technologies: [{ skill: 'Salesforce', points: 3 }],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[0].content,
@@ -640,7 +640,10 @@ const MOCKED_COURSES = [
     title: 'NodeJS',
     description:
       'Node.js is an open-source, cross-platform, back-end JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser.',
-    technologies: ['NodeJS', 'JavaScript'],
+    technologies: [
+      { skill: 'NodeJS', points: 3 },
+      { skill: 'JavaScript', points: 2 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[1].content,
@@ -653,7 +656,7 @@ const MOCKED_COURSES = [
     title: 'Ruby',
     description:
       'Ruby is an interpreted, high-level, general-purpose programming language which supports multiple programming paradigms. It was designed with an emphasis on programming productivity and simplicity. In Ruby, everything is an object, including primitive data types. It was developed in the mid-1990s by Yukihiro "Matz" Matsumoto in Japan.',
-    technologies: ['Ruby'],
+    technologies: [{ skill: 'Ruby', points: 3 }],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[2].content,
@@ -665,7 +668,10 @@ const MOCKED_COURSES = [
     title: 'Vue JS',
     description:
       'Vue.js (commonly referred to as Vue; pronounced "view") is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members.',
-    technologies: ['VueJS', 'JavaScript'],
+    technologies: [
+      { skill: 'VueJS', points: 3 },
+      { skill: 'JavaScript', points: 1 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[3].content,
@@ -678,7 +684,10 @@ const MOCKED_COURSES = [
     title: 'Django',
     description:
       'Django is a Python-based free and open-source web framework that follows the model–template–views (MTV) architectural pattern.',
-    technologies: ['Django', 'Python'],
+    technologies: [
+      { skill: 'Django', points: 3 },
+      { skill: 'Python', points: 2 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[4].content,
@@ -690,7 +699,10 @@ const MOCKED_COURSES = [
     title: 'Unity',
     description:
       'UNITY is a programming language constructed by K. Mani Chandy and Jayadev Misra for their book Parallel Program Design: A Foundation. It is a theoretical language which focuses on what, instead of where, when or how.',
-    technologies: ['Unity', 'C#'],
+    technologies: [
+      { skill: 'Unity', points: 3 },
+      { skill: 'C#', points: 2 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[5].content,
@@ -703,7 +715,10 @@ const MOCKED_COURSES = [
     title: 'Android',
     description:
       'Android is a mobile operating system based on a modified version of the Linux kernel and other open source software, designed primarily for touchscreen mobile devices such as smartphones and tablets.',
-    technologies: ['Android', 'Java'],
+    technologies: [
+      { skill: 'Android', points: 1 },
+      { skill: 'Java', points: 1 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[6].content,
@@ -715,7 +730,10 @@ const MOCKED_COURSES = [
     title: 'Bootstrap for frontend',
     description:
       'Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains HTML, CSS and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.',
-    technologies: ['Bootstrap', 'HTML'],
+    technologies: [
+      { skill: 'Bootstrap', points: 2 },
+      { skill: 'HTML', points: 1 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[7].content,
@@ -727,7 +745,7 @@ const MOCKED_COURSES = [
     title: 'SQL',
     description:
       'SQL is a domain-specific language used in programming and designed for managing data held in a relational database management system (RDBMS), or for stream processing in a relational data stream management system (RDSMS). It is particularly useful in handling structured data, i.e. data incorporating relations among entities and variables.',
-    technologies: ['SQL'],
+    technologies: [{ skill: 'SQL', points: 2 }],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[8].content,
@@ -739,7 +757,10 @@ const MOCKED_COURSES = [
     title: 'jQuery',
     description:
       'jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax.',
-    technologies: ['jQuery', 'JavaScript'],
+    technologies: [
+      { skill: 'jQuery', points: 2 },
+      { skill: 'JavaScript', points: 1 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[9].content,
@@ -763,9 +784,10 @@ module.exports = {
       MOCKED_COURSES.map(async (course, index) => {
         course.test = tests[index].insertedId;
 
-        const techs = course.technologies.map(
-          (techName) => skills.filter((skill) => skill.name === techName)[0]._id,
-        );
+        const techs = course.technologies.map((tech) => ({
+          skill: skills.filter((skill) => skill.name === tech.skill)[0]._id,
+          points: tech.points,
+        }));
         course.technologies = techs;
 
         techs.map((tech) => {
