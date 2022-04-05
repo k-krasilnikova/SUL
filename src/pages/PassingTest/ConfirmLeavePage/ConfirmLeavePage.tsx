@@ -5,7 +5,9 @@ import ConfirmDialog from 'components/ConfirmDialog';
 import { CONFIRM_MESSAGE } from 'constants/messages';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import ButtonLoader from 'components/ButtonLoader';
+import { ButtonLabels } from 'components/Button/ButtonsEnums';
 import { buttonSpinner } from 'animations';
+import { CONFIRM_MESSAGE } from 'constants/messages';
 
 import { ButtonCancel, ButtonExit } from './styled';
 
