@@ -17,10 +17,9 @@ const SearchResultItemContainer: React.FC<CoursesFound> = ({
   addDivider,
   foundInMyCoursesId,
 }) => {
-
   const linkTo = foundInMyCoursesId
-      ? transformRoute(PATHS.myCourseDetails, foundInMyCoursesId)
-      : transformRoute(PATHS.courseDetails, course._id);
+    ? transformRoute(PATHS.myCourseDetails, foundInMyCoursesId)
+    : transformRoute(PATHS.courseDetails, course._id);
 
   return (
     <SearchResultItem

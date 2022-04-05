@@ -5,6 +5,7 @@ import { searchAllCourses } from 'api/courses';
 import { Course } from 'types/course';
 import SearchCourses from 'components/Layout/Header/SearchCourses/SearchCourses';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { SEARCH_DEBOUNCE_TIME } from 'constants/time';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
 import { useDebounce } from 'hooks';
 
@@ -15,7 +16,7 @@ const SearchCoursesContainer: React.FC = () => {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const debouncedSearchValue = useDebounce(searchInputValue, 2000);
+  const debouncedSearchValue = useDebounce(searchInputValue, SEARCH_DEBOUNCE_TIME);
 
   useEffect(() => {
     if (debouncedSearchValue) {
