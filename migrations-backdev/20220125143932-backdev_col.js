@@ -1327,9 +1327,10 @@ module.exports = {
     const courses = await Promise.all(
       MOCKED_COURSES.map(async (course, index) => {
         course.test = tests[index].insertedId;
-        const techs = course.technologies.map(
-          (tech) => skills.filter((skill) => skill.name === tech.skill)[0].insertedId,
-        );
+        const techs = course.technologies.map((tech) => ({
+          skill: skills.filter((skill) => skill.name === tech.skill)[0].insertedId,
+          points: tech.points,
+        }));
         course.technologies = techs;
         const requiredSkills = course.requiredSkills.map(
           (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,

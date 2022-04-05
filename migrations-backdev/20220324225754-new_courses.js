@@ -621,7 +621,7 @@ const MOCKED_COURSES = [
   {
     title: 'Salesforce',
     description: 'Salesforce for people',
-    technologies: ['Salesforce'],
+    technologies: [{ skill: 'Salesforce', points: 3 }],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[0].content,
@@ -632,7 +632,10 @@ const MOCKED_COURSES = [
   {
     title: 'NodeJS',
     description: 'NodeJS for junior',
-    technologies: ['NodeJS', 'JavaScript'],
+    technologies: [
+      { skill: 'NodeJS', points: 3 },
+      { skill: 'JavaScript', points: 2 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[1].content,
@@ -644,7 +647,7 @@ const MOCKED_COURSES = [
   {
     title: 'Ruby',
     description: 'Ruby for developers',
-    technologies: ['Ruby'],
+    technologies: [{ skill: 'Ruby', points: 3 }],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[2].content,
@@ -655,7 +658,10 @@ const MOCKED_COURSES = [
   {
     title: 'Vue JS',
     description: 'Vue JS for beginners',
-    technologies: ['VueJS', 'JavaScript'],
+    technologies: [
+      { skill: 'VueJS', points: 3 },
+      { skill: 'JavaScript', points: 1 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[3].content,
@@ -667,7 +673,10 @@ const MOCKED_COURSES = [
   {
     title: 'Django',
     description: 'Django for beginners',
-    technologies: ['Django', 'Python'],
+    technologies: [
+      { skill: 'Django', points: 3 },
+      { skill: 'Python', points: 2 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[4].content,
@@ -678,7 +687,10 @@ const MOCKED_COURSES = [
   {
     title: 'Unity',
     description: 'Unity course',
-    technologies: ['Unity', 'C#'],
+    technologies: [
+      { skill: 'Unity', points: 3 },
+      { skill: 'C#', points: 2 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[5].content,
@@ -690,7 +702,10 @@ const MOCKED_COURSES = [
   {
     title: 'Android',
     description: 'Android with Java',
-    technologies: ['Android', 'Java'],
+    technologies: [
+      { skill: 'Android', points: 1 },
+      { skill: 'Java', points: 1 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[6].content,
@@ -701,7 +716,10 @@ const MOCKED_COURSES = [
   {
     title: 'Bootstrap for frontend',
     description: 'Bootstrap for frontend',
-    technologies: ['Bootstrap', 'HTML'],
+    technologies: [
+      { skill: 'Bootstrap', points: 2 },
+      { skill: 'HTML', points: 1 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[7].content,
@@ -712,7 +730,7 @@ const MOCKED_COURSES = [
   {
     title: 'SQL',
     description: 'SQL for backend developers',
-    technologies: ['SQL'],
+    technologies: [{ skill: 'SQL', points: 2 }],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[8].content,
@@ -723,7 +741,10 @@ const MOCKED_COURSES = [
   {
     title: 'jQuery',
     description: 'jQuery',
-    technologies: ['jQuery', 'JavaScript'],
+    technologies: [
+      { skill: 'jQuery', points: 2 },
+      { skill: 'JavaScript', points: 1 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[9].content,
@@ -747,9 +768,10 @@ module.exports = {
       MOCKED_COURSES.map(async (course, index) => {
         course.test = tests[index].insertedId;
 
-        const techs = course.technologies.map(
-          (techName) => skills.filter((skill) => skill.name === techName)[0]._id,
-        );
+        const techs = course.technologies.map((tech) => ({
+          skill: skills.filter((skill) => skill.name === tech.skill)[0]._id,
+          points: tech.points,
+        }));
         course.technologies = techs;
 
         techs.map((tech) => {
