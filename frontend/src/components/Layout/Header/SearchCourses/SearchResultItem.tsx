@@ -4,37 +4,23 @@ import { Box } from '@mui/material';
 
 import CourseInfo from 'components/Course/CourseInfo';
 import { Label } from 'components/Label';
-import { PATHS } from 'constants/routes';
 import { INFO } from 'constants/coutseInfoTypes';
 import { Course } from 'types/course';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
-import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import { Image, CourseTitle, SearchResultCourse } from './styled';
 
 interface CourseFound {
   course: Course;
   addDivider: boolean;
-  foundInMyCourses: string | undefined;
   status: string | undefined;
+  redirectTo: string;
 }
 
 const LABEL_MESSAGE = 'New';
 
-const SearchResultItem: React.FC<CourseFound> = ({
-  course,
-  status,
-  foundInMyCourses,
-  addDivider,
-}) => (
-  <Link
-    key={course._id}
-    to={
-      foundInMyCourses
-        ? transformRoute(PATHS.myCourseDetails, foundInMyCourses)
-        : transformRoute(PATHS.courseDetails, course._id)
-    }
-  >
+const SearchResultItem: React.FC<CourseFound> = ({ course, status, addDivider, redirectTo }) => (
+  <Link key={course._id} to={redirectTo}>
     <SearchResultCourse divider={addDivider}>
       <Image avatar={course.avatar} />
       <Box>
