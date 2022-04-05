@@ -8,7 +8,7 @@ import { API } from 'constants/routes';
 import { User } from 'types/user';
 import { ResponseError } from 'types/serverError';
 import { errorSnackbar } from 'constants/snackbarVariant';
-import { queryKeyConstants } from 'constants/queryKeyConstants';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 type ProfileResponse = User & ResponseError;
 
@@ -18,7 +18,7 @@ const useGetProfile = (): UseQueryResult<ProfileResponse, AxiosError> => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    [queryKeyConstants.profile],
+    [QUERY_KEYS.profile],
     async () => {
       const apiClient = apiClientWrapper();
       const userId = getUserIdCookie();

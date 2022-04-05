@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
-import { queryKeyConstants } from 'constants/queryKeyConstants';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const useApproveRequest = (): UseMutationResult => {
   const { enqueueSnackbar } = useSnackbar();
@@ -23,7 +23,7 @@ const useApproveRequest = (): UseMutationResult => {
     {
       onError: handleSubmitError,
       onSuccess: () => {
-        queryClient.invalidateQueries([queryKeyConstants.courseRequests]);
+        queryClient.invalidateQueries([QUERY_KEYS.courseRequests]);
       },
     },
   );

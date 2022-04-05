@@ -1,14 +1,14 @@
-export const queryKeyConstants = {
+export const QUERY_KEYS = {
   courseAndMaterials: 'CourseAndMaterials',
   courseInfo: 'CourseInfo',
-  paginatedCoursesList: 'paginatedCoursesList',
-  myCourses: 'myCourses',
+  paginatedCoursesList: 'PaginatedCoursesList',
+  myCourses: 'MyCourses',
   employeeProfile: 'EmployeeProfile',
-  courseRequests: 'courses-requests',
-  employeesLis: 'employees-list',
+  courseRequests: 'CoursesRequests',
+  employeesLis: 'EmployeesList',
   profile: 'profile',
   clientCourseInfo: 'ClientCourseInfo',
-  paginatedClientCoursesList: 'paginatedClientCoursesList',
+  paginatedClientCoursesList: 'PaginatedClientCoursesList',
   courseTest: 'CourseTest',
-  getTestTime: 'getTestTime',
+  getTestTime: 'GetTestTime',
 };
