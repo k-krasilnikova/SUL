@@ -6,6 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { ITestResponse } from 'types/test';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { queryKeyConstants } from 'constants/queryKeyConstants';
 
 interface IParams {
   courseId?: string;
@@ -22,7 +23,7 @@ const useGetCourseTest = ({
   };
 
   return useQuery(
-    ['CourseTest'],
+    [queryKeyConstants.courseTest],
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.getMyCourses}/${courseId}/test`);

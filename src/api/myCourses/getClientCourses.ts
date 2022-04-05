@@ -6,6 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { queryKeyConstants } from 'constants/queryKeyConstants';
 
 const useGetMyCourses = (): UseQueryResult<Array<ClientCourse>, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
@@ -13,12 +14,11 @@ const useGetMyCourses = (): UseQueryResult<Array<ClientCourse>, AxiosError> => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    'myCourses',
+    [queryKeyConstants.myCourses],
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.getMyCourses}`);
-      const myCoursesResponse = response.data;
-      return myCoursesResponse;
+      return response.data;
     },
     {
       onError: handleSubmitError,
