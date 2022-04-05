@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { searchClientCourses } from 'api/myCourses';
 import { Course } from 'types/course';
 import { ClientCourse } from 'types/clientCourse';
+import transformRoute from 'utils/helpers/paths/transformRoute';
+import { PATHS } from 'constants/routes';
 
 import SearchResultItem from './SearchResultItem';
 
@@ -28,13 +30,17 @@ const SearchResultItemContainer: React.FC<CoursesFound> = ({ course, addDivider 
     findCourse(clientCourses, course.title);
   };
 
+  const linkTo = foundInMyCourses
+    ? transformRoute(PATHS.myCourseDetails, foundInMyCourses)
+    : transformRoute(PATHS.courseDetails, course._id);
+
   getClientCourses();
 
   return (
     <SearchResultItem
       course={course}
       status={course.status}
-      foundInMyCourses={foundInMyCourses}
+      redirectTo={linkTo}
       addDivider={addDivider}
     />
   );
