@@ -41,7 +41,7 @@ const convertStatusToProgress = (status?: string): ConvertedProgress => {
     default:
       progressValue = 0;
       progressText = '0%';
-      progressVariant = VARIANTS.failed;
+      progressVariant = VARIANTS.notStarted;
       break;
   }
   return { progressValue, progressText, progressVariant };

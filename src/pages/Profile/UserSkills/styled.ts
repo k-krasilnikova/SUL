@@ -192,6 +192,9 @@ export const SkillInfoTextWrapper = styled('div')({
 
 export const SkillInfoTextWidth = styled('div')({
   width: '70px',
+  [theme.breakpoints.down('md')]: {
+    width: '60px',
+  },
 });
 
 export const SkillInfoText = styled('div')({

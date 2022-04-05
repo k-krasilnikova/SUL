@@ -15,7 +15,6 @@ import { MobileSearch } from 'components/Layout/MobileSearch';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { CustomButton } from 'components/Button/styled';
 import { ButtonLabels } from 'components/Button/ButtonsEnums';
-import { countProgress } from 'utils/helpers/countCourseProgress';
 import { COURSE_LABELS } from 'constants/statuses';
 import ActionButton from 'components/Button/ActionButton';
 import { COURSE_DISABLE_DAYS } from 'constants/time';
@@ -93,7 +92,6 @@ const CoursesList: React.FC<CoursesProps> = ({
                   pageName={getCurrentPageName()}
                   imageUrl={course?.avatar}
                   status={clientCourses && clientCourses[index].status}
-                  progress={clientCourses && countProgress(clientCourses[index].progress)}
                   courseRef={isLastElem<Course>(courses, index) ? lastCourseRef : undefined}
                 >
                   <CourseActionsBox key={`${course._id}_box`}>
