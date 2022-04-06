@@ -5,7 +5,7 @@ import { UserRank } from 'enums/users';
 interface ICourse {
   _id?: ObjectId;
   title: string;
-  technologies: ObjectId[];
+  technologies: { skill: ObjectId; points: number }[];
   requiredSkills?: ObjectId[];
   complexity: UserRank;
   description: string;

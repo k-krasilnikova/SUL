@@ -1,12 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
-import {
-  addUserSkill,
-  getUserSkills,
-  populateUserSkills,
-  updateUserSkill,
-} from 'db/providers/skillProvider';
+import { addUserSkill, getUserSkills, populateUserSkills } from 'db/providers/skillProvider';
 import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
 import { TAchievments } from 'interfaces/Ientities/Itest';
@@ -14,6 +9,7 @@ import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
 import { specifyUserTechnologies } from 'utils/technologies/userTechnologies';
+import { addPointToUserSkill } from 'utils/skillsUtils';
 
 const getAchievments = async (
   req: Request,
@@ -33,25 +29,24 @@ const getAchievments = async (
       clientCourse.status === CourseStatus.completed
     ) {
       const userSkills: IUserSkill[] = await getUserSkills(userId);
+      const user = await getUserProvider(userId);
       const { oldSkills = [], newSkills = [] } = specifySkills(userSkills, techsToAchieve);
 
-      const updatedUserSkills = await Promise.all(
-        oldSkills.map(async (skillId) => updateUserSkill(userId, skillId)),
+      const updatedUserSkills = await Promise.all(oldSkills.map(addPointToUserSkill(userId)));
+      const filterUpdatedUserSkills = updatedUserSkills.filter(
+        (skill): skill is IUserSkill => !!skill,
       );
       const insertedUserSkills = await Promise.all(
-        newSkills.map(async (skillId) => addUserSkill(userId, skillId)),
+        newSkills.map(async (newSkill) => addUserSkill(userId, newSkill.skill)),
       );
-
-      const user = await getUserProvider(userId);
 
       const updatedTechnologies = await specifyUserTechnologies(
         user.technologies,
         insertedUserSkills,
       );
-
       await updateUserTechnologies(userId, updatedTechnologies);
 
-      const updatedUserSkillsPopulated = await populateUserSkills(updatedUserSkills);
+      const updatedUserSkillsPopulated = await populateUserSkills(filterUpdatedUserSkills);
       const insertedUserSkillsPopulated = await populateUserSkills(insertedUserSkills);
 
       res.locals.achievments = {
