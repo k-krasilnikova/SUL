@@ -4,7 +4,8 @@ import { NextFunction, Request, Response } from 'express';
 
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
-import isValidMaterials from 'utils/typeGuards/isValidMaterial';
+import isValidDescription from 'utils/validation/isValidDescription';
+import isValidMaterials from 'utils/validation/isValidMaterials';
 
 const editCourse = async (
   req: Request<{ id: string }, never, IUpdateCourseBody>,
@@ -20,7 +21,8 @@ const editCourse = async (
     const updatedData: IUpdateCourseBody = {};
 
     // update description
-    if (dataToUpdate.description) {
+    const isDescriptionValid = isValidDescription(updatedData.description);
+    if (isDescriptionValid) {
       await updateCourseField(courseId, COURSE_FIELDS.description, dataToUpdate.description);
       updatedData.description = dataToUpdate.description;
     }
@@ -33,6 +35,8 @@ const editCourse = async (
       await updateCourseField(courseId, COURSE_FIELDS.materials, materialsWithStages);
       updatedData.materials = dataToUpdate.materials;
     }
+
+    // update skills
 
     res.locals.results = updatedData;
 
