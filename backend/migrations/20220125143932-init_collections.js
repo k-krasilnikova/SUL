@@ -942,7 +942,11 @@ const MOCKED_COURSES = [
   {
     title: 'JS for beginners',
     description: 'Go from zero to ninjas in this JavaScript for Beginners complete course',
-    technologies: ['JavaScript', 'HTML', 'CSS'],
+    technologies: [
+      { skill: 'JavaScript', points: 3 },
+      { skill: 'HTML', points: 2 },
+      { skill: 'CSS', points: 2 },
+    ],
     requiredSkills: ['HTML', 'CSS'],
     complexity: 1,
     materials: MATERIALS[0].content,
@@ -953,7 +957,10 @@ const MOCKED_COURSES = [
     title: 'Java for Professionals',
     description:
       'The Java Notes for Professionals course is compiled from Stack Overflow Documentation, the content is written by the beautiful people at Stack Overflow',
-    technologies: ['Java', 'SQL'],
+    technologies: [
+      { skill: 'Java', points: 4 },
+      { skill: 'SQL', points: 1 },
+    ],
     requiredSkills: ['Java'],
     complexity: 2,
     materials: MATERIALS[1].content,
@@ -964,7 +971,11 @@ const MOCKED_COURSES = [
     title: 'Python for kids',
     description:
       'Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.',
-    technologies: ['Python', 'Pandas', 'Django'],
+    technologies: [
+      { skill: 'Python', points: 3 },
+      { skill: 'Pandas', points: 2 },
+      { skill: 'Django', points: 2 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[2].content,
@@ -975,7 +986,10 @@ const MOCKED_COURSES = [
     title: 'Kotlin',
     description:
       'Kotlin is a cross-platform, statically typed, general-purpose programming language with type inference',
-    technologies: ['Kotlin', 'Java'],
+    technologies: [
+      { skill: 'Kotlin', points: 3 },
+      { skill: 'Java', points: 1 },
+    ],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[3].content,
@@ -986,7 +1000,7 @@ const MOCKED_COURSES = [
     title: 'Scala',
     description:
       'Scala is a strong statically typed general-purpose programming language which supports both object-oriented programming and functional programming.',
-    technologies: ['Scala'],
+    technologies: [{ skill: 'Scala', points: 2 }],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[4].content,
@@ -996,7 +1010,7 @@ const MOCKED_COURSES = [
   {
     title: 'GO',
     description: 'Go is a statically typed, compiled programming language designed at Google.',
-    technologies: ['Go'],
+    technologies: [{ skill: 'Go', points: 2 }],
     requiredSkills: ['Math', 'English'],
     complexity: 2,
     materials: MATERIALS[5].content,
@@ -1007,7 +1021,7 @@ const MOCKED_COURSES = [
     title: 'C++ for kettle',
     description:
       'С++  is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".',
-    technologies: ['C++'],
+    technologies: [{ skill: 'C++', points: 1 }],
     requiredSkills: ['Math', 'English'],
     complexity: 3,
     materials: MATERIALS[6].content,
@@ -1019,7 +1033,7 @@ const MOCKED_COURSES = [
     title: 'C# for students',
     description:
       'C# is a general-purpose, multi-paradigm programming language. C# encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented (class-based), and component-oriented programming disciplines.',
-    technologies: ['C#'],
+    technologies: [{ skill: 'C#', points: 2 }],
     requiredSkills: ['Math', 'English'],
     complexity: 1,
     materials: MATERIALS[7].content,
@@ -1030,7 +1044,7 @@ const MOCKED_COURSES = [
     title: 'English for developers',
     description:
       'Why does the developer needs English. The answer is obvious: English is needed to understand terminology, work with English-language interfaces, read technical documentation, study professional literature, conferences and webinars',
-    technologies: ['English'],
+    technologies: [{ skill: 'English', points: 2 }],
     requiredSkills: ['English'],
     complexity: 1,
     materials: MATERIALS[8].content,
@@ -1041,7 +1055,7 @@ const MOCKED_COURSES = [
     title: 'QA for everyone',
     description:
       'Quality assurance (QA) is a way of preventing mistakes and defects in manufactured products and avoiding problems when delivering products or services to customers.',
-    technologies: ['English'],
+    technologies: [{ skill: 'English', points: 2 }],
     requiredSkills: ['English'],
     complexity: 1,
     materials: MATERIALS[9].content,
@@ -1054,174 +1068,174 @@ const SKILLS = [
   {
     name: 'Java',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968282.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Java')).length,
+    maxScore: 5,
     group: 'Common',
   },
   {
     name: 'JavaScript',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('JavaScript')).length,
+    maxScore: 5,
     group: 'Common',
   },
   {
     name: 'TypeScript',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968381.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('TypeScript')).length,
+    maxScore: 5,
     group: 'Common',
   },
   {
     name: 'PHP',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968332.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('PHP')).length,
+    maxScore: 5,
     group: 'Common',
   },
   {
     name: 'HTML',
     image: 'https://cdn-icons-png.flaticon.com/512/569/569835.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('HTML')).length,
+    maxScore: 5,
     group: 'Frontend',
   },
   {
     name: 'ReactJS',
     image: 'https://cdn-icons-png.flaticon.com/512/45/45082.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('ReactJS')).length,
+    maxScore: 5,
     group: 'Frontend',
   },
   {
     name: 'CSS',
     image: 'https://cdn-icons-png.flaticon.com/512/174/174854.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('CSS')).length,
+    maxScore: 5,
     group: 'Frontend',
   },
   {
     name: 'Angular',
     image: 'https://cdn-icons-png.flaticon.com/512/3522/3522248.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Angular')).length,
+    maxScore: 6,
     group: 'Frontend',
   },
   {
     name: 'MySQL',
     image: 'https://cdn-icons-png.flaticon.com/512/1199/1199128.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('MySQL')).length + 1, // for the default level porpose (testing only)
+    maxScore: 3, // for the default level porpose (testing only)
     group: 'Databases',
   },
   {
     name: 'Kotlin',
     image: 'https://cdn-icons-png.flaticon.com/512/154/154878.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Kotlin')).length,
+    maxScore: 6,
     group: 'Common',
   },
   {
     name: 'Scala',
     image: 'https://cdn-icons-png.flaticon.com/512/919/919834.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Scala')).length + 1, // for the default level porpose (testing only)
+    maxScore: 6, // for the default level porpose (testing only)
     group: 'Common',
   },
   {
     name: 'Python',
     image: 'https://cdn-icons-png.flaticon.com/512/5968/5968350.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Python')).length + 1, // for the default level porpose (testing only)
+    maxScore: 7, // for the default level porpose (testing only)
     group: 'Common',
   },
   {
     name: 'Math',
     image: 'https://cdn-icons-png.flaticon.com/512/43/43102.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Math')).length + 1,
+    maxScore: 3,
     group: 'Others',
   },
   {
     name: 'English',
     image: 'https://cdn-icons-png.flaticon.com/512/197/197374.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('English')).length + 1,
+    maxScore: 6,
     group: 'Others',
   },
   {
     name: 'SQL',
     image: 'https://cdn-icons-png.flaticon.com/512/28/28954.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('SQL')).length,
+    maxScore: 4,
     group: 'Databases',
   },
   {
     name: 'Pandas',
     image: 'https://cdn-icons-png.flaticon.com/512/48/48674.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Pandas')).length,
+    maxScore: 6,
     group: 'Data Science',
   },
   {
     name: 'Django',
     image: 'https://cdn-icons-png.flaticon.com/512/1822/1822921.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Django')).length,
+    maxScore: 6,
     group: 'Web Frameworks',
   },
   {
     name: 'Go',
     image:
       'https://avatars.mds.yandex.net/i?id=2a00000179febd6edd1bc26bbbf1d9af7c2b-4435263-images-thumbs&n=13&exp=1',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Go')).length,
+    maxScore: 7,
     group: 'Web Frameworks',
   },
   {
     name: 'C++',
     image: 'https://coderrect.com/wp-content/uploads/2020/09/cpp_logo1-3.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('C++')).length,
+    maxScore: 8,
     group: 'Web Frameworks',
   },
   {
     name: 'C#',
     image:
       'https://yt3.ggpht.com/ytc/AKedOLTJzpyndCHuGt9hgSIwy61XcSJ2W0RnFpNVlV62lQ=s900-c-k-c0x00ffffff-no-rj',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('C#')).length,
+    maxScore: 8,
     group: 'Web Frameworks',
   },
   {
     name: 'Salesforce',
     image:
       'https://marketingtechnews.net/wp-content/uploads/sites/6/2020/03/SALESFORCE_LOGO_NEW_F2QUoeb-scaled.jpg',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Salesforce')).length,
+    maxScore: 5,
     group: 'Web Frameworks',
   },
   {
     name: 'NodeJS',
     image: 'https://www.logolynx.com/images/logolynx/cb/cbbf0bae5516456e79b8c31f67bcb837.jpeg',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('NodeJS')).length,
+    maxScore: 5,
     group: 'Data Science',
   },
   {
     name: 'Ruby',
     image: 'https://cdn.iconscout.com/icon/free/png-512/ruby-2752084-2284901.png',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Ruby')).length,
+    maxScore: 5,
     group: 'Common',
   },
   {
     name: 'VueJS',
     image: 'https://pbs.twimg.com/profile_images/920561100604825600/k8sQjqio.jpg',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('VueJS')).length,
+    maxScore: 5,
     group: 'Web Frameworks',
   },
   {
     name: 'Unity',
     image:
       'https://yt3.ggpht.com/a/AATXAJxUeEd5HL-LChGVjqoCWKggaWptOGF7S_dG2g0=s900-c-k-c0xffffffff-no-rj-mo',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Unity')).length,
+    maxScore: 5,
     group: 'Common',
   },
   {
     name: 'Android',
     image: 'https://i.playground.ru/p/17DpGFS55XPqjLrO8-B3Bw.jpeg',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Android')).length,
+    maxScore: 2,
     group: 'Common',
   },
   {
     name: 'Bootstrap',
     image:
       'https://yt3.ggpht.com/ytc/AKedOLSh4sUIflnFeLMihKm3yhnHArZMikNvcVMT80Ax=s900-c-k-c0x00ffffff-no-rj',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('Bootstrap')).length,
+    maxScore: 3,
     group: 'Web Frameworks',
   },
   {
     name: 'jQuery',
     image: 'https://fb.ru/misc/i/gallery/45074/2221539.jpg',
-    maxScore: MOCKED_COURSES.filter((course) => course.technologies.includes('jQuery')).length,
+    maxScore: 2,
     group: 'Web Frameworks',
   },
 ];
@@ -1310,9 +1324,10 @@ module.exports = {
     const courses = await Promise.all(
       MOCKED_COURSES.map(async (course, index) => {
         course.test = tests[index].insertedId;
-        const techs = course.technologies.map(
-          (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
-        );
+        const techs = course.technologies.map((tech) => ({
+          skill: skills.filter((skill) => skill.name === tech.skill)[0].insertedId,
+          points: tech.points,
+        }));
         course.technologies = techs;
         const requiredSkills = course.requiredSkills.map(
           (techName) => skills.filter((skill) => skill.name === techName)[0].insertedId,
