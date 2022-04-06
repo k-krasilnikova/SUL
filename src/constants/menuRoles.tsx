@@ -88,3 +88,9 @@ export const ACTIVE_ROLES = {
   manager: 'manager',
   employee: 'employee',
 };
+
+export enum ROLE {
+  admin = 'admin',
+  employee = 'employee',
+  manager = 'manager',
+}
