@@ -25,8 +25,9 @@ const LearningCourseContainer: React.FC = () => {
   const { data: clientCourseAndMaterials, isLoading: clientCourseAndMaterialsIsLoading } =
     useGetClientCourseAndMaterials(courseId);
 
-  const { mutate: startClienCourseMutate } = useStartClientCourse(courseId);
-  const { mutate: passCourseStageMutate } = usePassClientCourse(courseId);
+  const { mutate: startClienCourseMutate, isLoading: isLoadingStart } =
+    useStartClientCourse(courseId);
+  const { mutate: passCourseStageMutate, isLoading: isLoadingPass } = usePassClientCourse(courseId);
 
   const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterials || [];
 
@@ -87,6 +88,8 @@ const LearningCourseContainer: React.FC = () => {
       courseMaterial={courseMaterial}
       isBackDisabled={stage === MIN_STAGE}
       isCourseInfoOpen={isCourseInfoOpen}
+      isLoadingStart={isLoadingStart}
+      isLoadingPass={isLoadingPass}
       isForwardDisabled={stage === maxStage}
       isTestEnabled={isTestEnabled}
       handleStageBack={handleStageBack}
