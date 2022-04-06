@@ -70,24 +70,27 @@ const UserSkills: React.FC<Props> = ({
       </SearchWrapper>
       <SkillsList>
         {technologies && technologies.length ? (
-          technologies.map((techGroup, id) => (
-            <div key={`${techGroup.group.name}_id`}>
-              <SkillsListItem>
-                <SkillTitle>
-                  {techGroup.isPrimary && <Star alt="primary" src={starContained} />}
-                  <Title>{techGroup.group.name || 'No group'}</Title>
-                </SkillTitle>
-                <SkillsInfoList>
-                  {techGroup.achievedSkills.map((skillInfo) => (
-                    <React.Fragment key={`${skillInfo.skill.name}_id`}>
-                      <SkillInfoContainer skillItem={skillInfo} />
-                    </React.Fragment>
-                  ))}
-                </SkillsInfoList>
-              </SkillsListItem>
-              {id < technologies.length - 1 && <SkillsDivider />}
-            </div>
-          ))
+          technologies.map((techGroup, id) => {
+            const isDividerVisible = id < technologies.length - 1;
+            return (
+              <div key={`${techGroup.group.name}_id`}>
+                <SkillsListItem>
+                  <SkillTitle>
+                    {techGroup.isPrimary && <Star alt="primary" src={starContained} />}
+                    <Title>{techGroup.group.name || 'No group'}</Title>
+                  </SkillTitle>
+                  <SkillsInfoList>
+                    {techGroup.achievedSkills.map((skillInfo) => (
+                      <React.Fragment key={`${skillInfo.skill.name}_id`}>
+                        <SkillInfoContainer skillItem={skillInfo} />
+                      </React.Fragment>
+                    ))}
+                  </SkillsInfoList>
+                </SkillsListItem>
+                {isDividerVisible && <SkillsDivider />}
+              </div>
+            );
+          })
         ) : (
           <NoSkills>
             <NoContent message={NO_SKILLS} size={SIZE.medium} />
