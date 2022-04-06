@@ -21,11 +21,13 @@ import {
 } from 'pages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
+import AuthRoute from 'components/AuthRoute/AuthRoute';
 import Loader from 'components/Loader';
 import { queryClient } from 'api/base';
 import { LOADER } from 'constants/loaderTypes';
 import { PATHS } from 'constants/routes';
 import { PAGES } from 'constants/pages';
+import { ROLE } from 'constants/menuRoles';
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
@@ -46,13 +48,39 @@ const App: React.FC = () => (
               <Route path={PATHS.course} element={<DetailedCourse page={PAGES.coursesList} />} />
             </Route>
             <Route path={PATHS.help} element={<Help />} />
-            <Route path={PATHS.employees}>
-              <Route index element={<Employees />} />
-              <Route path={PATHS.employee} element={<EmployeeProfile />} />
-            </Route>
-            <Route path={PATHS.requests} element={<Requests />} />
-            <Route path={PATHS.skills} element={<Skills />} />
-            <Route path={PATHS.skillsMap} element={<SkillsMap />} />
+            <Route
+              path={PATHS.employees}
+              element={
+                <AuthRoute roles={[ROLE.manager]}>
+                  <Route index element={<Employees />} />
+                  <Route path={PATHS.employee} element={<EmployeeProfile />} />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path={PATHS.requests}
+              element={
+                <AuthRoute roles={[ROLE.manager]}>
+                  <Requests />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path={PATHS.skills}
+              element={
+                <AuthRoute roles={[ROLE.admin]}>
+                  <Skills />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path={PATHS.skillsMap}
+              element={
+                <AuthRoute roles={[ROLE.employee]}>
+                  <SkillsMap />
+                </AuthRoute>
+              }
+            />
           </Route>
           <Route
             path={PATHS.signIn}
