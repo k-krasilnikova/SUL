@@ -70,7 +70,15 @@ const CLIENT_COURSE_FIELDS = {
   testDate: 'testDate',
 } as const;
 
-const COURSE_FIELDS = {} as const;
+const COURSE_FIELDS = {
+  title: 'title',
+  description: 'description',
+  technologies: 'technologies',
+  complexity: 'complexity',
+  materials: 'materials',
+  test: 'test',
+  avatar: 'avatar',
+} as const;
 
 export {
   DEFAULT_CONNECTION_STRING,
