@@ -62,18 +62,21 @@ const EmployeeCourses: React.FC<Props> = ({
       </SearchWrapper>
       <CoursesList>
         {courses?.length ? (
-          courses.map((course, id, coursesArray) => (
-            <div key={course.course.title}>
-              <CoursesListItem>
-                <ProgressBar size={SIZE.small} value={countProgress(course.progress)} />
-                <CourseItemText>
-                  <CourseTitle>{course.course.title}</CourseTitle>
-                  <CourseStatus>{setFirstLetterUppercase(course.status)}</CourseStatus>
-                </CourseItemText>
-              </CoursesListItem>
-              {id < coursesArray.length - 1 && <CoursesDivider />}
-            </div>
-          ))
+          courses.map((course, id, coursesArray) => {
+            const isDividerVisible = id < coursesArray.length - 1;
+            return (
+              <div key={course.course.title}>
+                <CoursesListItem>
+                  <ProgressBar size={SIZE.small} value={countProgress(course.progress)} />
+                  <CourseItemText>
+                    <CourseTitle>{course.course.title}</CourseTitle>
+                    <CourseStatus>{setFirstLetterUppercase(course.status)}</CourseStatus>
+                  </CourseItemText>
+                </CoursesListItem>
+                {isDividerVisible && <CoursesDivider />}
+              </div>
+            );
+          })
         ) : (
           <NoCourses>
             <NoContent message={NO_USER_COURSES} size={SIZE.medium} />
