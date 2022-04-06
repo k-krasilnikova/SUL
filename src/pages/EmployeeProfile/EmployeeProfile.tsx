@@ -52,7 +52,7 @@ const EmployeeProfile: React.FC<IEmployeeProfile> = ({
       </BackButton>
       <ProfileBox>
         <AvatarWrapper>
-          <UserAvatar avatar={employee?.avatar} size={SIZE.medium} />
+          <UserAvatar avatar={employee?.avatar} size={SIZE.xlarge} />
         </AvatarWrapper>
         <UserInfoList>
           <EmployeeName disablePadding>
