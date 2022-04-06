@@ -14,7 +14,7 @@ const useGetCoursesRequests = (): UseQueryResult<Array<Request>, AxiosError> => 
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    [QUERY_KEYS.courseRequests],
+    [QUERY_KEYS.coursesRequests],
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(API.getCoursesRequests);

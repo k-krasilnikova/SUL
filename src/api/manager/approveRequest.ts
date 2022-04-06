@@ -23,7 +23,7 @@ const useApproveRequest = (): UseMutationResult => {
     {
       onError: handleSubmitError,
       onSuccess: () => {
-        queryClient.invalidateQueries([QUERY_KEYS.courseRequests]);
+        queryClient.invalidateQueries([QUERY_KEYS.coursesRequests]);
       },
     },
   );
