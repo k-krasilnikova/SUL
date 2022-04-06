@@ -31,9 +31,7 @@ const SearchResult: React.FC<CoursesFound> = ({ coursesFound }) => {
     if (clientCourses) {
       coursesFound.forEach((course) => findCourse(clientCourses, course.title));
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coursesFound]);
+  }, [clientCourses, coursesFound]);
 
   return (
     <SearchResultWrapper>
