@@ -6,6 +6,7 @@ import { AxiosError } from 'axios';
 import { apiClientWrapper, queryClient } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 
 const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosError> => {
@@ -13,7 +14,7 @@ const useStartCourseTest = (courseId?: string): UseMutationResult<string, AxiosE
   const navigateTo = useNavigate();
 
   const handleSubmitError = (error: AxiosError) => {
-    queryClient.refetchQueries(['ClientCourseInfo', courseId]);
+    queryClient.refetchQueries([QUERY_KEYS.clientCourseInfo, courseId]);
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
 

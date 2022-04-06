@@ -7,6 +7,7 @@ import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
 import { Notification as NotificationType } from 'types/notification';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 interface UserResponse {
   role: string;
@@ -28,7 +29,7 @@ const useGetUserInfo = (): UseQueryResult<UserResponse, AxiosError> => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    'profile',
+    [QUERY_KEYS.profile],
     async () => {
       const apiClient = apiClientWrapper();
       const userId = getUserIdCookie();
