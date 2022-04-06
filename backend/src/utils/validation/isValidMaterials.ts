@@ -1,18 +1,17 @@
-import { NOTHING } from 'config/constants';
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 
-const isValidMaterials = (materials: ICourse['materials']): boolean => {
-  const validationChecks = materials.map((material) =>
+const isValidMaterials = (materials: IUpdateCourseBody['materials']): boolean => {
+  const validationChecks = materials?.map((material) =>
     Boolean(
       Array.isArray(material.content) &&
-        material.content.length > NOTHING &&
+        material.content.length &&
         material.content.every(
           (contentElement) => contentElement && typeof contentElement === 'string',
         ),
     ),
   );
 
-  const allChecksPassed = validationChecks.every((validation) => validation);
+  const allChecksPassed = Boolean(validationChecks?.every((validation) => validation));
 
   return allChecksPassed;
 };
