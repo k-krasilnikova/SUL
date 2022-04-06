@@ -31,7 +31,7 @@ interface IProgress {
 interface IUpdateCourseBody {
   description?: string;
   skills?: string[];
-  content?: ICourse['materials'];
+  materials?: ICourse['materials'];
   test?: Pick<ITest, 'questions'>;
 }
 
