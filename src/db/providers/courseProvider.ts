@@ -192,4 +192,21 @@ const materialsCounterProvider = async (courseId: string) => {
   return materialsCount;
 };
 
-export { getCoursesProvider, getCourseProvider, materialsCounterProvider, getMaterialsProvider };
+const updateCourseField = async (courseId: string, field: string, value: unknown) => {
+  const updatedCourse = await CourseModel.findOneAndUpdate(
+    { _id: courseId },
+    { $set: { [field]: value } },
+  );
+  if (!updatedCourse) {
+    throw new BadRequestError('Bad request. Check the data being sent.');
+  }
+  return updatedCourse;
+};
+
+export {
+  getCoursesProvider,
+  getCourseProvider,
+  materialsCounterProvider,
+  getMaterialsProvider,
+  updateCourseField,
+};

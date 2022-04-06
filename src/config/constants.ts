@@ -59,7 +59,7 @@ const STATUS_CODES = {
   },
 };
 
-const COURSE_FILEDS = {
+const CLIENT_COURSE_FIELDS = {
   user: 'user',
   course: 'course',
   status: 'status',
@@ -69,6 +69,8 @@ const COURSE_FILEDS = {
   applyDate: 'applyDate',
   testDate: 'testDate',
 } as const;
+
+const COURSE_FIELDS = {} as const;
 
 export {
   DEFAULT_CONNECTION_STRING,
@@ -99,5 +101,6 @@ export {
   TWO_DIGITS,
   DESTRUCTION_TIMEOUT,
   DISABLE_TEST_DAYS,
-  COURSE_FILEDS,
+  CLIENT_COURSE_FIELDS,
+  COURSE_FIELDS,
 };
