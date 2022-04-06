@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Course } from 'types/course';
 import { ClientCourse } from 'types/clientCourse';
 import useSearchClientCourses from 'api/myCourses/searchClientCourses';
+import { NO_RESULTS } from 'constants/messages';
 
 import SearchResultItemContainer from './SearchResultItemContainer';
 import { SearchResultWrapper, NoSearchResults } from './styled';
@@ -44,7 +45,7 @@ const SearchResult: React.FC<CoursesFound> = ({ coursesFound }) => {
           />
         ))
       ) : (
-        <NoSearchResults>No results</NoSearchResults>
+        <NoSearchResults>{NO_RESULTS}</NoSearchResults>
       )}
     </SearchResultWrapper>
   );
