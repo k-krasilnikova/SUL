@@ -6,7 +6,7 @@ export const QUERY_KEYS = {
   employeeProfile: 'EmployeeProfile',
   coursesRequests: 'CoursesRequests',
   employeesList: 'EmployeesList',
-  profile: 'profile',
+  profile: 'Profile',
   clientCourseInfo: 'ClientCourseInfo',
   paginatedClientCoursesList: 'PaginatedClientCoursesList',
   courseTest: 'CourseTest',
