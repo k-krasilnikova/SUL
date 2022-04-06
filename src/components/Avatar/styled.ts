@@ -18,6 +18,10 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
   background: `no-repeat center url(${avatar})`,
   backgroundSize: 'cover',
   [theme.breakpoints.down('xl')]: {
+    ...(size === SIZE.xlarge && {
+      width: '220px',
+      height: '220px',
+    }),
     ...(size === SIZE.large && {
       width: '150px',
       height: '150px',
@@ -36,6 +40,10 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
     }),
   },
   [theme.breakpoints.down('lg')]: {
+    ...(size === SIZE.xlarge && {
+      width: '150px',
+      height: '150px',
+    }),
     ...(size === SIZE.xsmall && {
       width: '40px',
       height: '40px',
@@ -54,6 +62,10 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
     }),
   },
   [theme.breakpoints.down('md')]: {
+    ...(size === SIZE.xlarge && {
+      width: '130px',
+      height: '130px',
+    }),
     ...(size === SIZE.large && {
       width: '130px',
       height: '130px',
@@ -64,6 +76,10 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
     }),
   },
   [theme.breakpoints.up('xl')]: {
+    ...(size === SIZE.xlarge && {
+      width: '220px',
+      height: '220px',
+    }),
     ...(size === SIZE.large && {
       width: '220px',
       height: '220px',
