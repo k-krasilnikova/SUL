@@ -6,6 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { ICourseMaterialsResponse } from 'types/course';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { ClientCourse } from 'types/clientCourse';
 
 const useGetClientCourseAndMaterials = (
@@ -16,7 +17,7 @@ const useGetClientCourseAndMaterials = (
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    ['CourseAndMaterials', courseId],
+    [QUERY_KEYS.courseAndMaterials, courseId],
     async () => {
       const apiClient = apiClientWrapper();
 

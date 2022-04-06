@@ -5,6 +5,7 @@ import { useSnackbar } from 'notistack';
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { Course } from 'types/course';
 
 const PAGE_CHANGE = 1;
@@ -33,7 +34,7 @@ const useGetPaginatedCourses = (title?: string): HookResult => {
     return { page: pageParam, courses: response.data };
   };
   const { fetchNextPage, hasNextPage, data, isLoading } = useInfiniteQuery(
-    ['paginatedCoursesList', title],
+    [QUERY_KEYS.paginatedCoursesList, title],
     getCourses,
     {
       enabled: title === undefined ? true : !!title,

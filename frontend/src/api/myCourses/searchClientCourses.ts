@@ -1,17 +1,18 @@
+import { useQuery, UseQueryResult } from 'react-query';
+import { AxiosError } from 'axios';
+
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { REQUEST_ERRORS } from 'constants/authConstants';
 import { ClientCourse } from 'types/clientCourse';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
-const searchClientCourses = async (): Promise<ClientCourse[]> => {
-  const apiClient = apiClientWrapper();
-  try {
+const useSearchClientCourses = (): UseQueryResult<Array<ClientCourse>, AxiosError> => {
+  return useQuery(QUERY_KEYS.myCourses, async () => {
+    const apiClient = apiClientWrapper();
     const response = await apiClient.get(`${API.getMyCourses}`);
     const searchResponse = response.data;
     return searchResponse;
-  } catch (error) {
-    throw new Error(`${REQUEST_ERRORS.getError}`);
-  }
+  });
 };
 
-export default searchClientCourses;
+export default useSearchClientCourses;

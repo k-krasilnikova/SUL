@@ -5,7 +5,9 @@ import { ICourse } from 'interfaces/Ientities/Icourses';
 const courseSchema = new Schema<ICourse>({
   title: { type: String, required: true, unique: true },
   description: { type: String },
-  technologies: [{ type: Schema.Types.ObjectId, required: true }],
+  technologies: [
+    { skill: { type: Schema.Types.ObjectId, required: true }, points: { type: Number } },
+  ],
   requiredSkills: [{ type: Schema.Types.ObjectId }],
   complexity: { type: Number, required: true },
   materials: [{ stage: { type: Number }, content: [{ type: String }] }],
