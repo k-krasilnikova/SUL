@@ -1,7 +1,8 @@
 import { SortOrder } from 'enums/common';
-import ISkill from 'interfaces/Ientities/ISkill';
 
+import ISkill from '../Ientities/ISkill';
 import { ICourse } from '../Ientities/Icourses';
+import { ITest } from '../Ientities/Itest';
 import { ICourseDuration } from '../common/datetime';
 
 interface IQueryCourses {
@@ -27,6 +28,13 @@ interface IProgress {
   isCompleted: boolean;
 }
 
+interface IUpdateCourseBody {
+  description?: string;
+  skills?: string[];
+  content?: ICourse['materials'];
+  test?: Pick<ITest, 'questions'>;
+}
+
 type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
 
 type ICourseInfoPopulated = ICourseInfo & { technologies: ISkill[] };
@@ -38,4 +46,5 @@ export {
   ICoursePopulated,
   ICourseInfoPopulated,
   IProgress,
+  IUpdateCourseBody,
 };
