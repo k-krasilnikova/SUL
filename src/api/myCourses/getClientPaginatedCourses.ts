@@ -6,6 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { ClientCourse } from 'types/clientCourse';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const PAGE_CHANGE = 1;
 const FIRST_PAGE = 1;
@@ -33,7 +34,7 @@ const useGetClientPaginatedCourses = (): HookResult => {
     return { page: pageParam, clientCourses: response.data };
   };
   const { fetchNextPage, hasNextPage, data, isLoading } = useInfiniteQuery(
-    'paginatedClientCoursesList',
+    [QUERY_KEYS.paginatedClientCoursesList],
     getClientCourses,
     {
       getPreviousPageParam: (firstPage) =>

@@ -6,6 +6,7 @@ import { apiClientWrapper, queryClient } from 'api/base';
 import { API } from 'constants/routes';
 import { IPassingTestResponse } from 'types/test';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const usePassClientCourse = (
   courseId: string | undefined,
@@ -23,7 +24,7 @@ const usePassClientCourse = (
     },
     {
       onError: handleSubmitError,
-      onSuccess: () => queryClient.refetchQueries(['CourseAndMaterials', courseId]),
+      onSuccess: () => queryClient.refetchQueries([QUERY_KEYS.courseAndMaterials, courseId]),
     },
   );
 };
