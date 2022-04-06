@@ -6,6 +6,7 @@ import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
 import isValidDescription from 'utils/validation/isValidDescription';
 import isValidMaterials from 'utils/validation/isValidMaterials';
+import isValidTechnologies from 'utils/validation/isValidTechnologies';
 
 const editCourse = async (
   req: Request<{ id: string }, never, IUpdateCourseBody>,
@@ -28,8 +29,7 @@ const editCourse = async (
     }
 
     // update materials
-    const isMaterialsValid =
-      dataToUpdate.materials?.length && isValidMaterials(dataToUpdate.materials);
+    const isMaterialsValid = isValidMaterials(dataToUpdate.materials);
     if (isMaterialsValid && dataToUpdate.materials) {
       const materialsWithStages = addMaterialStages(dataToUpdate.materials);
       await updateCourseField(courseId, COURSE_FIELDS.materials, materialsWithStages);
@@ -37,6 +37,12 @@ const editCourse = async (
     }
 
     // update skills
+    // TODO: add check for skill existing
+    const isSkillsValid = isValidTechnologies(dataToUpdate.skills);
+    if (isSkillsValid) {
+      await updateCourseField(courseId, COURSE_FIELDS.technologies, dataToUpdate.skills);
+      updatedData.skills = dataToUpdate.skills;
+    }
 
     res.locals.results = updatedData;
 
