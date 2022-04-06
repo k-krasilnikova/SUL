@@ -70,7 +70,7 @@ const UserSkills: React.FC<Props> = ({
       </SearchWrapper>
       <SkillsList>
         {technologies && technologies.length ? (
-          technologies.map((techGroup) => (
+          technologies.map((techGroup, id) => (
             <div key={`${techGroup.group.name}_id`}>
               <SkillsListItem>
                 <SkillTitle>
@@ -85,7 +85,7 @@ const UserSkills: React.FC<Props> = ({
                   ))}
                 </SkillsInfoList>
               </SkillsListItem>
-              <SkillsDivider />
+              {id < technologies.length - 1 && <SkillsDivider />}
             </div>
           ))
         ) : (
