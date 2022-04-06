@@ -14,7 +14,7 @@ const useGetEmployeesList = (): UseQueryResult<IEmployee[], AxiosError> => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    [QUERY_KEYS.employeesLis],
+    [QUERY_KEYS.employeesList],
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(API.getEmployeesList);
