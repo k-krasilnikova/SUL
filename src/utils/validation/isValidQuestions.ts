@@ -21,7 +21,7 @@ const isQuestionsHasCorrectAnswer = (questions: IUpdateCourseBody['test']): bool
   );
 
 const isValidQuestions = (questions: IUpdateCourseBody['test']): boolean => {
-  if (!questions || !questions?.length) {
+  if (!questions || !questions.length) {
     return false;
   }
 

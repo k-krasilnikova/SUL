@@ -1,7 +1,7 @@
 import { COURSE_FIELDS } from 'config/constants';
 import { updateCourseField } from 'db/providers/courseProvider';
 import { skillsExist } from 'db/providers/skillProvider';
-import { getTestProvider, updateTestQuestions } from 'db/providers/testProvider';
+import { getCourseTest, updateTestQuestions } from 'db/providers/testProvider';
 import { NextFunction, Request, Response } from 'express';
 
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
@@ -20,40 +20,54 @@ const editCourse = async (
     const { id: courseId } = req.params;
     const dataToUpdate = req.body;
 
-    // all the validdations here
-
     const updatedData: IUpdateCourseBody = {};
 
-    // update description
-    const isDescriptionValid = isValidDescription(updatedData.description);
+    // update description [TESTED]
+    const isDescriptionValid = isValidDescription(dataToUpdate.description);
     if (isDescriptionValid) {
-      await updateCourseField(courseId, COURSE_FIELDS.description, dataToUpdate.description);
-      updatedData.description = dataToUpdate.description;
+      const { description } = await updateCourseField(
+        courseId,
+        COURSE_FIELDS.description,
+        dataToUpdate.description,
+      );
+      updatedData.description = description;
     }
 
-    // update materials
+    // update materials [TESTED]
     const isMaterialsValid = isValidMaterials(dataToUpdate.materials);
     if (isMaterialsValid && dataToUpdate.materials) {
       const materialsWithStages = addMaterialStages(dataToUpdate.materials);
-      await updateCourseField(courseId, COURSE_FIELDS.materials, materialsWithStages);
-      updatedData.materials = dataToUpdate.materials;
+      const { materials } = await updateCourseField(
+        courseId,
+        COURSE_FIELDS.materials,
+        materialsWithStages,
+      );
+      updatedData.materials = materials;
     }
 
     // update skills
     const isSkillsValid = isValidTechnologies(dataToUpdate.skills);
-    const isSkillsExist = await skillsExist(dataToUpdate.skills);
+    const skillsIds = dataToUpdate.skills?.reduce(
+      (ids, tech) => ids.concat([tech.skill]),
+      new Array<string>(),
+    );
+    const isSkillsExist = await skillsExist(skillsIds);
     if (isSkillsValid && isSkillsExist) {
-      await updateCourseField(courseId, COURSE_FIELDS.technologies, dataToUpdate.skills);
-      updatedData.skills = dataToUpdate.skills;
+      const { technologies } = await updateCourseField(
+        courseId,
+        COURSE_FIELDS.technologies,
+        dataToUpdate.skills,
+      );
+      updatedData.skills = technologies as unknown as IUpdateCourseBody['skills'];
     }
 
     // update test questions
     const isQuestionsValid = isValidQuestions(dataToUpdate.test);
     if (isQuestionsValid) {
-      const [{ test }] = await getTestProvider(courseId);
+      const test = await getCourseTest(courseId);
       if (test._id && dataToUpdate.test) {
-        await updateTestQuestions(test._id, dataToUpdate.test);
-        updatedData.test = dataToUpdate.test;
+        const { questions } = await updateTestQuestions(test._id, dataToUpdate.test);
+        updatedData.test = questions;
       }
     }
 
