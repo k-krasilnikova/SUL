@@ -4,6 +4,10 @@ import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { NOTHING } from 'config/constants';
 
 const isValidTechnologies = (techs: IUpdateCourseBody['skills']): boolean => {
+  if (!techs?.length) {
+    return false;
+  }
+
   const validationChecks = techs?.map(
     (tech) =>
       isValidObjectId(tech.skill) && typeof tech.points === 'number' && tech.points > NOTHING,

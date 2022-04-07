@@ -1,6 +1,6 @@
 import { COURSE_FIELDS } from 'config/constants';
 import { updateCourseField } from 'db/providers/courseProvider';
-import { skillsExist } from 'db/providers/skillProvider';
+import { isProperTechnologies } from 'db/providers/skillProvider';
 import { getCourseTest, updateTestQuestions } from 'db/providers/testProvider';
 import { NextFunction, Request, Response } from 'express';
 
@@ -46,14 +46,12 @@ const editCourse = async (
       updatedData.materials = materials;
     }
 
-    // update skills
-    const isSkillsValid = isValidTechnologies(dataToUpdate.skills);
-    const skillsIds = dataToUpdate.skills?.reduce(
-      (ids, tech) => ids.concat([tech.skill]),
-      new Array<string>(),
-    );
-    const isSkillsExist = await skillsExist(skillsIds);
-    if (isSkillsValid && isSkillsExist) {
+    // update skills [TESTED]
+    const isSkillsValid =
+      dataToUpdate.skills &&
+      isValidTechnologies(dataToUpdate.skills) &&
+      (await isProperTechnologies(dataToUpdate.skills));
+    if (isSkillsValid) {
       const { technologies } = await updateCourseField(
         courseId,
         COURSE_FIELDS.technologies,
