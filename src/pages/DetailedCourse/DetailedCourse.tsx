@@ -91,7 +91,7 @@ const DetailedCourse: React.FC<IProps> = ({
           <DetailedCourseTextMobile>{commonCourseData.description}</DetailedCourseTextMobile>
         ) : (
           <DetailedCourseTextMobile>
-            {commonCourseData.description.slice(0, 140)}
+            {commonCourseData.description.slice(0, 70).concat('...')}
             <ButtonFullText onClick={toggleFullText}>
               {!isFullTextOpen && OPEN_FULL_TEXT}
             </ButtonFullText>
