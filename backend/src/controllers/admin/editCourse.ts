@@ -1,12 +1,14 @@
 import { COURSE_FIELDS } from 'config/constants';
 import { updateCourseField } from 'db/providers/courseProvider';
 import { skillsExist } from 'db/providers/skillProvider';
+import { getTestProvider, updateTestQuestions } from 'db/providers/testProvider';
 import { NextFunction, Request, Response } from 'express';
 
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
 import isValidDescription from 'utils/validation/isValidDescription';
 import isValidMaterials from 'utils/validation/isValidMaterials';
+import isValidQuestions from 'utils/validation/isValidQuestions';
 import isValidTechnologies from 'utils/validation/isValidTechnologies';
 
 const editCourse = async (
@@ -45,7 +47,19 @@ const editCourse = async (
       updatedData.skills = dataToUpdate.skills;
     }
 
+    // update test questions
+    const isQuestionsValid = isValidQuestions(dataToUpdate.test);
+    if (isQuestionsValid) {
+      const [{ test }] = await getTestProvider(courseId);
+      if (test._id && dataToUpdate.test) {
+        await updateTestQuestions(test._id, dataToUpdate.test);
+        updatedData.test = dataToUpdate.test;
+      }
+    }
+
     res.locals.results = updatedData;
+
+    // TODO: check as and is operators logics
 
     next();
   } catch (error) {
