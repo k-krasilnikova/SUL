@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { AuthorizedLayout, DefaultLayout } from 'components/Layout';
-import { getAuthResponseData, TokenTypes } from 'utils/helpers/getAuthResponseData';
+import { getAuthResponseData } from 'utils/helpers/getAuthResponseData';
 
 import NotFound from './NotFound';
 import { DefaultWrapper } from './styled';
 
 const NotFoundContainer: React.FC = () => {
-  const accessToken = getAuthResponseData(TokenTypes.accessToken);
+  const accessToken = getAuthResponseData();
 
   return accessToken ? (
     <AuthorizedLayout pageName="Not found">
