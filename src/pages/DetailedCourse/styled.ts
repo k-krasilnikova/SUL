@@ -121,21 +121,22 @@ export const DetailedCourseTitle = styled(Typography)({
 });
 
 export const DetailedCourseActionsBox = styled(Box)({
+  width: '100%',
   display: 'flex',
+  alignItems: 'center',
   justifyContent: 'space-between',
   marginTop: '50px',
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('sm')]: {
     display: 'block',
     marginTop: '24px',
     marginLeft: '3px',
   },
-  [theme.breakpoints.up('md')]: {
-    display: 'flex',
-    justifyContent: 'space-between',
+  [theme.breakpoints.down('md')]: {
     marginTop: '56px',
     marginLeft: '0',
   },
   [theme.breakpoints.up('lg')]: {
+    width: 'initial',
     minWidth: '60vw',
   },
 });
