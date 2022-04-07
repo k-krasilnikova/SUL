@@ -3,8 +3,8 @@ import React from 'react';
 import { SignTypes } from 'types/signIn';
 
 import { SignMain, SignInWrapper } from './styled';
-import SignInForm from './SignInForm';
 import SignInImage from './SignInImage';
+import SignInForm from './SignInForm';
 
 const SignIn: React.FC<SignTypes> = ({
   formik,

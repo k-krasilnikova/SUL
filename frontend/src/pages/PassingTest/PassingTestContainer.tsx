@@ -13,8 +13,7 @@ import {
 import { TO_MILLISECONDS_RATIO } from 'constants/time';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
-import { useToggle } from 'hooks';
-import { useCallbackPrompt } from 'hooks/useCallbackPrompt';
+import { useToggle, useCallbackPrompt } from 'hooks';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
 
