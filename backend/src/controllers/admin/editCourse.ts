@@ -6,6 +6,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
+import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
 import isValidDescription from 'utils/validation/isValidDescription';
 import isValidMaterials from 'utils/validation/isValidMaterials';
 import isValidQuestions from 'utils/validation/isValidQuestions';
@@ -61,19 +62,18 @@ const editCourse = async (
       updatedData.skills = technologies as unknown as IUpdateCourseBody['skills'];
     }
 
-    // update test questions
+    // update test questions [TESTED]
     const isQuestionsValid = isValidQuestions(dataToUpdate.test);
     if (isQuestionsValid) {
       const test = await getCourseTest(courseId);
       if (test._id && dataToUpdate.test) {
-        const { questions } = await updateTestQuestions(test._id, dataToUpdate.test);
+        const properQuestionsToSet = setAnswerProperNumbersToQuestions(dataToUpdate.test);
+        const { questions } = await updateTestQuestions(test._id, properQuestionsToSet);
         updatedData.test = questions;
       }
     }
 
     res.locals.results = updatedData;
-
-    // TODO: check as and is operators logics
 
     next();
   } catch (error) {

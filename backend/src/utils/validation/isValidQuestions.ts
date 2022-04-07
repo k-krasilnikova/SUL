@@ -1,4 +1,6 @@
+import { NOTHING } from 'config/constants';
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { uniqWith } from 'lodash';
 
 const CORRECT_ANSWERS_AMOUNT = 1;
 
@@ -6,12 +8,20 @@ const isValidAnswer = (answer: { aN: unknown; variant: unknown }): boolean =>
   Boolean(
     answer &&
       typeof answer.aN === 'number' &&
-      answer.aN > 0 &&
+      answer.aN > NOTHING &&
       answer.variant &&
       typeof answer.variant === 'string',
   );
 
-const isQuestionsHasCorrectAnswer = (questions: IUpdateCourseBody['test']): boolean =>
+const isQuestionsHaveNoAnswerDuplicates = (questions: IUpdateCourseBody['test']): boolean =>
+  Boolean(
+    questions?.every((question) => {
+      const uniqueAnswers = uniqWith(question.answers, (a, b) => a.aN === b.aN);
+      return uniqueAnswers.length === question.answers.length;
+    }),
+  );
+
+const isQuestionsHaveCorrectAnswer = (questions: IUpdateCourseBody['test']): boolean =>
   Boolean(
     questions?.every(
       (question) =>
@@ -28,15 +38,20 @@ const isValidQuestions = (questions: IUpdateCourseBody['test']): boolean => {
   const validationChecks = questions.map((question) =>
     Boolean(
       typeof question.qN === 'number' &&
+        question.qN > NOTHING &&
+        question.question &&
         typeof question.question === 'string' &&
         question.answers?.every(isValidAnswer) &&
         typeof question.correctAnswer === 'number',
     ),
   );
 
-  const isAnswersStructureValid = validationChecks.every((check) => check);
+  const isQuestionsStructureValid = validationChecks.every((check) => check);
 
-  const allValidationsPassed = isAnswersStructureValid && isQuestionsHasCorrectAnswer(questions);
+  const allValidationsPassed =
+    isQuestionsStructureValid &&
+    isQuestionsHaveCorrectAnswer(questions) &&
+    isQuestionsHaveNoAnswerDuplicates(questions);
 
   return allValidationsPassed;
 };
