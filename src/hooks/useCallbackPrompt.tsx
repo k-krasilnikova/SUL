@@ -2,9 +2,9 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { useBlocker } from './useBlocker';
+import useBlocker from './useBlocker';
 
-export const useCallbackPrompt = (
+const useCallbackPrompt = (
   when: boolean,
 ): [showPrompt: boolean, confirmNavigation: () => void, cancelNavigation: () => void] => {
   const navigate = useNavigate();
@@ -44,3 +44,5 @@ export const useCallbackPrompt = (
 
   return [showPrompt, confirmNavigation, cancelNavigation];
 };
+
+export default useCallbackPrompt;
