@@ -81,6 +81,7 @@ export interface IPassingTestProps {
   maxStage: number;
   handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmitResult: () => void;
+  handleNavigateBack?: () => void;
   value: {
     [key: number]: number;
   };
