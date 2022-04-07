@@ -41,7 +41,7 @@ export const ImageWrapper = styled('div')<Image>(({ imageUrl }) => {
     [theme.breakpoints.up('md')]: {
       width: '281px',
       height: '147px',
-      margin: '5px 25px 105px 0',
+      margin: '5px 25px 30px 0',
       borderRadius: '8px',
     },
     [theme.breakpoints.up('xl')]: {
