@@ -5,17 +5,16 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import theme from 'themeSettings';
 
 export const ProfileBox = styled('div')({
-  width: '90%',
   display: 'flex',
   flexDirection: 'row',
-  margin: '88px 0px 70px 122px',
+  margin: '88px 40px 70px 122px',
   [theme.breakpoints.down('xl')]: {
     flexDirection: 'row',
-    margin: '60px 0px 60px 40px',
+    margin: '60px 40px 60px 40px',
   },
   [theme.breakpoints.down('lg')]: {
     flexDirection: 'row',
-    margin: '40px 0px 50px 40px',
+    margin: '40px 40px 50px 40px',
   },
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
@@ -61,6 +60,7 @@ export const UserInfoList = styled(List)({
 export const UserInfoLabel = styled('span')({
   color: '#9b9b9b',
   fontWeight: '500',
+  flexShrink: '0',
   [theme.breakpoints.up('xs')]: {
     width: '82px',
     display: 'inline-block',
@@ -87,7 +87,7 @@ export const UserInfoLabel = styled('span')({
 });
 export const UserInfoText = styled('span')({
   [theme.breakpoints.up('xs')]: {
-    width: '191px',
+    maxWidth: '191px',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -96,19 +96,18 @@ export const UserInfoText = styled('span')({
     marginTop: '5px',
   },
   [theme.breakpoints.up('sm')]: {
-    width: '300px',
+    maxWidth: '300px',
     display: 'inline-flex',
     fontSize: '18px',
     lineHeight: '21px',
     marginTop: '4px',
   },
   [theme.breakpoints.up('xl')]: {
-    width: '400px',
+    maxWidth: '400px',
     display: 'inline-flex',
     fontSize: '18px',
     lineHeight: '21px',
     padding: '0px 0px 0px 40px',
-    height: '24px',
     marginBottom: '20px',
   },
 });

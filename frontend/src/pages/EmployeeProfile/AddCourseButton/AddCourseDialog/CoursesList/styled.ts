@@ -20,5 +20,7 @@ export const StyledList = styled(List)<IPropsCoursesList>(({ type }) => ({
 }));
 
 export const StyledHorizontalLine = styled(Divider)({
-  margin: '16px 0',
+  '&.MuiDivider-root': {
+    margin: '16px 0',
+  },
 });
