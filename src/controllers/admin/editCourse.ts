@@ -1,5 +1,6 @@
 import { COURSE_FIELDS } from 'config/constants';
 import { updateCourseField } from 'db/providers/courseProvider';
+import { skillsExist } from 'db/providers/skillProvider';
 import { NextFunction, Request, Response } from 'express';
 
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
@@ -37,9 +38,9 @@ const editCourse = async (
     }
 
     // update skills
-    // TODO: add check for skill existing
     const isSkillsValid = isValidTechnologies(dataToUpdate.skills);
-    if (isSkillsValid) {
+    const isSkillsExist = await skillsExist(dataToUpdate.skills);
+    if (isSkillsValid && isSkillsExist) {
       await updateCourseField(courseId, COURSE_FIELDS.technologies, dataToUpdate.skills);
       updatedData.skills = dataToUpdate.skills;
     }

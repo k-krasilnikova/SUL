@@ -104,6 +104,14 @@ const populateUserTechnologies = async (employee: IUser): Promise<IUser> =>
 const populateUserStack = async (user: IUser): Promise<IUser> =>
   UserModel.populate(user, { path: 'stack', select: '-_id name' });
 
+const skillsExist = async (ids?: string[] | ObjectId[]): Promise<boolean> => {
+  if (!ids) {
+    return false;
+  }
+  const foundSkillsCount = await SkillModel.count({ _id: { $in: ids } });
+  return foundSkillsCount === ids.length;
+};
+
 export {
   getUserSkills,
   getPopulatedUserSkill,
@@ -114,4 +122,5 @@ export {
   populateUserStack,
   getCommonSkill,
   getUserSkill,
+  skillsExist,
 };
