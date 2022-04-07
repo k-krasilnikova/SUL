@@ -227,9 +227,8 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
 
 export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   display: 'flex',
-  height: '30px',
-  alignItems: 'end !important',
-  alignSelf: 'end !important',
+  alignItems: 'start !important',
+  alignSelf: 'self-end',
   paddingBottom: '0px !important',
   [theme.breakpoints.down('xl')]: {
     ...(type !== INFO.detailedCourse &&
@@ -238,13 +237,11 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
       }),
     ...(type !== INFO.searchCourses && {
       marginLeft: '10px',
-      height: '50px',
     }),
   },
   [theme.breakpoints.down('lg')]: {
     display: 'block',
-    alignItems: 'end !important',
-    alignSelf: 'end !important',
+    alignItems: 'start !important',
     height: 'fit-content',
   },
   [theme.breakpoints.down('md')]: {
@@ -257,17 +254,20 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     }),
   },
   [theme.breakpoints.down(550)]: {
-    display: 'block',
+    ...(type === INFO.detailedCourse && {
+      flexDirection: 'column',
+    }),
   },
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
     ...(type === INFO.detailedCourse && {
       marginLeft: '8px',
+      flexDirection: 'row',
     }),
   },
   [theme.breakpoints.up('xl')]: {
     display: 'block',
-    width: '220px',
+    // width: '220px',
     ...(type !== INFO.searchCourses && {
       marginLeft: '15px',
     }),
@@ -301,9 +301,6 @@ export const InfoItem = styled('div')({
 });
 
 export const InfoItemText = styled(Typography)({
-  [theme.breakpoints.down('xl')]: {
-    width: '70px',
-  },
   [theme.breakpoints.down('md')]: {
     lineHeight: '18px!important',
   },
@@ -372,7 +369,7 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   flexDirection: 'row',
   paddingLeft: '15px !important',
   paddingBottom: '0px !important',
-  height: '50px !important',
+  // height: '50px !important',
 }));
 
 export const MobileCourseInfoBox = styled(Box)({
