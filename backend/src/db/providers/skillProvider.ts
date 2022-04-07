@@ -6,12 +6,70 @@ import { IUser } from 'interfaces/Ientities/Iusers';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
+import SkillGroupModel from 'db/models/SkillGroup';
+import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
+import { NO_FILTER } from 'config/constants';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })
     .select('-_id skill score')
     .lean();
   return skills;
+};
+
+const getAllGroupsWithSkills = async ({ search }: { search?: string }): Promise<ISkillGroup[]> => {
+  const groups: ISkillGroup[] = await SkillGroupModel.aggregate([
+    {
+      $match: search ? { name: { $regex: new RegExp(search), $options: 'i' } } : NO_FILTER,
+    },
+    {
+      $lookup: {
+        from: 'skills',
+        localField: 'skills',
+        foreignField: '_id',
+        as: 'skills',
+      },
+    },
+  ]);
+
+  if (!groups) {
+    throw new BadRequestError('Unknown params.');
+  }
+
+  return groups;
+};
+
+const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
+  const skillsByGroup: ISkillGroup[] = await SkillModel.aggregate([
+    {
+      $match: search ? { name: { $regex: new RegExp(search), $options: 'i' } } : NO_FILTER,
+    },
+    {
+      $group: { _id: '$group', skills: { $push: '$$ROOT' } },
+    },
+    {
+      $lookup: {
+        from: 'skillGroups',
+        localField: '_id',
+        foreignField: '_id',
+        pipeline: [{ $project: { name: 1 } }],
+        as: 'group',
+      },
+    },
+    {
+      $unwind: '$group',
+    },
+    {
+      $project: { name: '$group.name', skills: 1, _id: 0 },
+    },
+  ]);
+
+  if (!skillsByGroup) {
+    throw new BadRequestError('Unknown params.');
+  }
+
+  return skillsByGroup;
 };
 
 const getUserSkill = async (userId: ObjectId | string, skillId: ObjectId | string) => {
@@ -114,4 +172,6 @@ export {
   populateUserStack,
   getCommonSkill,
   getUserSkill,
+  getAllGroupsWithSkills,
+  getAllSkillsByGroup,
 };
