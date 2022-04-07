@@ -135,10 +135,6 @@ export const DetailedCourseActionsBox = styled(Box)({
     marginTop: '56px',
     marginLeft: '0',
   },
-  [theme.breakpoints.up('lg')]: {
-    width: 'initial',
-    minWidth: '60vw',
-  },
 });
 
 export const SimilarCoursesWrapper = styled(Grid)({
