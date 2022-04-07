@@ -32,7 +32,7 @@ interface IUpdateCourseBody {
   description?: string;
   skills?: string[];
   materials?: ICourse['materials'];
-  test?: Pick<ITest, 'questions'>;
+  test?: ITest['questions'];
 }
 
 type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
