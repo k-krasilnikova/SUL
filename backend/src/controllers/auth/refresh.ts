@@ -15,9 +15,11 @@ interface ICookies {
 const refresh = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { refreshToken }: { refreshToken: string } = req.cookies as ICookies;
+
     if (!refreshToken) {
       throw new BadRequestError('No refresh token provided.');
     }
+
     const decodeRefreshToken = verifyRefreshToken(refreshToken);
 
     const dbUser = await getUserProvider(decodeRefreshToken.id);
