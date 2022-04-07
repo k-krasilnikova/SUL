@@ -23,7 +23,6 @@ const editCourse = async (
 
     const updatedData: IUpdateCourseBody = {};
 
-    // update description [TESTED]
     const isDescriptionValid = isValidDescription(dataToUpdate.description);
     if (isDescriptionValid) {
       const { description } = await updateCourseField(
@@ -34,7 +33,6 @@ const editCourse = async (
       updatedData.description = description;
     }
 
-    // update materials [TESTED]
     const isMaterialsValid = isValidMaterials(dataToUpdate.materials);
     if (isMaterialsValid && dataToUpdate.materials) {
       const materialsWithStages = addMaterialStages(dataToUpdate.materials);
@@ -46,7 +44,6 @@ const editCourse = async (
       updatedData.materials = materials;
     }
 
-    // update skills [TESTED]
     const isSkillsValid =
       dataToUpdate.skills &&
       isValidTechnologies(dataToUpdate.skills) &&
@@ -60,7 +57,6 @@ const editCourse = async (
       updatedData.skills = technologies as unknown as IUpdateCourseBody['skills'];
     }
 
-    // update test questions [TESTED]
     const isQuestionsValid = isValidQuestions(dataToUpdate.test);
     if (isQuestionsValid) {
       const test = await getCourseTest(courseId);
