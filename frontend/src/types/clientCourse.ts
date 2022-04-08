@@ -1,4 +1,4 @@
-import { Course } from './course';
+import { ICourse } from './course';
 
 export interface ClientCourse {
   currentStage: number;
@@ -12,7 +12,7 @@ export interface ClientCourse {
   status: string;
   user: string;
   _id: string;
-  course: Course;
+  course: ICourse;
   applyDate?: string;
   testDate?: string;
 }

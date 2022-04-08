@@ -1,31 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import ProgressBar from 'components/ProgressBar/ProgressBar';
 import Loader from 'components/Loader';
 import { AuthorizedLayout } from 'components/Layout';
-import { ITestResult } from 'types/test';
-import CourseMaterialInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
+import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
+import { TEST_RESULT_TEXT } from 'constants/test';
+import { ITestResult } from 'types/test';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import {
-  AboutSkillsBox,
   ButtonBox,
   ContentBox,
-  FailedCourseText,
-  ProgressBarBox,
-  ResultBox,
-  SkillsInfoList,
-  SkillsText,
-  StyledDivider,
   SubmitButton,
   TestResultBox,
-  TestResultText,
   TestResultTitle,
-  TestSkillsBox,
   TitleBox,
 } from './styled';
+import ResultProgressBar from './ResultProgressBar';
+import ResultDescription from './ResultDescription';
 
 const TestResult: React.FC<ITestResult> = ({
   assessment,
@@ -41,59 +34,19 @@ const TestResult: React.FC<ITestResult> = ({
     ) : (
       <TestResultBox>
         <TitleBox>
-          <TestResultTitle>Your Score</TestResultTitle>
+          <TestResultTitle>{TEST_RESULT_TEXT.score}</TestResultTitle>
         </TitleBox>
         <ContentBox>
-          <ProgressBarBox>
-            {isFailed ? (
-              <ProgressBar
-                size="xlarge"
-                value={percentageValue}
-                text={`${percentageValue}%`}
-                variant="failed"
-              />
-            ) : (
-              <ProgressBar
-                size="xlarge"
-                value={percentageValue}
-                text={`${percentageValue}%`}
-                variant="completed"
-              />
-            )}
-          </ProgressBarBox>
-          <ResultBox>
-            <TestResultText>
-              {isFailed ? 'Test failed' : 'Test successfully completed'}
-            </TestResultText>
-            <AboutSkillsBox>
-              <SkillsText>Acquired skills:</SkillsText>
-              <TestSkillsBox>
-                {isFailed || assessment ? (
-                  <>
-                    <FailedCourseText>None</FailedCourseText>
-                    {assessment && <FailedCourseText>Assessment arranged</FailedCourseText>}
-                    <StyledDivider />
-                  </>
-                ) : (
-                  <SkillsInfoList>
-                    {responseData?.newSkills?.map((newSkillItem) => (
-                      <CourseMaterialInfoContainer skillItem={newSkillItem} key={newSkillItem} />
-                    ))}
-                    {responseData?.updatedSkills?.map((updatedSkillItem) => (
-                      <CourseMaterialInfoContainer
-                        skillItem={updatedSkillItem}
-                        key={updatedSkillItem}
-                      />
-                    ))}
-                  </SkillsInfoList>
-                )}
-              </TestSkillsBox>
-            </AboutSkillsBox>
-          </ResultBox>
+          <ResultProgressBar percentageValue={percentageValue} isFailed={isFailed} />
+          <ResultDescription
+            isFailed={isFailed}
+            assessment={assessment}
+            responseData={responseData}
+          />
         </ContentBox>
         <ButtonBox>
           <Link to={transformRoute(PATHS.myCourseDetails, courseId)}>
-            <SubmitButton variant="medium">Submit</SubmitButton>
+            <SubmitButton variant="medium">{ButtonLabels.submit}</SubmitButton>
           </Link>
         </ButtonBox>
       </TestResultBox>
