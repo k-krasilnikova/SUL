@@ -13,6 +13,7 @@ export interface IEmployee {
   skype: string;
   phone: string;
   technologies?: Technologies;
+  courses?: ClientCourse[];
 }
 
 export interface IEmployees {
