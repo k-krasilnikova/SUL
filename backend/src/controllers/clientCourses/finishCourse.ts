@@ -9,11 +9,10 @@ const finishCourse = async (req: Request, res: Response, next: NextFunction) => 
   try {
     const { id: clientCourseId } = req.params;
     const { status } = await getStatusProvider(clientCourseId);
-    if (status !== CourseStatus.successful && status !== CourseStatus.assessment) {
-      throw new BadRequestError("You haven't passed the test.");
-    }
-    if (status !== CourseStatus.assessment) {
+    if (status === CourseStatus.successful) {
       await updateClientCourseField(clientCourseId, COURSE_FILEDS.status, CourseStatus.completed);
+    } else {
+      throw new BadRequestError(`Can not finish course with status: ${status}.`);
     }
     res.json({ finish: true });
   } catch (err) {
