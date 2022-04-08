@@ -27,6 +27,11 @@ interface IProgress {
   isCompleted: boolean;
 }
 
+interface ICourseToAssign {
+  courseId: string;
+  assessment?: boolean;
+}
+
 type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
 
 type ICourseInfoPopulated = ICourseInfo & { technologies: ISkill[] };
@@ -38,4 +43,5 @@ export {
   ICoursePopulated,
   ICourseInfoPopulated,
   IProgress,
+  ICourseToAssign,
 };
