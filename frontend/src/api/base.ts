@@ -1,11 +1,11 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
 import { QueryClient } from 'react-query';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import Cookies from 'js-cookie';
 
 import { getAuthResponseData } from 'utils/helpers/getAuthResponseData';
 import { COOKIE_VALUES } from 'constants/authConstants';
-import { PATHS } from 'constants/routes';
+import { API, PATHS } from 'constants/routes';
 import deleteAllCookies from 'utils/helpers/deleteAllCookies';
 
 export const queryClient = new QueryClient();
@@ -24,22 +24,27 @@ export const apiClientWrapper = (): AxiosInstance => {
         baseURL: process.env.REACT_APP_BACKEND_URL,
       });
 
-  const refreshAuthLogic = (failedRequest: any) => {
+  const refreshAuthLogic = (failedRequest: AxiosError): Promise<any> => {
     return apiClient
-      .get('/api/account/refresh', { withCredentials: true })
+      .get(API.refresh, { withCredentials: true })
       .then((tokenRefreshResponse) => {
         const tokens = tokenRefreshResponse.data;
         const accessToken = JSON.stringify(tokens.accessToken);
         const refreshToken = JSON.stringify(tokens.refreshToken);
-        // eslint-disable-next-line no-param-reassign
-        failedRequest.response.config.headers.Authorization = `Bearer ${accessToken}`;
         Cookies.set(COOKIE_VALUES.uniqAccessToken, accessToken, { secure: true });
         Cookies.set(COOKIE_VALUES.uniqRefreshToken, refreshToken, { secure: true });
+        if (failedRequest?.response?.config.headers) {
+          // eslint-disable-next-line no-param-reassign
+          failedRequest.response.config.headers.Authorization = `Bearer ${accessToken}`;
+        }
+
         return Promise.resolve();
       })
-      .catch(() => {
-        deleteAllCookies();
-        window.location.replace(PATHS.signIn);
+      .catch((err) => {
+        if (err.response.status === 401 || err.response.status === 403) {
+          deleteAllCookies();
+          window.location.replace(PATHS.signIn);
+        }
       });
   };
 
