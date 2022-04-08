@@ -31,6 +31,9 @@ const getAllGroupsWithSkills = async ({ search }: { search?: string }): Promise<
         as: 'skills',
       },
     },
+    {
+      $project: { _id: 0 },
+    },
   ]);
 
   if (!groups) {
