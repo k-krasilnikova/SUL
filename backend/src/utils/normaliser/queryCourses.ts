@@ -1,12 +1,11 @@
+import { uniqWith } from 'lodash';
+
 import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
 
+const coursesToAssignComparator = (a: ICourseToAssign, b: ICourseToAssign): boolean =>
+  a.courseId === b.courseId;
+
 const removeCoursesToAssignDuplicates = (courses: ICourseToAssign[]): ICourseToAssign[] =>
-  courses.reduce((reduced, course) => {
-    const hasDuplicate = reduced.some((savedCourse) => savedCourse.courseId === course.courseId);
-    if (!hasDuplicate) {
-      reduced.push(course);
-    }
-    return reduced;
-  }, new Array<ICourseToAssign>());
+  uniqWith(courses, coursesToAssignComparator);
 
 export { removeCoursesToAssignDuplicates };
