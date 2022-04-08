@@ -103,3 +103,15 @@ export const StyledRadio = styled(Radio)({
   padding: '0 !important',
   alignSelf: 'flex-start',
 });
+
+export const QuestionItemBox = styled(Box)({
+  display: 'flex',
+  marginLeft: '128px',
+  flexDirection: 'column',
+  [theme.breakpoints.down('xl')]: {
+    marginLeft: '88px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    marginLeft: '0',
+  },
+});

@@ -1,19 +1,9 @@
 import React from 'react';
-import { Document, PDFPageProxy } from 'react-pdf';
+import { PDFPageProxy } from 'react-pdf';
 
-import { FIRST_PAGE_INDEX, LAST_PAGE_INDEX } from 'constants/pdfViewer';
-import { Back, Forward } from 'components/Arrows';
-import Loader from 'components/Loader';
-import { LOADER } from 'constants/loaderTypes';
-
-import {
-  ButtonBox,
-  DocumentBox,
-  PageNumberText,
-  PDFWrapper,
-  StyledButton,
-  StyledPage,
-} from './styled';
+import { PDFWrapper } from './styled';
+import PDFViewerButtons from './PDFViewerButtons';
+import PDFViewerDocument from './PDFViewerDocument';
 
 interface RefObject<T> {
   readonly current: T | null;
@@ -45,38 +35,21 @@ const PDFViewer: React.FC<IPDFViewer> = ({
   scale,
 }) => (
   <PDFWrapper>
-    <ButtonBox>
-      <StyledButton disabled={pageNumber <= FIRST_PAGE_INDEX} onClick={clickPreviousPage}>
-        <Back arrowDisabled={pageNumber <= FIRST_PAGE_INDEX} />
-      </StyledButton>
-      <PageNumberText>
-        {pageNumber}/{LAST_PAGE_INDEX}
-      </PageNumberText>
-      <StyledButton disabled={pageNumber >= LAST_PAGE_INDEX} onClick={clickNextPage}>
-        <Forward arrowDisabled={pageNumber >= LAST_PAGE_INDEX} />
-      </StyledButton>
-    </ButtonBox>
-    <DocumentBox ref={documentBoxRef}>
-      {displayLoader && <Loader color="primary" type={LOADER.content} />}
-      <Document
-        file={src}
-        onLoadSuccess={() => {
-          changeDisplayLoader();
-          return onDocumentLoadSuccess;
-        }}
-        onLoadProgress={() => changeDisplayLoader()}
-        loading=""
-      >
-        <StyledPage
-          pageNumber={pageNumber}
-          key={`${pageNumber}_${scale}`}
-          scale={scale}
-          onLoadSuccess={onPageLoadSuccess}
-          renderTextLayer={false}
-          loading=""
-        />
-      </Document>
-    </DocumentBox>
+    <PDFViewerButtons
+      pageNumber={pageNumber}
+      clickPreviousPage={clickPreviousPage}
+      clickNextPage={clickNextPage}
+    />
+    <PDFViewerDocument
+      src={src}
+      pageNumber={pageNumber}
+      onDocumentLoadSuccess={onDocumentLoadSuccess}
+      onPageLoadSuccess={onPageLoadSuccess}
+      documentBoxRef={documentBoxRef}
+      displayLoader={displayLoader}
+      changeDisplayLoader={changeDisplayLoader}
+      scale={scale}
+    />
   </PDFWrapper>
 );
 

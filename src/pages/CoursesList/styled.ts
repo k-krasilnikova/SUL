@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Grid, Box } from '@mui/material';
+import { Grid } from '@mui/material';
 
-import { Button } from 'components/Button';
 import theme from 'themeSettings';
 
 export const PageContainer = styled(Grid)({
@@ -38,22 +37,6 @@ export const GridItem = styled(Grid)({
   },
 });
 
-export const CourseActions = styled('div')({
-  display: 'flex',
-  [theme.breakpoints.down('md')]: {
-    justifyContent: 'space-between',
-    margin: '0px',
-  },
-  [theme.breakpoints.down('sm')]: {
-    flexDirection: 'column',
-    minWidth: 'auto',
-  },
-});
-
-export const CourseActionsBox = styled(Box)({
-  margin: '20px 15px 0 8px',
-});
-
 export const MobileLink = styled(Link)({
   [theme.breakpoints.down('sm')]: {
     '&:hover': {
@@ -74,30 +57,5 @@ export const MobileSearchWrapper = styled('div')({
   height: '30px',
   [theme.breakpoints.up(950)]: {
     display: 'none',
-  },
-});
-
-export const AddButtonWrapper = styled('div')({
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'end',
-  margin: '16px 0 0',
-  [theme.breakpoints.down('xl')]: {
-    margin: '16px 0',
-  },
-  [theme.breakpoints.down(950)]: {
-    display: 'none',
-  },
-});
-
-export const AddButton = styled(Button)({
-  width: '85px',
-  height: '40px',
-  [theme.breakpoints.down('xl')]: {
-    width: '69px',
-    height: '40px',
-    fontSize: '14px!important',
-    lineHeight: '16px',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)!important',
   },
 });

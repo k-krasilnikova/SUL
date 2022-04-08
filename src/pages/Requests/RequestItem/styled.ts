@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Box, Grid } from '@mui/material';
 
-import { Button } from 'components/Button';
 import { REQUEST_STATUS } from 'constants/requests';
 import theme from 'themeSettings';
 
@@ -76,32 +75,6 @@ export const SecondaryText = styled(Text)<IStatus>(({ status }) => ({
   },
 }));
 
-export const ActionButton = styled(Button)({
-  height: '34px',
-  width: '64px',
-  '&.MuiButton-root': {
-    fontWeight: '400',
-    fontSize: '16px',
-    lineHeight: '14px',
-  },
-  [theme.breakpoints.down('xl')]: {
-    marginLeft: '10px !important',
-  },
-  [theme.breakpoints.down(1200)]: {
-    '&.MuiButton-root': {
-      fontSize: '12px',
-    },
-  },
-});
-
-export const InterviewActionButton = styled(ActionButton)({
-  height: '34px',
-  width: '165px',
-  '&.MuiButton-root': {
-    padding: '0',
-  },
-});
-
 export const RequestContainer = styled(Grid)({
   marginBottom: '26px !important',
 });
@@ -128,8 +101,4 @@ export const CourseContainer = styled(CustomGrid)({
 export const TimeContainer = styled(CustomGrid)({
   justifyContent: 'flex-end',
   marginTop: '8px !important',
-});
-
-export const ButtonsContainer = styled(CustomGrid)({
-  justifyContent: 'space-between',
 });

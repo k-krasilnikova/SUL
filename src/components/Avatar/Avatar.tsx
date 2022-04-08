@@ -11,8 +11,8 @@ interface AvatarProps {
 
 type Props = User & AvatarProps;
 
-const UserAvatar: React.FC<Props> = ({ avatar, size }) => (
+const Avatar: React.FC<Props> = ({ avatar, size }) => (
   <UserAvatarRounded size={size} avatar={avatar || avatarDefault} />
 );
 
-export default UserAvatar;
+export default Avatar;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { UserAvatar } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 
 import { CourseWrapper, ImageWrapper } from './styled';
@@ -16,7 +16,7 @@ const CoursePlate: React.FC<Course> = ({ course }) => {
   return (
     <CourseWrapper>
       <ImageWrapper>
-        <UserAvatar size={SIZE.xsmall} avatar={course.avatar} />
+        <Avatar size={SIZE.xsmall} avatar={course.avatar} />
       </ImageWrapper>
       {course.title}
     </CourseWrapper>
