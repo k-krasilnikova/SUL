@@ -10,8 +10,10 @@ import { materialsCounterProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
-import { checkCourseDuplicates } from 'utils/validation/checkDuplicates';
-import { removeCoursesToAssignDuplicates } from 'utils/normaliser/queryCourses';
+import {
+  isCoursesToAssignHaveDuplicates,
+  removeCoursesToAssignDuplicates,
+} from 'utils/normaliser/queryCourses';
 
 const assignEmployeeCourses = async (
   req: Request<{ id: string }, never, ICourseToAssign[]>,
@@ -34,15 +36,12 @@ const assignEmployeeCourses = async (
 
     const employeeClientCourses = await getAllClientCoursesProvider(employeeId);
 
-    const duplicates = reducedCoursesToAssign.reduce((foundDuplicates, courseToAssign) => {
-      const hasDuplicates = checkCourseDuplicates(employeeClientCourses, courseToAssign.courseId);
-      if (hasDuplicates) {
-        foundDuplicates.push(courseToAssign);
-      }
-      return foundDuplicates;
-    }, new Array<ICourseToAssign>());
+    const hasDuplicates = isCoursesToAssignHaveDuplicates(
+      employeeClientCourses,
+      reducedCoursesToAssign,
+    );
 
-    if (duplicates.length) {
+    if (hasDuplicates) {
       throw new BadRequestError(`Attemt to assign duplicated courses.`);
     }
 
