@@ -1,5 +1,6 @@
-import { getAllGroupsWithSkills, getAllSkillsByGroup } from 'db/providers/skillProvider';
 import { NextFunction, Request, Response } from 'express';
+
+import { getAllGroupsWithSkills, getAllSkillsByGroup } from 'db/providers/skillProvider';
 
 const getAllSkills = async (req: Request, res: Response, next: NextFunction) => {
   try {
