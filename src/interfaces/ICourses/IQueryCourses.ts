@@ -38,6 +38,11 @@ interface IUpdateCourseBody {
   test?: ITest['questions'];
 }
 
+interface ICourseToAssign {
+  courseId: string;
+  assessment?: boolean;
+}
+
 type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
 
 type ICourseInfoPopulated = ICourseInfo & { technologies: ISkill[] };
@@ -50,4 +55,5 @@ export {
   ICourseInfoPopulated,
   IProgress,
   IUpdateCourseBody,
+  ICourseToAssign,
 };
