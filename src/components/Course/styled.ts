@@ -174,7 +174,7 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     lineHeight: '19px',
     letterSpacing: '-0.4px',
     textAlign: 'left',
-    padding: '0px',
+    padding: '0',
     fontWeight: '500',
     ...(type === INFO.similarCourses && {
       fontSize: '18px',
@@ -187,8 +187,8 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
   ({ fontSize, lineHeight, type }) => ({
     fontSize: '18px',
     lineHeight: '21px',
-    padding: '0px',
-    margin: '0px',
+    padding: '0',
+    margin: '0',
     color: '#131313',
     fontFamily: '"Ubuntu", sans-serif',
     ...(fontSize && {
@@ -213,7 +213,7 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
       lineHeight: '22px',
       letterSpacing: '-0.4px',
       textAlign: 'left',
-      padding: '0px',
+      padding: '0',
       margin: '0px 10px 9px 7px',
       ...(type === INFO.similarCourses && {
         margin: '0px 0px 9px 0px',
@@ -229,7 +229,7 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   display: 'flex',
   alignItems: 'start',
   alignSelf: 'self-end',
-  paddingBottom: '0px',
+  paddingBottom: '0',
   [theme.breakpoints.down('xl')]: {
     ...(type !== INFO.detailedCourse &&
       type !== INFO.searchCourses && {
@@ -245,8 +245,8 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   },
   [theme.breakpoints.down('md')]: {
     display: 'flex',
-    margin: '0px',
-    padding: '0px',
+    margin: '0',
+    padding: '0',
     flexDirection: 'row',
     ...(type === INFO.detailedCourse && {
       marginLeft: '8px',
@@ -272,13 +272,13 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   },
   [theme.breakpoints.up(1680)]: {
     display: 'flex',
-    marginLeft: '0px',
+    marginLeft: '0',
   },
 }));
 
 export const InfoItem = styled('div')({
   [theme.breakpoints.down('lg')]: {
-    paddingBottom: '0px',
+    paddingBottom: '0',
     display: 'flex',
   },
   [theme.breakpoints.down('md')]: {
@@ -289,7 +289,7 @@ export const InfoItem = styled('div')({
     display: 'flex',
   },
   [theme.breakpoints.down('sm')]: {
-    padding: '0px',
+    padding: '0',
     display: 'inline-flex',
   },
   display: 'inline-flex',
@@ -308,7 +308,7 @@ export const InfoItemText = styled(Typography)({
   [theme.breakpoints.down('sm')]: {
     width: 'fit-content',
     whiteSpace: 'nowrap',
-    padding: '0px',
+    padding: '0',
     fontFamily: '"Ubuntu", sans-serif',
     fontSize: '10px',
     fontWeight: '400',
@@ -368,12 +368,12 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   display: 'flex',
   flexDirection: 'row',
   paddingLeft: '15px',
-  paddingBottom: '0px',
+  paddingBottom: '0',
 }));
 
 export const MobileCourseInfoBox = styled(Box)({
   [theme.breakpoints.up('xs')]: {
-    padding: '0px',
+    padding: '0',
   },
   [theme.breakpoints.up('sm')]: {
     display: 'none',
