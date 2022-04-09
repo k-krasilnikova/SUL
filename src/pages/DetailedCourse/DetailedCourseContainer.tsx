@@ -54,8 +54,6 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
 
   const { data: profileResponse } = useGetProfile();
   const isAdmin = profileResponse?.role === ROLE.admin;
-  // eslint-disable-next-line no-console
-  console.log(ROLE.admin, 'is admin', isAdmin);
 
   let progressValue;
   let progressText;
