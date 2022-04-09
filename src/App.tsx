@@ -21,7 +21,7 @@ import {
 } from 'pages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
-import AuthRoute from 'components/AuthRoute/AuthRoute';
+import RoleRoute from 'components/RoleRoute/RoleRoute';
 import Loader from 'components/Loader';
 import { queryClient } from 'api/base';
 import { LOADER } from 'constants/loaderTypes';
@@ -51,34 +51,34 @@ const App: React.FC = () => (
             <Route
               path={PATHS.employees}
               element={
-                <AuthRoute roles={[ROLE.manager]}>
-                  <Route index element={<Employees />} />
-                  <Route path={PATHS.employee} element={<EmployeeProfile />} />
-                </AuthRoute>
+                <RoleRoute roles={[ROLE.manager]}>
+                  <Employees />
+                  <EmployeeProfile />
+                </RoleRoute>
               }
             />
             <Route
               path={PATHS.requests}
               element={
-                <AuthRoute roles={[ROLE.manager]}>
+                <RoleRoute roles={[ROLE.manager]}>
                   <Requests />
-                </AuthRoute>
+                </RoleRoute>
               }
             />
             <Route
               path={PATHS.skills}
               element={
-                <AuthRoute roles={[ROLE.admin]}>
+                <RoleRoute roles={[ROLE.admin]}>
                   <Skills />
-                </AuthRoute>
+                </RoleRoute>
               }
             />
             <Route
               path={PATHS.skillsMap}
               element={
-                <AuthRoute roles={[ROLE.employee]}>
+                <RoleRoute roles={[ROLE.employee]}>
                   <SkillsMap />
-                </AuthRoute>
+                </RoleRoute>
               }
             />
           </Route>
