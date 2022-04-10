@@ -18,11 +18,7 @@ const PassingTestContainer: React.FC = () => {
   const params = useParams();
   const naviagteTo = useNavigate();
 
-  const {
-    data: courseTestResponse,
-    isLoading: courseTestResponseIsLoading,
-    // isError: courseTestResponseIsError,
-  } = useGetCourseTest({
+  const { data: courseTestResponse, isLoading: courseTestResponseIsLoading } = useGetCourseTest({
     courseId: params.courseId,
   });
   const { data: clientCourseResponse, isLoading: clientCourseResponseIsLoading } =
