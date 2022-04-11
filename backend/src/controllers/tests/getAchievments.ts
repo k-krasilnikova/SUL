@@ -24,10 +24,7 @@ const getAchievments = async (
     const { technologies: techsToAchieve } = course;
     const userId = clientCourse.user.toString();
 
-    if (
-      clientCourse.status === CourseStatus.successful ||
-      clientCourse.status === CourseStatus.completed
-    ) {
+    if (clientCourse.status === CourseStatus.completed) {
       const userSkills: IUserSkill[] = await getUserSkills(userId);
       const user = await getUserProvider(userId);
       const { oldSkills = [], newSkills = [] } = specifySkills(userSkills, techsToAchieve);

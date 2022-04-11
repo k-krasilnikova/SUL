@@ -64,7 +64,7 @@ const getTestResults = async (
       await updateClientCourseField(
         courseId,
         COURSE_FILEDS.status,
-        assessmentRequired ? CourseStatus.assessment : CourseStatus.successful,
+        assessmentRequired ? CourseStatus.assessment : CourseStatus.completed,
       );
       next();
     }
