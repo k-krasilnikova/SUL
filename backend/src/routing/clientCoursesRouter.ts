@@ -6,7 +6,6 @@ import withAuth from 'middlewares/authMiddleware';
 import getClientCourses from 'controllers/clientCourses/getAllClientCourses';
 import passCourse from 'controllers/clientCourses/passCourse';
 import startCourse from 'controllers/clientCourses/startCourse';
-import finishCourse from 'controllers/clientCourses/finishCourse';
 import getClientCourseById from 'controllers/clientCourses/getClientCourse';
 import getTest from 'controllers/tests/getTest';
 import getAchievments from 'controllers/tests/getAchievments';
@@ -46,11 +45,6 @@ clientCoursesRouter.get(
   SubRoutes.startCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   startCourse,
-);
-clientCoursesRouter.get(
-  SubRoutes.finishCourse,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
-  finishCourse,
 );
 clientCoursesRouter.get(
   SubRoutes.getClientCourse,
