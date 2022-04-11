@@ -13,12 +13,11 @@ import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
 import ConfirmTimeIsOver from './ConfirmTimeIsOver';
+import { TO_MILLISECONDS_RATIO } from '../../constants/time';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
   const naviagteTo = useNavigate();
-
-  const TO_MILLISECONDS_RATIO = 1000;
 
   const { data: courseTestResponse, isLoading: courseTestResponseIsLoading } = useGetCourseTest({
     courseId: params.courseId,

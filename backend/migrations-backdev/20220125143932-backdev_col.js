@@ -189,7 +189,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 1200,
+    timeout: 900,
   },
   {
     title: 'test for course "Python for kids"',
@@ -561,7 +561,7 @@ const TESTS = [
         correctAnswer: 3,
       },
     ],
-    timeout: 600,
+    timeout: 300,
   },
   {
     title: 'Test for QA',
@@ -594,7 +594,7 @@ const TESTS = [
         correctAnswer: 3,
       },
     ],
-    timeout: 600,
+    timeout: 300,
   },
 ];
 
