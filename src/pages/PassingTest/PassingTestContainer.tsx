@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router';
 
 import { useSendTestResult, useGetCourseTest } from 'api/test';
-import { useFinishClientCourse, useGetClientCourseInfo } from 'api/myCourses';
+import { useGetClientCourseInfo } from 'api/myCourses';
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
@@ -55,12 +55,6 @@ const PassingTestContainer: React.FC = () => {
     setStage(stage + STAGE_CHANGE);
   };
 
-  const { mutate: sendFinishCourse } = useFinishClientCourse(params.courseId);
-  const handleFinishCourse = useCallback(
-    () => sendFinishCourse(params.courseId),
-    [params.courseId, sendFinishCourse],
-  );
-
   const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
   const {
     mutate: sendTestResult,
@@ -69,12 +63,6 @@ const PassingTestContainer: React.FC = () => {
   } = useSendTestResult({
     courseId: params.courseId,
   });
-
-  useEffect(() => {
-    if (clientCourseResponse?.status === COURSE_STATUSES.successful) {
-      handleFinishCourse();
-    }
-  }, [clientCourseResponse?.status, handleFinishCourse]);
 
   const handleSubmitResult = () => {
     const resultData = {
@@ -105,7 +93,7 @@ const PassingTestContainer: React.FC = () => {
 
   const isShouldRedirect =
     !clientCourseResponseIsLoading &&
-    (courseStatus === COURSE_STATUSES.failed || courseStatus === COURSE_STATUSES.successful) &&
+    courseStatus === COURSE_STATUSES.failed &&
     courseTestResponseIsError;
 
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
