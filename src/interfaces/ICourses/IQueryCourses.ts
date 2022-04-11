@@ -1,7 +1,8 @@
 import { SortOrder } from 'enums/common';
-import ISkill from 'interfaces/Ientities/ISkill';
 
+import ISkill from '../Ientities/ISkill';
 import { ICourse } from '../Ientities/Icourses';
+import { ITest } from '../Ientities/Itest';
 import { ICourseDuration } from '../common/datetime';
 
 interface IQueryCourses {
@@ -27,6 +28,16 @@ interface IProgress {
   isCompleted: boolean;
 }
 
+interface IUpdateCourseBody {
+  description?: string;
+  skills?: {
+    skill: string;
+    points: number;
+  }[];
+  materials?: ICourse['materials'];
+  test?: ITest['questions'];
+}
+
 interface ICourseToAssign {
   courseId: string;
   assessment?: boolean;
@@ -43,5 +54,6 @@ export {
   ICoursePopulated,
   ICourseInfoPopulated,
   IProgress,
+  IUpdateCourseBody,
   ICourseToAssign,
 };

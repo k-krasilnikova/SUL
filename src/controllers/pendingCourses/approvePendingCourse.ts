@@ -11,7 +11,7 @@ import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/use
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
-import { COURSE_FILEDS } from 'config/constants';
+import { CLIENT_COURSE_FIELDS } from 'config/constants';
 
 const approvePendingCourse = async (
   req: Request,
@@ -38,7 +38,11 @@ const approvePendingCourse = async (
 
     const { _id: manager }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
-    await updateClientCourseField(clientCourseId, COURSE_FILEDS.status, CourseStatus.approved);
+    await updateClientCourseField(
+      clientCourseId,
+      CLIENT_COURSE_FIELDS.status,
+      CourseStatus.approved,
+    );
     await removeFromPendingFieldCourses(manager, clientCourse._id);
 
     if (withAssessment) {
