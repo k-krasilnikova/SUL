@@ -7,6 +7,7 @@ import theme from 'themeSettings';
 export const ProfileBox = styled('div')({
   display: 'flex',
   flexDirection: 'row',
+  flexWrap: 'wrap',
   margin: '88px 40px 70px 122px',
   [theme.breakpoints.down('xl')]: {
     flexDirection: 'row',

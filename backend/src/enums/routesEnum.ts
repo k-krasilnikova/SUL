@@ -20,6 +20,7 @@ enum SubRoutes {
   startTest = '/:id/test/start',
   getCourseTest = '/:id/test',
   startCourse = '/:id/start',
+  updateCourse = '/:id/edit',
   getClientCourse = '/:id',
   getClientCourses = '',
   passCourseStage = '/:id',

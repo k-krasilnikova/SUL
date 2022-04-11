@@ -83,8 +83,8 @@ export const ROLES_MENU: IRolesMenu = {
   admin: ADMIN_MENU,
 };
 
-export const ACTIVE_ROLES = {
-  admin: 'admin',
-  manager: 'manager',
-  employee: 'employee',
-};
+export enum ROLE {
+  admin = 'admin',
+  employee = 'employee',
+  manager = 'manager',
+}

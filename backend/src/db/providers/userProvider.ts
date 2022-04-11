@@ -11,6 +11,7 @@ import StackMemberModel from 'db/models/StackMember';
 
 const getUserProvider = async (userId: string | ObjectId) => {
   const dbUser = await UserModel.findById(userId).lean();
+
   if (!dbUser) {
     throw new NotFoundError('User not found.');
   }
