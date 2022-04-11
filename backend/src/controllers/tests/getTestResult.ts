@@ -1,7 +1,8 @@
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import { NextFunction, Request, Response } from 'express';
+import { isEmpty } from 'lodash';
 
+import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { ITestResultResponse } from 'interfaces/IResponse/IResponse';
 import { normaliseTestResult } from 'utils/normaliser/tests';
 
@@ -21,6 +22,10 @@ const getTestResult = async (
     }
 
     const { testResult } = course;
+
+    if (isEmpty(testResult)) {
+      throw new BadRequestError(`Test hasn't been passed yet.`);
+    }
 
     const testResultResponse = normaliseTestResult(testResult);
 
