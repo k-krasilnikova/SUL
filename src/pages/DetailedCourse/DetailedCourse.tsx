@@ -64,7 +64,15 @@ const DetailedCourse: React.FC<IProps> = ({
   isAdmin,
   isCourseCompleted,
 }) => {
-  const shortDescription = Number(commonCourseData.description.length) > 140;
+  const {
+    title: courseTitle,
+    description: courseDescription,
+    duration: courseDuration,
+    lessons: courseLesson,
+    avatar: courseAvatar,
+  } = commonCourseData;
+  const isLongDescription = courseDescription.length > 140;
+  const shortedDescription = courseDescription.slice(0, 140);
 
   return (
     <AuthorizedLayout pageName="Course">
@@ -79,7 +87,7 @@ const DetailedCourse: React.FC<IProps> = ({
           <MobileSearch />
         </MobileSearchWrapper>
         <InnerWrapper>
-          <ImageWrapper imageUrl={commonCourseData.avatar} />
+          <ImageWrapper imageUrl={courseAvatar} />
           {isProgressBarDisplayed && (
             <ProgressBar
               size="large"
@@ -89,23 +97,23 @@ const DetailedCourse: React.FC<IProps> = ({
               value={progressValue}
             />
           )}
-          <DetailedCourseTitle>{commonCourseData.title}</DetailedCourseTitle>
+          <DetailedCourseTitle>{courseTitle}</DetailedCourseTitle>
           {isFullTextOpen ? (
-            <DetailedCourseTextMobile>{commonCourseData.description}</DetailedCourseTextMobile>
+            <DetailedCourseTextMobile>{courseDescription}</DetailedCourseTextMobile>
           ) : (
             <DetailedCourseTextMobile>
-              {commonCourseData.description.slice(0, 140)}
-              {shortDescription && (
+              {shortedDescription}
+              {isLongDescription && (
                 <ButtonFullText onClick={toggleFullText}>{ButtonLabels.lookInFull}</ButtonFullText>
               )}
             </DetailedCourseTextMobile>
           )}
-          <DetailedCourseText>{commonCourseData.description}</DetailedCourseText>
+          <DetailedCourseText>{courseDescription}</DetailedCourseText>
           <DetailedCourseActionsBox>
             <CourseInfoBox>
               <CourseInfo
-                duration={convertDurationToString(commonCourseData.duration)}
-                lessons={commonCourseData.lessons}
+                duration={convertDurationToString(courseDuration)}
+                lessons={courseLesson}
                 type={INFO.detailedCourse}
               />
             </CourseInfoBox>
@@ -138,14 +146,14 @@ const DetailedCourse: React.FC<IProps> = ({
               <SimilarCoursesTitle>Similar courses</SimilarCoursesTitle>
               <SimilarCoursesItemWrapper>
                 <CourseItem
-                  title={commonCourseData.title}
-                  description={commonCourseData.description}
-                  duration={convertDurationToString(commonCourseData.duration)}
-                  lessons={commonCourseData.lessons}
+                  title={courseTitle}
+                  description={courseDescription}
+                  duration={convertDurationToString(courseDuration)}
+                  lessons={courseLesson}
                   windowWidth={windowWidth}
                   type={INFO.similarCourses}
                   pageName={PAGES.detailed}
-                  imageUrl={commonCourseData.avatar}
+                  imageUrl={courseAvatar}
                 >
                   <CourseActionsBox>
                     <CourseActions>
