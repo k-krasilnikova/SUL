@@ -195,7 +195,7 @@ const materialsCounterProvider = async (courseId: string) => {
 
 const deleteCourseProvider = async (courseId: string) => {
   await CourseModel.findOneAndDelete({ _id: courseId });
-  await ClientCourseModel.findOneAndDelete({ course: courseId });
+  await ClientCourseModel.deleteMany({ course: courseId });
 };
 
 const updateCourseField = async (courseId: string, field: string, value: unknown) => {
