@@ -9,37 +9,40 @@ export interface ConvertedProgress {
 }
 
 const convertStatusToProgress = (status?: string): ConvertedProgress => {
-  let progressValue;
-  let progressText;
-  let progressVariant;
-  switch (status) {
-    case COURSE_STATUSES.started:
-      progressValue = 37;
-      progressText = '37%';
-      progressVariant = VARIANTS.failedWithPercentage;
-      break;
-    case COURSE_STATUSES.testing:
-      progressValue = 80;
-      progressText = '80%';
-      progressVariant = VARIANTS.completed;
-      break;
-    case COURSE_STATUSES.completed:
-      progressValue = 100;
-      progressText = COMPLETED_STATUS_TEXT;
-      progressVariant = VARIANTS.completed;
-      break;
-    case COURSE_STATUSES.failed:
-      progressValue = 0;
-      progressText = FAILED_STATUS_TEXT;
-      progressVariant = VARIANTS.failed;
-      break;
-    default:
-      progressValue = 0;
-      progressText = '0%';
-      progressVariant = VARIANTS.notStarted;
-      break;
+  const defaultConvertedValue = {
+    progressValue: 0,
+    progressText: '0%',
+    progressVariant: VARIANTS.notStarted,
+  };
+
+  if (!status) {
+    return defaultConvertedValue;
   }
-  return { progressValue, progressText, progressVariant };
+
+  const convertedValues = {
+    [COURSE_STATUSES.started]: {
+      progressValue: 37,
+      progressText: '37%',
+      progressVariant: VARIANTS.failedWithPercentage,
+    },
+    [COURSE_STATUSES.testing]: {
+      progressValue: 80,
+      progressText: '80%',
+      progressVariant: VARIANTS.completed,
+    },
+    [COURSE_STATUSES.completed]: {
+      progressValue: 100,
+      progressText: COMPLETED_STATUS_TEXT,
+      progressVariant: VARIANTS.completed,
+    },
+    [COURSE_STATUSES.failed]: {
+      progressValue: 0,
+      progressText: FAILED_STATUS_TEXT,
+      progressVariant: VARIANTS.failed,
+    },
+  };
+
+  return convertedValues[status] ?? defaultConvertedValue;
 };
 
 export default convertStatusToProgress;
