@@ -10,7 +10,7 @@ import getClientCourseById from 'controllers/clientCourses/getClientCourse';
 import getTest from 'controllers/tests/getTest';
 import getAchievments from 'controllers/tests/getAchievments';
 import startTest from 'controllers/tests/startTest';
-import getTestResults from 'controllers/tests/getTestResults';
+import passTest from 'controllers/tests/passTest';
 import unitTestResults from 'controllers/tests/sendTestResults';
 import manageAssessment from 'controllers/clientCourses/manageAssessment';
 import getTestTime from 'controllers/tests/getTestTime';
@@ -25,9 +25,9 @@ clientCoursesRouter.get(
 );
 
 clientCoursesRouter.put(
-  SubRoutes.getTestResult,
+  SubRoutes.passTest,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
-  getTestResults,
+  passTest,
   getAchievments,
   unitTestResults,
 );

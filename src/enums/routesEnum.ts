@@ -15,7 +15,7 @@ enum SubRoutes {
   logout = '/logout',
   refresh = '/refresh',
   getTestTime = '/:id/test/time',
-  getTestResult = '/:id/test/result',
+  passTest = '/:id/test/pass',
   startTest = '/:id/test/start',
   getCourseTest = '/:id/test',
   startCourse = '/:id/start',
