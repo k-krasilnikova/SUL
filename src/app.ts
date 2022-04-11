@@ -14,14 +14,18 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT;
 
+const localhost = process.env.LOCAL_HOST || 'http://localhost:3000';
+const webhost = process.env.WEB_HOST || 'https://sul-web.herokuapp.com';
+
 app.use(json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: '*',
+    origin: [localhost, webhost],
     credentials: true,
   }),
 );
+
 app.use(connectionMiddleware);
 app.use(loggerMiddleware);
 app.use(`${Routes.namespace}`, routers);
