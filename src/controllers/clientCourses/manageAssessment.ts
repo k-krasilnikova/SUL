@@ -4,7 +4,7 @@ import { AssessmentAction } from 'enums/common';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { getStatusProvider, updateClientCourseField } from 'db/providers/clientCourseProvider';
-import { ASSESSMENT_RESULTS, COURSE_FILEDS } from 'config/constants';
+import { ASSESSMENT_RESULTS, CLIENT_COURSE_FIELDS } from 'config/constants';
 import { TAchievments } from 'interfaces/Ientities/Itest';
 
 const manageAssessment = async (
@@ -35,7 +35,7 @@ const manageAssessment = async (
         throw new BadRequestError('Bad assessment action.');
     }
 
-    await updateClientCourseField(courseId, COURSE_FILEDS.status, statusToSet);
+    await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, statusToSet);
 
     res.locals.results = `Assessment has been successfully ${
       statusToSet === CourseStatus.completed

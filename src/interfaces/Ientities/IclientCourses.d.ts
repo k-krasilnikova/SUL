@@ -2,7 +2,7 @@ import { ObjectId } from 'mongoose';
 
 import CourseStatus from 'enums/coursesEnums';
 import { ICourseInfo } from 'interfaces/ICourses/IQueryCourses';
-import { COURSE_FILEDS } from 'config/constants';
+import { CLIENT_COURSE_FIELDS } from 'config/constants';
 
 import { ICourse } from './Icourses';
 
@@ -16,7 +16,7 @@ type TCourseStatus =
   | 'assessment'
   | 'successful';
 
-export type TFileds = keyof typeof COURSE_FILEDS;
+export type TFileds = keyof typeof CLIENT_COURSE_FIELDS;
 
 interface IClientCourse {
   _id?: ObjectId;
