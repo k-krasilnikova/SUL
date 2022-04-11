@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { QueryClient } from 'react-query';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
