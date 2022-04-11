@@ -4,6 +4,7 @@ import { compose } from 'recompose';
 
 import { ClientCourse } from 'types/clientCourse';
 import { VariantProps } from 'types/muiTypes';
+import { TCourseStatus } from 'types/course';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { PATHS } from 'constants/routes';
@@ -15,7 +16,7 @@ import { CustomButton } from './styled';
 interface IProps {
   label: string;
   courseId: string;
-  status: string;
+  status: TCourseStatus;
   variant?: VariantProps;
   isDisable?: boolean;
   progress?: ClientCourse['progress'];
@@ -23,7 +24,7 @@ interface IProps {
 
 type TOutterProps = {
   label: string;
-  status: string;
+  status: TCourseStatus;
   courseId: string;
   timeout: number;
   progress?: ClientCourse['progress'];

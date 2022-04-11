@@ -1,14 +1,14 @@
 import { NavigateFunction } from 'react-router';
 
 import { PureClientCourse } from './clientCourse';
-import { ICourse } from './course';
+import { Course, TCourseStatus } from './course';
 
 export interface IDetailedCourse {
-  commonCourseData: ICourse;
+  commonCourseData: Course;
   handleApplyCourse: () => void;
   page: string;
   id: string;
-  status: string;
+  status: TCourseStatus;
   windowWidth: string;
   isFullTextOpen: boolean;
   toggleFullText: () => void;
@@ -31,7 +31,7 @@ export interface IDetailedCourse {
 }
 
 export interface IDetailedCourseInfo {
-  commonCourseData: ICourse;
+  commonCourseData: Course;
   toggleFullText: () => void;
   isFullTextOpen: boolean;
   isProgressBarDisplayed?: boolean;
@@ -41,7 +41,7 @@ export interface IDetailedCourseInfo {
 }
 
 export interface IDetailedCourseActions {
-  commonCourseData: ICourse;
+  commonCourseData: Course;
   handleApplyCourse: () => void;
   page: string;
   clientCourseData?: PureClientCourse;
@@ -57,6 +57,6 @@ export interface IBackButton {
 }
 
 export interface ISimilarCourses {
-  commonCourseData: ICourse;
+  commonCourseData: Course;
   windowWidth: string;
 }
