@@ -71,8 +71,9 @@ const DetailedCourse: React.FC<IProps> = ({
     lessons: courseLesson,
     avatar: courseAvatar,
   } = commonCourseData;
-  const isLongDescription = courseDescription.length > 140;
-  const shortedDescription = courseDescription.slice(0, 140);
+  const exceededNum = 140;
+  const isLongDescription = courseDescription.length > exceededNum;
+  const shortedDescription = courseDescription.slice(0, exceededNum);
 
   return (
     <AuthorizedLayout pageName="Course">
