@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
-import { useGetEmployeeProfile, useGetEmployeeCourses } from 'api/employees';
+import { useGetEmployeeProfile } from 'api/manager';
 import { EMPLOYEE_INFO } from 'constants/employeeInfo';
 
 import EmployeeProfile from './EmployeeProfile';
@@ -9,7 +9,6 @@ import EmployeeProfile from './EmployeeProfile';
 const EmployeeProfileContainer: React.FC = () => {
   const params = useParams();
   const { data: employeeResponse } = useGetEmployeeProfile(params.employeeId);
-  const { data: employeeCourses } = useGetEmployeeCourses();
 
   const [employeeInfo, setEmployeeInfo] = useState(EMPLOYEE_INFO.skills);
   const [hoveredButton, setHoveredButton] = useState<string | undefined>(undefined);
@@ -37,7 +36,7 @@ const EmployeeProfileContainer: React.FC = () => {
   return (
     <EmployeeProfile
       employee={employeeResponse}
-      employeeCourses={employeeCourses}
+      employeeCourses={employeeResponse?.courses}
       employeeInfo={employeeInfo}
       toggleEmployeeInfo={toggleEmployeeInfo}
       toggleHover={toggleHover}
