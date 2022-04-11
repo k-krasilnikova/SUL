@@ -11,69 +11,54 @@ export const HEADER_HEIGHT = '80px';
 export const HEADER_HEIGHT_IPAD = '60px';
 export const HEADER_HEIGHT_MOBILE = '44px';
 
+const SCREEN_WIDTH = 1130;
+
 export const LayoutHeader = styled(Grid)({
-  width: 'calc(100vw-10px)',
-  height: HEADER_HEIGHT,
-  display: 'flex',
-  justifyContent: 'flex-start',
-  backgroundColor: theme.palette.secondary.main,
-  fontFamily: '"Ubuntu", sans-serif',
-  [theme.breakpoints.up('xs')]: {
-    height: HEADER_HEIGHT_MOBILE,
-  },
-  [theme.breakpoints.up('md')]: {
-    height: HEADER_HEIGHT_IPAD,
-  },
-  [theme.breakpoints.up('xl')]: {
-    height: HEADER_HEIGHT,
-  },
   position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  height: HEADER_HEIGHT,
+  padding: '0 32px 0 40px',
+  backgroundColor: theme.palette.secondary.main,
+  [theme.breakpoints.down('xl')]: {
+    height: HEADER_HEIGHT_IPAD,
+    padding: '0 32px',
+  },
+  [theme.breakpoints.down('md')]: {
+    height: HEADER_HEIGHT_MOBILE,
+    padding: '0 12px',
+  },
 });
+
 export const BrandLogoLink = styled(Link)({
-  flexGrow: '0',
-  flexShrink: '0',
-  [theme.breakpoints.up('xs')]: {
-    width: '77.33px',
-    margin: '14px 10px 12px 12px',
-    quality: '100',
+  paddingRight: '160px',
+  [theme.breakpoints.down('xl')]: {
+    paddingRight: '100px',
   },
-  [theme.breakpoints.up('md')]: {
-    width: '101.75px',
-    margin: '19px 30px 16px 32px',
-    quality: '100',
-  },
-  '@media(min-width: 1110px)': {
-    margin: '19px 100px 16px 32px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '130px',
-    margin: '28px 163px 28px 40px',
+  [theme.breakpoints.down(SCREEN_WIDTH)]: {
+    paddingRight: '30px',
   },
 });
+
 export const BrandLogo = styled('img')({
-  [theme.breakpoints.up('xs')]: {
-    width: '79px',
+  width: '130px',
+  [theme.breakpoints.down('xl')]: {
+    width: '104px',
   },
-  [theme.breakpoints.up('md')]: {
-    width: '105px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '130px',
+  [theme.breakpoints.down('md')]: {
+    width: '78px',
   },
 });
 export const HeaderContent = styled('div')({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-end',
-  flexGrow: '2',
-  flexShrink: '2',
+  flexGrow: '1',
   height: HEADER_HEIGHT,
-  textAlign: 'right',
-  [theme.breakpoints.down('md')]: {
-    width: 'calc(100% - 101px)',
-  },
   [theme.breakpoints.up('xs')]: {
     height: HEADER_HEIGHT_MOBILE,
+  },
+  [theme.breakpoints.down(SCREEN_WIDTH)]: {
+    justifyContent: 'flex-end',
   },
   [theme.breakpoints.up('md')]: {
     height: HEADER_HEIGHT_IPAD,
@@ -82,58 +67,32 @@ export const HeaderContent = styled('div')({
     height: HEADER_HEIGHT,
   },
 });
-export const SpaceHolder = styled('div')({
-  flexGrow: '4',
-  flexShrink: '2',
-  height: '100%',
-  [theme.breakpoints.up('xs')]: {
-    display: 'none',
-  },
-  '@media(min-width: 1110px)': {
-    display: 'block',
-    maxWidth: '1000px',
-  },
-});
 
 export const UserBlock = styled(Link)({
   display: 'flex',
-  justifyContent: 'flex-start',
   alignItems: 'center',
+  margin: '0 45px 0 auto',
+  [theme.breakpoints.down(SCREEN_WIDTH)]: {
+    margin: '0 10px 0 0',
+  },
   [theme.breakpoints.down('md')]: {
     display: 'none',
   },
-  '@media(min-width: 1110px)': {
-    display: 'flex',
-    height: '50px',
-    padding: '3px',
-    margin: '5px 30px 5px 10px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    height: '60px',
-    padding: '6px',
-    margin: '10px 45px 10px 20px',
-  },
 });
+
 export const UserName = styled('div')({
-  color: 'black',
-  fontFamily: '"Ubuntu", sans-serif',
-  fontWeight: '400',
-  fontSize: '18px',
-  padding: '0px 10px 0px 0px',
+  maxWidth: '160px',
   marginLeft: '22px',
+  fontSize: '18px',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
   [theme.breakpoints.down('md')]: {
     marginLeft: '16px',
-    padding: '0px 5px 0px 0px',
   },
 });
+
 export const LogOut = styled('div')({
-  flexGrow: '0',
-  flexShrink: '0',
-  display: 'block',
-  width: '40px',
-  height: '30px',
-  margin: '15px 16px 15px 0px',
-  padding: '3px 0px 0px 0px',
+  paddingTop: '3px',
   '&:hover': {
     cursor: 'pointer',
   },
@@ -151,7 +110,6 @@ export const MobileMenuIcon = styled('div')<MobileMenuProps>(({ openMenu }) => (
     width: '18px',
     height: '12px',
     textAlign: 'center',
-    margin: '15px 17px 16px 6px',
     transform: openMenu ? 'rotate(90deg) translateX(2px) translateY(-5px)' : 'none',
   },
 }));

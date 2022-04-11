@@ -22,7 +22,7 @@ const SearchCoursesContainer: React.FC = () => {
     useSearchAllCourses(debouncedSearchValue);
 
   useEffect(() => {
-    if (debouncedSearchValue && isSearchingCourses) {
+    if (debouncedSearchValue && !isSearchingCourses) {
       if (foundedCourses) {
         setCoursesFound(foundedCourses);
         setSearchOpen(true);

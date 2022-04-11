@@ -2,6 +2,7 @@ import mongoose, { ObjectId } from 'mongoose';
 
 import UserSkillModel from 'db/models/UserSkill';
 import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
+import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
@@ -104,6 +105,34 @@ const populateUserTechnologies = async (employee: IUser): Promise<IUser> =>
 const populateUserStack = async (user: IUser): Promise<IUser> =>
   UserModel.populate(user, { path: 'stack', select: '-_id name' });
 
+const skillsExist = async (ids?: string[] | ObjectId[]): Promise<boolean> => {
+  if (!ids) {
+    return false;
+  }
+  const foundSkillsCount = await SkillModel.count({ _id: { $in: ids } });
+  return foundSkillsCount === ids.length;
+};
+
+const isProperTechnologies = async (techs: IUpdateCourseBody['skills']): Promise<boolean> => {
+  if (!techs) {
+    return false;
+  }
+
+  const checks = await Promise.all(
+    techs.map(async (tech) => {
+      const skill = await getCommonSkill(tech.skill);
+      if (!skill) {
+        return false;
+      }
+      return tech.points <= skill.maxScore;
+    }),
+  );
+
+  const checksPassed = checks.every((check) => check);
+
+  return checksPassed;
+};
+
 export {
   getUserSkills,
   getPopulatedUserSkill,
@@ -114,4 +143,6 @@ export {
   populateUserStack,
   getCommonSkill,
   getUserSkill,
+  skillsExist,
+  isProperTechnologies,
 };
