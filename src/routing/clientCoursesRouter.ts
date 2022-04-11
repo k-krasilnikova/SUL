@@ -15,6 +15,7 @@ import unitTestResults from 'controllers/tests/sendTestResults';
 import manageAssessment from 'controllers/clientCourses/manageAssessment';
 import getTestTime from 'controllers/tests/getTestTime';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
+import getTestResult from 'controllers/tests/getTestResult';
 
 const clientCoursesRouter = Router();
 
@@ -40,6 +41,12 @@ clientCoursesRouter.get(
   SubRoutes.getCourseTest,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getTest,
+);
+clientCoursesRouter.get(
+  SubRoutes.getTestResult,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
+  getTestResult,
+  adapterSender,
 );
 clientCoursesRouter.get(
   SubRoutes.startCourse,

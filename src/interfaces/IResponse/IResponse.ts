@@ -44,6 +44,11 @@ interface IEmployeeClientCourse extends Pick<IClientCourse, 'status' | 'progress
   course: TEmployeeCourse;
 }
 
+interface ITestResultResponse {
+  answers: { qN: number; isCorrect: boolean }[];
+  percentage: number;
+}
+
 type TEmployeeCourse = Pick<ICourse, 'title' | 'avatar'>;
 
 type TLocalsManager = ILocals;
@@ -56,4 +61,5 @@ export {
   IEmployeeShortInfo,
   IEmployeeClientCourse,
   TEmployeeCourse,
+  ITestResultResponse,
 };
