@@ -5,11 +5,11 @@ import { UserRank } from 'enums/users';
 interface ICourse {
   _id?: ObjectId;
   title: string;
-  technologies: ObjectId[];
+  technologies: { skill: ObjectId; points: number }[];
   requiredSkills?: ObjectId[];
   complexity: UserRank;
   description: string;
-  materials: { stage: string; content: Array<string> }[];
+  materials: { stage: number; content: Array<string> }[];
   test: ObjectId;
   avatar?: string;
 }

@@ -10,4 +10,5 @@ export enum ButtonLabels {
   skills = 'Skills',
   allCourses = 'All courses',
   lookInFull = 'Look in full',
+  loading = 'Loading...',
 }

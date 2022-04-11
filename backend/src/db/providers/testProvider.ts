@@ -3,6 +3,8 @@ import mongoose, { ObjectId } from 'mongoose';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ITest, TestDb } from 'interfaces/Ientities/Itest';
 import TestModel from 'db/models/Tests';
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import CourseModel from 'db/models/Course';
 
 const getTestProvider = async (courseId: string) => {
   const test: TestDb[] = await ClientCourseModel.aggregate([
@@ -57,4 +59,33 @@ const getTrueAnswersProvider = async (testId: string) => {
   return trueAnswers;
 };
 
-export { getTestProvider, getTestById, getTrueAnswersProvider };
+const updateTestQuestions = async (
+  testId: string | ObjectId,
+  questions: ITest['questions'],
+): Promise<ITest> => {
+  const updated = await TestModel.findByIdAndUpdate(
+    testId,
+    {
+      $set: {
+        questions,
+      },
+    },
+    { returnDocument: 'after' },
+  ).lean();
+
+  if (!updated) {
+    throw new NotFoundError('Test not found.');
+  }
+
+  return updated;
+};
+
+const getCourseTest = async (courseId: string | ObjectId): Promise<ITest> => {
+  const { test } = await CourseModel.findById(courseId).populate('test').lean();
+  if (!test) {
+    throw new NotFoundError('Test not found.');
+  }
+  return test as unknown as ITest;
+};
+
+export { getTestProvider, getTestById, getTrueAnswersProvider, updateTestQuestions, getCourseTest };

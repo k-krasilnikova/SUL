@@ -26,7 +26,7 @@ export const ProfileBox = styled('div')({
   display: 'flex',
   margin: '24px 0 92px 165px',
   [theme.breakpoints.down('xl')]: {
-    margin: '8px 0 50px 112px !important',
+    margin: '8px 0 50px 122px !important',
   },
   [theme.breakpoints.down('md')]: {
     margin: '16px 0 50px 16px !important',
@@ -35,15 +35,11 @@ export const ProfileBox = styled('div')({
 });
 
 export const AvatarWrapper = styled('div')({
-  textAlign: 'center',
-  marginRight: '10%',
+  marginRight: '100px',
   marginLeft: '0',
-  width: '150px',
-  [theme.breakpoints.down('xl')]: {
-    width: '100px',
-  },
+  width: '220px',
   [theme.breakpoints.down('lg')]: {
-    width: '60px',
+    width: '150px',
     marginRight: '20px',
   },
 });
@@ -83,35 +79,34 @@ export const UserInfoList = styled(List)({
 
 export const UserInfoLabel = styled('span')({
   width: '132px',
-  display: 'inline-block',
-  fontSize: '20px',
+  fontSize: '18px',
+  fontWeight: '500',
   lineHeight: '23px',
-  height: '24px',
+  margin: 0,
+  color: '#9b9b9b',
   marginBottom: '20px',
-  padding: '0',
   [theme.breakpoints.down('xl')]: {
-    fontSize: '18px',
     lineHeight: '21px',
-    marginBottom: '12px',
+    width: '100px',
   },
   [theme.breakpoints.down('lg')]: {
     width: '80px',
+    marginBottom: '12px',
+    fontSize: '16px',
   },
 });
 
 export const UserInfoText = styled('p')({
   width: '400px',
-  fontSize: '20px',
+  fontSize: '18px',
   lineHeight: '23px',
-  padding: '0 0 0 40px',
   margin: '0 0 20px 0',
   [theme.breakpoints.down('xl')]: {
-    fontSize: '18px',
     lineHeight: '21px',
-    marginBottom: '12px',
   },
   [theme.breakpoints.down('lg')]: {
-    padding: '0 0 0 10px',
+    marginBottom: '12px',
+    fontSize: '16px',
   },
 });
 
@@ -158,7 +153,7 @@ export const EmployeeButtonGroup = styled(ButtonGroup)({
 export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({ isOpened }) => ({
   backgroundColor: '#ffffff !important',
   color: '#000000 !important',
-  fontSize: '20px !important',
+  fontSize: '16px !important',
   fontWeight: '400 !important',
   width: '135px !important',
   height: '40px',
@@ -170,7 +165,6 @@ export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({
     height: '44px',
   }),
   [theme.breakpoints.down('xl')]: {
-    fontSize: '18px !important',
     height: '36px',
     ...(isOpened && {
       height: '40px',
@@ -207,9 +201,6 @@ export const UserSkillsWrapper = styled('div')({
 });
 
 export const UserInfoListItems = styled('div')<ShowOnMobile>(({ displayInfo }) => ({
-  [theme.breakpoints.down('lg')]: {
-    margin: '60px 0 0 -80px',
-  },
   [theme.breakpoints.down('md')]: {
     display: displayInfo ? 'block' : 'none',
   },
@@ -230,9 +221,9 @@ export const MobileIconWrapper = styled(Box)({
 });
 
 export const StackItem = styled('p')({
-  margin: '0 0 10px 0',
-  fontSize: '20px',
-  [theme.breakpoints.down('xl')]: {
-    fontSize: '18px',
+  margin: '0 0 5px 0',
+  fontSize: '18px',
+  ':last-of-type': {
+    margin: '0',
   },
 });

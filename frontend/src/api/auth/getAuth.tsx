@@ -18,15 +18,18 @@ const useGetAuth = (): UseMutationResult => {
     enqueueSnackbar(successSnackbarMessage.authorized, successSnackbar);
   };
   const navigateTo = useNavigate();
+
   return useMutation(
     async (initialData: string | unknown) => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.post(API.getToken, initialData);
       const tokenResponse: ITokenResponse = response.data;
       const accessToken = JSON.stringify(tokenResponse.accessToken);
+      const refreshToken = JSON.stringify(tokenResponse.refreshToken);
       const userId = JSON.stringify(tokenResponse._id);
       Cookies.set(COOKIE_VALUES.uniqAccessToken, accessToken, { secure: true });
       Cookies.set(COOKIE_VALUES.uniqUserId, userId, { secure: true });
+      Cookies.set(COOKIE_VALUES.uniqRefreshToken, refreshToken, { secure: true });
       handleSubmitSuccess();
       return tokenResponse;
     },

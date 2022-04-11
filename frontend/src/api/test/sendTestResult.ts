@@ -6,6 +6,7 @@ import { apiClientWrapper, queryClient } from 'api/base';
 import { API } from 'constants/routes';
 import { IResponseData } from 'types/test';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 interface ITestResultParams {
   courseId: string | undefined;
@@ -17,8 +18,8 @@ const useSendTestResult = ({ courseId }: ITestResultParams): UseMutationResult<I
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   const handleSubmit = () => {
-    queryClient.invalidateQueries('profile');
-    queryClient.refetchQueries(['ClientCourseInfo', courseId]);
+    queryClient.invalidateQueries(QUERY_KEYS.profile);
+    queryClient.refetchQueries([QUERY_KEYS.clientCourseInfo, courseId]);
   };
   return useMutation(
     async (data) => {

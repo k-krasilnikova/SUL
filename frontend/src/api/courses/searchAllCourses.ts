@@ -1,22 +1,19 @@
-import { AxiosError, AxiosResponse } from 'axios';
+import { useQuery, UseQueryResult } from 'react-query';
+import { AxiosError } from 'axios';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { REQUEST_ERRORS } from 'constants/authConstants';
 import { Course } from 'types/course';
+import { QUERY_KEYS } from '../../constants/queryKeyConstants';
 
-const searchAllCourses = async (
-  courseName: string,
-): Promise<AxiosResponse<Course[], AxiosError>> => {
-  const apiClient = apiClientWrapper();
-  try {
+const useSearchAllCourses = (courseName: string): UseQueryResult<Array<Course>, AxiosError> => {
+  return useQuery([QUERY_KEYS.coursesRequests, courseName], async () => {
+    const apiClient = apiClientWrapper();
     const courseNameEncoded = encodeURIComponent(courseName);
     const response = await apiClient.get(`${API.getCourses}?title=${courseNameEncoded}`);
-    const searchResponse = response;
+    const searchResponse = response.data;
     return searchResponse;
-  } catch (error) {
-    throw new Error(`${REQUEST_ERRORS.getError}`);
-  }
+  });
 };
 
-export default searchAllCourses;
+export default useSearchAllCourses;
