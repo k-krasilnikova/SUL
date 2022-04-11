@@ -4,21 +4,21 @@ import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { ClientCourse } from 'types/clientCourse';
 import { errorSnackbar } from 'constants/snackbarVariant';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
+import { IEmployee } from 'types/employee';
 
-const useGetMyCourses = (): UseQueryResult<Array<ClientCourse>, AxiosError> => {
+const useGetEmployeeProfile = (employeeId?: string): UseQueryResult<IEmployee, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
   return useQuery(
-    'myCourses',
+    [QUERY_KEYS.employeeProfile, employeeId],
     async () => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.get(`${API.getMyCourses}`);
-      const myCoursesResponse = response.data;
-      return myCoursesResponse;
+      const response = await apiClient.get(`${API.getEmployeesList}/${employeeId}`);
+      return response.data;
     },
     {
       onError: handleSubmitError,
@@ -26,4 +26,4 @@ const useGetMyCourses = (): UseQueryResult<Array<ClientCourse>, AxiosError> => {
   );
 };
 
-export default useGetMyCourses;
+export default useGetEmployeeProfile;

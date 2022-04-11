@@ -10,11 +10,17 @@ import { ActionButtonWrapper } from './styled';
 
 interface IProps {
   isTestEnabled: boolean;
+  isLoading: boolean;
   handleStageForward: () => void;
   clientCourse?: ClientCourse;
 }
 
-const ActionButton: FC<IProps> = ({ isTestEnabled, clientCourse, handleStageForward }) => {
+const ActionButton: FC<IProps> = ({
+  isTestEnabled,
+  isLoading,
+  clientCourse,
+  handleStageForward,
+}) => {
   const { status, testDate, progress } = clientCourse || {};
 
   return (
@@ -27,8 +33,8 @@ const ActionButton: FC<IProps> = ({ isTestEnabled, clientCourse, handleStageForw
           timeout={TEST_DISABLE_DAYS}
         />
       ) : (
-        <CustomButton variant="contained" onClick={handleStageForward}>
-          {ButtonLabels.next}
+        <CustomButton disabled={isLoading} variant="contained" onClick={handleStageForward}>
+          {isLoading ? ButtonLabels.loading : ButtonLabels.next}
         </CustomButton>
       )}
     </ActionButtonWrapper>

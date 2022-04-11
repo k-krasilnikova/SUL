@@ -8,11 +8,10 @@ export const StyledButton = styled(Button)({
   height: '40px',
   minWidth: '86px',
   margin: '-2px 0 0 500px !important',
-  fontSize: '20px !important',
+  fontSize: '16px !important',
   [theme.breakpoints.down('xl')]: {
     height: '36px',
     margin: '-2px 0 0 30% !important',
-    fontSize: '18px !important',
   },
   [theme.breakpoints.down('lg')]: {
     height: '32px',

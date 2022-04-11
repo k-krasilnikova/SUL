@@ -20,6 +20,7 @@ interface IProps {
   isForwardDisabled: boolean;
   isCourseInfoOpen: boolean;
   isTestEnabled: boolean;
+  isLoading: boolean;
   courseInfo: ICourseInfo;
   courseMaterial: string;
   handleStageBack: () => void;
@@ -35,6 +36,7 @@ const LearningCourse: FC<IProps> = ({
   isBackDisabled,
   isForwardDisabled,
   isCourseInfoOpen,
+  isLoading,
   courseInfo,
   courseMaterial,
   handleStageBack,
@@ -64,6 +66,7 @@ const LearningCourse: FC<IProps> = ({
           toggleCourseInfoOpen={togglCourseInfOpen}
         />
         <ActionButton
+          isLoading={isLoading}
           isTestEnabled={isTestEnabled}
           handleStageForward={handleStageForward}
           clientCourse={clientCourse}

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 
-import { searchAllCourses } from 'api/courses';
 import { Course } from 'types/course';
 import SearchCourses from 'components/Layout/Header/SearchCourses/SearchCourses';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { SEARCH_DEBOUNCE_TIME } from 'constants/time';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
+import { useDebounce } from 'hooks';
+import useSearchAllCourses from 'api/courses/searchAllCourses';
 
 const SearchCoursesContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
@@ -14,23 +16,21 @@ const SearchCoursesContainer: React.FC = () => {
 
   const { enqueueSnackbar } = useSnackbar();
 
+  const debouncedSearchValue = useDebounce(searchInputValue, SEARCH_DEBOUNCE_TIME);
+
+  const { data: foundedCourses, isLoading: isSearchingCourses } =
+    useSearchAllCourses(debouncedSearchValue);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const getCourses = async (search: string) => {
-        if (searchInputValue.length) {
-          const searchResponse = await searchAllCourses(search);
-          if (searchResponse.data) {
-            setCoursesFound(searchResponse.data);
-            setSearchOpen(true);
-          } else {
-            enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar);
-          }
-        }
-      };
-      getCourses(searchInputValue);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [searchInputValue, enqueueSnackbar]);
+    if (debouncedSearchValue && !isSearchingCourses) {
+      if (foundedCourses) {
+        setCoursesFound(foundedCourses);
+        setSearchOpen(true);
+      } else {
+        enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar);
+      }
+    }
+  }, [debouncedSearchValue, enqueueSnackbar, foundedCourses, isSearchingCourses]);
 
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const formattedValue = formatInputValue(event.target.value);
