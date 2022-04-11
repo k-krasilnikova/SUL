@@ -11,7 +11,6 @@ import { brandLogo } from 'images';
 
 import {
   LayoutHeader,
-  SpaceHolder,
   BrandLogoLink,
   BrandLogo,
   HeaderContent,
@@ -53,7 +52,6 @@ const Header: React.FC<HeaderProps> = ({
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}
       />
-      <SpaceHolder />
       <UserBlock to={PATHS.profile}>
         <UserAvatar avatar={avatar} size="small" />
         <UserName>{`${firstName} ${lastName}`}</UserName>

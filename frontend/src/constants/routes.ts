@@ -53,6 +53,7 @@ export const API: {
   getMyCourses: string;
   logOut: string;
   employees: string;
+  refresh: string;
 } = {
   getProfile: '/api/users',
   getToken: '/api/account/login',
@@ -64,4 +65,5 @@ export const API: {
   getMyCourses: '/api/clientCourses',
   logOut: '/api/account/logout',
   employees: '/api/employees',
+  refresh: '/api/account/refresh',
 };
