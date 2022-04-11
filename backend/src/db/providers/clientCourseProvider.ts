@@ -161,11 +161,24 @@ const getClientCoursesByCourseId = async (courseId: string) => {
   return allClientCoursesByCourseId;
 };
 
+const checkNotDeleteCoursesProvider = async (courseId: string) => {
+  const clientCourses = await ClientCourseModel.find({ course: courseId });
+
+  const notDeleteCourses = clientCourses.find(
+    (clientCourse) =>
+      clientCourse.status === CourseStatus.started || clientCourse.status === CourseStatus.testing,
+  );
+
+  if (notDeleteCourses) {
+    throw new BadRequestError('The course has already started or is being tested for some people');
+  }
+};
+
 const assignCourseToEmployee = async (
-  assignTo: string | ObjectId,
-  courseId: string | ObjectId,
-  progressDto: IProgress[],
-  withAssessment?: boolean,
+    assignTo: string | ObjectId,
+    courseId: string | ObjectId,
+    progressDto: IProgress[],
+    withAssessment?: boolean,
 ) => {
   const createdDoc = await ClientCourseModel.create({
     user: assignTo,
@@ -193,4 +206,5 @@ export {
   updateClientCourseField,
   getClientCoursesByCourseId,
   assignCourseToEmployee,
+  checkNotDeleteCoursesProvider,
 };
