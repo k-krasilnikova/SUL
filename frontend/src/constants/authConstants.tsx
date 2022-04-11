@@ -7,6 +7,7 @@ interface ICookiesTypes {
 
 export interface ITokenResponse {
   accessToken?: string;
+  refreshToken?: string;
   _id?: string;
   error?: unknown;
 }
@@ -18,6 +19,7 @@ const REQUEST_ERRORS: IRequestErrors = {
 
 const COOKIE_VALUES: ICookiesTypes = {
   uniqAccessToken: 'accessToken',
+  uniqRefreshToken: 'refreshToken',
   uniqUserId: 'userId',
   isLogOut: 'isLogOut',
 };
