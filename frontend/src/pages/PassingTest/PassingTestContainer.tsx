@@ -13,6 +13,7 @@ import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
 import ConfirmTimeIsOver from './ConfirmTimeIsOver';
+import { TO_MILLISECONDS_RATIO } from '../../constants/time';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
@@ -33,7 +34,7 @@ const PassingTestContainer: React.FC = () => {
     if (courseTest?.timeout) {
       const timeoutId = setTimeout(() => {
         setTestTimeoutDialogOpen();
-      }, courseTest?.timeout);
+      }, courseTest?.timeout * TO_MILLISECONDS_RATIO);
       return () => {
         clearTimeout(timeoutId);
       };
