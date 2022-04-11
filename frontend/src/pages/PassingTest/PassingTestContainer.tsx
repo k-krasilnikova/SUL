@@ -13,6 +13,7 @@ import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
 import ConfirmTimeIsOver from './ConfirmTimeIsOver';
+import { convertTestStatusToProgress } from '../../utils/helpers/convertCourseStatusToProgress';
 import { TO_MILLISECONDS_RATIO } from '../../constants/time';
 
 const PassingTestContainer: React.FC = () => {
@@ -104,6 +105,15 @@ const PassingTestContainer: React.FC = () => {
     naviagteTo(transformRoute(PATHS.myCourseDetails, params.courseId));
   };
 
+  const testStatus = responseData ? responseData.result.testStatus : undefined;
+  const isFailed = testStatus === TEST_STATUS.notPassed;
+  const assessmentRequired = testStatus === TEST_STATUS.assessment;
+  const percentageValue = responseData ? responseData?.result?.result * PERCENTAGE : undefined;
+
+  const progressBarData = isFailed
+    ? convertTestStatusToProgress(TEST_STATUS.failed, percentageValue)
+    : convertTestStatusToProgress(TEST_STATUS.successful, percentageValue);
+
   return (
     <>
       {questionStageItem && !isTestResultPageEnabled && (
@@ -139,6 +149,9 @@ const PassingTestContainer: React.FC = () => {
       )}
       {isTestResultPageEnabled && (
         <TestResult
+          progressBarData={progressBarData}
+          assessment={assessmentRequired}
+          isFailed={isFailed}
           isLoading={sendTestResultIsLoading}
           responseData={responseData}
           status={clientCourseResponse?.status}

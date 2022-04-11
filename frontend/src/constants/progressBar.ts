@@ -5,8 +5,9 @@ export const VARIANTS = {
   notStarted: 'notStarted',
   completed: 'completed',
   failed: 'failed',
-  failedWithPercentage: 'failedWithPercentage',
   successful: 'successful',
+  failedWithPercentage: 'failedWithPercentage',
+  successfulWithPercentage: 'successfulWithPercentage',
   successfulMobile: 'successfulMobile',
   incompleteMobile: 'incompleteMobile',
 };
