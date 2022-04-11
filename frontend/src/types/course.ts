@@ -1,20 +1,28 @@
-export interface Material {
-  _id?: string;
-  content: Array<string>;
-  technology: Array<string>;
-}
+import { CourseStatus } from 'enums/courseEnums';
 
-export interface ICourse {
+export type TMaterial = {
+  _id?: string;
+  content: {
+    _id: string;
+    stage: number;
+    content: Array<string>;
+    isCompleted: boolean;
+  }[];
+  technology: Array<string>;
+};
+export type CourseTechnology = { skill: string; points: number };
+export type TCourseStatus = `${CourseStatus}`;
+export interface Course {
   title: string;
   description: string;
-  technology: Array<string>;
+  technology: CourseTechnology[];
   requiredSkills: Array<string>;
   duration: CourseDuration;
   testLink: string;
   lessons: number;
-  materials: Array<Material>;
+  materials: TMaterial[];
   _id: string;
-  status: string;
+  status: TCourseStatus;
   avatar?: string;
 }
 
@@ -38,14 +46,9 @@ export interface ICourses {
   сoursesResponse: ICourse[];
 }
 
-export interface IMaterial {
-  _id: string;
-  stage: number;
-  content: Array<string>;
-}
 export interface ICourseMaterialsResponse {
   _id: string;
-  materials: IMaterial[];
+  materials: TMaterial['content'];
 }
 
 export interface ICourseInfo {
