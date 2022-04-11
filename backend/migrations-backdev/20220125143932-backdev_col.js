@@ -93,7 +93,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 1200000,
+    timeout: 1200,
   },
   {
     title: 'test for course "Java for profi"',
@@ -189,7 +189,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 1200000,
+    timeout: 1200,
   },
   {
     title: 'test for course "Python for kids"',
@@ -241,7 +241,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 600000,
+    timeout: 600,
   },
   {
     title: 'Test for "Kotlin" course',
@@ -309,7 +309,7 @@ const TESTS = [
         correctAnswer: 2,
       },
     ],
-    timeout: 600000,
+    timeout: 600,
   },
   {
     title: 'test for course "Scala"',
@@ -358,7 +358,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 600000,
+    timeout: 600,
   },
   {
     title: 'Test for course "Go"',
@@ -413,7 +413,7 @@ const TESTS = [
         correctAnswer: 2,
       },
     ],
-    timeout: 600000,
+    timeout: 600,
   },
   {
     title: 'Test for course "C++"',
@@ -480,7 +480,7 @@ const TESTS = [
         correctAnswer: 3,
       },
     ],
-    timeout: 600000,
+    timeout: 600,
   },
   {
     title: 'Test for course "C#"',
@@ -532,7 +532,7 @@ const TESTS = [
         correctAnswer: 1,
       },
     ],
-    timeout: 600000,
+    timeout: 600,
   },
   {
     title: 'English test',
@@ -561,7 +561,7 @@ const TESTS = [
         correctAnswer: 3,
       },
     ],
-    timeout: 600000,
+    timeout: 600,
   },
   {
     title: 'Test for QA',
@@ -594,7 +594,7 @@ const TESTS = [
         correctAnswer: 3,
       },
     ],
-    timeout: 600000,
+    timeout: 600,
   },
 ];
 

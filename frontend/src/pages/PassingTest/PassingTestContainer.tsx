@@ -18,6 +18,8 @@ const PassingTestContainer: React.FC = () => {
   const params = useParams();
   const naviagteTo = useNavigate();
 
+  const TO_MILLISECONDS_RATIO = 1000;
+
   const { data: courseTestResponse, isLoading: courseTestResponseIsLoading } = useGetCourseTest({
     courseId: params.courseId,
   });
@@ -33,7 +35,7 @@ const PassingTestContainer: React.FC = () => {
     if (courseTest?.timeout) {
       const timeoutId = setTimeout(() => {
         setTestTimeoutDialogOpen();
-      }, courseTest?.timeout);
+      }, courseTest?.timeout * TO_MILLISECONDS_RATIO);
       return () => {
         clearTimeout(timeoutId);
       };
