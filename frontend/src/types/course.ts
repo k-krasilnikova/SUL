@@ -41,8 +41,20 @@ export interface ICourses {
 export interface IMaterial {
   _id: string;
   stage: number;
-  content: Array<string>;
+  content: Array<IContentElement>;
 }
+
+export interface IContentElement {
+  type: ContentElementType;
+  material: string;
+}
+
+export enum ContentElementType {
+  video = 'video',
+  plain = 'plain',
+  presentation = 'presentation',
+}
+
 export interface ICourseMaterialsResponse {
   _id: string;
   materials: IMaterial[];

@@ -5,6 +5,7 @@ import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'components/Button/ButtonsEnums';
 import { PATHS } from 'constants/routes';
 import { ClientCourse, ICourseInfo } from 'types/clientCourse';
+import { IContentElement } from 'types/course';
 
 import ActionButton from './ActionButton';
 import CourseInfo from './CourseInfo';
@@ -22,7 +23,7 @@ interface IProps {
   isTestEnabled: boolean;
   isLoading: boolean;
   courseInfo: ICourseInfo;
-  courseMaterial: string;
+  courseMaterial: IContentElement;
   handleStageBack: () => void;
   handleStageForward: () => void;
   togglCourseInfOpen: () => void;
