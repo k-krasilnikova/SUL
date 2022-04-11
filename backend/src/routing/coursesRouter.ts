@@ -10,6 +10,7 @@ import applyCourse from 'controllers/clientCourses/applyCourse';
 import updatePendingCourse from 'controllers/pendingCourses/updatePendingCourse';
 import adapterUser from 'controllers/user/adapterUser';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
+import editCourse from 'controllers/admin/editCourse';
 
 const coursesRouter = Router();
 coursesRouter.get(
@@ -35,5 +36,6 @@ coursesRouter.get(
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getAllCourses,
 );
+coursesRouter.put(SubRoutes.updateCourse, withAuth([USER_ROLES.ADMIN]), editCourse, adapterSender);
 
 export default coursesRouter;
