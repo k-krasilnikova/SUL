@@ -1,4 +1,5 @@
 import { ObjectId } from 'mongoose';
+
 import { IUserSkill } from './IUserSkill';
 
 interface ISkillGroup {
