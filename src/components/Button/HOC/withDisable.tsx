@@ -17,7 +17,6 @@ const withDisable =
           COURSE_STATUSES.pending,
           COURSE_STATUSES.rejected,
           COURSE_STATUSES.completed,
-          COURSE_STATUSES.successful,
           COURSE_STATUSES.assessment,
         ].includes(status)
       ) {
