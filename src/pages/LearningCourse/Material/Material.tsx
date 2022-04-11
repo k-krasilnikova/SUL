@@ -1,19 +1,19 @@
 import { FC } from 'react';
 
-import { MATERIAL } from 'constants/materials';
+import { ContentElementType } from 'types/course';
 import { playVideo } from 'icons';
 
 import { MaterialWrapper, MaterialText, MaterialVideo } from './styled';
 
 interface IProps {
   material: string;
-  materialType: string;
+  materialType: ContentElementType;
   videoPreview: string | boolean;
 }
 
 const Material: FC<IProps> = ({ material, materialType, videoPreview }) => (
   <MaterialWrapper>
-    {materialType === MATERIAL.video ? (
+    {materialType === ContentElementType.video ? (
       <MaterialVideo
         url={material}
         playIcon={<img src={playVideo} alt="play" />}
