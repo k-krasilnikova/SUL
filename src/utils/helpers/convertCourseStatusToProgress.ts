@@ -8,7 +8,7 @@ export interface ConvertedProgress {
   progressVariant: string;
 }
 
-const convertStatusToProgress = (status?: string): ConvertedProgress => {
+const convertCourseStatusToProgress = (status?: string): ConvertedProgress => {
   const defaultConvertedValue = {
     progressValue: 0,
     progressText: '0%',
@@ -45,4 +45,34 @@ const convertStatusToProgress = (status?: string): ConvertedProgress => {
   return convertedValues[status] ?? defaultConvertedValue;
 };
 
-export default convertStatusToProgress;
+const convertTestStatusToProgress = (
+  status?: string,
+  percentagesValue?: number,
+): ConvertedProgress => {
+  let progressValue;
+  let progressText;
+  let progressVariant;
+
+  const isPercentage = percentagesValue !== 0 && percentagesValue !== 100;
+
+  switch (status) {
+    case COURSE_STATUSES.successful:
+      progressValue = percentagesValue || 100;
+      progressText = `${percentagesValue}%` || '100%';
+      progressVariant = isPercentage ? VARIANTS.successfulWithPercentage : VARIANTS.successful;
+      break;
+    case COURSE_STATUSES.failed:
+      progressValue = percentagesValue || 0;
+      progressText = `${percentagesValue}%` || '0%';
+      progressVariant = isPercentage ? VARIANTS.failedWithPercentage : VARIANTS.failed;
+      break;
+    default:
+      progressValue = 0;
+      progressText = '0%';
+      progressVariant = VARIANTS.notStarted;
+      break;
+  }
+  return { progressValue, progressText, progressVariant };
+};
+
+export { convertCourseStatusToProgress, convertTestStatusToProgress };

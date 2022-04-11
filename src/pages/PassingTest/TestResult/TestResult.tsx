@@ -25,8 +25,8 @@ const TestResult: React.FC<ITestResult> = ({
   isLoading,
   isFailed,
   responseData,
-  percentageValue,
   courseId,
+  progressBarData,
 }) => (
   <AuthorizedLayout pageName="Test Result">
     {isLoading ? (
@@ -37,7 +37,7 @@ const TestResult: React.FC<ITestResult> = ({
           <TestResultTitle>{TEST_RESULT_TEXT.score}</TestResultTitle>
         </TitleBox>
         <ContentBox>
-          <ResultProgressBar percentageValue={percentageValue} isFailed={isFailed} />
+          <ResultProgressBar percentageValue={progressBarData.progressValue} isFailed={isFailed} />
           <ResultDescription
             isFailed={isFailed}
             assessment={assessment}
