@@ -88,8 +88,7 @@ const LearningCourseContainer: React.FC = () => {
       courseMaterial={courseMaterial}
       isBackDisabled={stage === MIN_STAGE}
       isCourseInfoOpen={isCourseInfoOpen}
-      isLoadingStart={isLoadingStart}
-      isLoadingPass={isLoadingPass}
+      isLoading={isLoadingStart || isLoadingPass}
       isForwardDisabled={stage === maxStage}
       isTestEnabled={isTestEnabled}
       handleStageBack={handleStageBack}
