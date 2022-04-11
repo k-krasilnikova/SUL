@@ -13,7 +13,7 @@ import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
 import { COURSE_LABELS } from 'constants/statuses';
-import { PROGRESS_COLOR } from 'constants/detailedCourse';
+import { PROGRESS_COLOR, EXCEEDED_NUM } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { ButtonsWrapper, CustomButton } from 'components/Button/styled';
@@ -71,9 +71,8 @@ const DetailedCourse: React.FC<IProps> = ({
     lessons: courseLesson,
     avatar: courseAvatar,
   } = commonCourseData;
-  const exceededNum = 140;
-  const isLongDescription = courseDescription.length > exceededNum;
-  const shortedDescription = courseDescription.slice(0, exceededNum);
+  const isLongDescription = courseDescription.length > EXCEEDED_NUM;
+  const shortedDescription = courseDescription.slice(0, EXCEEDED_NUM);
 
   return (
     <AuthorizedLayout pageName="Course">
@@ -82,7 +81,7 @@ const DetailedCourse: React.FC<IProps> = ({
           <BackButton variant="medium" color="primary">
             {ButtonLabels.back}
           </BackButton>
-          <BackArrow alt="" src={backIconMobile} />
+          <BackArrow alt="backIconMobile" src={backIconMobile} />
         </BackLink>
         <MobileSearchWrapper>
           <MobileSearch />
