@@ -29,9 +29,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
       courseData.status !== COURSE_STATUSES.pending &&
       courseData.status !== COURSE_STATUSES.rejected
     : false;
-  const isCourseCompleted = courseData
-    ? [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(courseData.status)
-    : false;
+  const isCourseCompleted = courseData?.status === COURSE_STATUSES.completed;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
