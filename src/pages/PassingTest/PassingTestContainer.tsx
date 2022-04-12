@@ -3,18 +3,24 @@ import { useParams, useNavigate, Navigate } from 'react-router';
 
 import { useSendTestResult, useGetCourseTest } from 'api/test';
 import { useGetClientCourseInfo } from 'api/myCourses';
-import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
+import {
+  MAX_STAGE_INITIAL,
+  MIN_STAGE,
+  PERCENTAGE,
+  STAGE_CHANGE,
+  TEST_STATUS,
+} from 'constants/test';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { useToggle } from 'hooks';
 import transformRoute from 'utils/helpers/paths/transformRoute';
+import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
+import { TO_MILLISECONDS_RATIO } from 'constants/time';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
 import ConfirmTimeIsOver from './ConfirmTimeIsOver';
-import { convertTestStatusToProgress } from '../../utils/helpers/convertCourseStatusToProgress';
-import { TO_MILLISECONDS_RATIO } from '../../constants/time';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
