@@ -14,6 +14,11 @@ interface CoursesFound {
   handleSearchClose: () => void;
 }
 
+interface FoundedCourse {
+  courseId: string;
+  clientCourseId: string;
+}
+
 const SearchResultItemContainer: React.FC<CoursesFound> = ({
   course,
   addDivider,
@@ -23,17 +28,14 @@ const SearchResultItemContainer: React.FC<CoursesFound> = ({
   const navigate = useNavigate();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    const courseIds: { courseId: string; clientCourseId: string } | undefined =
-      foundInMyCoursesId?.find((courseData) => {
-        return courseData.courseId === event.currentTarget.id;
-      });
-    if (courseIds) {
-      navigate(transformRoute(PATHS.myCourseDetails, courseIds.clientCourseId));
-      handleSearchClose();
-    } else {
-      navigate(transformRoute(PATHS.courseDetails, event.currentTarget.id));
-      handleSearchClose();
-    }
+    const courseIds: FoundedCourse | undefined = foundInMyCoursesId?.find(
+      ({ courseId }) => courseId === event.currentTarget.id,
+    );
+    const navigatePath = courseIds
+      ? transformRoute(PATHS.myCourseDetails, courseIds.clientCourseId)
+      : transformRoute(PATHS.courseDetails, event.currentTarget.id);
+    handleSearchClose();
+    navigate(navigatePath);
   };
 
   return (
