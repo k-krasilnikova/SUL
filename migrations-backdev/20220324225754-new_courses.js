@@ -50,7 +50,7 @@ const TESTS = [
         correctAnswer: 2,
       },
     ],
-    timeout: 600000,
+    timeout: 300,
   },
   {
     title: 'Test NodeJS',
@@ -98,7 +98,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 600000,
+    timeout: 300,
   },
   {
     title: 'Test Ruby',
@@ -142,7 +142,7 @@ const TESTS = [
         correctAnswer: 4,
       },
     ],
-    timeout: 600000,
+    timeout: 300,
   },
   {
     title: 'Test Vue JS',
@@ -186,7 +186,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 1200000,
+    timeout: 300,
   },
   {
     title: 'Test Django',
@@ -234,7 +234,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 1200000,
+    timeout: 300,
   },
   {
     title: 'Test Unity',
@@ -283,7 +283,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 1800000,
+    timeout: 300,
   },
   {
     title: 'Test Android',
@@ -327,7 +327,7 @@ const TESTS = [
         correctAnswer: 4,
       },
     ],
-    timeout: 1800000,
+    timeout: 300,
   },
   {
     title: 'Test Bootstrap',
@@ -367,7 +367,7 @@ const TESTS = [
         correctAnswer: 4,
       },
     ],
-    timeout: 1800000,
+    timeout: 300,
   },
   {
     title: 'Test SQL',
@@ -415,7 +415,7 @@ const TESTS = [
         correctAnswer: 5,
       },
     ],
-    timeout: 1200000,
+    timeout: 300,
   },
   {
     title: 'Test jQuery',
@@ -460,7 +460,7 @@ const TESTS = [
         correctAnswer: 4,
       },
     ],
-    timeout: 600000,
+    timeout: 300,
   },
 ];
 

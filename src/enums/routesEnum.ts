@@ -8,6 +8,7 @@ enum Routes {
   pendingCourses = '/pendingCourses',
   test = '/test',
   employees = '/employees',
+  skills = '/skills',
 }
 
 enum SubRoutes {
@@ -15,11 +16,11 @@ enum SubRoutes {
   logout = '/logout',
   refresh = '/refresh',
   getTestTime = '/:id/test/time',
+  passTest = '/:id/test/pass',
   getTestResult = '/:id/test/result',
   startTest = '/:id/test/start',
   getCourseTest = '/:id/test',
   startCourse = '/:id/start',
-  finishCourse = '/:id/finish',
   updateCourse = '/:id/edit',
   getClientCourse = '/:id',
   getClientCourses = '',
@@ -37,6 +38,7 @@ enum SubRoutes {
   approvePendingCourse = '/approveCourse',
   declinePendingCourse = '/declineCourse',
   getUserInfo = '/:id',
+  getAllSkills = '',
 }
 
 export { Routes, SubRoutes };

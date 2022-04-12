@@ -24,7 +24,7 @@ interface IClientCourse {
   course: ObjectId;
   status: CourseStatus;
   withAssessment: boolean;
-  testResult: string;
+  testResult: { qN: number; aN: boolean }[];
   progress: [
     {
       stage: string;
