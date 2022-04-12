@@ -1,4 +1,5 @@
 import React from 'react';
+import GoogleSlides from 'react-google-slides';
 
 interface IPPViewer {
   link: string;
@@ -6,16 +7,13 @@ interface IPPViewer {
 
 const PPViewer: React.FC<IPPViewer> = ({ link }) => {
   return (
-    <>
-      <iframe
-        title="unique"
-        style={{
-          width: '100%',
-          height: '50vh',
-        }}
-        src={link}
-      />
-    </>
+    <GoogleSlides
+      slidesLink={link}
+      containerStyle={{
+        width: '100%',
+        border: 'none',
+      }}
+    />
   );
 };
 
