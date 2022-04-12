@@ -41,7 +41,7 @@ export const ImageWrapper = styled('div')<Image>(({ imageUrl }) => {
     [theme.breakpoints.up('md')]: {
       width: '281px',
       height: '147px',
-      margin: '5px 25px 105px 0',
+      margin: '5px 25px 30px 0',
       borderRadius: '8px',
     },
     [theme.breakpoints.up('xl')]: {
@@ -121,22 +121,19 @@ export const DetailedCourseTitle = styled(Typography)({
 });
 
 export const DetailedCourseActionsBox = styled(Box)({
+  width: '100%',
   display: 'flex',
+  alignItems: 'center',
   justifyContent: 'space-between',
   marginTop: '50px',
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('sm')]: {
     display: 'block',
     marginTop: '24px',
     marginLeft: '3px',
   },
-  [theme.breakpoints.up('md')]: {
-    display: 'flex',
-    justifyContent: 'space-between',
+  [theme.breakpoints.down('md')]: {
     marginTop: '56px',
     marginLeft: '0',
-  },
-  [theme.breakpoints.up('lg')]: {
-    minWidth: '60vw',
   },
 });
 

@@ -1,4 +1,4 @@
-function deleteAllCookies() {
+function deleteAllCookies(): void {
   const cookies = document.cookie.split(';');
 
   for (let i = 0; i < cookies.length; i += 1) {

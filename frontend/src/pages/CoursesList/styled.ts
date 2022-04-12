@@ -51,7 +51,7 @@ export const CourseActions = styled('div')({
 });
 
 export const CourseActionsBox = styled(Box)({
-  margin: '0 15px 0 8px',
+  margin: '20px 15px 0 8px',
 });
 
 export const MobileLink = styled(Link)({
