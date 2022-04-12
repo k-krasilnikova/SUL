@@ -8,6 +8,7 @@ enum Routes {
   pendingCourses = '/pendingCourses',
   test = '/test',
   employees = '/employees',
+  skills = '/skills',
 }
 
 enum SubRoutes {
@@ -37,6 +38,7 @@ enum SubRoutes {
   approvePendingCourse = '/approveCourse',
   declinePendingCourse = '/declineCourse',
   getUserInfo = '/:id',
+  getAllSkills = '',
 }
 
 export { Routes, SubRoutes };
