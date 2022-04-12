@@ -9,19 +9,15 @@
 }
 
 body {
-  overflow-y: hidden;
   margin: 0;
+  font-family: 'Ubuntu', sans-serif;
   background-color: var(--layout-background-color);
+  overflow-y: hidden;
   scrollbar-color: #b6b6b6 #f1f1f1;
 }
 
 body > iframe {
   pointer-events: none;
-}
-
-body:hover {
-  scrollbar-color: #7e7e7e;
-  font-family: 'Ubuntu';
 }
 
 a {
