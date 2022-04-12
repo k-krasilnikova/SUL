@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router';
 
 import { useSendTestResult, useGetCourseTest } from 'api/test';
-import { useFinishClientCourse, useGetClientCourseInfo } from 'api/myCourses';
+import { useGetClientCourseInfo } from 'api/myCourses';
 import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
@@ -13,6 +13,7 @@ import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
 import ConfirmTimeIsOver from './ConfirmTimeIsOver';
+import { TO_MILLISECONDS_RATIO } from '../../constants/time';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
@@ -33,7 +34,7 @@ const PassingTestContainer: React.FC = () => {
     if (courseTest?.timeout) {
       const timeoutId = setTimeout(() => {
         setTestTimeoutDialogOpen();
-      }, courseTest?.timeout);
+      }, courseTest?.timeout * TO_MILLISECONDS_RATIO);
       return () => {
         clearTimeout(timeoutId);
       };
@@ -51,12 +52,6 @@ const PassingTestContainer: React.FC = () => {
     setStage(stage + STAGE_CHANGE);
   };
 
-  const { mutate: sendFinishCourse } = useFinishClientCourse(params.courseId);
-  const handleFinishCourse = useCallback(
-    () => sendFinishCourse(params.courseId),
-    [params.courseId, sendFinishCourse],
-  );
-
   const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
   const {
     mutate: sendTestResult,
@@ -65,12 +60,6 @@ const PassingTestContainer: React.FC = () => {
   } = useSendTestResult({
     courseId: params.courseId,
   });
-
-  useEffect(() => {
-    if (clientCourseResponse?.status === COURSE_STATUSES.successful) {
-      handleFinishCourse();
-    }
-  }, [clientCourseResponse?.status, handleFinishCourse]);
 
   const handleSubmitResult = () => {
     const resultData = {

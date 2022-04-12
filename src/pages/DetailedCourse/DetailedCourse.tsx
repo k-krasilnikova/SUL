@@ -13,7 +13,7 @@ import { MobileSearch } from 'components/Layout/MobileSearch';
 import { PAGES } from 'constants/pages';
 import { INFO } from 'constants/coutseInfoTypes';
 import { COURSE_LABELS } from 'constants/statuses';
-import { OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants/detailedCourse';
+import { PROGRESS_COLOR, EXCEEDED_NUM } from 'constants/detailedCourse';
 import { IDetailedCourse } from 'types/detailedCourse';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { ButtonsWrapper, CustomButton } from 'components/Button/styled';
@@ -63,101 +63,113 @@ const DetailedCourse: React.FC<IProps> = ({
   isProgressBarDisplayed,
   isAdmin,
   isCourseCompleted,
-}) => (
-  <AuthorizedLayout pageName="Course">
-    <DetailedCourseWrapper>
-      <BackLink to={page === PAGES.coursesList ? PATHS.coursesList : PATHS.myCourses}>
-        <BackButton variant="medium" color="primary">
-          {ButtonLabels.back}
-        </BackButton>
-        <BackArrow alt="" src={backIconMobile} />
-      </BackLink>
-      <MobileSearchWrapper>
-        <MobileSearch />
-      </MobileSearchWrapper>
-      <InnerWrapper>
-        <ImageWrapper imageUrl={commonCourseData.avatar} />
-        {isProgressBarDisplayed && (
-          <ProgressBar
-            size="large"
-            text={progressText}
-            textColor={PROGRESS_COLOR}
-            variant={progressVariant}
-            value={progressValue}
-          />
-        )}
-        <DetailedCourseTitle>{commonCourseData.title}</DetailedCourseTitle>
-        {isFullTextOpen ? (
-          <DetailedCourseTextMobile>{commonCourseData.description}</DetailedCourseTextMobile>
-        ) : (
-          <DetailedCourseTextMobile>
-            {commonCourseData.description.slice(0, 140)}
-            <ButtonFullText onClick={toggleFullText}>
-              {!isFullTextOpen && OPEN_FULL_TEXT}
-            </ButtonFullText>
-          </DetailedCourseTextMobile>
-        )}
-        <DetailedCourseText>{commonCourseData.description}</DetailedCourseText>
-        <DetailedCourseActionsBox>
-          <CourseInfoBox>
-            <CourseInfo
-              duration={convertDurationToString(commonCourseData.duration)}
-              lessons={commonCourseData.lessons}
-              type={INFO.detailedCourse}
+}) => {
+  const {
+    title: courseTitle,
+    description: courseDescription,
+    duration: courseDuration,
+    lessons: courseLesson,
+    avatar: courseAvatar,
+  } = commonCourseData;
+  const isLongDescription = courseDescription.length > EXCEEDED_NUM;
+  const shortedDescription = courseDescription.slice(0, EXCEEDED_NUM);
+
+  return (
+    <AuthorizedLayout pageName="Course">
+      <DetailedCourseWrapper>
+        <BackLink to={page === PAGES.coursesList ? PATHS.coursesList : PATHS.myCourses}>
+          <BackButton variant="medium" color="primary">
+            {ButtonLabels.back}
+          </BackButton>
+          <BackArrow alt="backIconMobile" src={backIconMobile} />
+        </BackLink>
+        <MobileSearchWrapper>
+          <MobileSearch />
+        </MobileSearchWrapper>
+        <InnerWrapper>
+          <ImageWrapper imageUrl={courseAvatar} />
+          {isProgressBarDisplayed && (
+            <ProgressBar
+              size="large"
+              text={progressText}
+              textColor={PROGRESS_COLOR}
+              variant={progressVariant}
+              value={progressValue}
             />
-          </CourseInfoBox>
-          {!isAdmin &&
-            (isLoading ? (
-              <CustomButton variant="mediumOutlined" disabled>
-                <ButtonLoader buttonSpinner={buttonSpinner} />
-              </CustomButton>
-            ) : page === PAGES.coursesList ? (
-              <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
-                {ButtonLabels.applyCourse}
-              </CustomButton>
-            ) : (
-              <ButtonsWrapper>
-                {!isCourseCompleted && (
-                  <ActionButton
-                    label={COURSE_LABELS[status]}
-                    status={status}
-                    progress={clientCourseData?.progress}
-                    timeout={COURSE_DISABLE_DAYS}
-                    courseId={id}
-                    applyDate={clientCourseData?.applyDate}
-                  />
-                )}
-              </ButtonsWrapper>
-            ))}
-        </DetailedCourseActionsBox>
-        <SimilarCoursesWrapper container xs={12}>
-          <Grid item xs={12}>
-            <SimilarCoursesTitle>Similar courses</SimilarCoursesTitle>
-            <SimilarCoursesItemWrapper>
-              <CourseItem
-                title={commonCourseData.title}
-                description={commonCourseData.description}
-                duration={convertDurationToString(commonCourseData.duration)}
-                lessons={commonCourseData.lessons}
-                windowWidth={windowWidth}
-                type={INFO.similarCourses}
-                pageName={PAGES.detailed}
-                imageUrl={commonCourseData.avatar}
-              >
-                <CourseActionsBox>
-                  <CourseActions>
-                    <CustomButton color="primary" variant="mediumOutlined">
-                      {ButtonLabels.details}
-                    </CustomButton>
-                  </CourseActions>
-                </CourseActionsBox>
-              </CourseItem>
-            </SimilarCoursesItemWrapper>
-          </Grid>
-        </SimilarCoursesWrapper>
-      </InnerWrapper>
-    </DetailedCourseWrapper>
-  </AuthorizedLayout>
-);
+          )}
+          <DetailedCourseTitle>{courseTitle}</DetailedCourseTitle>
+          {isFullTextOpen ? (
+            <DetailedCourseTextMobile>{courseDescription}</DetailedCourseTextMobile>
+          ) : (
+            <DetailedCourseTextMobile>
+              {shortedDescription}
+              {isLongDescription && (
+                <ButtonFullText onClick={toggleFullText}>{ButtonLabels.lookInFull}</ButtonFullText>
+              )}
+            </DetailedCourseTextMobile>
+          )}
+          <DetailedCourseText>{courseDescription}</DetailedCourseText>
+          <DetailedCourseActionsBox>
+            <CourseInfoBox>
+              <CourseInfo
+                duration={convertDurationToString(courseDuration)}
+                lessons={courseLesson}
+                type={INFO.detailedCourse}
+              />
+            </CourseInfoBox>
+            {!isAdmin &&
+              (isLoading ? (
+                <CustomButton variant="mediumOutlined" disabled>
+                  <ButtonLoader buttonSpinner={buttonSpinner} />
+                </CustomButton>
+              ) : page === PAGES.coursesList ? (
+                <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
+                  {ButtonLabels.applyCourse}
+                </CustomButton>
+              ) : (
+                <ButtonsWrapper>
+                  {!isCourseCompleted && (
+                    <ActionButton
+                      label={COURSE_LABELS[status]}
+                      status={status}
+                      progress={clientCourseData?.progress}
+                      timeout={COURSE_DISABLE_DAYS}
+                      courseId={id}
+                      applyDate={clientCourseData?.applyDate}
+                    />
+                  )}
+                </ButtonsWrapper>
+              ))}
+          </DetailedCourseActionsBox>
+          <SimilarCoursesWrapper container xs={12}>
+            <Grid item xs={12}>
+              <SimilarCoursesTitle>Similar courses</SimilarCoursesTitle>
+              <SimilarCoursesItemWrapper>
+                <CourseItem
+                  title={courseTitle}
+                  description={courseDescription}
+                  duration={convertDurationToString(courseDuration)}
+                  lessons={courseLesson}
+                  windowWidth={windowWidth}
+                  type={INFO.similarCourses}
+                  pageName={PAGES.detailed}
+                  imageUrl={courseAvatar}
+                >
+                  <CourseActionsBox>
+                    <CourseActions>
+                      <CustomButton color="primary" variant="mediumOutlined">
+                        {ButtonLabels.details}
+                      </CustomButton>
+                    </CourseActions>
+                  </CourseActionsBox>
+                </CourseItem>
+              </SimilarCoursesItemWrapper>
+            </Grid>
+          </SimilarCoursesWrapper>
+        </InnerWrapper>
+      </DetailedCourseWrapper>
+    </AuthorizedLayout>
+  );
+};
 
 export default DetailedCourse;
