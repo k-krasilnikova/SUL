@@ -12,10 +12,10 @@ const manageAssessment = async (
   res: Response<never, { id: string; achievments: TAchievments; results: string }>,
   next: NextFunction,
 ) => {
-  const { id: courseId } = req.params;
-  const { action: assessmentAction } = req.body;
-
   try {
+    const { id: courseId } = req.params;
+    const { action: assessmentAction } = req.body;
+
     const { status } = await getStatusProvider(courseId);
 
     if (status !== CourseStatus.assessment) {
