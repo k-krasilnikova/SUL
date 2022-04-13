@@ -7,6 +7,7 @@ import { NextFunction, Request, Response } from 'express';
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
+import isValidAvatar from 'utils/validation/isValidAvatar';
 import isValidDescription from 'utils/validation/isValidDescription';
 import isValidMaterials from 'utils/validation/isValidMaterials';
 import isValidQuestions from 'utils/validation/isValidQuestions';
@@ -38,6 +39,16 @@ const editCourse = async (
         dataToUpdate.description,
       );
       updatedData.description = description;
+    }
+
+    const isAvatarValid = isValidAvatar(dataToUpdate.avatar);
+    if (isAvatarValid) {
+      const { avatar } = await updateCourseField(
+        courseId,
+        COURSE_FIELDS.avatar,
+        dataToUpdate.avatar,
+      );
+      updatedData.avatar = avatar;
     }
 
     const isMaterialsValid = isValidMaterials(dataToUpdate.materials);
