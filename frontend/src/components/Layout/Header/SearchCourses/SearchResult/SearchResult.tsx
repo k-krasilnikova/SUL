@@ -15,15 +15,18 @@ const SearchResult: React.FC<ISearchResultProps> = ({
 }) => (
   <SearchResultWrapper>
     {coursesFound.length ? (
-      coursesFound.map((course, index, array) => (
-        <SearchResultItem
-          key={course._id}
-          course={course}
-          addDivider={index < array.length + LAST_ARRAY_ITEM}
-          foundInMyCoursesId={foundInMyCourses}
-          handleSearchClose={handleSearchClose}
-        />
-      ))
+      coursesFound.map((course, index, array) => {
+        const isDividerVisible = index < array.length + LAST_ARRAY_ITEM;
+        return (
+          <SearchResultItem
+            key={course._id}
+            course={course}
+            addDivider={isDividerVisible}
+            foundInMyCoursesId={foundInMyCourses}
+            handleSearchClose={handleSearchClose}
+          />
+        );
+      })
     ) : (
       <NoSearchResults>{NO_RESULTS}</NoSearchResults>
     )}
