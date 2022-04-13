@@ -11,12 +11,12 @@ const SearchResultContainer: React.FC<ISearchResultContainerProps> = ({
 }) => {
   const [foundInMyCoursesIds, setFoundInMyCoursesIds] = useState<IClientCourseIds[]>([]);
 
-  const { data: clientCourses } = useSearchClientCourses();
+  const { data: clientCoursesData } = useSearchClientCourses();
 
   useEffect(() => {
-    if (clientCourses) {
+    if (clientCoursesData) {
       coursesFound.forEach(({ title }) => {
-        const foundedCourse = clientCourses.find(({ course }) => course.title === title);
+        const foundedCourse = clientCoursesData.find(({ course }) => course.title === title);
 
         if (foundedCourse) {
           setFoundInMyCoursesIds((prevState) => [
@@ -29,7 +29,7 @@ const SearchResultContainer: React.FC<ISearchResultContainerProps> = ({
         }
       });
     }
-  }, [clientCourses, coursesFound]);
+  }, [clientCoursesData, coursesFound]);
 
   return (
     <SearchResult

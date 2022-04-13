@@ -14,15 +14,15 @@ export interface ISearchResultProps extends ISearchResultContainerProps {
 export interface ISearchResultItemContainer {
   course: ICourse;
   addDivider: boolean;
-  foundInMyCoursesId?: IClientCourseIds[];
   handleSearchClose: () => void;
+  foundInMyCoursesId?: IClientCourseIds[];
 }
 
 export interface ISearchResultItem {
   course: ICourse;
   addDivider: boolean;
-  status?: string;
   handleSelectFoundCourse: (event: React.MouseEvent<HTMLElement>) => void;
+  status?: string;
 }
 
 export interface IClientCourseIds {
