@@ -1,1 +1,1 @@
-export { default as MobileSearch } from './MobileSearchContainer';
+export { default } from './MobileSearchContainer';

@@ -39,6 +39,7 @@ export interface IRequestsProps {
 }
 
 export interface IRequest {
+  request: Request;
   approveRequest: (requestId: string) => void;
   approveLoading: boolean;
   declineRequest: (requestId: string) => void;
@@ -48,7 +49,6 @@ export interface IRequest {
     hours: number;
     minutes: number;
   };
-  request?: Request;
   isTargetRequest?: boolean;
   status?: string;
 }

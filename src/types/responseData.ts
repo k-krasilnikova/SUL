@@ -1,10 +1,10 @@
 import { ClientCourse } from './clientCourse';
-import { Course } from './course';
+import { ICourse } from './course';
 
 export interface ResponseDataType {
   handleApplyCourse?: (event: React.MouseEvent<Element, MouseEvent>) => void;
   targetId?: string;
-  courses?: Course[];
+  courses?: ICourse[];
   clientCourses?: ClientCourse[];
   isLoading?: boolean;
   isError?: boolean;

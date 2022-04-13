@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ProgressBar from 'components/ProgressBar/ProgressBar';
-import { UserAvatar } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 
 import {
@@ -40,7 +40,7 @@ const CourseMaterialInfo: React.FC<Props> = ({
   <SkillInfo completed={stages === stagesCompleted}>
     <SkillInfoFlex>
       <ImageWrapper>
-        <UserAvatar size={SIZE.xsmall} avatar={imageUrl} />
+        <Avatar size={SIZE.xsmall} avatar={imageUrl} />
       </ImageWrapper>
       <SkillInfoTextWrapper>
         <SkillInfoTextWidth>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Box, Typography } from '@mui/material';
 
-import { Button } from 'components/Button';
+import Button from 'components/Button';
 import theme from 'themeSettings';
 
 export const PassingTestWrapper = styled(Box)({

@@ -2,7 +2,7 @@ import React from 'react';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { ClickAwayListener, InputAdornment } from '@mui/material';
 
-import { Course } from 'types/course';
+import { ICourse } from 'types/course';
 import SearchResult from 'components/Layout/Header/SearchCourses/SearchResult';
 
 import { Search } from './styled';
@@ -12,7 +12,7 @@ interface Props {
   searchCourses: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchClose: () => void;
   checkSpace: (event: React.KeyboardEvent) => void;
-  coursesFound?: Array<Course>;
+  coursesFound?: ICourse[];
 }
 
 const MobileSearch: React.FC<Props> = ({

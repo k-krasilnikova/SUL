@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { ButtonLabels } from 'components/Button/ButtonsEnums';
+import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
 import { ClientCourse, ICourseInfo } from 'types/clientCourse';
 

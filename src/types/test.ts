@@ -67,7 +67,7 @@ export interface ITestResult {
   status?: string;
   isFailed?: boolean;
   skills?: ISkills[];
-  percentageValue?: number | undefined;
+  percentageValue?: number;
   courseId?: string;
   assessment?: boolean;
   isLoading: boolean;
@@ -90,4 +90,31 @@ export interface IPassingTestProps {
   handleConfirm: () => void;
   children?: React.ReactChild;
   testItem?: ITestItem;
+}
+
+export interface ITestButtons {
+  stage: number;
+  stageNext: () => void;
+  stageBack: () => void;
+  resultEnabled: boolean;
+  questionStageItem: IQuestionObject;
+  value: {
+    [key: number]: number;
+  };
+  handleSubmitResult: () => void;
+}
+
+export interface ITestTitleAndTimer {
+  testItem: ITestItem;
+}
+
+export interface ITestProgress {
+  isFailed?: boolean;
+  percentageValue?: number;
+}
+
+export interface IResultDescription {
+  responseData?: IResponseData;
+  isFailed?: boolean;
+  assessment?: boolean;
 }

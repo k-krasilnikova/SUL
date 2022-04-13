@@ -1,11 +1,11 @@
 import { PATHS } from 'constants/routes';
 import { ClientCourse } from 'types/clientCourse';
-import { Course } from 'types/course';
+import { ICourse } from 'types/course';
 
 import transformRoute from './transformRoute';
 
 export const chooseListPath = (
-  course: Course,
+  course: ICourse,
   index: number,
   clientCourses?: ClientCourse[],
 ): string =>

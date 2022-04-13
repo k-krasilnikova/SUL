@@ -19,9 +19,7 @@ import {
   SkillsMap,
   EmployeeProfile,
 } from 'pages';
-import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
-import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
-import RoleRoute from 'components/RoleRoute/RoleRoute';
+import { AnonymousRoute, PrivateRoute, RoleRoute } from 'components/Routes';
 import Loader from 'components/Loader';
 import { queryClient } from 'api/base';
 import { LOADER } from 'constants/loaderTypes';
@@ -53,6 +51,13 @@ const App: React.FC = () => (
               element={
                 <RoleRoute roles={[ROLE.manager]}>
                   <Employees />
+                </RoleRoute>
+              }
+            />
+            <Route
+              path={PATHS.employeeProfile}
+              element={
+                <RoleRoute roles={[ROLE.manager]}>
                   <EmployeeProfile />
                 </RoleRoute>
               }

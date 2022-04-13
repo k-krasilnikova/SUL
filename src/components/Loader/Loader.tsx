@@ -1,9 +1,10 @@
-import * as React from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
+import React from 'react';
+import { CircularProgress } from '@mui/material';
+
 import { LoaderBox } from './styled';
 
 interface ILoader {
-  color: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'inherit' | undefined;
+  color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'inherit';
   type?: string;
 }
 

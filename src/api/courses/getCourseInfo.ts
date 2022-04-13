@@ -4,11 +4,11 @@ import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { Course } from 'types/course';
+import { ICourse } from 'types/course';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
-const useGetCourseInfo = (courseId: string | undefined): UseQueryResult<Course, AxiosError> => {
+const useGetCourseInfo = (courseId: string | undefined): UseQueryResult<ICourse, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -18,7 +18,7 @@ const useGetCourseInfo = (courseId: string | undefined): UseQueryResult<Course, 
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.getCourses}/${courseId}`);
-      const courseResponse: Array<Course> = response.data;
+      const courseResponse: Array<ICourse> = response.data;
       return courseResponse;
     },
     {
