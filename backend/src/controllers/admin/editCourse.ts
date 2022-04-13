@@ -11,6 +11,7 @@ import isValidDescription from 'utils/validation/isValidDescription';
 import isValidMaterials from 'utils/validation/isValidMaterials';
 import isValidQuestions from 'utils/validation/isValidQuestions';
 import isValidTechnologies from 'utils/validation/isValidTechnologies';
+import isValidTitle from 'utils/validation/isValidTitle';
 
 const editCourse = async (
   req: Request<{ id: string }, never, IUpdateCourseBody>,
@@ -22,6 +23,12 @@ const editCourse = async (
     const dataToUpdate = req.body;
 
     const updatedData: IUpdateCourseBody = {};
+
+    const isTitleValid = isValidTitle(dataToUpdate.title);
+    if (isTitleValid) {
+      const { title } = await updateCourseField(courseId, COURSE_FIELDS.title, dataToUpdate.title);
+      updatedData.title = title;
+    }
 
     const isDescriptionValid = isValidDescription(dataToUpdate.description);
     if (isDescriptionValid) {
