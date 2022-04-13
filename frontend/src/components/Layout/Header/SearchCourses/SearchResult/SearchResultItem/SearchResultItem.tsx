@@ -5,19 +5,12 @@ import CourseInfo from 'components/Course/CourseInfo';
 import Label from 'components/Label';
 import { INFO } from 'constants/courseInfoTypes';
 import { LABEL_MESSAGE } from 'constants/messages';
-import { ICourse } from 'types/course';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import { Image, CourseTitle, SearchResultCourse, RedirectButton } from './styled';
+import { ISearchResultItem } from '../../types';
 
-interface CourseFound {
-  course: ICourse;
-  addDivider: boolean;
-  status?: string;
-  handleSelectFoundCourse: (event: React.MouseEvent<HTMLElement>) => void;
-}
-
-const SearchResultItem: React.FC<CourseFound> = ({
+const SearchResultItem: React.FC<ISearchResultItem> = ({
   course,
   status,
   addDivider,

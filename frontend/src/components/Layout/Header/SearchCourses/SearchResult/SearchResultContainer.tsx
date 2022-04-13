@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import { ICourse } from 'types/course';
 import useSearchClientCourses from 'api/myCourses/searchClientCourses';
 
 import SearchResult from './SearchResult';
-import { IClientCourseIds } from './types';
+import { IClientCourseIds, ISearchResultContainerProps } from '../types';
 
-interface Props {
-  coursesFound: ICourse[];
-  handleSearchClose: () => void;
-}
-
-const SearchResultContainer: React.FC<Props> = ({ coursesFound, handleSearchClose }) => {
+const SearchResultContainer: React.FC<ISearchResultContainerProps> = ({
+  coursesFound,
+  handleSearchClose,
+}) => {
   const [foundInMyCoursesIds, setFoundInMyCoursesIds] = useState<IClientCourseIds[]>([]);
 
   const { data: clientCourses } = useSearchClientCourses();
