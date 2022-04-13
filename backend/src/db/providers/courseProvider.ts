@@ -14,6 +14,7 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
+import ClientCourseModel from 'db/models/ClientCourses';
 
 interface ICourseWithStatusDb extends ICourse {
   status: [{ status?: string }];
@@ -192,6 +193,11 @@ const materialsCounterProvider = async (courseId: string) => {
   return materialsCount;
 };
 
+const deleteCourseProvider = async (courseId: string) => {
+  await CourseModel.findOneAndDelete({ _id: courseId });
+  await ClientCourseModel.deleteMany({ course: courseId });
+};
+
 const updateCourseField = async (courseId: string, field: string, value: unknown) => {
   const updatedCourse = await CourseModel.findOneAndUpdate(
     { _id: courseId },
@@ -209,5 +215,6 @@ export {
   getCourseProvider,
   materialsCounterProvider,
   getMaterialsProvider,
+  deleteCourseProvider,
   updateCourseField,
 };
