@@ -330,6 +330,16 @@ const MOCKED_MATERIALS = [
           },
         ],
       },
+      {
+        stage: 4,
+        content: [
+          {
+            type: 'presentation',
+            material:
+              'https://docs.google.com/presentation/d/1I6Q6ZGkMatpwcF3QJ9k31jdKkQM6WwnBfz-P2eW9Z0I',
+          },
+        ],
+      },
     ],
   },
   {
@@ -361,6 +371,15 @@ const MOCKED_MATERIALS = [
             type: 'video',
             material:
               'https://www.youtube.com/watch?v=X0zdAG7gfgs&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&index=3&ab_channel=CodeWithHarry',
+          },
+        ],
+      },
+      {
+        stage: 4,
+        content: [
+          {
+            type: 'presentation',
+            material: 'https://docs.google.com/presentation/d/1GV7Hg6AWAsHVCrxzQ7J4XY0-t_feuleb',
           },
         ],
       },
@@ -577,6 +596,15 @@ const MOCKED_MATERIALS = [
           },
         ],
       },
+      {
+        stage: 3,
+        content: [
+          {
+            type: 'presentation',
+            material: 'https://docs.google.com/presentation/d/1harvK9akrzVRFkxULs9sDiYijhTjxD1Z',
+          },
+        ],
+      },
     ],
   },
   {
@@ -596,6 +624,15 @@ const MOCKED_MATERIALS = [
           {
             type: 'video',
             material: 'https://www.youtube.com/watch?v=ivDjWYcKDZI',
+          },
+        ],
+      },
+      {
+        stage: 3,
+        content: [
+          {
+            type: 'presentation',
+            material: 'https://docs.google.com/presentation/d/1D1FerCeCtJONphoUwWhWxPk5RnKcBC8M',
           },
         ],
       },
