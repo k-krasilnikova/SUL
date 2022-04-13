@@ -1,5 +1,7 @@
 import { Params } from 'react-router';
 
+import { ConvertedProgress } from 'utils/helpers/convertCourseStatusToProgress';
+
 export interface ITestResponse {
   test: ITestItem;
   testResponse?: any;
@@ -71,6 +73,7 @@ export interface ITestResult {
   courseId?: string;
   assessment?: boolean;
   isLoading: boolean;
+  progressBarData: ConvertedProgress;
 }
 
 export interface IPassingTestProps {
@@ -78,6 +81,7 @@ export interface IPassingTestProps {
   maxStage: number;
   handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmitResult: () => void;
+  handleNavigateBack: () => void;
   value: {
     [key: number]: number;
   };
@@ -109,8 +113,9 @@ export interface ITestTitleAndTimer {
 }
 
 export interface ITestProgress {
-  isFailed?: boolean;
-  percentageValue?: number;
+  progressValue?: number;
+  progressText?: string;
+  progressVariant?: string;
 }
 
 export interface IResultDescription {
