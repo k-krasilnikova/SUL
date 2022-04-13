@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 
-import { Course } from 'types/course';
+import { ICourse } from 'types/course';
 import SearchCourses from 'components/Layout/Header/SearchCourses/SearchCourses';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { SEARCH_DEBOUNCE_TIME } from 'constants/time';
@@ -12,7 +12,7 @@ import useSearchAllCourses from 'api/courses/searchAllCourses';
 const SearchCoursesContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
   const [searchInputValue, setSearchInputValue] = useState<string>('');
-  const [coursesFound, setCoursesFound] = useState<Array<Course>>([]);
+  const [coursesFound, setCoursesFound] = useState<Array<ICourse>>([]);
 
   const { enqueueSnackbar } = useSnackbar();
 

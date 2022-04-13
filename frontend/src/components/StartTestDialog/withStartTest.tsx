@@ -4,12 +4,11 @@ import { useParams } from 'react-router';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { ClientCourse } from 'types/clientCourse';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
-import useGetTestTime from 'api/test/getTestTime';
-import { useStartCourseTest } from 'api/test';
+import { useGetTestTime, useStartCourseTest } from 'api/test';
 import checkTestDate from 'utils/helpers/checkTestDate';
 import { useToggle } from 'hooks';
 
-import WarningStartTestDialog from './StartTestDialog';
+import StartTestDialog from './StartTestDialog';
 
 type IncomingProps = {
   timeout?: number;
@@ -47,7 +46,7 @@ const withStartTest =
     return (
       <>
         <Component handleDialogOpen={setOpen} isTestEnable={!isTestDisabled()} {...props} />
-        <WarningStartTestDialog
+        <StartTestDialog
           handleStartTest={handleStartTest}
           isOpened={isOpen}
           testTimeout={testTimeout}

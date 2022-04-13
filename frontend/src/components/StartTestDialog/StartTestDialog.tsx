@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { ConfirmDialog } from 'components/ConfirmDialog';
+import ConfirmDialog from 'components/ConfirmDialog';
 import { convertTestTimeout } from 'utils/helpers/convertTime';
 
 import {
@@ -19,12 +19,7 @@ interface IProps {
   testTimeout?: number;
 }
 
-const WarningStartTestDialog: FC<IProps> = ({
-  isOpened,
-  testTimeout,
-  handleClose,
-  handleStartTest,
-}) => (
+const StartTestDialog: FC<IProps> = ({ isOpened, testTimeout, handleClose, handleStartTest }) => (
   <>
     {testTimeout && (
       <ConfirmDialog open={isOpened} onClose={handleClose} size="medium">
@@ -46,4 +41,4 @@ const WarningStartTestDialog: FC<IProps> = ({
   </>
 );
 
-export default WarningStartTestDialog;
+export default StartTestDialog;

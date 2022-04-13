@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { ConfirmLogOutModalWindow } from 'components/Layout/Header/ConfirmLogOut';
 import { User } from 'types/user';
 import { useLogOut } from 'api/logOut/';
+import ConfirmLogOut from 'components/ConfirmLogOut';
 
 import Header from './Header';
 
@@ -48,7 +48,7 @@ const HeaderContainer: React.FC<Props> = ({
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}
       />
-      <ConfirmLogOutModalWindow
+      <ConfirmLogOut
         handleLogOut={handleLogOut}
         isOpened={isConfirmOpen}
         handleCancelLogOut={cancelLogOut}

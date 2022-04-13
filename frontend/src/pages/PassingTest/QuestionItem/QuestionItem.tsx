@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box } from '@mui/system';
 import { RadioGroup } from '@mui/material';
 
 import { checkbox, checkboxChecked } from 'icons';
@@ -8,6 +7,7 @@ import { IQuestionProps } from 'types/test';
 import {
   AnswersBox,
   QuestionAndStageBox,
+  QuestionItemBox,
   Stage,
   StageWrapper,
   StyledFormControlLabel,
@@ -22,7 +22,7 @@ const QuestionItem: React.FC<IQuestionProps> = ({
   handleChange,
   value,
 }) => (
-  <Box>
+  <QuestionItemBox>
     <QuestionAndStageBox>
       {questionItem && <TestQuestion>{questionItem.question}</TestQuestion>}
       <StageWrapper>
@@ -51,7 +51,7 @@ const QuestionItem: React.FC<IQuestionProps> = ({
         </RadioGroup>
       ))}
     </AnswersBox>
-  </Box>
+  </QuestionItemBox>
 );
 
 export default QuestionItem;

@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { DialogActions } from '@mui/material';
 
-import { ConfirmDialog } from 'components/ConfirmDialog';
-import { Button } from 'components/Button';
+import ConfirmDialog from 'components/ConfirmDialog';
+import Button from 'components/Button';
+import { ButtonLabels } from 'constants/ButtonLabels';
 
 interface IProps {
   isOpened: boolean;
@@ -17,7 +18,7 @@ const ConfirmTimeIsOver: FC<IProps> = ({ isOpened, size, handleClose }) => (
   <ConfirmDialog confirmMessage={CONFIRM_MESSAGE} open={isOpened} onClose={handleClose} size={size}>
     <DialogActions>
       <Button variant="mediumContained" onClick={handleClose}>
-        OK
+        {ButtonLabels.ok}
       </Button>
     </DialogActions>
   </ConfirmDialog>
