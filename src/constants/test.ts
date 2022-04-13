@@ -15,7 +15,10 @@ export const TEST_RESULT_TEXT = {
 
 export const TEST_STATUS = {
   notPassed: 'not passed',
+  failed: 'failed',
+  failedWithPercentage: 'failedWithPercentage',
   successful: 'successful',
+  successfulWithPercentage: 'successfulWithPercentage',
   assessment: 'assessment',
   testing: 'testing',
 };

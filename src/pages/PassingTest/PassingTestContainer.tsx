@@ -3,17 +3,24 @@ import { useParams, useNavigate, Navigate } from 'react-router';
 
 import { useSendTestResult, useGetCourseTest } from 'api/test';
 import { useGetClientCourseInfo } from 'api/myCourses';
-import { MAX_STAGE_INITIAL, MIN_STAGE, STAGE_CHANGE } from 'constants/test';
+import {
+  MAX_STAGE_INITIAL,
+  MIN_STAGE,
+  PERCENTAGE,
+  STAGE_CHANGE,
+  TEST_STATUS,
+} from 'constants/test';
+import { TO_MILLISECONDS_RATIO } from 'constants/time';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
-import { useToggle } from 'hooks';
+import { useToggle, useCallbackPrompt } from 'hooks';
 import transformRoute from 'utils/helpers/paths/transformRoute';
+import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
 import ConfirmTimeIsOver from './ConfirmTimeIsOver';
-import { TO_MILLISECONDS_RATIO } from '../../constants/time';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
@@ -96,13 +103,30 @@ const PassingTestContainer: React.FC = () => {
   const handleConfirm = (): void => {
     setConfirmOpen(true);
   };
-  const cancelLeavePage = (): void => {
-    setConfirmOpen(false);
-  };
-  const handleLeavePage = (): void => {
-    setConfirmOpen(false);
+
+  const handleNavigateBack = (): void => {
     naviagteTo(transformRoute(PATHS.myCourseDetails, params.courseId));
   };
+
+  const testStatus = responseData ? responseData.result.testStatus : undefined;
+  const isFailed = testStatus === TEST_STATUS.notPassed;
+  const assessmentRequired = testStatus === TEST_STATUS.assessment;
+  const percentageValue = responseData ? responseData?.result?.result * PERCENTAGE : undefined;
+
+  const progressBarData = isFailed
+    ? convertTestStatusToProgress(TEST_STATUS.failed, percentageValue)
+    : convertTestStatusToProgress(TEST_STATUS.successful, percentageValue);
+  const [showDialogOnSwitchingRoute, setShowDialogOnSwitchingRoute] = useState<boolean>(false);
+
+  const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(
+    showDialogOnSwitchingRoute,
+  );
+
+  useEffect(() => {
+    if (courseTest) {
+      setShowDialogOnSwitchingRoute(true);
+    }
+  }, [courseTest, showDialogOnSwitchingRoute]);
 
   return (
     <>
@@ -122,11 +146,13 @@ const PassingTestContainer: React.FC = () => {
             isLoading={courseTestResponseIsLoading}
             handleSubmitResult={handleSubmitResult}
             handleConfirm={handleConfirm}
+            handleNavigateBack={handleNavigateBack}
           />
           <ConfirmLeavePage
+            showDialog={showPrompt}
             isOpened={isConfirmOpen}
-            handleCancelLeavePage={cancelLeavePage}
-            handleLeavePage={handleLeavePage}
+            handleCancelLeavePage={cancelNavigation}
+            handleLeavePage={confirmNavigation}
             isLoading={courseTestResponseIsLoading}
             size="small"
           />
@@ -139,6 +165,9 @@ const PassingTestContainer: React.FC = () => {
       )}
       {isTestResultPageEnabled && (
         <TestResult
+          progressBarData={progressBarData}
+          assessment={assessmentRequired}
+          isFailed={isFailed}
           isLoading={sendTestResultIsLoading}
           responseData={responseData}
           status={clientCourseResponse?.status}
