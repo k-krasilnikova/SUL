@@ -1,7 +1,7 @@
 import { COURSE_STATUSES } from 'constants/statuses';
 import { VARIANTS } from 'constants/progressBar';
 import { COMPLETED_STATUS_TEXT, FAILED_STATUS_TEXT } from 'constants/detailedCourse';
-import { TEST_STATUS } from '../../constants/test';
+import { TEST_STATUS } from 'constants/test';
 
 export interface ConvertedProgress {
   progressValue: number;
