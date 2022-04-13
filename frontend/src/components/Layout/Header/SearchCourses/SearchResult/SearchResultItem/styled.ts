@@ -44,3 +44,7 @@ export const SearchResultCourse = styled(ListItem)({
   paddingLeft: '3px !important',
   paddingRight: '3px !important',
 });
+
+export const RedirectButton = styled('div')({
+  cursor: 'pointer',
+});

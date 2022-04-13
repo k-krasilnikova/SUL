@@ -5,22 +5,30 @@ import { NO_RESULTS } from 'constants/messages';
 
 import { NoSearchResults, SearchResultWrapper } from './styled';
 import SearchResultItem from './SearchResultItem';
+import { IClientCourseIds } from './types';
 
 interface CoursesFound {
   coursesFound: ICourse[];
-  foundInMyCourses?: string;
+  foundInMyCourses?: IClientCourseIds[];
+  handleSearchClose: () => void;
 }
 
 const LAST_ARRAY_ITEM = -1;
 
-const SearchResult: React.FC<CoursesFound> = ({ coursesFound, foundInMyCourses }) => (
+const SearchResult: React.FC<CoursesFound> = ({
+  coursesFound,
+  foundInMyCourses,
+  handleSearchClose,
+}) => (
   <SearchResultWrapper>
     {coursesFound.length ? (
-      coursesFound.map((course, id, array) => (
+      coursesFound.map((course, index, array) => (
         <SearchResultItem
+          key={course._id}
           course={course}
-          addDivider={id < array.length + LAST_ARRAY_ITEM}
+          addDivider={index < array.length + LAST_ARRAY_ITEM}
           foundInMyCoursesId={foundInMyCourses}
+          handleSearchClose={handleSearchClose}
         />
       ))
     ) : (
