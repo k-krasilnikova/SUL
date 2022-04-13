@@ -2,28 +2,22 @@ import React from 'react';
 
 import ProgressBar from 'components/ProgressBar';
 import { SIZE } from 'constants/sizes';
-import { VARIANTS } from 'constants/progressBar';
 import { ITestProgress } from 'types/test';
 
 import { ProgressBarBox } from './styled';
 
-const ResultProgressBar: React.FC<ITestProgress> = ({ isFailed, percentageValue }) => (
+const ResultProgressBar: React.FC<ITestProgress> = ({
+  progressValue,
+  progressText,
+  progressVariant,
+}) => (
   <ProgressBarBox>
-    {isFailed ? (
-      <ProgressBar
-        size={SIZE.xlarge}
-        value={percentageValue}
-        text={`${percentageValue}%`}
-        variant={VARIANTS.failed}
-      />
-    ) : (
-      <ProgressBar
-        size={SIZE.xlarge}
-        value={percentageValue}
-        text={`${percentageValue}%`}
-        variant={VARIANTS.completed}
-      />
-    )}
+    <ProgressBar
+      size={SIZE.xlarge}
+      value={progressValue}
+      text={progressText}
+      variant={progressVariant}
+    />
   </ProgressBarBox>
 );
 
