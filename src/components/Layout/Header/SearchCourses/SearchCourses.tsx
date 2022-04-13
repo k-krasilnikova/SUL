@@ -35,7 +35,9 @@ const SearchCourses: React.FC<Props> = ({
         onPaste={checkPastedValue}
         value={searchInputValue}
       />
-      {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
+      {isSearchOpen && coursesFound && (
+        <SearchResult coursesFound={coursesFound} handleSearchClose={handleSearchClose} />
+      )}
     </RelativeWrapper>
   </ClickAwayListener>
 );

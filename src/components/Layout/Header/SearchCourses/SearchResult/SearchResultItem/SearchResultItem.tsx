@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Box } from '@mui/material';
 
 import CourseInfo from 'components/Course/CourseInfo';
@@ -9,17 +8,22 @@ import { LABEL_MESSAGE } from 'constants/messages';
 import { ICourse } from 'types/course';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
-import { Image, CourseTitle, SearchResultCourse } from './styled';
+import { Image, CourseTitle, SearchResultCourse, RedirectButton } from './styled';
 
 interface CourseFound {
   course: ICourse;
   addDivider: boolean;
   status?: string;
-  redirectTo: string;
+  handleSelectFoundCourse: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const SearchResultItem: React.FC<CourseFound> = ({ course, status, addDivider, redirectTo }) => (
-  <Link key={course._id} to={redirectTo}>
+const SearchResultItem: React.FC<CourseFound> = ({
+  course,
+  status,
+  addDivider,
+  handleSelectFoundCourse,
+}) => (
+  <RedirectButton key={course._id} id={course._id} onClick={handleSelectFoundCourse}>
     <SearchResultCourse divider={addDivider}>
       <Image avatar={course.avatar} />
       <Box>
@@ -32,7 +36,7 @@ const SearchResultItem: React.FC<CourseFound> = ({ course, status, addDivider, r
         />
       </Box>
     </SearchResultCourse>
-  </Link>
+  </RedirectButton>
 );
 
 export default SearchResultItem;
