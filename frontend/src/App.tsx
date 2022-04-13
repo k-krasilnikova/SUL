@@ -51,6 +51,13 @@ const App: React.FC = () => (
               element={
                 <RoleRoute roles={[ROLE.manager]}>
                   <Employees />
+                </RoleRoute>
+              }
+            />
+            <Route
+              path={PATHS.employeeProfile}
+              element={
+                <RoleRoute roles={[ROLE.manager]}>
                   <EmployeeProfile />
                 </RoleRoute>
               }
