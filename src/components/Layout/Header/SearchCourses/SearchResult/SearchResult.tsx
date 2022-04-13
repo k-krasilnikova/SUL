@@ -1,21 +1,14 @@
 import React from 'react';
 
-import { ICourse } from 'types/course';
 import { NO_RESULTS } from 'constants/messages';
 
 import { NoSearchResults, SearchResultWrapper } from './styled';
 import SearchResultItem from './SearchResultItem';
-import { IClientCourseIds } from './types';
-
-interface CoursesFound {
-  coursesFound: ICourse[];
-  foundInMyCourses?: IClientCourseIds[];
-  handleSearchClose: () => void;
-}
+import { ISearchResultProps } from '../types';
 
 const LAST_ARRAY_ITEM = -1;
 
-const SearchResult: React.FC<CoursesFound> = ({
+const SearchResult: React.FC<ISearchResultProps> = ({
   coursesFound,
   foundInMyCourses,
   handleSearchClose,

@@ -1,21 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import { ICourse } from 'types/course';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { PATHS } from 'constants/routes';
 
 import SearchResultItem from './SearchResultItem';
-import { IClientCourseIds } from '../types';
+import { IClientCourseIds, ISearchResultItemContainer } from '../../types';
 
-interface CoursesFound {
-  course: ICourse;
-  addDivider: boolean;
-  foundInMyCoursesId?: IClientCourseIds[];
-  handleSearchClose: () => void;
-}
-
-const SearchResultItemContainer: React.FC<CoursesFound> = ({
+const SearchResultItemContainer: React.FC<ISearchResultItemContainer> = ({
   course,
   addDivider,
   foundInMyCoursesId,
