@@ -29,6 +29,8 @@ interface IProgress {
 }
 
 interface IUpdateCourseBody {
+  title?: string;
+  avatar?: string;
   description?: string;
   skills?: {
     skill: string;
