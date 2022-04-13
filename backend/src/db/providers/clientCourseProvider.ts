@@ -185,7 +185,6 @@ const assignCourseToEmployee = async (
     course: courseId,
     status: CourseStatus.approved,
     withAssessment: withAssessment || false,
-    testResult: '',
     progress: progressDto,
     date: Date.now(),
   });
