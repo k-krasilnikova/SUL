@@ -2,7 +2,7 @@ import React from 'react';
 
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
 import { convertCourseStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
-import { ProgressBar } from 'components/ProgressBar';
+
 import { checkIcon } from 'icons';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
@@ -22,6 +22,7 @@ import {
   CourseTextContainer,
 } from './styled';
 import CourseButtons from './CourseButtons';
+import ProgressBar from '../ProgressBar';
 
 interface Props {
   description: string;

@@ -37,7 +37,11 @@ const TestResult: React.FC<ITestResult> = ({
           <TestResultTitle>{TEST_RESULT_TEXT.score}</TestResultTitle>
         </TitleBox>
         <ContentBox>
-          <ResultProgressBar percentageValue={progressBarData.progressValue} isFailed={isFailed} />
+          <ResultProgressBar
+            progressValue={progressBarData.progressValue}
+            progressText={progressBarData.progressText}
+            progressVariant={progressBarData.progressVariant}
+          />
           <ResultDescription
             isFailed={isFailed}
             assessment={assessment}
