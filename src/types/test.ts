@@ -112,8 +112,9 @@ export interface ITestTitleAndTimer {
 }
 
 export interface ITestProgress {
-  isFailed?: boolean;
-  percentageValue?: number;
+  progressValue?: number;
+  progressText?: string;
+  progressVariant?: string;
 }
 
 export interface IResultDescription {
