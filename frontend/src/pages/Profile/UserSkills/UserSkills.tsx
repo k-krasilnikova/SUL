@@ -4,7 +4,7 @@ import { Divider } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
 import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
-import { NoContent } from 'components/NoContent';
+import NoContent from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
 import { SIZE } from 'constants/sizes';
 import { starContained } from 'icons';

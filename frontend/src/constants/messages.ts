@@ -5,3 +5,6 @@ export const NO_SKILLS = 'No skills';
 export const NO_REQUESTS = 'No requests';
 export const NO_EMPLOYEES = 'No employees';
 export const NO_RESULTS = 'No results';
+export const NO_NOTIFICATIONS = 'No notifications yet';
+export const LABEL_MESSAGE = 'New';
+export const CONFIRM_MESSAGE = 'Are you sure you want to leave this page?';

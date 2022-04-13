@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import { DialogActions } from '@mui/material';
 
-import { ConfirmDialog } from 'components/ConfirmDialog';
+import ConfirmDialog from 'components/ConfirmDialog';
+import { CONFIRM_MESSAGE } from 'constants/messages';
+import { ButtonLabels } from 'constants/ButtonLabels';
 import ButtonLoader from 'components/ButtonLoader';
 import { buttonSpinner } from 'animations';
 
@@ -14,9 +16,6 @@ interface IProps {
   isLoading?: boolean;
   size?: string;
 }
-
-const CONFIRM_MESSAGE = 'Are you sure you want to leave this page?';
-const BUTTON_EXIT_TEXT = 'Exit';
 
 const ConfirmLeavePage: FC<IProps> = ({
   isOpened,
@@ -33,10 +32,10 @@ const ConfirmLeavePage: FC<IProps> = ({
   >
     <DialogActions>
       <ButtonCancel variant="mediumOutlined" onClick={handleCancelLeavePage}>
-        Stay
+        {ButtonLabels.stay}
       </ButtonCancel>
       <ButtonExit disabled={isLoading} variant="mediumContained" onClick={handleLeavePage}>
-        {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : BUTTON_EXIT_TEXT}
+        {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.exit}
       </ButtonExit>
     </DialogActions>
   </ConfirmDialog>

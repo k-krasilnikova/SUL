@@ -69,6 +69,7 @@ export const HeaderContent = styled('div')({
 });
 
 export const UserBlock = styled(Link)({
+  fontFamily: theme.typography.fontFamily,
   display: 'flex',
   alignItems: 'center',
   margin: '0 45px 0 auto',

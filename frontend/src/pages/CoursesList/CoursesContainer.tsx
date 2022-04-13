@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Course } from 'types/course';
+import { ICourse } from 'types/course';
 import { useApplyCourse, useGetPaginatedCourses } from 'api/courses';
 import { useGetProfile } from 'api/profile';
 import { useFetchNextPage } from 'hooks';
@@ -42,7 +42,7 @@ const CoursesContainer: React.FC = () => {
 
   const formattedCoursesList = data?.pages.reduce(
     (prev, page) => [...prev, ...page.courses.filter((course) => !course.status)],
-    [] as Course[],
+    [] as ICourse[],
   );
 
   const courseRef = useFetchNextPage({ hasNextPage, fetchNextPage });

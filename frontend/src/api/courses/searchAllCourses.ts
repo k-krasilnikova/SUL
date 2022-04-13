@@ -2,11 +2,11 @@ import { useQuery, UseQueryResult } from 'react-query';
 import { AxiosError } from 'axios';
 
 import { apiClientWrapper } from 'api/base';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { API } from 'constants/routes';
-import { Course } from 'types/course';
-import { QUERY_KEYS } from '../../constants/queryKeyConstants';
+import { ICourse } from 'types/course';
 
-const useSearchAllCourses = (courseName: string): UseQueryResult<Array<Course>, AxiosError> => {
+const useSearchAllCourses = (courseName: string): UseQueryResult<Array<ICourse>, AxiosError> => {
   return useQuery(
     [QUERY_KEYS.coursesRequests, courseName],
     async () => {

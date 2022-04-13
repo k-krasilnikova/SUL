@@ -4,7 +4,7 @@ export interface Material {
   technology: Array<string>;
 }
 
-export interface Course {
+export interface ICourse {
   title: string;
   description: string;
   technology: Array<string>;
@@ -35,7 +35,7 @@ export interface CourseDuration {
 }
 
 export interface ICourses {
-  сoursesResponse: Course[];
+  сoursesResponse: ICourse[];
 }
 
 export interface IMaterial {
@@ -46,4 +46,10 @@ export interface IMaterial {
 export interface ICourseMaterialsResponse {
   _id: string;
   materials: IMaterial[];
+}
+
+export interface ICourseInfo {
+  duration?: string;
+  lessons?: number;
+  type?: string;
 }
