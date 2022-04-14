@@ -4,9 +4,13 @@ import { isEmpty } from 'lodash';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { getTestProvider } from 'db/providers/testProvider';
-import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
+import {
+  getClientCourseProvider,
+  updateClientCourseField,
+} from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { isTestAvailableByDate } from 'utils/validation/tests';
+import { CLIENT_COURSE_FIELDS } from 'config/constants';
 
 const getTest = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -18,6 +22,11 @@ const getTest = async (req: Request, res: Response, next: NextFunction) => {
     }
 
     if (!isTestAvailableByDate(finishTestDate)) {
+      await updateClientCourseField(
+        clientCourseId,
+        CLIENT_COURSE_FIELDS.status,
+        CourseStatus.failed,
+      );
       throw new BadRequestError('Your test is disabled.');
     }
 
