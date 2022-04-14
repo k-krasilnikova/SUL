@@ -1,5 +1,5 @@
+import { Dialog as MuiDialog } from '@mui/material';
 import styled from 'styled-components';
-import { Dialog as MuiDialog, DialogTitle } from '@mui/material';
 
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';
@@ -8,7 +8,7 @@ interface Size {
   size?: string;
 }
 
-export const Dialog = styled(MuiDialog)<Size>(({ size }) => ({
+export const StyledDialog = styled(MuiDialog)<Size>(({ size }) => ({
   '& .MuiDialog-paper': {
     maxWidth: '660px',
     borderRadius: '5px',
@@ -99,22 +99,6 @@ export const DialogBodyWrapper = styled('div')({
       width: '100px',
       fontSize: '18px',
       padding: '14px 23px',
-    },
-  },
-});
-
-export const ConfirmMessage = styled(DialogTitle)({
-  '&.MuiDialogTitle-root': {
-    margin: '0px',
-    lineHeight: '1.4',
-    padding: '16px',
-    [theme.breakpoints.up('xs')]: {
-      fontSize: '16px',
-      marginTop: '24px',
-    },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '20px',
-      marginTop: '28px',
     },
   },
 });
