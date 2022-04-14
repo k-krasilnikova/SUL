@@ -25,7 +25,7 @@ const useGetClientCourseAndMaterials = (
       const courseData: ClientCourse = courseResponse.data;
 
       const materialsResponse = await apiClient.get(
-        `${API.getCourses}/${courseData.course._id}/materials`,
+        `${API.courses}/${courseData.course._id}/materials`,
       );
       const materialsData: ICourseMaterialsResponse = materialsResponse.data;
       return [courseData, materialsData];

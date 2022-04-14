@@ -25,7 +25,7 @@ const useDeleteCourse = (): UseMutationResult => {
   return useMutation(
     async (courseId?: string | unknown) => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.delete(`${API.deleteCourse}/${courseId}`);
+      const response = await apiClient.delete(`${API.courses}/${courseId}`);
       return response.data;
     },
     {
