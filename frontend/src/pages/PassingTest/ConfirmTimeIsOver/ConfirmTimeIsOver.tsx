@@ -1,27 +1,19 @@
 import { FC } from 'react';
-import { DialogActions } from '@mui/material';
 
-import ConfirmDialog from 'components/ConfirmDialog';
-import Button from 'components/Button';
+import { TIME_FOR_TEST_EXPIRED } from 'constants/messages';
 import { ButtonLabels } from 'constants/ButtonLabels';
+import { ConfirmDialog } from 'components/Dialogs';
 
-interface IProps {
-  isOpened: boolean;
-  handleClose: () => void;
-  size?: string;
-}
+import { IConfirmTimeIsOverProps } from './types';
 
-const CONFIRM_MESSAGE =
-  'The time allotted for passing the test has expired. The next attempt to pass the test will be available in 1 week';
-
-const ConfirmTimeIsOver: FC<IProps> = ({ isOpened, size, handleClose }) => (
-  <ConfirmDialog confirmMessage={CONFIRM_MESSAGE} open={isOpened} onClose={handleClose} size={size}>
-    <DialogActions>
-      <Button variant="mediumContained" onClick={handleClose}>
-        {ButtonLabels.ok}
-      </Button>
-    </DialogActions>
-  </ConfirmDialog>
+const ConfirmTimeIsOver: FC<IConfirmTimeIsOverProps> = ({ isOpened, handleClose }) => (
+  <ConfirmDialog
+    open={isOpened}
+    confirmMessage={TIME_FOR_TEST_EXPIRED}
+    confirmButtonLabel={ButtonLabels.ok}
+    onClose={handleClose}
+    handleConfirm={handleClose}
+  />
 );
 
 export default ConfirmTimeIsOver;
