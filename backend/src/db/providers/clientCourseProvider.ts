@@ -175,10 +175,10 @@ const checkNotDeleteCoursesProvider = async (courseId: string) => {
 };
 
 const assignCourseToEmployee = async (
-    assignTo: string | ObjectId,
-    courseId: string | ObjectId,
-    progressDto: IProgress[],
-    withAssessment?: boolean,
+  assignTo: string | ObjectId,
+  courseId: string | ObjectId,
+  progressDto: IProgress[],
+  withAssessment?: boolean,
 ) => {
   const createdDoc = await ClientCourseModel.create({
     user: assignTo,
