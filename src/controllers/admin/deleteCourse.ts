@@ -5,7 +5,7 @@ import { deleteCourseProvider } from 'db/providers/courseProvider';
 
 const deleteCourse = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { courseId } = req.params;
+    const { id: courseId } = req.params;
 
     await checkNotDeleteCoursesProvider(courseId);
 
