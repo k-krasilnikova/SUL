@@ -53,7 +53,7 @@ const passTest = async (
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: TestStatus.notPassed };
       await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
-      await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.testDate, Date.now());
+      await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.finishTestDate, Date.now());
       next();
     } else {
       const assessmentRequired = await getAssessmentProvider(courseId);
