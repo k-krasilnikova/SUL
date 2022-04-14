@@ -69,7 +69,8 @@ const CLIENT_COURSE_FIELDS = {
   progress: 'progress',
   date: 'date',
   applyDate: 'applyDate',
-  testDate: 'testDate',
+  startTestDate: 'startTestDate',
+  finishTestDate: 'finishTestDate',
 } as const;
 
 const COURSE_FIELDS = {
