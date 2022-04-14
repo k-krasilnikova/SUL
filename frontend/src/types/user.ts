@@ -1,5 +1,5 @@
 import { Course } from './course';
-import { Technologies } from './skill';
+import { GroupedSkills, Technologies } from './skill';
 import { Notification } from './notification';
 
 export interface User {
@@ -19,4 +19,5 @@ export interface User {
   handleLogOut?: () => void;
   technologies?: Technologies;
   notifications?: Notification[];
+  skills?: GroupedSkills;
 }
