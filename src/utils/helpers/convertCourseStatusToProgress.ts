@@ -5,8 +5,8 @@ import { TEST_STATUS } from 'constants/test';
 
 export interface ConvertedProgress {
   progressValue: number;
-  progressText: string;
   progressVariant: string;
+  progressText?: string;
 }
 
 const convertCourseStatusToProgress = (status?: string): ConvertedProgress => {
@@ -77,4 +77,44 @@ const convertTestStatusToProgress = (
   return convertedValues[status] ?? defaultConvertedValue;
 };
 
-export { convertCourseStatusToProgress, convertTestStatusToProgress };
+const convertEmployeeCourseProgress = (status?: string): ConvertedProgress => {
+  const defaultConvertedValue = {
+    progressValue: 0,
+    progressVariant: VARIANTS.employeeNotStarted,
+  };
+
+  if (!status) {
+    return defaultConvertedValue;
+  }
+
+  const convertedValues = {
+    [COURSE_STATUSES.started]: {
+      progressValue: 37,
+      progressVariant: VARIANTS.successfulWithPercentage,
+    },
+    [COURSE_STATUSES.testing]: {
+      progressValue: 80,
+      progressVariant: VARIANTS.successfulWithPercentage,
+    },
+    [COURSE_STATUSES.completed]: {
+      progressValue: 100,
+      progressVariant: VARIANTS.successfulWithPercentage,
+    },
+    [COURSE_STATUSES.assessment]: {
+      progressValue: 100,
+      progressVariant: VARIANTS.successfulWithPercentage,
+    },
+    [COURSE_STATUSES.failed]: {
+      progressValue: 0,
+      progressVariant: VARIANTS.employeeFailed,
+    },
+  };
+
+  return convertedValues[status] ?? defaultConvertedValue;
+};
+
+export {
+  convertCourseStatusToProgress,
+  convertTestStatusToProgress,
+  convertEmployeeCourseProgress,
+};
