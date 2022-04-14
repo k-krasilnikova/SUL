@@ -11,4 +11,5 @@ export const QUERY_KEYS = {
   paginatedClientCoursesList: 'PaginatedClientCoursesList',
   courseTest: 'CourseTest',
   getTestTime: 'GetTestTime',
+  skills: 'Skills',
 };
