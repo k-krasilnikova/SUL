@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import {
   getAssessmentProvider,
-  getStatusProvider,
+  getClientCourseProvider,
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { CLIENT_COURSE_FIELDS, PASS_THRESHOLD } from 'config/constants';
@@ -12,6 +12,7 @@ import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/user
 import { TestRuslt } from 'interfaces/Ientities/Itest';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { TestStatus } from 'enums/common';
+import { isTestAvailableByDate } from 'utils/validation/tests';
 
 const passTest = async (
   req: Request<
@@ -26,9 +27,9 @@ const passTest = async (
     const { testId, answers } = req.body;
     const { id: courseId } = req.params;
 
-    const courseStatus = await getStatusProvider(courseId);
-    if (!courseStatus || courseStatus?.status !== CourseStatus.testing) {
-      throw new BadRequestError("Test hasn't been started.");
+    const { status, finishTestDate } = await getClientCourseProvider(courseId);
+    if (status || status !== CourseStatus.testing || !isTestAvailableByDate(finishTestDate)) {
+      throw new BadRequestError('Test is unavailable.');
     }
 
     const correctAnswers = await getTrueAnswersProvider(testId);
