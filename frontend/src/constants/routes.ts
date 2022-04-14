@@ -45,8 +45,7 @@ export const PATHS: {
 export const API: {
   getProfile: string;
   getToken: string;
-  getCourses: string;
-  deleteCourse: string;
+  courses: string;
   getCoursesRequests: string;
   getEmployeesList: string;
   approveRequest: string;
@@ -58,8 +57,7 @@ export const API: {
 } = {
   getProfile: '/api/users',
   getToken: '/api/account/login',
-  getCourses: '/api/courses',
-  deleteCourse: '/api/courses',
+  courses: '/api/courses',
   getCoursesRequests: '/api/pendingCourses',
   getEmployeesList: '/api/employees',
   approveRequest: '/api/pendingCourses/approveCourse',

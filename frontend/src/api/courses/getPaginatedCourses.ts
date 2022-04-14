@@ -25,7 +25,7 @@ const useGetPaginatedCourses = (title?: string): HookResult => {
   };
   const getCourses = async ({ pageParam = 1 }) => {
     const apiClient = apiClientWrapper();
-    const response = await apiClient.get(`${API.getCourses}`, {
+    const response = await apiClient.get(`${API.courses}`, {
       params: {
         title,
         pageN: pageParam,

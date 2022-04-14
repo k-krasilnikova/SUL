@@ -3,7 +3,6 @@ import { FC } from 'react';
 import { ButtonLabels } from 'constants/ButtonLabels';
 
 import DeleteCourseDialog from './DeleteCourseDialog';
-
 import { StyledButton } from './styled';
 import { IDeleteCourseButtonProps } from './types';
 
