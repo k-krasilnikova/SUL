@@ -8,7 +8,7 @@ import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { SkillsList } from 'types/skill';
 
-const useGetAllSkills = (): UseQueryResult<SkillsList, AxiosError> => {
+const useGetAllSkills = (): UseQueryResult<SkillsList[], AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
