@@ -2,15 +2,12 @@ import React from 'react';
 
 import { useGetSkills } from 'api/skills';
 
-import SkillsContent from './Skills';
+import Skills from './Skills';
 
-const AllSkills: React.FC = () => {
-  const { data } = useGetSkills();
+const SkillsContainer: React.FC = () => {
+  const { data: skills } = useGetSkills();
 
-  // eslint-disable-next-line no-console
-  console.log(data, 'data in skill container');
-
-  return <SkillsContent />;
+  return <Skills skills={skills} />;
 };
 
-export default AllSkills;
+export default SkillsContainer;
