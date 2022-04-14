@@ -29,7 +29,9 @@ interface IProgress {
 }
 
 interface IUpdateCourseBody {
-  description?: string;
+  title?: ICourse['title'];
+  avatar?: ICourse['avatar'];
+  description?: ICourse['description'];
   skills?: {
     skill: string;
     points: number;
