@@ -11,7 +11,15 @@ const viewerContainerStyles = {
 } as const;
 
 const PPViewer: React.FC<IPPViewer> = ({ link }) => {
-  return <GoogleSlides slidesLink={link} containerStyle={viewerContainerStyles} />;
+  return (
+    <GoogleSlides
+      slidesLink={link}
+      containerStyle={viewerContainerStyles}
+      position={1}
+      showControls
+      loop
+    />
+  );
 };
 
 export default PPViewer;
