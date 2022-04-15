@@ -19,7 +19,7 @@ export const SearchWrapper = styled('div')({
 });
 
 export const SearchSkill = styled(Input)({
-  fontFamily: 'Ubuntu',
+  fontFamily: theme.typography.fontFamily,
   fontWeight: '400',
   fontSize: '26px',
   lineHeight: '34px',
@@ -65,8 +65,7 @@ export const SkillsBox = styled(Box)({
 
 export const SkillsTitle = styled('div')({
   margin: '60px 0 16px',
-  fontFamily: 'Ubuntu',
-  fontStyle: 'normal',
+  fontFamily: theme.typography.fontFamily,
   fontWeight: '500',
   fontSize: '24px',
   lineHeight: '28px',
