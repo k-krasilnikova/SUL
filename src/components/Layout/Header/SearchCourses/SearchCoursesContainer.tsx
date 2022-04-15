@@ -32,16 +32,17 @@ const SearchCoursesContainer: React.FC = () => {
     }
   }, [debouncedSearchValue, enqueueSnackbar, foundedCourses, isSearchingCourses]);
 
+  const handleSearchClose = () => {
+    setSearchInputValue('');
+    setSearchOpen(false);
+  };
+
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const formattedValue = formatInputValue(event.target.value);
     setSearchInputValue(formattedValue);
     if (!formattedValue.length) {
       setSearchOpen(false);
     }
-  };
-
-  const handleSearchClose = () => {
-    setSearchOpen(false);
   };
 
   const checkSpace = (event: React.KeyboardEvent) => {
