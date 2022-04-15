@@ -1,6 +1,8 @@
 import { ICourse } from './course';
 
 export interface ClientCourse {
+  _id: string;
+  status: string;
   currentStage: number;
   progress: [
     {
@@ -9,10 +11,9 @@ export interface ClientCourse {
       isCompleted: boolean;
     },
   ];
-  status: string;
   user: string;
-  _id: string;
   course: ICourse;
+  finishTestDate: string;
   applyDate?: string;
   testDate?: string;
 }

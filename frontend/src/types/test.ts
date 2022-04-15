@@ -92,8 +92,9 @@ export interface IPassingTestProps {
   isLoading: boolean;
   questionStageItem: IQuestionObject;
   handleConfirm: () => void;
+  testDuration: number;
   children?: React.ReactChild;
-  testItem?: ITestItem;
+  testTitle?: string;
 }
 
 export interface ITestButtons {
@@ -109,7 +110,8 @@ export interface ITestButtons {
 }
 
 export interface ITestTitleAndTimer {
-  testItem: ITestItem;
+  duration: number;
+  title?: string;
 }
 
 export interface ITestProgress {
