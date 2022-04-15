@@ -1,12 +1,19 @@
 import { createTheme } from '@mui/material';
 
-const COLORS = {
+export const COLORS = {
   primaryColor: '#d43e41',
   secondaryColor: '#ffffff',
   darkColor: '#942b2d',
   disabledTextColor: '#9b9b9b',
   primaryTextColor: '#000000',
   secondaryTextColor: '#ffffff',
+  skillsPage: {
+    dividerColor: '#C6C6C9',
+    skillTitleColor: '#131313',
+    borderSkillContainer: '#919195',
+    bgSkillContainer: '#EFEFF0',
+    bgSkillGroup: '#848488',
+  },
 };
 
 const globalTheme = createTheme({
