@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import { ButtonLabels } from 'constants/ButtonLabels';
+
 import { CourseInfoToggleButton, ExpandLessIcon, ExpandMoreIcon } from './styled';
 
 interface IProps {
@@ -9,7 +11,7 @@ interface IProps {
 
 const CourseInfoToggle: FC<IProps> = ({ isCourseInfoOpen, toggleCourseInfoOpen }) => (
   <CourseInfoToggleButton onClick={toggleCourseInfoOpen}>
-    Comments
+    {ButtonLabels.comments}
     {isCourseInfoOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
   </CourseInfoToggleButton>
 );

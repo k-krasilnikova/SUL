@@ -94,15 +94,19 @@ const SignInForm: React.FC<ISignInForm> = ({
               </GridError>
               <GridButton item xs={12}>
                 <GridButton item xs={12}>
-                  {isLoading ? (
-                    <SignButton fullWidth type="submit" variant="mediumOutlined" disabled>
+                  <SignButton
+                    fullWidth
+                    type="submit"
+                    color="primary"
+                    variant={isLoading ? 'mediumOutlined' : 'contained'}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
                       <ButtonLoader buttonSpinner={buttonSpinner} />
-                    </SignButton>
-                  ) : (
-                    <SignButton fullWidth type="submit" variant="contained" color="primary">
-                      {ButtonLabels.login}
-                    </SignButton>
-                  )}
+                    ) : (
+                      ButtonLabels.login
+                    )}
+                  </SignButton>
                 </GridButton>
               </GridButton>
             </GridWrapper>
