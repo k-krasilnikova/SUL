@@ -1,21 +1,22 @@
 import React from 'react';
 
-import { Image } from 'components/Image';
-import { SkillContainer, SkillImage, SkillName, SkillGroup } from './styled';
+import { SIZE } from 'constants/sizes';
+import { UserAvatar } from '../Avatar';
+import { SkillContainer, ImageWrapper, SkillName, SkillGroup } from './styled';
 
 interface IProps {
   name: string;
-  image?: string;
+  skillImage?: string;
 }
 
-const SkillItem: React.FC<IProps> = ({ name, image }) => {
+const SkillItem: React.FC<IProps> = ({ name, skillImage }) => {
   return (
     <SkillContainer>
-      <SkillImage>
-        <Image imageUrl={image} />
-      </SkillImage>
+      <ImageWrapper>
+        <UserAvatar size={SIZE.submedium} avatar={skillImage} />
+      </ImageWrapper>
       <SkillName>{name}</SkillName>
-      <SkillGroup>Group</SkillGroup>
+      <SkillGroup>{name}</SkillGroup>
     </SkillContainer>
   );
 };
