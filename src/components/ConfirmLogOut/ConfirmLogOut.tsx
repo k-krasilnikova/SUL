@@ -23,4 +23,5 @@ const ConfirmLogOut: FC<IProps> = ({ isOpened, isLoading, handleLogOut, handleCa
     handleDecline={handleCancelLogOut}
   />
 );
+
 export default ConfirmLogOut;

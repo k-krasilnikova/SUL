@@ -22,4 +22,7 @@ export enum ButtonLabels {
   login = 'LOG IN',
   cancel = 'Cancel',
   comments = 'Comments',
+  accept = 'Accept',
+  acceptWithInterview = 'Accept with interview',
+  reject = 'Reject',
 }
