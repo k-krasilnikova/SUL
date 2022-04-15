@@ -89,7 +89,7 @@ const getCoursesProvider = async (
         $skip: pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING,
       },
       {
-        $limit: nPerPage,
+        $limit: Number(nPerPage),
       },
     ]);
 

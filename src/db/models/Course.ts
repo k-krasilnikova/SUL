@@ -12,6 +12,7 @@ const courseSchema = new Schema<ICourse>({
   complexity: { type: Number, required: true },
   materials: [{ stage: { type: Number }, content: [{ type: String }] }],
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
+  avatar: { type: String, required: true },
 });
 
 const CourseModel = model<ICourse>('Courses', courseSchema, 'courses');
