@@ -37,7 +37,9 @@ const MobileSearch: React.FC<Props> = ({
         onKeyDown={checkSpace}
         onChange={searchCourses}
       />
-      {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
+      {isSearchOpen && coursesFound && (
+        <SearchResult coursesFound={coursesFound} handleSearchClose={handleSearchClose} />
+      )}
     </>
   </ClickAwayListener>
 );
