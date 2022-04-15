@@ -28,8 +28,13 @@ const passTest = async (
     const { id: courseId } = req.params;
 
     const { status, finishTestDate } = await getClientCourseProvider(courseId);
-    if (status || status !== CourseStatus.testing || !isTestAvailableByDate(finishTestDate)) {
-      throw new BadRequestError('Test is unavailable.');
+    if (!status || status !== CourseStatus.testing) {
+      throw new BadRequestError('Testing was not started yet.');
+    }
+    const isTestAvaiable = isTestAvailableByDate(finishTestDate);
+    if (!isTestAvaiable) {
+      await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
+      throw new BadRequestError('Time for test has already expired.');
     }
 
     const correctAnswers = await getTrueAnswersProvider(testId);
@@ -54,7 +59,6 @@ const passTest = async (
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: TestStatus.notPassed };
       await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
-      await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.finishTestDate, Date.now());
       next();
     } else {
       const assessmentRequired = await getAssessmentProvider(courseId);
