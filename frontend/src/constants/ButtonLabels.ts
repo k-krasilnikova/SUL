@@ -21,4 +21,5 @@ export enum ButtonLabels {
   loading = 'Loading...',
   login = 'LOG IN',
   cancel = 'Cancel',
+  comments = 'Comments',
 }
