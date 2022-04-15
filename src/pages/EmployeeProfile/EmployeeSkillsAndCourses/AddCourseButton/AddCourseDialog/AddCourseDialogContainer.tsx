@@ -37,7 +37,9 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
 
   const { mutate: addCourseToEmployee, isLoading: isAddCourseToEmployeeLoading } =
     useAddCourseToEmployee({
-      courseId: selectedCoursesList[0]?._id,
+      courseIdsList: selectedCoursesList.map(({ _id }) => ({
+        courseId: _id,
+      })),
       onSuccess: handleDialogClose,
     });
 
@@ -64,7 +66,7 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
         ),
       );
     } else {
-      setSelectedCoursesList([JSON.parse(target.value)]);
+      setSelectedCoursesList([...selectedCoursesList, JSON.parse(target.value)]);
     }
   };
 

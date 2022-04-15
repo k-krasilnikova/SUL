@@ -7,10 +7,10 @@ import { API } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
 const useAddCourseToEmployee = ({
-  courseId,
+  courseIdsList,
   onSuccess,
 }: {
-  courseId: string;
+  courseIdsList: { courseId: string }[];
   onSuccess: () => void;
 }): UseMutationResult => {
   const { enqueueSnackbar } = useSnackbar();
@@ -25,7 +25,7 @@ const useAddCourseToEmployee = ({
   return useMutation(
     async (employeeId: string | unknown) => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.post(`${API.employees}/${employeeId}`, { id: courseId });
+      const response = await apiClient.post(`${API.employees}/${employeeId}`, courseIdsList);
       return response.data;
     },
     {
