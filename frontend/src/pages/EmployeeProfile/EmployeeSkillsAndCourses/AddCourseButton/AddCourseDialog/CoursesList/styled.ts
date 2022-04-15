@@ -13,9 +13,12 @@ export const StyledList = styled(List)<IPropsCoursesList>(({ type }) => ({
     marginBottom: '16px',
   },
   textAlign: 'left',
+  overflowY: 'auto',
   ...(type === CoursesListType.COURSES && {
     height: '248px',
-    overflowY: 'auto',
+  }),
+  ...(type === CoursesListType.CHECKED_COURSES && {
+    height: '92px',
   }),
 }));
 
