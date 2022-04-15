@@ -1,65 +1,80 @@
 import { styled } from '@mui/styles';
-import { Grid, Box } from '@mui/material';
-import theme from 'themeSettings';
+import { Grid, Box, Input, Divider } from '@mui/material';
+import theme, { COLORS } from 'themeSettings';
 
 export const SkillsPageContainer = styled(Grid)({
   [theme.breakpoints.down('xl')]: {
     padding: '16px 24px 16px 14px',
   },
-  [theme.breakpoints.down(950)]: {
-    padding: '0px 8px',
-  },
   [theme.breakpoints.up('xl')]: {
     padding: '16px 30px 24px 0px',
-    margin: '0px 0px 0px -6px !important',
+    margin: 0,
   },
   maxWidth: '1482px',
   paddingTop: '16px',
 });
 
-export const MobileSearchWrapper = styled('div')({
-  width: '100%',
-  position: 'relative',
-  margin: '16px 0px 8px 0px',
-  height: '30px',
-  [theme.breakpoints.up(950)]: {
-    display: 'none',
+export const SearchWrapper = styled('div')({
+  marginLeft: '0px',
+});
+
+export const SearchSkill = styled(Input)({
+  fontFamily: 'Ubuntu',
+  fontWeight: '400',
+  fontSize: '26px',
+  lineHeight: '34px',
+  letterSpacing: '0,62',
+  [theme.breakpoints.down('lg')]: {
+    fontSize: '20px',
+    lineHeight: '34px',
+  },
+  [theme.breakpoints.down('md')]: {
+    fontSize: '16px',
+  },
+});
+
+export const StyledDivider = styled(Divider)({
+  borderColor: COLORS.skillsPage.dividerColor,
+  width: '400px',
+  [theme.breakpoints.down('md')]: {
+    width: '300px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
   },
 });
 
 export const SkillsWrapper = styled(Box)({
   padding: '40px',
+  [theme.breakpoints.down('lg')]: {
+    padding: '0 0 0 28px',
+  },
+  [theme.breakpoints.down('md')]: {
+    padding: '16px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    padding: 0,
+  },
 });
 
 export const SkillsBox = styled(Box)({
   display: 'flex',
   flexWrap: 'wrap',
+  marginBottom: '40px',
 });
 
 export const SkillsTitle = styled('div')({
+  margin: '60px 0 16px',
   fontFamily: 'Ubuntu',
   fontStyle: 'normal',
   fontWeight: '500',
   fontSize: '24px',
   lineHeight: '28px',
-  color: '#131313',
-});
-
-export const GridItem = styled(Grid)({
-  height: 'fit-content',
-  width: '711px',
-  color: 'black',
-  [theme.breakpoints.down('xl')]: {
-    width: '100%',
-    paddingLeft: '10px',
-    paddingTop: '8px',
+  color: COLORS.skillsPage.skillTitleColor,
+  [theme.breakpoints.down('lg')]: {
+    margin: '31px 0 16px',
   },
-  [theme.breakpoints.down('md')]: {
-    paddingLeft: '0px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '711px',
-    paddingLeft: '30px',
-    paddingTop: '24px',
+  [theme.breakpoints.down('lg')]: {
+    margin: '16px',
   },
 });

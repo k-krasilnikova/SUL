@@ -30,6 +30,10 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
       width: '100px',
       height: '100px',
     }),
+    ...(size === SIZE.submedium && {
+      width: '80px',
+      height: '80px',
+    }),
     ...(size === SIZE.small && {
       width: '50px',
       height: '50px',
@@ -40,25 +44,29 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
     }),
   },
   [theme.breakpoints.down('lg')]: {
-    ...(size === SIZE.xlarge && {
-      width: '150px',
-      height: '150px',
-    }),
     ...(size === SIZE.xsmall && {
       width: '40px',
       height: '40px',
+    }),
+    ...(size === SIZE.small && {
+      width: '50px',
+      height: '50px',
     }),
     ...(size === SIZE.medium && {
       width: '60px',
       height: '60px',
     }),
+    ...(size === SIZE.submedium && {
+      width: '70px',
+      height: '70px',
+    }),
     ...(size === SIZE.large && {
       width: '130px',
       height: '130px',
     }),
-    ...(size === SIZE.small && {
-      width: '50px',
-      height: '50px',
+    ...(size === SIZE.xlarge && {
+      width: '150px',
+      height: '150px',
     }),
   },
   [theme.breakpoints.down('md')]: {
@@ -87,6 +95,10 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
     ...(size === SIZE.medium && {
       width: '150px',
       height: '150px',
+    }),
+    ...(size === SIZE.submedium && {
+      width: '80px',
+      height: '80px',
     }),
     ...(size === SIZE.xsmall && {
       width: '50px',
