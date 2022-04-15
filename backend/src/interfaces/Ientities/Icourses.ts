@@ -11,7 +11,7 @@ interface ICourse {
   description: string;
   materials: { stage: number; content: Array<string> }[];
   test: ObjectId;
-  avatar?: string;
+  avatar: string;
 }
 
 type TCourses = Array<ICourse>;
