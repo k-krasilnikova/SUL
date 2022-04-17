@@ -9,7 +9,7 @@ import Skills from './Skills';
 
 const SkillsContainer: FC = () => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
-  const [skillFounded, setSkillFounded] = useState<Array<SkillsList>>([]);
+  const [skillFounded, setSkillFounded] = useState<SkillsList[]>([]);
 
   const debouncedSearchValue = useDebounce(searchInputValue);
   const { data: skillSearch } = useSearchSkills(debouncedSearchValue);
