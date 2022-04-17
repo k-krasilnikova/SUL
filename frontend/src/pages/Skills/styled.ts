@@ -1,5 +1,4 @@
-import { styled } from '@mui/styles';
-import { Grid, Box, Input, Divider } from '@mui/material';
+import { styled, Grid, Box, Input, Divider } from '@mui/material';
 import theme, { COLORS } from 'themeSettings';
 
 export const SkillsPageContainer = styled(Grid)({
@@ -7,7 +6,7 @@ export const SkillsPageContainer = styled(Grid)({
     padding: '16px 24px 16px 14px',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: '16px 30px 24px 0px',
+    padding: '16px 30px 24px 0',
     margin: 0,
   },
   maxWidth: '1482px',
@@ -15,7 +14,7 @@ export const SkillsPageContainer = styled(Grid)({
 });
 
 export const SearchWrapper = styled('div')({
-  marginLeft: '0px',
+  marginLeft: '0',
 });
 
 export const SearchSkill = styled(Input)({
@@ -54,26 +53,5 @@ export const SkillsWrapper = styled(Box)({
   },
   [theme.breakpoints.down('sm')]: {
     padding: 0,
-  },
-});
-
-export const SkillsBox = styled(Box)({
-  display: 'flex',
-  flexWrap: 'wrap',
-  marginBottom: '40px',
-});
-
-export const SkillsTitle = styled('div')({
-  margin: '60px 0 16px',
-  fontFamily: theme.typography.fontFamily,
-  fontWeight: '500',
-  fontSize: '24px',
-  lineHeight: '28px',
-  color: COLORS.skillsPage.skillTitleColor,
-  [theme.breakpoints.down('lg')]: {
-    margin: '31px 0 16px',
-  },
-  [theme.breakpoints.down('lg')]: {
-    margin: '16px',
   },
 });
