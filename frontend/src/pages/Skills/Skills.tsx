@@ -5,9 +5,7 @@ import Loader from 'components/Loader';
 import SkillsComponent from 'components/Skill/SkillsComponent';
 import { NoContent } from 'components/NoContent';
 
-import { LOADER } from 'constants/loaderTypes';
 import { NO_SKILLS } from 'constants/messages';
-
 import { ISkills, SkillsList } from 'types/skill';
 
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -27,7 +25,7 @@ export interface ISkillsPageProps extends ISkills {
   searchSkills: (event: ChangeEvent<HTMLInputElement>) => void;
   checkSpace: (event: KeyboardEvent) => void;
   checkPastedValue: (event: ClipboardEvent) => void;
-  skillFounded: Array<SkillsList>;
+  skillFounded: SkillsList[];
 }
 
 const Skills: FC<ISkillsPageProps> = ({
@@ -42,7 +40,7 @@ const Skills: FC<ISkillsPageProps> = ({
   return (
     <AuthorizedLayout pageName="Skills">
       {isLoading ? (
-        <Loader color="primary" type={LOADER.content} />
+        <Loader color="primary" type="content" />
       ) : skills?.length ? (
         <SkillsPageContainer container>
           <SkillsWrapper>
