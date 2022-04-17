@@ -6,3 +6,7 @@ export const SIZE = {
   large: 'large',
   xlarge: 'xlarge',
 };
+
+export const LENGTHS = {
+  lastArrayItem: -1,
+};

@@ -1,44 +1,43 @@
-import React, { Suspense } from 'react';
+import { FC, ChangeEvent, ClipboardEvent, KeyboardEvent } from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
-import SkillItem from 'components/Skill';
+import SkillsComponent from 'components/Skill/SkillsComponent';
 import { NoContent } from 'components/NoContent';
 
 import { LOADER } from 'constants/loaderTypes';
 import { NO_SKILLS } from 'constants/messages';
 
-import { ISkills } from 'types/skill';
-import { ResponseDataType } from 'types/responseData';
+import { ISkills, SkillsList } from 'types/skill';
 
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Search } from '@mui/icons-material';
+
 import {
   SkillsPageContainer,
   SearchSkill,
   SearchWrapper,
   SkillsWrapper,
-  SkillsBox,
-  SkillsTitle,
   StyledDivider,
 } from './styled';
 
-export interface IProps {
-  searchSkillInList: (value: string) => void;
-  checkSpace: (event: React.KeyboardEvent) => void;
-  checkPastedValue: (value: string) => void;
-  searchSkill: string;
+export interface ISkillsPageProps extends ISkills {
+  isLoading?: boolean;
+  searchInputValue: string;
+  searchSkills: (event: ChangeEvent<HTMLInputElement>) => void;
+  checkSpace: (event: KeyboardEvent) => void;
+  checkPastedValue: (event: ClipboardEvent) => void;
+  skillFounded: Array<SkillsList>;
 }
 
-type SkillsPageProps = ISkills & IProps & ResponseDataType;
-
-const Skills: React.FC<SkillsPageProps> = ({
+const Skills: FC<ISkillsPageProps> = ({
   skills,
   isLoading,
+  searchSkills,
+  searchInputValue,
   checkSpace,
-  searchSkillInList,
   checkPastedValue,
-  searchSkill,
+  skillFounded,
 }) => {
   return (
     <AuthorizedLayout pageName="Skills">
@@ -58,30 +57,14 @@ const Skills: React.FC<SkillsPageProps> = ({
                     <Search color="disabled" fontSize="medium" />
                   </InputAdornment>
                 }
-                onKeyDown={(event) => {
-                  checkSpace(event);
-                }}
-                onChange={(event) => {
-                  searchSkillInList(event.target.value);
-                }}
-                onPaste={(event) => {
-                  event.preventDefault();
-                  checkPastedValue(event.clipboardData.getData('Text'));
-                }}
-                value={searchSkill}
+                onChange={searchSkills}
+                value={searchInputValue}
+                onKeyDown={checkSpace}
+                onPaste={checkPastedValue}
               />
               <StyledDivider />
             </SearchWrapper>
-            {skills?.map((SkillGroup) => (
-              <Suspense fallback={<Loader color="primary" type={LOADER.component} />}>
-                <SkillsTitle>{SkillGroup.name}</SkillsTitle>
-                <SkillsBox>
-                  {SkillGroup.skills.map((Skill) => (
-                    <SkillItem name={Skill.name} skillImage={Skill.image} />
-                  ))}
-                </SkillsBox>
-              </Suspense>
-            ))}
+            <SkillsComponent skillFounded={skillFounded} skills={skills} />
           </SkillsWrapper>
         </SkillsPageContainer>
       ) : (
