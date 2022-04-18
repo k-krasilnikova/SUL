@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ListItemIcon, ListItemText } from '@mui/material';
-import Slide from '@mui/material/Slide';
 
-import { IMenuProps } from 'types/menu';
-import { UserAvatar } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 import { PATHS } from 'constants/routes';
+import { IMenuProps } from 'types/menu';
 import { logOutIcon } from 'icons/mobileMenuIcons';
+import { ListItemIcon, ListItemText } from '@mui/material';
+import Slide from '@mui/material/Slide';
 
 import {
   MobileMenuSlide,
@@ -96,7 +96,7 @@ const MobileMenu: React.FC<Props> = ({
         <MobileUserBlock>
           <UserProfile to={PATHS.profile}>
             <AvatarWrapper>
-              <UserAvatar size={SIZE.xsmall} avatar={avatar} />
+              <Avatar size={SIZE.xsmall} avatar={avatar} />
             </AvatarWrapper>
             <UserNameWrapper>
               <UserName>{firstName}</UserName>

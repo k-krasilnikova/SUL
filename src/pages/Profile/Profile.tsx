@@ -2,10 +2,10 @@ import React from 'react';
 import ListItem from '@mui/material/ListItem';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import { User } from 'types/user';
 import { AuthorizedLayout } from 'components/Layout';
-import { UserAvatar } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
+import { User } from 'types/user';
 
 import { UserSkills } from './UserSkills';
 import {
@@ -30,7 +30,7 @@ const ProfileContent: React.FC<User> = ({
   <AuthorizedLayout pageName="Profile">
     <ProfileBox>
       <AvatarWrapper>
-        <UserAvatar avatar={avatar} size={SIZE.large} />
+        <Avatar avatar={avatar} size={SIZE.large} />
       </AvatarWrapper>
       <UserInfoList>
         <ListItem disablePadding>

@@ -2,13 +2,13 @@ import React from 'react';
 import { ListItem } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import { UserSkills } from 'pages/Profile/UserSkills';
 import { AuthorizedLayout } from 'components/Layout';
-import { UserAvatar } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 import { ButtonLabels } from 'components/Button/ButtonsEnums';
 import { SIZE } from 'constants/sizes';
 import { PATHS } from 'constants/routes';
 import { EMPLOYEE_INFO } from 'constants/employeeInfo';
-import { UserSkills } from 'pages/Profile/UserSkills';
 import { IEmployeeProfile } from 'types/employee';
 
 import { AddCourseButton } from './AddCourseButton';
@@ -52,7 +52,7 @@ const EmployeeProfile: React.FC<IEmployeeProfile> = ({
       </BackButton>
       <ProfileBox>
         <AvatarWrapper>
-          <UserAvatar avatar={employee?.avatar} size={SIZE.xlarge} />
+          <Avatar avatar={employee?.avatar} size={SIZE.xlarge} />
         </AvatarWrapper>
         <UserInfoList>
           <EmployeeName disablePadding>
