@@ -21,7 +21,7 @@ export const TitleBox = styled(Box)({
 });
 
 export const CourseTestTitle = styled(Typography)({
-  fontWeight: '700',
+  fontWeight: 700,
   fontSize: '36px',
   color: '#2c2525',
   [theme.breakpoints.down('xl')]: {
@@ -31,20 +31,20 @@ export const CourseTestTitle = styled(Typography)({
     fontSize: '26px',
   },
   [theme.breakpoints.down('sm')]: {
-    fontWeight: '500',
+    fontWeight: 500,
     fontSize: '20px',
   },
 });
 
 export const CountDownText = styled(Typography)({
   marginLeft: '48px',
-  fontWeight: '500',
+  fontWeight: 500,
   fontSize: '22px',
   color: '#131313',
   display: 'flex',
   alignSelf: 'center',
   [theme.breakpoints.down('xl')]: {
-    fontWeight: '500',
+    fontWeight: 500,
     fontSize: '20px',
     alignSelf: 'flex-end',
     paddingBottom: '3px',
@@ -54,10 +54,10 @@ export const CountDownText = styled(Typography)({
   },
   [theme.breakpoints.down(880)]: {
     alignSelf: 'flex-start',
-    marginLeft: '0',
+    marginLeft: 0,
   },
   [theme.breakpoints.down('sm')]: {
-    fontWeight: '400',
+    fontWeight: 400,
     fontSize: '14px',
   },
 });

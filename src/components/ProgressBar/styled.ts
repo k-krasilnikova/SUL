@@ -1,5 +1,4 @@
-import { Box } from '@mui/system';
-import styled from 'styled-components';
+import { styled, Box } from '@mui/material';
 
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';
@@ -17,7 +16,7 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
   ...(size === SIZE.xlarge && {
     width: '304px',
     height: '304px',
-    margin: '0',
+    margin: 0,
     [theme.breakpoints.down('xl')]: {
       width: '190px',
       height: '190px',
@@ -37,7 +36,7 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
     [theme.breakpoints.up('xs')]: {
       width: '46px',
       height: '46px',
-      margin: '0px',
+      margin: 0,
     },
     [theme.breakpoints.up('lg')]: {
       width: '163px',
@@ -62,7 +61,7 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
   ...(size === SIZE.small && {
     width: '41px',
     height: '41px',
-    margin: '0px',
+    margin: 0,
     [theme.breakpoints.up('xs')]: {
       width: '24px',
       height: '24px',

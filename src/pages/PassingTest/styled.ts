@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { Box, Typography } from '@mui/material';
+import { styled, Box, Typography } from '@mui/material';
 
 import Button from 'components/Button';
 import theme from 'themeSettings';
@@ -54,58 +53,58 @@ export const BackButton = styled(Button)({
   [theme.breakpoints.down('xl')]: {
     height: '32px',
     width: '64px',
-    padding: '0 !important',
-    fontSize: '12px !important',
-    fontWeight: '500 !important',
+    padding: 0,
+    fontSize: '12px',
+    fontWeight: 500,
   },
   [theme.breakpoints.down('sm')]: {
     height: '20px',
     width: '40px',
-    minWidth: '40px !important',
-    fontSize: '10px !important',
-    fontWeight: '400 !important',
+    minWidth: '40px',
+    fontSize: '10px',
+    fontWeight: 400,
   },
 });
 
 export const CourseTestTitle = styled(Typography)({
-  fontWeight: '700 !important',
-  fontSize: '36px !important',
+  fontWeight: 700,
+  fontSize: '36px',
   color: '#2C2525',
   [theme.breakpoints.down('xl')]: {
-    fontSize: '32px !important',
+    fontSize: '32px',
   },
   [theme.breakpoints.down('lg')]: {
-    fontSize: '26px !important',
+    fontSize: '26px',
   },
   [theme.breakpoints.down('sm')]: {
-    fontWeight: '500 !important',
-    fontSize: '20px !important',
+    fontWeight: 500,
+    fontSize: '20px',
   },
 });
 
 export const CountDownText = styled(Typography)({
-  marginLeft: '48px !important',
-  fontWeight: '500 !important',
-  fontSize: '22px !important',
+  marginLeft: '48px',
+  fontWeight: 500,
+  fontSize: '22px',
   color: '#131313',
   display: 'flex',
   alignSelf: 'center',
   [theme.breakpoints.down('xl')]: {
-    fontWeight: '500 !important',
-    fontSize: '20px !important',
+    fontWeight: 500,
+    fontSize: '20px',
     alignSelf: 'flex-end',
     paddingBottom: '3px',
   },
   [theme.breakpoints.down('lg')]: {
-    fontSize: '18px !important',
+    fontSize: '18px',
   },
   [theme.breakpoints.down(880)]: {
     alignSelf: 'flex-start',
-    marginLeft: '0 !important',
+    marginLeft: 0,
   },
   [theme.breakpoints.down('sm')]: {
-    fontWeight: '400 !important',
-    fontSize: '14px !important',
+    fontWeight: 400,
+    fontSize: '14px',
   },
 });
 
@@ -117,7 +116,7 @@ export const QuestionItemBox = styled(Box)({
     marginLeft: '88px',
   },
   [theme.breakpoints.down('sm')]: {
-    marginLeft: '0',
+    marginLeft: 0,
   },
 });
 
@@ -134,19 +133,19 @@ export const ButtonsBox = styled(Box)({
   },
   [theme.breakpoints.down('md')]: {
     marginTop: '28px',
-    marginRight: '5vw !important',
+    marginRight: '5vw',
   },
   [theme.breakpoints.down('sm')]: {
-    marginRight: '11px !important',
-    marginLeft: '0',
+    marginRight: '11px',
+    marginLeft: 0,
   },
 });
 
 export const ResultButton = styled(Button)({
   height: '50px',
   width: '98px',
-  fontSize: '18px !important',
-  fontWeight: '500 !important',
+  fontSize: '18px',
+  fontWeight: 500,
   '&.MuiButton-root.Mui-disabled': {
     backgroundColor: '#E19697',
     color: '#ffffff',
@@ -154,37 +153,37 @@ export const ResultButton = styled(Button)({
   [theme.breakpoints.down('sm')]: {
     height: '32px',
     width: '64px',
-    fontSize: '14px !important',
-    padding: '0 !important',
+    fontSize: '14px',
+    padding: 0,
   },
 });
 
 export const NextButton = styled(Button)({
   height: '50px',
   width: '86px',
-  fontSize: '18px !important',
-  fontWeight: '500 !important',
+  fontSize: '18px',
+  fontWeight: 500,
   '&:disabled': {
     backgroundColor: '#E19697',
-    color: '#ffffff !important',
+    color: '#ffffff',
   },
   [theme.breakpoints.down('sm')]: {
     height: '32px',
     width: '64px',
-    fontSize: '14px !important',
-    padding: '0 !important',
+    fontSize: '14px',
+    padding: 0,
   },
 });
 
 export const PreviousButton = styled(Button)({
   width: '116px',
   height: '50px',
-  fontSize: '18px !important',
-  fontWeight: '500 !important',
+  fontSize: '18px',
+  fontWeight: 500,
   [theme.breakpoints.down('sm')]: {
     height: '32px',
     width: '64px',
-    fontSize: '14px !important',
-    padding: '0 !important',
+    fontSize: '14px',
+    padding: 0,
   },
 });

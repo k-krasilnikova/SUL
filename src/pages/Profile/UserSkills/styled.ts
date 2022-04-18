@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { Input, Divider } from '@mui/material';
+import { styled, Input, Divider } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -9,7 +8,7 @@ interface SkillProps {
 
 export const SearchWrapper = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    marginLeft: '0px',
+    marginLeft: 0,
   },
   [theme.breakpoints.up('xl')]: {
     marginLeft: '63px',
@@ -18,11 +17,11 @@ export const SearchWrapper = styled('div')({
 
 export const SearchSkill = styled(Input)({
   [theme.breakpoints.up('xs')]: {
-    fontSize: '16px!important',
+    fontSize: '16px',
     lineHeight: '33.61px',
   },
   [theme.breakpoints.up('sm')]: {
-    fontSize: '18px!important',
+    fontSize: '18px',
   },
 });
 
@@ -39,8 +38,8 @@ export const SkillsBox = styled('div')({
   },
   [theme.breakpoints.up('xl')]: {
     maxWidth: '100%',
-    marginLeft: '0px',
-    marginRight: '0px',
+    marginLeft: 0,
+    marginRight: 0,
   },
 });
 
@@ -107,7 +106,7 @@ export const Title = styled('div')({
   },
   [theme.breakpoints.up('sm')]: {
     fontSize: '18px',
-    paddingTop: '0px',
+    paddingTop: 0,
   },
   [theme.breakpoints.up('xl')]: {
     fontSize: '20px',
@@ -117,7 +116,7 @@ export const Title = styled('div')({
 
 export const SkillsInfoList = styled('div')({
   [theme.breakpoints.up('md')]: {
-    margin: '0px',
+    margin: 0,
   },
   [theme.breakpoints.up('sm')]: {
     margin: '10px 17px',
@@ -150,10 +149,10 @@ export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
     maxWidth: '150px',
     height: '70px',
     padding: '7px 8px 4px 8px',
-    margin: '8px 12px 8px 0px',
+    margin: '8px 12px 8px 0',
   },
   [theme.breakpoints.down('lg')]: {
-    margin: '12px 32px 12px 0px',
+    margin: '12px 32px 12px 0',
   },
   [theme.breakpoints.down(1200)]: {
     marginRight: '32px',

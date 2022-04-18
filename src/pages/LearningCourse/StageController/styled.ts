@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { Box, Button } from '@mui/material';
+import { styled, Box, Button } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -20,21 +19,21 @@ export const StageControllerWrapper = styled(Box)({
 
 export const StyledButton = styled(Button)({
   color: '#131313',
-  minWidth: '40px !important',
+  minWidth: '40px',
   minHeight: '39px',
   '&.MuiButton-root': {
-    padding: '0 !important',
+    padding: 0,
   },
   [theme.breakpoints.down('xl')]: {
-    minWidth: '40px !important',
+    minWidth: '40px',
     minHeight: '27px',
   },
 });
 
 export const Step = styled('p')({
   color: '#131313',
-  fontSize: '18px !important',
+  fontSize: '18px',
   fontFamily: '"Ubuntu", sans-serif',
-  fontWeight: '400',
-  lineHeight: '22px !important',
+  fontWeight: 400,
+  lineHeight: '22px',
 });

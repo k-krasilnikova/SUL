@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import SearchInput from 'components/SearchInput';
 
@@ -17,6 +17,6 @@ export const NoContentText = styled('div')({
   background: '#fff',
   borderRadius: '6px',
   left: '24px',
-  boxShadow: '0px 4px 4px 0 #00000040',
+  boxShadow: '0 4px 4px 0 #00000040',
   padding: '8px',
 });

@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { Box } from '@mui/material';
+import { styled, Box } from '@mui/material';
 
 import { INFO } from 'constants/courseInfoTypes';
 import theme from 'themeSettings';
@@ -52,5 +51,5 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   display: 'flex',
   flexDirection: 'row',
   paddingLeft: '15px',
-  paddingBottom: '0',
+  paddingBottom: 0,
 }));
