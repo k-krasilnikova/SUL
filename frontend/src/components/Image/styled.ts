@@ -1,4 +1,4 @@
-import { styled } from '@mui/styles';
+import { styled } from '@mui/material';
 
 export const ImageContainer = styled('div')({
   margin: '0',

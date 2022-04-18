@@ -1,4 +1,4 @@
-import { styled } from '@mui/styles';
+import { styled } from '@mui/material';
 
 import Button from 'components/Button';
 import theme from 'themeSettings';

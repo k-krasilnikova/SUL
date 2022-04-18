@@ -1,5 +1,4 @@
-import { Box } from '@mui/system';
-import { styled } from '@mui/styles';
+import { styled, Box } from '@mui/material';
 
 export const PDFWrapper = styled(Box)({
   display: 'flex',
