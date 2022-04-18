@@ -9,12 +9,12 @@ import { SkillsList } from 'types/skill';
 import { Box } from '@mui/material';
 import { SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
-interface ISkillContainerProps {
+interface ISkillsComponentProps {
   skills: SkillsList[];
   skillFounded: SkillsList[];
 }
 
-const SkillsComponent: FC<ISkillContainerProps> = ({ skillFounded, skills }) => {
+const SkillsComponent: FC<ISkillsComponentProps> = ({ skillFounded, skills }) => {
   const skillsData = skillFounded.length ? skillFounded : skills;
   return (
     <Box>
