@@ -1,4 +1,5 @@
 import { CourseStatus } from 'enums/courseEnums';
+import { TimeProps } from './time';
 
 export type TMaterial = {
   _id?: string;
@@ -13,39 +14,26 @@ export type TMaterial = {
 export type CourseTechnology = { skill: string; points: number };
 export type TCourseStatus = `${CourseStatus}`;
 export interface Course {
+  _id: string;
   title: string;
   description: string;
   technology: CourseTechnology[];
   requiredSkills: Array<string>;
-  duration: CourseDuration;
+  duration: TimeProps;
   testLink: string;
   lessons: number;
   materials: TMaterial[];
-  _id: string;
-  status: TCourseStatus;
+  status: CourseStatus;
   avatar?: string;
 }
 
-export interface ICheckedCourse {
-  _id: string;
-  title: string;
-}
-
+export type TCheckedCourse = Pick<Course, '_id' | 'title'>;
+export type TCourseInfo = Pick<Course, 'title' | 'description'>;
+export type TRequestedCourse = Pick<Course, '_id' | 'avatar' | 'title'>;
 export enum CoursesListType {
   COURSES = 'COURSES',
   CHECKED_COURSES = 'CHECKED_COURSES',
 }
-
-export interface CourseDuration {
-  days: number;
-  hours: number;
-  minutes: number;
-}
-
-export interface ICourses {
-  сoursesResponse: Course[];
-}
-
 export interface ICourseMaterialsResponse {
   _id: string;
   materials: TMaterial['content'];
