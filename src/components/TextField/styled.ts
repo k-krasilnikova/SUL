@@ -1,5 +1,4 @@
-import { styled } from '@mui/styles';
-import { Typography } from '@mui/material';
+import { styled, Typography } from '@mui/material';
 
 import theme from 'themeSettings';
 

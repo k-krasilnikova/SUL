@@ -1,5 +1,4 @@
-import { Table, TableCell, TableRow } from '@mui/material';
-import { styled } from '@mui/styles';
+import { styled, Table, TableCell, TableRow } from '@mui/material';
 
 import theme from 'themeSettings';
 

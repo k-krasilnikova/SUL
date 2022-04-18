@@ -1,7 +1,7 @@
 import { FC, BaseSyntheticEvent } from 'react';
 
-import ConfirmDialog from 'components/ConfirmDialog';
 import { SIZE } from 'constants/sizes';
+import { Dialog } from 'components/Dialogs';
 import { ICourse, ICheckedCourse, CoursesListType } from 'types/course';
 
 import { CoursesList } from './CoursesList';
@@ -38,7 +38,7 @@ const AddCourseDialog: FC<IProps> = ({
   handleCheckboxChange,
   lastCourseRef,
 }) => (
-  <ConfirmDialog open={isOpened} onClose={handleClose} size={SIZE.large}>
+  <Dialog open={isOpened} onClose={handleClose} size={SIZE.large}>
     <ContentWrapper>
       <SearchInput
         isNoResult={isNoSearchResult}
@@ -66,7 +66,7 @@ const AddCourseDialog: FC<IProps> = ({
       isLoading={isAddCourseToEmployeeLoading}
       handleClick={handleAddCourse}
     />
-  </ConfirmDialog>
+  </Dialog>
 );
 
 export default AddCourseDialog;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose } from 'recompose';
 
-import withStartTest from 'components/StartTestDialog/withStartTest';
+import withStartTest from 'components/Dialogs/StartTestDialog/withStartTest';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { ClientCourse } from 'types/clientCourse';
 

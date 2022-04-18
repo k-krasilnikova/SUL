@@ -33,12 +33,12 @@ const MobileMenuContainer: React.FC<MobileMenuProps> = ({
   const { pathname } = window.location;
   const classes = useListStyles();
 
-  const { mutateAsync } = useLogOut();
+  const { mutateAsync: logoutMutate, isLoading: isLogOutLoading } = useLogOut();
   const handleConfirm = (): void => {
     setConfirmOpen(true);
   };
   const handleLogOut = (): void => {
-    mutateAsync(EMPTY_ARGUMENT);
+    logoutMutate(EMPTY_ARGUMENT);
   };
   const cancelLogOut = (): void => {
     setConfirmOpen(false);
@@ -62,10 +62,10 @@ const MobileMenuContainer: React.FC<MobileMenuProps> = ({
         preventMenuClose={preventMenuClose}
       />
       <ConfirmLogOut
-        handleLogOut={handleLogOut}
         isOpened={isConfirmOpen}
+        isLoading={isLogOutLoading}
+        handleLogOut={handleLogOut}
         handleCancelLogOut={cancelLogOut}
-        size="small"
       />
     </>
   );
