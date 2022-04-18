@@ -12,24 +12,24 @@ const SkillsContainer: FC = () => {
   const [skillFounded, setSkillFounded] = useState<SkillsList[]>([]);
 
   const debouncedSearchValue = useDebounce(searchInputValue);
-  const { data: skillSearch } = useSearchSkills(debouncedSearchValue);
-  const { data: skills } = useGetSkills();
+  const { data: skillSearchResponse } = useSearchSkills(debouncedSearchValue);
+  const { data: skillsResponse } = useGetSkills();
 
   useEffect(() => {
     if (debouncedSearchValue) {
       if (
-        skillSearch?.filter((skillList) => {
+        skillSearchResponse?.filter((skillList) => {
           return skillList.skills.filter((skill) =>
             skill.name.toLowerCase().includes(searchInputValue.toLowerCase()),
           );
         })
       ) {
-        setSkillFounded(skillSearch);
+        setSkillFounded(skillSearchResponse);
       }
     } else {
       setSkillFounded([]);
     }
-  }, [debouncedSearchValue, searchInputValue, skillSearch]);
+  }, [debouncedSearchValue, searchInputValue, skillSearchResponse]);
 
   const searchSkills = (event: ChangeEvent<HTMLInputElement>): void => {
     const formattedValue = formatInputValue(event.target.value);
@@ -49,7 +49,7 @@ const SkillsContainer: FC = () => {
 
   return (
     <Skills
-      skills={skills}
+      skills={skillsResponse}
       searchSkills={searchSkills}
       searchInputValue={searchInputValue}
       checkSpace={checkSpace}
