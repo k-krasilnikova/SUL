@@ -1,5 +1,4 @@
-import { Box, Divider, Typography } from '@mui/material';
-import { styled } from '@mui/styles';
+import { styled, Box, Divider, Typography } from '@mui/material';
 
 import theme from 'themeSettings';
 

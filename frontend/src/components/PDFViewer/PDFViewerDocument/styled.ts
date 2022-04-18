@@ -1,6 +1,5 @@
-import { Box } from '@mui/material';
-import { styled } from '@mui/styles';
 import { Page } from 'react-pdf';
+import { styled, Box } from '@mui/material';
 
 import theme from 'themeSettings';
 

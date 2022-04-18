@@ -1,6 +1,5 @@
-import { List } from '@mui/material';
-import { styled } from '@mui/styles';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { styled, List } from '@mui/material';
+import { ContentCopy as ContentCopyIcon } from '@mui/icons-material';
 
 import theme from 'themeSettings';
 
