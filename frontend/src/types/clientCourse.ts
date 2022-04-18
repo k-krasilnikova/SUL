@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { ICourse } from './course';
-=======
 import { Course, TCourseStatus } from './course';
->>>>>>> 05350fa4 (refactor: change course's types)
 
 export interface ClientCourse {
   currentStage: number;
@@ -16,7 +12,7 @@ export interface ClientCourse {
   status: TCourseStatus;
   user: string;
   _id: string;
-  course: ICourse;
+  course: Course;
   applyDate?: string;
   testDate?: string;
 }
