@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import Countdown from 'react-countdown';
 
 import { countdownRenderer } from 'utils/helpers/countdownRenderer';
-import { TO_MILLISECONDS_RATIO } from '../../constants/time';
 
 interface ITimer {
   duration: number;
@@ -15,9 +14,9 @@ const CountDownTimer: React.FC<ITimer> = ({ duration, children, restartKey, ...p
 
   return (
     <Countdown
-      renderer={countdownRenderer}
-      date={startDate.current + duration * TO_MILLISECONDS_RATIO}
       key={restartKey}
+      date={startDate.current + duration}
+      renderer={countdownRenderer}
       {...props}
     />
   );
