@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { buttonSpinner } from 'animations';
-import { UserAvatar } from 'components/Avatar';
-import { Image } from 'components/Image';
+import Avatar from 'components/Avatar';
 import ButtonLoader from 'components/ButtonLoader';
+import { Image } from 'components/Image';
+
 import { BUTTON_CONTENT, REQUEST_STATUS } from 'constants/requests';
 import { SIZE } from 'constants/sizes';
 import { IRequest } from 'types/request';
 import { convertRequestTime } from 'utils/helpers/convertTime';
+import { buttonSpinner } from 'animations';
 
 import {
   CourseImageWrapper,
@@ -39,7 +40,7 @@ const RequestItem: React.FC<IRequest> = ({
   <RequestContainer item container spacing={2}>
     <CustomGrid item xs={4}>
       <ImageWrapper>
-        <UserAvatar size={SIZE.small} avatar={request?.user.avatar} />
+        <Avatar size={SIZE.small} avatar={request?.user.avatar} />
       </ImageWrapper>
       <UserContainer>
         <UserName

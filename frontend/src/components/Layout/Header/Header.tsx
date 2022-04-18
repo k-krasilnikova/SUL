@@ -1,11 +1,11 @@
 import React from 'react';
 
+import Avatar from 'components/Avatar';
+import Notifications from 'components/NotificationsBar';
+import { Search } from 'components/Layout/Header/SearchCourses';
 import { PATHS } from 'constants/routes';
 import { User } from 'types/user';
 import { Notification as NotificationType } from 'types/notification';
-import { UserAvatar } from 'components/Avatar';
-import Notifications from 'components/NotificationsBar';
-import { Search } from 'components/Layout/Header/SearchCourses';
 import { logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
 
@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({
         toggleMobileMenu={toggleMobileMenu}
       />
       <UserBlock to={PATHS.profile}>
-        <UserAvatar avatar={avatar} size="small" />
+        <Avatar avatar={avatar} size="small" />
         <UserName>{`${firstName} ${lastName}`}</UserName>
       </UserBlock>
       <LogOut onClick={handleConfirm}>

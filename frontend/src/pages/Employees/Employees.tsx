@@ -4,7 +4,7 @@ import { TableBody, TableHead } from '@mui/material';
 import { AuthorizedLayout } from 'components/Layout';
 import { NoContent } from 'components/NoContent';
 import Loader from 'components/Loader';
-import { UserAvatar } from 'components/Avatar';
+import Avatar from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 import { NO_EMPLOYEES } from 'constants/messages';
 import { LOADER } from 'constants/loaderTypes';
@@ -47,7 +47,7 @@ const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading, handleNavi
                 <Cell variant="body">
                   <UserInfo>
                     <ImageWrapper>
-                      <UserAvatar size={SIZE.small} avatar={employee.avatar} />
+                      <Avatar size={SIZE.small} avatar={employee.avatar} />
                     </ImageWrapper>
                     <InfoContainer>
                       <UserName>{`${employee.firstName} ${employee.lastName}`}</UserName>
