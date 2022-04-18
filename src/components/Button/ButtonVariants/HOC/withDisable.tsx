@@ -1,9 +1,8 @@
+import { CourseStatus } from 'enums/courseEnums';
 import { useEffect, useState } from 'react';
 
-import { COURSE_STATUSES } from 'constants/statuses';
-
 type IncomingProps = {
-  status: string;
+  status: CourseStatus;
 };
 
 const withDisable =
@@ -14,17 +13,17 @@ const withDisable =
     useEffect(() => {
       if (
         [
-          COURSE_STATUSES.pending,
-          COURSE_STATUSES.rejected,
-          COURSE_STATUSES.completed,
-          COURSE_STATUSES.assessment,
+          CourseStatus.pending,
+          CourseStatus.rejected,
+          CourseStatus.completed,
+          CourseStatus.assessment,
         ].includes(status)
       ) {
         setDisable(true);
       }
     }, [status]);
 
-    const isCompleted = status === COURSE_STATUSES.completed;
+    const isCompleted = status === CourseStatus.completed;
 
     return <Component variant={isCompleted && 'completed'} isDisable={isDisable} {...props} />;
   };

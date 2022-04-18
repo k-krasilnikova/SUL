@@ -1,7 +1,3 @@
-interface ICookiesTypes {
-  readonly [key: string]: string;
-}
-
-export const MENU_VALUES: ICookiesTypes = {
+export const MENU_VALUES = {
   menuStatus: 'menuStatus',
-};
+} as const;

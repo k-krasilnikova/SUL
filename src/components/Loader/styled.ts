@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { Box } from '@mui/system';
 
 import theme from 'themeSettings';
-import { LOADER } from 'constants/loaderTypes';
 import {
   HEADER_HEIGHT,
   HEADER_HEIGHT_IPAD,
   HEADER_HEIGHT_MOBILE,
 } from 'components/Layout/Header/styled';
+import { ELoader } from 'enums/loader';
 
 interface LoaderType {
   type?: string;
@@ -20,11 +20,11 @@ export const LoaderBox = styled(Box)<LoaderType>(({ type }) => ({
   alignItems: 'center',
   height: '100vh',
   width: '100vw',
-  ...(type === LOADER.page && {
+  ...(type === ELoader.page && {
     height: '100vh',
     width: '100vw',
   }),
-  ...(type === LOADER.content && {
+  ...(type === ELoader.content && {
     height: `calc(100vh - ${HEADER_HEIGHT})`,
     width: '100%',
     [theme.breakpoints.up('xs')]: {
@@ -37,7 +37,7 @@ export const LoaderBox = styled(Box)<LoaderType>(({ type }) => ({
       height: `calc(100vh - ${HEADER_HEIGHT})`,
     },
   }),
-  ...(type === LOADER.component && {
+  ...(type === ELoader.component && {
     height: '100%',
     width: '100%',
   }),

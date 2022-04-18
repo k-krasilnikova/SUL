@@ -13,4 +13,4 @@ export const VARIANTS = {
   successfulWithPercentage: 'successfulWithPercentage',
   successfulMobile: 'successfulMobile',
   incompleteMobile: 'incompleteMobile',
-};
+} as const;

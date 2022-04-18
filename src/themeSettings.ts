@@ -1,13 +1,13 @@
 import { createTheme } from '@mui/material';
 
-const COLORS = {
+export const COLORS = {
   primaryColor: '#d43e41',
   secondaryColor: '#ffffff',
   darkColor: '#942b2d',
   disabledTextColor: '#9b9b9b',
   primaryTextColor: '#000000',
   secondaryTextColor: '#ffffff',
-};
+} as const;
 
 const globalTheme = createTheme({
   palette: {

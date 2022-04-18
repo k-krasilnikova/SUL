@@ -1,9 +1,14 @@
+import { VARIANTS } from 'constants/progressBar';
+
+import { TSizeVariants } from './size';
+
+export type TVariantProgressBar = typeof VARIANTS[keyof typeof VARIANTS];
 export interface ProgressProps {
   value?: number;
   color?: string;
   textColor?: string;
   text?: string;
-  size?: string;
+  size?: TSizeVariants;
   trailColor?: string;
-  variant?: string | boolean;
+  variant?: TVariantProgressBar | boolean;
 }

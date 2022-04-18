@@ -1,16 +1,4 @@
-export const COURSE_STATUSES = {
-  pending: 'pending',
-  approved: 'approved',
-  started: 'started',
-  testing: 'testing',
-  rejected: 'rejected',
-  completed: 'completed',
-  successful: 'successful',
-  assessment: 'assessment',
-  failed: 'failed',
-};
-
-export const COURSE_LABELS: { [key: string]: string } = {
+export const COURSE_LABELS = {
   pending: 'Pending',
   approved: 'Start the course',
   started: 'Continue',
@@ -20,7 +8,7 @@ export const COURSE_LABELS: { [key: string]: string } = {
   completed: 'Completed',
   assessment: 'Assessment',
   failed: 'Continue',
-};
+} as const;
 
 export const NOTIFICATION_STATUSES = {
   new: 'new',

@@ -1,8 +1,8 @@
 import { FC, BaseSyntheticEvent } from 'react';
 
-import { LOADER } from 'constants/loaderTypes';
 import { Course, CoursesListType, TCheckedCourse } from 'types/course';
 import Loader from 'components/Loader';
+import { ELoader } from 'enums/loader';
 
 import { CourseItem } from './CourseItem';
 import { StyledList, StyledHorizontalLine } from './styled';
@@ -30,7 +30,7 @@ const CoursesList: FC<IProps> = ({
     {withUpperLine && !!checkedCourses.length && <StyledHorizontalLine />}
     <StyledList type={type}>
       {isCoursesLoading ? (
-        <Loader color="primary" type={LOADER.component} />
+        <Loader color="primary" type={ELoader.component} />
       ) : (
         <>
           {courses.map(({ _id: courseId, title }, courseIndex) => {

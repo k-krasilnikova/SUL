@@ -1,10 +1,15 @@
+const SIGN_STYLE_PROPS = {
+  focusedColor: '#1D1D1D',
+  basicColor: '#C6C6C9',
+  loginLabel: 'login',
+  passwordLabel: 'password',
+} as const;
+
 export interface SignTypes {
   warningHandler: (name: string, event: string) => void;
   getFieldName: (event: React.MouseEvent<Element, MouseEvent>) => void;
-  getCoordinates?: (event: React.MouseEvent<Element, MouseEvent>) => void;
-  value?: string | number;
+  labelHandler: typeof SIGN_STYLE_PROPS;
   isAuthError: boolean;
-  fieldValue?: string | number;
   login?: string;
   password?: string | number;
   formik: {
@@ -27,11 +32,7 @@ export interface SignTypes {
       password: string | number;
     };
   };
-  imageUrl?: string;
   isLoading?: boolean;
-  handleFocus?: (e: React.FocusEvent) => void;
-  labelState?: string;
-  status?: string;
   fieldStatus?: string | boolean;
   classes?: {
     [key: string]: string | undefined;

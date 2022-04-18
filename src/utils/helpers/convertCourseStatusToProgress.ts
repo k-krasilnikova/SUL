@@ -1,11 +1,12 @@
-import { COURSE_STATUSES } from 'constants/statuses';
 import { VARIANTS } from 'constants/progressBar';
 import { COMPLETED_STATUS_TEXT, FAILED_STATUS_TEXT } from 'constants/detailedCourse';
 import { TEST_STATUS } from 'constants/test';
+import { TVariantProgressBar } from 'types/progressBar';
+import { CourseStatus } from 'enums/courseEnums';
 
 export interface ConvertedProgress {
   progressValue: number;
-  progressVariant: string;
+  progressVariant: TVariantProgressBar;
   progressText?: string;
 }
 
@@ -20,23 +21,23 @@ const convertCourseStatusToProgress = (status?: string): ConvertedProgress => {
     return defaultConvertedValue;
   }
 
-  const convertedValues = {
-    [COURSE_STATUSES.started]: {
+  const convertedValues: { [key: string]: ConvertedProgress } = {
+    [CourseStatus.started]: {
       progressValue: 37,
       progressText: '37%',
       progressVariant: VARIANTS.failedWithPercentage,
     },
-    [COURSE_STATUSES.testing]: {
+    [CourseStatus.testing]: {
       progressValue: 80,
       progressText: '80%',
       progressVariant: VARIANTS.completed,
     },
-    [COURSE_STATUSES.completed]: {
+    [CourseStatus.completed]: {
       progressValue: 100,
       progressText: COMPLETED_STATUS_TEXT,
       progressVariant: VARIANTS.completed,
     },
-    [COURSE_STATUSES.failed]: {
+    [CourseStatus.failed]: {
       progressValue: 0,
       progressText: FAILED_STATUS_TEXT,
       progressVariant: VARIANTS.failed,
@@ -87,24 +88,24 @@ const convertEmployeeCourseProgress = (status?: string): ConvertedProgress => {
     return defaultConvertedValue;
   }
 
-  const convertedValues = {
-    [COURSE_STATUSES.started]: {
+  const convertedValues: { [key: string]: ConvertedProgress } = {
+    [CourseStatus.started]: {
       progressValue: 37,
       progressVariant: VARIANTS.successfulWithPercentage,
     },
-    [COURSE_STATUSES.testing]: {
+    [CourseStatus.testing]: {
       progressValue: 80,
       progressVariant: VARIANTS.successfulWithPercentage,
     },
-    [COURSE_STATUSES.completed]: {
+    [CourseStatus.completed]: {
       progressValue: 100,
       progressVariant: VARIANTS.successfulWithPercentage,
     },
-    [COURSE_STATUSES.assessment]: {
+    [CourseStatus.assessment]: {
       progressValue: 100,
       progressVariant: VARIANTS.successfulWithPercentage,
     },
-    [COURSE_STATUSES.failed]: {
+    [CourseStatus.failed]: {
       progressValue: 0,
       progressVariant: VARIANTS.employeeFailed,
     },

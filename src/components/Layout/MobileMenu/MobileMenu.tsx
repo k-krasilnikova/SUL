@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ListItemIcon, ListItemText, Slide } from '@mui/material';
 
-import { IMenuProps } from 'types/menu';
 import Avatar from 'components/Avatar';
-import { SIZE } from 'constants/sizes';
+import { ESize } from 'enums/sizes';
 import { PATHS } from 'constants/routes';
 import { logOutIcon } from 'icons/mobileMenuIcons';
 
@@ -22,6 +21,7 @@ import {
   SpaceHolder,
   LogOut,
 } from './styled';
+import { IMenuProps } from '../Menu/types';
 
 interface MobileMenuProps {
   isMobileMenuOpen: boolean;
@@ -95,7 +95,7 @@ const MobileMenu: React.FC<Props> = ({
         <MobileUserBlock>
           <UserProfile to={PATHS.profile}>
             <AvatarWrapper>
-              <Avatar size={SIZE.xsmall} avatar={avatar} />
+              <Avatar size={ESize.xsmall} avatar={avatar} />
             </AvatarWrapper>
             <UserNameWrapper>
               <UserName>{firstName}</UserName>

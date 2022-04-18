@@ -2,7 +2,6 @@ import React from 'react';
 import { RadioGroup } from '@mui/material';
 
 import { checkbox, checkboxChecked } from 'icons';
-import { IQuestionProps } from 'types/test';
 
 import {
   AnswersBox,
@@ -14,6 +13,7 @@ import {
   StyledRadio,
   TestQuestion,
 } from './styled';
+import { IQuestionProps } from './types';
 
 const QuestionItem: React.FC<IQuestionProps> = ({
   questionItem,

@@ -2,8 +2,8 @@ import React from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
 import Avatar from 'components/Avatar';
-import { SIZE } from 'constants/sizes';
 import { IProfile } from 'types/profile';
+import { ESize } from 'enums/sizes';
 
 import { UserSkills } from './UserSkills';
 import { ProfileBox, AvatarWrapper } from './styled';
@@ -13,7 +13,7 @@ const Profile: React.FC<IProfile> = ({ user }) => (
   <AuthorizedLayout pageName="Profile">
     <ProfileBox>
       <AvatarWrapper>
-        <Avatar avatar={user?.avatar} size={SIZE.large} />
+        <Avatar avatar={user?.avatar} size={ESize.large} />
       </AvatarWrapper>
       <UserInfo user={user} />
     </ProfileBox>

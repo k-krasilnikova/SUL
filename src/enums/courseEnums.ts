@@ -5,7 +5,6 @@ export enum CourseStatus {
   testing = 'testing',
   assessment = 'assessment',
   rejected = 'rejected',
-  successful = 'successful',
   completed = 'completed',
   failed = 'failed',
 }

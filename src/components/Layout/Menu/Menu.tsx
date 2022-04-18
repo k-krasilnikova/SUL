@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ListItemIcon } from '@mui/material';
 
-import { IMenuProps } from 'types/menu';
-
 import {
   MenuTabs,
   MenuTabsWrapper,
@@ -14,6 +12,7 @@ import {
   LeftArrow,
   RightArrow,
 } from './styled';
+import { IMenuProps } from './types';
 
 const Menu: React.FC<IMenuProps> = ({
   menuList,

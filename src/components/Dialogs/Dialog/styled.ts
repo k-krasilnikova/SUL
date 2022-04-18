@@ -1,11 +1,12 @@
 import { Dialog as MuiDialog } from '@mui/material';
 import styled from 'styled-components';
 
-import { SIZE } from 'constants/sizes';
+import { ESize } from 'enums/sizes';
 import theme from 'themeSettings';
+import { TSizeVariants } from 'types/size';
 
 interface Size {
-  size?: string;
+  size?: TSizeVariants;
 }
 
 export const StyledDialog = styled(MuiDialog)<Size>(({ size }) => ({
@@ -14,35 +15,35 @@ export const StyledDialog = styled(MuiDialog)<Size>(({ size }) => ({
     borderRadius: '5px',
     boxShadow: 'none',
     [theme.breakpoints.up('xs')]: {
-      ...(size === SIZE.small && {
+      ...(size === ESize.small && {
         width: '240px',
         minHeight: '215px',
       }),
-      ...(size === SIZE.medium && {
+      ...(size === ESize.medium && {
         width: '256px',
       }),
-      ...(size === SIZE.large && {
+      ...(size === ESize.large && {
         width: '288px',
         minHeight: '436px',
       }),
     },
     [theme.breakpoints.up('md')]: {
-      ...(size === SIZE.small && {
+      ...(size === ESize.small && {
         width: '378px',
       }),
-      ...(size === SIZE.medium && {
+      ...(size === ESize.medium && {
         width: '660px',
       }),
-      ...(size === SIZE.large && {
+      ...(size === ESize.large && {
         width: '575px',
       }),
     },
     [theme.breakpoints.up('xl')]: {
-      ...(size === SIZE.small && {
+      ...(size === ESize.small && {
         width: '520px',
         minHeight: '260px',
       }),
-      ...(size === SIZE.large && {
+      ...(size === ESize.large && {
         width: '660px',
       }),
     },

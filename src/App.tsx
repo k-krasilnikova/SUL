@@ -22,14 +22,14 @@ import {
 import { AnonymousRoute, PrivateRoute, RoleRoute } from 'components/Routes';
 import Loader from 'components/Loader';
 import { queryClient } from 'api/base';
-import { LOADER } from 'constants/loaderTypes';
 import { PATHS } from 'constants/routes';
 import { PAGES } from 'constants/pages';
 import { ROLE } from 'constants/menuRoles';
+import { ELoader } from 'enums/loader';
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
-    <Suspense fallback={<Loader color="primary" type={LOADER.page} />}>
+    <Suspense fallback={<Loader color="primary" type={ELoader.page} />}>
       <BrowserRouter basename={PATHS.home}>
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
