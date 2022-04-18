@@ -40,6 +40,16 @@ interface IUpdateCourseBody {
   test?: ITest['questions'];
 }
 
+interface ICreateCourseBody {
+  title?: ICourse['title'];
+  avatar?: ICourse['avatar'];
+  description?: ICourse['description'];
+  technologies?: ICourse['technologies'];
+  materials?: ICourse['materials'];
+  complexity?: ICourse['complexity'];
+  test?: ITest;
+}
+
 interface ICourseToAssign {
   courseId: string;
   assessment?: boolean;
@@ -58,4 +68,5 @@ export {
   IProgress,
   IUpdateCourseBody,
   ICourseToAssign,
+  ICreateCourseBody,
 };
