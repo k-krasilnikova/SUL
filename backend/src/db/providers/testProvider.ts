@@ -1,10 +1,11 @@
 import mongoose, { ObjectId } from 'mongoose';
 
 import ClientCourseModel from 'db/models/ClientCourses';
-import { ITest, TestDb } from 'interfaces/Ientities/Itest';
 import TestModel from 'db/models/Tests';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import CourseModel from 'db/models/Course';
+import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import { ITest, TestDb } from 'interfaces/Ientities/Itest';
 
 const getTestProvider = async (courseId: string) => {
   const test: TestDb[] = await ClientCourseModel.aggregate([
@@ -88,4 +89,21 @@ const getCourseTest = async (courseId: string | ObjectId): Promise<ITest> => {
   return test as unknown as ITest;
 };
 
-export { getTestProvider, getTestById, getTrueAnswersProvider, updateTestQuestions, getCourseTest };
+const addCourseTest = async (testData: ITest) => {
+  const properQuestionsToSet = setAnswerProperNumbersToQuestions(testData.questions);
+
+  return TestModel.create({
+    title: testData.title,
+    questions: properQuestionsToSet,
+    timeout: testData.timeout,
+  });
+};
+
+export {
+  getTestProvider,
+  getTestById,
+  getTrueAnswersProvider,
+  updateTestQuestions,
+  getCourseTest,
+  addCourseTest,
+};

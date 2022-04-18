@@ -194,6 +194,22 @@ const isProperTechnologies = async (techs: IUpdateCourseBody['skills']): Promise
   return checksPassed;
 };
 
+const skillsToCourseTechs = async (technologies: { skill: ObjectId; points: number }[]) => {
+  const techs = await Promise.all(
+    technologies.map(({ skill }) => {
+      return SkillModel.findOne({ name: skill });
+    }),
+  );
+
+  const techsForCourse = techs.map((currentSkill, index): { skill: ObjectId; points: number } => {
+    return {
+      skill: currentSkill?._id as ObjectId,
+      points: technologies[index].points,
+    };
+  });
+  return techsForCourse;
+};
+
 export {
   getUserSkills,
   getPopulatedUserSkill,
@@ -208,4 +224,5 @@ export {
   getAllSkillsByGroup,
   skillsExist,
   isProperTechnologies,
+  skillsToCourseTechs,
 };

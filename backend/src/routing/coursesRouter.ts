@@ -13,6 +13,7 @@ import adapterSender from 'controllers/pendingCourses/adapterSender';
 import deleteCourse from 'controllers/admin/deleteCourse';
 import editCourse from 'controllers/admin/editCourse';
 import addCourse from 'controllers/admin/addCourse';
+import preparingCourseData from 'controllers/admin/preparingCourseData';
 
 const coursesRouter = Router();
 coursesRouter.get(
@@ -40,7 +41,13 @@ coursesRouter.get(
 );
 coursesRouter.put(SubRoutes.updateCourse, withAuth([USER_ROLES.ADMIN]), editCourse, adapterSender);
 
-coursesRouter.post(SubRoutes.createCourse, withAuth([USER_ROLES.ADMIN]), addCourse, adapterSender);
+coursesRouter.post(
+  SubRoutes.createCourse,
+  withAuth([USER_ROLES.ADMIN]),
+  preparingCourseData,
+  addCourse,
+  adapterSender,
+);
 
 coursesRouter.delete(`${SubRoutes.deleteCourse}`, withAuth([USER_ROLES.ADMIN]), deleteCourse);
 
