@@ -45,6 +45,8 @@ interface ICourseToAssign {
   assessment?: boolean;
 }
 
+type TAvailableCourse = Pick<ICourse, '_id' | 'title'>;
+
 type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
 
 type ICourseInfoPopulated = ICourseInfo & { technologies: ISkill[] };
@@ -58,4 +60,5 @@ export {
   IProgress,
   IUpdateCourseBody,
   ICourseToAssign,
+  TAvailableCourse,
 };
