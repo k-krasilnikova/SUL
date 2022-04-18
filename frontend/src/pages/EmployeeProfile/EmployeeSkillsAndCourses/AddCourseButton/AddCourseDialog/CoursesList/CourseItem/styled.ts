@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 import { FormControlLabel, ListItem } from '@mui/material';
 
 import theme from 'themeSettings';
 
 export const StyledItem = styled(ListItem)({
   '&.MuiListItem-root': {
-    padding: '0',
+    padding: 0,
     '&:not(:last-child)': {
       marginBottom: '12px',
     },
@@ -21,7 +21,7 @@ export const StyledLabel = styled(FormControlLabel)({
     width: '100%',
   },
   '&.MuiFormControlLabel-root': {
-    margin: '0',
+    margin: 0,
   },
   '& .MuiFormControlLabel-label': {
     whiteSpace: 'nowrap',

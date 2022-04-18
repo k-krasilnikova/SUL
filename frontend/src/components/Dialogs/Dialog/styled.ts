@@ -1,5 +1,4 @@
-import { Dialog as MuiDialog } from '@mui/material';
-import styled from 'styled-components';
+import { styled, Dialog as MuiDialog } from '@mui/material';
 
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';
@@ -78,7 +77,7 @@ export const DialogBodyWrapper = styled('div')({
     display: 'flex',
     justifyContent: 'center',
     margin: '16px auto',
-    padding: '0',
+    padding: 0,
     [theme.breakpoints.up('xs')]: {
       marginTop: '8px',
       height: '32px',

@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 import SearchInput from 'components/SearchInput';
 
 export const Search = styled(SearchInput)({
-  flexGrow: '0',
+  flexGrow: 0,
   flexShrink: '1',
   borderRadius: '3px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
@@ -21,7 +21,7 @@ export const Search = styled(SearchInput)({
     width: '300px',
   },
   [theme.breakpoints.down(950)]: {
-    display: 'none!important',
+    display: 'none',
   },
 });
 

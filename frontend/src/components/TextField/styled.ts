@@ -4,7 +4,7 @@ import theme from 'themeSettings';
 
 const WarningHelper = styled(Typography)({
   fontSize: '14px',
-  margin: '0px',
+  margin: 0,
   marginTop: '15px',
   textAlign: 'center',
   fontFamily: '"Ubuntu", sans-serif',

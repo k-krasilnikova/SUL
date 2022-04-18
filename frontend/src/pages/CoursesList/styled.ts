@@ -1,6 +1,5 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Grid } from '@mui/material';
+import { styled, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -13,7 +12,7 @@ export const PageContainer = styled(Grid)({
   },
   [theme.breakpoints.up('xl')]: {
     padding: '16px 30px 24px 0px',
-    margin: '0px 0px 0px -6px !important',
+    margin: '0px 0px 0px -6px',
   },
   maxWidth: '1482px',
   paddingTop: '16px',
@@ -28,7 +27,7 @@ export const GridItem = styled(Grid)({
     paddingTop: '8px',
   },
   [theme.breakpoints.down('md')]: {
-    paddingLeft: '0px',
+    paddingLeft: 0,
   },
   [theme.breakpoints.up('xl')]: {
     width: '711px',

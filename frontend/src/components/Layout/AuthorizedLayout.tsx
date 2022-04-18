@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-import Grid from '@mui/material/Grid';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Grid } from '@mui/material';
 
 import Loader from 'components/Loader';
 import { Notification as NotificationType } from 'types/notification';
@@ -54,23 +54,21 @@ const AuthorizedLayout: React.FC<Props> = ({
           toggleMobileMenu={toggleMobileMenu}
         />
       </GridHeader>
-      <>
-        <GridMenu classes={isSqueeze && { root: classes?.hideGridMenu }}>
-          <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
-        </GridMenu>
-        <PageWrapper
-          classes={{ root: isSqueeze ? classes?.showPageWrapper : classes?.hidePageWrapper }}
-        >
-          <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
-          <MobileMenu
-            isMobileMenuOpen={isMobileMenuOpen}
-            toggleMobileMenu={toggleMobileMenu}
-            firstName={firstName}
-            lastName={lastName}
-            avatar={avatar}
-          />
-        </PageWrapper>
-      </>
+      <GridMenu classes={{ root: isSqueeze ? classes?.hideGridMenu : undefined }}>
+        <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
+      </GridMenu>
+      <PageWrapper
+        classes={{ root: isSqueeze ? classes?.showPageWrapper : classes?.hidePageWrapper }}
+      >
+        <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
+        <MobileMenu
+          isMobileMenuOpen={isMobileMenuOpen}
+          toggleMobileMenu={toggleMobileMenu}
+          firstName={firstName}
+          lastName={lastName}
+          avatar={avatar}
+        />
+      </PageWrapper>
     </Grid>
   </HelmetProvider>
 );

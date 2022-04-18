@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -27,7 +27,7 @@ export const ProfileBox = styled('div')({
 export const AvatarWrapper = styled('div')({
   textAlign: 'center',
   marginRight: '100px',
-  marginLeft: '0px',
+  marginLeft: 0,
   width: '219px',
   [theme.breakpoints.down('xl')]: {
     marginRight: '60px',
@@ -36,7 +36,7 @@ export const AvatarWrapper = styled('div')({
   [theme.breakpoints.down('md')]: {
     display: 'inline-block',
     marginRight: '20px',
-    marginBottom: '0px',
+    marginBottom: 0,
   },
   [theme.breakpoints.down('sm')]: {
     display: 'block',

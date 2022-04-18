@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
 export const CoursesBox = styled('div')({
   maxWidth: '100%',
-  marginLeft: '0',
-  marginRight: '0',
+  marginLeft: 0,
+  marginRight: 0,
   [theme.breakpoints.down('xl')]: {
     maxWidth: '828px',
     marginLeft: '54px',

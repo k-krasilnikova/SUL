@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 import Button from 'components/Button';
@@ -14,13 +14,13 @@ export const EmployeeProfileWrapper = styled('div')({
 export const BackButton = styled(Button)({
   height: '39px',
   width: '84px',
-  fontSize: '16px !important',
+  fontSize: '16px',
   [theme.breakpoints.down('xl')]: {
     height: '32px',
     width: '64px',
-    fontSize: '12px !important',
+    fontSize: '12px',
   },
   [theme.breakpoints.down('md')]: {
-    display: 'none !important',
+    display: 'none ',
   },
 });

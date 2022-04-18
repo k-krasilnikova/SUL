@@ -1,5 +1,5 @@
 import { Typography, Button as TextButton } from '@mui/material';
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -22,7 +22,7 @@ export const ImageWrapper = styled('div')<Image>(({ imageUrl }) => {
       width: '64px',
       height: '46px',
       margin: '0px 8px 5px 0px',
-      borderRadius: '0px',
+      borderRadius: 0,
     },
     [theme.breakpoints.up('md')]: {
       width: '281px',
@@ -48,42 +48,42 @@ export const DetailedCourseText = styled(Typography)({
   },
   [theme.breakpoints.up('md')]: {
     display: 'block',
-    fontSize: '18px !important',
+    fontSize: '18px',
     lineHeight: '28px',
     clear: 'none',
-    padding: '0',
+    padding: 0,
   },
   [theme.breakpoints.up('lg')]: {
-    lineHeight: '28px !important',
-    marginRight: '100px !important',
+    lineHeight: '28px',
+    marginRight: '100px',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '20px !important',
-    lineHeight: '37px !important',
-    marginRight: '0 !important',
+    fontSize: '20px',
+    lineHeight: '37px',
+    marginRight: 0,
   },
 });
 
 export const DetailedCourseTitle = styled(Typography)({
-  fontWeight: '700 !important',
-  letterSpacing: '-0.4px !important',
+  fontWeight: '700 ',
+  letterSpacing: '-0.4px',
   color: '#2c2525',
   [theme.breakpoints.up('xs')]: {
-    fontSize: '16px !important',
-    lineHeight: '28px !important',
-    paddingTop: '10px !important',
-    marginBottom: '10px !important',
+    fontSize: '16px',
+    lineHeight: '28px',
+    paddingTop: '10px',
+    marginBottom: '10px',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '28px !important',
-    lineHeight: '28px !important',
-    marginBottom: '24px !important',
-    paddingTop: '0 !important',
+    fontSize: '28px',
+    lineHeight: '28px',
+    marginBottom: '24px',
+    paddingTop: 0,
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '28px !important',
-    lineHeight: '28px !important',
-    marginBottom: '13px !important',
+    fontSize: '28px',
+    lineHeight: '28px',
+    marginBottom: '13px',
   },
 });
 
@@ -105,10 +105,10 @@ export const DetailedCourseTextMobile = styled(Typography)({
 export const ButtonFullText = styled(TextButton)({
   fontFamily: '"Ubuntu", sans-serif',
   fontStyle: 'normal',
-  fontWeight: '400 !important',
-  fontSize: '16px !important',
+  fontWeight: '400 ',
+  fontSize: '16px',
   lineHeight: '130%',
-  display: 'block!important',
-  color: '#0a5edc !important',
-  padding: '0 !important',
+  display: 'block',
+  color: '#0a5edc ',
+  padding: 0,
 });

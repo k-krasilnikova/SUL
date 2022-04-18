@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { User } from 'types/user';
 import { useLogOut } from 'api/logOut/';
-import ConfirmLogOut from 'components/ConfirmLogOut';
+import { ConfirmLogOut } from 'components/Dialogs';
+import { User } from 'types/user';
 
 import Header from './Header';
 

@@ -54,7 +54,7 @@ export const CountDownText = styled(Typography)({
   },
   [theme.breakpoints.down(880)]: {
     alignSelf: 'flex-start',
-    marginLeft: '0',
+    marginLeft: 0,
   },
   [theme.breakpoints.down('sm')]: {
     fontWeight: '400',

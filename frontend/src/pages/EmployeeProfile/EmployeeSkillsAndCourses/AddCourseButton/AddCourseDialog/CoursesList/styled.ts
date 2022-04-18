@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 import { List, Divider } from '@mui/material';
 
 import { CoursesListType } from 'types/course';
@@ -9,7 +9,7 @@ interface IPropsCoursesList {
 
 export const StyledList = styled(List)<IPropsCoursesList>(({ type }) => ({
   '&.MuiList-root': {
-    padding: '0',
+    padding: 0,
     marginBottom: '16px',
   },
   textAlign: 'left',

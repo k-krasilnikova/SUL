@@ -1,5 +1,4 @@
-import { DialogContentText, DialogTitle, DialogActions } from '@mui/material';
-import styled from 'styled-components';
+import { styled, DialogContentText, DialogTitle, DialogActions } from '@mui/material';
 
 import theme from 'themeSettings';
 import Button from 'components/Button';

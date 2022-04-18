@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 import { HEADER_HEIGHT_IPAD } from 'components/Layout/Header/styled';
@@ -31,9 +31,9 @@ export const SearchResultWrapper = styled('div')({
 });
 
 export const NoSearchResults = styled(Typography)({
-  fontSize: '20px !important',
+  fontSize: '20px',
   textAlign: 'center',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '16px !important',
+    fontSize: '16px',
   },
 });

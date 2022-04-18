@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { useGetProfile } from 'api/profile';
 import { useLogOut } from 'api/logOut';
-import ConfirmLogOut from 'components/ConfirmLogOut';
 import { ROLES_MENU } from 'constants/menuRoles';
+import { ConfirmLogOut } from 'components/Dialogs';
 
 import MobileMenu from './MobileMenu';
 import { useListStyles } from './styled';

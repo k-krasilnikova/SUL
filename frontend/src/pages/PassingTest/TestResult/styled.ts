@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 
@@ -27,14 +27,14 @@ export const TitleBox = styled(Box)({
 });
 
 export const TestResultTitle = styled(Typography)({
-  fontWeight: '500 !important',
-  fontSize: '32px !important',
+  fontWeight: '500 ',
+  fontSize: '32px',
   color: '#131313',
   lineHeight: '38px',
-  letterSpacing: '0 !important',
+  letterSpacing: 0,
   whiteSpace: 'nowrap',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '20px !important',
+    fontSize: '20px',
     lineHeight: '24px',
   },
 });
@@ -42,22 +42,22 @@ export const TestResultTitle = styled(Typography)({
 export const ButtonBox = styled(Box)({
   display: 'flex',
   justifyContent: 'flex-end',
-  marginBottom: '5vh !important',
+  marginBottom: '5vh ',
   [theme.breakpoints.down('xl')]: {
-    marginRight: '9vw !important',
+    marginRight: '9vw ',
   },
 });
 
 export const SubmitButton = styled(Button)({
   height: '50px',
   width: '103px',
-  fontSize: '18px !important',
+  fontSize: '18px',
   padding: '14px 23px',
   [theme.breakpoints.down('sm')]: {
     height: '26px',
     width: '56px',
-    fontSize: '14px !important',
-    fontWeight: '500 !important',
+    fontSize: '14px',
+    fontWeight: '500 ',
   },
 });
 
@@ -71,7 +71,7 @@ export const ContentBox = styled(Box)({
   },
   [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',
-    marginTop: '32px !important',
-    marginBottom: '32px !important',
+    marginTop: '32px',
+    marginBottom: '32px',
   },
 });

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 

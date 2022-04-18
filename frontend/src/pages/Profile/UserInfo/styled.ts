@@ -14,13 +14,13 @@ export const UserInfoList = styled(List)({
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: '400',
   color: '#2C2525',
-  paddingTop: '0',
+  paddingTop: 0,
 });
 
 export const UserInfoLabel = styled('span')({
   color: '#9b9b9b',
   fontWeight: '500',
-  flexShrink: '0',
+  flexShrink: 0,
   [theme.breakpoints.up('xs')]: {
     width: '82px',
     display: 'inline-block',
@@ -42,7 +42,7 @@ export const UserInfoLabel = styled('span')({
     lineHeight: '21px',
     height: '24px',
     marginBottom: '20px',
-    padding: '0',
+    padding: 0,
   },
 });
 

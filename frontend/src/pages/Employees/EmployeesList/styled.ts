@@ -13,8 +13,8 @@ export const EmployeesTable = styled(Table)({
 export const Cell = styled(TableCell)({
   '&.MuiTableCell-root': {
     textAlign: 'left',
-    paddingTop: '0',
-    paddingBottom: '0',
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   '&.MuiTableCell-head': {
     color: '#6c6c6c',

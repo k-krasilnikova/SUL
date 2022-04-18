@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 import { Box } from '@mui/system';
 
 import theme from 'themeSettings';

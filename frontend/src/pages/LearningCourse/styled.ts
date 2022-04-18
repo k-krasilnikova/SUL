@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import Button from 'components/Button';
 import theme from 'themeSettings';
@@ -19,8 +19,8 @@ export const BackButton = styled(Button)({
   width: '85px',
   borderRadius: '4px',
   fontFamily: '"Ubuntu", sans-serif',
-  fontSize: '16px!important',
-  fontWeight: '500!important',
+  fontSize: '16px',
+  fontWeight: '500',
   lineHeight: '22px',
   letterSpacing: '-0.4px',
   textAlign: 'center',
@@ -28,14 +28,14 @@ export const BackButton = styled(Button)({
   [theme.breakpoints.down('xl')]: {
     height: '32px',
     width: '64px',
-    fontSize: '12px!important',
+    fontSize: '12px',
     lineHeight: '16px',
   },
   [theme.breakpoints.down('md')]: {
     height: '20px',
     width: '40px',
-    minWidth: '40px!important',
-    fontSize: '10px!important',
+    minWidth: '40px',
+    fontSize: '10px',
   },
 });
 

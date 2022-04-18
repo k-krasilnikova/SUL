@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 import { Chip } from '@mui/material';
 
 export const StyledLabel = styled(Chip)({

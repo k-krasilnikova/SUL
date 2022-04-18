@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -21,7 +21,7 @@ export const CourseInfoWrapper = styled('div')<CourseInfoWrapperProps>(({ isCour
     width: '100%',
     marginTop: '23px',
     maxHeight: '290px',
-    paddingBottom: '0px',
+    paddingBottom: 0,
     ...(!isCourseInfoOpen && {
       display: 'none',
     }),

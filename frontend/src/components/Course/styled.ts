@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 import { Box, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
@@ -111,7 +111,7 @@ export const ImageWrapper = styled('div')<Image>(({ imageUrl }) => {
       boxShadow: '1px 1px 2px 1px #00000021',
     },
     [theme.breakpoints.down('sm')]: {
-      flexShrink: '0',
+      flexShrink: 0,
       width: '72px',
       height: '46px',
       alignItems: 'center',
@@ -151,7 +151,7 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     lineHeight: '19px',
     letterSpacing: '-0.4px',
     textAlign: 'left',
-    padding: '0',
+    padding: 0,
     fontWeight: '500',
     ...(type === INFO.similarCourses && {
       fontSize: '18px',
@@ -164,8 +164,8 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
   ({ fontSize, lineHeight, type }) => ({
     fontSize: '18px',
     lineHeight: '21px',
-    padding: '0',
-    margin: '0',
+    padding: 0,
+    margin: 0,
     color: '#131313',
     fontFamily: '"Ubuntu", sans-serif',
     ...(fontSize && {
@@ -190,7 +190,7 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
       lineHeight: '22px',
       letterSpacing: '-0.4px',
       textAlign: 'left',
-      padding: '0',
+      padding: 0,
       margin: '0px 10px 9px 7px',
       ...(type === INFO.similarCourses && {
         margin: '0px 0px 9px 0px',
@@ -218,7 +218,7 @@ export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type 
 
 export const MobileCourseInfoBox = styled(Box)({
   [theme.breakpoints.up('xs')]: {
-    padding: '0',
+    padding: 0,
   },
   [theme.breakpoints.up('sm')]: {
     display: 'none',
@@ -227,8 +227,8 @@ export const MobileCourseInfoBox = styled(Box)({
 
 export const MobileCourseProgress = styled('div')({
   [theme.breakpoints.up('xs')]: {
-    flexShrink: '0',
-    flexGrow: '0',
+    flexShrink: 0,
+    flexGrow: 0,
     height: '46px',
   },
   [theme.breakpoints.up('sm')]: {

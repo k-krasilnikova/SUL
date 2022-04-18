@@ -3,11 +3,11 @@ import { styled, Box, Button, Typography } from '@mui/material';
 import theme from 'themeSettings';
 
 export const PageNumberText = styled(Typography)({
-  fontSize: '18px !important',
-  color: '#131313 !important',
+  fontSize: '18px',
+  color: '#131313 ',
   padding: '6px 0',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '14px !important',
+    fontSize: '14px',
   },
 });
 
@@ -26,8 +26,8 @@ export const ButtonBox = styled(Box)({
 
 export const StyledButton = styled(Button)({
   color: '#000000',
-  minWidth: '40px !important',
+  minWidth: '40px',
   '&.MuiButton-root': {
-    padding: '0 !important',
+    padding: 0,
   },
 });

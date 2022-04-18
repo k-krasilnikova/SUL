@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import styled from 'styled-components';
-import Grid from '@mui/material/Grid';
+import { styled, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
 

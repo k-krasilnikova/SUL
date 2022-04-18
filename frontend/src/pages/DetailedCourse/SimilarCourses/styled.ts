@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -33,25 +33,25 @@ export const SimilarCoursesItemWrapper = styled(Grid)({
 });
 
 export const SimilarCoursesTitle = styled(Typography)({
-  fontWeight: 'bold !important',
+  fontWeight: 'bold ',
   color: '#2C2525',
-  letterSpacing: '-0.4px !important',
+  letterSpacing: '-0.4px',
   [theme.breakpoints.up('xs')]: {
-    fontSize: '16px !important',
-    lineHeight: '21px !important',
-    marginLeft: '8px!important',
+    fontSize: '16px',
+    lineHeight: '21px',
+    marginLeft: '8px',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '24px !important',
-    lineHeight: '24px !important',
-    marginLeft: '0px!important',
+    fontSize: '24px',
+    lineHeight: '24px',
+    marginLeft: 0,
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '24px !important',
-    lineHeight: '52px !important',
+    fontSize: '24px',
+    lineHeight: '52px',
   },
 });
 
 export const CourseActionsBox = styled(Box)({
-  marginLeft: '16px !important',
+  marginLeft: '16px',
 });
