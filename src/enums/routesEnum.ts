@@ -36,6 +36,7 @@ enum SubRoutes {
   getEmployeeInfo = '/:id',
   getEmployees = '',
   getPendingCourses = '',
+  getEmployeeAvailableCourses = '/:id/courses/available',
   approvePendingCourse = '/approveCourse',
   declinePendingCourse = '/declineCourse',
   getUserInfo = '/:id',
