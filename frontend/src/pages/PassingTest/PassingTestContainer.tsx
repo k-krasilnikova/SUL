@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router';
 
 import { useSendTestResult, useGetCourseTest } from 'api/test';
@@ -10,10 +10,9 @@ import {
   STAGE_CHANGE,
   TEST_STATUS,
 } from 'constants/test';
-import { TO_MILLISECONDS_RATIO } from 'constants/time';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
-import { useToggle, useCallbackPrompt } from 'hooks';
+import { useToggle } from 'hooks';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
 
@@ -21,6 +20,7 @@ import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
 import ConfirmTimeIsOver from './ConfirmTimeIsOver';
+import { getDurationBetweenDates } from './utils';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
@@ -37,16 +37,21 @@ const PassingTestContainer: React.FC = () => {
 
   const [isTestTimeoutDialogOpen, setTestTimeoutDialogOpen] = useToggle();
 
+  const testDuration = useMemo(
+    () => getDurationBetweenDates(clientCourseResponse?.finishTestDate),
+    [clientCourseResponse?.finishTestDate],
+  );
+
   useEffect(() => {
-    if (courseTest?.timeout) {
+    if (testDuration) {
       const timeoutId = setTimeout(() => {
         setTestTimeoutDialogOpen();
-      }, courseTest?.timeout * TO_MILLISECONDS_RATIO);
+      }, testDuration);
       return () => {
         clearTimeout(timeoutId);
       };
     }
-  }, [courseTest?.timeout, setTestTimeoutDialogOpen]);
+  }, [testDuration, setTestTimeoutDialogOpen]);
 
   const [stage, setStage] = useState(1);
   const [values, setValues] = React.useState({});
@@ -68,7 +73,7 @@ const PassingTestContainer: React.FC = () => {
     courseId: params.courseId,
   });
 
-  const handleSubmitResult = () => {
+  const submitResult = (isResultPageEnabled = true) => {
     const resultData = {
       testId: courseTest?._id,
       answers: Object.entries(values).map(([key, value]) => ({
@@ -77,12 +82,16 @@ const PassingTestContainer: React.FC = () => {
       })),
     };
     sendTestResult(resultData);
-    setTestResultPageEnabled(true);
+    setTestResultPageEnabled(isResultPageEnabled);
+  };
+
+  const handleSubmitResult = () => {
+    submitResult();
   };
 
   const handleCloseTimeIsOverDialog = () => {
     setTestTimeoutDialogOpen();
-    handleSubmitResult();
+    submitResult(false);
     naviagteTo(transformRoute(PATHS.myCourseDetails, params.courseId));
   };
 
@@ -95,8 +104,17 @@ const PassingTestContainer: React.FC = () => {
   const questionStageItem = courseTest?.questions[stage - 1];
   const courseStatus = clientCourseResponse?.status;
 
-  const isShouldRedirect =
+  const isTestTimeOver = useMemo(
+    () =>
+      courseStatus === COURSE_STATUSES.testing &&
+      getDurationBetweenDates(clientCourseResponse?.finishTestDate) < 0,
+    [clientCourseResponse?.finishTestDate, courseStatus],
+  );
+
+  const isNotTestingCourseStatus =
     !clientCourseResponseIsLoading && courseStatus !== COURSE_STATUSES.testing;
+
+  const isShouldRedirect = isNotTestingCourseStatus || isTestTimeOver;
 
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
@@ -116,17 +134,21 @@ const PassingTestContainer: React.FC = () => {
   const progressBarData = isFailed
     ? convertTestStatusToProgress(TEST_STATUS.failed, percentageValue)
     : convertTestStatusToProgress(TEST_STATUS.successful, percentageValue);
-  const [showDialogOnSwitchingRoute, setShowDialogOnSwitchingRoute] = useState<boolean>(false);
+  // const [showDialogOnSwitchingRoute, setShowDialogOnSwitchingRoute] = useState<boolean>(false);
 
-  const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(
-    showDialogOnSwitchingRoute,
-  );
+  // const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(
+  //   showDialogOnSwitchingRoute,
+  // );
 
-  useEffect(() => {
-    if (courseTest) {
-      setShowDialogOnSwitchingRoute(true);
-    }
-  }, [courseTest, showDialogOnSwitchingRoute]);
+  // useEffect(() => {
+  //   if (courseTest) {
+  //     setShowDialogOnSwitchingRoute(true);
+  //   }
+  // }, [courseTest, showDialogOnSwitchingRoute]);
+
+  if (isShouldRedirect && !isTestResultPageEnabled) {
+    return <Navigate replace to={transformRoute(PATHS.myCourseDetails, params.courseId)} />;
+  }
 
   return (
     <>
@@ -141,7 +163,8 @@ const PassingTestContainer: React.FC = () => {
             resultEnabled={resultEnabled}
             stageNext={stageNext}
             stageBack={stageBack}
-            testItem={courseTest}
+            testTitle={courseTest?.title}
+            testDuration={testDuration}
             questionStageItem={questionStageItem}
             isLoading={courseTestResponseIsLoading}
             handleSubmitResult={handleSubmitResult}
@@ -149,10 +172,10 @@ const PassingTestContainer: React.FC = () => {
             handleNavigateBack={handleNavigateBack}
           />
           <ConfirmLeavePage
-            isOpened={isConfirmOpen || showPrompt}
+            isOpened={isConfirmOpen || false}
             isLoading={courseTestResponseIsLoading}
-            handleCancelLeavePage={cancelNavigation}
-            handleLeavePage={confirmNavigation}
+            handleCancelLeavePage={() => {}}
+            handleLeavePage={() => {}}
           />
           <ConfirmTimeIsOver
             isOpened={isTestTimeoutDialogOpen}
@@ -169,9 +192,6 @@ const PassingTestContainer: React.FC = () => {
           responseData={responseData}
           status={clientCourseResponse?.status}
         />
-      )}
-      {isShouldRedirect && !isTestResultPageEnabled && (
-        <Navigate replace to={transformRoute(PATHS.myCourseDetails, params.courseId)} />
       )}
     </>
   );

@@ -1,20 +1,18 @@
+import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import React from 'react';
 
 import CountDownTimer from 'components/CountDownTimer';
 import { ITestTitleAndTimer } from 'types/test';
 
 import { CountDownText, CourseTestTitle, TitleBox } from './styled';
 
-const TestTitleAndTimer: React.FC<ITestTitleAndTimer> = ({ testItem }) => (
+const TestTitleAndTimer: FC<ITestTitleAndTimer> = ({ title, duration }) => (
   <Box>
     <TitleBox>
-      <CourseTestTitle>{testItem.title}</CourseTestTitle>
-      <CountDownText>
-        <CountDownTimer duration={testItem.timeout} />
-      </CountDownText>
+      <CourseTestTitle>{title}</CourseTestTitle>
+      <CountDownText>{Boolean(duration) && <CountDownTimer duration={duration} />}</CountDownText>
     </TitleBox>
   </Box>
 );
 
-export default TestTitleAndTimer;
+export default memo(TestTitleAndTimer);
