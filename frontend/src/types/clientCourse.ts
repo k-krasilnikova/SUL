@@ -1,4 +1,6 @@
-import { Course, TCourseStatus } from './course';
+import { CourseStatus } from 'enums/courseEnums';
+
+import { Course } from './course';
 
 export interface ClientCourse {
   currentStage: number;
@@ -9,7 +11,7 @@ export interface ClientCourse {
       isCompleted: boolean;
     },
   ];
-  status: TCourseStatus;
+  status: CourseStatus;
   user: string;
   _id: string;
   course: Course;

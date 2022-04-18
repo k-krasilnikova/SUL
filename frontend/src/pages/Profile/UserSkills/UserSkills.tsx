@@ -6,11 +6,11 @@ import { Search } from '@mui/icons-material';
 import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import NoContent from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
-import { SIZE } from 'constants/sizes';
+import { ESize } from 'enums/sizes';
 import { starContained } from 'icons';
 import { Technologies } from 'types/skill';
 import Loader from 'components/Loader';
-import { LOADER } from 'constants/loaderTypes';
+import { ELoader } from 'enums/loader';
 
 import {
   SearchWrapper,
@@ -42,7 +42,7 @@ const UserSkills: React.FC<Props> = ({
   searchSkill,
 }) => (
   <SkillsBox>
-    <Suspense fallback={<Loader color="primary" type={LOADER.component} />}>
+    <Suspense fallback={<Loader color="primary" type={ELoader.component} />}>
       <SearchWrapper>
         <SearchSkill
           disableUnderline
@@ -93,7 +93,7 @@ const UserSkills: React.FC<Props> = ({
           })
         ) : (
           <NoSkills>
-            <NoContent message={NO_SKILLS} size={SIZE.medium} />
+            <NoContent message={NO_SKILLS} size={ESize.medium} />
           </NoSkills>
         )}
       </SkillsList>

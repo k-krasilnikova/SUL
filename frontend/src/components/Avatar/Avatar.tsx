@@ -2,11 +2,12 @@ import React from 'react';
 
 import { User } from 'types/user';
 import { avatarDefault } from 'icons';
+import { TSizeVariants } from 'types/size';
 
 import { UserAvatarRounded } from './styled';
 
 interface AvatarProps {
-  size: string;
+  size: TSizeVariants;
 }
 
 type Props = User & AvatarProps;

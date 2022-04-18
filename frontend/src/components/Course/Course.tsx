@@ -4,9 +4,10 @@ import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescripti
 import { convertCourseStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
 
 import { checkIcon } from 'icons';
-import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
-import { SIZE } from 'constants/sizes';
+import { ESize } from 'enums/sizes';
+import { CourseStatus } from 'enums/courseEnums';
+import { EInfo } from 'enums/info';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -29,10 +30,10 @@ interface Props {
   title?: string;
   duration?: string;
   lessons?: number;
-  status?: string;
+  status?: CourseStatus;
   pageName?: string;
   windowWidth?: string;
-  type?: string;
+  type?: EInfo;
   imageUrl?: string;
   courseRef?: (node?: Element | null) => void;
 }
@@ -63,16 +64,16 @@ const Course: React.FC<Props> = ({
         <MobileCourseInfoBox>
           <CourseInfo duration={duration} lessons={lessons} />
         </MobileCourseInfoBox>
-        {status === COURSE_STATUSES.completed && (
+        {status === CourseStatus.completed && (
           <MobileCourseCompleted>
             Completed <img alt="" src={checkIcon} />
           </MobileCourseCompleted>
         )}
       </CourseTextContainer>
-      {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed && (
+      {pageName === PAGES.myCourses && status !== CourseStatus.completed && (
         <MobileCourseProgress>
           <ProgressBar
-            size={SIZE.medium}
+            size={ESize.medium}
             text={convertCourseStatusToProgress(status).progressText}
             value={convertCourseStatusToProgress(status).progressValue}
             variant={convertCourseStatusToProgress(status).progressVariant}

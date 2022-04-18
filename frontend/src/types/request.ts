@@ -1,4 +1,5 @@
 import { CourseStatus } from 'enums/courseEnums';
+
 import { TRequestedCourse } from './course';
 import { TimeProps } from './time';
 import { TRequestedUser } from './user';

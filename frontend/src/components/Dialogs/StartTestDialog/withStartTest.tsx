@@ -1,18 +1,18 @@
 import { useCallback } from 'react';
 import { useParams } from 'react-router';
 
-import { COURSE_STATUSES } from 'constants/statuses';
 import { ClientCourse } from 'types/clientCourse';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 import { useGetTestTime, useStartCourseTest } from 'api/test';
 import checkTestDate from 'utils/helpers/checkTestDate';
+import { CourseStatus } from 'enums/courseEnums';
 import { useToggle } from 'hooks';
 
 import StartTestDialog from './StartTestDialog';
 
 type IncomingProps = {
   timeout?: number;
-  status?: string;
+  status?: CourseStatus;
   progress?: ClientCourse['progress'];
   testDate?: string;
 };
@@ -35,7 +35,7 @@ const withStartTest =
     const isTestDisabled = useCallback(
       () =>
         (status &&
-          [COURSE_STATUSES.completed, COURSE_STATUSES.testing, COURSE_STATUSES.assessment].includes(
+          [CourseStatus.completed, CourseStatus.testing, CourseStatus.assessment].includes(
             status,
           )) ||
         !checkTestDate(testDate, timeout) ||

@@ -1,13 +1,13 @@
 import { FC } from 'react';
 
-import { MATERIAL } from 'constants/materials';
+import { MATERIAL, TMaterialVariants } from 'constants/materials';
 import { playVideo } from 'icons';
 
 import { MaterialWrapper, MaterialText, MaterialVideo } from './styled';
 
 interface IProps {
   material: string;
-  materialType: string;
+  materialType: TMaterialVariants;
   videoPreview: string | boolean;
 }
 

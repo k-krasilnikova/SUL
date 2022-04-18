@@ -5,13 +5,13 @@ import Loader from 'components/Loader';
 import NoContent from 'components/NoContent';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { NO_CONTENT } from 'constants/messages';
-import { LOADER } from 'constants/loaderTypes';
-import { IPassingTestProps } from 'types/test';
+import { ELoader } from 'enums/loader';
 
 import { BackButton, InnerWrapper, PassingTestWrapper } from './styled';
 import QuestionItem from './QuestionItem';
 import TestButtons from './TestButtons';
 import TestTitleAndTimer from './TestTitleAndTimer';
+import { IPassingTestProps } from './types';
 
 const PassingTest: React.FC<IPassingTestProps> = ({
   stage,
@@ -29,7 +29,7 @@ const PassingTest: React.FC<IPassingTestProps> = ({
 }) => (
   <AuthorizedLayout pageName="Passing Test">
     {isLoading ? (
-      <Loader color="primary" type={LOADER.content} />
+      <Loader color="primary" type={ELoader.content} />
     ) : testItem ? (
       <PassingTestWrapper>
         <InnerWrapper>

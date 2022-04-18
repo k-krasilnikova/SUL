@@ -1,4 +1,6 @@
+import { COURSE_LABELS } from 'constants/statuses';
 import { CourseStatus } from 'enums/courseEnums';
+
 import { TimeProps } from './time';
 
 export type TMaterial = {
@@ -13,7 +15,7 @@ export type TMaterial = {
 };
 export type CourseTechnology = { skill: string; points: number };
 export type TCourseStatus = `${CourseStatus}`;
-export interface Course {
+export interface ICourse {
   _id: string;
   title: string;
   description: string;
@@ -27,9 +29,11 @@ export interface Course {
   avatar?: string;
 }
 
-export type TCheckedCourse = Pick<Course, '_id' | 'title'>;
-export type TCourseInfo = Pick<Course, 'title' | 'description'>;
-export type TRequestedCourse = Pick<Course, '_id' | 'avatar' | 'title'>;
+export type TCheckedCourse = Pick<ICourse, '_id' | 'title'>;
+export type TCourseInfo = Pick<ICourse, 'title' | 'description'>;
+export type TRequestedCourse = Pick<ICourse, '_id' | 'avatar' | 'title'>;
+export type TCourseLabels = typeof COURSE_LABELS[keyof typeof COURSE_LABELS];
+
 export enum CoursesListType {
   COURSES = 'COURSES',
   CHECKED_COURSES = 'CHECKED_COURSES',

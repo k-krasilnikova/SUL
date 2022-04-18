@@ -4,8 +4,8 @@ import Loader from 'components/Loader';
 import NoContent from 'components/NoContent';
 import { AuthorizedLayout } from 'components/Layout';
 import { IRequest } from 'types/request';
-import { LOADER } from 'constants/loaderTypes';
 import { NO_REQUESTS } from 'constants/messages';
+import { ELoader } from 'enums/loader';
 
 import RequestItem from './RequestItem';
 import { RequestsWrapper } from './styled';
@@ -23,7 +23,7 @@ interface IRequestsProps {
 const Requests: React.FC<IRequestsProps> = ({ requests, isLoading, targetId, ...props }) => (
   <AuthorizedLayout pageName="Requests">
     {isLoading ? (
-      <Loader color="primary" type={LOADER.content} />
+      <Loader color="primary" type={ELoader.content} />
     ) : requests?.length ? (
       <RequestsWrapper container>
         {requests.map((request) => {

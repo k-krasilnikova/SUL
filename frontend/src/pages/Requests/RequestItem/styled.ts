@@ -3,9 +3,10 @@ import { Box, Grid } from '@mui/material';
 
 import { REQUEST_STATUS } from 'constants/requests';
 import theme from 'themeSettings';
+import { CourseStatus } from 'enums/courseEnums';
 
 interface IStatus {
-  status?: string;
+  status?: CourseStatus;
 }
 
 export const ImageWrapper = styled('div')({

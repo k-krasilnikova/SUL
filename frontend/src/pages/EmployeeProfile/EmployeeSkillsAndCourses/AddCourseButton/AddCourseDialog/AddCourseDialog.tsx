@@ -1,7 +1,7 @@
 import { FC, BaseSyntheticEvent } from 'react';
 
-import { SIZE } from 'constants/sizes';
 import { Dialog } from 'components/Dialogs';
+import { ESize } from 'enums/sizes';
 import { Course, TCheckedCourse, CoursesListType } from 'types/course';
 
 import { CoursesList } from './CoursesList';
@@ -38,7 +38,7 @@ const AddCourseDialog: FC<IProps> = ({
   handleCheckboxChange,
   lastCourseRef,
 }) => (
-  <Dialog open={isOpened} onClose={handleClose} size={SIZE.large}>
+  <Dialog open={isOpened} onClose={handleClose} size={ESize.large}>
     <ContentWrapper>
       <SearchInput
         isNoResult={isNoSearchResult}

@@ -2,10 +2,10 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 import CourseInfo from 'components/Course/CourseInfo';
-import Label from 'components/Label';
-import { INFO } from 'constants/courseInfoTypes';
 import { LABEL_MESSAGE } from 'constants/messages';
+import Label from 'components/Label';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
+import { EInfo } from 'enums/info';
 
 import { Image, CourseTitle, SearchResultCourse, RedirectButton } from './styled';
 import { ISearchResultItem } from '../../types';
@@ -25,7 +25,7 @@ const SearchResultItem: React.FC<ISearchResultItem> = ({
         <CourseInfo
           lessons={course.lessons}
           duration={convertDurationToString(course.duration)}
-          type={INFO.searchCourses}
+          type={EInfo.searchCourses}
         />
       </Box>
     </SearchResultCourse>

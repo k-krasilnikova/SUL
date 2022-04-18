@@ -1,7 +1,8 @@
-export interface Skill {
+export interface ISkill {
   name: string;
   image: string;
   maxScore: number;
+  group: string;
 }
 
 export interface TechnologyGroup {
@@ -14,9 +15,9 @@ export interface TechnologyGroup {
 
 export interface UserSkill {
   score: number;
-  skill: Skill;
+  skill: ISkill;
 }
 
-export type GroupedSkills = Map<string | number, Skill[]>;
+export type GroupedSkills = Map<string | number, ISkill[]>;
 
 export type Technologies = Array<TechnologyGroup>;
