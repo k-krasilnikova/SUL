@@ -1,29 +1,40 @@
 import { NextFunction, Request, Response } from 'express';
+import { isEmpty } from 'lodash';
 
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import { getTestProvider } from 'db/providers/testProvider';
-import { checkTestDate } from 'utils/validation/checkTestDate';
-import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
+import { getTestProvider } from 'db/providers/testProvider';
+import {
+  getClientCourseProvider,
+  updateClientCourseField,
+} from 'db/providers/clientCourseProvider';
+import CourseStatus from 'enums/coursesEnums';
+import { isTestAvailableByDate } from 'utils/validation/tests';
+import { CLIENT_COURSE_FIELDS } from 'config/constants';
 
 const getTest = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
-    const { status: courseStatus, testDate } = await getClientCourseProvider(clientCourseId);
+    const { status: courseStatus, finishTestDate } = await getClientCourseProvider(clientCourseId);
 
     if (courseStatus !== CourseStatus.testing) {
       throw new BadRequestError(`Failed: can not get test with status: ${courseStatus}.`);
     }
 
-    if (testDate && !checkTestDate(testDate)) {
+    if (!isTestAvailableByDate(finishTestDate)) {
+      await updateClientCourseField(
+        clientCourseId,
+        CLIENT_COURSE_FIELDS.status,
+        CourseStatus.failed,
+      );
       throw new BadRequestError('Your test is disabled.');
     }
 
     const test = await getTestProvider(clientCourseId);
-    if (!test.length) {
+    if (isEmpty(test)) {
       throw new NotFoundError('No tests found.');
     }
+
     res.json(test);
   } catch (err) {
     next(err);
