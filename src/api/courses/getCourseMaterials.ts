@@ -19,7 +19,7 @@ const useGetCourseMaterials = (
     [QUERY_KEYS.courseInfo, courseId],
     async () => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.get(`${API.getCourses}/${courseId}/materials`);
+      const response = await apiClient.get(`${API.courses}/${courseId}/materials`);
       const courseMaterialsResponse: Array<ICourseMaterialsResponse> = response.data;
       return courseMaterialsResponse;
     },
