@@ -8,7 +8,9 @@ import EmployeeProfile from './EmployeeProfile';
 
 const EmployeeProfileContainer: React.FC = () => {
   const params = useParams();
-  const { data: employeeResponse } = useGetEmployeeProfile(params.employeeId);
+  const { data: employeeResponse, refetch: refetchEmployeeProfile } = useGetEmployeeProfile(
+    params.employeeId,
+  );
 
   const [employeeInfo, setEmployeeInfo] = useState(EMPLOYEE_INFO.skills);
   const [hoveredButton, setHoveredButton] = useState<string | undefined>(undefined);
@@ -44,6 +46,7 @@ const EmployeeProfileContainer: React.FC = () => {
       toggleProfileInfoOpened={toggleProfileInfoOpened}
       isSkillOpened={isSkillOpened}
       isCourseOpened={isCourseOpened}
+      refetchEmployeeProfile={refetchEmployeeProfile}
     />
   );
 };

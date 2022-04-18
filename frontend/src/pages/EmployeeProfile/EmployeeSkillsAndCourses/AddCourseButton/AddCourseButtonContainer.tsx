@@ -4,13 +4,18 @@ import { useToggle } from 'hooks';
 
 import AddCourseButton from './AddCourseButton';
 
-const AddCourseButtonContainer: FC = () => {
+interface IAddCourseButtonContainer {
+  refetchEmployeeProfile: () => void;
+}
+
+const AddCourseButtonContainer: FC<IAddCourseButtonContainer> = ({ refetchEmployeeProfile }) => {
   const [isAddCourseDialogOpen, setAddCourseDialogOpen] = useToggle();
 
   return (
     <AddCourseButton
       isAddCourseDialogOpen={isAddCourseDialogOpen}
       toggleAddCourseDiaologOpen={setAddCourseDialogOpen}
+      refetchEmployeeProfile={refetchEmployeeProfile}
     />
   );
 };

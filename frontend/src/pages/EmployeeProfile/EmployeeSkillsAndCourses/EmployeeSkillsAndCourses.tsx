@@ -20,6 +20,7 @@ const EmployeeSkillsAndCourses: React.FC<IEmployeeSkillsAndCourses> = ({
   employeeInfo,
   toggleEmployeeInfo,
   toggleHover,
+  refetchEmployeeProfile,
   isSkillOpened,
   isCourseOpened,
 }) => (
@@ -43,7 +44,7 @@ const EmployeeSkillsAndCourses: React.FC<IEmployeeSkillsAndCourses> = ({
           {ButtonLabels.allCourses}
         </SkillsAndCoursesButton>
       </EmployeeButtonGroup>
-      <AddCourseButton />
+      <AddCourseButton refetchEmployeeProfile={refetchEmployeeProfile} />
     </SkillsAndCoursesBox>
     <UserSkillsWrapper>
       {employeeInfo === EMPLOYEE_INFO.skills ? (

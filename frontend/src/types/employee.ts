@@ -37,6 +37,7 @@ export interface IEmployeeProfile {
   toggleHover: (buttonHovered: string) => void;
   profileInfoOpened: boolean;
   toggleProfileInfoOpened: () => void;
+  refetchEmployeeProfile: () => void;
   isSkillOpened: boolean;
   isCourseOpened: boolean;
   employeeCourses?: ClientCourse[];
@@ -65,6 +66,7 @@ export interface IEmployeeSkillsAndCourses {
   employeeInfo: string;
   toggleEmployeeInfo: (infoToOpen: string) => void;
   toggleHover: (buttonHovered: string) => void;
+  refetchEmployeeProfile: () => void;
   isSkillOpened: boolean;
   isCourseOpened: boolean;
   employeeCourses?: ClientCourse[];

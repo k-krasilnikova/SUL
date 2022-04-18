@@ -20,6 +20,7 @@ const EmployeeProfile: React.FC<IEmployeeProfile> = ({
   toggleProfileInfoOpened,
   isSkillOpened,
   isCourseOpened,
+  refetchEmployeeProfile,
 }) => (
   <AuthorizedLayout pageName="Employee">
     <EmployeeProfileWrapper>
@@ -37,6 +38,7 @@ const EmployeeProfile: React.FC<IEmployeeProfile> = ({
         employeeInfo={employeeInfo}
         toggleEmployeeInfo={toggleEmployeeInfo}
         toggleHover={toggleHover}
+        refetchEmployeeProfile={refetchEmployeeProfile}
         isSkillOpened={isSkillOpened}
         isCourseOpened={isCourseOpened}
       />
