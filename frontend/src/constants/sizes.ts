@@ -7,6 +7,6 @@ export const SIZE = {
   xlarge: 'xlarge',
 };
 
-export const LENGTHS = {
+export const LENGTH = {
   lastArrayItem: -1,
 };
