@@ -201,7 +201,7 @@ const skillsToCourseTechs = async (technologies: { skill: ObjectId; points: numb
     }),
   );
 
-  const techsForCourse = techs.map((currentSkill, index): { skill: ObjectId; points: number } => {
+  const techsForCourse = techs.map((currentSkill, index) => {
     return {
       skill: currentSkill?._id as ObjectId,
       points: technologies[index].points,
