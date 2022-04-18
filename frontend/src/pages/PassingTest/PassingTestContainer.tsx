@@ -149,17 +149,14 @@ const PassingTestContainer: React.FC = () => {
             handleNavigateBack={handleNavigateBack}
           />
           <ConfirmLeavePage
-            showDialog={showPrompt}
-            isOpened={isConfirmOpen}
+            isOpened={isConfirmOpen || showPrompt}
+            isLoading={courseTestResponseIsLoading}
             handleCancelLeavePage={cancelNavigation}
             handleLeavePage={confirmNavigation}
-            isLoading={courseTestResponseIsLoading}
-            size="small"
           />
           <ConfirmTimeIsOver
             isOpened={isTestTimeoutDialogOpen}
             handleClose={handleCloseTimeIsOverDialog}
-            size="small"
           />
         </>
       )}

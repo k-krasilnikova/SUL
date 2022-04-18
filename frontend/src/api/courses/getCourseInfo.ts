@@ -17,7 +17,7 @@ const useGetCourseInfo = (courseId: string | undefined): UseQueryResult<ICourse,
     [QUERY_KEYS.courseInfo, courseId],
     async () => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.get(`${API.getCourses}/${courseId}`);
+      const response = await apiClient.get(`${API.courses}/${courseId}`);
       const courseResponse: Array<ICourse> = response.data;
       return courseResponse;
     },

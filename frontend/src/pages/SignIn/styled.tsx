@@ -1,5 +1,4 @@
-import { styled } from '@mui/styles';
-import { Grid, Box } from '@mui/material';
+import { styled, Grid, Box } from '@mui/material';
 
 import theme from 'themeSettings';
 

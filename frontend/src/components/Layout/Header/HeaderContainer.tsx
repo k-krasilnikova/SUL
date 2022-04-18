@@ -49,11 +49,10 @@ const HeaderContainer: React.FC<Props> = ({
         toggleMobileMenu={toggleMobileMenu}
       />
       <ConfirmLogOut
-        handleLogOut={handleLogOut}
         isOpened={isConfirmOpen}
-        handleCancelLogOut={cancelLogOut}
         isLoading={isLoading}
-        size="small"
+        handleLogOut={handleLogOut}
+        handleCancelLogOut={cancelLogOut}
       />
     </>
   );
