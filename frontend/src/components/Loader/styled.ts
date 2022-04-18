@@ -1,13 +1,12 @@
-import styled from 'styled-components';
-import { Box } from '@mui/system';
+import { styled, Box } from '@mui/material';
 
-import theme from 'themeSettings';
 import { LOADER } from 'constants/loaderTypes';
 import {
   HEADER_HEIGHT,
   HEADER_HEIGHT_IPAD,
   HEADER_HEIGHT_MOBILE,
 } from 'components/Layout/Header/styled';
+import theme from 'themeSettings';
 
 interface LoaderType {
   type?: string;

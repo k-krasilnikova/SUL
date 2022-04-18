@@ -1,5 +1,4 @@
-import { DialogContentText, DialogTitle, DialogActions } from '@mui/material';
-import styled from 'styled-components';
+import { styled, DialogContentText, DialogTitle, DialogActions } from '@mui/material';
 
 import theme from 'themeSettings';
 import Button from 'components/Button';
@@ -42,7 +41,7 @@ export const SecondaryDialogContentText = styled(DialogContentText)({
   '&.MuiDialogContentText-root': {
     marginBottom: '16px',
     fontSize: '16px',
-    fontWeight: '400',
+    fontWeight: 400,
     [theme.breakpoints.down('md')]: {
       marginBottom: '32px',
       fontSize: '14px',

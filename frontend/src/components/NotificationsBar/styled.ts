@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -28,13 +28,13 @@ export const Notifications = styled('div')({
 
 export const NotificationsButton = styled('div')({
   position: 'relative',
-  flexGrow: '0',
-  flexShrink: '0',
+  flexGrow: 0,
+  flexShrink: 0,
   borderRadius: '3px',
   backgroundColor: 'rgba(118, 118, 128, 0.12)',
   width: '40px',
   height: '40px',
-  margin: '15px 20px 15px 0px',
+  margin: '15px 20px 15px 0',
   padding: '5px',
   display: 'flex',
   justifyContent: 'center',

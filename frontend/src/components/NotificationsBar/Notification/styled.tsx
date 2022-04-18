@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 interface NotificationStyleType {
   isOld?: boolean;
@@ -25,7 +25,7 @@ export const ImageWrapper = styled('p')({
 
 export const Title = styled('h2')({
   fontSize: '16px',
-  fontWeight: '700',
+  fontWeight: 700,
   margin: '5px 0',
 });
 

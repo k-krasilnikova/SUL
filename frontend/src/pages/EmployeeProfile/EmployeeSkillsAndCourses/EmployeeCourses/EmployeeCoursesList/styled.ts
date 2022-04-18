@@ -23,7 +23,7 @@ export const CoursesListItem = styled('div')({
   border: '1px solid #efefef',
   borderRadius: '5px',
   paddingTop: '16px',
-  fontWeight: '400',
+  fontWeight: 400,
   margin: '24px 0 16px 63px',
   padding: '15px',
   [theme.breakpoints.down('xl')]: {

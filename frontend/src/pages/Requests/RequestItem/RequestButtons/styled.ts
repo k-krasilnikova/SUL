@@ -13,7 +13,7 @@ export const ActionButton = styled(Button)({
   height: '34px',
   width: '64px',
   '&.MuiButton-root': {
-    fontWeight: '400',
+    fontWeight: 400,
     fontSize: '16px',
     lineHeight: '14px',
   },
@@ -31,6 +31,6 @@ export const InterviewActionButton = styled(ActionButton)({
   height: '34px',
   width: '165px',
   '&.MuiButton-root': {
-    padding: '0',
+    padding: 0,
   },
 });

@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { styled, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
 

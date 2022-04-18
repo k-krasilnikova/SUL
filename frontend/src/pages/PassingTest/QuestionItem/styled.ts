@@ -1,27 +1,25 @@
-import styled from 'styled-components';
-import { FormControlLabel, Radio, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { styled, Box, FormControlLabel, Radio, Typography } from '@mui/material';
 
 import theme from 'themeSettings';
 
 export const StyledFormControlLabel = styled(FormControlLabel)({
   display: 'flex',
   alignItems: 'center',
-  marginLeft: '0 !important',
+  marginLeft: 0,
   marginBottom: '17px',
   '& .MuiFormControlLabel-label': {
     borderRadius: '4px',
-    fontSize: '20px !important',
-    fontStyle: 'normal !important',
-    lineHeight: '24px !important',
+    fontSize: '20px',
+    fontStyle: 'normal',
+    lineHeight: '24px',
     letterSpacing: 'normal',
-    fontWeight: '400 !important',
+    fontWeight: 400,
     maxWidth: '55vw',
     marginLeft: '28px',
     fontFamily: theme.typography.fontFamily,
     color: theme.palette.text.primary,
     [theme.breakpoints.down('xl')]: {
-      fontSize: '18px !important',
+      fontSize: '18px',
       marginLeft: '24px',
       maxWidth: '50vw',
     },
@@ -35,7 +33,7 @@ export const StyledFormControlLabel = styled(FormControlLabel)({
       maxWidth: '66vw',
     },
     [theme.breakpoints.down('sm')]: {
-      fontSize: '14px !important',
+      fontSize: '14px',
       maxWidth: '64vw',
       marginLeft: '8px',
     },
@@ -51,14 +49,14 @@ export const QuestionAndStageBox = styled(Box)({
 });
 
 export const TestQuestion = styled(Typography)({
-  fontWeight: '500 !important',
-  fontSize: '24px !important',
+  fontWeight: 500,
+  fontSize: '24px',
   color: '#000000',
   [theme.breakpoints.down('xl')]: {
-    fontSize: '22px !important',
+    fontSize: '22px',
   },
   [theme.breakpoints.down('sm')]: {
-    fontSize: '16px !important',
+    fontSize: '16px',
     color: '#131313',
   },
 });
@@ -66,41 +64,41 @@ export const TestQuestion = styled(Typography)({
 export const StageWrapper = styled(Box)({
   marginRight: '332px',
   [theme.breakpoints.down('xl')]: {
-    marginRight: '190px !important',
-    marginLeft: '146px !important',
+    marginRight: '190px',
+    marginLeft: '146px',
   },
   [theme.breakpoints.down('md')]: {
-    marginRight: '5vw !important',
-    marginLeft: '27px !important',
+    marginRight: '5vw',
+    marginLeft: '27px',
   },
   [theme.breakpoints.down('sm')]: {
-    marginRight: '11px !important',
+    marginRight: '11px',
   },
 });
 
 export const Stage = styled(Typography)({
-  fontSize: '18px !important',
+  fontSize: '18px',
   color: '#131313',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '14px !important',
+    fontSize: '14px',
   },
 });
 
 export const AnswersBox = styled(Box)({
-  marginTop: '25px !important',
+  marginTop: '25px',
   display: 'flex',
   flexDirection: 'column',
   [theme.breakpoints.down('md')]: {
-    marginRight: '15vw !important',
+    marginRight: '15vw',
   },
   [theme.breakpoints.down('sm')]: {
-    marginRight: '11px !important',
+    marginRight: '11px',
   },
 });
 
 export const StyledRadio = styled(Radio)({
   display: 'flex',
-  padding: '0 !important',
+  padding: 0,
   alignSelf: 'flex-start',
 });
 
@@ -112,6 +110,6 @@ export const QuestionItemBox = styled(Box)({
     marginLeft: '88px',
   },
   [theme.breakpoints.down('sm')]: {
-    marginLeft: '0',
+    marginLeft: 0,
   },
 });

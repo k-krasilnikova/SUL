@@ -7,7 +7,7 @@ import theme from 'themeSettings';
 export const BackArrow = styled('img')({
   [theme.breakpoints.up('xs')]: {
     display: 'inline-block',
-    margin: '0px 23px -3px 16px',
+    margin: '0 23px -3px 16px',
   },
   [theme.breakpoints.up(950)]: {
     display: 'none',
