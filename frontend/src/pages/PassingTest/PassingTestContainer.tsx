@@ -12,7 +12,7 @@ import {
 } from 'constants/test';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
-import { useToggle, useCallbackPrompt } from 'hooks';
+import { useToggle } from 'hooks';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
 
@@ -73,7 +73,7 @@ const PassingTestContainer: React.FC = () => {
     courseId: params.courseId,
   });
 
-  const handleSubmitResult = () => {
+  const submitResult = (isResultPageEnabled = true) => {
     const resultData = {
       testId: courseTest?._id,
       answers: Object.entries(values).map(([key, value]) => ({
@@ -82,12 +82,16 @@ const PassingTestContainer: React.FC = () => {
       })),
     };
     sendTestResult(resultData);
-    setTestResultPageEnabled(true);
+    setTestResultPageEnabled(isResultPageEnabled);
+  };
+
+  const handleSubmitResult = () => {
+    submitResult();
   };
 
   const handleCloseTimeIsOverDialog = () => {
     setTestTimeoutDialogOpen();
-    handleSubmitResult();
+    submitResult(false);
     naviagteTo(transformRoute(PATHS.myCourseDetails, params.courseId));
   };
 
@@ -102,13 +106,15 @@ const PassingTestContainer: React.FC = () => {
 
   const isTestTimeOver = useMemo(
     () =>
-      getDurationBetweenDates(clientCourseResponse?.finishTestDate) < 0 &&
-      courseStatus === COURSE_STATUSES.testing,
+      courseStatus === COURSE_STATUSES.testing &&
+      getDurationBetweenDates(clientCourseResponse?.finishTestDate) < 0,
     [clientCourseResponse?.finishTestDate, courseStatus],
   );
 
-  const isShouldRedirect =
-    (!clientCourseResponseIsLoading && courseStatus !== COURSE_STATUSES.testing) || isTestTimeOver;
+  const isNotTestingCourseStatus =
+    !clientCourseResponseIsLoading && courseStatus !== COURSE_STATUSES.testing;
+
+  const isShouldRedirect = isNotTestingCourseStatus || isTestTimeOver;
 
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
@@ -128,17 +134,21 @@ const PassingTestContainer: React.FC = () => {
   const progressBarData = isFailed
     ? convertTestStatusToProgress(TEST_STATUS.failed, percentageValue)
     : convertTestStatusToProgress(TEST_STATUS.successful, percentageValue);
-  const [showDialogOnSwitchingRoute, setShowDialogOnSwitchingRoute] = useState<boolean>(false);
+  // const [showDialogOnSwitchingRoute, setShowDialogOnSwitchingRoute] = useState<boolean>(false);
 
-  const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(
-    showDialogOnSwitchingRoute,
-  );
+  // const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(
+  //   showDialogOnSwitchingRoute,
+  // );
 
-  useEffect(() => {
-    if (courseTest) {
-      setShowDialogOnSwitchingRoute(true);
-    }
-  }, [courseTest, showDialogOnSwitchingRoute]);
+  // useEffect(() => {
+  //   if (courseTest) {
+  //     setShowDialogOnSwitchingRoute(true);
+  //   }
+  // }, [courseTest, showDialogOnSwitchingRoute]);
+
+  if (isShouldRedirect && !isTestResultPageEnabled) {
+    return <Navigate replace to={transformRoute(PATHS.myCourseDetails, params.courseId)} />;
+  }
 
   return (
     <>
@@ -162,10 +172,10 @@ const PassingTestContainer: React.FC = () => {
             handleNavigateBack={handleNavigateBack}
           />
           <ConfirmLeavePage
-            showDialog={showPrompt}
+            showDialog={false}
             isOpened={isConfirmOpen}
-            handleCancelLeavePage={cancelNavigation}
-            handleLeavePage={confirmNavigation}
+            handleCancelLeavePage={() => {}}
+            handleLeavePage={() => {}}
             isLoading={courseTestResponseIsLoading}
             size="small"
           />
@@ -185,9 +195,6 @@ const PassingTestContainer: React.FC = () => {
           responseData={responseData}
           status={clientCourseResponse?.status}
         />
-      )}
-      {isShouldRedirect && !isTestResultPageEnabled && (
-        <Navigate replace to={transformRoute(PATHS.myCourseDetails, params.courseId)} />
       )}
     </>
   );
