@@ -1,5 +1,4 @@
-import { Typography, Button as TextButton } from '@mui/material';
-import { styled } from '@mui/material';
+import { styled, Typography, Button as TextButton } from '@mui/material';
 
 import theme from 'themeSettings';
 

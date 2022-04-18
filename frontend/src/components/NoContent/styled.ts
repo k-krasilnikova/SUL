@@ -1,5 +1,4 @@
-import { styled } from '@mui/material';
-import Box from '@mui/material/Box';
+import { styled, Box } from '@mui/material';
 
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';

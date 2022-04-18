@@ -1,6 +1,4 @@
-import { styled } from '@mui/material';
-import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
+import { styled, Typography, Box } from '@mui/material';
 
 import Button from 'components/Button/Button';
 import theme from 'themeSettings';

@@ -1,5 +1,4 @@
-import { Box } from '@mui/material';
-import { styled } from '@mui/material';
+import { styled, Box } from '@mui/material';
 
 import Button from 'components/Button';
 import theme from 'themeSettings';

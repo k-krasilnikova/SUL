@@ -1,6 +1,5 @@
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Box, List, ListItem } from '@mui/material';
-import { styled } from '@mui/material';
+import { styled, Box, List, ListItem } from '@mui/material';
 
 import theme from 'themeSettings';
 

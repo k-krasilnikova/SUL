@@ -1,5 +1,4 @@
-import { styled } from '@mui/material';
-import { List, Divider } from '@mui/material';
+import { styled, List, Divider } from '@mui/material';
 
 import { CoursesListType } from 'types/course';
 

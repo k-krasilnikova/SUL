@@ -1,7 +1,6 @@
-import { styled } from '@mui/material';
-import { makeStyles } from '@material-ui/core';
-import { ListItemButton, ListItemText } from '@mui/material';
 import { ReactFragment } from 'react';
+import { makeStyles } from '@material-ui/core';
+import { styled, ListItemButton, ListItemText } from '@mui/material';
 
 import { leftArrow, rightArrow } from 'icons/menuIcons';
 import theme from 'themeSettings';

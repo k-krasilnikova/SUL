@@ -1,5 +1,4 @@
-import { styled } from '@mui/material';
-import { ListItem, Typography } from '@mui/material';
+import { styled, ListItem, Typography } from '@mui/material';
 
 import { imageDefault } from 'icons';
 import theme from 'themeSettings';

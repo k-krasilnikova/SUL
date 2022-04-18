@@ -1,5 +1,4 @@
-import { styled } from '@mui/material';
-import { Box, Grid } from '@mui/material';
+import { styled, Box, Grid } from '@mui/material';
 
 import { REQUEST_STATUS } from 'constants/requests';
 import theme from 'themeSettings';

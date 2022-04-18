@@ -1,5 +1,4 @@
-import { styled } from '@mui/material';
-import { Box } from '@mui/material';
+import { styled, Box } from '@mui/material';
 
 import { INFO } from 'constants/courseInfoTypes';
 import theme from 'themeSettings';

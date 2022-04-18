@@ -1,5 +1,4 @@
-import { styled } from '@mui/material';
-import { FormControlLabel, ListItem } from '@mui/material';
+import { styled, FormControlLabel, ListItem } from '@mui/material';
 
 import theme from 'themeSettings';
 

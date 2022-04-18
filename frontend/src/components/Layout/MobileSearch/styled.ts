@@ -1,5 +1,4 @@
-import { styled } from '@mui/material';
-import { Input } from '@mui/material';
+import { styled, Input } from '@mui/material';
 
 import theme from 'themeSettings';
 

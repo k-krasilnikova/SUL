@@ -1,5 +1,4 @@
-import { Button as ToggleButton, ButtonGroup } from '@mui/material';
-import { styled } from '@mui/material';
+import { styled, Button as ToggleButton, ButtonGroup } from '@mui/material';
 
 import theme from 'themeSettings';
 

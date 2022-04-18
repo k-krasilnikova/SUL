@@ -1,6 +1,4 @@
-import { styled } from '@mui/material';
-import { FormControlLabel, Radio, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { styled, FormControlLabel, Radio, Typography, Box } from '@mui/material';
 
 import theme from 'themeSettings';
 
