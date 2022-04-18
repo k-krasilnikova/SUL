@@ -43,7 +43,7 @@ export interface CourseDuration {
 }
 
 export interface ICourses {
-  сoursesResponse: ICourse[];
+  сoursesResponse: Course[];
 }
 
 export interface ICourseMaterialsResponse {
