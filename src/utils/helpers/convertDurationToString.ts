@@ -1,6 +1,6 @@
-import { CourseDuration } from 'types/course';
+import { TimeProps } from 'types/time';
 
-export const convertDurationToString = (duration: CourseDuration): string =>
+export const convertDurationToString = (duration: TimeProps): string =>
   `${(duration.days && duration.days.toString().concat('d ')) || ''}` +
   `${(duration.hours && duration.hours.toString().concat('h ')) || ''}` +
   `${(duration.minutes && duration.minutes.toString().concat('m')) || ''}`;

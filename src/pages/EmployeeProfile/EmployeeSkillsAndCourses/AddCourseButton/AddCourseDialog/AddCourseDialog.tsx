@@ -2,7 +2,7 @@ import { FC, BaseSyntheticEvent } from 'react';
 
 import { SIZE } from 'constants/sizes';
 import { Dialog } from 'components/Dialogs';
-import { ICourse, ICheckedCourse, CoursesListType } from 'types/course';
+import { Course, TCheckedCourse, CoursesListType } from 'types/course';
 
 import { CoursesList } from './CoursesList';
 import { SearchInput } from './SearchInput';
@@ -10,8 +10,8 @@ import { ActionButton } from './ActionButton';
 import { ContentWrapper } from './styled';
 
 interface IProps {
-  selectedCoursesList: ICheckedCourse[];
-  foundedCoursesList: ICourse[];
+  selectedCoursesList: TCheckedCourse[];
+  foundedCoursesList: Course[];
   isOpened: boolean;
   isNoSearchResult: boolean;
   isCoursesLoading: boolean;

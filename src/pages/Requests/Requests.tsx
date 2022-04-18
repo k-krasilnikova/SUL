@@ -3,22 +3,24 @@ import React from 'react';
 import Loader from 'components/Loader';
 import NoContent from 'components/NoContent';
 import { AuthorizedLayout } from 'components/Layout';
+import { IRequest } from 'types/request';
 import { LOADER } from 'constants/loaderTypes';
 import { NO_REQUESTS } from 'constants/messages';
-import { IRequestsProps } from 'types/request';
 
 import RequestItem from './RequestItem';
 import { RequestsWrapper } from './styled';
 
-const Requests: React.FC<IRequestsProps> = ({
-  requests,
-  isLoading,
-  targetId,
-  approveRequest,
-  approveLoading,
-  declineRequest,
-  declineLoading,
-}) => (
+interface IRequestsProps {
+  approveRequest: (requestId: string) => void;
+  approveLoading: boolean;
+  declineRequest: (requestId: string) => void;
+  declineLoading: boolean;
+  requests?: IRequest[];
+  isLoading?: boolean;
+  targetId?: string;
+}
+
+const Requests: React.FC<IRequestsProps> = ({ requests, isLoading, targetId, ...props }) => (
   <AuthorizedLayout pageName="Requests">
     {isLoading ? (
       <Loader color="primary" type={LOADER.content} />
@@ -30,12 +32,8 @@ const Requests: React.FC<IRequestsProps> = ({
             <RequestItem
               key={request._id}
               request={request}
-              approveRequest={approveRequest}
-              approveLoading={approveLoading}
-              declineRequest={declineRequest}
-              declineLoading={declineLoading}
               isTargetRequest={isTargetRequest}
-              status={request.status}
+              {...props}
             />
           );
         })}

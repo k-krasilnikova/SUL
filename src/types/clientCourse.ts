@@ -16,9 +16,5 @@ export interface ClientCourse {
   applyDate?: string;
   testDate?: string;
 }
-export interface ICourseInfo {
-  title: string;
-  description: string;
-}
 
 export type PureClientCourse = Omit<ClientCourse, 'course'>;

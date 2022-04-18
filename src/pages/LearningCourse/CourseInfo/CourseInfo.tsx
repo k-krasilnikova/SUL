@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-import { ICourseInfo } from 'types/clientCourse';
+import { TCourseInfo } from 'types/course';
 
 import { CourseInfoWrapper, CourseInfoContent, CourseInfoTitle, CourseInfoText } from './styled';
 
 interface IProps {
-  courseInfo: ICourseInfo;
+  courseInfo: TCourseInfo;
   isCourseInfoOpen: boolean;
 }
 

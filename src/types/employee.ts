@@ -1,28 +1,10 @@
 import { ClientCourse } from './clientCourse';
-import { Technologies } from './skill';
+import { User } from './user';
 
-export interface IEmployee {
+export interface IEmployee extends User {
   _id: string;
-  firstName: string;
-  lastName: string;
-  position: string;
-  group: string;
   rank: number;
   stack: { name: string }[];
-  avatar: string;
-  skype: string;
-  phone: string;
-  technologies?: Technologies;
-  courses?: ClientCourse[];
-}
-
-export interface IEmployeeProps {
-  handleNavigate: (_id: string) => void;
-  employee: IEmployee;
-}
-
-export interface IEmployees {
-  employeesResponse: IEmployee[];
 }
 
 export interface IEmployeesProps {
