@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router';
 
 import { useSendTestResult, useGetCourseTest } from 'api/test';
@@ -10,7 +10,6 @@ import {
   STAGE_CHANGE,
   TEST_STATUS,
 } from 'constants/test';
-import { TO_MILLISECONDS_RATIO } from 'constants/time';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { useToggle, useCallbackPrompt } from 'hooks';
@@ -21,6 +20,7 @@ import PassingTest from './PassingTest';
 import TestResult from './TestResult';
 import ConfirmLeavePage from './ConfirmLeavePage';
 import ConfirmTimeIsOver from './ConfirmTimeIsOver';
+import { getDurationBetweenDates } from './utils';
 
 const PassingTestContainer: React.FC = () => {
   const params = useParams();
@@ -37,16 +37,21 @@ const PassingTestContainer: React.FC = () => {
 
   const [isTestTimeoutDialogOpen, setTestTimeoutDialogOpen] = useToggle();
 
+  const testDuration = useMemo(
+    () => getDurationBetweenDates(clientCourseResponse?.finishTestDate),
+    [clientCourseResponse?.finishTestDate],
+  );
+
   useEffect(() => {
-    if (courseTest?.timeout) {
+    if (testDuration) {
       const timeoutId = setTimeout(() => {
         setTestTimeoutDialogOpen();
-      }, courseTest?.timeout * TO_MILLISECONDS_RATIO);
+      }, testDuration);
       return () => {
         clearTimeout(timeoutId);
       };
     }
-  }, [courseTest?.timeout, setTestTimeoutDialogOpen]);
+  }, [testDuration, setTestTimeoutDialogOpen]);
 
   const [stage, setStage] = useState(1);
   const [values, setValues] = React.useState({});
@@ -95,8 +100,15 @@ const PassingTestContainer: React.FC = () => {
   const questionStageItem = courseTest?.questions[stage - 1];
   const courseStatus = clientCourseResponse?.status;
 
+  const isTestTimeOver = useMemo(
+    () =>
+      getDurationBetweenDates(clientCourseResponse?.finishTestDate) < 0 &&
+      courseStatus === COURSE_STATUSES.testing,
+    [clientCourseResponse?.finishTestDate, courseStatus],
+  );
+
   const isShouldRedirect =
-    !clientCourseResponseIsLoading && courseStatus !== COURSE_STATUSES.testing;
+    (!clientCourseResponseIsLoading && courseStatus !== COURSE_STATUSES.testing) || isTestTimeOver;
 
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
 
@@ -141,7 +153,8 @@ const PassingTestContainer: React.FC = () => {
             resultEnabled={resultEnabled}
             stageNext={stageNext}
             stageBack={stageBack}
-            testItem={courseTest}
+            testTitle={courseTest?.title}
+            testDuration={testDuration}
             questionStageItem={questionStageItem}
             isLoading={courseTestResponseIsLoading}
             handleSubmitResult={handleSubmitResult}
