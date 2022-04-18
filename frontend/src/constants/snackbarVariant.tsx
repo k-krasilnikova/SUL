@@ -23,6 +23,7 @@ export const errorSnackbarMessage = {
 export const successSnackbarMessage = {
   courseStarted: 'Course was successfully started.',
   courseAdded: 'Course was successfully added.',
+  courseDeleted: 'Course was successfully deleted.',
   applied: 'Course was successfully applied.',
   authorized: 'Authorization is successful.',
   finished: 'Test was successfully passed.',

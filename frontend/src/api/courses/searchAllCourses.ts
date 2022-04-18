@@ -12,7 +12,7 @@ const useSearchAllCourses = (courseName: string): UseQueryResult<Array<ICourse>,
     async () => {
       const apiClient = apiClientWrapper();
       const courseNameEncoded = encodeURIComponent(courseName);
-      const response = await apiClient.get(`${API.getCourses}?title=${courseNameEncoded}`);
+      const response = await apiClient.get(`${API.courses}?title=${courseNameEncoded}`);
       const searchResponse = response.data;
       return searchResponse;
     },

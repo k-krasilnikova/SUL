@@ -13,6 +13,7 @@ import { COURSE_LABELS } from 'constants/statuses';
 import { IDetailedCourseActions } from 'types/detailedCourse';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
+import DeleteCourseButton from './DeleteCourseButton';
 import { CourseInfoBox, DetailedCourseActionsBox } from './styled';
 
 const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
@@ -34,6 +35,7 @@ const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
         type={INFO.detailedCourse}
       />
     </CourseInfoBox>
+    {isAdmin && <DeleteCourseButton />}
     {!isAdmin &&
       (isLoading ? (
         <CustomButton variant="mediumOutlined" disabled>

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import ConfirmDialog from 'components/ConfirmDialog';
+import { Dialog } from 'components/Dialogs';
 import { convertTestTimeout } from 'utils/helpers/convertTime';
 
 import {
@@ -22,7 +22,7 @@ interface IProps {
 const StartTestDialog: FC<IProps> = ({ isOpened, testTimeout, handleClose, handleStartTest }) => (
   <>
     {testTimeout && (
-      <ConfirmDialog open={isOpened} onClose={handleClose} size="medium">
+      <Dialog open={isOpened} onClose={handleClose} size="medium">
         <StyledDialogTitle>{convertTestTimeout(testTimeout)}</StyledDialogTitle>
         <MainDialogContentText>
           By clicking on the button, you confirm <br /> the end of the course and proceed to testing
@@ -36,7 +36,7 @@ const StartTestDialog: FC<IProps> = ({ isOpened, testTimeout, handleClose, handl
             Start the Test
           </StyledButton>
         </StyledDialogActions>
-      </ConfirmDialog>
+      </Dialog>
     )}
   </>
 );

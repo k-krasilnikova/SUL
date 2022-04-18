@@ -1,6 +1,7 @@
 export enum ButtonLabels {
   applyCourse = 'Apply the Course',
   applyTheCourse = 'Apply the course',
+  deleteCourse = 'Delete',
   startTest = 'Start the Test',
   details = 'Details',
   stay = 'Stay',

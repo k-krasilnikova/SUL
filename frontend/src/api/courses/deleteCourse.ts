@@ -3,34 +3,36 @@ import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
-import { apiClientWrapper } from 'api/base';
+import { apiClientWrapper, queryClient } from 'api/base';
 import { API, PATHS } from 'constants/routes';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
-const useApplyCourse = (): UseMutationResult => {
+const useDeleteCourse = (): UseMutationResult => {
   const { enqueueSnackbar } = useSnackbar();
+  const navigateTo = useNavigate();
+
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
+
   const handleSubmitSuccess = () => {
-    enqueueSnackbar(successSnackbarMessage.applied, successSnackbar);
+    queryClient.refetchQueries([QUERY_KEYS.paginatedCoursesList]);
+    enqueueSnackbar(successSnackbarMessage.courseDeleted, successSnackbar);
+    navigateTo(PATHS.coursesList);
   };
-  const navigateTo = useNavigate();
+
   return useMutation(
-    async (id: string | undefined | unknown) => {
-      const data = { id };
+    async (courseId?: string | unknown) => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.post(API.courses, data);
+      const response = await apiClient.delete(`${API.courses}/${courseId}`);
       return response.data;
     },
     {
-      onSuccess: () => {
-        navigateTo(PATHS.myCourses);
-        handleSubmitSuccess();
-      },
+      onSuccess: handleSubmitSuccess,
       onError: handleSubmitError,
     },
   );
 };
 
-export default useApplyCourse;
+export default useDeleteCourse;
