@@ -4,7 +4,6 @@ import { CourseStatus } from 'enums/courseEnums';
 import { TimeProps } from './time';
 
 export type TMaterial = {
-  _id?: string;
   content: {
     _id: string;
     stage: number;
@@ -12,6 +11,7 @@ export type TMaterial = {
     isCompleted: boolean;
   }[];
   technology: Array<string>;
+  _id?: string;
 };
 
 export type CourseTechnology = { skill: string; points: number };
