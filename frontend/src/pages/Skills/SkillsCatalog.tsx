@@ -19,12 +19,10 @@ import {
 
 const SkillsCatalog: FC<ISkillsPageProps> = ({
   skills,
-  isLoading,
-  searchSkills,
-  searchInputValue,
-  checkSpace,
-  checkPastedValue,
   skillFounded,
+  searchInputValue,
+  handleSearchInputChange,
+  isLoading,
 }) => (
   <AuthorizedLayout pageName="Skills">
     {isLoading ? (
@@ -43,10 +41,8 @@ const SkillsCatalog: FC<ISkillsPageProps> = ({
                   <Search color="disabled" fontSize="medium" />
                 </InputAdornment>
               }
-              onChange={searchSkills}
+              onChange={handleSearchInputChange}
               value={searchInputValue}
-              onKeyDown={checkSpace}
-              onPaste={checkPastedValue}
             />
             <StyledDivider />
           </SearchWrapper>
