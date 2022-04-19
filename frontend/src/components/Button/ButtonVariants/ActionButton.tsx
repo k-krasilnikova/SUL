@@ -23,9 +23,9 @@ interface IProps {
 
 type TOutterProps = {
   label: string;
-  status: string;
-  courseId: string;
   timeout: number;
+  status?: string;
+  courseId?: string;
   progress?: ClientCourse['progress'];
   applyDate?: string;
 };

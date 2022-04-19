@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { styled } from '@mui/material';
 
 import Button from 'components/Button';
@@ -14,7 +13,7 @@ export const BackArrow = styled('img')({
   },
 });
 
-export const BackLink = styled(Link)({
+export const BackWrapper = styled('span')({
   [theme.breakpoints.up('xs')]: {
     height: 'fit-content',
     width: 'fit-content',

@@ -37,13 +37,14 @@ const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
     </CourseInfoBox>
     {isAdmin && <DeleteCourseButton />}
     {!isAdmin &&
-      (isLoading ? (
-        <CustomButton variant="mediumOutlined" disabled>
-          <ButtonLoader buttonSpinner={buttonSpinner} />
-        </CustomButton>
-      ) : page === PAGES.coursesList ? (
-        <CustomButton color="primary" variant="mediumContained" onClick={handleApplyCourse}>
-          {ButtonLabels.applyCourse}
+      (page === PAGES.coursesList ? (
+        <CustomButton
+          color="primary"
+          variant={isLoading ? 'mediumOutlined' : 'mediumContained'}
+          disabled={isLoading}
+          onClick={handleApplyCourse}
+        >
+          {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.applyCourse}
         </CustomButton>
       ) : (
         <ButtonsWrapper>

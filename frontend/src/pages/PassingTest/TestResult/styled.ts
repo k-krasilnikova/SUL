@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 
-import Button from 'components/Button/Button';
+import Button from 'components/Button';
 import theme from 'themeSettings';
 
 export const TestResultBox = styled(Box)({
