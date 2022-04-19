@@ -1,16 +1,12 @@
 import { FC, Suspense } from 'react';
 import { Box } from '@mui/material';
 
-import { SkillsList } from 'types/skill';
 import { LENGTH } from 'constants/sizes';
 import Loader from 'components/Loader';
-import SkillItem from './SkillItem/SkillItem';
-import { SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
-interface ISkillProps {
-  skills: SkillsList[];
-  skillFounded: SkillsList[];
-}
+import SkillItem from './SkillItem/SkillItem';
+import { ISkillProps } from './types';
+import { SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
 const Skill: FC<ISkillProps> = ({ skillFounded, skills }) => {
   const skillsData = skillFounded.length ? skillFounded : skills;

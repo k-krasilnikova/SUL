@@ -1,6 +1,6 @@
 import { styled, Box, Divider } from '@mui/material';
 
-import theme, { COLORS } from 'themeSettings';
+import theme from 'themeSettings';
 
 export const SkillsBox = styled(Box)({
   display: 'flex',
@@ -14,7 +14,7 @@ export const SkillsTitle = styled('div')({
   fontWeight: '500',
   fontSize: '24px',
   lineHeight: '28px',
-  color: COLORS.skillsPage.skillTitleColor,
+  color: '#131313',
   [theme.breakpoints.down('lg')]: {
     margin: '31px 0 16px',
   },
@@ -24,7 +24,7 @@ export const SkillsTitle = styled('div')({
 });
 
 export const SkillsDivider = styled(Divider)({
-  borderColor: COLORS.skillsPage.dividerColor,
+  borderColor: '#C6C6C9',
   maxWidth: '1300px',
   width: '100%',
 });
