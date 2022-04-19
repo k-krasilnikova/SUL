@@ -5,7 +5,7 @@ import { Search } from '@mui/icons-material';
 import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
 import Skill from 'components/Skill';
-import { NoContent } from 'components/NoContent';
+import NoContent from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
 
 import { ISkillsPageProps } from './types';
