@@ -12,8 +12,8 @@ import { BackArrow, BackWrapper, StyledButton } from './styled';
 const BackButton: FC<IBackButton> = ({ page }) => (
   <BackWrapper>
     <StyledButton
-      variant="medium"
       color="primary"
+      variant="medium"
       component={Link}
       to={page === PAGES.coursesList ? PATHS.coursesList : PATHS.myCourses}
     >

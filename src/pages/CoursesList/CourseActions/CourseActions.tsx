@@ -34,6 +34,7 @@ const CourseActions: React.FC<ICourseActions> = ({
   handleApplyCourse,
 }) => {
   const isButtonContentLoading = targetLoading && targetId === course._id;
+  const { _id: courseId, status, progress, applyDate } = clientCourses?.[index] || {};
   return (
     <CourseActionsBox key={`${course._id}_box`}>
       <CourseActionsWrapper key={`${course._id}_actions`}>
@@ -48,11 +49,11 @@ const CourseActions: React.FC<ICourseActions> = ({
         {!isAdmin &&
           (clientCourses ? (
             <ActionButton
-              label={COURSE_LABELS[clientCourses[index].status]}
-              status={clientCourses[index].status}
-              progress={clientCourses[index].progress}
-              applyDate={clientCourses[index].applyDate}
-              courseId={clientCourses[index]._id}
+              label={COURSE_LABELS[status as string]}
+              status={status}
+              progress={progress}
+              applyDate={applyDate}
+              courseId={courseId}
               timeout={COURSE_DISABLE_DAYS}
             />
           ) : (

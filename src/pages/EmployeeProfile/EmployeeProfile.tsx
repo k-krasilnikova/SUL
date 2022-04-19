@@ -23,7 +23,7 @@ const EmployeeProfile: React.FC<IEmployeeProfile> = ({
 }) => (
   <AuthorizedLayout pageName="Employee">
     <EmployeeProfileWrapper>
-      <BackButton component={Link} to={PATHS.employees} variant="medium" color="primary">
+      <BackButton color="primary" variant="medium" component={Link} to={PATHS.employees}>
         {ButtonLabels.back}
       </BackButton>
       <EmployeeInfo
