@@ -1,14 +1,13 @@
 import { FC, ChangeEvent, ClipboardEvent, KeyboardEvent } from 'react';
+import { InputAdornment } from '@mui/material';
+import { Search } from '@mui/icons-material';
 
 import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
-import SkillsComponent from 'components/Skill/SkillsComponent';
+import Skill from 'components/Skill';
 import { NoContent } from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
 import { ISkills, SkillsList } from 'types/skill';
-
-import { Search } from '@mui/icons-material';
-import { InputAdornment } from '@mui/material';
 import {
   SkillsPageContainer,
   SearchSkill,
@@ -26,7 +25,7 @@ export interface ISkillsPageProps extends ISkills {
   skillFounded: SkillsList[];
 }
 
-const Skills: FC<ISkillsPageProps> = ({
+const SkillsCatalog: FC<ISkillsPageProps> = ({
   skills,
   isLoading,
   searchSkills,
@@ -59,7 +58,7 @@ const Skills: FC<ISkillsPageProps> = ({
             />
             <StyledDivider />
           </SearchWrapper>
-          <SkillsComponent skillFounded={skillFounded} skills={skills} />
+          <Skill skillFounded={skillFounded} skills={skills} />
         </SkillsWrapper>
       </SkillsPageContainer>
     ) : (
@@ -68,4 +67,4 @@ const Skills: FC<ISkillsPageProps> = ({
   </AuthorizedLayout>
 );
 
-export default Skills;
+export default SkillsCatalog;

@@ -1,4 +1,5 @@
 import { styled } from '@mui/material';
+
 import theme, { COLORS } from 'themeSettings';
 
 export const SkillContainer = styled('div')({

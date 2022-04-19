@@ -1,4 +1,5 @@
 import { styled, Box, Divider } from '@mui/material';
+
 import theme, { COLORS } from 'themeSettings';
 
 export const SkillsBox = styled(Box)({

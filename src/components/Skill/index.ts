@@ -1,1 +1,1 @@
-export { default } from './SkillsComponent';
+export { default } from './Skill';

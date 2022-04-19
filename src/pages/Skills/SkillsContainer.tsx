@@ -5,7 +5,7 @@ import { checkWhitespace, formatInputValue } from 'utils/helpers/searchHelpers';
 import { useDebounce } from 'hooks';
 
 import { SkillsList } from 'types/skill';
-import Skills from './Skills';
+import SkillsCatalog from './SkillsCatalog';
 
 const SkillsContainer: FC = () => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
@@ -48,7 +48,7 @@ const SkillsContainer: FC = () => {
   };
 
   return (
-    <Skills
+    <SkillsCatalog
       skills={skillsResponse}
       searchSkills={searchSkills}
       searchInputValue={searchInputValue}
