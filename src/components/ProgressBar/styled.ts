@@ -1,21 +1,21 @@
 import { Box } from '@mui/system';
 import styled from 'styled-components';
 
-import { ESize } from 'enums/sizes';
+import { Size } from 'enums/sizes';
 import theme from 'themeSettings';
 import { TSizeVariants } from 'types/size';
 
-interface Size {
+interface IProps {
   size?: TSizeVariants;
 }
 
-export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
+export const ProgressBarBox = styled(Box)<IProps>(({ size }) => ({
   float: 'right',
   width: '180px',
   height: '180px',
   margin: '5%',
   fontFamily: theme.typography.fontFamily,
-  ...(size === ESize.xlarge && {
+  ...(size === Size.xlarge && {
     width: '304px',
     height: '304px',
     margin: '0',
@@ -32,7 +32,7 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
       height: '123px',
     },
   }),
-  ...(size === ESize.large && {
+  ...(size === Size.large && {
     width: '218px',
     height: '218px',
     [theme.breakpoints.up('xs')]: {
@@ -50,7 +50,7 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
       height: '218px',
     },
   }),
-  ...(size === ESize.medium && {
+  ...(size === Size.medium && {
     [theme.breakpoints.up('xs')]: {
       width: '46px',
       height: '46px',
@@ -60,7 +60,7 @@ export const ProgressBarBox = styled(Box)<Size>(({ size }) => ({
       height: '80px',
     },
   }),
-  ...(size === ESize.small && {
+  ...(size === Size.small && {
     width: '41px',
     height: '41px',
     margin: '0px',

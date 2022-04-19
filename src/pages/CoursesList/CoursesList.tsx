@@ -10,7 +10,7 @@ import getCurrentPageName from 'utils/helpers/getCurentPageName';
 import { chooseListPath } from 'utils/helpers/paths/choosePath';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { ICourse } from 'types/course';
-import { ELoader } from 'enums/loader';
+import { Loaders } from 'enums/loader';
 
 import { PageContainer, GridItem, MobileLink, MobileSearchWrapper } from './styled';
 import AddCourseButton from './AddCourseButton';
@@ -31,7 +31,7 @@ const CoursesList: React.FC<ICourseProps> = ({
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
-      <Loader color="primary" type={ELoader.content} />
+      <Loader color="primary" type={Loaders.content} />
     ) : courses?.length ? (
       <PageContainer container>
         <MobileSearchWrapper>
@@ -41,7 +41,7 @@ const CoursesList: React.FC<ICourseProps> = ({
         {courses.map((course, index) => (
           <Suspense
             key={`${course._id}_item`}
-            fallback={<Loader color="primary" type={ELoader.content} />}
+            fallback={<Loader color="primary" type={Loaders.content} />}
           >
             <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
               <MobileLink to={chooseListPath(course, index, clientCourses)} onClick={disableLink}>

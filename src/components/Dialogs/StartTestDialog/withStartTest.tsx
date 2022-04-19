@@ -1,19 +1,19 @@
 import { useCallback } from 'react';
 import { useParams } from 'react-router';
 
-import { ClientCourse } from 'types/clientCourse';
-import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import { useToggle } from 'hooks';
 import { useGetTestTime, useStartCourseTest } from 'api/test';
 import checkTestDate from 'utils/helpers/checkTestDate';
+import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import { IClientCourse } from 'types/clientCourse';
 import { CourseStatus } from 'enums/courseEnums';
-import { useToggle } from 'hooks';
 
 import StartTestDialog from './StartTestDialog';
 
 type IncomingProps = {
   timeout?: number;
   status?: CourseStatus;
-  progress?: ClientCourse['progress'];
+  progress?: IClientCourse['progress'];
   testDate?: string;
 };
 

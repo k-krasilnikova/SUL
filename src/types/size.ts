@@ -1,3 +1,3 @@
-import { ESize } from 'enums/sizes';
+import { Size } from 'enums/sizes';
 
-export type TSizeVariants = `${ESize}`;
+export type TSizeVariants = `${Size}`;

@@ -1,4 +1,6 @@
-import { ClientCourse } from './clientCourse';
+import { EmployeeInfo } from 'enums/employee';
+
+import { IClientCourse } from './clientCourse';
 import { User } from './user';
 
 export interface IEmployee extends User {
@@ -13,16 +15,9 @@ export interface IEmployeesProps {
   isLoading?: boolean;
 }
 
-export interface IEmployeeProfile {
-  employeeInfo: string;
-  toggleEmployeeInfo: (infoToOpen: string) => void;
-  toggleHover: (buttonHovered: string) => void;
-  profileInfoOpened: boolean;
-  toggleProfileInfoOpened: () => void;
-  isSkillOpened: boolean;
-  isCourseOpened: boolean;
-  employeeCourses?: ClientCourse[];
-  employee?: IEmployee;
+export interface IEmployeeProps {
+  handleNavigate: (_id: string) => void;
+  employee: IEmployee;
 }
 
 export interface IEmployeeCourses {
@@ -30,11 +25,11 @@ export interface IEmployeeCourses {
   checkSpace: (event: React.KeyboardEvent) => void;
   checkPastedValue: (event: React.ClipboardEvent) => void;
   searchCourse: string;
-  courses?: ClientCourse[];
+  courses?: IClientCourse[];
 }
 
 export interface IEmployeeCoursesList {
-  courses?: ClientCourse[];
+  courses?: IClientCourse[];
 }
 
 export interface IEmployeeInfo {
@@ -45,10 +40,10 @@ export interface IEmployeeInfo {
 
 export interface IEmployeeSkillsAndCourses {
   employeeInfo: string;
-  toggleEmployeeInfo: (infoToOpen: string) => void;
+  toggleEmployeeInfo: (infoToOpen: EmployeeInfo) => void;
   toggleHover: (buttonHovered: string) => void;
   isSkillOpened: boolean;
   isCourseOpened: boolean;
-  employeeCourses?: ClientCourse[];
+  employeeCourses?: IClientCourse[];
   employee?: IEmployee;
 }

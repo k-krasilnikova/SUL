@@ -2,7 +2,7 @@ import React from 'react';
 
 import ProgressBar from 'components/ProgressBar/ProgressBar';
 import Avatar from 'components/Avatar';
-import { ESize } from 'enums/sizes';
+import { Size } from 'enums/sizes';
 
 import {
   HoverSkillInfoText,
@@ -40,7 +40,7 @@ const CourseMaterialInfo: React.FC<Props> = ({
   <SkillInfo completed={stages === stagesCompleted}>
     <SkillInfoFlex>
       <ImageWrapper>
-        <Avatar size={ESize.xsmall} avatar={imageUrl} />
+        <Avatar size={Size.xsmall} avatar={imageUrl} />
       </ImageWrapper>
       <SkillInfoTextWrapper>
         <SkillInfoTextWidth>
@@ -54,7 +54,7 @@ const CourseMaterialInfo: React.FC<Props> = ({
         {isShown && <HoverSkillInfoText>{technologyTitle}</HoverSkillInfoText>}
       </SkillInfoTextWrapper>
       <SkillProgress>
-        <ProgressBar value={progress} size={ESize.small} />
+        <ProgressBar value={progress} size={Size.small} />
       </SkillProgress>
     </SkillInfoFlex>
   </SkillInfo>

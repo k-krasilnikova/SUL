@@ -1,7 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import styled from 'styled-components';
 
-import { INFO } from 'constants/courseInfoTypes';
+import { Info } from 'enums/info';
+
 import theme from 'themeSettings';
 
 import { InfoContainerTypes } from '../styled';
@@ -12,11 +13,11 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   alignSelf: 'self-end',
   paddingBottom: '0 !important',
   [theme.breakpoints.down('xl')]: {
-    ...(type !== INFO.detailedCourse &&
-      type !== INFO.searchCourses && {
+    ...(type !== Info.detailedCourse &&
+      type !== Info.searchCourses && {
         flexDirection: 'column',
       }),
-    ...(type !== INFO.searchCourses && {
+    ...(type !== Info.searchCourses && {
       marginLeft: '10px',
     }),
   },
@@ -29,25 +30,25 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     margin: '0',
     padding: '0',
     flexDirection: 'row',
-    ...(type === INFO.detailedCourse && {
+    ...(type === Info.detailedCourse && {
       marginLeft: '8px',
     }),
   },
   [theme.breakpoints.down(550)]: {
-    ...(type === INFO.detailedCourse && {
+    ...(type === Info.detailedCourse && {
       flexDirection: 'column',
     }),
   },
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
-    ...(type === INFO.detailedCourse && {
+    ...(type === Info.detailedCourse && {
       marginLeft: '8px',
       flexDirection: 'row',
     }),
   },
   [theme.breakpoints.up('xl')]: {
     display: 'block',
-    ...(type !== INFO.searchCourses && {
+    ...(type !== Info.searchCourses && {
       marginLeft: '15px',
     }),
   },

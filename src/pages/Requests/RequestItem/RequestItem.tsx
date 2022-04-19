@@ -3,7 +3,7 @@ import React from 'react';
 import Avatar from 'components/Avatar';
 import Image from 'components/Image';
 import { REQUEST_STATUS } from 'constants/requests';
-import { ESize } from 'enums/sizes';
+import { Size } from 'enums/sizes';
 import { convertRequestTime } from 'utils/helpers/convertTime';
 import { IRequest } from 'types/request';
 
@@ -39,7 +39,7 @@ const RequestItem: React.FC<ReuestItemProps> = ({
   <RequestContainer item container spacing={2}>
     <CustomGrid item xs={4}>
       <ImageWrapper>
-        <Avatar size={ESize.small} avatar={user.avatar} />
+        <Avatar size={Size.small} avatar={user.avatar} />
       </ImageWrapper>
       <UserContainer>
         <UserName status={status}>{`${user.firstName} ${user.lastName}`}</UserName>

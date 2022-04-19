@@ -3,10 +3,10 @@ import React from 'react';
 import ProgressBar from 'components/ProgressBar';
 import NoContent from 'components/NoContent';
 import { NO_USER_COURSES } from 'constants/messages';
-import { SIZE } from 'constants/sizes';
 import { IEmployeeCoursesList } from 'types/employee';
 import { setFirstLetterUppercase } from 'utils/helpers/setFirstLetterUppercase';
 import { convertEmployeeCourseProgress } from 'utils/helpers/convertCourseStatusToProgress';
+import { Size } from 'enums/sizes';
 
 import {
   CourseItemText,
@@ -27,7 +27,7 @@ const EmployeeCoursesList: React.FC<IEmployeeCoursesList> = ({ courses }) => (
         return (
           <div key={course.course.title}>
             <CoursesListItem>
-              <ProgressBar size={SIZE.small} value={progressValue} variant={progressVariant} />
+              <ProgressBar size={Size.small} value={progressValue} variant={progressVariant} />
               <CourseItemText>
                 <CourseTitle>{course.course.title}</CourseTitle>
                 <CourseStatus>{setFirstLetterUppercase(course.status)}</CourseStatus>
@@ -39,7 +39,7 @@ const EmployeeCoursesList: React.FC<IEmployeeCoursesList> = ({ courses }) => (
       })
     ) : (
       <NoCourses>
-        <NoContent message={NO_USER_COURSES} size={SIZE.medium} />
+        <NoContent message={NO_USER_COURSES} size={Size.medium} />
       </NoCourses>
     )}
   </CoursesList>

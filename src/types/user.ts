@@ -1,6 +1,6 @@
 import { Technologies } from './skill';
 import { Notification } from './notification';
-import { ClientCourse } from './clientCourse';
+import { IClientCourse } from './clientCourse';
 
 export interface User {
   _id?: string;
@@ -16,7 +16,7 @@ export interface User {
   phone?: string;
   skype?: string;
   position?: string;
-  courses?: ClientCourse[];
+  courses?: IClientCourse[];
   handleLogOut?: () => void;
   technologies?: Technologies;
   notifications?: Notification[];

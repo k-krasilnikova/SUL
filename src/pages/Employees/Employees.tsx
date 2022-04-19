@@ -5,7 +5,7 @@ import NoContent from 'components/NoContent';
 import Loader from 'components/Loader';
 import { NO_EMPLOYEES } from 'constants/messages';
 import { IEmployeesProps } from 'types/employee';
-import { ELoader } from 'enums/loader';
+import { Loaders } from 'enums/loader';
 
 import { EmployeesWrapper } from './styled';
 import EmployeesList from './EmployeesList';
@@ -13,7 +13,7 @@ import EmployeesList from './EmployeesList';
 const Employees: React.FC<IEmployeesProps> = ({ employees, isLoading, handleNavigate }) => (
   <AuthorizedLayout pageName="Employees">
     {isLoading ? (
-      <Loader color="primary" type={ELoader.content} />
+      <Loader color="primary" type={Loaders.content} />
     ) : employees?.length ? (
       <EmployeesWrapper>
         <EmployeesList employees={employees} handleNavigate={handleNavigate} />

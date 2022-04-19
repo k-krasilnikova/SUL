@@ -1,4 +1,5 @@
-import { MATERIAL, TMaterialVariants } from 'constants/materials';
+import { MATERIAL } from 'constants/materials';
+import { TMaterialVariants } from 'types/materials';
 
 export const defineMaterialType = (material: string): TMaterialVariants => {
   let type: TMaterialVariants;

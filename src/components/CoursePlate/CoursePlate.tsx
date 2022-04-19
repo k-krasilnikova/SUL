@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ESize } from 'enums/sizes';
+import { Size } from 'enums/sizes';
 import Avatar from 'components/Avatar';
 
 import { CourseWrapper, ImageWrapper } from './styled';
@@ -16,7 +16,7 @@ const CoursePlate: React.FC<Course> = ({ course }) => {
   return (
     <CourseWrapper>
       <ImageWrapper>
-        <Avatar size={ESize.xsmall} avatar={course.avatar} />
+        <Avatar size={Size.xsmall} avatar={course.avatar} />
       </ImageWrapper>
       {course.title}
     </CourseWrapper>

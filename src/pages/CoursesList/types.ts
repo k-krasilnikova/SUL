@@ -1,4 +1,4 @@
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 import { ICourse } from 'types/course';
 
 export interface ICourseProps {
@@ -9,7 +9,7 @@ export interface ICourseProps {
   handleApplyCourse?: (event: React.MouseEvent<Element, MouseEvent>) => void;
   targetId?: string;
   courses?: ICourse[];
-  clientCourses?: ClientCourse[];
+  clientCourses?: IClientCourse[];
   isLoading?: boolean;
   targetLoading?: boolean;
 }

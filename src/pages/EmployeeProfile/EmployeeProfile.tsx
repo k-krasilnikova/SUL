@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
-import { IEmployeeProfile } from 'types/employee';
 
 import { BackButton, EmployeeProfileWrapper } from './styled';
 import EmployeeInfo from './EmployeeInfo';
 import EmployeeSkillsAndCourses from './EmployeeSkillsAndCourses';
+import { IEmployeeProfile } from './types';
 
 const EmployeeProfile: React.FC<IEmployeeProfile> = ({
   employee,

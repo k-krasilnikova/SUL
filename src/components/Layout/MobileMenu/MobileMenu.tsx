@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ListItemIcon, ListItemText, Slide } from '@mui/material';
 
 import Avatar from 'components/Avatar';
-import { ESize } from 'enums/sizes';
+import { Size } from 'enums/sizes';
 import { PATHS } from 'constants/routes';
 import { logOutIcon } from 'icons/mobileMenuIcons';
 
@@ -95,7 +95,7 @@ const MobileMenu: React.FC<Props> = ({
         <MobileUserBlock>
           <UserProfile to={PATHS.profile}>
             <AvatarWrapper>
-              <Avatar size={ESize.xsmall} avatar={avatar} />
+              <Avatar size={Size.xsmall} avatar={avatar} />
             </AvatarWrapper>
             <UserNameWrapper>
               <UserName>{firstName}</UserName>

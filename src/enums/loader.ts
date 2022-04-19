@@ -1,7 +1,7 @@
-export enum ELoader {
+export enum Loaders {
   page = 'page',
   content = 'content',
   component = 'component',
 }
 
-export type TLoaderVaariants = `${ELoader}`;
+export type TLoaderVaariants = `${Loaders}`;

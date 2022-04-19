@@ -3,11 +3,11 @@ import { NavigateFunction } from 'react-router';
 import { CourseStatus } from 'enums/courseEnums';
 
 import { PureClientCourse } from './clientCourse';
-import { Course } from './course';
+import { ICourse } from './course';
 import { TVariantProgressBar } from './progressBar';
 
 export interface IDetailedCourse {
-  commonCourseData: Course;
+  commonCourseData: ICourse;
   handleApplyCourse: () => void;
   page: string;
   id: string;
@@ -34,22 +34,22 @@ export interface IDetailedCourse {
 }
 
 export interface IDetailedCourseInfo {
-  commonCourseData: Course;
+  commonCourseData: ICourse;
   toggleFullText: () => void;
   isFullTextOpen: boolean;
   isProgressBarDisplayed?: boolean;
   progressValue?: number;
   progressText?: string;
-  progressVariant?: string;
+  progressVariant?: TVariantProgressBar;
 }
 
 export interface IDetailedCourseActions {
-  commonCourseData: Course;
+  commonCourseData: ICourse;
   handleApplyCourse: () => void;
   page: string;
   clientCourseData?: PureClientCourse;
   id: string;
-  status: string;
+  status: CourseStatus;
   isCourseCompleted?: boolean;
   isAdmin?: boolean;
   isLoading?: boolean;
@@ -60,6 +60,6 @@ export interface IBackButton {
 }
 
 export interface ISimilarCourses {
-  commonCourseData: Course;
+  commonCourseData: ICourse;
   windowWidth: string;
 }

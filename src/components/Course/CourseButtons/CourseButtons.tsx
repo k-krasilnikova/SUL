@@ -1,3 +1,4 @@
+import { Info } from 'enums/info';
 import React from 'react';
 
 import CourseInfo from '../CourseInfo';
@@ -6,7 +7,7 @@ import { ButtonsContainer, CourseInfoBox } from './styled';
 interface ICourseButtons {
   duration?: string;
   lessons?: number;
-  type?: string;
+  type?: Info;
   children?: React.ReactNode;
 }
 

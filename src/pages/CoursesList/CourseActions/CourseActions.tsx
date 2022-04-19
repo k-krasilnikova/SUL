@@ -8,7 +8,7 @@ import ButtonLoader from 'components/ButtonLoader';
 import { COURSE_LABELS } from 'constants/statuses';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { COURSE_DISABLE_DAYS } from 'constants/time';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 import { ICourse } from 'types/course';
 import { chooseListPath } from 'utils/helpers/paths/choosePath';
 
@@ -17,7 +17,7 @@ import { CourseActionsBox, CourseActionsWrapper } from './styled';
 interface ICourseActions {
   course: ICourse;
   index: number;
-  clientCourses?: ClientCourse[];
+  clientCourses?: IClientCourse[];
   isAdmin?: boolean;
   targetLoading?: boolean;
   targetId?: string;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 
 import { TCourseInfo } from 'types/course';
 import ActionButton from './ActionButton';
@@ -27,7 +27,7 @@ interface IProps {
   handleStageBack: () => void;
   handleStageForward: () => void;
   togglCourseInfOpen: () => void;
-  clientCourse?: ClientCourse;
+  clientCourse?: IClientCourse;
 }
 
 const LearningCourse: FC<IProps> = ({

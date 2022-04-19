@@ -1,14 +1,14 @@
 import { FC, BaseSyntheticEvent } from 'react';
 
-import { Course, CoursesListType, TCheckedCourse } from 'types/course';
+import { ICourse, CoursesListType, TCheckedCourse } from 'types/course';
 import Loader from 'components/Loader';
-import { ELoader } from 'enums/loader';
+import { Loaders } from 'enums/loader';
 
 import { CourseItem } from './CourseItem';
 import { StyledList, StyledHorizontalLine } from './styled';
 
 interface IProps {
-  courses: Course[] | TCheckedCourse[];
+  courses: ICourse[] | TCheckedCourse[];
   checkedCourses: TCheckedCourse[];
   type: CoursesListType;
   handleCheckboxChange: (event: BaseSyntheticEvent) => void;
@@ -30,7 +30,7 @@ const CoursesList: FC<IProps> = ({
     {withUpperLine && !!checkedCourses.length && <StyledHorizontalLine />}
     <StyledList type={type}>
       {isCoursesLoading ? (
-        <Loader color="primary" type={ELoader.component} />
+        <Loader color="primary" type={Loaders.component} />
       ) : (
         <>
           {courses.map(({ _id: courseId, title }, courseIndex) => {

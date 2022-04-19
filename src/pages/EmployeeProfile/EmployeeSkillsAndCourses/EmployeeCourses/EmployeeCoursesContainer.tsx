@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 import { IEmployeeCoursesList } from 'types/employee';
 import { formatInputValue, checkWhitespace, checkPastedText } from 'utils/helpers/searchHelpers';
 import { compareStrings } from 'utils/helpers/compareStrings';
@@ -9,7 +9,7 @@ import EmployeeCourses from './EmployeeCourses';
 
 const EmployeeCoursesContainer: React.FC<IEmployeeCoursesList> = ({ courses }) => {
   const [searchCourse, setSearchCourse] = useState('');
-  const [employeeCourses, setEmployeeCourses] = useState<ClientCourse[]>();
+  const [employeeCourses, setEmployeeCourses] = useState<IClientCourse[]>();
 
   useEffect(() => {
     if (courses) {

@@ -3,7 +3,7 @@ import { ITestResult } from 'types/test';
 import { ConvertedProgress } from 'utils/helpers/convertCourseStatusToProgress';
 
 export interface ITestResultPageProps {
-  responseData: ITestResult | undefined;
+  responseData?: ITestResult;
   status?: string;
   isFailed?: boolean;
   skills?: ISkill[];
