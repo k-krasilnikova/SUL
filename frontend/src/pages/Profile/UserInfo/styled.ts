@@ -1,6 +1,5 @@
-import { List } from '@mui/material';
-import { styled } from '@mui/styles';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { styled, List } from '@mui/material';
+import { ContentCopy as ContentCopyIcon } from '@mui/icons-material';
 
 import theme from 'themeSettings';
 
@@ -13,15 +12,15 @@ export const UserInfoList = styled(List)({
     verticalAlign: 'top',
   },
   fontFamily: '"Ubuntu", sans-serif',
-  fontWeight: '400',
+  fontWeight: 400,
   color: '#2C2525',
-  paddingTop: '0',
+  paddingTop: 0,
 });
 
 export const UserInfoLabel = styled('span')({
   color: '#9b9b9b',
-  fontWeight: '500',
-  flexShrink: '0',
+  fontWeight: 500,
+  flexShrink: 0,
   [theme.breakpoints.up('xs')]: {
     width: '82px',
     display: 'inline-block',
@@ -43,7 +42,7 @@ export const UserInfoLabel = styled('span')({
     lineHeight: '21px',
     height: '24px',
     marginBottom: '20px',
-    padding: '0',
+    padding: 0,
   },
 });
 

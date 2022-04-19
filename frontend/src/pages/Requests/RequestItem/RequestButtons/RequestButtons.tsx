@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { buttonSpinner } from 'animations';
-import { BUTTON_CONTENT } from 'constants/requests';
+import { ButtonLabels } from 'constants/ButtonLabels';
 import ButtonLoader from 'components/ButtonLoader';
 
 import { ActionButton, ButtonsContainer, InterviewActionButton } from './styled';
@@ -32,7 +32,7 @@ const RequestButtons: React.FC<IRequestProps> = ({
       {approveLoading && isTargetRequest ? (
         <ButtonLoader buttonSpinner={buttonSpinner} />
       ) : (
-        BUTTON_CONTENT.accept
+        ButtonLabels.accept
       )}
     </ActionButton>
     <InterviewActionButton
@@ -43,7 +43,7 @@ const RequestButtons: React.FC<IRequestProps> = ({
       {approveLoading && isTargetRequest ? (
         <ButtonLoader buttonSpinner={buttonSpinner} />
       ) : (
-        BUTTON_CONTENT.acceptWithInterview
+        ButtonLabels.acceptWithInterview
       )}
     </InterviewActionButton>
     <ActionButton
@@ -54,7 +54,7 @@ const RequestButtons: React.FC<IRequestProps> = ({
       {declineLoading && isTargetRequest ? (
         <ButtonLoader buttonSpinner={buttonSpinner} />
       ) : (
-        BUTTON_CONTENT.reject
+        ButtonLabels.reject
       )}
     </ActionButton>
   </ButtonsContainer>

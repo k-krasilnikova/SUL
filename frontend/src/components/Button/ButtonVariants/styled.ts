@@ -1,4 +1,4 @@
-import { styled } from '@mui/styles';
+import { styled } from '@mui/material';
 
 import Button from 'components/Button';
 import theme from 'themeSettings';
@@ -6,17 +6,17 @@ import theme from 'themeSettings';
 export const CustomButton = styled(Button)({
   height: '50px',
   width: '150px',
-  fontSize: '16px !important',
-  minWidth: '131px !important',
-  marginRight: '16px !important',
-  padding: '12px !important',
+  fontSize: '16px',
+  minWidth: '131px',
+  marginRight: '16px',
+  padding: '12px',
   [theme.breakpoints.down('xl')]: {
     height: '44px',
     width: '131px',
-    marginRight: '9px !important',
-    fontSize: '14px!important',
+    marginRight: '9px',
+    fontSize: '14px',
     lineHeight: '19px',
-    padding: '10px 10px!important',
+    padding: '10px 10px',
   },
   [theme.breakpoints.down('md')]: {
     height: '36px',

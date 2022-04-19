@@ -55,7 +55,7 @@ const AuthorizedLayout: React.FC<Props> = ({
         />
       </GridHeader>
       <>
-        <GridMenu classes={isSqueeze && { root: classes?.hideGridMenu }}>
+        <GridMenu classes={{ root: isSqueeze ? classes?.hideGridMenu : undefined }}>
           <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
         </GridMenu>
         <PageWrapper

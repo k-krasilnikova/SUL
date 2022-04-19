@@ -1,17 +1,16 @@
-import { Typography } from '@mui/material';
-import styled from 'styled-components';
+import { styled, Typography } from '@mui/material';
 
-import theme from 'themeSettings';
 import { HEADER_HEIGHT_IPAD } from 'components/Layout/Header/styled';
+import theme from 'themeSettings';
 
 export const SearchResultWrapper = styled('div')({
   position: 'absolute',
   zIndex: '15',
-  background: '#FFFFFF',
+  background: '#FFF',
   borderRadius: '6px',
   top: '60px',
   left: '40px',
-  boxShadow: '0px 4px 4px 0px #00000040',
+  boxShadow: '0 4px 4px 0 #00000040',
   minHeight: '39px',
   maxHeight: '232px',
   minWidth: '117px',
@@ -31,9 +30,9 @@ export const SearchResultWrapper = styled('div')({
 });
 
 export const NoSearchResults = styled(Typography)({
-  fontSize: '20px !important',
+  fontSize: '20px',
   textAlign: 'center',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '16px !important',
+    fontSize: '16px',
   },
 });

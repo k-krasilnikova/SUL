@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
 export const Arrow = styled('svg')({
   [theme.breakpoints.down('sm')]: {
-    width: '5px !important',
-    height: '11px !important',
+    width: '5px',
+    height: '11px',
   },
 });

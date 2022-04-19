@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import Button from 'components/Button';
 import theme from 'themeSettings';
@@ -14,9 +14,9 @@ export const ButtonCancel = styled(Button)({
 
 export const ButtonExit = styled(Button)({
   '&.MuiButton-root': {
-    marginLeft: '25px !important',
+    marginLeft: '25px',
     [theme.breakpoints.down('md')]: {
-      marginLeft: '16px !important',
+      marginLeft: '16px',
     },
   },
 });
