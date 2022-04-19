@@ -22,7 +22,6 @@ const useGetAllSkills = (): UseQueryResult<SkillsList[], AxiosError> => {
       return skillsResponse;
     },
     {
-      staleTime: 600000,
       onError: handleSubmitError,
     },
   );

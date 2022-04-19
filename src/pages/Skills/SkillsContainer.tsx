@@ -1,7 +1,7 @@
-import { FC, useState, ChangeEvent, KeyboardEvent, ClipboardEvent, useEffect } from 'react';
+import React, { FC, useState, ChangeEvent, KeyboardEvent, ClipboardEvent, useEffect } from 'react';
 
 import { useGetSkills, useSearchSkills } from 'api/skills';
-import { checkWhitespace, formatInputValue } from 'utils/helpers/searchHelpers';
+import { checkPastedText, checkWhitespace, formatInputValue } from 'utils/helpers/searchHelpers';
 import { useDebounce } from 'hooks';
 
 import { SkillsList } from 'types/skill';
@@ -41,9 +41,7 @@ const SkillsContainer: FC = () => {
   };
 
   const checkPastedValue = (event: ClipboardEvent) => {
-    event.preventDefault();
-    const inputValue = event.clipboardData.getData('Text');
-    const formattedValue = inputValue.split(/\s+/).join(' ').trimStart().trimEnd();
+    const formattedValue = checkPastedText(event);
     setSearchInputValue(formattedValue);
   };
 
