@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, ClipboardEvent, KeyboardEvent } from 'react';
+import { FC } from 'react';
 import { InputAdornment } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
@@ -7,7 +7,8 @@ import Loader from 'components/Loader';
 import Skill from 'components/Skill';
 import { NoContent } from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
-import { ISkills, SkillsList } from 'types/skill';
+
+import { ISkillsPageProps } from './types';
 import {
   SkillsPageContainer,
   SearchSkill,
@@ -15,15 +16,6 @@ import {
   SkillsWrapper,
   StyledDivider,
 } from './styled';
-
-export interface ISkillsPageProps extends ISkills {
-  isLoading?: boolean;
-  searchInputValue: string;
-  searchSkills: (event: ChangeEvent<HTMLInputElement>) => void;
-  checkSpace: (event: KeyboardEvent) => void;
-  checkPastedValue: (event: ClipboardEvent) => void;
-  skillFounded: SkillsList[];
-}
 
 const SkillsCatalog: FC<ISkillsPageProps> = ({
   skills,

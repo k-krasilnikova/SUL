@@ -1,6 +1,6 @@
 import { styled, Grid, Box, Input, Divider } from '@mui/material';
 
-import theme, { COLORS } from 'themeSettings';
+import theme from 'themeSettings';
 
 export const SkillsPageContainer = styled(Grid)({
   [theme.breakpoints.down('xl')]: {
@@ -34,7 +34,7 @@ export const SearchSkill = styled(Input)({
 });
 
 export const StyledDivider = styled(Divider)({
-  borderColor: COLORS.skillsPage.dividerColor,
+  borderColor: '#C6C6C9',
   width: '400px',
   [theme.breakpoints.down('md')]: {
     width: '300px',

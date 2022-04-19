@@ -11,10 +11,10 @@ export const SkillContainer = styled('div')({
   margin: '8px',
   padding: '16px',
   border: '1px solid',
-  borderColor: COLORS.skillsPage.borderSkillContainer,
+  borderColor: '#919195',
   borderRadius: '4px',
   boxSizing: 'border-box',
-  backgroundColor: COLORS.skillsPage.bgSkillContainer,
+  backgroundColor: '#EFEFF0',
   [theme.breakpoints.down('lg')]: {
     width: '140px',
     height: '160px',
@@ -55,7 +55,7 @@ export const SkillGroup = styled('p')({
   lineHeight: '21px',
   textAlign: 'center',
   textTransform: 'uppercase',
-  color: COLORS.skillsPage.bgSkillGroup,
+  color: '#848488',
   borderRadius: '4px',
   backgroundColor: COLORS.secondaryColor,
   [theme.breakpoints.down('lg')]: {
