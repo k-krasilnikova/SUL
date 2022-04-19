@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import { SIZE } from 'constants/sizes';
 import theme from 'themeSettings';

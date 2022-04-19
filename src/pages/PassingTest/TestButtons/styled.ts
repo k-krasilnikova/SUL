@@ -1,5 +1,4 @@
-import { Box } from '@mui/material';
-import styled from 'styled-components';
+import { styled, Box } from '@mui/material';
 
 import Button from 'components/Button';
 import theme from 'themeSettings';
@@ -17,57 +16,57 @@ export const ButtonsBox = styled(Box)({
   },
   [theme.breakpoints.down('md')]: {
     marginTop: '28px',
-    marginRight: '5vw !important',
+    marginRight: '5vw',
   },
   [theme.breakpoints.down('sm')]: {
-    marginRight: '11px !important',
-    marginLeft: '0',
+    marginRight: '11px',
+    marginLeft: 0,
   },
 });
 
 export const ResultButton = styled(Button)({
   height: '50px',
   width: '98px',
-  fontSize: '18px !important',
-  fontWeight: '500 !important',
+  fontSize: '18px',
+  fontWeight: 500,
   '&.MuiButton-root.Mui-disabled': {
     backgroundColor: '#E19697',
-    color: '#ffffff',
+    color: '#FFF',
   },
   [theme.breakpoints.down('sm')]: {
     height: '32px',
     width: '64px',
-    fontSize: '14px !important',
-    padding: '0 !important',
+    fontSize: '14px',
+    padding: 0,
   },
 });
 
 export const NextButton = styled(Button)({
   height: '50px',
   width: '86px',
-  fontSize: '18px !important',
-  fontWeight: '500 !important',
+  fontSize: '18px',
+  fontWeight: 500,
   '&:disabled': {
     backgroundColor: '#E19697',
-    color: '#ffffff !important',
+    color: '#FFF',
   },
   [theme.breakpoints.down('sm')]: {
     height: '32px',
     width: '64px',
-    fontSize: '14px !important',
-    padding: '0 !important',
+    fontSize: '14px',
+    padding: 0,
   },
 });
 
 export const PreviousButton = styled(Button)({
   width: '116px',
   height: '50px',
-  fontSize: '18px !important',
-  fontWeight: '500 !important',
+  fontSize: '18px',
+  fontWeight: 500,
   [theme.breakpoints.down('sm')]: {
     height: '32px',
     width: '64px',
-    fontSize: '14px !important',
-    padding: '0 !important',
+    fontSize: '14px',
+    padding: 0,
   },
 });

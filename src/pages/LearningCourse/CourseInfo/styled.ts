@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -21,7 +21,7 @@ export const CourseInfoWrapper = styled('div')<CourseInfoWrapperProps>(({ isCour
     width: '100%',
     marginTop: '23px',
     maxHeight: '290px',
-    paddingBottom: '0px',
+    paddingBottom: 0,
     ...(!isCourseInfoOpen && {
       display: 'none',
     }),
@@ -51,7 +51,7 @@ export const CourseInfoContent = styled('div')({
 export const CourseInfoTitle = styled('span')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '32px',
-  fontWeight: '700',
+  fontWeight: 700,
   lineHeight: '38px',
   letterSpacing: '0em',
   [theme.breakpoints.down('xl')]: {
@@ -67,18 +67,18 @@ export const CourseInfoTitle = styled('span')({
 export const CourseInfoText = styled('p')({
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '24px',
-  fontWeight: '400',
+  fontWeight: 400,
   lineHeight: '31px',
   letterSpacing: '-0.4px',
-  margin: '24px 0px 0px 0px',
+  margin: '24px 0 0 0',
   [theme.breakpoints.down('xl')]: {
     fontSize: '18px',
     lineHeight: '24px',
-    margin: '8px 0px 0px 0px',
+    margin: '8px 0 0 0',
   },
   [theme.breakpoints.down('md')]: {
     fontSize: '14px',
     lineHeight: '18px',
-    margin: '4px 0px 0px 0px',
+    margin: '4px 0 0 0',
   },
 });
