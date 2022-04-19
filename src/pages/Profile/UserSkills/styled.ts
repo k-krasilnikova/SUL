@@ -218,7 +218,7 @@ export const HoverSkillInfoText = styled('div')({
   right: '-35px',
   fontSize: '12px',
   backgroundColor: '#000',
-  color: '#fff',
+  color: '#FFF',
   overflow: 'inherit',
   textOverflow: 'unset',
   boxShadow: '0 0 10px rgba(0,0,0,0.5)',

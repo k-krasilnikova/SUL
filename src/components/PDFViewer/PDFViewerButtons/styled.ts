@@ -25,7 +25,7 @@ export const ButtonBox = styled(Box)({
 });
 
 export const StyledButton = styled(Button)({
-  color: '#000000',
+  color: '#000',
   minWidth: '40px',
   '&.MuiButton-root': {
     padding: 0,
