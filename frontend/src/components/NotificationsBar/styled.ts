@@ -9,7 +9,7 @@ export const HEADER_HEIGHT_MOBILE = '44px';
 export const Notifications = styled('div')({
   position: 'absolute',
   zIndex: '15',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: '#FFF',
   padding: '10px',
   fontFamily: '"Ubuntu", sans-serif',
   borderRadius: '6px',

@@ -43,7 +43,7 @@ export const useLayOutStyles = makeStyles({
     },
   },
   showPageWrapper: {
-    width: `calc(100% - 129px)`,
+    width: 'calc(100% - 129px)',
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },

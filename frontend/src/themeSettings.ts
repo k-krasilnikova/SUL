@@ -2,11 +2,11 @@ import { createTheme } from '@mui/material';
 
 const COLORS = {
   primaryColor: '#d43e41',
-  secondaryColor: '#ffffff',
+  secondaryColor: '#FFF',
   darkColor: '#942b2d',
   disabledTextColor: '#9b9b9b',
-  primaryTextColor: '#000000',
-  secondaryTextColor: '#ffffff',
+  primaryTextColor: '#000',
+  secondaryTextColor: '#FFF',
 };
 
 const globalTheme = createTheme({

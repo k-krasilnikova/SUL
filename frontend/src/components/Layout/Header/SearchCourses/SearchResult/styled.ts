@@ -6,7 +6,7 @@ import theme from 'themeSettings';
 export const SearchResultWrapper = styled('div')({
   position: 'absolute',
   zIndex: '15',
-  background: '#FFFFFF',
+  background: '#FFF',
   borderRadius: '6px',
   top: '60px',
   left: '40px',

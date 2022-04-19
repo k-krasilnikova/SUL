@@ -53,6 +53,6 @@ export const UnderErrorText = styled(Typography)({
   },
   [theme.breakpoints.up('lg')]: {
     fontSize: '60px',
-    lineHeight: '60pxpx',
+    lineHeight: '60px',
   },
 });

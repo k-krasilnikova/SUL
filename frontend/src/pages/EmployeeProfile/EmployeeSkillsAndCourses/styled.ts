@@ -29,8 +29,8 @@ export const EmployeeButtonGroup = styled(ButtonGroup)({
 });
 
 export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({ isOpened }) => ({
-  backgroundColor: '#ffffff',
-  color: '#000000',
+  backgroundColor: '#FFF',
+  color: '#000',
   fontSize: '16px',
   fontWeight: 400,
   width: '135px',

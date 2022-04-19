@@ -51,7 +51,7 @@ export const QuestionAndStageBox = styled(Box)({
 export const TestQuestion = styled(Typography)({
   fontWeight: 500,
   fontSize: '24px',
-  color: '#000000',
+  color: '#000',
   [theme.breakpoints.down('xl')]: {
     fontSize: '22px',
   },

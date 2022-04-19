@@ -14,7 +14,7 @@ export const StyledSearchInput = styled(SearchInput)({
 export const NoContentText = styled('div')({
   position: 'absolute',
   zIndex: '10',
-  background: '#fff',
+  background: '#FFF',
   borderRadius: '6px',
   left: '24px',
   boxShadow: '0 4px 4px 0 #00000040',

@@ -148,7 +148,7 @@ export const ResultButton = styled(Button)({
   fontWeight: 500,
   '&.MuiButton-root.Mui-disabled': {
     backgroundColor: '#E19697',
-    color: '#ffffff',
+    color: '#FFF',
   },
   [theme.breakpoints.down('sm')]: {
     height: '32px',
@@ -165,7 +165,7 @@ export const NextButton = styled(Button)({
   fontWeight: 500,
   '&:disabled': {
     backgroundColor: '#E19697',
-    color: '#ffffff',
+    color: '#FFF',
   },
   [theme.breakpoints.down('sm')]: {
     height: '32px',
