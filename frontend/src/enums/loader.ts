@@ -4,4 +4,4 @@ export enum Loaders {
   component = 'component',
 }
 
-export type TLoaderVaariants = `${Loaders}`;
+export type TLoaderVariants = `${Loaders}`;

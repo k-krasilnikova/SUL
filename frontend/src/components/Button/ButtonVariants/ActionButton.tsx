@@ -8,7 +8,7 @@ import { TCourseLabels } from 'types/course';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { PATHS } from 'constants/routes';
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 
 import { withTimeLeft, withDisable } from './HOC';
 import { CustomButton } from './styled';

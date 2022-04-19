@@ -1,5 +1,6 @@
-import { Info } from 'enums/info';
 import React from 'react';
+
+import { Info } from 'enums/info';
 
 import CourseInfo from '../CourseInfo';
 import { ButtonsContainer, CourseInfoBox } from './styled';

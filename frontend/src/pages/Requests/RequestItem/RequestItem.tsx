@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
 import Image from 'components/Image';
@@ -32,7 +32,7 @@ interface IReuestItemProps {
   isTargetRequest?: boolean;
 }
 
-const RequestItem: React.FC<IReuestItemProps> = ({
+const RequestItem: FC<IReuestItemProps> = ({
   request: { _id, status, course, user, elapsed },
   ...props
 }) => (

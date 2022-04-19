@@ -1,6 +1,5 @@
+import { CourseStatus } from 'enums/course';
 import { NavigateFunction } from 'react-router';
-
-import { CourseStatus } from 'enums/courseEnums';
 
 import { PureClientCourse } from './clientCourse';
 import { ICourse } from './course';

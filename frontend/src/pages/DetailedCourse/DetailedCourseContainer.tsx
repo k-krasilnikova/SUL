@@ -11,7 +11,7 @@ import {
 } from 'utils/helpers/convertCourseStatusToProgress';
 import { Role } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 
 import DetailedCourse from './DetailedCourse';
 

@@ -1,4 +1,5 @@
 import { Params } from 'react-router';
+
 import { TVariantProgressBar } from './progressBar';
 
 export interface IAnswer {

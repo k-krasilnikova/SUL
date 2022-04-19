@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import Loader from 'components/Loader';
 import NoContent from 'components/NoContent';
@@ -20,7 +20,7 @@ interface IRequestsProps {
   requests?: IRequest[];
 }
 
-const Requests: React.FC<IRequestsProps> = ({ requests, isLoading, targetId, ...props }) => (
+const Requests: FC<IRequestsProps> = ({ requests, isLoading, targetId, ...props }) => (
   <AuthorizedLayout pageName="Requests">
     {isLoading ? (
       <Loader color="primary" type={Loaders.content} />

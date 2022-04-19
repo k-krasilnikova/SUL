@@ -5,11 +5,11 @@ export interface ISkill {
   group: string;
 }
 
-export interface TechnologyGroup {
+export interface ITechnologyGroup {
   group: {
     name: string;
   };
-  achievedSkills: Array<IUserSkill>;
+  achievedSkills: IUserSkill[];
   isPrimary: boolean;
 }
 
@@ -20,4 +20,4 @@ export interface IUserSkill {
 
 export type GroupedSkills = Map<string | number, ISkill[]>;
 
-export type Technologies = Array<TechnologyGroup>;
+export type Technologies = ITechnologyGroup[];

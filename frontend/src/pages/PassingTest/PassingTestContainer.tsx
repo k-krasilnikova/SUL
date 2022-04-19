@@ -15,7 +15,7 @@ import { PATHS } from 'constants/routes';
 import { useToggle, useCallbackPrompt } from 'hooks';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';

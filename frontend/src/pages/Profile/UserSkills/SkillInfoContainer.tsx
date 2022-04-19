@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 
 import { IUserSkill } from 'types/skill';
 
@@ -6,11 +6,11 @@ import SkillInfo from './SkillInfo';
 
 const PERCENTAGE = 100;
 
-interface SkillProps {
+interface ISkillProps {
   skillItem: IUserSkill;
 }
 
-const CourseMaterialInfoContainer: React.FC<SkillProps> = ({ skillItem }) => {
+const CourseMaterialInfoContainer: FC<ISkillProps> = ({ skillItem }) => {
   const progress = (skillItem.score / skillItem.skill.maxScore) * PERCENTAGE;
   const [isShown, setIsShown] = useState(false);
 

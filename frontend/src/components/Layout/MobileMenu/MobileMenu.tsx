@@ -6,6 +6,7 @@ import Avatar from 'components/Avatar';
 import { Size } from 'enums/sizes';
 import { PATHS } from 'constants/routes';
 import { logOutIcon } from 'icons/mobileMenuIcons';
+import { IMenuProps } from 'types/menu';
 
 import {
   MobileMenuSlide,
@@ -21,9 +22,8 @@ import {
   SpaceHolder,
   LogOut,
 } from './styled';
-import { IMenuProps } from '../Menu/types';
 
-interface MobileMenuProps {
+interface MobileMenuProps extends IMenuProps {
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
   handleConfirm: () => void;
@@ -33,9 +33,7 @@ interface MobileMenuProps {
   avatar?: string;
 }
 
-type Props = MobileMenuProps & IMenuProps;
-
-const MobileMenu: React.FC<Props> = ({
+const MobileMenu: React.FC<MobileMenuProps> = ({
   menuList,
   classes,
   pathname,

@@ -4,7 +4,7 @@ import { TSizeVariants } from './size';
 
 export type TVariantProgressBar = typeof VARIANTS[keyof typeof VARIANTS];
 
-export interface ProgressProps {
+export interface IProgressProps {
   value?: number;
   color?: string;
   textColor?: string;

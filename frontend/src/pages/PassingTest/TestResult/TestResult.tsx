@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import Loader from 'components/Loader';
@@ -20,7 +20,7 @@ import ResultProgressBar from './ResultProgressBar';
 import ResultDescription from './ResultDescription';
 import { ITestResultPageProps } from './types';
 
-const TestResult: React.FC<ITestResultPageProps> = ({
+const TestResult: FC<ITestResultPageProps> = ({
   assessment,
   isLoading,
   isFailed,

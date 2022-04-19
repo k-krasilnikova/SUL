@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { buttonSpinner } from 'animations';
 import { ButtonLabels } from 'constants/ButtonLabels';
@@ -15,7 +15,7 @@ interface IRequestProps {
   isTargetRequest?: boolean;
 }
 
-const RequestButtons: React.FC<IRequestProps> = ({
+const RequestButtons: FC<IRequestProps> = ({
   id,
   approveRequest,
   declineRequest,

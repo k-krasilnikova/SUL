@@ -5,8 +5,8 @@ import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
 import { IClientCourse } from 'types/clientCourse';
-
 import { TCourseInfo } from 'types/course';
+
 import ActionButton from './ActionButton';
 import CourseInfo from './CourseInfo';
 import CourseInfoToggle from './CourseInfoToggle';

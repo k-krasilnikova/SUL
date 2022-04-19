@@ -6,7 +6,7 @@ import { Role } from 'constants/menuRoles';
 
 interface IRoleRouteProps {
   children: React.ReactNode;
-  roles?: Array<Role>;
+  roles?: Role[];
 }
 
 const RoleRoute: React.FC<IRoleRouteProps> = ({ children, roles }) => {

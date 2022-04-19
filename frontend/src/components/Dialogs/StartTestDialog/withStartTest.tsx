@@ -6,11 +6,11 @@ import { useGetTestTime, useStartCourseTest } from 'api/test';
 import checkTestDate from 'utils/helpers/checkTestDate';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 import { IClientCourse } from 'types/clientCourse';
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 
 import StartTestDialog from './StartTestDialog';
 
-type IncomingProps = {
+type TIncomingProps = {
   timeout?: number;
   status?: CourseStatus;
   progress?: IClientCourse['progress'];
@@ -18,7 +18,7 @@ type IncomingProps = {
 };
 
 const withStartTest =
-  <T extends IncomingProps>(Component: React.ComponentType<T>) =>
+  <T extends TIncomingProps>(Component: React.ComponentType<T>) =>
   (props: T): JSX.Element => {
     const { courseId } = useParams();
 

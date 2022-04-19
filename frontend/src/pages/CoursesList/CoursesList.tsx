@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { FC, Suspense } from 'react';
 
 import { AuthorizedLayout, MobileSearch } from 'components/Layout';
 import Course from 'components/Course';
@@ -17,7 +17,7 @@ import AddCourseButton from './AddCourseButton';
 import CourseActions from './CourseActions';
 import { ICourseProps } from './types';
 
-const CoursesList: React.FC<ICourseProps> = ({
+const CoursesList: FC<ICourseProps> = ({
   courses,
   clientCourses,
   isLoading,

@@ -128,18 +128,18 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
   [theme.breakpoints.down('xl')]: {
     fontSize: '24px',
     lineHeight: '31px',
-    margin: '9px 0px 16px 0px',
+    margin: '9px 0 16px 0',
     ...(type === Info.similarCourses && {
-      margin: '0px 0px 9px 0px',
+      margin: '0 0 9px 0',
     }),
   },
   [theme.breakpoints.down('md')]: {
     fontSize: '18px',
     fontWeight: 700,
     lineHeight: '22px',
-    margin: '9px 10px 16px 0px',
+    margin: '9px 10px 16px 0',
     ...(type === Info.similarCourses && {
-      margin: '5px 18px 9px 0px',
+      margin: '5px 18px 9px 0',
     }),
   },
   [theme.breakpoints.down('sm')]: {
@@ -177,7 +177,7 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
       fontSize: '18px',
       lineHeight: '27px',
       ...(type === Info.similarCourses && {
-        margin: '0px 0px 9px 0px',
+        margin: '0 0 9px 0',
         lineHeight: '21px',
         fontSize: '16px',
       }),
@@ -190,9 +190,9 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
       letterSpacing: '-0.4px',
       textAlign: 'left',
       padding: '0',
-      margin: '0px 10px 9px 7px',
+      margin: '0 10px 9px 7px',
       ...(type === Info.similarCourses && {
-        margin: '0px 0px 9px 0px',
+        margin: '0 0 9px 0',
       }),
     },
     [theme.breakpoints.down('sm')]: {
@@ -207,7 +207,7 @@ export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type 
   },
   [theme.breakpoints.up('sm')]: {
     ...(type === Info.similarCourses && {
-      margin: '0px 17px 9px 0px',
+      margin: '0 17px 9px 0',
     }),
   },
   [theme.breakpoints.up('xl')]: {

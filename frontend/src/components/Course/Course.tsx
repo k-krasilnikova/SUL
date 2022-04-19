@@ -6,7 +6,7 @@ import { convertCourseStatusToProgress } from 'utils/helpers/convertCourseStatus
 import { checkIcon } from 'icons';
 import { PAGES } from 'constants/pages';
 import { Size } from 'enums/sizes';
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 import { Info } from 'enums/info';
 
 import CourseInfo from './CourseInfo';

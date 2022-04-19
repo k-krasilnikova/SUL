@@ -2,7 +2,7 @@ import { VARIANTS } from 'constants/progressBar';
 import { COMPLETED_STATUS_TEXT, FAILED_STATUS_TEXT } from 'constants/detailedCourse';
 import { TEST_STATUS } from 'constants/test';
 import { TVariantProgressBar } from 'types/progressBar';
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 
 export interface ConvertedProgress {
   progressValue: number;
