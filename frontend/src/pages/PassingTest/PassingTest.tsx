@@ -5,7 +5,7 @@ import Loader from 'components/Loader';
 import NoContent from 'components/NoContent';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { NO_CONTENT } from 'constants/messages';
-import { ELoader } from 'enums/loader';
+import { Loaders } from 'enums/loader';
 
 import { BackButton, InnerWrapper, PassingTestWrapper } from './styled';
 import QuestionItem from './QuestionItem';
@@ -29,7 +29,7 @@ const PassingTest: React.FC<IPassingTestProps> = ({
 }) => (
   <AuthorizedLayout pageName="Passing Test">
     {isLoading ? (
-      <Loader color="primary" type={ELoader.content} />
+      <Loader color="primary" type={Loaders.content} />
     ) : testItem ? (
       <PassingTestWrapper>
         <InnerWrapper>

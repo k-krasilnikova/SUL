@@ -1,8 +1,8 @@
 import { FC, BaseSyntheticEvent } from 'react';
 
 import { Dialog } from 'components/Dialogs';
-import { ESize } from 'enums/sizes';
-import { Course, TCheckedCourse, CoursesListType } from 'types/course';
+import { Size } from 'enums/sizes';
+import { TCheckedCourse, CoursesListType, ICourse } from 'types/course';
 
 import { CoursesList } from './CoursesList';
 import { SearchInput } from './SearchInput';
@@ -11,7 +11,7 @@ import { ContentWrapper } from './styled';
 
 interface IProps {
   selectedCoursesList: TCheckedCourse[];
-  foundedCoursesList: Course[];
+  foundedCoursesList: ICourse[];
   isOpened: boolean;
   isNoSearchResult: boolean;
   isCoursesLoading: boolean;
@@ -38,7 +38,7 @@ const AddCourseDialog: FC<IProps> = ({
   handleCheckboxChange,
   lastCourseRef,
 }) => (
-  <Dialog open={isOpened} onClose={handleClose} size={ESize.large}>
+  <Dialog open={isOpened} onClose={handleClose} size={Size.large}>
     <ContentWrapper>
       <SearchInput
         isNoResult={isNoSearchResult}

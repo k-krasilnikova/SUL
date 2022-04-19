@@ -2,7 +2,7 @@ import React, { RefObject } from 'react';
 import { Document, PDFPageProxy } from 'react-pdf';
 
 import Loader from 'components/Loader';
-import { LOADER } from 'constants/loaderTypes';
+import { Loaders } from 'enums/loader';
 
 import { DocumentBox, StyledPage } from './styled';
 
@@ -28,7 +28,7 @@ const PDFViewerDocument: React.FC<IPDFViewerDocument> = ({
   scale,
 }) => (
   <DocumentBox ref={documentBoxRef}>
-    {displayLoader && <Loader color="primary" type={LOADER.content} />}
+    {displayLoader && <Loader color="primary" type={Loaders.content} />}
     <Document
       file={src}
       onLoadSuccess={() => {

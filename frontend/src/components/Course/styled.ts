@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { Box, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
-import { EInfo } from 'enums/info';
+import { Info } from 'enums/info';
 
 export interface InfoContainerTypes {
   color?: string;
   fontSize?: number;
   lineHeight?: number;
-  type?: EInfo;
+  type?: Info;
 }
 
 interface Image {
@@ -40,7 +40,7 @@ export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type })
   [theme.breakpoints.down('xl')]: {
     padding: '16px 26px 16px 16px',
     height: '218px',
-    ...(type === EInfo.similarCourses && {
+    ...(type === Info.similarCourses && {
       padding: '16px 32px 26px 16px',
       maxHeight: '207px',
     }),
@@ -130,7 +130,7 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     fontSize: '24px',
     lineHeight: '31px',
     margin: '9px 0px 16px 0px',
-    ...(type === EInfo.similarCourses && {
+    ...(type === Info.similarCourses && {
       margin: '0px 0px 9px 0px',
     }),
   },
@@ -139,7 +139,7 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     fontWeight: '700',
     lineHeight: '22px',
     margin: '9px 10px 16px 0px',
-    ...(type === EInfo.similarCourses && {
+    ...(type === Info.similarCourses && {
       margin: '5px 18px 9px 0px',
     }),
   },
@@ -153,7 +153,7 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
     textAlign: 'left',
     padding: '0',
     fontWeight: '500',
-    ...(type === EInfo.similarCourses && {
+    ...(type === Info.similarCourses && {
       fontSize: '18px',
       fontWeight: '700',
     }),
@@ -177,7 +177,7 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
     [theme.breakpoints.down('xl')]: {
       fontSize: '18px',
       lineHeight: '27px',
-      ...(type === EInfo.similarCourses && {
+      ...(type === Info.similarCourses && {
         margin: '0px 0px 9px 0px',
         lineHeight: '21px',
         fontSize: '16px',
@@ -192,7 +192,7 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
       textAlign: 'left',
       padding: '0',
       margin: '0px 10px 9px 7px',
-      ...(type === EInfo.similarCourses && {
+      ...(type === Info.similarCourses && {
         margin: '0px 0px 9px 0px',
       }),
     },
@@ -207,7 +207,7 @@ export const CourseDescriptionWrapper = styled(Box)<InfoContainerTypes>(({ type 
     display: 'none',
   },
   [theme.breakpoints.up('sm')]: {
-    ...(type === EInfo.similarCourses && {
+    ...(type === Info.similarCourses && {
       margin: '0px 17px 9px 0px',
     }),
   },

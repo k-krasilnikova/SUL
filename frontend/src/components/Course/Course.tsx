@@ -5,9 +5,9 @@ import { convertCourseStatusToProgress } from 'utils/helpers/convertCourseStatus
 
 import { checkIcon } from 'icons';
 import { PAGES } from 'constants/pages';
-import { ESize } from 'enums/sizes';
+import { Size } from 'enums/sizes';
 import { CourseStatus } from 'enums/courseEnums';
-import { EInfo } from 'enums/info';
+import { Info } from 'enums/info';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -33,7 +33,7 @@ interface Props {
   status?: CourseStatus;
   pageName?: string;
   windowWidth?: string;
-  type?: EInfo;
+  type?: Info;
   imageUrl?: string;
   courseRef?: (node?: Element | null) => void;
 }
@@ -73,7 +73,7 @@ const Course: React.FC<Props> = ({
       {pageName === PAGES.myCourses && status !== CourseStatus.completed && (
         <MobileCourseProgress>
           <ProgressBar
-            size={ESize.medium}
+            size={Size.medium}
             text={convertCourseStatusToProgress(status).progressText}
             value={convertCourseStatusToProgress(status).progressValue}
             variant={convertCourseStatusToProgress(status).progressVariant}

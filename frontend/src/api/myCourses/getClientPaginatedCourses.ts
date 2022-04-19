@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const PAGE_CHANGE = 1;
@@ -15,7 +15,7 @@ const EMPTY_LENGTH = 0;
 interface HookResult {
   fetchNextPage: () => void;
   isLoading: boolean;
-  data: InfiniteData<{ page: number; clientCourses: ClientCourse[] }> | undefined;
+  data: InfiniteData<{ page: number; clientCourses: IClientCourse[] }> | undefined;
   hasNextPage?: boolean;
 }
 

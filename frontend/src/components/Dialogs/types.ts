@@ -1,10 +1,12 @@
 import { ReactNode } from 'react';
 
+import { TSizeVariants } from 'types/size';
+
 export interface IDialogProps {
   children: ReactNode;
   open: boolean;
   onClose: () => void;
-  size?: string;
+  size?: TSizeVariants;
 }
 
 export interface IConfirmDialogProps extends Omit<IDialogProps, 'children'> {

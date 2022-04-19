@@ -1,4 +1,4 @@
-export enum ESize {
+export enum Size {
   xsmall = 'xsmall',
   small = 'small',
   medium = 'medium',

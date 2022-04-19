@@ -1,4 +1,5 @@
 import { Params } from 'react-router';
+import { TVariantProgressBar } from './progressBar';
 
 // import { ConvertedProgress } from 'utils/helpers/convertCourseStatusToProgress';
 
@@ -78,11 +79,11 @@ export interface ITestTitleAndTimer {
 export interface ITestProgress {
   progressValue?: number;
   progressText?: string;
-  progressVariant?: string;
+  progressVariant?: TVariantProgressBar;
 }
 
-// export interface IResultDescription {
-//   responseData?: IResponseData;
-//   isFailed?: boolean;
-//   assessment?: boolean;
-// }
+export interface IResultDescription {
+  responseData?: ITestResult;
+  isFailed?: boolean;
+  assessment?: boolean;
+}

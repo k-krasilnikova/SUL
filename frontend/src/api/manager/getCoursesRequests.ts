@@ -8,7 +8,7 @@ import { IRequest } from 'types/request';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
-const useGetCoursesRequests = (): UseQueryResult<Array<IRequest>, AxiosError> => {
+const useGetCoursesRequests = (): UseQueryResult<IRequest[], AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);

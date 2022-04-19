@@ -5,7 +5,7 @@ import CourseInfo from 'components/Course/CourseInfo';
 import { LABEL_MESSAGE } from 'constants/messages';
 import Label from 'components/Label';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
-import { EInfo } from 'enums/info';
+import { Info } from 'enums/info';
 
 import { Image, CourseTitle, SearchResultCourse, RedirectButton } from './styled';
 import { ISearchResultItem } from '../../types';
@@ -25,7 +25,7 @@ const SearchResultItem: React.FC<ISearchResultItem> = ({
         <CourseInfo
           lessons={course.lessons}
           duration={convertDurationToString(course.duration)}
-          type={EInfo.searchCourses}
+          type={Info.searchCourses}
         />
       </Box>
     </SearchResultCourse>

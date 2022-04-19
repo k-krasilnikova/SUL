@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { SignTypes } from 'types/signIn';
+import { ISignInForm } from 'types/signIn';
 
 import { SignMain, SignInWrapper } from './styled';
 import SignInImage from './SignInImage';
 import SignInForm from './SignInForm';
 
-const SignIn: React.FC<SignTypes> = ({
+const SignIn: React.FC<ISignInForm> = ({
   formik,
   warningHandler,
   getFieldName,

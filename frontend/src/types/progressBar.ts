@@ -10,5 +10,5 @@ export interface ProgressProps {
   text?: string;
   size?: TSizeVariants;
   trailColor?: string;
-  variant?: TVariantProgressBar | boolean;
+  variant?: TVariantProgressBar;
 }

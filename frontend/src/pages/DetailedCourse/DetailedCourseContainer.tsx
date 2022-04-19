@@ -9,7 +9,7 @@ import {
   convertCourseStatusToProgress,
   ConvertedProgress,
 } from 'utils/helpers/convertCourseStatusToProgress';
-import { ROLE } from 'constants/menuRoles';
+import { Role } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
 import { CourseStatus } from 'enums/courseEnums';
 
@@ -54,7 +54,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   }
 
   const { data: profileResponse } = useGetProfile();
-  const isAdmin = profileResponse?.role === ROLE.admin;
+  const isAdmin = profileResponse?.role === Role.admin;
 
   let progressValue;
   let progressText;

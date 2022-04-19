@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { compose } from 'recompose';
 
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 import { VariantProps } from 'types/muiTypes';
 import { TCourseLabels } from 'types/course';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
@@ -19,7 +19,7 @@ interface IProps {
   status: CourseStatus;
   variant?: VariantProps;
   isDisable?: boolean;
-  progress?: ClientCourse['progress'];
+  progress?: IClientCourse['progress'];
 }
 
 type TOutterProps = {
@@ -27,7 +27,7 @@ type TOutterProps = {
   status: CourseStatus;
   courseId: string;
   timeout: number;
-  progress?: ClientCourse['progress'];
+  progress?: IClientCourse['progress'];
   applyDate?: string;
 };
 

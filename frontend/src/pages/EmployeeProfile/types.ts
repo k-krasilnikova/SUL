@@ -1,5 +1,5 @@
 import { EmployeeInfo } from 'enums/employee';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 import { IEmployee } from 'types/employee';
 
 export interface IEmployeeProfile {
@@ -10,6 +10,6 @@ export interface IEmployeeProfile {
   toggleProfileInfoOpened: () => void;
   isSkillOpened: boolean;
   isCourseOpened: boolean;
-  employeeCourses?: ClientCourse[];
+  employeeCourses?: IClientCourse[];
   employee?: IEmployee;
 }

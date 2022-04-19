@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import { MATERIAL, TMaterialVariants } from 'constants/materials';
+import { MATERIAL } from 'constants/materials';
 import { playVideo } from 'icons';
+import { TMaterialVariants } from 'types/materials';
 
 import { MaterialWrapper, MaterialText, MaterialVideo } from './styled';
 
