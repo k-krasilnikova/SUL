@@ -6,10 +6,7 @@ import { IMenuProps } from 'types/menu';
 import Avatar from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 import { PATHS } from 'constants/routes';
-import { IMenuProps } from 'types/menu';
 import { logOutIcon } from 'icons/mobileMenuIcons';
-import { ListItemIcon, ListItemText } from '@mui/material';
-import Slide from '@mui/material/Slide';
 
 import {
   MobileMenuSlide,
