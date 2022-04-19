@@ -1,29 +1,17 @@
 import React from 'react';
-import { Box } from '@mui/system';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { CountDownTimer } from 'components/CountDownTimer';
 import Loader from 'components/Loader';
-import { NoContent } from 'components/NoContent';
+import NoContent from 'components/NoContent';
+import { ButtonLabels } from 'constants/ButtonLabels';
 import { NO_CONTENT } from 'constants/messages';
-import { MIN_STAGE } from 'constants/test';
 import { LOADER } from 'constants/loaderTypes';
 import { IPassingTestProps } from 'types/test';
 
-import {
-  BackButton,
-  ButtonsBox,
-  CountDownText,
-  CourseTestTitle,
-  InnerWrapper,
-  NextButton,
-  PassingTestWrapper,
-  PreviousButton,
-  QuestionItemBox,
-  ResultButton,
-  TitleBox,
-} from './styled';
+import { BackButton, InnerWrapper, PassingTestWrapper } from './styled';
 import QuestionItem from './QuestionItem';
+import TestButtons from './TestButtons';
+import TestTitleAndTimer from './TestTitleAndTimer';
 
 const PassingTest: React.FC<IPassingTestProps> = ({
   stage,
@@ -37,7 +25,7 @@ const PassingTest: React.FC<IPassingTestProps> = ({
   isLoading,
   questionStageItem,
   handleSubmitResult,
-  handleConfirm,
+  handleNavigateBack,
 }) => (
   <AuthorizedLayout pageName="Passing Test">
     {isLoading ? (
@@ -45,53 +33,27 @@ const PassingTest: React.FC<IPassingTestProps> = ({
     ) : testItem ? (
       <PassingTestWrapper>
         <InnerWrapper>
-          <BackButton variant="medium" onClick={handleConfirm}>
-            Back
+          <BackButton variant="medium" onClick={handleNavigateBack}>
+            {ButtonLabels.back}
           </BackButton>
-          <Box>
-            <TitleBox>
-              <CourseTestTitle>{testItem?.title}</CourseTestTitle>
-              <CountDownText>
-                <CountDownTimer duration={testItem?.timeout} />
-              </CountDownText>
-            </TitleBox>
-          </Box>
+          <TestTitleAndTimer testItem={testItem} />
         </InnerWrapper>
-        <QuestionItemBox>
-          <QuestionItem
-            questionItem={questionStageItem}
-            stage={stage}
-            maxStage={maxStage}
-            handleChange={handleChange}
-            value={value}
-          />
-        </QuestionItemBox>
-        <ButtonsBox>
-          <Box>
-            {stage > MIN_STAGE && (
-              <PreviousButton variant="medium" onClick={stageBack}>
-                Previous
-              </PreviousButton>
-            )}
-          </Box>
-          {resultEnabled ? (
-            <ResultButton
-              variant="medium"
-              disabled={Boolean(!value[questionStageItem.qN])}
-              onClick={handleSubmitResult}
-            >
-              Result
-            </ResultButton>
-          ) : (
-            <NextButton
-              variant="medium"
-              onClick={stageNext}
-              disabled={Boolean(!value[questionStageItem.qN])}
-            >
-              Next
-            </NextButton>
-          )}
-        </ButtonsBox>
+        <QuestionItem
+          questionItem={questionStageItem}
+          stage={stage}
+          maxStage={maxStage}
+          handleChange={handleChange}
+          value={value}
+        />
+        <TestButtons
+          stage={stage}
+          stageBack={stageBack}
+          stageNext={stageNext}
+          resultEnabled={resultEnabled}
+          questionStageItem={questionStageItem}
+          value={value}
+          handleSubmitResult={handleSubmitResult}
+        />
       </PassingTestWrapper>
     ) : (
       <NoContent message={NO_CONTENT} />

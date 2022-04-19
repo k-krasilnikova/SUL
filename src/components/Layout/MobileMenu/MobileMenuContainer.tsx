@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import { useGetProfile } from 'api/profile';
-import { useLogOut } from 'api/logOut/';
-import { ConfirmLogOutModalWindow } from 'components/Layout/Header/ConfirmLogOut';
+import { useLogOut } from 'api/logOut';
+import ConfirmLogOut from 'components/ConfirmLogOut';
 import { ROLES_MENU } from 'constants/menuRoles';
 
 import MobileMenu from './MobileMenu';
@@ -33,12 +33,12 @@ const MobileMenuContainer: React.FC<MobileMenuProps> = ({
   const { pathname } = window.location;
   const classes = useListStyles();
 
-  const { mutateAsync } = useLogOut();
+  const { mutateAsync: logoutMutate, isLoading: isLogOutLoading } = useLogOut();
   const handleConfirm = (): void => {
     setConfirmOpen(true);
   };
   const handleLogOut = (): void => {
-    mutateAsync(EMPTY_ARGUMENT);
+    logoutMutate(EMPTY_ARGUMENT);
   };
   const cancelLogOut = (): void => {
     setConfirmOpen(false);
@@ -61,11 +61,11 @@ const MobileMenuContainer: React.FC<MobileMenuProps> = ({
         handleConfirm={handleConfirm}
         preventMenuClose={preventMenuClose}
       />
-      <ConfirmLogOutModalWindow
-        handleLogOut={handleLogOut}
+      <ConfirmLogOut
         isOpened={isConfirmOpen}
+        isLoading={isLogOutLoading}
+        handleLogOut={handleLogOut}
         handleCancelLogOut={cancelLogOut}
-        size="small"
       />
     </>
   );

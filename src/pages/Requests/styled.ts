@@ -1,5 +1,4 @@
-import { Grid } from '@mui/material';
-import styled from 'styled-components';
+import { styled, Grid } from '@mui/material';
 
 export const RequestsWrapper = styled(Grid)({
   padding: '40px 30px',

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Loader from 'components/Loader';
-import { NoContent } from 'components/NoContent';
+import NoContent from 'components/NoContent';
 import { AuthorizedLayout } from 'components/Layout';
 import { LOADER } from 'constants/loaderTypes';
 import { NO_REQUESTS } from 'constants/messages';

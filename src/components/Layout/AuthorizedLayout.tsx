@@ -5,9 +5,9 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Loader from 'components/Loader';
 import { Notification as NotificationType } from 'types/notification';
 
-import { Header } from './Header';
+import Header from './Header';
 import Menu from './Menu';
-import { MobileMenu } from './MobileMenu';
+import MobileMenu from './MobileMenu';
 import { GridHeader, PageWrapper, GridMenu } from './styled';
 
 interface Props {
@@ -55,7 +55,7 @@ const AuthorizedLayout: React.FC<Props> = ({
         />
       </GridHeader>
       <>
-        <GridMenu classes={isSqueeze && { root: classes?.hideGridMenu }}>
+        <GridMenu classes={{ root: isSqueeze ? classes?.hideGridMenu : undefined }}>
           <Menu isSqueeze={isSqueeze} handleSqueeze={handleSqueeze} />
         </GridMenu>
         <PageWrapper

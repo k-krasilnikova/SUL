@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ListItemIcon, ListItemText, Slide } from '@mui/material';
 
+import { IMenuProps } from 'types/menu';
 import Avatar from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 import { PATHS } from 'constants/routes';

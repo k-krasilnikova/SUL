@@ -1,5 +1,7 @@
 import { Params } from 'react-router';
 
+import { ConvertedProgress } from 'utils/helpers/convertCourseStatusToProgress';
+
 export interface ITestResponse {
   test: ITestItem;
   testResponse?: any;
@@ -67,10 +69,11 @@ export interface ITestResult {
   status?: string;
   isFailed?: boolean;
   skills?: ISkills[];
-  percentageValue?: number | undefined;
+  percentageValue?: number;
   courseId?: string;
   assessment?: boolean;
   isLoading: boolean;
+  progressBarData: ConvertedProgress;
 }
 
 export interface IPassingTestProps {
@@ -78,6 +81,7 @@ export interface IPassingTestProps {
   maxStage: number;
   handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmitResult: () => void;
+  handleNavigateBack: () => void;
   value: {
     [key: number]: number;
   };
@@ -90,4 +94,32 @@ export interface IPassingTestProps {
   handleConfirm: () => void;
   children?: React.ReactChild;
   testItem?: ITestItem;
+}
+
+export interface ITestButtons {
+  stage: number;
+  stageNext: () => void;
+  stageBack: () => void;
+  resultEnabled: boolean;
+  questionStageItem: IQuestionObject;
+  value: {
+    [key: number]: number;
+  };
+  handleSubmitResult: () => void;
+}
+
+export interface ITestTitleAndTimer {
+  testItem: ITestItem;
+}
+
+export interface ITestProgress {
+  progressValue?: number;
+  progressText?: string;
+  progressVariant?: string;
+}
+
+export interface IResultDescription {
+  responseData?: IResponseData;
+  isFailed?: boolean;
+  assessment?: boolean;
 }

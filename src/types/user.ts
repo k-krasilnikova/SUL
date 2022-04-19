@@ -1,4 +1,4 @@
-import { Course } from './course';
+import { ICourse } from './course';
 import { GroupedSkills, Technologies } from './skill';
 import { Notification } from './notification';
 
@@ -15,7 +15,7 @@ export interface User {
   phone?: string;
   skype?: string;
   position?: string;
-  courses?: Array<Course>;
+  courses?: ICourse[];
   handleLogOut?: () => void;
   technologies?: Technologies;
   notifications?: Notification[];
