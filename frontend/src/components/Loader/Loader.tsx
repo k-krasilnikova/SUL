@@ -1,5 +1,5 @@
-import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
+import { FC } from 'react';
 
 import { TLoaderVaariants } from 'enums/loader';
 import { TColorVariants } from 'types/muiTypes';
@@ -11,7 +11,7 @@ interface ILoader {
   type?: TLoaderVaariants;
 }
 
-const Loader: React.FC<ILoader> = ({ color, type }) => {
+const Loader: FC<ILoader> = ({ color, type }) => {
   return (
     <LoaderBox type={type}>
       <CircularProgress color={color} />

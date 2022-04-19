@@ -6,7 +6,7 @@ import ButtonLoader from 'components/ButtonLoader';
 
 import { ActionButton, ButtonsContainer, InterviewActionButton } from './styled';
 
-interface RequestProps {
+interface IRequestProps {
   approveRequest: (requestId: string) => void;
   approveLoading: boolean;
   declineRequest: (requestId: string) => void;
@@ -15,7 +15,7 @@ interface RequestProps {
   isTargetRequest?: boolean;
 }
 
-const RequestButtons: React.FC<RequestProps> = ({
+const RequestButtons: React.FC<IRequestProps> = ({
   id,
   approveRequest,
   declineRequest,

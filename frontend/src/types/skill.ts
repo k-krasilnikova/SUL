@@ -9,11 +9,11 @@ export interface TechnologyGroup {
   group: {
     name: string;
   };
-  achievedSkills: Array<UserSkill>;
+  achievedSkills: Array<IUserSkill>;
   isPrimary: boolean;
 }
 
-export interface UserSkill {
+export interface IUserSkill {
   score: number;
   skill: ISkill;
 }

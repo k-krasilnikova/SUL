@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { Info } from 'enums/info';
 import { videoPlayer, clock } from 'icons';
@@ -12,13 +12,13 @@ import {
   LessonsIcon,
 } from './styled';
 
-interface IProps {
+interface ICourseInfoProps {
   duration?: string;
   lessons?: number;
   type?: Info;
 }
 
-const CourseInfo: React.FC<IProps> = ({ duration, lessons, type }) => (
+const CourseInfo: FC<ICourseInfoProps> = ({ duration, lessons, type }) => (
   <InfoContainer type={type}>
     <InfoItem>
       <DurationIcon alt="lessons" src={clock} />

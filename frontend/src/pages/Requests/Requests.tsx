@@ -12,12 +12,12 @@ import { RequestsWrapper } from './styled';
 
 interface IRequestsProps {
   approveRequest: (requestId: string) => void;
-  approveLoading: boolean;
   declineRequest: (requestId: string) => void;
+  approveLoading: boolean;
   declineLoading: boolean;
-  requests?: IRequest[];
   isLoading?: boolean;
   targetId?: string;
+  requests?: IRequest[];
 }
 
 const Requests: React.FC<IRequestsProps> = ({ requests, isLoading, targetId, ...props }) => (

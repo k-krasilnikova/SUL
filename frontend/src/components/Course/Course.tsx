@@ -25,7 +25,7 @@ import {
 import CourseButtons from './CourseButtons';
 import ProgressBar from '../ProgressBar';
 
-interface Props {
+interface IProps {
   description: string;
   title?: string;
   duration?: string;
@@ -38,7 +38,7 @@ interface Props {
   courseRef?: (node?: Element | null) => void;
 }
 
-const Course: React.FC<Props> = ({
+const Course: React.FC<IProps> = ({
   title,
   description,
   duration,

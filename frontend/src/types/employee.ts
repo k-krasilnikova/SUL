@@ -1,9 +1,9 @@
 import { EmployeeInfo } from 'enums/employee';
 
 import { IClientCourse } from './clientCourse';
-import { User } from './user';
+import { IUser } from './user';
 
-export interface IEmployee extends User {
+export interface IEmployee extends IUser {
   _id: string;
   rank: number;
   stack: { name: string }[];

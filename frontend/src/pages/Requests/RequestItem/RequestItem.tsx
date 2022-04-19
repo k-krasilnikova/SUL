@@ -23,16 +23,16 @@ import {
 } from './styled';
 import RequestButtons from './RequestButtons';
 
-interface ReuestItemProps {
-  approveRequest: (requestId: string) => void;
-  approveLoading: boolean;
-  declineRequest: (requestId: string) => void;
-  declineLoading: boolean;
+interface IReuestItemProps {
   request: IRequest;
+  approveRequest: (requestId: string) => void;
+  declineRequest: (requestId: string) => void;
+  approveLoading: boolean;
+  declineLoading: boolean;
   isTargetRequest?: boolean;
 }
 
-const RequestItem: React.FC<ReuestItemProps> = ({
+const RequestItem: React.FC<IReuestItemProps> = ({
   request: { _id, status, course, user, elapsed },
   ...props
 }) => (
