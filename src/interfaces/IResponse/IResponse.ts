@@ -82,4 +82,5 @@ export {
   ICoursesMapResponse,
   TEmployeeCourse,
   ITestResultResponse,
+  ICourseShortInfo,
 };
