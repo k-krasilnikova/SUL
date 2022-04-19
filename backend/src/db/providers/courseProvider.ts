@@ -210,6 +210,13 @@ const updateCourseField = async (courseId: string, field: string, value: unknown
   return updatedCourse;
 };
 
+const getCoursesByIdsProvider = async (ids: ObjectId[] | string[]): Promise<ICourse[]> =>
+  CourseModel.find({
+    _id: {
+      $in: ids,
+    },
+  });
+
 export {
   getCoursesProvider,
   getCourseProvider,
@@ -217,4 +224,5 @@ export {
   getMaterialsProvider,
   deleteCourseProvider,
   updateCourseField,
+  getCoursesByIdsProvider,
 };
