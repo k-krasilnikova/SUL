@@ -12,14 +12,9 @@ import { IEmployeeProfile } from './types';
 
 const EmployeeProfile: React.FC<IEmployeeProfile> = ({
   employee,
-  employeeCourses,
-  employeeInfo,
-  toggleEmployeeInfo,
-  toggleHover,
   profileInfoOpened,
   toggleProfileInfoOpened,
-  isSkillOpened,
-  isCourseOpened,
+  ...props
 }) => (
   <AuthorizedLayout pageName="Employee">
     <EmployeeProfileWrapper>
@@ -31,15 +26,7 @@ const EmployeeProfile: React.FC<IEmployeeProfile> = ({
         profileInfoOpened={profileInfoOpened}
         toggleProfileInfoOpened={toggleProfileInfoOpened}
       />
-      <EmployeeSkillsAndCourses
-        employee={employee}
-        employeeCourses={employeeCourses}
-        employeeInfo={employeeInfo}
-        toggleEmployeeInfo={toggleEmployeeInfo}
-        toggleHover={toggleHover}
-        isSkillOpened={isSkillOpened}
-        isCourseOpened={isCourseOpened}
-      />
+      <EmployeeSkillsAndCourses employee={employee} {...props} />
     </EmployeeProfileWrapper>
   </AuthorizedLayout>
 );
