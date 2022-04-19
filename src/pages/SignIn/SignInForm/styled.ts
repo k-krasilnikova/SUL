@@ -194,8 +194,8 @@ export const GridSignInput = styled(Grid)<IColor>(({ color }) => ({
     border: '1px solid #B7BECA',
   },
   '@media(max-width: 1280px)': {
-    marginBottom: '16px',
     margin: 0,
+    marginBottom: '16px',
     padding: 0,
     height: '48px',
     maxHeight: '48px',
