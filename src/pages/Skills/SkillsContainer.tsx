@@ -1,10 +1,10 @@
-import { FC, useState, useEffect, ChangeEvent, KeyboardEvent, ClipboardEvent } from 'react';
+import { FC, useState, useEffect, BaseSyntheticEvent } from 'react';
 
-import { useGetSkills, useSearchSkills } from 'api/skills';
-import { checkPastedText, checkWhitespace, formatInputValue } from 'utils/helpers/searchHelpers';
 import { useDebounce } from 'hooks';
-
+import { useGetSkills, useSearchSkills } from 'api/skills';
+import { formatInputValue } from 'utils/helpers/searchHelpers';
 import { SkillsList } from 'types/skill';
+
 import SkillsCatalog from './SkillsCatalog';
 
 const SkillsContainer: FC = () => {
@@ -31,28 +31,16 @@ const SkillsContainer: FC = () => {
     }
   }, [debouncedSearchValue, searchInputValue, skillSearchResponse]);
 
-  const searchSkills = (event: ChangeEvent<HTMLInputElement>): void => {
-    const formattedValue = formatInputValue(event.target.value);
-    setSearchInputValue(formattedValue);
-  };
-
-  const checkSpace = (event: KeyboardEvent) => {
-    checkWhitespace(event, searchInputValue);
-  };
-
-  const checkPastedValue = (event: ClipboardEvent) => {
-    const formattedValue = checkPastedText(event);
-    setSearchInputValue(formattedValue);
+  const handleSearchInputChange = ({ target }: BaseSyntheticEvent) => {
+    setSearchInputValue(formatInputValue(target.value));
   };
 
   return (
     <SkillsCatalog
       skills={skillsResponse}
-      searchSkills={searchSkills}
-      searchInputValue={searchInputValue}
-      checkSpace={checkSpace}
-      checkPastedValue={checkPastedValue}
       skillFounded={skillFounded}
+      searchInputValue={searchInputValue}
+      handleSearchInputChange={handleSearchInputChange}
     />
   );
 };
