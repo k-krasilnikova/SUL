@@ -1,19 +1,18 @@
 import { FC, Suspense } from 'react';
-
-import Loader from 'components/Loader';
-import SkillItem from 'components/Skill/SkillItem/SkillItem';
-import { LENGTH } from 'constants/sizes';
-import { SkillsList } from 'types/skill';
-
 import { Box } from '@mui/material';
+
+import { SkillsList } from 'types/skill';
+import { LENGTH } from 'constants/sizes';
+import Loader from 'components/Loader';
+import SkillItem from './SkillItem/SkillItem';
 import { SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
-interface ISkillsComponentProps {
+interface ISkillProps {
   skills: SkillsList[];
   skillFounded: SkillsList[];
 }
 
-const SkillsComponent: FC<ISkillsComponentProps> = ({ skillFounded, skills }) => {
+const Skill: FC<ISkillProps> = ({ skillFounded, skills }) => {
   const skillsData = skillFounded.length ? skillFounded : skills;
   return (
     <Box>
@@ -37,4 +36,4 @@ const SkillsComponent: FC<ISkillsComponentProps> = ({ skillFounded, skills }) =>
     </Box>
   );
 };
-export default SkillsComponent;
+export default Skill;

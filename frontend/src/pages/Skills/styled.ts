@@ -1,4 +1,5 @@
 import { styled, Grid, Box, Input, Divider } from '@mui/material';
+
 import theme, { COLORS } from 'themeSettings';
 
 export const SkillsPageContainer = styled(Grid)({

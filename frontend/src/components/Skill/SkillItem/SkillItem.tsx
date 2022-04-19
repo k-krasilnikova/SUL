@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
-
 import { SkillContainer, ImageWrapper, SkillName, SkillGroup } from './styled';
 
 interface ISkillItemProps {
