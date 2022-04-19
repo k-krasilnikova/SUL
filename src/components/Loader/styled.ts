@@ -6,10 +6,10 @@ import {
   HEADER_HEIGHT_IPAD,
   HEADER_HEIGHT_MOBILE,
 } from 'components/Layout/Header/styled';
-import { Loaders, TLoaderVaariants } from 'enums/loader';
+import { Loaders, TLoaderVariants } from 'enums/loader';
 
 interface LoaderType {
-  type?: TLoaderVaariants;
+  type?: TLoaderVariants;
 }
 
 export const LoaderBox = styled(Box)<LoaderType>(({ type }) => ({

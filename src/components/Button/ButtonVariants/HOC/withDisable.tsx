@@ -1,12 +1,12 @@
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 import { useEffect, useState } from 'react';
 
-type IncomingProps = {
+type TIncomingProps = {
   status: CourseStatus;
 };
 
 const withDisable =
-  <T extends IncomingProps>(Component: React.ComponentType<T>) =>
+  <T extends TIncomingProps>(Component: React.ComponentType<T>) =>
   (props: T): JSX.Element => {
     const [isDisable, setDisable] = useState(false);
     const { status } = props;

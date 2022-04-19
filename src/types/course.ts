@@ -1,5 +1,5 @@
 import { COURSE_LABELS } from 'constants/statuses';
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 
 import { TimeProps } from './time';
 

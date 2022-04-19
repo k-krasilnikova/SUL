@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import ProgressBar from 'components/ProgressBar/ProgressBar';
 import Avatar from 'components/Avatar';
@@ -16,7 +16,7 @@ import {
   SkillInfoStage,
 } from './styled';
 
-interface Props {
+interface IProps {
   technologyTitle: string;
   stages?: number;
   stagesCompleted?: number;
@@ -27,7 +27,7 @@ interface Props {
   hideSkillInfo?: () => void;
 }
 
-const CourseMaterialInfo: React.FC<Props> = ({
+const CourseMaterialInfo: FC<IProps> = ({
   technologyTitle,
   stages,
   stagesCompleted,

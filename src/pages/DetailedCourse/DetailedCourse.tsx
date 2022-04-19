@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { AuthorizedLayout, MobileSearch } from 'components/Layout';
 import { IDetailedCourse } from 'types/detailedCourse';
@@ -9,7 +9,7 @@ import SimilarCourses from './SimilarCourses';
 import DetailedCourseActions from './DetailedCourseActions';
 import DetailedCourseInfo from './DetailedCourseInfo';
 
-const DetailedCourse: React.FC<IDetailedCourse> = ({ page, ...props }) => (
+const DetailedCourse: FC<IDetailedCourse> = ({ page, ...props }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
       <BackButton page={page} />

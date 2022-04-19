@@ -6,7 +6,7 @@ import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import Loader from 'components/Loader';
 import { useToggle } from 'hooks';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 
 import LearningCourse from './LearningCourse';
 

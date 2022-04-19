@@ -6,13 +6,12 @@ import { TSizeVariants } from 'types/size';
 
 import { UserAvatarRounded } from './styled';
 
-interface AvatarProps {
+interface IAvatarProps {
   size: TSizeVariants;
+  avatar: IUser['avatar'];
 }
 
-type Props = IUser & AvatarProps;
-
-const Avatar: React.FC<Props> = ({ avatar, size }) => (
+const Avatar: React.FC<IAvatarProps> = ({ avatar, size }) => (
   <UserAvatarRounded size={size} avatar={avatar || avatarDefault} />
 );
 

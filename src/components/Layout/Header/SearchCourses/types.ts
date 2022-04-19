@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 import { ICourse } from 'types/course';
 
 export interface ISearchResultContainerProps {

@@ -7,7 +7,7 @@ import { API } from 'constants/routes';
 import { IClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
-import { CourseStatus } from 'enums/courseEnums';
+import { CourseStatus } from 'enums/course';
 
 const useStartClientCourse = (
   courseId?: string,

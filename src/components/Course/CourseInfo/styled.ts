@@ -1,7 +1,6 @@
 import { styled, Box, Typography } from '@mui/material';
 
 import { Info } from 'enums/info';
-
 import theme from 'themeSettings';
 
 import { InfoContainerTypes } from '../styled';
