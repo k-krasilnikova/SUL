@@ -1,4 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose';
+import { isEmpty } from 'lodash';
 
 import {
   DEFAULT_N_PER_PAGE,
@@ -8,17 +9,55 @@ import {
   NO_FILTER,
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
+import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { ICourseStatus, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
-import ClientCourseModel from 'db/models/ClientCourses';
+
+const generateCourseStatusLookup = (userId: ObjectId | string) => ({
+  $lookup: {
+    from: 'clientCourses',
+    localField: '_id',
+    foreignField: 'course',
+    pipeline: [
+      {
+        $match: {
+          $expr: {
+            $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(String(userId))] }],
+          },
+        },
+      },
+      {
+        $project: {
+          status: 1,
+          _id: 0,
+        },
+      },
+    ],
+    as: 'status',
+  },
+});
 
 interface ICourseWithStatusDb extends ICourse {
   status: [{ status?: string }];
 }
+
+const normalizeAgregatedCourse = (agregatedCourse: ICourseWithStatusDb): ICourseStatus => {
+  const course: ICourseStatus = { ...agregatedCourse, status: 'not set' };
+  if (isEmpty(agregatedCourse.status)) {
+    const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
+    course.status = courseStatus;
+  } else {
+    delete course.status;
+  }
+  return course;
+};
+
+const normalizeAgregatedCourses = (aggregation: ICourseWithStatusDb[]): ICourseStatus[] =>
+  aggregation.map(normalizeAgregatedCourse);
 
 const populateCourses = async (courses: ICourseStatus[]): Promise<ICourseStatus[]> => {
   const populated = await CourseModel.populate(courses, [
@@ -56,29 +95,7 @@ const getCoursesProvider = async (
           ? { title: { $regex: new RegExp(decodeAndFormatSearchParams(title)), $options: 'i' } }
           : NO_FILTER,
       },
-      {
-        $lookup: {
-          from: 'clientCourses',
-          localField: '_id',
-          foreignField: 'course',
-          pipeline: [
-            {
-              $match: {
-                $expr: {
-                  $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId)] }],
-                },
-              },
-            },
-            {
-              $project: {
-                status: 1,
-                _id: 0,
-              },
-            },
-          ],
-          as: 'status',
-        },
-      },
+      generateCourseStatusLookup(userId),
       {
         $sort: {
           'status.0.status': SortOrder.asc,
@@ -93,18 +110,7 @@ const getCoursesProvider = async (
       },
     ]);
 
-    const courses: ICourseStatus[] = aggregation.map((agregatedCourse) => {
-      const course: ICourseStatus = { ...agregatedCourse, status: 'not set' };
-
-      if (agregatedCourse.status.length) {
-        const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
-        course.status = courseStatus;
-      } else {
-        delete course.status;
-      }
-
-      return course;
-    });
+    const courses: ICourseStatus[] = normalizeAgregatedCourses(aggregation);
 
     const populated = await populateCourses(courses);
 
@@ -121,29 +127,7 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
         _id: new mongoose.Types.ObjectId(courseId.toString()),
       },
     },
-    {
-      $lookup: {
-        from: 'clientCourses',
-        localField: '_id',
-        foreignField: 'course',
-        pipeline: [
-          {
-            $match: {
-              $expr: {
-                $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId.toString())] }],
-              },
-            },
-          },
-          {
-            $project: {
-              status: 1,
-              _id: 0,
-            },
-          },
-        ],
-        as: 'status',
-      },
-    },
+    generateCourseStatusLookup(userId),
   ]);
 
   const [agregatedCourse] = aggregation;
@@ -151,14 +135,7 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
     throw new NotFoundError('Course not found.');
   }
 
-  const course: ICourseStatus = { ...agregatedCourse, status: 'not set' };
-
-  if (agregatedCourse.status.length) {
-    const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
-    course.status = courseStatus;
-  } else {
-    delete course.status;
-  }
+  const course: ICourseStatus = normalizeAgregatedCourse(agregatedCourse);
 
   const populated = await populateCourse(course);
 
@@ -210,12 +187,25 @@ const updateCourseField = async (courseId: string, field: string, value: unknown
   return updatedCourse;
 };
 
-const getCoursesByIdsProvider = async (ids: ObjectId[] | string[]): Promise<ICourse[]> =>
-  CourseModel.find({
-    _id: {
-      $in: ids,
+const getCoursesByIdsWithStatusProvider = async (
+  ids: ObjectId[] | string[],
+  userId: ObjectId | string,
+): Promise<ICourseStatus[]> => {
+  const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
+    {
+      $match: {
+        _id: {
+          $in: ids,
+        },
+      },
     },
-  });
+    generateCourseStatusLookup(userId),
+  ]);
+
+  const courses: ICourseStatus[] = normalizeAgregatedCourses(aggregation);
+
+  return courses;
+};
 
 export {
   getCoursesProvider,
@@ -224,5 +214,5 @@ export {
   getMaterialsProvider,
   deleteCourseProvider,
   updateCourseField,
-  getCoursesByIdsProvider,
+  getCoursesByIdsWithStatusProvider,
 };
