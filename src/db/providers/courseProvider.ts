@@ -211,9 +211,7 @@ const updateCourseField = async (courseId: string, field: TCourseFields, value: 
   return updatedCourse;
 };
 
-const addCourseProvider = async (newCourse: ICreateCourseBody) => {
-  await CourseModel.create(newCourse);
-};
+const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
 
 export {
   getCoursesProvider,

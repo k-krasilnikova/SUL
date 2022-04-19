@@ -1,13 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 
-import isValidDescription from 'utils/validation/isValidDescription';
-import isValidMaterials from 'utils/validation/isValidMaterials';
 import { addMaterialStages } from 'utils/normaliser/materials';
-import isValidQuestions from 'utils/validation/isValidQuestions';
-import isValidAvatar from 'utils/validation/isValidAvatar';
+import isValidCourseData from 'utils/validation/isValidCourseData';
 import { skillsToCourseTechs } from 'db/providers/skillProvider';
 import { addCourseTest } from 'db/providers/testProvider';
 import { ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const preparingCourseData = async (
   req: Request<never, never, ICreateCourseBody>,
@@ -17,44 +15,31 @@ const preparingCourseData = async (
   try {
     const courseDataFromRequest = req.body;
 
+    const isValidData = isValidCourseData(courseDataFromRequest);
+
     const courseDataToSave: ICreateCourseBody = { technologies: [] };
 
-    courseDataToSave.title = courseDataFromRequest.title;
-    courseDataToSave.complexity = courseDataFromRequest.complexity;
-
-    const isDescriptionValid = isValidDescription(courseDataFromRequest.description);
-
-    if (isDescriptionValid) {
+    if (
+      isValidData &&
+      courseDataFromRequest.materials &&
+      courseDataFromRequest.technologies &&
+      courseDataFromRequest.test
+    ) {
+      courseDataToSave.title = courseDataFromRequest.title;
+      courseDataToSave.complexity = courseDataFromRequest.complexity;
       courseDataToSave.description = courseDataFromRequest.description;
-    }
-
-    const isMaterialsValid = isValidMaterials(courseDataFromRequest.materials);
-
-    if (isMaterialsValid && courseDataFromRequest.materials) {
-      const materialsWithStages = addMaterialStages(courseDataFromRequest.materials);
-
-      courseDataToSave.materials = materialsWithStages;
-    }
-
-    if (courseDataFromRequest.technologies) {
-      const techsForCourse = await skillsToCourseTechs(courseDataFromRequest.technologies);
-
-      courseDataToSave.technologies = techsForCourse;
-    }
-
-    const isQuestionsValid = isValidQuestions(courseDataFromRequest.test?.questions);
-
-    if (isQuestionsValid && courseDataFromRequest.test) {
-      const test = await addCourseTest(courseDataFromRequest.test);
-      courseDataToSave.test = test;
-    }
-
-    const isAvatarValid = isValidAvatar(courseDataFromRequest.avatar);
-    if (isAvatarValid) {
       courseDataToSave.avatar = courseDataFromRequest.avatar;
+
+      courseDataToSave.materials = addMaterialStages(courseDataFromRequest.materials);
+
+      courseDataToSave.technologies = await skillsToCourseTechs(courseDataFromRequest.technologies);
+
+      courseDataToSave.test = await addCourseTest(courseDataFromRequest.test);
+    } else {
+      throw new BadRequestError('Invalid queries.');
     }
 
-    res.locals.results = courseDataToSave;
+    res.locals.preparedCourseData = courseDataToSave;
     next();
   } catch (err) {
     next(err);
