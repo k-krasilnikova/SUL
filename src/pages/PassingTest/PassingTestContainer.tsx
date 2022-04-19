@@ -9,6 +9,7 @@ import {
   PERCENTAGE,
   STAGE_CHANGE,
   TEST_STATUS,
+  MIN_TEST_DURATION,
 } from 'constants/test';
 import { PATHS } from 'constants/routes';
 import { COURSE_STATUSES } from 'constants/statuses';
@@ -107,7 +108,7 @@ const PassingTestContainer: React.FC = () => {
   const isTestTimeOver = useMemo(
     () =>
       courseStatus === COURSE_STATUSES.testing &&
-      getDurationBetweenDates(clientCourseResponse?.finishTestDate) < 0,
+      getDurationBetweenDates(clientCourseResponse?.finishTestDate) < MIN_TEST_DURATION,
     [clientCourseResponse?.finishTestDate, courseStatus],
   );
 
@@ -116,13 +117,14 @@ const PassingTestContainer: React.FC = () => {
 
   const isShouldRedirect = isNotTestingCourseStatus || isTestTimeOver;
 
-  const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
+  const [isLeavePageDialogOpen, setLeavePageDialogOpen] = useToggle();
 
-  const handleConfirm = (): void => {
-    setConfirmOpen(true);
+  const handleConfirmLeavePageOpen = (): void => {
+    setLeavePageDialogOpen();
   };
 
   const handleNavigateBack = (): void => {
+    handleConfirmLeavePageOpen();
     naviagteTo(transformRoute(PATHS.myCourseDetails, params.courseId));
   };
 
@@ -134,17 +136,6 @@ const PassingTestContainer: React.FC = () => {
   const progressBarData = isFailed
     ? convertTestStatusToProgress(TEST_STATUS.failed, percentageValue)
     : convertTestStatusToProgress(TEST_STATUS.successful, percentageValue);
-  // const [showDialogOnSwitchingRoute, setShowDialogOnSwitchingRoute] = useState<boolean>(false);
-
-  // const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(
-  //   showDialogOnSwitchingRoute,
-  // );
-
-  // useEffect(() => {
-  //   if (courseTest) {
-  //     setShowDialogOnSwitchingRoute(true);
-  //   }
-  // }, [courseTest, showDialogOnSwitchingRoute]);
 
   if (isShouldRedirect && !isTestResultPageEnabled) {
     return <Navigate replace to={transformRoute(PATHS.myCourseDetails, params.courseId)} />;
@@ -168,14 +159,13 @@ const PassingTestContainer: React.FC = () => {
             questionStageItem={questionStageItem}
             isLoading={courseTestResponseIsLoading}
             handleSubmitResult={handleSubmitResult}
-            handleConfirm={handleConfirm}
-            handleNavigateBack={handleNavigateBack}
+            handleBackButtonClick={handleConfirmLeavePageOpen}
           />
           <ConfirmLeavePage
-            isOpened={isConfirmOpen || false}
+            isOpened={isLeavePageDialogOpen}
             isLoading={courseTestResponseIsLoading}
-            handleCancelLeavePage={() => {}}
-            handleLeavePage={() => {}}
+            handleCancelLeavePage={handleConfirmLeavePageOpen}
+            handleLeavePage={handleNavigateBack}
           />
           <ConfirmTimeIsOver
             isOpened={isTestTimeoutDialogOpen}

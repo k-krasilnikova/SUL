@@ -26,7 +26,7 @@ const PassingTest: React.FC<IPassingTestProps> = ({
   isLoading,
   questionStageItem,
   handleSubmitResult,
-  handleNavigateBack,
+  handleBackButtonClick,
 }) => (
   <AuthorizedLayout pageName="Passing Test">
     {isLoading ? (
@@ -34,7 +34,7 @@ const PassingTest: React.FC<IPassingTestProps> = ({
     ) : testTitle ? (
       <PassingTestWrapper>
         <InnerWrapper>
-          <BackButton variant="medium" onClick={handleNavigateBack}>
+          <BackButton variant="medium" onClick={handleBackButtonClick}>
             {ButtonLabels.back}
           </BackButton>
           <TestTitleAndTimer title={testTitle} duration={testDuration} />
