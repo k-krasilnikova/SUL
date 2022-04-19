@@ -93,7 +93,7 @@ const LearningCourseContainer: React.FC = () => {
       isTestEnabled={isTestEnabled}
       handleStageBack={handleStageBack}
       handleStageForward={handleStageForward}
-      togglCourseInfOpen={setCourseInfoOpen}
+      toggleCourseInfoOpen={setCourseInfoOpen}
       clientCourse={clientCourseResponse}
     />
   );
