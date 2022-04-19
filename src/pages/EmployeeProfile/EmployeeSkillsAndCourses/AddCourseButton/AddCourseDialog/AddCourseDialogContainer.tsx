@@ -40,6 +40,7 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
       courseIdsList: selectedCoursesList.map(({ _id }) => ({
         courseId: _id,
       })),
+      employeeId,
       onSuccess: handleDialogClose,
     });
 
