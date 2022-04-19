@@ -14,19 +14,19 @@ import { withTimeLeft, withDisable } from './HOC';
 import { CustomButton } from './styled';
 
 interface IProps {
-  label: TCourseLabels;
-  courseId: string;
-  status: CourseStatus;
+  courseId?: string;
+  status?: CourseStatus;
+  label?: TCourseLabels;
   variant?: VariantProps;
   isDisable?: boolean;
   progress?: IClientCourse['progress'];
 }
 
 type TOutterProps = {
-  label: TCourseLabels;
-  status: CourseStatus;
-  courseId: string;
   timeout: number;
+  courseId?: string;
+  status?: CourseStatus;
+  label?: TCourseLabels;
   progress?: IClientCourse['progress'];
   applyDate?: string;
 };

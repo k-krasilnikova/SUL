@@ -49,7 +49,7 @@ const CourseActions: React.FC<ICourseActions> = ({
         {!isAdmin &&
           (clientCourses ? (
             <ActionButton
-              label={COURSE_LABELS[status as string]}
+              label={status && COURSE_LABELS[status]}
               status={status}
               progress={progress}
               applyDate={applyDate}

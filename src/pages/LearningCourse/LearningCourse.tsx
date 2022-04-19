@@ -26,51 +26,22 @@ interface IProps {
   courseMaterial: string;
   handleStageBack: () => void;
   handleStageForward: () => void;
-  togglCourseInfOpen: () => void;
+  toggleCourseInfoOpen: () => void;
   clientCourse?: IClientCourse;
 }
 
-const LearningCourse: FC<IProps> = ({
-  stage,
-  maxStage,
-  isTestEnabled,
-  isBackDisabled,
-  isForwardDisabled,
-  isCourseInfoOpen,
-  isLoading,
-  courseInfo,
-  courseMaterial,
-  handleStageBack,
-  handleStageForward,
-  togglCourseInfOpen,
-  clientCourse,
-}) => (
+const LearningCourse: FC<IProps> = ({ courseMaterial, ...props }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
       <BackButton disableElevation variant="contained" component={Link} to={PATHS.myCourses}>
         {ButtonLabels.back}
       </BackButton>
       <LearningWrapper>
-        <StageController
-          stage={stage}
-          maxStage={maxStage}
-          isBackDisabled={isBackDisabled}
-          isForwardDisabled={isForwardDisabled}
-          handleStageBack={handleStageBack}
-          handleStageForward={handleStageForward}
-        />
+        <StageController {...props} />
         <Material courseMaterial={courseMaterial} />
-        <CourseInfoToggle
-          isCourseInfoOpen={isCourseInfoOpen}
-          toggleCourseInfoOpen={togglCourseInfOpen}
-        />
-        <ActionButton
-          isLoading={isLoading}
-          isTestEnabled={isTestEnabled}
-          handleStageForward={handleStageForward}
-          clientCourse={clientCourse}
-        />
-        <CourseInfo courseInfo={courseInfo} isCourseInfoOpen={isCourseInfoOpen} />
+        <CourseInfoToggle {...props} />
+        <ActionButton {...props} />
+        <CourseInfo {...props} />
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>

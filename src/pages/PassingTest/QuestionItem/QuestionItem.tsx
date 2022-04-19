@@ -16,7 +16,7 @@ import {
 import { IQuestionProps } from './types';
 
 const QuestionItem: React.FC<IQuestionProps> = ({
-  questionItem,
+  questionStageItem,
   stage,
   maxStage,
   handleChange,
@@ -24,7 +24,7 @@ const QuestionItem: React.FC<IQuestionProps> = ({
 }) => (
   <QuestionItemBox>
     <QuestionAndStageBox>
-      {questionItem && <TestQuestion>{questionItem.question}</TestQuestion>}
+      {questionStageItem && <TestQuestion>{questionStageItem.question}</TestQuestion>}
       <StageWrapper>
         <Stage>
           {stage}/{maxStage}
@@ -32,11 +32,11 @@ const QuestionItem: React.FC<IQuestionProps> = ({
       </StageWrapper>
     </QuestionAndStageBox>
     <AnswersBox>
-      {questionItem.answers.map((answer) => (
+      {questionStageItem.answers.map((answer) => (
         <RadioGroup
           key={answer.aN}
-          value={value[questionItem.qN] || null}
-          onChange={handleChange(questionItem.qN)}
+          value={value[questionStageItem.qN] || null}
+          onChange={handleChange(questionStageItem.qN)}
         >
           <StyledFormControlLabel
             control={

@@ -14,18 +14,10 @@ import TestTitleAndTimer from './TestTitleAndTimer';
 import { IPassingTestProps } from './types';
 
 const PassingTest: React.FC<IPassingTestProps> = ({
-  stage,
-  maxStage,
-  handleChange,
-  value,
-  resultEnabled,
-  stageNext,
-  stageBack,
   testItem,
   isLoading,
-  questionStageItem,
-  handleSubmitResult,
   handleNavigateBack,
+  ...props
 }) => (
   <AuthorizedLayout pageName="Passing Test">
     {isLoading ? (
@@ -38,22 +30,8 @@ const PassingTest: React.FC<IPassingTestProps> = ({
           </BackButton>
           <TestTitleAndTimer testItem={testItem} />
         </InnerWrapper>
-        <QuestionItem
-          questionItem={questionStageItem}
-          stage={stage}
-          maxStage={maxStage}
-          handleChange={handleChange}
-          value={value}
-        />
-        <TestButtons
-          stage={stage}
-          stageBack={stageBack}
-          stageNext={stageNext}
-          resultEnabled={resultEnabled}
-          questionStageItem={questionStageItem}
-          value={value}
-          handleSubmitResult={handleSubmitResult}
-        />
+        <QuestionItem {...props} />
+        <TestButtons {...props} />
       </PassingTestWrapper>
     ) : (
       <NoContent message={NO_CONTENT} />

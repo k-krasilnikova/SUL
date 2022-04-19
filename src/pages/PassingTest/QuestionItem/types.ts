@@ -5,7 +5,7 @@ export interface IQuestionProps {
   value: {
     [key: string]: number;
   };
-  questionItem: IQuestionObject;
+  questionStageItem: IQuestionObject;
   stage?: number;
   maxStage?: number;
 }
