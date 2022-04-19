@@ -1,8 +1,6 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Grid, Box } from '@mui/material';
+import { styled, Grid } from '@mui/material';
 
-import { Button } from 'components/Button';
 import theme from 'themeSettings';
 
 export const PageContainer = styled(Grid)({
@@ -10,11 +8,11 @@ export const PageContainer = styled(Grid)({
     padding: '16px 24px 16px 14px',
   },
   [theme.breakpoints.down(950)]: {
-    padding: '0px 8px',
+    padding: '0 8px',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: '16px 30px 24px 0px',
-    margin: '0px 0px 0px -6px !important',
+    padding: '16px 30px 24px 0',
+    margin: '0 0 0 -6px',
   },
   maxWidth: '1482px',
   paddingTop: '16px',
@@ -29,29 +27,13 @@ export const GridItem = styled(Grid)({
     paddingTop: '8px',
   },
   [theme.breakpoints.down('md')]: {
-    paddingLeft: '0px',
+    paddingLeft: 0,
   },
   [theme.breakpoints.up('xl')]: {
     width: '711px',
     paddingLeft: '30px',
     paddingTop: '24px',
   },
-});
-
-export const CourseActions = styled('div')({
-  display: 'flex',
-  [theme.breakpoints.down('md')]: {
-    justifyContent: 'space-between',
-    margin: '0px',
-  },
-  [theme.breakpoints.down('sm')]: {
-    flexDirection: 'column',
-    minWidth: 'auto',
-  },
-});
-
-export const CourseActionsBox = styled(Box)({
-  margin: '20px 15px 0 8px',
 });
 
 export const MobileLink = styled(Link)({
@@ -70,34 +52,9 @@ export const MobileLink = styled(Link)({
 export const MobileSearchWrapper = styled('div')({
   width: '100%',
   position: 'relative',
-  margin: '16px 0px 8px 0px',
+  margin: '16px 0 8px 0',
   height: '30px',
   [theme.breakpoints.up(950)]: {
     display: 'none',
-  },
-});
-
-export const AddButtonWrapper = styled('div')({
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'end',
-  margin: '16px 0 0',
-  [theme.breakpoints.down('xl')]: {
-    margin: '16px 0',
-  },
-  [theme.breakpoints.down(950)]: {
-    display: 'none',
-  },
-});
-
-export const AddButton = styled(Button)({
-  width: '85px',
-  height: '40px',
-  [theme.breakpoints.down('xl')]: {
-    width: '69px',
-    height: '40px',
-    fontSize: '14px!important',
-    lineHeight: '16px',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)!important',
   },
 });

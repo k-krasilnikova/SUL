@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescription';
-import convertStatusToProgress from 'utils/helpers/convertStatusToProgress';
-import { ProgressBar } from 'components/ProgressBar';
+import { convertCourseStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
+
 import { checkIcon } from 'icons';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
@@ -15,20 +15,20 @@ import {
   CourseTitle,
   CourseDescription,
   AboutCourseContainer,
-  ButtonsContainer,
   CourseDescriptionWrapper,
-  CourseInfoBox,
   MobileCourseInfoBox,
   MobileCourseProgress,
   MobileCourseCompleted,
   CourseTextContainer,
 } from './styled';
+import CourseButtons from './CourseButtons';
+import ProgressBar from '../ProgressBar';
 
 interface Props {
-  title: string | undefined;
   description: string;
-  duration: string | undefined;
-  lessons: number | undefined;
+  title?: string;
+  duration?: string;
+  lessons?: number;
   status?: string;
   pageName?: string;
   windowWidth?: string;
@@ -44,51 +44,46 @@ const Course: React.FC<Props> = ({
   lessons,
   pageName,
   status,
-  children,
   windowWidth,
   type,
   imageUrl,
   courseRef,
-}) => {
-  return (
-    <CourseContainer container direction="column" ref={courseRef}>
-      <AboutCourseContainer type={type}>
-        <ImageWrapper imageUrl={imageUrl} />
-        <CourseTextContainer>
-          <CourseTitle type={type}>{title}</CourseTitle>
-          <CourseDescriptionWrapper type={type}>
-            <CourseDescription type={type}>
-              {shortifyCourseDescription(description, windowWidth, pageName)}
-            </CourseDescription>
-          </CourseDescriptionWrapper>
-          <MobileCourseInfoBox>
-            <CourseInfo duration={duration} lessons={lessons} />
-          </MobileCourseInfoBox>
-          {status === COURSE_STATUSES.completed && (
-            <MobileCourseCompleted>
-              Completed <img alt="" src={checkIcon} />
-            </MobileCourseCompleted>
-          )}
-        </CourseTextContainer>
-        {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed && (
-          <MobileCourseProgress>
-            <ProgressBar
-              size={SIZE.medium}
-              text={convertStatusToProgress(status).progressText}
-              value={convertStatusToProgress(status).progressValue}
-              variant={convertStatusToProgress(status).progressVariant}
-            />
-          </MobileCourseProgress>
-        )}
-      </AboutCourseContainer>
-      <ButtonsContainer type={type}>
-        <CourseInfoBox type={type}>
+  children,
+}) => (
+  <CourseContainer container direction="column" ref={courseRef}>
+    <AboutCourseContainer type={type}>
+      <ImageWrapper imageUrl={imageUrl} />
+      <CourseTextContainer>
+        <CourseTitle type={type}>{title}</CourseTitle>
+        <CourseDescriptionWrapper type={type}>
+          <CourseDescription type={type}>
+            {shortifyCourseDescription(description, windowWidth, pageName)}
+          </CourseDescription>
+        </CourseDescriptionWrapper>
+        <MobileCourseInfoBox>
           <CourseInfo duration={duration} lessons={lessons} />
-        </CourseInfoBox>
-        {children}
-      </ButtonsContainer>
-    </CourseContainer>
-  );
-};
+        </MobileCourseInfoBox>
+        {status === COURSE_STATUSES.completed && (
+          <MobileCourseCompleted>
+            Completed <img alt="" src={checkIcon} />
+          </MobileCourseCompleted>
+        )}
+      </CourseTextContainer>
+      {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed && (
+        <MobileCourseProgress>
+          <ProgressBar
+            size={SIZE.medium}
+            text={convertCourseStatusToProgress(status).progressText}
+            value={convertCourseStatusToProgress(status).progressValue}
+            variant={convertCourseStatusToProgress(status).progressVariant}
+          />
+        </MobileCourseProgress>
+      )}
+    </AboutCourseContainer>
+    <CourseButtons type={type} lessons={lessons} duration={duration}>
+      {children}
+    </CourseButtons>
+  </CourseContainer>
+);
 
 export default Course;

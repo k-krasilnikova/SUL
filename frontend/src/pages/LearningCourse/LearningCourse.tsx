@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthorizedLayout } from 'components/Layout';
-import { ButtonLabels } from 'components/Button/ButtonsEnums';
+import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
 import { ClientCourse, ICourseInfo } from 'types/clientCourse';
 
@@ -46,11 +46,9 @@ const LearningCourse: FC<IProps> = ({
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
-      <Link to={PATHS.myCourses}>
-        <BackButton disableElevation variant="contained">
-          {ButtonLabels.back}
-        </BackButton>
-      </Link>
+      <BackButton disableElevation variant="contained" component={Link} to={PATHS.myCourses}>
+        {ButtonLabels.back}
+      </BackButton>
       <LearningWrapper>
         <StageController
           stage={stage}

@@ -1,57 +1,44 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useEffect, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 
-import signInSchema from 'validations/signInValidationSchema';
 import { useGetAuth } from 'api/auth';
-import { SIGN_STYLE_PROPS } from 'constants/signStyle';
+import { FIELD_TOUCHED, FIELD_VALIDATE, INITIAL_VALUES } from 'constants/signIn';
+import signInValidationSchema from 'validations';
 
 import SignIn from './SignIn';
 
-interface SignInFields {
-  login: string;
-  password: string;
-}
-
-const initSignInvalue: SignInFields = {
-  login: '',
-  password: '',
-};
-
 const SignInContainer: React.FC = () => {
   const { mutateAsync, isLoading, isError: isAuthError } = useGetAuth();
-  const FIELD_TOUCHED = true;
-  const FIELD_VALIDATE = false;
 
   const formik = useFormik({
-    initialValues: initSignInvalue,
-    validationSchema: signInSchema,
+    initialValues: INITIAL_VALUES,
+    validationSchema: signInValidationSchema,
     onSubmit: (values): void => {
       mutateAsync(values);
     },
   });
 
-  const [fieldStatus, setStatus] = useState<string | boolean>(false);
+  const [fieldStatus, setFieldStatus] = useState<string | boolean>(false);
   const [authFailed, setAuthFailed] = useState(false);
 
   useEffect(() => {
     if (isAuthError) setAuthFailed(true);
   }, [isAuthError]);
 
-  const warningHandler = (name: string, e: string) => {
-    formik.handleChange(e);
+  const warningHandler = (name: string, event: string) => {
+    formik.handleChange(event);
     formik.setFieldTouched(name, FIELD_TOUCHED, FIELD_VALIDATE);
     setAuthFailed(false);
   };
 
-  const outOfFocusFiled = (e: string) => {
-    formik.handleBlur(e);
-    setStatus(FIELD_VALIDATE);
+  const outOfFocusFiled = (event: string) => {
+    formik.handleBlur(event);
+    setFieldStatus(FIELD_VALIDATE);
   };
 
   const onFocusField = (event: React.MouseEvent<Element, MouseEvent>) => {
-    setStatus((event.currentTarget as HTMLElement).id);
+    setFieldStatus((event.currentTarget as HTMLElement).id);
   };
 
   return (
@@ -62,7 +49,6 @@ const SignInContainer: React.FC = () => {
         outOfFocusFiled={outOfFocusFiled}
         getFieldName={onFocusField}
         isLoading={isLoading}
-        labelHandler={SIGN_STYLE_PROPS}
         fieldStatus={fieldStatus}
         isAuthError={authFailed}
       />

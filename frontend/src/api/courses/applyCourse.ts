@@ -20,7 +20,7 @@ const useApplyCourse = (): UseMutationResult => {
     async (id: string | undefined | unknown) => {
       const data = { id };
       const apiClient = apiClientWrapper();
-      const response = await apiClient.post(API.getCourses, data);
+      const response = await apiClient.post(API.courses, data);
       return response.data;
     },
     {

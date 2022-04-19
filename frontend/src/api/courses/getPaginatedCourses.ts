@@ -6,7 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
-import { Course } from 'types/course';
+import { ICourse } from 'types/course';
 
 const PAGE_CHANGE = 1;
 const FIRST_PAGE = 1;
@@ -14,7 +14,7 @@ const EMPTY_LENGTH = 0;
 interface HookResult {
   fetchNextPage: () => void;
   isLoading: boolean;
-  data: InfiniteData<{ page: number; courses: Course[] }> | undefined;
+  data: InfiniteData<{ page: number; courses: ICourse[] }> | undefined;
   hasNextPage?: boolean;
 }
 
@@ -25,7 +25,7 @@ const useGetPaginatedCourses = (title?: string): HookResult => {
   };
   const getCourses = async ({ pageParam = 1 }) => {
     const apiClient = apiClientWrapper();
-    const response = await apiClient.get(`${API.getCourses}`, {
+    const response = await apiClient.get(`${API.courses}`, {
       params: {
         title,
         pageN: pageParam,

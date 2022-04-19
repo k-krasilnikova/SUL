@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import { makeStyles } from '@material-ui/core';
-import { ListItemButton, ListItemText } from '@mui/material';
 import { ReactFragment } from 'react';
+import { styled, ListItemButton, ListItemText } from '@mui/material';
+import { makeStyles } from '@material-ui/core';
 
 import { leftArrow, rightArrow } from 'icons/menuIcons';
 import theme from 'themeSettings';
@@ -18,9 +17,9 @@ export const MenuTabs = styled('div')({
   height: '100%',
   backgroundColor: theme.palette.secondary.main,
   borderRight: '1px solid rgba(0, 0, 0, 0.39)',
-  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0 4px 4px rgba(0, 0, 0, 0.1)',
   fontFamily: '"Ubuntu", sans-serif',
-  margin: '0px',
+  margin: 0,
   position: 'relative',
   fontSize: '18px',
   [theme.breakpoints.down('md')]: {
@@ -79,7 +78,7 @@ export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({
 
 export const ItemText = styled(ListItemText)({
   '& span': {
-    display: 'block !important',
+    display: 'block',
     fontSize: '18px',
     [theme.breakpoints.down('md')]: {
       fontSize: '16px',
@@ -101,7 +100,7 @@ export const useListStyles = makeStyles({
       height: '35px',
     },
     '&:hover': {
-      background: `${theme.palette.secondary.main} !important`,
+      background: theme.palette.secondary.main,
     },
   },
   selected: {
@@ -109,12 +108,12 @@ export const useListStyles = makeStyles({
     background: theme.palette.secondary.main,
     boxShadow: '-10px -4px 15px rgba(0, 0, 0, 0.05)',
     '&:hover': {
-      background: `${theme.palette.secondary.main} !important`,
+      background: theme.palette.secondary.main,
     },
   },
   selectedLogo: {
     paddingLeft: '20px',
-    color: `${theme.palette.primary.main} !important`,
+    color: theme.palette.primary.main,
     '& svg': {
       width: '35px',
       height: '35px',

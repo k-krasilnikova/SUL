@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
-import pdf from 'docs/sul.pdf';
-import { PDFViewer } from 'components/PDFViewer';
+import PDFViewer from 'components/PDFViewer';
 import Loader from 'components/Loader';
 import { LOADER } from 'constants/loaderTypes';
+import pdf from 'docs/sul.pdf';
 
 const Help: React.FC = () => (
   <AuthorizedLayout pageName="Help">

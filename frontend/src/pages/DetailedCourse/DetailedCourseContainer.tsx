@@ -5,7 +5,10 @@ import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { useGetProfile } from 'api/profile';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
-import convertStatusToProgress, { ConvertedProgress } from 'utils/helpers/convertStatusToProgress';
+import {
+  convertCourseStatusToProgress,
+  ConvertedProgress,
+} from 'utils/helpers/convertCourseStatusToProgress';
 import { COURSE_STATUSES } from 'constants/statuses';
 import { ROLE } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
@@ -61,7 +64,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
 
   useEffect(() => {
     if (courseData) {
-      const progress = convertStatusToProgress(courseData.status);
+      const progress = convertCourseStatusToProgress(courseData.status);
       setCurrentProgress(progress);
     }
   }, [courseData]);

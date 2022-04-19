@@ -1,14 +1,11 @@
 import React from 'react';
 
 import Avatar from 'components/Avatar';
-import ButtonLoader from 'components/ButtonLoader';
-import { Image } from 'components/Image';
-
-import { BUTTON_CONTENT, REQUEST_STATUS } from 'constants/requests';
+import Image from 'components/Image';
 import { SIZE } from 'constants/sizes';
+import { REQUEST_STATUS } from 'constants/requests';
 import { IRequest } from 'types/request';
 import { convertRequestTime } from 'utils/helpers/convertTime';
-import { buttonSpinner } from 'animations';
 
 import {
   CourseImageWrapper,
@@ -17,16 +14,14 @@ import {
   Position,
   SecondaryText,
   UserName,
-  ActionButton,
-  InterviewActionButton,
   RequestContainer,
   CustomGrid,
   UserContainer,
   CourseContainer,
-  ButtonsContainer,
   TimeContainer,
   DisabledText,
 } from './styled';
+import RequestButtons from './RequestButtons';
 
 const RequestItem: React.FC<IRequest> = ({
   request,
@@ -59,41 +54,14 @@ const RequestItem: React.FC<IRequest> = ({
       <SecondaryText status={status}>{convertRequestTime(request?.elapsed)}</SecondaryText>
     </TimeContainer>
     {request?.status === REQUEST_STATUS.pending ? (
-      <ButtonsContainer item xs={4} rowSpacing={1}>
-        <ActionButton
-          variant="mediumContained"
-          onClick={() => approveRequest(request?._id)}
-          disabled={approveLoading}
-        >
-          {approveLoading && isTargetRequest ? (
-            <ButtonLoader buttonSpinner={buttonSpinner} />
-          ) : (
-            BUTTON_CONTENT.accept
-          )}
-        </ActionButton>
-        <InterviewActionButton
-          variant="mediumContained"
-          onClick={() => approveRequest(request._id)}
-          disabled={approveLoading}
-        >
-          {approveLoading && isTargetRequest ? (
-            <ButtonLoader buttonSpinner={buttonSpinner} />
-          ) : (
-            BUTTON_CONTENT.acceptWithInterview
-          )}
-        </InterviewActionButton>
-        <ActionButton
-          variant="mediumOutlined"
-          onClick={() => declineRequest(request._id)}
-          disabled={declineLoading}
-        >
-          {declineLoading && isTargetRequest ? (
-            <ButtonLoader buttonSpinner={buttonSpinner} />
-          ) : (
-            BUTTON_CONTENT.reject
-          )}
-        </ActionButton>
-      </ButtonsContainer>
+      <RequestButtons
+        request={request}
+        approveRequest={approveRequest}
+        declineRequest={declineRequest}
+        approveLoading={approveLoading}
+        declineLoading={declineLoading}
+        isTargetRequest={isTargetRequest}
+      />
     ) : (
       <CustomGrid item xs={4}>
         <DisabledText>{status !== REQUEST_STATUS.pending && status}</DisabledText>
