@@ -1,3 +1,5 @@
+import { UserRank } from 'enums/users';
+
 import { IStackMember } from '../Ientities/IStackMember';
 import { ICourse } from '../Ientities/Icourses';
 import { IClientCourse } from '../Ientities/IclientCourses';
@@ -49,6 +51,23 @@ interface ITestResultResponse {
   percentage: number;
 }
 
+interface ICoursesMapResponse {
+  userRank: UserRank;
+  coursesMap: ICoursesMapElement[];
+}
+
+interface ICoursesMapElement {
+  rank: UserRank;
+  courses: ICourseShortInfo[];
+}
+
+interface ICourseShortInfo {
+  _id: ICourse['_id'];
+  title: ICourse['title'];
+  avatar: ICourse['avatar'];
+  isCompleted: boolean;
+}
+
 type TEmployeeCourse = Pick<ICourse, 'title' | 'avatar'>;
 
 type TLocalsManager = ILocals;
@@ -60,6 +79,7 @@ export {
   IEmployeeInfo,
   IEmployeeShortInfo,
   IEmployeeClientCourse,
+  ICoursesMapResponse,
   TEmployeeCourse,
   ITestResultResponse,
 };
