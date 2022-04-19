@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent, KeyboardEvent, ClipboardEvent, useEffect } from 'react';
+import { FC, useState, useEffect, ChangeEvent, KeyboardEvent, ClipboardEvent } from 'react';
 
 import { useGetSkills, useSearchSkills } from 'api/skills';
 import { checkPastedText, checkWhitespace, formatInputValue } from 'utils/helpers/searchHelpers';
