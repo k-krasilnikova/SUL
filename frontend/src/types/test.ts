@@ -79,20 +79,19 @@ export interface ITestResult {
 export interface IPassingTestProps {
   stage: number;
   maxStage: number;
-  handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmitResult: () => void;
-  handleNavigateBack: () => void;
   value: {
     [key: number]: number;
   };
+  testDuration: number;
   params: Readonly<Params<string>>;
+  questionStageItem: IQuestionObject;
   resultEnabled: boolean;
+  isLoading: boolean;
   stageNext: () => void;
   stageBack: () => void;
-  isLoading: boolean;
-  questionStageItem: IQuestionObject;
-  handleConfirm: () => void;
-  testDuration: number;
+  handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmitResult: () => void;
+  handleBackButtonClick: () => void;
   children?: React.ReactChild;
   testTitle?: string;
 }
