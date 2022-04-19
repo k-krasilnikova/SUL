@@ -4,12 +4,15 @@ import { TCourseInfo } from 'types/course';
 
 import { CourseInfoWrapper, CourseInfoContent, CourseInfoTitle, CourseInfoText } from './styled';
 
-interface IProps {
+interface ICourseInfoProps {
   courseInfo: TCourseInfo;
   isCourseInfoOpen: boolean;
 }
 
-const CourseInfo: FC<IProps> = ({ isCourseInfoOpen, courseInfo: { title, description } }) => (
+const CourseInfo: FC<ICourseInfoProps> = ({
+  isCourseInfoOpen,
+  courseInfo: { title, description },
+}) => (
   <CourseInfoWrapper isCourseInfoOpen={isCourseInfoOpen}>
     <CourseInfoContent>
       <CourseInfoTitle>{title}</CourseInfoTitle>

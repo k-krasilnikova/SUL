@@ -26,7 +26,7 @@ const withStartTest =
     const [isOpen, setOpen] = useToggle();
 
     const { mutate: startTestMutate } = useStartCourseTest(courseId);
-    const { data: testTimeout } = useGetTestTime({ courseId, enabled: isOpen });
+    const { data: testTimeoutData } = useGetTestTime({ courseId, enabled: isOpen });
 
     const handleStartTest = () => {
       startTestMutate(courseId);
@@ -49,7 +49,7 @@ const withStartTest =
         <StartTestDialog
           handleStartTest={handleStartTest}
           isOpened={isOpen}
-          testTimeout={testTimeout}
+          testTimeout={testTimeoutData}
           handleClose={setOpen}
         />
       </>

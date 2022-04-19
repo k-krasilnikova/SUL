@@ -13,8 +13,10 @@ export type TMaterial = {
   }[];
   technology: Array<string>;
 };
+
 export type CourseTechnology = { skill: string; points: number };
 export type TCourseStatus = `${CourseStatus}`;
+
 export interface ICourse {
   _id: string;
   title: string;

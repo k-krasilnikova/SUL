@@ -3,6 +3,7 @@ import { VARIANTS } from 'constants/progressBar';
 import { TSizeVariants } from './size';
 
 export type TVariantProgressBar = typeof VARIANTS[keyof typeof VARIANTS];
+
 export interface ProgressProps {
   value?: number;
   color?: string;

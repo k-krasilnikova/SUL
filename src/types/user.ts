@@ -2,7 +2,7 @@ import { Technologies } from './skill';
 import { Notification } from './notification';
 import { IClientCourse } from './clientCourse';
 
-export interface User {
+export interface IUser {
   _id?: string;
   firstName?: string;
   lastName?: string;
@@ -22,4 +22,4 @@ export interface User {
   notifications?: Notification[];
 }
 
-export type TRequestedUser = Pick<User, '_id' | 'avatar' | 'firstName' | 'lastName' | 'position'>;
+export type TRequestedUser = Pick<IUser, '_id' | 'avatar' | 'firstName' | 'lastName' | 'position'>;

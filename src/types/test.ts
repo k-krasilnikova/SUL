@@ -1,8 +1,6 @@
 import { Params } from 'react-router';
 import { TVariantProgressBar } from './progressBar';
 
-// import { ConvertedProgress } from 'utils/helpers/convertCourseStatusToProgress';
-
 export interface IAnswer {
   variant: string;
   aN: number;
@@ -12,11 +10,12 @@ export interface IQuestionObject {
   question: string;
   answers: IAnswer[];
 }
+
 export interface ITestItem {
   _id: string;
-  title: string | undefined;
   questions: IQuestionObject[];
   timeout: number;
+  title?: string;
 }
 
 export interface ITestResponse {
