@@ -1,5 +1,4 @@
-import { Table, TableCell, TableRow } from '@mui/material';
-import { styled } from '@mui/styles';
+import { styled, Table, TableCell, TableRow } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -14,13 +13,13 @@ export const EmployeesTable = styled(Table)({
 export const Cell = styled(TableCell)({
   '&.MuiTableCell-root': {
     textAlign: 'left',
-    paddingTop: '0',
-    paddingBottom: '0',
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   '&.MuiTableCell-head': {
     color: '#6c6c6c',
     fontSize: '16px',
-    fontWeight: '400',
+    fontWeight: 400,
     lineHeight: '21px',
     paddingBottom: '30px',
     [theme.breakpoints.down('xl')]: {
@@ -30,7 +29,7 @@ export const Cell = styled(TableCell)({
   },
   '&.MuiTableCell-body': {
     fontSize: '18px',
-    fontWeight: '400',
+    fontWeight: 400,
     letterSpacing: '0.01em',
     color: '#131313',
     marginTop: '19px',

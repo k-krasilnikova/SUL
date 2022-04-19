@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -18,7 +18,7 @@ export const SkillsWrapper = styled('div')({
 
 export const Position = styled('h2')({
   fontSize: '24px',
-  fontWeight: '500',
+  fontWeight: 500,
   lineHeight: '31px',
   marginTop: 0,
   [theme.breakpoints.down('sm')]: {
@@ -64,7 +64,7 @@ export const Rank = styled('div')<{ selected?: boolean }>(({ selected }) => ({
 
 export const RankTitle = styled('h4')({
   fontSize: '18px',
-  fontWeight: '500',
+  fontWeight: 500,
   marginTop: 0,
 });
 

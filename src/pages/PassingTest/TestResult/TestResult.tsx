@@ -49,9 +49,13 @@ const TestResult: React.FC<ITestResultPageProps> = ({
           />
         </ContentBox>
         <ButtonBox>
-          <Link to={transformRoute(PATHS.myCourseDetails, courseId)}>
-            <SubmitButton variant="medium">{ButtonLabels.submit}</SubmitButton>
-          </Link>
+          <SubmitButton
+            variant="medium"
+            component={Link}
+            to={transformRoute(PATHS.myCourseDetails, courseId)}
+          >
+            {ButtonLabels.submit}
+          </SubmitButton>
         </ButtonBox>
       </TestResultBox>
     )}

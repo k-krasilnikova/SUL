@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { Box } from '@mui/system';
+import { styled, Box } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -20,11 +19,11 @@ export const InnerWrapper = styled(Box)({
     maxWidth: '98%',
   },
   [theme.breakpoints.up('md')]: {
-    margin: '14px 30px 0px 27px',
+    margin: '14px 30px 0 27px',
     maxWidth: '847px',
   },
   [theme.breakpoints.up('lg')]: {
-    margin: '29px 40px 0px 27px',
+    margin: '29px 40px 0 27px',
     maxWidth: 'calc(100% - 54px)',
   },
   [theme.breakpoints.up('xl')]: {
@@ -35,12 +34,12 @@ export const InnerWrapper = styled(Box)({
 
 export const MobileSearchWrapper = styled('div')({
   width: 'calc(100% - 56px)',
-  margin: '16px 0px 8px 0px',
+  margin: '16px 0 8px 0',
   height: '30px',
   display: 'inline-block',
   position: 'relative',
   [theme.breakpoints.up('md')]: {
-    margin: '0px 0px 0px 6px',
+    margin: '0 0 0 6px',
     width: 'calc(100% - 80px)',
   },
   [theme.breakpoints.up(950)]: {

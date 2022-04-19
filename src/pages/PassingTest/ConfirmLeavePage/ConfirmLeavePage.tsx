@@ -23,4 +23,5 @@ const ConfirmLeavePage: FC<IConfirmLeavePageProps> = ({
     onClose={handleCancelLeavePage}
   />
 );
+
 export default ConfirmLeavePage;

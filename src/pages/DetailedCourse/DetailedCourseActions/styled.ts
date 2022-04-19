@@ -1,5 +1,4 @@
-import { Box } from '@mui/material';
-import styled from 'styled-components';
+import { styled, Box } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -16,12 +15,12 @@ export const DetailedCourseActionsBox = styled(Box)({
   },
   [theme.breakpoints.down('md')]: {
     marginTop: '56px',
-    marginLeft: '0',
+    marginLeft: 0,
   },
 });
 
 export const CourseInfoBox = styled(Box)({
   display: 'flex',
-  alignSelf: 'center !important',
+  alignSelf: 'center',
   alignItems: 'center',
 });

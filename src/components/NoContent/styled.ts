@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import Box from '@mui/material/Box';
+import { styled, Box } from '@mui/material';
 
 import { Size } from 'enums/sizes';
 import theme from 'themeSettings';
@@ -26,7 +25,7 @@ export const Message = styled('span')<IProps>(({ size }) => ({
   [theme.breakpoints.up('xs')]: {
     fontFamily: 'Ubuntu',
     fontSize: '36px',
-    fontWeight: '700',
+    fontWeight: 700,
     lineHeight: '41px',
     ...(size === Size.large && {
       fontSize: '30px',
@@ -44,7 +43,7 @@ export const Message = styled('span')<IProps>(({ size }) => ({
   [theme.breakpoints.up('lg')]: {
     fontFamily: 'Ubuntu',
     fontSize: '60px',
-    fontWeight: '700',
+    fontWeight: 700,
     lineHeight: '69px',
     ...(size === Size.large && {
       fontSize: '50px',

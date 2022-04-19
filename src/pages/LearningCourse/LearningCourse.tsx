@@ -47,11 +47,9 @@ const LearningCourse: FC<IProps> = ({
 }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
-      <Link to={PATHS.myCourses}>
-        <BackButton disableElevation variant="contained">
-          {ButtonLabels.back}
-        </BackButton>
-      </Link>
+      <BackButton disableElevation variant="contained" component={Link} to={PATHS.myCourses}>
+        {ButtonLabels.back}
+      </BackButton>
       <LearningWrapper>
         <StageController
           stage={stage}

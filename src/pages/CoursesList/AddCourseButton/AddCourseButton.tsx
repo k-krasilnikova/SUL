@@ -7,11 +7,15 @@ import { AddButton, AddButtonWrapper } from './styled';
 
 const AddCourseButton: React.FC = () => (
   <AddButtonWrapper>
-    <Link to={PATHS.coursesList}>
-      <AddButton disableElevation variant="mediumContained">
-        {ButtonLabels.addWithPlus}
-      </AddButton>
-    </Link>
+    <AddButton
+      disableElevation
+      color="primary"
+      variant="mediumContained"
+      component={Link}
+      to={PATHS.coursesList}
+    >
+      {ButtonLabels.addWithPlus}
+    </AddButton>
   </AddButtonWrapper>
 );
 
