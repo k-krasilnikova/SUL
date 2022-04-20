@@ -1,4 +1,5 @@
 import { ContentElementType, IContentElement } from 'types/course';
+
 import { optimizeLink } from '../videoPlayer/videoLink';
 
 const extractMaterial = (contentElement: IContentElement): IContentElement['material'] => {
