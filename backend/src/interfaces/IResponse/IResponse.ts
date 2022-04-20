@@ -1,6 +1,10 @@
 import { UserRank } from 'enums/users';
 
-import { IStackMember, TUserStackMemberShort } from '../Ientities/IStackMember';
+import {
+  IStackMember,
+  IUserStackMemberDatabase,
+  TUserStackMemberShort,
+} from '../Ientities/IStackMember';
 import { ICourse } from '../Ientities/Icourses';
 import { IClientCourse } from '../Ientities/IclientCourses';
 import { ITechnologyGroup, IUser, TUserPopulated } from '../Ientities/Iusers';
@@ -58,6 +62,7 @@ interface ICoursesMapResponse {
 
 interface IStackMapElement {
   stack: IStackMember['name'];
+  isPrimary: IUserStackMemberDatabase['isPrimary'];
   coursesMap: ICoursesMapElement[];
 }
 
