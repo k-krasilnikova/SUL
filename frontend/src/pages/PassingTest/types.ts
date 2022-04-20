@@ -7,16 +7,16 @@ export interface IPassingTestProps {
   maxStage: number;
   handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmitResult: () => void;
-  handleNavigateBack: () => void;
+  handleBackButtonClick: () => void;
   value: {
     [key: number]: number;
   };
+  testDuration: number;
   resultEnabled: boolean;
   stageNext: () => void;
   stageBack: () => void;
   isLoading: boolean;
   questionStageItem: IQuestionObject;
-  handleConfirm: () => void;
   params: Params<string>;
-  testItem?: ITestItem;
+  testTitle?: string;
 }

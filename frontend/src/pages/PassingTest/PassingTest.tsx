@@ -14,23 +14,15 @@ import TestTitleAndTimer from './TestTitleAndTimer';
 import { IPassingTestProps } from './types';
 
 const PassingTest: React.FC<IPassingTestProps> = ({
-  stage,
-  maxStage,
-  handleChange,
-  value,
-  resultEnabled,
-  stageNext,
-  stageBack,
   testTitle,
   testDuration,
   isLoading,
-  questionStageItem,
-  handleSubmitResult,
   handleBackButtonClick,
+  ...props
 }) => (
   <AuthorizedLayout pageName="Passing Test">
     {isLoading ? (
-      <Loader color="primary" type={LOADER.content} />
+      <Loader color="primary" type={Loaders.content} />
     ) : testTitle ? (
       <PassingTestWrapper>
         <InnerWrapper>
