@@ -1,14 +1,17 @@
 import { NavigateFunction } from 'react-router';
 
+import { CourseStatus } from 'enums/course';
+
 import { PureClientCourse } from './clientCourse';
 import { ICourse } from './course';
+import { TVariantProgressBar } from './progressBar';
 
 export interface IDetailedCourse {
   commonCourseData: ICourse;
   handleApplyCourse: () => void;
   page: string;
   id: string;
-  status: string;
+  status: CourseStatus;
   windowWidth: string;
   isFullTextOpen: boolean;
   toggleFullText: () => void;
@@ -24,7 +27,7 @@ export interface IDetailedCourse {
   isCourseFailed?: boolean;
   progressValue?: number;
   progressText?: string;
-  progressVariant?: string;
+  progressVariant?: TVariantProgressBar;
   handleClickDialogOpen?: () => void;
   isTestEnable?: boolean;
   isAdmin?: boolean;
@@ -37,7 +40,7 @@ export interface IDetailedCourseInfo {
   isProgressBarDisplayed?: boolean;
   progressValue?: number;
   progressText?: string;
-  progressVariant?: string;
+  progressVariant?: TVariantProgressBar;
 }
 
 export interface IDetailedCourseActions {
@@ -46,7 +49,7 @@ export interface IDetailedCourseActions {
   page: string;
   clientCourseData?: PureClientCourse;
   id: string;
-  status: string;
+  status: CourseStatus;
   isCourseCompleted?: boolean;
   isAdmin?: boolean;
   isLoading?: boolean;

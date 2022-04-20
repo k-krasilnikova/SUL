@@ -1,11 +1,11 @@
-import React from 'react';
+import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
 import Image from 'components/Image';
-import { SIZE } from 'constants/sizes';
 import { REQUEST_STATUS } from 'constants/requests';
-import { IRequest } from 'types/request';
+import { Size } from 'enums/sizes';
 import { convertRequestTime } from 'utils/helpers/convertTime';
+import { IRequest } from 'types/request';
 
 import {
   CourseImageWrapper,
@@ -23,45 +23,40 @@ import {
 } from './styled';
 import RequestButtons from './RequestButtons';
 
-const RequestItem: React.FC<IRequest> = ({
-  request,
-  approveRequest,
-  declineRequest,
-  approveLoading,
-  declineLoading,
-  isTargetRequest,
-  status,
+interface IReuestItemProps {
+  request: IRequest;
+  approveRequest: (requestId: string) => void;
+  declineRequest: (requestId: string) => void;
+  approveLoading: boolean;
+  declineLoading: boolean;
+  isTargetRequest?: boolean;
+}
+
+const RequestItem: FC<IReuestItemProps> = ({
+  request: { _id, status, course, user, elapsed },
+  ...props
 }) => (
   <RequestContainer item container spacing={2}>
     <CustomGrid item xs={4}>
       <ImageWrapper>
-        <Avatar size={SIZE.small} avatar={request?.user.avatar} />
+        <Avatar size={Size.small} avatar={user.avatar} />
       </ImageWrapper>
       <UserContainer>
-        <UserName
-          status={status}
-        >{`${request?.user.firstName} ${request?.user.lastName}`}</UserName>
-        <Position status={status}>{request?.user.position}</Position>
+        <UserName status={status}>{`${user.firstName} ${user.lastName}`}</UserName>
+        <Position status={status}>{user.position}</Position>
       </UserContainer>
     </CustomGrid>
     <CourseContainer item xs={3}>
       <CourseImageWrapper>
-        <Image imageUrl={request?.course.avatar} />
+        <Image imageUrl={course.avatar} />
       </CourseImageWrapper>
-      <CourseTitle status={status}>{request?.course.title}</CourseTitle>
+      <CourseTitle status={status}>{course.title}</CourseTitle>
     </CourseContainer>
     <TimeContainer item xs={1}>
-      <SecondaryText status={status}>{convertRequestTime(request?.elapsed)}</SecondaryText>
+      <SecondaryText status={status}>{convertRequestTime(elapsed)}</SecondaryText>
     </TimeContainer>
-    {request?.status === REQUEST_STATUS.pending ? (
-      <RequestButtons
-        request={request}
-        approveRequest={approveRequest}
-        declineRequest={declineRequest}
-        approveLoading={approveLoading}
-        declineLoading={declineLoading}
-        isTargetRequest={isTargetRequest}
-      />
+    {status === REQUEST_STATUS.pending ? (
+      <RequestButtons id={_id} {...props} />
     ) : (
       <CustomGrid item xs={4}>
         <DisabledText>{status !== REQUEST_STATUS.pending && status}</DisabledText>

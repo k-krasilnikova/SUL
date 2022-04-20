@@ -11,6 +11,7 @@ import {
 import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
+import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
 import { ICourseStatus, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -175,7 +176,7 @@ const deleteCourseProvider = async (courseId: string) => {
   await ClientCourseModel.deleteMany({ course: courseId });
 };
 
-const updateCourseField = async (courseId: string, field: string, value: unknown) => {
+const updateCourseField = async (courseId: string, field: TCourseFields, value: unknown) => {
   const updatedCourse = await CourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { [field]: value } },

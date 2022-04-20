@@ -1,53 +1,29 @@
 import { Params } from 'react-router';
 
-import { ConvertedProgress } from 'utils/helpers/convertCourseStatusToProgress';
-
-export interface ITestResponse {
-  test: ITestItem;
-  testResponse?: any;
-}
-
-export interface ITestItem {
-  _id: string;
-  title: string | undefined;
-  questions: {
-    question: string;
-    qN: number;
-    answers: IAnswer[];
-  }[];
-  timeout: number;
-}
+import { TVariantProgressBar } from './progressBar';
 
 export interface IAnswer {
   variant: string;
   aN: number;
 }
-
 export interface IQuestionObject {
   qN: number;
   question: string;
   answers: IAnswer[];
 }
 
-export interface IQuestionProps {
-  handleChange: (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value: {
-    [key: number]: number;
-  };
-  questionItem: IQuestionObject;
-  stage?: number | undefined;
-  maxStage?: number | undefined;
+export interface ITestItem {
+  _id: string;
+  questions: IQuestionObject[];
+  timeout: number;
+  title?: string;
 }
 
-export interface ISkills {
-  name: string;
-  image: string;
-  score: number;
-  maxScore: number;
-  group: string;
+export interface ITestResponse {
+  test: ITestItem;
 }
 
-export interface IResponseData {
+export interface ITestResult {
   newSkills: [];
   result: {
     result: number;
@@ -62,18 +38,6 @@ export interface IPassingTestResponse {
   upsertedId: null;
   upsertedCount: number;
   matchedCount: number;
-}
-
-export interface ITestResult {
-  responseData: IResponseData | undefined;
-  status?: string;
-  isFailed?: boolean;
-  skills?: ISkills[];
-  percentageValue?: number;
-  courseId?: string;
-  assessment?: boolean;
-  isLoading: boolean;
-  progressBarData: ConvertedProgress;
 }
 
 export interface IPassingTestProps {
@@ -115,11 +79,11 @@ export interface ITestTitleAndTimer {
 export interface ITestProgress {
   progressValue?: number;
   progressText?: string;
-  progressVariant?: string;
+  progressVariant?: TVariantProgressBar;
 }
 
 export interface IResultDescription {
-  responseData?: IResponseData;
+  responseData?: ITestResult;
   isFailed?: boolean;
   assessment?: boolean;
 }

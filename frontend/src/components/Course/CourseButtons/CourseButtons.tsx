@@ -1,12 +1,14 @@
 import React from 'react';
 
+import { Info } from 'enums/info';
+
 import CourseInfo from '../CourseInfo';
 import { ButtonsContainer, CourseInfoBox } from './styled';
 
 interface ICourseButtons {
   duration?: string;
   lessons?: number;
-  type?: string;
+  type?: Info;
   children?: React.ReactNode;
 }
 
