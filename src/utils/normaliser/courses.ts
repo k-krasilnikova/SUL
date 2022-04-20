@@ -46,7 +46,11 @@ const generateCoursesMapResponse = (
       groupedCoursesReducer(groupedCourses),
       new Array<ICoursesMapElement>(),
     );
-    const stackMapElement: IStackMapElement = { stack: stackMember.member.name, coursesMap };
+    const stackMapElement: IStackMapElement = {
+      stack: stackMember.member.name,
+      isPrimary: stackMember.isPrimary,
+      coursesMap,
+    };
     coursesMapResponseCascade.stackMap.push(stackMapElement);
   });
 
