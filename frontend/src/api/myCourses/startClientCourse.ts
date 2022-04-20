@@ -8,9 +8,13 @@ import { IClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 import { CourseStatus } from 'enums/course';
 
-const useStartClientCourse = (
-  courseId?: string,
-): UseMutationResult<IClientCourse | undefined, AxiosError> => {
+const useStartClientCourse = ({
+  courseId,
+  onSuccess,
+}: {
+  courseId?: string;
+  onSuccess: () => void;
+}): UseMutationResult<IClientCourse | undefined, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmitError = (error: AxiosError) => {
@@ -18,6 +22,7 @@ const useStartClientCourse = (
   };
 
   const handleSubmitSuccess = () => {
+    onSuccess();
     enqueueSnackbar(successSnackbarMessage.courseStarted, successSnackbar);
   };
 

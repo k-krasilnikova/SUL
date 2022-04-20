@@ -4,9 +4,9 @@ import { useParams } from 'react-router';
 import { useGetClientCourseAndMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import Loader from 'components/Loader';
+import { CourseStatus } from 'enums/course';
 import { useToggle } from 'hooks';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
-import { CourseStatus } from 'enums/course';
 
 import LearningCourse from './LearningCourse';
 
@@ -14,6 +14,7 @@ const MIN_STAGE = 1;
 const STAGE_CHANGE = 1;
 const MAX_STAGE_INITIAL = 1;
 const CONTENT_ELEMENT = 0;
+const NULL_VARIABLE = null;
 
 const LearningCourseContainer: React.FC = () => {
   const { courseId } = useParams();
@@ -28,29 +29,23 @@ const LearningCourseContainer: React.FC = () => {
     isFetching: isClientCourseAndMaterialsFetching,
   } = useGetClientCourseAndMaterials(courseId);
 
-  const { mutateAsync: passCourseStageMutate, isLoading: isPassMutateLoading } =
+  const { mutate: passCourseStageMutate, isLoading: isPassMutateLoading } =
     usePassClientCourse(courseId);
-  const { mutateAsync: startClienCourseMutate, isLoading: isStartMutateLoading } =
-    useStartClientCourse(courseId);
+
+  const onSuccessStartClient = () => passCourseStageMutate(stage);
+
+  const { mutate: startClienCourseMutate, isLoading: isStartMutateLoading } = useStartClientCourse({
+    courseId,
+    onSuccess: onSuccessStartClient,
+  });
 
   const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterials || [];
 
   useEffect(() => {
     if (clientCourseResponse?.status === CourseStatus.approved) {
-      const updateCourseProgress = async () => {
-        await startClienCourseMutate(courseId);
-        await passCourseStageMutate(stage);
-      };
-
-      updateCourseProgress();
+      startClienCourseMutate(NULL_VARIABLE);
     }
-  }, [
-    clientCourseResponse?.status,
-    courseId,
-    stage,
-    startClienCourseMutate,
-    passCourseStageMutate,
-  ]);
+  }, [clientCourseResponse?.status, startClienCourseMutate]);
 
   const isTestEnabled = useMemo(
     () => isProgressCompleted(clientCourseResponse?.progress),
