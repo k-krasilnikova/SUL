@@ -10,7 +10,18 @@ const courseSchema = new Schema<ICourse>({
   ],
   requiredSkills: [{ type: Schema.Types.ObjectId }],
   complexity: { type: Number, required: true },
-  materials: [{ stage: { type: Number }, content: [{ type: String }] }],
+  materials: [
+    {
+      stage: { type: Number },
+      content: [{ type: String }],
+      exercise: {
+        eN: { type: Number },
+        title: { type: String },
+        task: { type: String },
+        code: { type: String },
+      },
+    },
+  ],
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
   avatar: { type: String, required: true },
 });
