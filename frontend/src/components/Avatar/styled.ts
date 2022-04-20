@@ -1,14 +1,15 @@
 import { styled } from '@mui/material';
 
-import { SIZE } from 'constants/sizes';
+import { Size } from 'enums/sizes';
 import theme from 'themeSettings';
+import { TSizeVariants } from 'types/size';
 
-interface Size {
+interface IProps {
   avatar: string;
-  size?: string;
+  size?: TSizeVariants;
 }
 
-export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
+export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
   display: 'inline-block',
   margin: '1% auto',
   width: '100px',
@@ -18,81 +19,81 @@ export const UserAvatarRounded = styled('div')<Size>(({ size, avatar }) => ({
   background: `no-repeat center url(${avatar})`,
   backgroundSize: 'cover',
   [theme.breakpoints.down('xl')]: {
-    ...(size === SIZE.xlarge && {
+    ...(size === Size.xlarge && {
       width: '220px',
       height: '220px',
     }),
-    ...(size === SIZE.large && {
+    ...(size === Size.large && {
       width: '150px',
       height: '150px',
     }),
-    ...(size === SIZE.medium && {
+    ...(size === Size.medium && {
       width: '100px',
       height: '100px',
     }),
-    ...(size === SIZE.small && {
+    ...(size === Size.small && {
       width: '50px',
       height: '50px',
     }),
-    ...(size === SIZE.xsmall && {
+    ...(size === Size.xsmall && {
       width: '30px',
       height: '30px',
     }),
   },
   [theme.breakpoints.down('lg')]: {
-    ...(size === SIZE.xlarge && {
+    ...(size === Size.xlarge && {
       width: '150px',
       height: '150px',
     }),
-    ...(size === SIZE.xsmall && {
+    ...(size === Size.xsmall && {
       width: '40px',
       height: '40px',
     }),
-    ...(size === SIZE.medium && {
+    ...(size === Size.medium && {
       width: '60px',
       height: '60px',
     }),
-    ...(size === SIZE.large && {
+    ...(size === Size.large && {
       width: '130px',
       height: '130px',
     }),
-    ...(size === SIZE.small && {
+    ...(size === Size.small && {
       width: '50px',
       height: '50px',
     }),
   },
   [theme.breakpoints.down('md')]: {
-    ...(size === SIZE.xlarge && {
+    ...(size === Size.xlarge && {
       width: '130px',
       height: '130px',
     }),
-    ...(size === SIZE.large && {
+    ...(size === Size.large && {
       width: '130px',
       height: '130px',
     }),
-    ...(size === SIZE.small && {
+    ...(size === Size.small && {
       width: '30px',
       height: '30px',
     }),
   },
   [theme.breakpoints.up('xl')]: {
-    ...(size === SIZE.xlarge && {
+    ...(size === Size.xlarge && {
       width: '220px',
       height: '220px',
     }),
-    ...(size === SIZE.large && {
+    ...(size === Size.large && {
       width: '220px',
       height: '220px',
     }),
-    ...(size === SIZE.medium && {
+    ...(size === Size.medium && {
       width: '150px',
       height: '150px',
     }),
-    ...(size === SIZE.xsmall && {
+    ...(size === Size.xsmall && {
       width: '50px',
       height: '50px',
     }),
-    ...(size === SIZE.small && {
+    ...(size === Size.small && {
       width: '50px',
       height: '50px',
     }),

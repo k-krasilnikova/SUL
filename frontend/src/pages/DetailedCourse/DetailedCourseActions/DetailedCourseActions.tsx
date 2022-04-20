@@ -5,13 +5,13 @@ import { ButtonsWrapper, CustomButton } from 'components/Button/ButtonVariants/s
 import { ActionButton } from 'components/Button/ButtonVariants';
 import CourseInfo from 'components/Course/CourseInfo';
 import ButtonLoader from 'components/ButtonLoader';
-import { INFO } from 'constants/courseInfoTypes';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { COURSE_DISABLE_DAYS } from 'constants/time';
 import { PAGES } from 'constants/pages';
 import { COURSE_LABELS } from 'constants/statuses';
 import { IDetailedCourseActions } from 'types/detailedCourse';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
+import { Info } from 'enums/info';
 
 import DeleteCourseButton from './DeleteCourseButton';
 import { CourseInfoBox, DetailedCourseActionsBox } from './styled';
@@ -32,7 +32,7 @@ const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
       <CourseInfo
         duration={convertDurationToString(commonCourseData.duration)}
         lessons={commonCourseData.lessons}
-        type={INFO.detailedCourse}
+        type={Info.detailedCourse}
       />
     </CourseInfoBox>
     {isAdmin && <DeleteCourseButton />}

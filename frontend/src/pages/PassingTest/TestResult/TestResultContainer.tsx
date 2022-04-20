@@ -1,11 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router';
 
-import { ITestResult } from 'types/test';
-
 import TestResult from './TestResult';
+import { ITestResultPageProps } from './types';
 
-const TestResultContainer: React.FC<ITestResult> = ({
+const TestResultContainer: React.FC<ITestResultPageProps> = ({
   responseData,
   isLoading,
   assessment,

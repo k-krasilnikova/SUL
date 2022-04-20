@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { User } from 'types/user';
+import { IUser } from 'types/user';
 import { useLogOut } from 'api/logOut/';
 import ConfirmLogOut from 'components/ConfirmLogOut';
 
@@ -11,7 +11,7 @@ interface MobileMenuProps {
   toggleMobileMenu: () => void;
 }
 
-type Props = User & MobileMenuProps;
+type Props = IUser & MobileMenuProps;
 
 const HeaderContainer: React.FC<Props> = ({
   firstName,

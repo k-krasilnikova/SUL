@@ -4,14 +4,14 @@ import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper, queryClient } from 'api/base';
 import { API } from 'constants/routes';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
-import { COURSE_STATUSES } from 'constants/statuses';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
+import { CourseStatus } from 'enums/course';
 
 const useStartClientCourse = (
   courseId?: string,
-): UseMutationResult<ClientCourse | undefined, AxiosError> => {
+): UseMutationResult<IClientCourse | undefined, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -21,11 +21,11 @@ const useStartClientCourse = (
   };
   return useMutation(
     async () => {
-      let courseStarted: ClientCourse | undefined;
+      let courseStarted: IClientCourse | undefined;
       const apiClient = apiClientWrapper();
       const responseCourse = await apiClient.get(`${API.getMyCourses}/${courseId}`);
-      const courseResponse: ClientCourse = responseCourse.data;
-      if (courseResponse?.status === COURSE_STATUSES.approved) {
+      const courseResponse: IClientCourse = responseCourse.data;
+      if (courseResponse?.status === CourseStatus.approved) {
         const response = await apiClient.get(`${API.getMyCourses}/${courseId}/start`);
         handleSubmitSuccess();
         courseStarted = response.data;
