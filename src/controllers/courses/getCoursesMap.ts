@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
-import { ObjectId } from 'mongoose';
 
 import { getUserProvider, getUserStackProvider } from 'db/providers/userProvider';
 import { ICoursesMapResponse } from 'interfaces/IResponse/IResponse';
-import { addMissingCoursesMapElements, generateCoursesMapResponse } from 'utils/normaliser/courses';
-import { getCourseStatusProvider } from 'db/providers/courseProvider';
-import { convertToTypeUnsafe } from 'utils/typeConversion/common';
+import {
+  addMissingCoursesMapElements,
+  fillStackWithStatuses,
+  generateCoursesMapResponse,
+} from 'utils/normaliser/courses';
 
 const getCoursesMap = async (
   req: Request,
@@ -18,22 +19,7 @@ const getCoursesMap = async (
     const { rank: userRank } = await getUserProvider(userId);
     const userStack = await getUserStackProvider(userId);
 
-    const userStackWithStatuses = await Promise.all(
-      userStack.map(async (stackMember) => {
-        const updatedRelatedCourses = await Promise.all(
-          stackMember.member.relatedCourses.map(async (course) => ({
-            ...course,
-            status: await getCourseStatusProvider(
-              convertToTypeUnsafe<ObjectId>(course._id),
-              userId,
-            ),
-          })),
-        );
-        const newMember = { ...stackMember };
-        newMember.member.relatedCourses = updatedRelatedCourses;
-        return newMember;
-      }),
-    );
+    const userStackWithStatuses = await fillStackWithStatuses(userStack, userId);
 
     const responseCascade = generateCoursesMapResponse(userStackWithStatuses, userRank);
 
