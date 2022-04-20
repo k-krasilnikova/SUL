@@ -3,16 +3,21 @@ import { ContentElementType, IContentElement } from 'types/course';
 import { optimizeLink } from '../videoPlayer/videoLink';
 
 const extractMaterial = (contentElement: IContentElement): IContentElement['material'] => {
-  switch (contentElement.type) {
-    case ContentElementType.plain:
-      return contentElement.material;
-    case ContentElementType.video:
-      return optimizeLink(contentElement.material);
-    case ContentElementType.presentation:
-      return contentElement.material;
-    default:
-      throw new Error(`Unknown content element type: ${contentElement.type}.`);
+  const { type: contentType, material: contentMaterial } = contentElement;
+
+  const returnedContentMaterial = {
+    [ContentElementType.plain]: contentMaterial,
+    [ContentElementType.presentation]: contentMaterial,
+    [ContentElementType.video]: optimizeLink(contentMaterial),
+  };
+
+  const extractedContentMaterial = returnedContentMaterial[contentType];
+
+  if (!extractedContentMaterial) {
+    throw new Error(`Unknown content element type: ${contentType}.`);
   }
+
+  return extractedContentMaterial;
 };
 
 export default extractMaterial;
