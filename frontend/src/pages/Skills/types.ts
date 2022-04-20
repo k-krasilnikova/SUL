@@ -1,4 +1,5 @@
 import { BaseSyntheticEvent } from 'react';
+
 import { ISkills, SkillsList } from 'types/skill';
 
 export interface ISkillsPageProps extends ISkills {
