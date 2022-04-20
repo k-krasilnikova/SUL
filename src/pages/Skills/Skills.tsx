@@ -4,7 +4,7 @@ import { Search } from '@mui/icons-material';
 
 import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
-import Skill from 'components/Skill';
+import SkillsGroup from 'components/Skill/SkillGroup/SkillsGroup';
 import NoContent from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
 
@@ -17,7 +17,7 @@ import {
   StyledDivider,
 } from './styled';
 
-const SkillsCatalog: FC<ISkillsPageProps> = ({
+const Skills: FC<ISkillsPageProps> = ({
   skills,
   skillFounded,
   searchInputValue,
@@ -46,7 +46,7 @@ const SkillsCatalog: FC<ISkillsPageProps> = ({
             />
             <StyledDivider />
           </SearchWrapper>
-          <Skill skillFounded={skillFounded} skills={skills} />
+          <SkillsGroup skillFounded={skillFounded} skills={skills} />
         </SkillsWrapper>
       </SkillsPageContainer>
     ) : (
@@ -55,4 +55,4 @@ const SkillsCatalog: FC<ISkillsPageProps> = ({
   </AuthorizedLayout>
 );
 
-export default SkillsCatalog;
+export default Skills;

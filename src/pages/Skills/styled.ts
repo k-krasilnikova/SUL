@@ -15,7 +15,7 @@ export const SkillsPageContainer = styled(Grid)({
 });
 
 export const SearchWrapper = styled('div')({
-  marginLeft: '0',
+  marginLeft: 0,
 });
 
 export const SearchSkill = styled(Input)({
@@ -23,7 +23,7 @@ export const SearchSkill = styled(Input)({
   fontWeight: '400',
   fontSize: '26px',
   lineHeight: '34px',
-  letterSpacing: '0,62',
+  letterSpacing: '0.62px',
   [theme.breakpoints.down('lg')]: {
     fontSize: '20px',
     lineHeight: '34px',

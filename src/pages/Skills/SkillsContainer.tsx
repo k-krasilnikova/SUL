@@ -5,7 +5,7 @@ import { useGetSkills, useSearchSkills } from 'api/skills';
 import { formatInputValue } from 'utils/helpers/searchHelpers';
 import { SkillsList } from 'types/skill';
 
-import SkillsCatalog from './SkillsCatalog';
+import SkillsCatalog from './Skills';
 
 const SkillsContainer: FC = () => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
