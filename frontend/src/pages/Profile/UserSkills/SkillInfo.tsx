@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 
 import ProgressBar from 'components/ProgressBar/ProgressBar';
 import Avatar from 'components/Avatar';
-import { SIZE } from 'constants/sizes';
+import { Size } from 'enums/sizes';
 
 import {
   HoverSkillInfoText,
@@ -16,7 +16,7 @@ import {
   SkillInfoStage,
 } from './styled';
 
-interface Props {
+interface IProps {
   technologyTitle: string;
   stages?: number;
   stagesCompleted?: number;
@@ -27,7 +27,7 @@ interface Props {
   hideSkillInfo?: () => void;
 }
 
-const CourseMaterialInfo: React.FC<Props> = ({
+const CourseMaterialInfo: FC<IProps> = ({
   technologyTitle,
   stages,
   stagesCompleted,
@@ -40,7 +40,7 @@ const CourseMaterialInfo: React.FC<Props> = ({
   <SkillInfo completed={stages === stagesCompleted}>
     <SkillInfoFlex>
       <ImageWrapper>
-        <Avatar size={SIZE.xsmall} avatar={imageUrl} />
+        <Avatar size={Size.xsmall} avatar={imageUrl} />
       </ImageWrapper>
       <SkillInfoTextWrapper>
         <SkillInfoTextWidth>
@@ -54,7 +54,7 @@ const CourseMaterialInfo: React.FC<Props> = ({
         {isShown && <HoverSkillInfoText>{technologyTitle}</HoverSkillInfoText>}
       </SkillInfoTextWrapper>
       <SkillProgress>
-        <ProgressBar value={progress} size={SIZE.small} />
+        <ProgressBar value={progress} size={Size.small} />
       </SkillProgress>
     </SkillInfoFlex>
   </SkillInfo>

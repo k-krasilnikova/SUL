@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
-import { ClientCourse, ICourseInfo } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
+import { TCourseInfo } from 'types/course';
 
 import ActionButton from './ActionButton';
 import CourseInfo from './CourseInfo';
@@ -21,57 +22,26 @@ interface IProps {
   isCourseInfoOpen: boolean;
   isTestEnabled: boolean;
   isLoading: boolean;
-  courseInfo: ICourseInfo;
+  courseInfo: TCourseInfo;
   courseMaterial: string;
   handleStageBack: () => void;
   handleStageForward: () => void;
-  togglCourseInfOpen: () => void;
-  clientCourse?: ClientCourse;
+  toggleCourseInfoOpen: () => void;
+  clientCourse?: IClientCourse;
 }
 
-const LearningCourse: FC<IProps> = ({
-  stage,
-  maxStage,
-  isTestEnabled,
-  isBackDisabled,
-  isForwardDisabled,
-  isCourseInfoOpen,
-  isLoading,
-  courseInfo,
-  courseMaterial,
-  handleStageBack,
-  handleStageForward,
-  togglCourseInfOpen,
-  clientCourse,
-}) => (
+const LearningCourse: FC<IProps> = ({ courseMaterial, ...props }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
-      <Link to={PATHS.myCourses}>
-        <BackButton disableElevation variant="contained">
-          {ButtonLabels.back}
-        </BackButton>
-      </Link>
+      <BackButton disableElevation variant="contained" component={Link} to={PATHS.myCourses}>
+        {ButtonLabels.back}
+      </BackButton>
       <LearningWrapper>
-        <StageController
-          stage={stage}
-          maxStage={maxStage}
-          isBackDisabled={isBackDisabled}
-          isForwardDisabled={isForwardDisabled}
-          handleStageBack={handleStageBack}
-          handleStageForward={handleStageForward}
-        />
+        <StageController {...props} />
         <Material courseMaterial={courseMaterial} />
-        <CourseInfoToggle
-          isCourseInfoOpen={isCourseInfoOpen}
-          toggleCourseInfoOpen={togglCourseInfOpen}
-        />
-        <ActionButton
-          isLoading={isLoading}
-          isTestEnabled={isTestEnabled}
-          handleStageForward={handleStageForward}
-          clientCourse={clientCourse}
-        />
-        <CourseInfo courseInfo={courseInfo} isCourseInfoOpen={isCourseInfoOpen} />
+        <CourseInfoToggle {...props} />
+        <ActionButton {...props} />
+        <CourseInfo {...props} />
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>

@@ -1,54 +1,13 @@
-interface Course {
-  title: string;
-  avatar: string;
-  _id?: string;
-}
+import { CourseStatus } from 'enums/course';
 
-interface User {
-  _id?: string;
-  avatar: string;
-  firstName: string;
-  lastName: string;
-  position: string;
-}
-
-export interface Request {
-  _id: string;
-  status: string;
-  course: Course;
-  user: User;
-  elapsed: {
-    days: number;
-    hours: number;
-    minutes: number;
-  };
-}
-
-export interface IRequests {
-  requestsResponse: Request[];
-}
-
-export interface IRequestsProps {
-  approveRequest: (requestId: string) => void;
-  approveLoading: boolean;
-  declineRequest: (requestId: string) => void;
-  declineLoading: boolean;
-  requests?: Request[];
-  isLoading?: boolean;
-  targetId?: string;
-}
+import { TRequestedCourse } from './course';
+import { TimeProps } from './time';
+import { TRequestedUser } from './user';
 
 export interface IRequest {
-  request: Request;
-  approveRequest: (requestId: string) => void;
-  approveLoading: boolean;
-  declineRequest: (requestId: string) => void;
-  declineLoading: boolean;
-  elapsed?: {
-    days: number;
-    hours: number;
-    minutes: number;
-  };
-  isTargetRequest?: boolean;
-  status?: string;
+  _id: string;
+  status: CourseStatus;
+  course: TRequestedCourse;
+  user: TRequestedUser;
+  elapsed: TimeProps;
 }

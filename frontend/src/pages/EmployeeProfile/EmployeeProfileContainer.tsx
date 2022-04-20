@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
+import { EmployeeInfo } from 'enums/employee';
 import { useGetEmployeeProfile } from 'api/manager';
-import { EMPLOYEE_INFO } from 'constants/employeeInfo';
 
 import EmployeeProfile from './EmployeeProfile';
 
@@ -10,16 +10,16 @@ const EmployeeProfileContainer: React.FC = () => {
   const params = useParams();
   const { data: employeeResponse } = useGetEmployeeProfile(params.employeeId);
 
-  const [employeeInfo, setEmployeeInfo] = useState(EMPLOYEE_INFO.skills);
+  const [employeeInfo, setEmployeeInfo] = useState(EmployeeInfo.skills);
   const [hoveredButton, setHoveredButton] = useState<string | undefined>(undefined);
   const [profileInfoOpened, setProfileInfoOpened] = useState<boolean>(false);
 
-  const toggleEmployeeInfo = (infoToOpen: string) => {
+  const toggleEmployeeInfo = (infoToOpen: EmployeeInfo) => {
     setEmployeeInfo(infoToOpen);
   };
 
   const toggleHover = (buttonHovered: string): void => {
-    setHoveredButton(buttonHovered === EMPLOYEE_INFO.none ? undefined : buttonHovered);
+    setHoveredButton(buttonHovered === EmployeeInfo.none ? undefined : buttonHovered);
   };
 
   const toggleProfileInfoOpened = () => {
@@ -27,11 +27,11 @@ const EmployeeProfileContainer: React.FC = () => {
   };
 
   const isSkillOpened =
-    (employeeInfo === EMPLOYEE_INFO.skills && !hoveredButton) ||
-    hoveredButton === EMPLOYEE_INFO.skills;
+    (employeeInfo === EmployeeInfo.skills && !hoveredButton) ||
+    hoveredButton === EmployeeInfo.skills;
   const isCourseOpened =
-    (employeeInfo === EMPLOYEE_INFO.allCourses && !hoveredButton) ||
-    hoveredButton === EMPLOYEE_INFO.allCourses;
+    (employeeInfo === EmployeeInfo.allCourses && !hoveredButton) ||
+    hoveredButton === EmployeeInfo.allCourses;
 
   return (
     <EmployeeProfile

@@ -3,8 +3,8 @@ import { ListItem } from '@mui/material';
 
 import Avatar from 'components/Avatar';
 import { EMPLOYEE_INFO_LABEL } from 'constants/employeeInfo';
-import { SIZE } from 'constants/sizes';
 import { IEmployeeInfo } from 'types/employee';
+import { Size } from 'enums/sizes';
 
 import {
   AvatarWrapper,
@@ -28,7 +28,7 @@ const EmployeeInfo: React.FC<IEmployeeInfo> = ({
 }) => (
   <ProfileBox>
     <AvatarWrapper>
-      <Avatar avatar={employee?.avatar} size={SIZE.xlarge} />
+      <Avatar avatar={employee?.avatar} size={Size.xlarge} />
     </AvatarWrapper>
     <UserInfoList>
       <EmployeeName disablePadding>

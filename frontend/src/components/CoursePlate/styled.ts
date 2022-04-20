@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
 import theme from 'themeSettings';
 
 export const ImageWrapper = styled('div')({
-  marginRight: '20px !important',
+  marginRight: '20px',
   [theme.breakpoints.down('md')]: {
-    marginRight: '10px !important',
+    marginRight: '10px',
   },
 });
 

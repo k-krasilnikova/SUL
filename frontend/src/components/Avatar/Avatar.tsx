@@ -1,17 +1,17 @@
 import React from 'react';
 
-import { User } from 'types/user';
+import { IUser } from 'types/user';
 import { avatarDefault } from 'icons';
+import { TSizeVariants } from 'types/size';
 
 import { UserAvatarRounded } from './styled';
 
-interface AvatarProps {
-  size: string;
+interface IAvatarProps {
+  size: TSizeVariants;
+  avatar: IUser['avatar'];
 }
 
-type Props = User & AvatarProps;
-
-const Avatar: React.FC<Props> = ({ avatar, size }) => (
+const Avatar: React.FC<IAvatarProps> = ({ avatar, size }) => (
   <UserAvatarRounded size={size} avatar={avatar || avatarDefault} />
 );
 

@@ -3,8 +3,8 @@ import { styled, Box, Grid } from '@mui/material';
 import theme from 'themeSettings';
 
 export const SignInImageWrapper = styled(Grid)({
-  padding: '0px 5px!important',
-  margin: '0px !important',
+  padding: '0 5px',
+  margin: 0,
   display: 'grid',
   [theme.breakpoints.down('md')]: {
     display: 'none',
@@ -25,12 +25,12 @@ export const ImageWrapper = styled(Box)({
   '@media(max-width: 1280px)': {
     maxWidth: '455px',
     marginBottom: '55px',
-    marginLeft: '0px',
+    marginLeft: 0,
     marginRight: '30px',
   },
   [theme.breakpoints.down('lg')]: {
-    marginBottom: '0px !important',
-    marginLeft: '0px !important',
-    marginRight: '0px !important',
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
   },
 });
