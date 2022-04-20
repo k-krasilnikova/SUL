@@ -1,12 +1,12 @@
 import { createTheme } from '@mui/material';
 
-const COLORS = {
+export const COLORS = {
   primaryColor: '#d43e41',
-  secondaryColor: '#ffffff',
+  secondaryColor: '#FFF',
   darkColor: '#942b2d',
   disabledTextColor: '#9b9b9b',
-  primaryTextColor: '#000000',
-  secondaryTextColor: '#ffffff',
+  primaryTextColor: '#000',
+  secondaryTextColor: '#FFF',
 };
 
 const globalTheme = createTheme({
@@ -49,7 +49,7 @@ const theme = createTheme(
               textTransform: 'none',
               borderRadius: '4px',
               fontSize: '16px',
-              fontWeight: '500',
+              fontWeight: 500,
               fontFamily: globalTheme.typography.fontFamily,
               backgroundColor: globalTheme.palette.primary.main,
               color: globalTheme.palette.text.secondary,
@@ -74,7 +74,7 @@ const theme = createTheme(
               border: '2.5px solid #d43e41',
               borderRadius: '4px',
               fontSize: '16px',
-              fontWeight: '700',
+              fontWeight: 700,
               fontFamily: globalTheme.typography.fontFamily,
               backgroundColor: 'transparent',
               color: '#d43e41',
@@ -89,7 +89,7 @@ const theme = createTheme(
             style: {
               textTransform: 'none',
               border: 'none',
-              fontWeight: '500',
+              fontWeight: 500,
               fontFamily: globalTheme.typography.fontFamily,
               backgroundColor: 'transparent',
               color: '#727272',
@@ -104,7 +104,7 @@ const theme = createTheme(
               textTransform: 'none',
               borderRadius: '4px',
               fontSize: '16px',
-              fontWeight: '700',
+              fontWeight: 700,
               fontFamily: globalTheme.typography.fontFamily,
               backgroundColor: globalTheme.palette.primary.main,
               color: globalTheme.palette.text.secondary,
@@ -132,7 +132,7 @@ const theme = createTheme(
               textTransform: 'none',
               borderRadius: '4px',
               fontSize: '18px',
-              fontWeight: '700',
+              fontWeight: 700,
               fontFamily: globalTheme.typography.fontFamily,
               backgroundColor: globalTheme.palette.primary.main,
               color: globalTheme.palette.text.secondary,

@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import { Icon } from '@mui/material';
 import { ReactFragment } from 'react';
+import { styled, Icon } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -11,19 +10,19 @@ interface Props {
 }
 
 export const LoaderIcon = styled('div')({
-  width: '40px !important',
-  height: '40px !important',
+  width: '40px',
+  height: '40px',
   [theme.breakpoints.down('xl')]: {
-    width: '35px !important',
-    height: '35px !important',
+    width: '35px',
+    height: '35px',
   },
   [theme.breakpoints.down('lg')]: {
-    width: '28px !important',
-    height: '28px !important',
+    width: '28px',
+    height: '28px',
   },
 });
 
 export const CurrentIcon = styled(Icon)<Props>({
-  width: '100% !important',
-  height: '100% !important',
+  width: '100%',
+  height: '100%',
 });

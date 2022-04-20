@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { AuthorizedLayout, MobileSearch } from 'components/Layout';
 import { IDetailedCourse } from 'types/detailedCourse';
@@ -9,24 +9,7 @@ import SimilarCourses from './SimilarCourses';
 import DetailedCourseActions from './DetailedCourseActions';
 import DetailedCourseInfo from './DetailedCourseInfo';
 
-const DetailedCourse: React.FC<IDetailedCourse> = ({
-  commonCourseData,
-  clientCourseData,
-  handleApplyCourse,
-  isLoading,
-  page,
-  id,
-  status,
-  progressValue,
-  progressText,
-  progressVariant,
-  windowWidth,
-  isFullTextOpen,
-  toggleFullText,
-  isProgressBarDisplayed,
-  isAdmin,
-  isCourseCompleted,
-}) => (
+const DetailedCourse: FC<IDetailedCourse> = ({ page, ...props }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
       <BackButton page={page} />
@@ -34,27 +17,9 @@ const DetailedCourse: React.FC<IDetailedCourse> = ({
         <MobileSearch />
       </MobileSearchWrapper>
       <InnerWrapper>
-        <DetailedCourseInfo
-          commonCourseData={commonCourseData}
-          isProgressBarDisplayed={isProgressBarDisplayed}
-          toggleFullText={toggleFullText}
-          progressValue={progressValue}
-          progressText={progressText}
-          progressVariant={progressVariant}
-          isFullTextOpen={isFullTextOpen}
-        />
-        <DetailedCourseActions
-          commonCourseData={commonCourseData}
-          clientCourseData={clientCourseData}
-          isAdmin={isAdmin}
-          isLoading={isLoading}
-          handleApplyCourse={handleApplyCourse}
-          page={page}
-          id={id}
-          status={status}
-          isCourseCompleted={isCourseCompleted}
-        />
-        <SimilarCourses commonCourseData={commonCourseData} windowWidth={windowWidth} />
+        <DetailedCourseInfo {...props} />
+        <DetailedCourseActions page={page} {...props} />
+        <SimilarCourses {...props} />
       </InnerWrapper>
     </DetailedCourseWrapper>
   </AuthorizedLayout>

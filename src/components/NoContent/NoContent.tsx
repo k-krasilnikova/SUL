@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { NO_CONTENT } from 'constants/messages';
+import { TSizeVariants } from 'types/size';
 
 import { Message, MessageWrapper } from './styled';
 
 interface NoContentProps {
   message?: string;
-  size?: string;
+  size?: TSizeVariants;
 }
 
 const NoContent: React.FC<NoContentProps> = ({ message, size }) => (

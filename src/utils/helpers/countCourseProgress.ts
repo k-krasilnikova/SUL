@@ -1,7 +1,7 @@
 import { MIN_STAGE, NOTHING, PERCENTAGE } from 'constants/test';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 
-export const countProgress = (stages?: ClientCourse['progress']): number => {
+export const countProgress = (stages?: IClientCourse['progress']): number => {
   if (!stages) {
     return NOTHING;
   }

@@ -6,8 +6,9 @@ import { AxiosError } from 'axios';
 
 import { apiClientWrapper } from 'api/base';
 import { API, PATHS } from 'constants/routes';
-import { COOKIE_VALUES, ITokenResponse } from 'constants/authConstants';
+import { COOKIE_VALUES } from 'constants/authConstants';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
+import { ITokenResponse } from 'types/auth';
 
 const useGetAuth = (): UseMutationResult => {
   const { enqueueSnackbar } = useSnackbar();

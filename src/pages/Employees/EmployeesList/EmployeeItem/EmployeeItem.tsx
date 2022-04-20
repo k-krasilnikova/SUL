@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Avatar from 'components/Avatar';
-import { EMPLOYEE_RANK } from 'constants/employeeInfo';
-import { SIZE } from 'constants/sizes';
 import { IEmployeeProps } from 'types/employee';
+import { EmployeeRank } from 'enums/employee';
+import { Size } from 'enums/sizes';
 
 import {
   Cell,
@@ -21,7 +21,7 @@ const EmployeeItem: React.FC<IEmployeeProps> = ({ handleNavigate, employee }) =>
     <Cell variant="body">
       <UserInfo>
         <ImageWrapper>
-          <Avatar size={SIZE.small} avatar={employee.avatar} />
+          <Avatar size={Size.small} avatar={employee.avatar} />
         </ImageWrapper>
         <InfoContainer>
           <UserName>{`${employee.firstName} ${employee.lastName}`}</UserName>
@@ -34,7 +34,7 @@ const EmployeeItem: React.FC<IEmployeeProps> = ({ handleNavigate, employee }) =>
         <StackItem key={stackItem.name}>{stackItem.name}</StackItem>
       ))}
     </Cell>
-    <Cell variant="body">{EMPLOYEE_RANK[employee.rank]}</Cell>
+    <Cell variant="body">{EmployeeRank[employee.rank]}</Cell>
     <Cell variant="body">{employee.group}</Cell>
     <Cell variant="body">{employee.phone}</Cell>
     <Cell variant="body">{employee.skype}</Cell>

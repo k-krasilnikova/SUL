@@ -5,11 +5,11 @@ import { useSnackbar } from 'notistack';
 import { apiClientWrapper } from 'api/base';
 import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
-import { User } from 'types/user';
+import { IUser } from 'types/user';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
-const useGetProfile = (): UseQueryResult<User, AxiosError> => {
+const useGetProfile = (): UseQueryResult<IUser, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -20,7 +20,7 @@ const useGetProfile = (): UseQueryResult<User, AxiosError> => {
       const apiClient = apiClientWrapper();
       const userId = getUserIdCookie();
       const response = await apiClient.get(`${API.getProfile}/${userId}`);
-      const profileResponse: User = response.data;
+      const profileResponse: IUser = response.data;
       return profileResponse;
     },
     {

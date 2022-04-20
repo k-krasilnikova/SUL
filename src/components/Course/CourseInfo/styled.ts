@@ -1,7 +1,6 @@
-import { Box, Typography } from '@mui/material';
-import styled from 'styled-components';
+import { styled, Box, Typography } from '@mui/material';
 
-import { INFO } from 'constants/courseInfoTypes';
+import { Info } from 'enums/info';
 import theme from 'themeSettings';
 
 import { InfoContainerTypes } from '../styled';
@@ -10,13 +9,13 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   display: 'flex',
   alignItems: 'start',
   alignSelf: 'self-end',
-  paddingBottom: '0 !important',
+  paddingBottom: 0,
   [theme.breakpoints.down('xl')]: {
-    ...(type !== INFO.detailedCourse &&
-      type !== INFO.searchCourses && {
+    ...(type !== Info.detailedCourse &&
+      type !== Info.searchCourses && {
         flexDirection: 'column',
       }),
-    ...(type !== INFO.searchCourses && {
+    ...(type !== Info.searchCourses && {
       marginLeft: '10px',
     }),
   },
@@ -26,40 +25,40 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
   },
   [theme.breakpoints.down('md')]: {
     display: 'flex',
-    margin: '0',
-    padding: '0',
+    margin: 0,
+    padding: 0,
     flexDirection: 'row',
-    ...(type === INFO.detailedCourse && {
+    ...(type === Info.detailedCourse && {
       marginLeft: '8px',
     }),
   },
   [theme.breakpoints.down(550)]: {
-    ...(type === INFO.detailedCourse && {
+    ...(type === Info.detailedCourse && {
       flexDirection: 'column',
     }),
   },
   [theme.breakpoints.down('sm')]: {
     display: 'flex',
-    ...(type === INFO.detailedCourse && {
+    ...(type === Info.detailedCourse && {
       marginLeft: '8px',
       flexDirection: 'row',
     }),
   },
   [theme.breakpoints.up('xl')]: {
     display: 'block',
-    ...(type !== INFO.searchCourses && {
+    ...(type !== Info.searchCourses && {
       marginLeft: '15px',
     }),
   },
   [theme.breakpoints.up(1680)]: {
     display: 'flex',
-    marginLeft: '0',
+    marginLeft: 0,
   },
 }));
 
 export const InfoItem = styled('div')({
   [theme.breakpoints.down('lg')]: {
-    paddingBottom: '0 !important',
+    paddingBottom: 0,
     display: 'flex',
   },
   [theme.breakpoints.down('md')]: {
@@ -70,7 +69,7 @@ export const InfoItem = styled('div')({
     display: 'flex',
   },
   [theme.breakpoints.down('sm')]: {
-    padding: '0',
+    padding: 0,
     display: 'inline-flex',
   },
   display: 'inline-flex',
@@ -80,7 +79,7 @@ export const InfoItem = styled('div')({
 });
 
 export const InfoItemText = styled(Typography)({
-  fontSize: '14px !important',
+  fontSize: '14px',
   lineHeight: '18px',
   verticalAlign: 'middle',
   color: theme.palette.text.primary,
@@ -93,10 +92,10 @@ export const InfoItemText = styled(Typography)({
   [theme.breakpoints.down('sm')]: {
     width: 'fit-content',
     whiteSpace: 'nowrap',
-    padding: '0',
+    padding: 0,
     fontFamily: '"Ubuntu", sans-serif',
     fontSize: '10px',
-    fontWeight: '400',
+    fontWeight: 400,
     letterSpacing: '-0.4px',
     textAlign: 'left',
   },

@@ -2,31 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { compose } from 'recompose';
 
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 import { VariantProps } from 'types/muiTypes';
+import { TCourseLabels } from 'types/course';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { PATHS } from 'constants/routes';
-import { COURSE_STATUSES } from 'constants/statuses';
+import { CourseStatus } from 'enums/course';
 
 import { withTimeLeft, withDisable } from './HOC';
 import { CustomButton } from './styled';
 
 interface IProps {
-  label: string;
-  courseId: string;
-  status: string;
+  courseId?: string;
+  status?: CourseStatus;
+  label?: TCourseLabels;
   variant?: VariantProps;
   isDisable?: boolean;
-  progress?: ClientCourse['progress'];
+  progress?: IClientCourse['progress'];
 }
 
 type TOutterProps = {
-  label: string;
-  status: string;
-  courseId: string;
   timeout: number;
-  progress?: ClientCourse['progress'];
+  courseId?: string;
+  status?: CourseStatus;
+  label?: TCourseLabels;
+  progress?: IClientCourse['progress'];
   applyDate?: string;
 };
 
@@ -44,7 +45,7 @@ const ActionButton: React.FC<IProps> = ({
   const handleLearning = () => navigate(transformRoute(PATHS.learnCourse, courseId));
   const handleContinueTest = () => navigate(transformRoute(PATHS.learnCourseTest, courseId));
   useEffect(() => {
-    if (progress && status === COURSE_STATUSES.testing) {
+    if (progress && status === CourseStatus.testing) {
       setContinueTest(isProgressCompleted(progress));
     }
   }, [progress, status]);

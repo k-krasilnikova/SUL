@@ -1,6 +1,5 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Grid } from '@mui/material';
+import { styled, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -9,11 +8,11 @@ export const PageContainer = styled(Grid)({
     padding: '16px 24px 16px 14px',
   },
   [theme.breakpoints.down(950)]: {
-    padding: '0px 8px',
+    padding: '0 8px',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: '16px 30px 24px 0px',
-    margin: '0px 0px 0px -6px !important',
+    padding: '16px 30px 24px 0',
+    margin: '0 0 0 -6px',
   },
   maxWidth: '1482px',
   paddingTop: '16px',
@@ -28,7 +27,7 @@ export const GridItem = styled(Grid)({
     paddingTop: '8px',
   },
   [theme.breakpoints.down('md')]: {
-    paddingLeft: '0px',
+    paddingLeft: 0,
   },
   [theme.breakpoints.up('xl')]: {
     width: '711px',
@@ -53,7 +52,7 @@ export const MobileLink = styled(Link)({
 export const MobileSearchWrapper = styled('div')({
   width: '100%',
   position: 'relative',
-  margin: '16px 0px 8px 0px',
+  margin: '16px 0 8px 0',
   height: '30px',
   [theme.breakpoints.up(950)]: {
     display: 'none',

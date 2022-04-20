@@ -1,32 +1,23 @@
-import React, { Suspense } from 'react';
+import { FC, Suspense } from 'react';
 
 import { AuthorizedLayout, MobileSearch } from 'components/Layout';
 import Course from 'components/Course';
 import NoContent from 'components/NoContent';
 import { NO_COURSES } from 'constants/messages';
-import { ResponseDataType } from 'types/responseData';
 import Loader from 'components/Loader';
-import { LOADER } from 'constants/loaderTypes';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import getCurrentPageName from 'utils/helpers/getCurentPageName';
 import { chooseListPath } from 'utils/helpers/paths/choosePath';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { ICourse } from 'types/course';
+import { Loaders } from 'enums/loader';
 
 import { PageContainer, GridItem, MobileLink, MobileSearchWrapper } from './styled';
 import AddCourseButton from './AddCourseButton';
 import CourseActions from './CourseActions';
+import { ICourseProps } from './types';
 
-interface Props {
-  disableLink: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
-  windowWidth: string;
-  lastCourseRef: (node?: Element | null) => void;
-  isAdmin?: boolean;
-}
-
-type CoursesProps = ResponseDataType & Props;
-
-const CoursesList: React.FC<CoursesProps> = ({
+const CoursesList: FC<ICourseProps> = ({
   courses,
   clientCourses,
   isLoading,
@@ -40,7 +31,7 @@ const CoursesList: React.FC<CoursesProps> = ({
 }) => (
   <AuthorizedLayout pageName="Courses List">
     {isLoading ? (
-      <Loader color="primary" type={LOADER.content} />
+      <Loader color="primary" type={Loaders.content} />
     ) : courses?.length ? (
       <PageContainer container>
         <MobileSearchWrapper>
@@ -50,7 +41,7 @@ const CoursesList: React.FC<CoursesProps> = ({
         {courses.map((course, index) => (
           <Suspense
             key={`${course._id}_item`}
-            fallback={<Loader color="primary" type={LOADER.content} />}
+            fallback={<Loader color="primary" type={Loaders.content} />}
           >
             <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
               <MobileLink to={chooseListPath(course, index, clientCourses)} onClick={disableLink}>

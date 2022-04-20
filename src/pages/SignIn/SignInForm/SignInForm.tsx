@@ -26,11 +26,9 @@ import {
 const SignInForm: React.FC<ISignInForm> = ({
   formik,
   fieldStatus,
-  warningHandler,
-  outOfFocusFiled,
-  getFieldName,
   isAuthError,
   isLoading,
+  ...props
 }) => {
   const {
     values: { login, password },
@@ -57,15 +55,7 @@ const SignInForm: React.FC<ISignInForm> = ({
                     : SIGN_IN_STYLES.basicColor
                 }
               >
-                <TextField
-                  value={login}
-                  label="Login"
-                  error={errors}
-                  id="login"
-                  warningHandler={warningHandler}
-                  outOfFocusFiled={outOfFocusFiled}
-                  getFieldName={getFieldName}
-                />
+                <TextField value={login} label="Login" error={errors} id="login" {...props} />
               </GridSignInput>
               <GridSignInput
                 id="password"
@@ -83,9 +73,7 @@ const SignInForm: React.FC<ISignInForm> = ({
                   error={errors}
                   id="password"
                   type="password"
-                  warningHandler={warningHandler}
-                  outOfFocusFiled={outOfFocusFiled}
-                  getFieldName={getFieldName}
+                  {...props}
                 />
               </GridSignInput>
               <GridError>
@@ -94,15 +82,19 @@ const SignInForm: React.FC<ISignInForm> = ({
               </GridError>
               <GridButton item xs={12}>
                 <GridButton item xs={12}>
-                  {isLoading ? (
-                    <SignButton fullWidth type="submit" variant="mediumOutlined" disabled>
+                  <SignButton
+                    fullWidth
+                    type="submit"
+                    color="primary"
+                    variant={isLoading ? 'mediumOutlined' : 'contained'}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
                       <ButtonLoader buttonSpinner={buttonSpinner} />
-                    </SignButton>
-                  ) : (
-                    <SignButton fullWidth type="submit" variant="contained" color="primary">
-                      {ButtonLabels.login}
-                    </SignButton>
-                  )}
+                    ) : (
+                      ButtonLabels.login
+                    )}
+                  </SignButton>
                 </GridButton>
               </GridButton>
             </GridWrapper>

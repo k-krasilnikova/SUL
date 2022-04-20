@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ListItemIcon, ListItemText, Slide } from '@mui/material';
 
-import { IMenuProps } from 'types/menu';
 import Avatar from 'components/Avatar';
-import { SIZE } from 'constants/sizes';
+import { Size } from 'enums/sizes';
 import { PATHS } from 'constants/routes';
 import { logOutIcon } from 'icons/mobileMenuIcons';
+import { IMenuProps } from 'types/menu';
 
 import {
   MobileMenuSlide,
@@ -23,7 +23,7 @@ import {
   LogOut,
 } from './styled';
 
-interface MobileMenuProps {
+interface MobileMenuProps extends IMenuProps {
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
   handleConfirm: () => void;
@@ -33,9 +33,7 @@ interface MobileMenuProps {
   avatar?: string;
 }
 
-type Props = MobileMenuProps & IMenuProps;
-
-const MobileMenu: React.FC<Props> = ({
+const MobileMenu: React.FC<MobileMenuProps> = ({
   menuList,
   classes,
   pathname,
@@ -95,7 +93,7 @@ const MobileMenu: React.FC<Props> = ({
         <MobileUserBlock>
           <UserProfile to={PATHS.profile}>
             <AvatarWrapper>
-              <Avatar size={SIZE.xsmall} avatar={avatar} />
+              <Avatar size={Size.xsmall} avatar={avatar} />
             </AvatarWrapper>
             <UserNameWrapper>
               <UserName>{firstName}</UserName>
