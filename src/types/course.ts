@@ -7,7 +7,7 @@ export type TMaterial = {
   content: {
     _id: string;
     stage: number;
-    content: Array<string>;
+    content: IContentElement[];
     isCompleted: boolean;
   }[];
   technology: Array<string>;
