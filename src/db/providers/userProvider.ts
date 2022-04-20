@@ -10,6 +10,7 @@ import SkillModel from 'db/models/Skill';
 import StackMemberModel from 'db/models/StackMember';
 import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
 import { IStackMember } from 'interfaces/Ientities/IStackMember';
+import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const getUserProvider = async (userId: string | ObjectId) => {
   const dbUser = await UserModel.findById(userId).lean();
@@ -46,8 +47,11 @@ const getFullUserInformationProvider = async (userId: string) => {
       },
       {
         path: 'stack',
-        model: StackMemberModel,
-        select: '-_id name',
+        populate: {
+          path: 'member',
+          model: StackMemberModel,
+          select: '-_id name',
+        },
       },
     ])
     .lean();
@@ -60,13 +64,13 @@ const getFullUserInformationProvider = async (userId: string) => {
 };
 
 const getUserStackProvider = async (userId: ObjectId | string): Promise<IStackMember[]> => {
-  const { stack } = await UserModel.findById(userId).populate('stack');
+  const { stack } = await UserModel.findById(userId).populate('stack').lean();
 
   if (isEmpty(stack)) {
     throw new NotFoundError('Could not found user stack.');
   }
 
-  return stack;
+  return convertToTypeUnsafe<IStackMember[]>(stack);
 };
 
 const getEmployeesProvider = async (managerId: string) => {

@@ -5,7 +5,7 @@ import { UserRank } from 'enums/users';
 import { ICourse } from './Icourses';
 import { IClientCourse } from './IclientCourses';
 import { IUserSkillPopulated } from './IUserSkill';
-import { IStackMember } from './IStackMember';
+import { IUserStackMemberDatabase } from './IStackMember';
 import { ITimePeriod } from '../common/datetime';
 import { TUserPosition, TUserRole } from '../common/users';
 
@@ -41,7 +41,7 @@ interface IUser {
   rank: UserRank;
   firstName: string;
   lastName: string;
-  stack: IStackMember[];
+  stack: IUserStackMemberDatabase[];
   technologies: ITechnologyGroup[];
   courses: ObjectId[];
   group: string;
