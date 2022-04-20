@@ -2,6 +2,12 @@ import { styled, Box, Divider } from '@mui/material';
 
 import theme from 'themeSettings';
 
+export const SkillsGroupWrapper = styled(Box)({
+  '&:last-child .MuiDivider-root': {
+    display: 'none',
+  },
+});
+
 export const SkillsBox = styled(Box)({
   display: 'flex',
   flexWrap: 'wrap',
@@ -11,9 +17,9 @@ export const SkillsBox = styled(Box)({
 export const SkillsTitle = styled('div')({
   margin: '60px 0 16px',
   fontFamily: theme.typography.fontFamily,
-  fontWeight: '500',
+  fontWeight: 500,
   fontSize: '24px',
-  lineHeight: '28px',
+  lineHeight: 1.2,
   color: '#131313',
   [theme.breakpoints.down('lg')]: {
     margin: '31px 0 16px',

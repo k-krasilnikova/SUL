@@ -1,9 +1,9 @@
 import { BaseSyntheticEvent } from 'react';
 
-import { ISkills, SkillsList } from 'types/skill';
+import { ISkillsProps, ISkillsListProps } from 'types/skill';
 
-export interface ISkillsPageProps extends ISkills {
-  skillFounded: SkillsList[];
+export interface ISkillsPageProps extends ISkillsProps {
+  skillFounded: ISkillsListProps[];
   searchInputValue: string;
   handleSearchInputChange: (event: BaseSyntheticEvent) => void;
   isLoading?: boolean;

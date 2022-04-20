@@ -18,15 +18,15 @@ export interface UserSkill {
   skill: Skill;
 }
 
-export interface SkillsList {
+export interface ISkillsListProps {
   name: string;
   skills: Skill[];
 }
 
-export interface ISkills {
-  skills?: SkillsList[];
+export interface ISkillsProps {
+  skills?: ISkillsListProps[];
 }
 
-export type GroupedSkills = Map<string | number, Skill>;
+export type TGroupedSkills = Map<string | number, Skill>;
 
 export type Technologies = Array<TechnologyGroup>;

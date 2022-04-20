@@ -1,5 +1,6 @@
-import { styled, Grid, Box, Input, Divider } from '@mui/material';
+import { styled, Grid, Box, Divider } from '@mui/material';
 
+import SearchInput from 'components/SearchInput';
 import theme from 'themeSettings';
 
 export const SkillsPageContainer = styled(Grid)({
@@ -18,12 +19,12 @@ export const SearchWrapper = styled('div')({
   marginLeft: 0,
 });
 
-export const SearchSkill = styled(Input)({
+export const SearchSkill = styled(SearchInput)({
   fontFamily: theme.typography.fontFamily,
-  fontWeight: '400',
+  fontWeight: 400,
   fontSize: '26px',
-  lineHeight: '34px',
-  letterSpacing: '0.62px',
+  lineHeight: 1.4,
+  letterSpacing: '1px',
   [theme.breakpoints.down('lg')]: {
     fontSize: '20px',
     lineHeight: '34px',

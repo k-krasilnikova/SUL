@@ -1,8 +1,8 @@
-import { SkillsList } from 'types/skill';
+import { ISkillsListProps } from 'types/skill';
 
 export interface ISkillsGroupProps {
-  skills: SkillsList[];
-  skillFounded: SkillsList[];
+  skills: ISkillsListProps[];
+  skillFounded: ISkillsListProps[];
 }
 
 export interface ISkillItemProps {
