@@ -1,10 +1,7 @@
 import { FC } from 'react';
 
 import PPViewer from './PPViewer';
-
-interface IPPViewerContainer {
-  link: string;
-}
+import { IPPViewerContainer } from './types';
 
 const PPViewerContainer: FC<IPPViewerContainer> = ({ link }) => <PPViewer link={link} />;
 
