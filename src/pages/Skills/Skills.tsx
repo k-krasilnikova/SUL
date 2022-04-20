@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
-import SkillsGroup from 'components/SkillGroup';
+import SkillGroup from 'components/SkillGroup';
 import NoContent from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
 
@@ -32,7 +32,7 @@ const Skills: FC<ISkillsPageProps> = ({
             <SearchSkill onChange={handleSearchInputChange} value={searchInputValue} />
             <StyledDivider />
           </SearchWrapper>
-          <SkillsGroup skillFounded={skillFounded} skills={skills} />
+          <SkillGroup skillFounded={skillFounded} skills={skills} />
         </SkillsWrapper>
       </SkillsPageContainer>
     ) : (

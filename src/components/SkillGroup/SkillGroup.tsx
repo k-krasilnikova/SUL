@@ -4,7 +4,7 @@ import SkillItem from './SkillItem';
 import { ISkillsGroupProps } from './types';
 import { SkillsGroupWrapper, SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
-const SkillsGroup: FC<ISkillsGroupProps> = ({ skillFounded, skills }) => {
+const SkillGroup: FC<ISkillsGroupProps> = ({ skillFounded, skills }) => {
   const skillsData = skillFounded.length ? skillFounded : skills;
   return (
     <>
@@ -22,4 +22,4 @@ const SkillsGroup: FC<ISkillsGroupProps> = ({ skillFounded, skills }) => {
     </>
   );
 };
-export default SkillsGroup;
+export default SkillGroup;
