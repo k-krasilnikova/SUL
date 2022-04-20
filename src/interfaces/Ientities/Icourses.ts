@@ -9,7 +9,16 @@ interface ICourse {
   requiredSkills?: ObjectId[];
   complexity: UserRank;
   description: string;
-  materials: { stage: number; content: Array<string> }[];
+  materials: {
+    stage: number;
+    content: Array<string>;
+    exercise?: {
+      eN: number;
+      title: string;
+      task: string;
+      code: string;
+    };
+  }[];
   test: ObjectId;
   avatar: string;
 }
