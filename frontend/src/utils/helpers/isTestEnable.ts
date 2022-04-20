@@ -1,4 +1,4 @@
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 
-export const isProgressCompleted = (progress?: ClientCourse['progress']): boolean =>
+export const isProgressCompleted = (progress?: IClientCourse['progress']): boolean =>
   !progress ? false : progress.every((stage) => stage.isCompleted);

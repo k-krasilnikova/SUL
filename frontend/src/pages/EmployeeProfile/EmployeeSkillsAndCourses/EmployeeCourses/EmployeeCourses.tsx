@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 
 import Loader from 'components/Loader';
-import { LOADER } from 'constants/loaderTypes';
 import { IEmployeeCourses } from 'types/employee';
+import { Loaders } from 'enums/loader';
 
 import { CoursesBox } from './styled';
 import SearchEmployeeCourse from './SearchEmployeeCourse';
@@ -16,7 +16,7 @@ const EmployeeCourses: React.FC<IEmployeeCourses> = ({
   searchCourse,
 }) => (
   <CoursesBox>
-    <Suspense fallback={<Loader color="primary" type={LOADER.component} />}>
+    <Suspense fallback={<Loader color="primary" type={Loaders.component} />}>
       <SearchEmployeeCourse
         searchCourseInList={searchCourseInList}
         checkSpace={checkSpace}

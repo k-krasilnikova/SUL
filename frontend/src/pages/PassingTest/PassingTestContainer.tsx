@@ -12,10 +12,10 @@ import {
   MIN_TEST_DURATION,
 } from 'constants/test';
 import { PATHS } from 'constants/routes';
-import { COURSE_STATUSES } from 'constants/statuses';
 import { useToggle } from 'hooks';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
+import { CourseStatus } from 'enums/course';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
@@ -107,13 +107,13 @@ const PassingTestContainer: React.FC = () => {
 
   const isTestTimeOver = useMemo(
     () =>
-      courseStatus === COURSE_STATUSES.testing &&
+      courseStatus === CourseStatus.testing &&
       getDurationBetweenDates(clientCourseResponse?.finishTestDate) < MIN_TEST_DURATION,
     [clientCourseResponse?.finishTestDate, courseStatus],
   );
 
   const isNotTestingCourseStatus =
-    !clientCourseResponseIsLoading && courseStatus !== COURSE_STATUSES.testing;
+    !clientCourseResponseIsLoading && courseStatus !== CourseStatus.testing;
 
   const isShouldRedirect = isNotTestingCourseStatus || isTestTimeOver;
 

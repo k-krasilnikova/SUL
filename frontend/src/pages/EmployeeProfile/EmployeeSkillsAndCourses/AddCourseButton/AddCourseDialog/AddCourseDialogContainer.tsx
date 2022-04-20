@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { useGetPaginatedCourses } from 'api/courses';
 import { useAddCourseToEmployee } from 'api/manager';
 import { useDebounce, useFetchNextPage } from 'hooks';
-import { ICourse, ICheckedCourse } from 'types/course';
+import { ICourse, TCheckedCourse } from 'types/course';
 import { formatInputValue } from 'utils/helpers/searchHelpers';
 
 import AddCourseDialog from './AddCourseDialog';
@@ -18,7 +18,7 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
   const { employeeId } = useParams();
 
   const [searchInputValue, setSearchInputValue] = useState('');
-  const [selectedCoursesList, setSelectedCoursesList] = useState<ICheckedCourse[]>([]);
+  const [selectedCoursesList, setSelectedCoursesList] = useState<TCheckedCourse[]>([]);
 
   const debouncedSearchInputValue = useDebounce(searchInputValue);
 
@@ -40,6 +40,7 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
       courseIdsList: selectedCoursesList.map(({ _id }) => ({
         courseId: _id,
       })),
+      employeeId,
       onSuccess: handleDialogClose,
     });
 

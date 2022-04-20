@@ -9,9 +9,9 @@ import {
   convertCourseStatusToProgress,
   ConvertedProgress,
 } from 'utils/helpers/convertCourseStatusToProgress';
-import { COURSE_STATUSES } from 'constants/statuses';
-import { ROLE } from 'constants/menuRoles';
+import { Role } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
+import { CourseStatus } from 'enums/course';
 
 import DetailedCourse from './DetailedCourse';
 
@@ -29,10 +29,10 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
   const isProgressBarDisplayed = courseData
     ? isCourseApplicationSubmitted &&
-      courseData.status !== COURSE_STATUSES.pending &&
-      courseData.status !== COURSE_STATUSES.rejected
+      courseData.status !== CourseStatus.pending &&
+      courseData.status !== CourseStatus.rejected
     : false;
-  const isCourseCompleted = courseData?.status === COURSE_STATUSES.completed;
+  const isCourseCompleted = courseData?.status === CourseStatus.completed;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
@@ -54,7 +54,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   }
 
   const { data: profileResponse } = useGetProfile();
-  const isAdmin = profileResponse?.role === ROLE.admin;
+  const isAdmin = profileResponse?.role === Role.admin;
 
   let progressValue;
   let progressText;

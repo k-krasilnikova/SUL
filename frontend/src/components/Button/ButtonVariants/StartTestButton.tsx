@@ -3,7 +3,7 @@ import { compose } from 'recompose';
 
 import withStartTest from 'components/Dialogs/StartTestDialog/withStartTest';
 import { ButtonLabels } from 'constants/ButtonLabels';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 
 import { withTimeLeft } from './HOC';
 import { CustomButton } from './styled';
@@ -17,7 +17,7 @@ type TOutterProps = {
   status?: string;
   timeout?: number;
   testDate?: string;
-  progress?: ClientCourse['progress'];
+  progress?: IClientCourse['progress'];
 };
 
 const StartTestButton: React.FC<IProps> = ({ children, handleDialogOpen, isTestEnable }) => (

@@ -1,8 +1,10 @@
+import { CourseStatus } from 'enums/course';
+
 import { ICourse } from './course';
 
 export interface ClientCourse {
   _id: string;
-  status: string;
+  status: CourseStatus;
   currentStage: number;
   progress: [
     {
@@ -17,9 +19,5 @@ export interface ClientCourse {
   applyDate?: string;
   testDate?: string;
 }
-export interface ICourseInfo {
-  title: string;
-  description: string;
-}
 
-export type PureClientCourse = Omit<ClientCourse, 'course'>;
+export type PureClientCourse = Omit<IClientCourse, 'course'>;

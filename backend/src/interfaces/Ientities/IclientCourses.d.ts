@@ -2,27 +2,19 @@ import { ObjectId } from 'mongoose';
 
 import CourseStatus from 'enums/coursesEnums';
 import { ICourseInfo } from 'interfaces/ICourses/IQueryCourses';
-import { CLIENT_COURSE_FIELDS } from 'config/constants';
+import { CLIENT_COURSE_FIELDS, COURSE_FIELDS } from 'config/constants';
 
 import { ICourse } from './Icourses';
 
-type TCourseStatus =
-  | 'pending'
-  | 'approved'
-  | 'started'
-  | 'completed'
-  | 'rejected'
-  | 'testing'
-  | 'assessment'
-  | 'successful';
-
-export type TFileds = keyof typeof CLIENT_COURSE_FIELDS;
+export type TCourseFields = typeof COURSE_FIELDS[`${keyof typeof COURSE_FIELDS}`];
+export type TClientCourseFields =
+  typeof CLIENT_COURSE_FIELDS[`${keyof typeof CLIENT_COURSE_FILEDS}`];
 
 interface IClientCourse {
   _id?: ObjectId;
   user: ObjectId;
   course: ObjectId;
-  status: CourseStatus;
+  status: `${CourseStatus}`;
   withAssessment: boolean;
   testResult: { qN: number; aN: boolean }[];
   progress: [
@@ -43,4 +35,4 @@ interface IClientCoursePopulated extends IClientCourse {
 
 type IClientCoursePopulatedResponse = IClientCoursePopulated & { course: ICourseInfo };
 
-export { IClientCourse, TCourseStatus, IClientCoursePopulated };
+export { IClientCourse, IClientCoursePopulated };

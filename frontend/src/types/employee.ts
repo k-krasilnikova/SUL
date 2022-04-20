@@ -1,28 +1,12 @@
-import { ClientCourse } from './clientCourse';
-import { Technologies } from './skill';
+import { EmployeeInfo } from 'enums/employee';
 
-export interface IEmployee {
+import { IClientCourse } from './clientCourse';
+import { IUser } from './user';
+
+export interface IEmployee extends IUser {
   _id: string;
-  firstName: string;
-  lastName: string;
-  position: string;
-  group: string;
   rank: number;
   stack: { name: string }[];
-  avatar: string;
-  skype: string;
-  phone: string;
-  technologies?: Technologies;
-  courses?: ClientCourse[];
-}
-
-export interface IEmployeeProps {
-  handleNavigate: (_id: string) => void;
-  employee: IEmployee;
-}
-
-export interface IEmployees {
-  employeesResponse: IEmployee[];
 }
 
 export interface IEmployeesProps {
@@ -31,16 +15,9 @@ export interface IEmployeesProps {
   isLoading?: boolean;
 }
 
-export interface IEmployeeProfile {
-  employeeInfo: string;
-  toggleEmployeeInfo: (infoToOpen: string) => void;
-  toggleHover: (buttonHovered: string) => void;
-  profileInfoOpened: boolean;
-  toggleProfileInfoOpened: () => void;
-  isSkillOpened: boolean;
-  isCourseOpened: boolean;
-  employeeCourses?: ClientCourse[];
-  employee?: IEmployee;
+export interface IEmployeeProps {
+  handleNavigate: (_id: string) => void;
+  employee: IEmployee;
 }
 
 export interface IEmployeeCourses {
@@ -48,11 +25,11 @@ export interface IEmployeeCourses {
   checkSpace: (event: React.KeyboardEvent) => void;
   checkPastedValue: (event: React.ClipboardEvent) => void;
   searchCourse: string;
-  courses?: ClientCourse[];
+  courses?: IClientCourse[];
 }
 
 export interface IEmployeeCoursesList {
-  courses?: ClientCourse[];
+  courses?: IClientCourse[];
 }
 
 export interface IEmployeeInfo {
@@ -63,10 +40,10 @@ export interface IEmployeeInfo {
 
 export interface IEmployeeSkillsAndCourses {
   employeeInfo: string;
-  toggleEmployeeInfo: (infoToOpen: string) => void;
+  toggleEmployeeInfo: (infoToOpen: EmployeeInfo) => void;
   toggleHover: (buttonHovered: string) => void;
   isSkillOpened: boolean;
   isCourseOpened: boolean;
-  employeeCourses?: ClientCourse[];
+  employeeCourses?: IClientCourse[];
   employee?: IEmployee;
 }
