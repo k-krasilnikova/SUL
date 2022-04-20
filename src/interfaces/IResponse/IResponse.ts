@@ -1,6 +1,6 @@
 import { UserRank } from 'enums/users';
 
-import { TUserStackMemberShort } from '../Ientities/IStackMember';
+import { IStackMember, TUserStackMemberShort } from '../Ientities/IStackMember';
 import { ICourse } from '../Ientities/Icourses';
 import { IClientCourse } from '../Ientities/IclientCourses';
 import { ITechnologyGroup, IUser, TUserPopulated } from '../Ientities/Iusers';
@@ -53,6 +53,11 @@ interface ITestResultResponse {
 
 interface ICoursesMapResponse {
   userRank: UserRank;
+  stackMap: IStackMapElement[];
+}
+
+interface IStackMapElement {
+  stack: IStackMember['name'];
   coursesMap: ICoursesMapElement[];
 }
 
@@ -84,4 +89,5 @@ export {
   ITestResultResponse,
   ICourseShortInfo,
   ICoursesMapElement,
+  IStackMapElement,
 };

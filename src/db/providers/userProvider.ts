@@ -8,8 +8,9 @@ import UserSkillModel from 'db/models/UserSkill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
 import StackMemberModel from 'db/models/StackMember';
+import CourseModel from 'db/models/Course';
 import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
-import { IStackMember } from 'interfaces/Ientities/IStackMember';
+import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const getUserProvider = async (userId: string | ObjectId) => {
@@ -63,14 +64,19 @@ const getFullUserInformationProvider = async (userId: string) => {
   return dbUserFullInfo;
 };
 
-const getUserStackProvider = async (userId: ObjectId | string): Promise<IStackMember[]> => {
-  const { stack } = await UserModel.findById(userId).populate('stack').lean();
+const getUserStackProvider = async (
+  userId: ObjectId | string,
+): Promise<TUserStackMemberPopulated[]> => {
+  const { stack } = await UserModel.findById(userId)
+    .populate('stack.member')
+    .populate({ path: 'stack.member', populate: { path: 'relatedCourses', model: CourseModel } })
+    .lean();
 
   if (isEmpty(stack)) {
     throw new NotFoundError('Could not found user stack.');
   }
 
-  return convertToTypeUnsafe<IStackMember[]>(stack);
+  return convertToTypeUnsafe<TUserStackMemberPopulated[]>(stack);
 };
 
 const getEmployeesProvider = async (managerId: string) => {
