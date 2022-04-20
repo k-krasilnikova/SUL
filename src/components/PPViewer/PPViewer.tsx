@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import GoogleSlides from 'react-google-slides';
 
 interface IPPViewer {
@@ -10,16 +10,16 @@ const viewerContainerStyles = {
   border: 'none',
 } as const;
 
-const PPViewer: React.FC<IPPViewer> = ({ link }) => {
-  return (
-    <GoogleSlides
-      slidesLink={link}
-      containerStyle={viewerContainerStyles}
-      position={1}
-      showControls
-      loop
-    />
-  );
-};
+const FIRST_SLIDE_POSITION = 1;
+
+const PPViewer: FC<IPPViewer> = ({ link }) => (
+  <GoogleSlides
+    slidesLink={link}
+    containerStyle={viewerContainerStyles}
+    position={FIRST_SLIDE_POSITION}
+    showControls
+    loop
+  />
+);
 
 export default PPViewer;

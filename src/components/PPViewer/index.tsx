@@ -1,1 +1,1 @@
-export { default as PPViewer } from './PPViewerContainer';
+export { default } from './PPViewerContainer';

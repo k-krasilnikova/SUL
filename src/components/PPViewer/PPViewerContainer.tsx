@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import PPViewer from './PPViewer';
 
@@ -6,6 +6,6 @@ interface IPPViewerContainer {
   link: string;
 }
 
-const PPViewerContainer: React.FC<IPPViewerContainer> = ({ link }) => <PPViewer link={link} />;
+const PPViewerContainer: FC<IPPViewerContainer> = ({ link }) => <PPViewer link={link} />;
 
 export default PPViewerContainer;

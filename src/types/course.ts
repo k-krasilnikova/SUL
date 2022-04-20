@@ -41,7 +41,7 @@ export interface ICourses {
 export interface IMaterial {
   _id: string;
   stage: number;
-  content: Array<IContentElement>;
+  content: IContentElement[];
 }
 
 export interface IContentElement {
