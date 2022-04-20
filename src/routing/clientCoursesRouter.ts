@@ -6,16 +6,16 @@ import withAuth from 'middlewares/authMiddleware';
 import getClientCourses from 'controllers/clientCourses/getAllClientCourses';
 import passCourse from 'controllers/clientCourses/passCourse';
 import startCourse from 'controllers/clientCourses/startCourse';
-import finishCourse from 'controllers/clientCourses/finishCourse';
 import getClientCourseById from 'controllers/clientCourses/getClientCourse';
 import getTest from 'controllers/tests/getTest';
 import getAchievments from 'controllers/tests/getAchievments';
 import startTest from 'controllers/tests/startTest';
-import getTestResults from 'controllers/tests/getTestResults';
+import passTest from 'controllers/tests/passTest';
 import unitTestResults from 'controllers/tests/sendTestResults';
 import manageAssessment from 'controllers/clientCourses/manageAssessment';
 import getTestTime from 'controllers/tests/getTestTime';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
+import getTestResult from 'controllers/tests/getTestResult';
 
 const clientCoursesRouter = Router();
 
@@ -26,9 +26,9 @@ clientCoursesRouter.get(
 );
 
 clientCoursesRouter.put(
-  SubRoutes.getTestResult,
+  SubRoutes.passTest,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
-  getTestResults,
+  passTest,
   getAchievments,
   unitTestResults,
 );
@@ -43,14 +43,15 @@ clientCoursesRouter.get(
   getTest,
 );
 clientCoursesRouter.get(
+  SubRoutes.getTestResult,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
+  getTestResult,
+  adapterSender,
+);
+clientCoursesRouter.get(
   SubRoutes.startCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   startCourse,
-);
-clientCoursesRouter.get(
-  SubRoutes.finishCourse,
-  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
-  finishCourse,
 );
 clientCoursesRouter.get(
   SubRoutes.getClientCourse,

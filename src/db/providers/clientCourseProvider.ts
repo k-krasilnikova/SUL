@@ -1,7 +1,7 @@
 import mongoose, { ObjectId } from 'mongoose';
 
 import { IProgress, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
+import { IClientCoursePopulated, TClientCourseFields } from 'interfaces/Ientities/IclientCourses';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -134,7 +134,11 @@ const getCurrentProgress = async (clientCourseId: string) => {
   return progress;
 };
 
-const updateClientCourseField = async (courseId: string, field: string, value: unknown) => {
+const updateClientCourseField = async (
+  courseId: string,
+  field: TClientCourseFields,
+  value: unknown,
+) => {
   const updatedCourse = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { [field]: value } },
@@ -155,6 +159,25 @@ const arrangeAssessment = async (courseId: string) => {
   }
 };
 
+const getClientCoursesByCourseId = async (courseId: string) => {
+  const allClientCoursesByCourseId = await ClientCourseModel.find({ course: courseId });
+
+  return allClientCoursesByCourseId;
+};
+
+const checkNotDeleteCoursesProvider = async (courseId: string) => {
+  const clientCourses = await ClientCourseModel.find({ course: courseId });
+
+  const notDeleteCourses = clientCourses.find(
+    (clientCourse) =>
+      clientCourse.status === CourseStatus.started || clientCourse.status === CourseStatus.testing,
+  );
+
+  if (notDeleteCourses) {
+    throw new BadRequestError('The course has already started or is being tested for some people');
+  }
+};
+
 const assignCourseToEmployee = async (
   assignTo: string | ObjectId,
   courseId: string | ObjectId,
@@ -166,7 +189,6 @@ const assignCourseToEmployee = async (
     course: courseId,
     status: CourseStatus.approved,
     withAssessment: withAssessment || false,
-    testResult: '',
     progress: progressDto,
     date: Date.now(),
   });
@@ -185,5 +207,7 @@ export {
   arrangeAssessment,
   updateCourseProgress,
   updateClientCourseField,
+  getClientCoursesByCourseId,
   assignCourseToEmployee,
+  checkNotDeleteCoursesProvider,
 };
