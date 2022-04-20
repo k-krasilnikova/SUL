@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import GoogleSlides from 'react-google-slides';
 
-interface IPPViewer {
-  link: string;
-}
+import { IPPViewer } from './types';
 
 const viewerContainerStyles = {
   width: '100%',
