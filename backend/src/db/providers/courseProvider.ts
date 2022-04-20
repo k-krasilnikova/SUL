@@ -12,7 +12,7 @@ import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
-import { ICourseStatus, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseWithStatus, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
@@ -46,8 +46,8 @@ interface ICourseWithStatusDb extends ICourse {
   status: [{ status?: string }];
 }
 
-const normalizeAgregatedCourse = (agregatedCourse: ICourseWithStatusDb): ICourseStatus => {
-  const course: ICourseStatus = { ...agregatedCourse, status: 'not set' };
+const normalizeAgregatedCourse = (agregatedCourse: ICourseWithStatusDb): ICourseWithStatus => {
+  const course: ICourseWithStatus = { ...agregatedCourse, status: 'not set' };
   if (!isEmpty(agregatedCourse.status)) {
     const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
     course.status = courseStatus;
@@ -57,10 +57,10 @@ const normalizeAgregatedCourse = (agregatedCourse: ICourseWithStatusDb): ICourse
   return course;
 };
 
-const normalizeAgregatedCourses = (aggregation: ICourseWithStatusDb[]): ICourseStatus[] =>
+const normalizeAgregatedCourses = (aggregation: ICourseWithStatusDb[]): ICourseWithStatus[] =>
   aggregation.map(normalizeAgregatedCourse);
 
-const populateCourses = async (courses: ICourseStatus[]): Promise<ICourseStatus[]> => {
+const populateCourses = async (courses: ICourseWithStatus[]): Promise<ICourseWithStatus[]> => {
   const populated = await CourseModel.populate(courses, [
     { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
     { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
@@ -69,7 +69,7 @@ const populateCourses = async (courses: ICourseStatus[]): Promise<ICourseStatus[
   return populated;
 };
 
-const populateCourse = async (course: ICourseStatus): Promise<ICourseStatus> => {
+const populateCourse = async (course: ICourseWithStatus): Promise<ICourseWithStatus> => {
   const populated = await CourseModel.populate(course, [
     { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
     { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
@@ -111,7 +111,7 @@ const getCoursesProvider = async (
       },
     ]);
 
-    const courses: ICourseStatus[] = normalizeAgregatedCourses(aggregation);
+    const courses: ICourseWithStatus[] = normalizeAgregatedCourses(aggregation);
 
     const populated = await populateCourses(courses);
 
@@ -136,7 +136,7 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
     throw new NotFoundError('Course not found.');
   }
 
-  const course: ICourseStatus = normalizeAgregatedCourse(agregatedCourse);
+  const course: ICourseWithStatus = normalizeAgregatedCourse(agregatedCourse);
 
   const populated = await populateCourse(course);
 
@@ -188,24 +188,16 @@ const updateCourseField = async (courseId: string, field: TCourseFields, value: 
   return updatedCourse;
 };
 
-const getCoursesByIdsWithStatusProvider = async (
-  ids: ObjectId[] | string[],
-  userId: ObjectId | string,
-): Promise<ICourseStatus[]> => {
-  const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
-    {
-      $match: {
-        _id: {
-          $in: ids,
-        },
-      },
-    },
-    generateCourseStatusLookup(userId),
-  ]);
+const getCourseStatusProvider = async (
+  courseId: string | ObjectId,
+  userId: string | ObjectId,
+): Promise<ICourseWithStatus['status']> => {
+  const relateClientCourse = await ClientCourseModel.findOne({
+    course: courseId,
+    user: userId,
+  }).lean();
 
-  const courses: ICourseStatus[] = normalizeAgregatedCourses(aggregation);
-
-  return courses;
+  return relateClientCourse?.status;
 };
 
 export {
@@ -215,5 +207,5 @@ export {
   getMaterialsProvider,
   deleteCourseProvider,
   updateCourseField,
-  getCoursesByIdsWithStatusProvider,
+  getCourseStatusProvider,
 };

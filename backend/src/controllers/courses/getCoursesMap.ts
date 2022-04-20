@@ -1,10 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
+import { ObjectId } from 'mongoose';
 
-import { getCoursesByIdsWithStatusProvider } from 'db/providers/courseProvider';
 import { getUserProvider, getUserStackProvider } from 'db/providers/userProvider';
 import { ICoursesMapResponse } from 'interfaces/IResponse/IResponse';
-import { getStackCoursesUniqueIds } from 'utils/normaliser/stack';
 import { addMissingCoursesMapElements, generateCoursesMapResponse } from 'utils/normaliser/courses';
+import { getCourseStatusProvider } from 'db/providers/courseProvider';
+import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const getCoursesMap = async (
   req: Request,
@@ -17,11 +18,24 @@ const getCoursesMap = async (
     const { rank: userRank } = await getUserProvider(userId);
     const userStack = await getUserStackProvider(userId);
 
-    const coursesIds = getStackCoursesUniqueIds(userStack);
+    const userStackWithStatuses = await Promise.all(
+      userStack.map(async (stackMember) => {
+        const updatedRelatedCourses = await Promise.all(
+          stackMember.member.relatedCourses.map(async (course) => ({
+            ...course,
+            status: await getCourseStatusProvider(
+              convertToTypeUnsafe<ObjectId>(course._id),
+              userId,
+            ),
+          })),
+        );
+        const newMember = { ...stackMember };
+        newMember.member.relatedCourses = updatedRelatedCourses;
+        return newMember;
+      }),
+    );
 
-    const relatedCourses = await getCoursesByIdsWithStatusProvider(coursesIds, userId);
-
-    const responseCascade = generateCoursesMapResponse(relatedCourses, userRank);
+    const responseCascade = generateCoursesMapResponse(userStackWithStatuses, userRank);
 
     const filledResponse = addMissingCoursesMapElements(responseCascade);
 
