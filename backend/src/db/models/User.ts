@@ -10,7 +10,12 @@ const schema = new Schema<IUser>({
   role: { type: String, required: true, default: 'employee' },
   position: { type: String, required: true, default: 'Software Engineer' },
   rank: { type: Number, required: true, default: 1 },
-  stack: [{ type: Schema.Types.ObjectId, ref: 'StackMember' }],
+  stack: [
+    {
+      member: { type: Schema.Types.ObjectId, ref: 'StackMember' },
+      isPrimary: { type: Boolean, default: false },
+    },
+  ],
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   technologies: [

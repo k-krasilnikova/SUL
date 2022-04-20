@@ -1,6 +1,6 @@
 import { UserRank } from 'enums/users';
 
-import { IStackMember } from '../Ientities/IStackMember';
+import { TUserStackMemberShort } from '../Ientities/IStackMember';
 import { ICourse } from '../Ientities/Icourses';
 import { IClientCourse } from '../Ientities/IclientCourses';
 import { ITechnologyGroup, IUser, TUserPopulated } from '../Ientities/Iusers';
@@ -31,7 +31,7 @@ interface IEmployeeInfo
   > {
   courses: IEmployeeClientCourse[];
   technologies: ITechnologyGroup[];
-  stack: Pick<IStackMember, 'name'>[];
+  stack: TUserStackMemberShort[];
 }
 
 interface IEmployeeShortInfo
