@@ -1,4 +1,5 @@
 import { ObjectId } from 'mongoose';
+import { isEmpty } from 'lodash';
 
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -6,8 +7,9 @@ import UserModel from 'db/models/User';
 import UserSkillModel from 'db/models/UserSkill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
-import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
 import StackMemberModel from 'db/models/StackMember';
+import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
+import { IStackMember } from 'interfaces/Ientities/IStackMember';
 
 const getUserProvider = async (userId: string | ObjectId) => {
   const dbUser = await UserModel.findById(userId).lean();
@@ -57,6 +59,16 @@ const getFullUserInformationProvider = async (userId: string) => {
   return dbUserFullInfo;
 };
 
+const getUserStackProvider = async (userId: ObjectId | string): Promise<IStackMember[]> => {
+  const { stack } = await UserModel.findById(userId).populate('stack');
+
+  if (isEmpty(stack)) {
+    throw new NotFoundError('Could not found user stack.');
+  }
+
+  return stack;
+};
+
 const getEmployeesProvider = async (managerId: string) => {
   const employess = await UserModel.find({ managerId }).lean();
   return employess;
@@ -93,6 +105,7 @@ const removeFromPendingFieldCourses = async (managerId: ObjectId, approvedCourse
 
 export {
   getUserProvider,
+  getUserStackProvider,
   getFullUserInformationProvider,
   updatePendingFieldCourses,
   removeFromPendingFieldCourses,
