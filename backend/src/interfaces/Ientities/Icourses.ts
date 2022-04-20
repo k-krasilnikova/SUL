@@ -12,7 +12,7 @@ interface ICourse {
   description: string;
   materials: { stage: number; content: Array<IContentElement> }[];
   test: ObjectId;
-  avatar?: string;
+  avatar: string;
 }
 
 interface IContentElement {

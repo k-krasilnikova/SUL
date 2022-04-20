@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 
 import { searchAllCourses } from 'api/courses';
-import { Course } from 'types/course';
+import { ICourse } from 'types/course';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
 
@@ -11,7 +11,7 @@ import MobileSearch from './MobileSearch';
 const MobileSearchContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
   const [searchInputValue, setSearchInputValue] = useState<string>('');
-  const [coursesFound, setCoursesFound] = useState<Array<Course>>([]);
+  const [coursesFound, setCoursesFound] = useState<Array<ICourse>>([]);
 
   const { enqueueSnackbar } = useSnackbar();
 

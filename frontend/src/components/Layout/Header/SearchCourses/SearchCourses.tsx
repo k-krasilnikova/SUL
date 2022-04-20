@@ -1,10 +1,10 @@
 import React from 'react';
 import { ClickAwayListener } from '@mui/material';
 
-import { Course } from 'types/course';
-import SearchResult from 'components/Layout/Header/SearchCourses/SearchResult';
+import { ICourse } from 'types/course';
 
 import { Search, RelativeWrapper } from './styled';
+import SearchResult from './SearchResult';
 
 interface Props {
   isSearchOpen: boolean;
@@ -13,7 +13,7 @@ interface Props {
   checkSpace: (event: React.KeyboardEvent) => void;
   checkPastedValue: (event: React.ClipboardEvent) => void;
   searchInputValue: string;
-  coursesFound?: Array<Course>;
+  coursesFound?: ICourse[];
 }
 
 const SearchCourses: React.FC<Props> = ({
@@ -35,7 +35,9 @@ const SearchCourses: React.FC<Props> = ({
         onPaste={checkPastedValue}
         value={searchInputValue}
       />
-      {isSearchOpen && coursesFound && <SearchResult coursesFound={coursesFound} />}
+      {isSearchOpen && coursesFound && (
+        <SearchResult coursesFound={coursesFound} handleSearchClose={handleSearchClose} />
+      )}
     </RelativeWrapper>
   </ClickAwayListener>
 );

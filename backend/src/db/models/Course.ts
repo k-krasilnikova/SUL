@@ -30,6 +30,7 @@ const courseSchema = new Schema<ICourse>({
     },
   ],
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
+  avatar: { type: String, required: true },
 });
 
 const CourseModel = model<ICourse>('Courses', courseSchema, 'courses');

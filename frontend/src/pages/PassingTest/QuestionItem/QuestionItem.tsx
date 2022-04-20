@@ -1,30 +1,30 @@
 import React from 'react';
-import { Box } from '@mui/system';
 import { RadioGroup } from '@mui/material';
 
 import { checkbox, checkboxChecked } from 'icons';
-import { IQuestionProps } from 'types/test';
 
 import {
   AnswersBox,
   QuestionAndStageBox,
+  QuestionItemBox,
   Stage,
   StageWrapper,
   StyledFormControlLabel,
   StyledRadio,
   TestQuestion,
 } from './styled';
+import { IQuestionProps } from './types';
 
 const QuestionItem: React.FC<IQuestionProps> = ({
-  questionItem,
+  questionStageItem,
   stage,
   maxStage,
   handleChange,
   value,
 }) => (
-  <Box>
+  <QuestionItemBox>
     <QuestionAndStageBox>
-      {questionItem && <TestQuestion>{questionItem.question}</TestQuestion>}
+      {questionStageItem && <TestQuestion>{questionStageItem.question}</TestQuestion>}
       <StageWrapper>
         <Stage>
           {stage}/{maxStage}
@@ -32,11 +32,11 @@ const QuestionItem: React.FC<IQuestionProps> = ({
       </StageWrapper>
     </QuestionAndStageBox>
     <AnswersBox>
-      {questionItem.answers.map((answer) => (
+      {questionStageItem.answers.map((answer) => (
         <RadioGroup
           key={answer.aN}
-          value={value[questionItem.qN] || null}
-          onChange={handleChange(questionItem.qN)}
+          value={value[questionStageItem.qN] || null}
+          onChange={handleChange(questionStageItem.qN)}
         >
           <StyledFormControlLabel
             control={
@@ -51,7 +51,7 @@ const QuestionItem: React.FC<IQuestionProps> = ({
         </RadioGroup>
       ))}
     </AnswersBox>
-  </Box>
+  </QuestionItemBox>
 );
 
 export default QuestionItem;

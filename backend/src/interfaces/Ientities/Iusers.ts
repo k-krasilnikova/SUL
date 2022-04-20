@@ -3,7 +3,7 @@ import { ObjectId } from 'mongoose';
 import { UserRank } from 'enums/users';
 
 import { ICourse } from './Icourses';
-import { TCourseStatus } from './IclientCourses';
+import { IClientCourse } from './IclientCourses';
 import { IUserSkillPopulated } from './IUserSkill';
 import { IStackMember } from './IStackMember';
 import { ITimePeriod } from '../common/datetime';
@@ -23,7 +23,7 @@ type TCourseForPendingCourses = Pick<ICourse, 'title' | 'avatar'>;
 interface IPendingCourse {
   user: TUserForPendingCourses;
   course: TCourseForPendingCourses;
-  status: TCourseStatus;
+  status: IClientCourse['status'];
   date?: Date;
   elapsed?: ITimePeriod;
 }

@@ -1,27 +1,26 @@
 import React from 'react';
 import { useParams } from 'react-router';
 
-import { ITestResult } from 'types/test';
-import { PERCENTAGE, TEST_STATUS } from 'constants/test';
-
 import TestResult from './TestResult';
+import { ITestResultPageProps } from './types';
 
-const TestResultContainer: React.FC<ITestResult> = ({ responseData, isLoading }) => {
+const TestResultContainer: React.FC<ITestResultPageProps> = ({
+  responseData,
+  isLoading,
+  assessment,
+  isFailed,
+  progressBarData,
+}) => {
   const params = useParams();
-
-  const testStatus = responseData ? responseData.result.testStatus : undefined;
-  const isFailed = testStatus === TEST_STATUS.notPassed;
-  const assessmentRequired = testStatus === TEST_STATUS.assessment;
-  const percentageValue = responseData ? responseData?.result?.result * PERCENTAGE : undefined;
 
   return (
     <TestResult
-      assessment={assessmentRequired}
+      assessment={assessment}
       isFailed={isFailed}
       isLoading={isLoading}
       responseData={responseData}
-      percentageValue={percentageValue}
       courseId={params.courseId}
+      progressBarData={progressBarData}
     />
   );
 };
