@@ -9,7 +9,11 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import { ICourse } from 'interfaces/Ientities/Icourses';
-import { ICourseStatus, ICreateCourseBody, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import {
+  ICourseWithStatus,
+  ICreateCourseBody,
+  IQueryCourses,
+} from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
@@ -21,7 +25,7 @@ interface ICourseWithStatusDb extends ICourse {
   status: [{ status?: string }];
 }
 
-const populateCourses = async (courses: ICourseStatus[]): Promise<ICourseStatus[]> => {
+const populateCourses = async (courses: ICourseWithStatus[]): Promise<ICourseWithStatus[]> => {
   const populated = await CourseModel.populate(courses, [
     { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
     { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
@@ -30,7 +34,7 @@ const populateCourses = async (courses: ICourseStatus[]): Promise<ICourseStatus[
   return populated;
 };
 
-const populateCourse = async (course: ICourseStatus): Promise<ICourseStatus> => {
+const populateCourse = async (course: ICourseWithStatus): Promise<ICourseWithStatus> => {
   const populated = await CourseModel.populate(course, [
     { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
     { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
@@ -94,8 +98,8 @@ const getCoursesProvider = async (
       },
     ]);
 
-    const courses: ICourseStatus[] = aggregation.map((agregatedCourse) => {
-      const course: ICourseStatus = { ...agregatedCourse, status: 'not set' };
+    const courses: ICourseWithStatus[] = aggregation.map((agregatedCourse) => {
+      const course: ICourseWithStatus = { ...agregatedCourse, status: 'not set' };
 
       if (agregatedCourse.status.length) {
         const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
@@ -152,7 +156,7 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
     throw new NotFoundError('Course not found.');
   }
 
-  const course: ICourseStatus = { ...agregatedCourse, status: 'not set' };
+  const course: ICourseWithStatus = { ...agregatedCourse, status: 'not set' };
 
   if (agregatedCourse.status.length) {
     const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
@@ -213,7 +217,10 @@ const updateCourseField = async (courseId: string, field: TCourseFields, value: 
 
 const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
 
-const getAllCoursesProvider = async (userId: string, title?: string): Promise<ICourseStatus[]> => {
+const getAllCoursesProvider = async (
+  userId: string,
+  title?: string,
+): Promise<ICourseWithStatus[]> => {
   try {
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
       {
@@ -246,8 +253,8 @@ const getAllCoursesProvider = async (userId: string, title?: string): Promise<IC
       },
     ]);
 
-    const courses: ICourseStatus[] = aggregation.map((agregatedCourse) => {
-      const course: ICourseStatus = { ...agregatedCourse, status: 'not set' };
+    const courses: ICourseWithStatus[] = aggregation.map((agregatedCourse) => {
+      const course: ICourseWithStatus = { ...agregatedCourse, status: 'not set' };
 
       if (agregatedCourse.status.length) {
         const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
