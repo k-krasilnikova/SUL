@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
 import PPViewer from './PPViewer';
-import { IPPViewerContainer } from './types';
+import { IPPViewerProps } from './types';
 
-const PPViewerContainer: FC<IPPViewerContainer> = ({ link }) => <PPViewer link={link} />;
+const PPViewerContainer: FC<IPPViewerProps> = ({ link }) => <PPViewer link={link} />;
 
 export default PPViewerContainer;

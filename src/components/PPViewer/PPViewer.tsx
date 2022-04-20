@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import GoogleSlides from 'react-google-slides';
 
-import { IPPViewer } from './types';
+import { IPPViewerProps } from './types';
 
 const viewerContainerStyles = {
   width: '100%',
@@ -10,7 +10,7 @@ const viewerContainerStyles = {
 
 const FIRST_SLIDE_POSITION = 1;
 
-const PPViewer: FC<IPPViewer> = ({ link }) => (
+const PPViewer: FC<IPPViewerProps> = ({ link }) => (
   <GoogleSlides
     slidesLink={link}
     containerStyle={viewerContainerStyles}

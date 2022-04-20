@@ -1,9 +1,5 @@
-interface IPPViewer {
+interface IPPViewerProps {
   link: string;
 }
 
-interface IPPViewerContainer {
-  link: string;
-}
-
-export type { IPPViewer, IPPViewerContainer };
+export type { IPPViewerProps };
