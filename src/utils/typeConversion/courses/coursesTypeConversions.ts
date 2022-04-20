@@ -1,10 +1,10 @@
 import { ESTIMATE_TIME_PER_LESSON } from 'config/constants';
 import { getTestById } from 'db/providers/testProvider';
-import { ICourseInfo, ICourseStatus } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseInfo, ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 
 import { convertToCourseDuration } from '../datetime/datetimeTypeConversions';
 
-const convertToCourseInfo = async (course: ICourseStatus): Promise<ICourseInfo> => {
+const convertToCourseInfo = async (course: ICourseWithStatus): Promise<ICourseInfo> => {
   const lessons = course.materials.length;
 
   const test = await getTestById(course.test);
@@ -17,7 +17,7 @@ const convertToCourseInfo = async (course: ICourseStatus): Promise<ICourseInfo> 
   return convertedCourseInfo;
 };
 
-const convertToCourseInfoArray = async (courses: ICourseStatus[]): Promise<ICourseInfo[]> =>
+const convertToCourseInfoArray = async (courses: ICourseWithStatus[]): Promise<ICourseInfo[]> =>
   Promise.all(courses.map((course) => convertToCourseInfo(course)));
 
 export { convertToCourseInfo, convertToCourseInfoArray };
