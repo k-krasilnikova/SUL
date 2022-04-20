@@ -1,8 +1,7 @@
-import styled from 'styled-components';
 import { ReactFragment } from 'react';
 import { Link } from 'react-router-dom';
+import { styled, ListItemButton, Backdrop } from '@mui/material';
 import { makeStyles } from '@material-ui/core';
-import { ListItemButton, Backdrop } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -19,7 +18,7 @@ export const MobileMenuSlide = styled('div')({
   backgroundColor: theme.palette.secondary.main,
   padding: '8px 16px 40px 8px',
   position: 'absolute',
-  right: '0px',
+  right: 0,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
@@ -35,8 +34,8 @@ export const MobileMenuBackdrop = styled(Backdrop)({
 });
 
 export const MenuTabsWrapper = styled('div')({
-  flexGrow: '0',
-  flexShrink: '0',
+  flexGrow: 0,
+  flexShrink: 0,
   width: '100%',
   height: 'fit-content',
   backgroundColor: theme.palette.secondary.main,
@@ -52,7 +51,7 @@ export const MenuTabsWrapper = styled('div')({
 export const MenuTabs = styled('div')({
   fontSize: '24px',
   fontFamily: '"Ubuntu", sans-serif',
-  margin: '0px',
+  margin: 0,
 });
 
 export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({
@@ -66,8 +65,8 @@ export const SpaceHolder = styled('div')({
 });
 
 export const MobileUserBlock = styled('div')({
-  flexGrow: '0',
-  flexShrink: '0',
+  flexGrow: 0,
+  flexShrink: 0,
   paddingBottom: '40px',
   display: 'inline-flex',
   flexDirection: 'row',
@@ -83,24 +82,24 @@ export const UserProfile = styled(Link)({
   alignItems: 'middle',
   fontFamily: '"Ubuntu", sans-serif',
   fontSize: '14px',
-  fontWeight: '400',
+  fontWeight: 400,
   lineHeight: '16px',
   textAlign: 'left',
   color: '#131313',
 });
 
 export const AvatarWrapper = styled('div')({
-  margin: '0px',
+  margin: 0,
 });
 
 export const UserNameWrapper = styled('div')({
-  margin: '0px 10px 0px 8px',
+  margin: '0 10px 0 8px',
 });
 
 export const UserName = styled('p')({
   width: '80px',
   height: '16px',
-  margin: '0px',
+  margin: 0,
 });
 
 export const LogOut = styled('div')({
@@ -117,7 +116,7 @@ export const useListStyles = makeStyles({
   default: {
     background: 'none',
     color: 'black',
-    padding: '0px!important',
+    padding: 0,
     '& span': {
       fontFamily: 'Ubuntu, sans-serif',
       fontWeight: 400,
@@ -132,7 +131,7 @@ export const useListStyles = makeStyles({
   },
   selected: {
     color: theme.palette.primary.main,
-    padding: '0px!important',
+    padding: 0,
     background: 'none',
     '& span': {
       fontFamily: 'Ubuntu, sans-serif',

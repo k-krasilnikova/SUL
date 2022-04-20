@@ -1,15 +1,17 @@
 import { FC } from 'react';
 
+import { ButtonLabels } from 'constants/ButtonLabels';
+
 import { CourseInfoToggleButton, ExpandLessIcon, ExpandMoreIcon } from './styled';
 
-interface IProps {
+interface ICourseInfoToggle {
   isCourseInfoOpen: boolean;
   toggleCourseInfoOpen: () => void;
 }
 
-const CourseInfoToggle: FC<IProps> = ({ isCourseInfoOpen, toggleCourseInfoOpen }) => (
+const CourseInfoToggle: FC<ICourseInfoToggle> = ({ isCourseInfoOpen, toggleCourseInfoOpen }) => (
   <CourseInfoToggleButton onClick={toggleCourseInfoOpen}>
-    Comments
+    {ButtonLabels.comments}
     {isCourseInfoOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
   </CourseInfoToggleButton>
 );

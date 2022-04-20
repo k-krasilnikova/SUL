@@ -1,14 +1,22 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { buttonSpinner } from 'animations';
-import { BUTTON_CONTENT } from 'constants/requests';
+import { ButtonLabels } from 'constants/ButtonLabels';
 import ButtonLoader from 'components/ButtonLoader';
-import { IRequest } from 'types/request';
 
 import { ActionButton, ButtonsContainer, InterviewActionButton } from './styled';
 
-const RequestButtons: React.FC<IRequest> = ({
-  request,
+interface IRequestProps {
+  approveRequest: (requestId: string) => void;
+  approveLoading: boolean;
+  declineRequest: (requestId: string) => void;
+  declineLoading: boolean;
+  id: string;
+  isTargetRequest?: boolean;
+}
+
+const RequestButtons: FC<IRequestProps> = ({
+  id,
   approveRequest,
   declineRequest,
   approveLoading,
@@ -18,35 +26,35 @@ const RequestButtons: React.FC<IRequest> = ({
   <ButtonsContainer item xs={4} rowSpacing={1}>
     <ActionButton
       variant="mediumContained"
-      onClick={() => approveRequest(request._id)}
+      onClick={() => approveRequest(id)}
       disabled={approveLoading}
     >
       {approveLoading && isTargetRequest ? (
         <ButtonLoader buttonSpinner={buttonSpinner} />
       ) : (
-        BUTTON_CONTENT.accept
+        ButtonLabels.accept
       )}
     </ActionButton>
     <InterviewActionButton
       variant="mediumContained"
-      onClick={() => approveRequest(request._id)}
+      onClick={() => approveRequest(id)}
       disabled={approveLoading}
     >
       {approveLoading && isTargetRequest ? (
         <ButtonLoader buttonSpinner={buttonSpinner} />
       ) : (
-        BUTTON_CONTENT.acceptWithInterview
+        ButtonLabels.acceptWithInterview
       )}
     </InterviewActionButton>
     <ActionButton
       variant="mediumOutlined"
-      onClick={() => declineRequest(request._id)}
+      onClick={() => declineRequest(id)}
       disabled={declineLoading}
     >
       {declineLoading && isTargetRequest ? (
         <ButtonLoader buttonSpinner={buttonSpinner} />
       ) : (
-        BUTTON_CONTENT.reject
+        ButtonLabels.reject
       )}
     </ActionButton>
   </ButtonsContainer>

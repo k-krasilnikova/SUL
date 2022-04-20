@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import { Box } from '@mui/material';
 import ReactPlayer from 'react-player';
+import { styled, Box } from '@mui/material';
 
 import theme from 'themeSettings';
 

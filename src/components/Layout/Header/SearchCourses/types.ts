@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CourseStatus } from 'enums/course';
 import { ICourse } from 'types/course';
 
 export interface ISearchResultContainerProps {
@@ -22,7 +23,7 @@ export interface ISearchResultItem {
   course: ICourse;
   addDivider: boolean;
   handleSelectFoundCourse: (event: React.MouseEvent<HTMLElement>) => void;
-  status?: string;
+  status?: CourseStatus;
 }
 
 export interface IClientCourseIds {

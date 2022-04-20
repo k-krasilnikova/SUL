@@ -12,9 +12,15 @@ const usePassClientCourse = (
   courseId: string | undefined,
 ): UseMutationResult<IPassingTestResponse> => {
   const { enqueueSnackbar } = useSnackbar();
+
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
+
+  const handleSubmitSuccess = () => {
+    queryClient.refetchQueries([QUERY_KEYS.courseAndMaterials, courseId]);
+  };
+
   return useMutation(
     async (stage) => {
       const apiClient = apiClientWrapper();
@@ -24,7 +30,7 @@ const usePassClientCourse = (
     },
     {
       onError: handleSubmitError,
-      onSuccess: () => queryClient.refetchQueries([QUERY_KEYS.courseAndMaterials, courseId]),
+      onSuccess: handleSubmitSuccess,
     },
   );
 };

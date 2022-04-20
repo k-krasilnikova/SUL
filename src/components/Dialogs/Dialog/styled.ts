@@ -1,48 +1,48 @@
-import { Dialog as MuiDialog } from '@mui/material';
-import styled from 'styled-components';
+import { styled, Dialog as MuiDialog } from '@mui/material';
 
-import { SIZE } from 'constants/sizes';
+import { Size } from 'enums/sizes';
 import theme from 'themeSettings';
+import { TSizeVariants } from 'types/size';
 
-interface Size {
-  size?: string;
+interface IProps {
+  size?: TSizeVariants;
 }
 
-export const StyledDialog = styled(MuiDialog)<Size>(({ size }) => ({
+export const StyledDialog = styled(MuiDialog)<IProps>(({ size }) => ({
   '& .MuiDialog-paper': {
     maxWidth: '660px',
     borderRadius: '5px',
     boxShadow: 'none',
     [theme.breakpoints.up('xs')]: {
-      ...(size === SIZE.small && {
+      ...(size === Size.small && {
         width: '240px',
         minHeight: '215px',
       }),
-      ...(size === SIZE.medium && {
+      ...(size === Size.medium && {
         width: '256px',
       }),
-      ...(size === SIZE.large && {
+      ...(size === Size.large && {
         width: '288px',
         minHeight: '436px',
       }),
     },
     [theme.breakpoints.up('md')]: {
-      ...(size === SIZE.small && {
+      ...(size === Size.small && {
         width: '378px',
       }),
-      ...(size === SIZE.medium && {
+      ...(size === Size.medium && {
         width: '660px',
       }),
-      ...(size === SIZE.large && {
+      ...(size === Size.large && {
         width: '575px',
       }),
     },
     [theme.breakpoints.up('xl')]: {
-      ...(size === SIZE.small && {
+      ...(size === Size.small && {
         width: '520px',
         minHeight: '260px',
       }),
-      ...(size === SIZE.large && {
+      ...(size === Size.large && {
         width: '660px',
       }),
     },
@@ -72,13 +72,13 @@ export const DialogBodyWrapper = styled('div')({
   textAlign: 'center',
   '& .MuiDialogContentText-root': {
     color: '#131313',
-    fontWeight: '500',
+    fontWeight: 500,
   },
   '& .MuiDialogActions-root': {
     display: 'flex',
     justifyContent: 'center',
     margin: '16px auto',
-    padding: '0',
+    padding: 0,
     [theme.breakpoints.up('xs')]: {
       marginTop: '8px',
       height: '32px',
