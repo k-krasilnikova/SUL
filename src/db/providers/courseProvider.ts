@@ -47,7 +47,7 @@ interface ICourseWithStatusDb extends ICourse {
 
 const normalizeAgregatedCourse = (agregatedCourse: ICourseWithStatusDb): ICourseStatus => {
   const course: ICourseStatus = { ...agregatedCourse, status: 'not set' };
-  if (isEmpty(agregatedCourse.status)) {
+  if (!isEmpty(agregatedCourse.status)) {
     const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
     course.status = courseStatus;
   } else {
