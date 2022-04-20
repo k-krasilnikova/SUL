@@ -22,27 +22,42 @@ const LearningCourseContainer: React.FC = () => {
 
   const [isCourseInfoOpen, setCourseInfoOpen] = useToggle();
 
-  const { data: clientCourseAndMaterials, isLoading: clientCourseAndMaterialsIsLoading } =
-    useGetClientCourseAndMaterials(courseId);
+  const {
+    data: clientCourseAndMaterials,
+    isLoading: isClientCourseAndMaterialsLoading,
+    isFetching: isClientCourseAndMaterialsFetching,
+  } = useGetClientCourseAndMaterials(courseId);
 
-  const { mutate: startClienCourseMutate, isLoading: isLoadingStart } =
+  const { mutateAsync: passCourseStageMutate, isLoading: isPassMutateLoading } =
+    usePassClientCourse(courseId);
+  const { mutateAsync: startClienCourseMutate, isLoading: isStartMutateLoading } =
     useStartClientCourse(courseId);
-  const { mutate: passCourseStageMutate, isLoading: isLoadingPass } = usePassClientCourse(courseId);
 
   const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterials || [];
 
   useEffect(() => {
     if (clientCourseResponse?.status === CourseStatus.approved) {
-      startClienCourseMutate(courseId);
+      const updateCourseProgress = async () => {
+        await startClienCourseMutate(courseId);
+        await passCourseStageMutate(stage);
+      };
+
+      updateCourseProgress();
     }
-  }, [clientCourseResponse?.status, courseId, startClienCourseMutate]);
+  }, [
+    clientCourseResponse?.status,
+    courseId,
+    stage,
+    startClienCourseMutate,
+    passCourseStageMutate,
+  ]);
 
   const isTestEnabled = useMemo(
     () => isProgressCompleted(clientCourseResponse?.progress),
     [clientCourseResponse?.progress],
   );
 
-  if (clientCourseAndMaterialsIsLoading) {
+  if (isClientCourseAndMaterialsLoading) {
     return <Loader color="primary" />;
   }
 
@@ -88,7 +103,7 @@ const LearningCourseContainer: React.FC = () => {
       courseMaterial={courseMaterial}
       isBackDisabled={stage === MIN_STAGE}
       isCourseInfoOpen={isCourseInfoOpen}
-      isLoading={isLoadingStart || isLoadingPass}
+      isLoading={isStartMutateLoading || isPassMutateLoading || isClientCourseAndMaterialsFetching}
       isForwardDisabled={stage === maxStage}
       isTestEnabled={isTestEnabled}
       handleStageBack={handleStageBack}
