@@ -6,9 +6,9 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
-import { SkillsList } from 'types/skill';
+import { ISkillsListProps } from 'types/skill';
 
-const useGetAllSkills = (): UseQueryResult<SkillsList[], AxiosError> => {
+const useGetAllSkills = (): UseQueryResult<ISkillsListProps[], AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -18,7 +18,7 @@ const useGetAllSkills = (): UseQueryResult<SkillsList[], AxiosError> => {
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.skills}`);
-      const skillsResponse: SkillsList = response.data;
+      const skillsResponse: ISkillsListProps = response.data;
       return skillsResponse;
     },
     {

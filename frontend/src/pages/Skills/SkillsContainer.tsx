@@ -3,13 +3,13 @@ import { FC, useState, useEffect, BaseSyntheticEvent } from 'react';
 import { useDebounce } from 'hooks';
 import { useGetSkills, useSearchSkills } from 'api/skills';
 import { formatInputValue } from 'utils/helpers/searchHelpers';
-import { SkillsList } from 'types/skill';
+import { ISkillsListProps } from 'types/skill';
 
 import SkillsCatalog from './Skills';
 
 const SkillsContainer: FC = () => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
-  const [skillFounded, setSkillFounded] = useState<SkillsList[]>([]);
+  const [skillFounded, setSkillFounded] = useState<ISkillsListProps[]>([]);
 
   const debouncedSearchValue = useDebounce(searchInputValue);
   const { data: skillSearchResponse } = useSearchSkills(debouncedSearchValue);

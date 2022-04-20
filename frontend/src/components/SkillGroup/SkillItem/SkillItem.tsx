@@ -3,8 +3,8 @@ import { FC } from 'react';
 import Avatar from 'components/Avatar';
 import { SIZE } from 'constants/sizes';
 
-import { ISkillItemProps } from '../types';
 import { SkillContainer, ImageWrapper, SkillName, SkillGroup } from './styled';
+import { ISkillItemProps } from '../types';
 
 const SkillItem: FC<ISkillItemProps> = ({ name, skillImage }) => (
   <SkillContainer>
