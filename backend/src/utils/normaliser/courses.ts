@@ -11,6 +11,9 @@ import {
 } from 'interfaces/IResponse/IResponse';
 import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
 import { COURSE_FIELDS } from 'config/constants';
+import { getCourseStatusProvider } from 'db/providers/courseProvider';
+import { convertToTypeUnsafe } from 'utils/typeConversion/common';
+import { ObjectId } from 'mongoose';
 
 const shortifyCourseInfo = (course: ICourseWithStatus): ICourseShortInfo => ({
   _id: course._id,
@@ -78,9 +81,28 @@ const addMissingCoursesMapElements = (
   return filledMap;
 };
 
+const fillStackWithStatuses = async (
+  userStack: TUserStackMemberPopulated[],
+  userId: string | ObjectId,
+): Promise<TUserStackMemberPopulated[]> =>
+  Promise.all(
+    userStack.map(async (stackMember) => {
+      const updatedRelatedCourses = await Promise.all(
+        stackMember.member.relatedCourses.map(async (course) => ({
+          ...course,
+          status: await getCourseStatusProvider(convertToTypeUnsafe<ObjectId>(course._id), userId),
+        })),
+      );
+      const newMember = { ...stackMember };
+      newMember.member.relatedCourses = updatedRelatedCourses;
+      return newMember;
+    }),
+  );
+
 export {
   shortifyCourseInfo,
   shortifyCourses,
   generateCoursesMapResponse,
   addMissingCoursesMapElements,
+  fillStackWithStatuses,
 };
