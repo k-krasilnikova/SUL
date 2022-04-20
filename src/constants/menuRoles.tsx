@@ -81,9 +81,9 @@ export const ROLES_MENU: IRolesMenu = {
   employee: EMPLOYEE_MENU,
   manager: MANAGER_MENU,
   admin: ADMIN_MENU,
-};
+} as const;
 
-export enum ROLE {
+export enum Role {
   admin = 'admin',
   employee = 'employee',
   manager = 'manager',

@@ -1,15 +1,21 @@
-export interface SignTypes {
-  warningHandler: (name: string, e: string) => void;
-  getFieldName: (event: React.MouseEvent<Element, MouseEvent>) => void;
-  getCoordinates?: (event: React.MouseEvent<Element, MouseEvent>) => void;
-  labelHandler: {
-    [key: string]: string | undefined;
+export interface IErrorFieldTypes {
+  identificator?: string;
+}
+
+export interface ITextFieldTypes {
+  errors: {
+    login?: string;
+    password?: string;
   };
-  value?: string | number;
-  isAuthError: boolean;
-  fieldValue?: string | number;
-  login?: string;
-  password?: string | number;
+  touched: Record<string, boolean | undefined>;
+}
+
+export interface SignInFields {
+  login: string;
+  password: string;
+}
+
+export interface ISignInForm {
   formik: {
     touched: {
       login?: boolean;
@@ -30,14 +36,10 @@ export interface SignTypes {
       password: string | number;
     };
   };
-  imageUrl?: string;
-  isLoading?: boolean;
-  handleFocus?: (e: React.FocusEvent) => void;
-  labelState?: string;
-  status?: string;
-  fieldStatus?: string | boolean;
-  classes?: {
-    [key: string]: string | undefined;
-  };
+  warningHandler: (name: string, event: string) => void;
   outOfFocusFiled: (e: string) => void;
+  getFieldName: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  isAuthError: boolean;
+  isLoading?: boolean;
+  fieldStatus?: string | boolean;
 }

@@ -1,14 +1,9 @@
-import { NO_TIME } from 'constants/time';
+import { NO_TIME, TO_MILLISECONDS_RATIO } from 'constants/time';
+import { TimeProps } from 'types/time';
 
-interface ITime {
-  days: number;
-  hours: number;
-  minutes: number;
-}
-
-export const convertTestTimeout = (ms: number): string => {
-  const [MS_IN_SEC, SEC_IN_HOUR, SEC_IN_MIN] = [1000, 3600, 60];
-  let seconds = Math.round(Math.abs(ms) / MS_IN_SEC);
+export const convertTestTimeout = (sec: number): string => {
+  const [SEC_IN_HOUR, SEC_IN_MIN] = [3600, 60];
+  let seconds = Math.round(Math.abs(sec));
   const hours = Math.floor(seconds / SEC_IN_HOUR);
   seconds = Math.floor(seconds % SEC_IN_HOUR);
   const minutes = Math.floor(seconds / SEC_IN_MIN);
@@ -19,14 +14,14 @@ export const convertTestTimeout = (ms: number): string => {
   return hh !== '00' ? `${hh} h ${mm} min ${ss} sec left` : `${mm} min ${ss} sec left`;
 };
 
-export const formatTimeout = (ms: number, format: string): string => {
+export const formatTimeout = (sec: number, format: string): string => {
   const formatArr = format.split(':');
   const result = [];
-  const [MS_IN_SEC, SEC_IN_HOUR, SEC_IN_MIN, SEC_IN_DAY] = [1000, 3600, 60, 86400];
+  const [SEC_IN_HOUR, SEC_IN_MIN, SEC_IN_DAY] = [3600, 60, 86400];
   let days;
   let hours;
   let minutes;
-  let seconds = Math.round(Math.abs(ms) / MS_IN_SEC);
+  let seconds = Math.round(Math.abs(sec));
 
   const prettierTime = (time: number, measure: string) =>
     time < 10 ? `0${time} ${measure}` : `${time} ${measure}`;
@@ -61,10 +56,13 @@ export const makeLeftTime = (
     return date;
   }
   const applyDate = new Date(date);
-  return formatTimeout(applyDate.setDate(applyDate.getDate() + timeout) - Date.now(), format);
+  return formatTimeout(
+    applyDate.setDate(applyDate.getDate() + timeout * TO_MILLISECONDS_RATIO) - Date.now(),
+    format,
+  );
 };
 
-export const convertRequestTime = (time?: ITime): string | undefined => {
+export const convertRequestTime = (time?: TimeProps): string | undefined => {
   let convertedTime;
   if (time && time.days > NO_TIME) {
     convertedTime = `${time.days} d`;

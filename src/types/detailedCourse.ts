@@ -1,14 +1,17 @@
 import { NavigateFunction } from 'react-router';
 
+import { CourseStatus } from 'enums/course';
+
 import { PureClientCourse } from './clientCourse';
-import { Course } from './course';
+import { ICourse } from './course';
+import { TVariantProgressBar } from './progressBar';
 
 export interface IDetailedCourse {
-  commonCourseData: Course;
+  commonCourseData: ICourse;
   handleApplyCourse: () => void;
   page: string;
   id: string;
-  status: string;
+  status: CourseStatus;
   windowWidth: string;
   isFullTextOpen: boolean;
   toggleFullText: () => void;
@@ -24,7 +27,39 @@ export interface IDetailedCourse {
   isCourseFailed?: boolean;
   progressValue?: number;
   progressText?: string;
-  progressVariant?: string;
+  progressVariant?: TVariantProgressBar;
   handleClickDialogOpen?: () => void;
   isTestEnable?: boolean;
+  isAdmin?: boolean;
+}
+
+export interface IDetailedCourseInfo {
+  commonCourseData: ICourse;
+  toggleFullText: () => void;
+  isFullTextOpen: boolean;
+  isProgressBarDisplayed?: boolean;
+  progressValue?: number;
+  progressText?: string;
+  progressVariant?: TVariantProgressBar;
+}
+
+export interface IDetailedCourseActions {
+  commonCourseData: ICourse;
+  handleApplyCourse: () => void;
+  page: string;
+  clientCourseData?: PureClientCourse;
+  id: string;
+  status: CourseStatus;
+  isCourseCompleted?: boolean;
+  isAdmin?: boolean;
+  isLoading?: boolean;
+}
+
+export interface IBackButton {
+  page: string;
+}
+
+export interface ISimilarCourses {
+  commonCourseData: ICourse;
+  windowWidth: string;
 }

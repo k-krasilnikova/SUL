@@ -5,10 +5,13 @@ import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { useGetProfile } from 'api/profile';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
-import convertStatusToProgress, { ConvertedProgress } from 'utils/helpers/convertStatusToProgress';
-import { COURSE_STATUSES } from 'constants/statuses';
-import { ROLE } from 'constants/menuRoles';
+import {
+  convertCourseStatusToProgress,
+  ConvertedProgress,
+} from 'utils/helpers/convertCourseStatusToProgress';
+import { Role } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
+import { CourseStatus } from 'enums/course';
 
 import DetailedCourse from './DetailedCourse';
 
@@ -26,12 +29,10 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
   const isProgressBarDisplayed = courseData
     ? isCourseApplicationSubmitted &&
-      courseData.status !== COURSE_STATUSES.pending &&
-      courseData.status !== COURSE_STATUSES.rejected
+      courseData.status !== CourseStatus.pending &&
+      courseData.status !== CourseStatus.rejected
     : false;
-  const isCourseCompleted = courseData
-    ? [COURSE_STATUSES.successful, COURSE_STATUSES.completed].includes(courseData.status)
-    : false;
+  const isCourseCompleted = courseData?.status === CourseStatus.completed;
 
   const toggleFullText = () => {
     setFullTextOpen(true);
@@ -53,7 +54,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   }
 
   const { data: profileResponse } = useGetProfile();
-  const isAdmin = profileResponse?.role === ROLE.admin;
+  const isAdmin = profileResponse?.role === Role.admin;
 
   let progressValue;
   let progressText;
@@ -63,7 +64,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
 
   useEffect(() => {
     if (courseData) {
-      const progress = convertStatusToProgress(courseData.status);
+      const progress = convertCourseStatusToProgress(courseData.status);
       setCurrentProgress(progress);
     }
   }, [courseData]);

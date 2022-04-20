@@ -1,27 +1,6 @@
-interface IRequestErrors {
-  readonly [key: string]: string;
-}
-interface ICookiesTypes {
-  readonly [key: string]: string;
-}
-
-export interface ITokenResponse {
-  accessToken?: string;
-  refreshToken?: string;
-  _id?: string;
-  error?: unknown;
-}
-
-const REQUEST_ERRORS: IRequestErrors = {
-  getError: 'Smth went wrong - 404',
-  postError: 'Smth went wrong - 500',
-};
-
-const COOKIE_VALUES: ICookiesTypes = {
+export const COOKIE_VALUES = {
   uniqAccessToken: 'accessToken',
   uniqRefreshToken: 'refreshToken',
   uniqUserId: 'userId',
   isLogOut: 'isLogOut',
-};
-
-export { REQUEST_ERRORS, COOKIE_VALUES };
+} as const;

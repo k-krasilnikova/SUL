@@ -6,7 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
-import { IEmployee, IEmployees } from 'types/employee';
+import { IEmployee } from 'types/employee';
 
 const useGetEmployeesList = (): UseQueryResult<IEmployee[], AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
@@ -18,7 +18,7 @@ const useGetEmployeesList = (): UseQueryResult<IEmployee[], AxiosError> => {
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(API.getEmployeesList);
-      const employeesResponse: IEmployees = response?.data;
+      const employeesResponse: IEmployee[] = response?.data;
       return employeesResponse;
     },
     {

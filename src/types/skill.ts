@@ -1,22 +1,23 @@
-export interface Skill {
+export interface ISkill {
   name: string;
   image: string;
   maxScore: number;
+  group: string;
 }
 
-export interface TechnologyGroup {
+export interface ITechnologyGroup {
   group: {
     name: string;
   };
-  achievedSkills: Array<UserSkill>;
+  achievedSkills: IUserSkill[];
   isPrimary: boolean;
 }
 
-export interface UserSkill {
+export interface IUserSkill {
   score: number;
-  skill: Skill;
+  skill: ISkill;
 }
 
-export type GroupedSkills = Map<string | number, Skill[]>;
+export type GroupedSkills = Map<string | number, ISkill[]>;
 
-export type Technologies = Array<TechnologyGroup>;
+export type Technologies = ITechnologyGroup[];

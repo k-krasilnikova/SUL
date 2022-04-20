@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { Course } from 'types/course';
+import { ICourse } from 'types/course';
 import { useApplyCourse, useGetPaginatedCourses } from 'api/courses';
 import { useGetProfile } from 'api/profile';
 import { useFetchNextPage } from 'hooks';
 import { WINDOW_SIZE } from 'constants/windowWidth';
-import { ROLE } from 'constants/menuRoles';
+import { Role } from 'constants/menuRoles';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 
 import CoursesList from './CoursesList';
@@ -20,7 +20,7 @@ const CoursesContainer: React.FC = () => {
   } = useGetPaginatedCourses();
 
   const { data: profileResponse } = useGetProfile();
-  const isAdmin = profileResponse?.role === ROLE.admin;
+  const isAdmin = profileResponse?.role === Role.admin;
 
   const [targetId, setTargetId] = useState<string | undefined>();
 
@@ -42,7 +42,7 @@ const CoursesContainer: React.FC = () => {
 
   const formattedCoursesList = data?.pages.reduce(
     (prev, page) => [...prev, ...page.courses.filter((course) => !course.status)],
-    [] as Course[],
+    [] as ICourse[],
   );
 
   const courseRef = useFetchNextPage({ hasNextPage, fetchNextPage });

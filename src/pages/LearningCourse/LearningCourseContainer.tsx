@@ -4,9 +4,9 @@ import { useParams } from 'react-router';
 import { useGetClientCourseAndMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import Loader from 'components/Loader';
-import { COURSE_STATUSES } from 'constants/statuses';
 import { useToggle } from 'hooks';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import { CourseStatus } from 'enums/course';
 
 import LearningCourse from './LearningCourse';
 
@@ -32,7 +32,7 @@ const LearningCourseContainer: React.FC = () => {
   const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterials || [];
 
   useEffect(() => {
-    if (clientCourseResponse?.status === COURSE_STATUSES.approved) {
+    if (clientCourseResponse?.status === CourseStatus.approved) {
       startClienCourseMutate(courseId);
     }
   }, [clientCourseResponse?.status, courseId, startClienCourseMutate]);
@@ -68,7 +68,7 @@ const LearningCourseContainer: React.FC = () => {
     const nextStage = stage + STAGE_CHANGE;
 
     setStage(nextStage);
-    if (clientCourseResponse?.status === COURSE_STATUSES.started) {
+    if (clientCourseResponse?.status === CourseStatus.started) {
       passCourseStageMutate(stage);
       if (nextStage === maxStage) {
         passCourseStageMutate(maxStage);
@@ -93,7 +93,7 @@ const LearningCourseContainer: React.FC = () => {
       isTestEnabled={isTestEnabled}
       handleStageBack={handleStageBack}
       handleStageForward={handleStageForward}
-      togglCourseInfOpen={setCourseInfoOpen}
+      toggleCourseInfoOpen={setCourseInfoOpen}
       clientCourse={clientCourseResponse}
     />
   );

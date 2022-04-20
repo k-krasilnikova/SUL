@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import StartTestButton from 'components/Button/StartTestButton';
-import { CustomButton } from 'components/Button/styled';
-import { ButtonLabels } from 'components/Button/ButtonsEnums';
+import StartTestButton from 'components/Button/ButtonVariants/StartTestButton';
+import { CustomButton } from 'components/Button/ButtonVariants/styled';
+import { ButtonLabels } from 'constants/ButtonLabels';
 import { TEST_DISABLE_DAYS } from 'constants/time';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 
 import { ActionButtonWrapper } from './styled';
 
@@ -12,7 +12,7 @@ interface IProps {
   isTestEnabled: boolean;
   isLoading: boolean;
   handleStageForward: () => void;
-  clientCourse?: ClientCourse;
+  clientCourse?: IClientCourse;
 }
 
 const ActionButton: FC<IProps> = ({

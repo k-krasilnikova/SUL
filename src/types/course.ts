@@ -1,27 +1,40 @@
-export interface Material {
-  _id?: string;
-  content: Array<string>;
-  technology: Array<string>;
-}
+import { COURSE_LABELS } from 'constants/statuses';
+import { CourseStatus } from 'enums/course';
 
-export interface Course {
+import { TimeProps } from './time';
+
+export type TMaterial = {
+  content: {
+    _id: string;
+    stage: number;
+    content: Array<string>;
+    isCompleted: boolean;
+  }[];
+  technology: Array<string>;
+  _id?: string;
+};
+
+export type CourseTechnology = { skill: string; points: number };
+export type TCourseStatus = `${CourseStatus}`;
+
+export interface ICourse {
+  _id: string;
   title: string;
   description: string;
-  technology: Array<string>;
+  technology: CourseTechnology[];
   requiredSkills: Array<string>;
-  duration: CourseDuration;
+  duration: TimeProps;
   testLink: string;
   lessons: number;
-  materials: Array<Material>;
-  _id: string;
-  status: string;
+  materials: TMaterial[];
+  status: CourseStatus;
   avatar?: string;
 }
 
-export interface ICheckedCourse {
-  _id: string;
-  title: string;
-}
+export type TCheckedCourse = Pick<ICourse, '_id' | 'title'>;
+export type TCourseInfo = Pick<ICourse, 'title' | 'description'>;
+export type TRequestedCourse = Pick<ICourse, '_id' | 'avatar' | 'title'>;
+export type TCourseLabels = typeof COURSE_LABELS[keyof typeof COURSE_LABELS];
 
 export enum CoursesListType {
   COURSES = 'COURSES',
@@ -35,7 +48,7 @@ export interface CourseDuration {
 }
 
 export interface ICourses {
-  сoursesResponse: Course[];
+  сoursesResponse: ICourse[];
 }
 
 export interface IMaterial {
@@ -57,5 +70,11 @@ export enum ContentElementType {
 
 export interface ICourseMaterialsResponse {
   _id: string;
-  materials: IMaterial[];
+  materials: TMaterial['content'];
+}
+
+export interface ICourseInfo {
+  duration?: string;
+  lessons?: number;
+  type?: string;
 }

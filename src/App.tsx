@@ -19,19 +19,17 @@ import {
   SkillsMap,
   EmployeeProfile,
 } from 'pages';
-import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
-import AnonymousRoute from 'components/AnonymousRoute/AnonymousRoute';
-import RoleRoute from 'components/RoleRoute/RoleRoute';
+import { AnonymousRoute, PrivateRoute, RoleRoute } from 'components/Routes';
 import Loader from 'components/Loader';
 import { queryClient } from 'api/base';
-import { LOADER } from 'constants/loaderTypes';
 import { PATHS } from 'constants/routes';
 import { PAGES } from 'constants/pages';
-import { ROLE } from 'constants/menuRoles';
+import { Role } from 'constants/menuRoles';
+import { Loaders } from 'enums/loader';
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
-    <Suspense fallback={<Loader color="primary" type={LOADER.page} />}>
+    <Suspense fallback={<Loader color="primary" type={Loaders.page} />}>
       <BrowserRouter basename={PATHS.home}>
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
@@ -51,8 +49,15 @@ const App: React.FC = () => (
             <Route
               path={PATHS.employees}
               element={
-                <RoleRoute roles={[ROLE.manager]}>
+                <RoleRoute roles={[Role.manager]}>
                   <Employees />
+                </RoleRoute>
+              }
+            />
+            <Route
+              path={PATHS.employeeProfile}
+              element={
+                <RoleRoute roles={[Role.manager]}>
                   <EmployeeProfile />
                 </RoleRoute>
               }
@@ -60,7 +65,7 @@ const App: React.FC = () => (
             <Route
               path={PATHS.requests}
               element={
-                <RoleRoute roles={[ROLE.manager]}>
+                <RoleRoute roles={[Role.manager]}>
                   <Requests />
                 </RoleRoute>
               }
@@ -68,7 +73,7 @@ const App: React.FC = () => (
             <Route
               path={PATHS.skills}
               element={
-                <RoleRoute roles={[ROLE.admin]}>
+                <RoleRoute roles={[Role.admin]}>
                   <Skills />
                 </RoleRoute>
               }
@@ -76,7 +81,7 @@ const App: React.FC = () => (
             <Route
               path={PATHS.skillsMap}
               element={
-                <RoleRoute roles={[ROLE.employee]}>
+                <RoleRoute roles={[Role.employee]}>
                   <SkillsMap />
                 </RoleRoute>
               }
