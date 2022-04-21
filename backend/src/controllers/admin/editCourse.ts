@@ -1,9 +1,9 @@
+import { NextFunction, Request, Response } from 'express';
+
 import { COURSE_FIELDS } from 'config/constants';
 import { updateCourseField } from 'db/providers/courseProvider';
 import { isProperTechnologies } from 'db/providers/skillProvider';
 import { getCourseTest, updateTestQuestions } from 'db/providers/testProvider';
-import { NextFunction, Request, Response } from 'express';
-
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
