@@ -5,7 +5,7 @@ import { useGetSkills, useSearchSkills } from 'api/skills';
 import { formatInputValue } from 'utils/helpers/searchHelpers';
 import { ISkillsListProps } from 'types/skill';
 
-import SkillsCatalog from './Skills';
+import Skills from './Skills';
 
 const SkillsContainer: FC = () => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
@@ -36,7 +36,7 @@ const SkillsContainer: FC = () => {
   };
 
   return (
-    <SkillsCatalog
+    <Skills
       skills={skillsResponse}
       skillFounded={skillFounded}
       searchInputValue={searchInputValue}
