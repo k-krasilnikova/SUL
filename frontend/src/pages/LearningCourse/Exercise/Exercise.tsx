@@ -1,19 +1,21 @@
+import { Code } from '@mui/icons-material';
 import { FC } from 'react';
 
-import { TCourseInfo } from 'types/course';
+import { IMaterial } from 'types/course';
 
 import { CourseInfoWrapper, CourseInfoContent, CourseInfoTitle, CourseInfoText } from './styled';
 
 interface IExerciseProps {
-  courseInfo: TCourseInfo;
+  materialEx: IMaterial['exercise'];
   isCourseInfoOpen: boolean;
 }
 
-const Exercise: FC<IExerciseProps> = ({ isCourseInfoOpen, courseInfo: { title, description } }) => (
+const Exercise: FC<IExerciseProps> = ({ isCourseInfoOpen, materialEx }) => (
   <CourseInfoWrapper isCourseInfoOpen={isCourseInfoOpen}>
     <CourseInfoContent>
-      <CourseInfoTitle>{title}</CourseInfoTitle>
-      <CourseInfoText>{description}</CourseInfoText>
+      <CourseInfoTitle>{materialEx?.title}</CourseInfoTitle>
+      <CourseInfoText>{materialEx?.task}</CourseInfoText>
+      <Code>{materialEx?.code}</Code>
     </CourseInfoContent>
   </CourseInfoWrapper>
 );
