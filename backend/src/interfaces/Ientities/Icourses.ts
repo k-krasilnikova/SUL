@@ -13,6 +13,7 @@ interface ICourse {
   materials: { stage: number; content: Array<IContentElement> }[];
   test: ObjectId;
   avatar: string;
+  similarCourses: ObjectId[];
 }
 
 interface IContentElement {

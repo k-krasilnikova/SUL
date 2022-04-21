@@ -53,7 +53,7 @@ const getClientCourseProvider = async (clientCourseId: string): Promise<IClientC
   const clientCourse: IClientCoursePopulated = await ClientCourseModel.findOne({
     _id: clientCourseId,
   })
-    .populate('course')
+    .populate({ path: 'course', populate: 'similarCourses' })
     .lean();
 
   if (!clientCourse) {
