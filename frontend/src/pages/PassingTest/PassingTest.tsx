@@ -14,21 +14,22 @@ import TestTitleAndTimer from './TestTitleAndTimer';
 import { IPassingTestProps } from './types';
 
 const PassingTest: React.FC<IPassingTestProps> = ({
-  testItem,
+  testTitle,
+  testDuration,
   isLoading,
-  handleNavigateBack,
+  handleBackButtonClick,
   ...props
 }) => (
   <AuthorizedLayout pageName="Passing Test">
     {isLoading ? (
       <Loader color="primary" type={Loaders.content} />
-    ) : testItem ? (
+    ) : testTitle ? (
       <PassingTestWrapper>
         <InnerWrapper>
-          <BackButton variant="medium" onClick={handleNavigateBack}>
+          <BackButton variant="medium" onClick={handleBackButtonClick}>
             {ButtonLabels.back}
           </BackButton>
-          <TestTitleAndTimer testItem={testItem} />
+          <TestTitleAndTimer title={testTitle} duration={testDuration} />
         </InnerWrapper>
         <QuestionItem {...props} />
         <TestButtons {...props} />
