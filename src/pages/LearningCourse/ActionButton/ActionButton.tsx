@@ -21,17 +21,12 @@ const ActionButton: FC<IProps> = ({
   clientCourse,
   handleStageForward,
 }) => {
-  const { status, testDate, progress } = clientCourse || {};
+  const { status, progress } = clientCourse || {};
 
   return (
     <ActionButtonWrapper>
       {isTestEnabled ? (
-        <StartTestButton
-          status={status}
-          testDate={testDate}
-          progress={progress}
-          timeout={TEST_DISABLE_DAYS}
-        />
+        <StartTestButton status={status} progress={progress} timeout={TEST_DISABLE_DAYS} />
       ) : (
         <CustomButton disabled={isLoading} variant="contained" onClick={handleStageForward}>
           {isLoading ? ButtonLabels.loading : ButtonLabels.next}
