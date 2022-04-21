@@ -1,6 +1,9 @@
+import moment from 'moment';
+
 import { DISABLE_TEST_DAYS } from 'config/constants';
 
 export const checkTestDate = (date: Date) => {
+  const currentDate = new Date();
   const testDate = new Date(date);
-  return testDate.setDate(testDate.getDate() + DISABLE_TEST_DAYS) < Date.now();
+  return moment(testDate).add(DISABLE_TEST_DAYS, 'd').toDate() < currentDate;
 };

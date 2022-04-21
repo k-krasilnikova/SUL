@@ -68,6 +68,7 @@
         "jest": "^27.4.5",
         "jsonwebtoken": "^8.5.1",
         "lodash": "^4.17.21",
+        "moment": "^2.29.2",
         "mongoose": "^6.1.2",
         "nodemailer": "^6.7.2",
         "tsconfig-paths": "^3.12.0",
