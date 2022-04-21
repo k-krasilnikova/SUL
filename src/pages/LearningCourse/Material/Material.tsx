@@ -1,20 +1,20 @@
 import { FC } from 'react';
 
-import { MATERIAL } from 'constants/materials';
+import PPViewer from 'components/PPViewer';
+import { ContentElementType } from 'types/course';
 import { playVideo } from 'icons';
-import { TMaterialVariants } from 'types/materials';
 
 import { MaterialWrapper, MaterialText, MaterialVideo } from './styled';
 
 interface IProps {
   material: string;
-  materialType: TMaterialVariants;
+  materialType: ContentElementType;
   videoPreview: string | boolean;
 }
 
 const Material: FC<IProps> = ({ material, materialType, videoPreview }) => (
   <MaterialWrapper>
-    {materialType === MATERIAL.video ? (
+    {materialType === ContentElementType.video ? (
       <MaterialVideo
         url={material}
         playIcon={<img src={playVideo} alt="play" />}
@@ -25,6 +25,8 @@ const Material: FC<IProps> = ({ material, materialType, videoPreview }) => (
         height="680px"
         frameBorder="0"
       />
+    ) : materialType === ContentElementType.presentation ? (
+      <PPViewer link={material} />
     ) : (
       <MaterialText>{material}</MaterialText>
     )}

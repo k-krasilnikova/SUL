@@ -14,13 +14,21 @@ interface ITestResultParams {
 
 const useSendTestResult = ({ courseId }: ITestResultParams): UseMutationResult<ITestResult> => {
   const { enqueueSnackbar } = useSnackbar();
-  const handleSubmitError = (error: AxiosError) => {
-    enqueueSnackbar(error?.response?.data, errorSnackbar);
-  };
-  const handleSubmit = () => {
+
+  const updateQueries = () => {
     queryClient.invalidateQueries(QUERY_KEYS.profile);
     queryClient.refetchQueries([QUERY_KEYS.clientCourseInfo, courseId]);
   };
+
+  const handleSubmitError = (error: AxiosError) => {
+    enqueueSnackbar(error?.response?.data, errorSnackbar);
+    updateQueries();
+  };
+
+  const handleSubmit = () => {
+    updateQueries();
+  };
+
   return useMutation(
     async (data) => {
       const apiClient = apiClientWrapper();

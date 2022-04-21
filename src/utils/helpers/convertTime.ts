@@ -57,7 +57,7 @@ export const makeLeftTime = (
   }
   const applyDate = new Date(date);
   return formatTimeout(
-    applyDate.setDate(applyDate.getDate() + timeout * TO_MILLISECONDS_RATIO) - Date.now(),
+    (applyDate.setDate(applyDate.getDate() + timeout) - Date.now()) / TO_MILLISECONDS_RATIO,
     format,
   );
 };
