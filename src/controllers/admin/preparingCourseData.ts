@@ -2,9 +2,10 @@ import { NextFunction, Request, Response } from 'express';
 
 import { addMaterialStages } from 'utils/normaliser/materials';
 import isValidCourseData from 'utils/validation/isValidCourseData';
-import { skillsToCourseTechs } from 'db/providers/skillProvider';
+import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
+import { getSkillsToCourseTechs } from 'db/providers/skillProvider';
 import { addCourseTest } from 'db/providers/testProvider';
-import { ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { ICreateCourseBody, IPreparedCourseData } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const preparingCourseData = async (
@@ -17,7 +18,7 @@ const preparingCourseData = async (
 
     const isValidData = isValidCourseData(courseDataFromRequest);
 
-    const courseDataToSave: ICreateCourseBody = { technologies: [] };
+    const courseDataToSave: IPreparedCourseData = { technologies: [] };
 
     if (
       isValidData &&
@@ -32,9 +33,15 @@ const preparingCourseData = async (
 
       courseDataToSave.materials = addMaterialStages(courseDataFromRequest.materials);
 
-      courseDataToSave.technologies = await skillsToCourseTechs(courseDataFromRequest.technologies);
+      courseDataToSave.technologies = await getSkillsToCourseTechs(
+        courseDataFromRequest.technologies,
+      );
 
-      courseDataToSave.test = await addCourseTest(courseDataFromRequest.test);
+      const properQuestionsToSet = setAnswerProperNumbersToQuestions(
+        courseDataFromRequest.test.questions,
+      );
+
+      courseDataToSave.test = await addCourseTest(courseDataFromRequest.test, properQuestionsToSet);
     } else {
       throw new BadRequestError('Invalid queries.');
     }

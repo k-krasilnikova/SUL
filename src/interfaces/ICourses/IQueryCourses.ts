@@ -40,14 +40,29 @@ interface IUpdateCourseBody {
   test?: ITest['questions'];
 }
 
+interface ICourseTechsFromWeb {
+  skill: string;
+  points: number;
+}
+
 interface ICreateCourseBody {
   title?: ICourse['title'];
   avatar?: ICourse['avatar'];
   description?: ICourse['description'];
-  technologies?: ICourse['technologies'];
+  technologies?: ICourseTechsFromWeb[];
   materials?: ICourse['materials'];
   complexity?: ICourse['complexity'];
   test?: ITest;
+}
+
+interface IPreparedCourseData {
+  title?: ICourse['title'];
+  avatar?: ICourse['avatar'];
+  description?: ICourse['description'];
+  materials?: ICourse['materials'];
+  complexity?: ICourse['complexity'];
+  test?: ITest;
+  technologies?: ICourse['technologies'];
 }
 
 interface ICourseToAssign {
@@ -69,4 +84,6 @@ export {
   IUpdateCourseBody,
   ICourseToAssign,
   ICreateCourseBody,
+  IPreparedCourseData,
+  ICourseTechsFromWeb,
 };

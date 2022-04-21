@@ -3,7 +3,6 @@ import mongoose, { ObjectId } from 'mongoose';
 import ClientCourseModel from 'db/models/ClientCourses';
 import TestModel from 'db/models/Tests';
 import CourseModel from 'db/models/Course';
-import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { ITest, TestDb } from 'interfaces/Ientities/Itest';
 
@@ -89,15 +88,12 @@ const getCourseTest = async (courseId: string | ObjectId): Promise<ITest> => {
   return test as unknown as ITest;
 };
 
-const addCourseTest = async (testData: ITest) => {
-  const properQuestionsToSet = setAnswerProperNumbersToQuestions(testData.questions);
-
-  return TestModel.create({
+const addCourseTest = async (testData: ITest, questions: ITest['questions']) =>
+  TestModel.create({
     title: testData.title,
-    questions: properQuestionsToSet,
+    questions,
     timeout: testData.timeout,
   });
-};
 
 export {
   getTestProvider,
