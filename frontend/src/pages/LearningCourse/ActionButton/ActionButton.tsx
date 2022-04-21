@@ -21,14 +21,14 @@ const ActionButton: FC<IProps> = ({
   clientCourse,
   handleStageForward,
 }) => {
-  const { status, testDate, progress } = clientCourse || {};
+  const { status, startTestDate, progress } = clientCourse || {};
 
   return (
     <ActionButtonWrapper>
       {isTestEnabled ? (
         <StartTestButton
           status={status}
-          testDate={testDate}
+          startTestDate={startTestDate}
           progress={progress}
           timeout={TEST_DISABLE_DAYS}
         />

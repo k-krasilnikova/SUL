@@ -14,7 +14,7 @@ type TIncomingProps = {
   timeout?: number;
   status?: CourseStatus;
   progress?: IClientCourse['progress'];
-  testDate?: string;
+  startTestDate?: string;
 };
 
 const withStartTest =
@@ -22,7 +22,7 @@ const withStartTest =
   (props: T): JSX.Element => {
     const { courseId } = useParams();
 
-    const { progress, testDate, status, timeout } = props;
+    const { progress, startTestDate, status, timeout } = props;
     const [isOpen, setOpen] = useToggle();
 
     const { mutate: startTestMutate } = useStartCourseTest(courseId);
@@ -38,9 +38,9 @@ const withStartTest =
           [CourseStatus.completed, CourseStatus.testing, CourseStatus.assessment].includes(
             status,
           )) ||
-        !checkTestDate(testDate, timeout) ||
+        !checkTestDate(startTestDate, timeout) ||
         !isProgressCompleted(progress),
-      [progress, status, testDate, timeout],
+      [progress, status, startTestDate, timeout],
     );
 
     return (
