@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { ICourseMapForCurrentStackProps } from 'pages/SkillsMap/types';
 
 import { getRankNameByRankId } from './utils';
-import Courses from './Courses';
+import Courses from './CoursesList';
 import { Rank, RankTitle, CoursesWrapper } from './styled';
 
 const CourseMapForCurrentStack: FC<ICourseMapForCurrentStackProps> = ({

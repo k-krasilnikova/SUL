@@ -6,7 +6,7 @@ import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
-import { ICoursesMapResponse } from 'pages/SkillsMap/types';
+import { ICoursesMapResponse } from 'types/course';
 
 const useGetCoursesMap = (): UseQueryResult<ICoursesMapResponse, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
