@@ -17,7 +17,7 @@ const useGetAllSkills = (): UseQueryResult<ISkillsListProps[], AxiosError> => {
     [QUERY_KEYS.skills],
     async () => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.get(`${API.skills}`);
+      const response = await apiClient.get(API.skills);
       const skillsResponse: ISkillsListProps = response.data;
       return skillsResponse;
     },
