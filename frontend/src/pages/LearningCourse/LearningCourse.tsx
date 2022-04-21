@@ -5,7 +5,7 @@ import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
 import { IClientCourse } from 'types/clientCourse';
-import { TCourseInfo, TContentElement } from 'types/course';
+import { TCourseInfo, TContentElement, IMaterial } from 'types/course';
 
 import ActionButton from './ActionButton';
 import CourseInfoToggle from './CourseInfoToggle';
@@ -23,14 +23,15 @@ interface IProps {
   isTestEnabled: boolean;
   isLoading: boolean;
   courseInfo: TCourseInfo;
-  courseMaterial: TContentElement;
+  courseMaterial: IMaterial;
+  courseContent: TContentElement;
   handleStageBack: () => void;
   handleStageForward: () => void;
   toggleCourseInfoOpen: () => void;
   clientCourse?: IClientCourse;
 }
 
-const LearningCourse: FC<IProps> = ({ courseMaterial, ...props }) => (
+const LearningCourse: FC<IProps> = ({ courseContent, courseMaterial, ...props }) => (
   <AuthorizedLayout pageName="Learning course">
     <LearningPageContainer>
       <BackButton disableElevation variant="contained" component={Link} to={PATHS.myCourses}>
@@ -38,10 +39,10 @@ const LearningCourse: FC<IProps> = ({ courseMaterial, ...props }) => (
       </BackButton>
       <LearningWrapper>
         <StageController {...props} />
-        <Material courseMaterial={courseMaterial} />
+        <Material courseMaterial={courseContent} />
         <CourseInfoToggle {...props} />
         <ActionButton {...props} />
-        <Exercise {...props} />
+        <Exercise courseExersice={courseMaterial.exercise} {...props} />
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>

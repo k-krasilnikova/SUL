@@ -70,7 +70,7 @@ const LearningCourseContainer: React.FC = () => {
 
   const { materials: courseMaterials } = courseMaterialsResponse;
 
-  const courseMaterial = courseMaterials[stage - 1]?.content[CONTENT_ELEMENT];
+  const courseContent = courseMaterials[stage - 1]?.content[CONTENT_ELEMENT];
 
   const maxStage = courseMaterials?.length || MAX_STAGE_INITIAL;
 
@@ -95,7 +95,8 @@ const LearningCourseContainer: React.FC = () => {
       stage={stage}
       maxStage={maxStage}
       courseInfo={courseInfo}
-      courseMaterial={courseMaterial}
+      courseMaterial={courseMaterials[stage - 1]}
+      courseContent={courseContent}
       isBackDisabled={stage === MIN_STAGE}
       isCourseInfoOpen={isCourseInfoOpen}
       isLoading={isStartMutateLoading || isPassMutateLoading || isClientCourseAndMaterialsFetching}

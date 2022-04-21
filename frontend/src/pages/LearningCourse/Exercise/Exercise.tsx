@@ -6,16 +6,16 @@ import { IMaterial } from 'types/course';
 import { CourseInfoWrapper, CourseInfoContent, CourseInfoTitle, CourseInfoText } from './styled';
 
 interface IExerciseProps {
-  materialEx: IMaterial['exercise'];
+  courseExersice: IMaterial['exercise'];
   isCourseInfoOpen: boolean;
 }
 
-const Exercise: FC<IExerciseProps> = ({ isCourseInfoOpen, materialEx }) => (
+const Exercise: FC<IExerciseProps> = ({ isCourseInfoOpen, courseExersice }) => (
   <CourseInfoWrapper isCourseInfoOpen={isCourseInfoOpen}>
     <CourseInfoContent>
-      <CourseInfoTitle>{materialEx?.title}</CourseInfoTitle>
-      <CourseInfoText>{materialEx?.task}</CourseInfoText>
-      <Code>{materialEx?.code}</Code>
+      <CourseInfoTitle>{courseExersice?.title}</CourseInfoTitle>
+      <CourseInfoText>{courseExersice?.task}</CourseInfoText>
+      <Code>{courseExersice?.code}</Code>
     </CourseInfoContent>
   </CourseInfoWrapper>
 );
