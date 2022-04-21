@@ -23,10 +23,6 @@ export interface ISkillsListProps {
   skills: Skill[];
 }
 
-export interface ISkillsProps {
-  skills?: ISkillsListProps[];
-}
-
 export type TGroupedSkills = Map<string | number, Skill>;
 
 export type Technologies = Array<TechnologyGroup>;
