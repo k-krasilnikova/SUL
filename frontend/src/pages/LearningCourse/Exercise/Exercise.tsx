@@ -4,15 +4,12 @@ import { TCourseInfo } from 'types/course';
 
 import { CourseInfoWrapper, CourseInfoContent, CourseInfoTitle, CourseInfoText } from './styled';
 
-interface ICourseInfoProps {
+interface IExerciseProps {
   courseInfo: TCourseInfo;
   isCourseInfoOpen: boolean;
 }
 
-const CourseInfo: FC<ICourseInfoProps> = ({
-  isCourseInfoOpen,
-  courseInfo: { title, description },
-}) => (
+const Exercise: FC<IExerciseProps> = ({ isCourseInfoOpen, courseInfo: { title, description } }) => (
   <CourseInfoWrapper isCourseInfoOpen={isCourseInfoOpen}>
     <CourseInfoContent>
       <CourseInfoTitle>{title}</CourseInfoTitle>
@@ -21,4 +18,4 @@ const CourseInfo: FC<ICourseInfoProps> = ({
   </CourseInfoWrapper>
 );
 
-export default CourseInfo;
+export default Exercise;
