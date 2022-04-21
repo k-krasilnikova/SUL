@@ -8,7 +8,6 @@ import { SIMILAR_COURSES_TITLE } from 'constants/detailedCourse';
 import { PAGES } from 'constants/pages';
 import { CourseActionsWrapper } from 'pages/CoursesList/CourseActions/styled';
 import { ISimilarCourses } from 'types/detailedCourse';
-import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { Info } from 'enums/info';
 
 import {
@@ -26,7 +25,6 @@ const SimilarCourses: React.FC<ISimilarCourses> = ({ commonCourseData, windowWid
         <Course
           title={commonCourseData.title}
           description={commonCourseData.description}
-          duration={convertDurationToString(commonCourseData.duration)}
           lessons={commonCourseData.lessons}
           windowWidth={windowWidth}
           type={Info.similarCourses}

@@ -19,7 +19,13 @@ const DetailedCourse: FC<IDetailedCourse> = ({ page, ...props }) => (
       <InnerWrapper>
         <DetailedCourseInfo {...props} />
         <DetailedCourseActions page={page} {...props} />
-        <SimilarCourses {...props} />
+        {props.commonCourseData.similarCourses.map((course) => (
+          <SimilarCourses
+            key={course._id}
+            commonCourseData={course}
+            windowWidth={props.windowWidth}
+          />
+        ))}
       </InnerWrapper>
     </DetailedCourseWrapper>
   </AuthorizedLayout>
