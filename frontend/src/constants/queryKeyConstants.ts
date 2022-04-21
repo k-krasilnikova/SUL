@@ -3,6 +3,7 @@ export const QUERY_KEYS = {
   courseInfo: 'CourseInfo',
   paginatedCoursesList: 'PaginatedCoursesList',
   myCourses: 'MyCourses',
+  availableCourses: 'AvailableCourses',
   employeeProfile: 'EmployeeProfile',
   coursesRequests: 'CoursesRequests',
   employeesList: 'EmployeesList',

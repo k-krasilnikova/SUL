@@ -35,6 +35,10 @@ export type TCheckedCourse = Pick<ICourse, '_id' | 'title'>;
 export type TCourseInfo = Pick<ICourse, 'title' | 'description'>;
 export type TRequestedCourse = Pick<ICourse, '_id' | 'avatar' | 'title'>;
 export type TCourseLabels = typeof COURSE_LABELS[keyof typeof COURSE_LABELS];
+export interface IShortCourseInfo {
+  _id: string;
+  title: string;
+}
 
 export enum CoursesListType {
   COURSES = 'COURSES',
