@@ -6,6 +6,7 @@ import { API } from 'constants/routes';
 import { IClientCourse } from 'types/clientCourse';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
+const CACHE_TIME = 120000;
 
 const useSearchClientCourses = (): UseQueryResult<Array<IClientCourse>, AxiosError> => {
   return useQuery(
@@ -16,7 +17,7 @@ const useSearchClientCourses = (): UseQueryResult<Array<IClientCourse>, AxiosErr
       const searchResponse = response.data;
       return searchResponse;
     },
-    { cacheTime: 900000 },
+    { cacheTime: CACHE_TIME },
   );
 };
 

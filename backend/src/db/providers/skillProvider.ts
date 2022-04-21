@@ -2,7 +2,7 @@ import mongoose, { ObjectId } from 'mongoose';
 
 import UserSkillModel from 'db/models/UserSkill';
 import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
-import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseTechsFromWeb, IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
@@ -194,19 +194,17 @@ const isProperTechnologies = async (techs: IUpdateCourseBody['skills']): Promise
   return checksPassed;
 };
 
-const skillsToCourseTechs = async (technologies: { skill: ObjectId; points: number }[]) => {
+const getSkillsToCourseTechs = async (technologies: ICourseTechsFromWeb[]) => {
   const techs = await Promise.all(
     technologies.map(({ skill }) => {
       return SkillModel.findOne({ name: skill });
     }),
   );
 
-  const techsForCourse = techs.map((currentSkill, index) => {
-    return {
-      skill: currentSkill?._id as ObjectId,
-      points: technologies[index].points,
-    };
-  });
+  const techsForCourse = techs.map((currentSkill, index) => ({
+    skill: currentSkill?._id as ObjectId,
+    points: technologies[index].points,
+  }));
   return techsForCourse;
 };
 
@@ -224,5 +222,5 @@ export {
   getAllSkillsByGroup,
   skillsExist,
   isProperTechnologies,
-  skillsToCourseTechs,
+  getSkillsToCourseTechs,
 };
