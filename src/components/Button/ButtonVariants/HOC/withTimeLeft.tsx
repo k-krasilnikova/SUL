@@ -7,7 +7,7 @@ import { makeLeftTime } from 'utils/helpers/convertTime';
 type TIncomingProps = {
   timeout: number;
   applyDate?: string;
-  testDate?: string;
+  startTestDate?: string;
 };
 
 const withTimeLeft =
@@ -15,14 +15,18 @@ const withTimeLeft =
   (props: T): JSX.Element => {
     const [isTimeVisible, setTimeVisible] = useToggle();
     const [time, setTime] = useState<string | undefined>();
-    const { applyDate, testDate, timeout } = props;
+    const { applyDate, startTestDate, timeout } = props;
     useEffect(() => {
-      if (applyDate || testDate) {
+      if (applyDate || startTestDate) {
         setTime(
-          makeLeftTime(applyDate || testDate, `${TIME_FORMAT.days}:${TIME_FORMAT.hours}`, timeout),
+          makeLeftTime(
+            applyDate || startTestDate,
+            `${TIME_FORMAT.days}:${TIME_FORMAT.hours}`,
+            timeout,
+          ),
         );
       }
-    }, [applyDate, testDate, timeout]);
+    }, [applyDate, startTestDate, timeout]);
 
     return (
       <div onMouseEnter={setTimeVisible} onMouseLeave={setTimeVisible}>
