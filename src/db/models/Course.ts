@@ -27,10 +27,17 @@ const courseSchema = new Schema<ICourse>({
           },
         },
       ],
+      exercise: {
+        eN: { type: Number },
+        title: { type: String },
+        task: { type: String },
+        code: { type: String },
+      },
     },
   ],
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
   avatar: { type: String, required: true },
+  similarCourses: [{ type: Schema.Types.ObjectId, ref: 'Courses' }],
 });
 
 const CourseModel = model<ICourse>('Courses', courseSchema, 'courses');
