@@ -1,4 +1,6 @@
-import { EmployeeRank } from 'enums/employee';
+import { BaseSyntheticEvent } from 'react';
+
+import { ICoursesMapResponse, ICourseShortInfo, ICoursesMapElement } from 'types/course';
 
 export interface ICoursesProps {
   courses: ICourseShortInfo[];
@@ -15,29 +17,14 @@ export interface ICourseMapForCurrentStackProps {
 }
 
 export interface ISkillsMapProps {
-  isCoursesMapResponceLoading: boolean;
-  coursesMapResponce?: ICoursesMapResponse;
+  isCoursesMapLoading: boolean;
+  coursesMapResponse?: ICoursesMapResponse;
 }
 
-export interface ICoursesMapResponse {
-  userRank: EmployeeRank;
-  stackMap: IStackMapElement[];
+export interface ICourseContainerProps {
+  course: ICourseShortInfo;
 }
 
-interface IStackMapElement {
-  coursesMap: ICoursesMapElement[];
-  stack: string;
-  isPrimary: boolean;
-}
-
-interface ICoursesMapElement {
-  courses: ICourseShortInfo[];
-  rank: EmployeeRank;
-}
-
-interface ICourseShortInfo {
-  _id: string;
-  avatar: string;
-  title: string;
-  isCompleted: boolean;
+export interface ICourseProps extends ICourseContainerProps {
+  handleCourseClick: (event: BaseSyntheticEvent) => void;
 }
