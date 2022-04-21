@@ -2,7 +2,7 @@ import { FC, BaseSyntheticEvent } from 'react';
 
 import ConfirmDialog from 'components/ConfirmDialog';
 import { SIZE } from 'constants/sizes';
-import { ICourse, ICheckedCourse, CoursesListType } from 'types/course';
+import { IShortCourseInfo, CoursesListType } from 'types/course';
 
 import { CoursesList } from './CoursesList';
 import { SearchInput } from './SearchInput';
@@ -10,8 +10,7 @@ import { ActionButton } from './ActionButton';
 import { ContentWrapper } from './styled';
 
 interface IProps {
-  selectedCoursesList: ICheckedCourse[];
-  foundedCoursesList: ICourse[];
+  selectedCoursesList: IShortCourseInfo[];
   isOpened: boolean;
   isNoSearchResult: boolean;
   isCoursesLoading: boolean;
@@ -21,7 +20,7 @@ interface IProps {
   handleClose: () => void;
   handleSearchInputChange: (event: BaseSyntheticEvent) => void;
   handleCheckboxChange: (event: BaseSyntheticEvent) => void;
-  lastCourseRef: (node?: Element | null) => void;
+  foundedCoursesList?: IShortCourseInfo[];
 }
 
 const AddCourseDialog: FC<IProps> = ({
@@ -36,7 +35,6 @@ const AddCourseDialog: FC<IProps> = ({
   handleClose,
   handleSearchInputChange,
   handleCheckboxChange,
-  lastCourseRef,
 }) => (
   <ConfirmDialog open={isOpened} onClose={handleClose} size={SIZE.large}>
     <ContentWrapper>
@@ -50,7 +48,6 @@ const AddCourseDialog: FC<IProps> = ({
         courses={foundedCoursesList}
         checkedCourses={selectedCoursesList}
         isCoursesLoading={isCoursesLoading}
-        lastCourseRef={lastCourseRef}
         handleCheckboxChange={handleCheckboxChange}
       />
       <CoursesList
