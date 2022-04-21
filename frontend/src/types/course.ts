@@ -22,7 +22,7 @@ export interface ICourse {
   title: string;
   description: string;
   technology: CourseTechnology[];
-  requiredSkills: Array<string>;
+  requiredSkills: string[];
   duration: TimeProps;
   testLink: string;
   lessons: number;
