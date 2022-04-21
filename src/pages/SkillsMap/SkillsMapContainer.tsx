@@ -5,13 +5,10 @@ import { useGetCoursesMap } from 'api/courses';
 import SkillsMap from './SkillsMap';
 
 const SkillsMapContainer: FC = () => {
-  const { data: coursesMapResponce, isLoading: isCoursesMapResponceLoading } = useGetCoursesMap();
+  const { data: coursesMapResponse, isLoading: isCoursesMapLoading } = useGetCoursesMap();
 
   return (
-    <SkillsMap
-      coursesMapResponce={coursesMapResponce}
-      isCoursesMapResponceLoading={isCoursesMapResponceLoading}
-    />
+    <SkillsMap coursesMapResponse={coursesMapResponse} isCoursesMapLoading={isCoursesMapLoading} />
   );
 };
 
