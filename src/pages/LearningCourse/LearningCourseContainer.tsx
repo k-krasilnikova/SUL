@@ -91,7 +91,7 @@ const LearningCourseContainer: React.FC = () => {
   };
   return (
     <LearningCourse
-      key={courseMaterialsResponse.materials[stage - 1]._id}
+      key={courseMaterialsResponse.materials[stage - 1].stage}
       stage={stage}
       maxStage={maxStage}
       courseInfo={courseInfo}

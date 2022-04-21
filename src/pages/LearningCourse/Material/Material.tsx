@@ -1,14 +1,15 @@
 import { FC } from 'react';
 
 import PPViewer from 'components/PPViewer';
-import { ContentElementType } from 'types/course';
 import { playVideo } from 'icons';
+import { ContentElementType } from 'enums/materials';
+import { TMaterialVariants } from 'types/materials';
 
 import { MaterialWrapper, MaterialText, MaterialVideo } from './styled';
 
 interface IProps {
   material: string;
-  materialType: ContentElementType;
+  materialType: TMaterialVariants;
   videoPreview: string | boolean;
 }
 
