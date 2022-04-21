@@ -20,6 +20,9 @@ export const SearchWrapper = styled('div')({
 });
 
 export const SearchSkill = styled(SearchInput)({
+  '&::after, &::before': {
+    display: 'none',
+  },
   fontFamily: theme.typography.fontFamily,
   fontWeight: 400,
   fontSize: '26px',
