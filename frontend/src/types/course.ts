@@ -18,7 +18,7 @@ export interface ICourse {
   avatar?: string;
 }
 
-export interface ICheckedCourse {
+export interface IShortCourseInfo {
   _id: string;
   title: string;
 }
