@@ -37,7 +37,12 @@ interface IUpdateCourseBody {
     points: number;
   }[];
   materials?: ICourse['materials'];
-  test?: ITest['questions'];
+  test?: IUpdateCourseTest;
+}
+
+interface IUpdateCourseTest {
+  questions: ITest['questions'];
+  timeout: ITest['timeout'];
 }
 
 interface ICourseToAssign {
@@ -58,4 +63,5 @@ export {
   IProgress,
   IUpdateCourseBody,
   ICourseToAssign,
+  IUpdateCourseTest,
 };
