@@ -13,11 +13,11 @@ interface IQueryCourses {
   nPerPage?: number;
 }
 
-interface ICourseStatus extends ICourse {
+interface ICourseWithStatus extends ICourse {
   status?: string;
 }
 
-interface ICourseInfo extends Omit<ICourseStatus, 'materials'> {
+interface ICourseInfo extends Omit<ICourseWithStatus, 'materials'> {
   duration: ICourseDuration;
   lessons: number;
   materials: undefined;
@@ -37,7 +37,12 @@ interface IUpdateCourseBody {
     points: number;
   }[];
   materials?: ICourse['materials'];
-  test?: ITest['questions'];
+  test?: IUpdateCourseTest;
+}
+
+interface IUpdateCourseTest {
+  questions: ITest['questions'];
+  timeout: ITest['timeout'];
 }
 
 interface ICourseTechsFromWeb {
@@ -76,13 +81,14 @@ type ICourseInfoPopulated = ICourseInfo & { technologies: ISkill[] };
 
 export {
   IQueryCourses,
-  ICourseStatus,
+  ICourseWithStatus,
   ICourseInfo,
   ICoursePopulated,
   ICourseInfoPopulated,
   IProgress,
   IUpdateCourseBody,
   ICourseToAssign,
+  IUpdateCourseTest,
   ICreateCourseBody,
   IPreparedCourseData,
   ICourseTechsFromWeb,

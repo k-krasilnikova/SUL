@@ -59,15 +59,17 @@ const getTrueAnswersProvider = async (testId: string) => {
   return trueAnswers;
 };
 
-const updateTestQuestions = async (
+const updateTestQuestionsAndTimeout = async (
   testId: string | ObjectId,
   questions: ITest['questions'],
+  timeout: ITest['timeout'],
 ): Promise<ITest> => {
   const updated = await TestModel.findByIdAndUpdate(
     testId,
     {
       $set: {
         questions,
+        timeout,
       },
     },
     { returnDocument: 'after' },
@@ -99,7 +101,7 @@ export {
   getTestProvider,
   getTestById,
   getTrueAnswersProvider,
-  updateTestQuestions,
+  updateTestQuestionsAndTimeout,
   getCourseTest,
   addCourseTest,
 };
