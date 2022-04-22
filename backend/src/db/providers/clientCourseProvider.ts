@@ -1,7 +1,11 @@
 import mongoose, { ObjectId } from 'mongoose';
 
 import { IProgress, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
-import { IClientCoursePopulated, TClientCourseFields } from 'interfaces/Ientities/IclientCourses';
+import {
+  IClientCourse,
+  IClientCoursePopulated,
+  TClientCourseFields,
+} from 'interfaces/Ientities/IclientCourses';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -165,6 +169,11 @@ const getClientCoursesByCourseId = async (courseId: string) => {
   return allClientCoursesByCourseId;
 };
 
+const getClientCourseByCourseId = async (
+  courseId: string | ObjectId,
+  userId: string | ObjectId,
+): Promise<IClientCourse> => ClientCourseModel.findOne({ course: courseId, user: userId }).lean();
+
 const checkNotDeleteCoursesProvider = async (courseId: string) => {
   const clientCourses = await ClientCourseModel.find({ course: courseId });
 
@@ -208,6 +217,7 @@ export {
   updateCourseProgress,
   updateClientCourseField,
   getClientCoursesByCourseId,
+  getClientCourseByCourseId,
   assignCourseToEmployee,
   checkNotDeleteCoursesProvider,
 };
