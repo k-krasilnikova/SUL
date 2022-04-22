@@ -9,7 +9,7 @@ const similarCoursePreparing = (
   commonCourseInfo?: ICourse,
   clientCoursesData?: IClientCourse[],
   coursesToDisplay?: number,
-) => {
+): ICourse[] | undefined => {
   let preparedSimilarCourses;
   let countCoursesToDisplay = DEFAULT_COURSES_TO_DISPLAY;
 
