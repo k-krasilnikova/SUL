@@ -26,10 +26,16 @@ export interface IEmployeeCourses {
   checkPastedValue: (event: React.ClipboardEvent) => void;
   searchCourse: string;
   courses?: IClientCourse[];
+  isShown?: boolean;
+  showCourseInfo?: () => void;
+  hideCourseInfo?: () => void;
 }
 
 export interface IEmployeeCoursesList {
   courses?: IClientCourse[];
+  isShown?: boolean;
+  showCourseInfo?: () => void;
+  hideCourseInfo?: () => void;
 }
 
 export interface IEmployeeInfo {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { IClientCourse } from 'types/clientCourse';
 import { IEmployeeCoursesList } from 'types/employee';
-import { formatInputValue, checkWhitespace, checkPastedText } from 'utils/helpers/searchHelpers';
+import { checkPastedText, checkWhitespace, formatInputValue } from 'utils/helpers/searchHelpers';
 import { compareStrings } from 'utils/helpers/compareStrings';
 
 import EmployeeCourses from './EmployeeCourses';
@@ -10,6 +10,7 @@ import EmployeeCourses from './EmployeeCourses';
 const EmployeeCoursesContainer: React.FC<IEmployeeCoursesList> = ({ courses }) => {
   const [searchCourse, setSearchCourse] = useState('');
   const [employeeCourses, setEmployeeCourses] = useState<IClientCourse[]>();
+  const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
     if (courses) {
@@ -35,9 +36,20 @@ const EmployeeCoursesContainer: React.FC<IEmployeeCoursesList> = ({ courses }) =
     checkWhitespace(event, searchCourse);
   };
 
+  const showCourseInfo = () => {
+    setIsShown(true);
+  };
+
+  const hideCourseInfo = () => {
+    setIsShown(false);
+  };
+
   return (
     <EmployeeCourses
       courses={employeeCourses}
+      isShown={isShown}
+      showCourseInfo={showCourseInfo}
+      hideCourseInfo={hideCourseInfo}
       searchCourseInList={searchCourseInList}
       checkSpace={checkSpace}
       checkPastedValue={checkPastedValue}
