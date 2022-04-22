@@ -1,6 +1,6 @@
 import { MaterialContentType } from 'enums/materials';
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
-import isValidTitle from './isValidTitle';
+import isValidText from './isValidText';
 
 const isValidContentType = (type: MaterialContentType): boolean => {
   const existingTypeValues = Object.values(MaterialContentType);
@@ -20,7 +20,7 @@ const isValidMaterials = (materials: IUpdateCourseBody['materials']): boolean =>
           (contentElement) =>
             contentElement &&
             isValidContentType(contentElement.type) &&
-            isValidTitle(contentElement.material),
+            isValidText(contentElement.material),
         ),
     ),
   );
