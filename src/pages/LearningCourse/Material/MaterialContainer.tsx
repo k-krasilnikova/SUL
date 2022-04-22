@@ -1,20 +1,19 @@
 import { FC } from 'react';
 
-import { MATERIAL } from 'constants/materials';
-import { optimizeLink } from 'utils/helpers/videoPlayer/videoLink';
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
-import { defineMaterialType } from 'utils/helpers/defineMaterialType';
+import extractMaterial from 'utils/helpers/materials/extractMaterial';
+import { IContentElement } from 'types/course';
 
 import Material from './Material';
 
 interface IProps {
-  courseMaterial: string;
+  courseMaterial: IContentElement;
 }
 
 const MaterialContainer: FC<IProps> = ({ courseMaterial }) => {
-  const materialType = defineMaterialType(courseMaterial);
+  const { type: materialType } = courseMaterial;
 
-  const material = materialType === MATERIAL.video ? optimizeLink(courseMaterial) : courseMaterial;
+  const material = extractMaterial(courseMaterial);
 
   const videoPreview = getPreviewId(material);
 
