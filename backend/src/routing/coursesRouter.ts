@@ -12,6 +12,7 @@ import adapterUser from 'controllers/user/adapterUser';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
 import deleteCourse from 'controllers/admin/deleteCourse';
 import editCourse from 'controllers/admin/editCourse';
+import getCoursesMap from 'controllers/courses/getCoursesMap';
 import addCourse from 'controllers/admin/addCourse';
 import preparingCourseData from 'controllers/admin/preparingCourseData';
 
@@ -20,6 +21,12 @@ coursesRouter.get(
   SubRoutes.getCourseMaterials,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getMaterials,
+);
+coursesRouter.get(
+  SubRoutes.getCoursesMap,
+  withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
+  getCoursesMap,
+  adapterSender,
 );
 coursesRouter.get(
   SubRoutes.getCourse,
@@ -40,7 +47,6 @@ coursesRouter.get(
   getAllCourses,
 );
 coursesRouter.put(SubRoutes.updateCourse, withAuth([USER_ROLES.ADMIN]), editCourse, adapterSender);
-
 coursesRouter.post(
   SubRoutes.createCourse,
   withAuth([USER_ROLES.ADMIN]),
@@ -48,7 +54,6 @@ coursesRouter.post(
   addCourse,
   adapterSender,
 );
-
 coursesRouter.delete(`${SubRoutes.deleteCourse}`, withAuth([USER_ROLES.ADMIN]), deleteCourse);
 
 export default coursesRouter;

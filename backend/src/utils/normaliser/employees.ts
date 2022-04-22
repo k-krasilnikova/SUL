@@ -1,5 +1,5 @@
 import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
-import { IStackMember } from 'interfaces/Ientities/IStackMember';
+import { TUserStackMember, TUserStackMemberShort } from 'interfaces/Ientities/IStackMember';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import {
   IEmployeeClientCourse,
@@ -7,6 +7,7 @@ import {
   IEmployeeShortInfo,
   TEmployeeCourse,
 } from 'interfaces/IResponse/IResponse';
+import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const mapEmployeeClientCourse = (clientCourse: IClientCoursePopulated): IEmployeeClientCourse => {
   const { status, progress, date } = clientCourse;
@@ -16,8 +17,11 @@ const mapEmployeeClientCourse = (clientCourse: IClientCoursePopulated): IEmploye
   return emplooyeeClientCourse;
 };
 
-const mapEmployeeStack = (stack: IStackMember[]): Pick<IStackMember, 'name'>[] =>
-  stack.map((member) => ({ name: member.name }));
+const mapEmployeeStack = (stack: TUserStackMember[]): TUserStackMemberShort[] =>
+  stack.map((stackMember) => ({
+    isPrimary: stackMember.isPrimary,
+    member: { name: stackMember.member.name },
+  }));
 
 const mapEmployeeInfo = (employee: IUser, courses: IClientCoursePopulated[]): IEmployeeInfo => ({
   _id: employee._id,
@@ -32,7 +36,7 @@ const mapEmployeeInfo = (employee: IUser, courses: IClientCoursePopulated[]): IE
   phone: employee.phone,
   rank: employee.rank,
   courses: courses.map(mapEmployeeClientCourse),
-  stack: mapEmployeeStack(employee.stack),
+  stack: mapEmployeeStack(convertToTypeUnsafe<TUserStackMember[]>(employee.stack)),
 });
 
 const mapEmployeeShortInfo = (employee: IUser): IEmployeeShortInfo => ({
@@ -45,7 +49,7 @@ const mapEmployeeShortInfo = (employee: IUser): IEmployeeShortInfo => ({
   skype: employee.skype,
   phone: employee.phone,
   rank: employee.rank,
-  stack: mapEmployeeStack(employee.stack),
+  stack: mapEmployeeStack(convertToTypeUnsafe<TUserStackMember[]>(employee.stack)),
 });
 
 const mapEmployeesShortInfo = (employees: IUser[]): IEmployeeShortInfo[] =>
