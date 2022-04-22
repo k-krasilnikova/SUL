@@ -1,5 +1,6 @@
 import { COURSE_LABELS } from 'constants/statuses';
 import { CourseStatus } from 'enums/course';
+import { EmployeeRank } from 'enums/employee';
 
 import { TimeProps } from './time';
 
@@ -22,7 +23,7 @@ export interface ICourse {
   title: string;
   description: string;
   technology: CourseTechnology[];
-  requiredSkills: Array<string>;
+  requiredSkills: string[];
   duration: TimeProps;
   testLink: string;
   lessons: number;
@@ -81,4 +82,27 @@ export interface ICourseInfo {
   duration?: string;
   lessons?: number;
   type?: string;
+}
+
+export interface ICoursesMapResponse {
+  userRank: EmployeeRank;
+  stackMap: IStackMapElement[];
+}
+
+export interface IStackMapElement {
+  coursesMap: ICoursesMapElement[];
+  stack: string;
+  isPrimary: boolean;
+}
+
+export interface ICoursesMapElement {
+  courses: ICourseShortInfo[];
+  rank: EmployeeRank;
+}
+
+export interface ICourseShortInfo {
+  _id: string;
+  avatar: string;
+  title: string;
+  isCompleted: boolean;
 }

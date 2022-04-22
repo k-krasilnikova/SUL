@@ -1,27 +1,20 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
-import CoursePlate from 'components/CoursePlate';
-import { RANKS, SKILLS_MAP } from 'constants/skillsMap';
+import Loader from 'components/Loader';
+import { ISkillsMapProps } from 'pages/SkillsMap/types';
 
-import { SkillsWrapper, Position, Map, Rank, RankTitle, Courses } from './styled';
+import StackMap from './StackMap';
+import { SkillsWrapper } from './styled';
 
-const SkillsMap: React.FC = () => (
+const SkillsMap: FC<ISkillsMapProps> = ({ coursesMapResponse, isCoursesMapLoading }) => (
   <AuthorizedLayout pageName="Skills Map">
-    <SkillsWrapper>
-      <Position>{SKILLS_MAP.position}</Position>
-      <Map>
-        {RANKS.map((rank) => (
-          <Rank selected={rank.selected} key={rank.title}>
-            <RankTitle>{`${rank.title} ${SKILLS_MAP.rank} `}</RankTitle>
-            <Courses>
-              {rank?.courses.map((course) => (
-                <CoursePlate key={course.title} course={course} />
-              ))}
-            </Courses>
-          </Rank>
-        ))}
-      </Map>
+    <SkillsWrapper isLoading={isCoursesMapLoading}>
+      {isCoursesMapLoading ? (
+        <Loader color="primary" type="component" />
+      ) : (
+        <StackMap coursesMapResponce={coursesMapResponse} />
+      )}
     </SkillsWrapper>
   </AuthorizedLayout>
 );
