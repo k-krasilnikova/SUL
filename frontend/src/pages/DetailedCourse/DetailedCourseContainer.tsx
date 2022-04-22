@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { useGetProfile } from 'api/profile';
-import useGetMyCourses from 'api/myCourses/getClientCourses';
+import { useGetMyCourses } from 'api/myCourses/getClientCourses';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import {
   convertCourseStatusToProgress,
