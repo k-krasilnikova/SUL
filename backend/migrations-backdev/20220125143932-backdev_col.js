@@ -751,12 +751,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=xu87YWbr4X0&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=2&ab_channel=WesBos',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
       {
         _id: '3',
@@ -783,12 +777,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=zIdg7hkqNE0&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&index=2&ab_channel=CodeWithHarry',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
       {
         _id: '6',
@@ -842,12 +830,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=cSYHjWJ5Q8g&list=PLtX3ATr7wKKlhdq3unb2TiyoOcT8jVUGC&index=2',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
 
       {
@@ -856,12 +838,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=Zd3bAA9TRk8&list=PLtX3ATr7wKKlhdq3unb2TiyoOcT8jVUGC&index=3',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
     ],
     technologies: ['Scala'],
@@ -881,12 +857,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=9Ia16QOY8rk&list=PLrCZzMib1e9q-X5V9pTM6J0AemRWseM7I&index=2',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
     ],
     technologies: ['Go'],
@@ -918,12 +888,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=l77oxzJUhMQ&list=PLQOaTSbfxUtD6kMmAYc8Fooqya3pjLs1N&index=2',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
       {
         _id: '8',
@@ -1481,18 +1445,16 @@ module.exports = {
       },
     );
     await db.createCollection('clientCourses');
-    await db.createCollection('accessTokenBlacklist');
   },
 
   async down(db) {
-    await db.dropCollection('courses');
-    await db.dropCollection('skillGroups');
-    await db.dropCollection('skills');
-    await db.dropCollection('tests');
-    await db.dropCollection('clientCourses');
-    await db.dropCollection('users');
-    await db.dropCollection('userSkills');
-    await db.dropCollection('stackMembers');
-    await db.dropCollection('accessTokenBlacklist');
+    await db.collection('courses').drop();
+    await db.collection('skillGroups').drop();
+    await db.collection('skills').drop();
+    await db.collection('tests').drop();
+    await db.collection('clientCourses').drop();
+    await db.collection('users').drop();
+    await db.collection('userSkills').drop();
+    await db.collection('stackMembers').drop();
   },
 };
