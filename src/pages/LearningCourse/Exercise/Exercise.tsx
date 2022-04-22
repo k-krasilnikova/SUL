@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IMaterial } from 'types/course';
+import { IExercise } from 'types/course';
 
 import {
   CourseInfoWrapper,
@@ -11,18 +11,21 @@ import {
 } from './styled';
 
 interface IExerciseProps {
-  courseExersice: IMaterial['exercise'];
+  courseExersice: IExercise;
   isCourseInfoOpen: boolean;
 }
 
-const Exercise: FC<IExerciseProps> = ({ isCourseInfoOpen, courseExersice }) => (
+const Exercise: FC<IExerciseProps> = ({
+  isCourseInfoOpen,
+  courseExersice: { title, task, code },
+}) => (
   <CourseInfoWrapper isCourseInfoOpen={isCourseInfoOpen}>
     <CourseInfoContent>
-      <CourseInfoTitle>{courseExersice?.title}</CourseInfoTitle>
-      <CourseInfoText>{courseExersice?.task}</CourseInfoText>
-      {courseExersice?.code && (
+      <CourseInfoTitle>{title}</CourseInfoTitle>
+      <CourseInfoText>{task}</CourseInfoText>
+      {code && (
         <pre>
-          <CodeBlock>{courseExersice.code}</CodeBlock>
+          <CodeBlock>{code}</CodeBlock>
         </pre>
       )}
     </CourseInfoContent>

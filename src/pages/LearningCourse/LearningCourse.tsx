@@ -42,7 +42,9 @@ const LearningCourse: FC<IProps> = ({ courseContent, courseMaterial, ...props })
         <Material courseMaterial={courseContent} />
         <CourseInfoToggle {...props} />
         <ActionButton {...props} />
-        <Exercise courseExersice={courseMaterial.exercise} {...props} />
+        {courseMaterial.exercise && (
+          <Exercise courseExersice={courseMaterial.exercise} {...props} />
+        )}
       </LearningWrapper>
     </LearningPageContainer>
   </AuthorizedLayout>
