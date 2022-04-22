@@ -1,6 +1,7 @@
 export const QUERY_KEYS = {
   courseAndMaterials: 'CourseAndMaterials',
   courseInfo: 'CourseInfo',
+  coursesMap: 'CoursesMap',
   paginatedCoursesList: 'PaginatedCoursesList',
   myCourses: 'MyCourses',
   availableCourses: 'AvailableCourses',

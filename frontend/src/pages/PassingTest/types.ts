@@ -1,6 +1,6 @@
 import { Params } from 'react-router';
 
-import { IQuestionObject, ITestItem } from 'types/test';
+import { IQuestionObject } from 'types/test';
 
 export interface IPassingTestProps {
   stage: number;

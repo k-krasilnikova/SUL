@@ -29,6 +29,7 @@ enum SubRoutes {
   manageCourseAssessment = '/:id/assessment',
   getCourseMaterials = '/:id/materials',
   getCourse = '/:id',
+  getCoursesMap = '/map',
   deleteCourse = '/:id',
   getCourses = '',
   applyCourse = '',
