@@ -174,7 +174,7 @@ const checkNotDeleteCoursesProvider = async (courseId: string) => {
   );
 
   if (notDeleteCourses) {
-    throw new BadRequestError('The course has already started or is being tested for some people');
+    throw new BadRequestError('The course has already started or is being tested for some people.');
   }
 };
 

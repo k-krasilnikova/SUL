@@ -12,7 +12,11 @@ import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
-import { ICourseWithStatus, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import {
+  ICourseWithStatus,
+  IQueryCourses,
+  ICreateCourseBody,
+} from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
@@ -199,6 +203,7 @@ const getCourseStatusProvider = async (
 
   return relateClientCourse?.status;
 };
+const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
 
 export {
   getCoursesProvider,
@@ -208,4 +213,5 @@ export {
   deleteCourseProvider,
   updateCourseField,
   getCourseStatusProvider,
+  addCourseProvider,
 };
