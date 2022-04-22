@@ -19,7 +19,7 @@ export interface IDetailedCourse {
   clientCourseData?: PureClientCourse;
   similarCourses?: ICourse[];
   isLoading?: boolean;
-  targetId?: string | undefined;
+  targetId?: string;
   isProgressBarDisplayed?: boolean;
   isCourseCompleted?: boolean;
   isCourseDeclined?: boolean;
