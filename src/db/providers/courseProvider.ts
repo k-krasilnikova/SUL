@@ -9,7 +9,7 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import { ICourse } from 'interfaces/Ientities/Icourses';
-import { ICourseStatus, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseStatus, ICreateCourseBody, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
@@ -211,6 +211,8 @@ const updateCourseField = async (courseId: string, field: TCourseFields, value: 
   return updatedCourse;
 };
 
+const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
+
 export {
   getCoursesProvider,
   getCourseProvider,
@@ -218,4 +220,5 @@ export {
   getMaterialsProvider,
   deleteCourseProvider,
   updateCourseField,
+  addCourseProvider,
 };

@@ -8,11 +8,10 @@ import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
 import isValidAvatar from 'utils/validation/isValidAvatar';
-import isValidDescription from 'utils/validation/isValidDescription';
+import isValidText from 'utils/validation/isValidText';
 import isValidMaterials from 'utils/validation/isValidMaterials';
 import isValidTest from 'utils/validation/isValidTest';
 import isValidTechnologies from 'utils/validation/isValidTechnologies';
-import isValidTitle from 'utils/validation/isValidTitle';
 
 const editCourse = async (
   req: Request<{ id: string }, never, IUpdateCourseBody>,
@@ -25,13 +24,13 @@ const editCourse = async (
 
     const updatedData: IUpdateCourseBody = {};
 
-    const isTitleValid = isValidTitle(dataToUpdate.title);
+    const isTitleValid = isValidText(dataToUpdate.title);
     if (isTitleValid) {
       const { title } = await updateCourseField(courseId, COURSE_FIELDS.title, dataToUpdate.title);
       updatedData.title = title;
     }
 
-    const isDescriptionValid = isValidDescription(dataToUpdate.description);
+    const isDescriptionValid = isValidText(dataToUpdate.description);
     if (isDescriptionValid) {
       const { description } = await updateCourseField(
         courseId,
