@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PATHS } from 'constants/routes';
-import { User } from 'types/user';
+import { IUser } from 'types/user';
 import { Notification as NotificationType } from 'types/notification';
 import Avatar from 'components/Avatar';
 import Notifications from 'components/NotificationsBar';
@@ -30,7 +30,7 @@ interface Props {
   notifications?: NotificationType[];
 }
 
-type HeaderProps = User & Props;
+type HeaderProps = IUser & Props;
 
 const Header: React.FC<HeaderProps> = ({
   firstName,

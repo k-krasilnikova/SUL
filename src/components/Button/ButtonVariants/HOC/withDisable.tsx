@@ -1,30 +1,29 @@
+import { CourseStatus } from 'enums/course';
 import { useEffect, useState } from 'react';
 
-import { COURSE_STATUSES } from 'constants/statuses';
-
-type IncomingProps = {
-  status: string;
+type TIncomingProps = {
+  status: CourseStatus;
 };
 
 const withDisable =
-  <T extends IncomingProps>(Component: React.ComponentType<T>) =>
+  <T extends TIncomingProps>(Component: React.ComponentType<T>) =>
   (props: T): JSX.Element => {
     const [isDisable, setDisable] = useState(false);
     const { status } = props;
     useEffect(() => {
       if (
         [
-          COURSE_STATUSES.pending,
-          COURSE_STATUSES.rejected,
-          COURSE_STATUSES.completed,
-          COURSE_STATUSES.assessment,
+          CourseStatus.pending,
+          CourseStatus.rejected,
+          CourseStatus.completed,
+          CourseStatus.assessment,
         ].includes(status)
       ) {
         setDisable(true);
       }
     }, [status]);
 
-    const isCompleted = status === COURSE_STATUSES.completed;
+    const isCompleted = status === CourseStatus.completed;
 
     return <Component variant={isCompleted && 'completed'} isDisable={isDisable} {...props} />;
   };

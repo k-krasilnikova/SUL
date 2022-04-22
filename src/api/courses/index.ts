@@ -1,4 +1,5 @@
 export { default as useApplyCourse } from './applyCourse';
+export { default as useDeleteCourse } from './deleteCourse';
 export { default as useGetCourseInfo } from './getCourseInfo';
 export { default as searchAllCourses } from './searchAllCourses';
 export { default as useGetPaginatedCourses } from './getPaginatedCourses';

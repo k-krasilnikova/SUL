@@ -1,5 +1,4 @@
-import { Button as ToggleButton, ButtonGroup } from '@mui/material';
-import styled from 'styled-components';
+import { styled, Button as ToggleButton, ButtonGroup } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -30,17 +29,17 @@ export const EmployeeButtonGroup = styled(ButtonGroup)({
 });
 
 export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({ isOpened }) => ({
-  backgroundColor: '#ffffff !important',
-  color: '#000000 !important',
-  fontSize: '16px !important',
-  fontWeight: '400 !important',
-  width: '135px !important',
+  backgroundColor: '#FFF',
+  color: '#000',
+  fontSize: '16px',
+  fontWeight: 400,
+  width: '135px',
   height: '40px',
-  borderRadius: '4px 4px 0 0 !important',
-  border: '1px solid #0000001A !important',
-  padding: '0 !important',
+  borderRadius: '4px 4px 0 0',
+  border: '1px solid #0000001A',
+  padding: 0,
   ...(isOpened && {
-    width: '146px !important',
+    width: '146px',
     height: '44px',
   }),
   [theme.breakpoints.down('xl')]: {
@@ -50,12 +49,12 @@ export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({
     }),
   },
   [theme.breakpoints.down('lg')]: {
-    fontSize: '14px !important',
+    fontSize: '14px',
     height: '28px',
-    width: '90px !important',
-    paddingTop: '3px !important',
+    width: '90px',
+    paddingTop: '3px',
     ...(isOpened && {
-      width: '100px !important',
+      width: '100px',
       height: '32px',
     }),
   },
@@ -75,6 +74,6 @@ export const UserSkillsWrapper = styled('div')({
     marginLeft: '-38px',
   },
   [theme.breakpoints.down('sm')]: {
-    marginLeft: '0',
+    marginLeft: 0,
   },
 });

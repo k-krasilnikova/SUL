@@ -2,39 +2,45 @@ import { useMutation, UseMutationResult } from 'react-query';
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
-import { apiClientWrapper, queryClient } from 'api/base';
+import { apiClientWrapper } from 'api/base';
 import { API } from 'constants/routes';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
-import { COURSE_STATUSES } from 'constants/statuses';
-import { QUERY_KEYS } from 'constants/queryKeyConstants';
+import { CourseStatus } from 'enums/course';
 
-const useStartClientCourse = (
-  courseId?: string,
-): UseMutationResult<ClientCourse | undefined, AxiosError> => {
+const useStartClientCourse = ({
+  courseId,
+  onSuccess,
+}: {
+  courseId?: string;
+  onSuccess: () => void;
+}): UseMutationResult<IClientCourse | undefined, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
+
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
+
   const handleSubmitSuccess = () => {
+    onSuccess();
     enqueueSnackbar(successSnackbarMessage.courseStarted, successSnackbar);
   };
+
   return useMutation(
     async () => {
-      let courseStarted: ClientCourse | undefined;
+      let courseStarted: IClientCourse | undefined;
       const apiClient = apiClientWrapper();
       const responseCourse = await apiClient.get(`${API.getMyCourses}/${courseId}`);
-      const courseResponse: ClientCourse = responseCourse.data;
-      if (courseResponse?.status === COURSE_STATUSES.approved) {
+      const courseResponse: IClientCourse = responseCourse.data;
+      if (courseResponse?.status === CourseStatus.approved) {
         const response = await apiClient.get(`${API.getMyCourses}/${courseId}/start`);
-        handleSubmitSuccess();
         courseStarted = response.data;
       }
       return courseStarted;
     },
     {
       onError: handleSubmitError,
-      onSuccess: () => queryClient.refetchQueries([QUERY_KEYS.courseAndMaterials, courseId]),
+      onSuccess: handleSubmitSuccess,
     },
   );
 };

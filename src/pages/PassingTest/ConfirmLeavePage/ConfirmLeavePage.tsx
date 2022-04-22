@@ -1,45 +1,27 @@
 import { FC } from 'react';
-import { DialogActions } from '@mui/material';
 
-import { buttonSpinner } from 'animations';
-import ConfirmDialog from 'components/ConfirmDialog';
-import { CONFIRM_MESSAGE } from 'constants/messages';
+import { CONFIRM_LEAVE_PAGE } from 'constants/messages';
 import { ButtonLabels } from 'constants/ButtonLabels';
-import ButtonLoader from 'components/ButtonLoader';
+import { ConfirmDialog } from 'components/Dialogs';
 
-import { ButtonCancel, ButtonExit } from './styled';
+import { IConfirmLeavePageProps } from './types';
 
-interface IProps {
-  isOpened: boolean;
-  showDialog: boolean;
-  handleCancelLeavePage: () => void;
-  handleLeavePage: () => void;
-  isLoading?: boolean;
-  size?: string;
-}
-
-const ConfirmLeavePage: FC<IProps> = ({
+const ConfirmLeavePage: FC<IConfirmLeavePageProps> = ({
   isOpened,
-  showDialog,
   isLoading,
-  size,
   handleCancelLeavePage,
   handleLeavePage,
 }) => (
   <ConfirmDialog
-    open={showDialog || isOpened}
+    open={isOpened}
+    confirmMessage={CONFIRM_LEAVE_PAGE}
+    declineButtonLabel={ButtonLabels.stay}
+    confirmButtonLabel={ButtonLabels.exit}
+    isLoading={isLoading}
+    handleConfirm={handleLeavePage}
+    handleDecline={handleCancelLeavePage}
     onClose={handleCancelLeavePage}
-    size={size}
-    confirmMessage={CONFIRM_MESSAGE}
-  >
-    <DialogActions>
-      <ButtonCancel variant="mediumOutlined" onClick={handleCancelLeavePage}>
-        {ButtonLabels.stay}
-      </ButtonCancel>
-      <ButtonExit disabled={isLoading} variant="mediumContained" onClick={handleLeavePage}>
-        {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.exit}
-      </ButtonExit>
-    </DialogActions>
-  </ConfirmDialog>
+  />
 );
+
 export default ConfirmLeavePage;

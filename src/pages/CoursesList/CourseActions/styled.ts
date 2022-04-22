@@ -1,5 +1,4 @@
-import { Box } from '@mui/material';
-import styled from 'styled-components';
+import { styled, Box } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -7,7 +6,7 @@ export const CourseActionsWrapper = styled('div')({
   display: 'flex',
   [theme.breakpoints.down('md')]: {
     justifyContent: 'space-between',
-    margin: '0px',
+    margin: 0,
   },
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',

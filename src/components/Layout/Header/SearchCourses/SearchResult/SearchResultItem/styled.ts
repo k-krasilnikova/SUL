@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { ListItem, Typography } from '@mui/material';
+import { styled, ListItem, Typography } from '@mui/material';
 
 import { imageDefault } from 'icons';
 import theme from 'themeSettings';
@@ -14,9 +13,9 @@ export const Image = styled('div')<CourseAvatar>(({ avatar }) => ({
   border: '1px solid #7676801F',
   borderRadius: '4px',
   float: 'left',
-  margin: '0px 8px 0px 0px',
+  margin: '0 8px 0 0',
   overflow: 'hidden',
-  flexShrink: '0',
+  flexShrink: 0,
   alignItems: 'center',
   background: `no-repeat center url(${avatar || imageDefault})`,
   backgroundSize: 'cover',
@@ -27,13 +26,13 @@ export const Image = styled('div')<CourseAvatar>(({ avatar }) => ({
 }));
 
 export const CourseTitle = styled(Typography)({
-  fontSize: '20px !important',
-  fontWeight: '700 !important',
+  fontSize: '20px',
+  fontWeight: 700,
   lineHeight: '26px',
   letterSpacing: '-0.4px',
   marginLeft: '8px',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '16px !important',
+    fontSize: '16px',
   },
 });
 
@@ -41,8 +40,8 @@ export const SearchResultCourse = styled(ListItem)({
   fontSize: '14px',
   color: '#131313',
   display: 'flex',
-  paddingLeft: '3px !important',
-  paddingRight: '3px !important',
+  paddingLeft: '3px',
+  paddingRight: '3px',
 });
 
 export const RedirectButton = styled('div')({

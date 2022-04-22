@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-import { Box } from '@mui/material';
+import { styled, Box } from '@mui/material';
 
-import { INFO } from 'constants/courseInfoTypes';
 import theme from 'themeSettings';
+import { Info } from 'enums/info';
 
 import { InfoContainerTypes } from '../styled';
 
@@ -16,7 +15,7 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
   justifyContent: 'space-between',
   padding: '10px 0',
   [theme.breakpoints.down('lg')]: {
-    ...(type === INFO.similarCourses && {
+    ...(type === Info.similarCourses && {
       justifyContent: 'start',
     }),
   },
@@ -34,17 +33,17 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
     paddingLeft: '12px',
   },
   [theme.breakpoints.down('xl')]: {
-    ...(type === INFO.similarCourses && {
+    ...(type === Info.similarCourses && {
       display: 'none',
     }),
   },
-  ...(type === INFO.similarCourses && {
+  ...(type === Info.similarCourses && {
     display: 'block',
   }),
-  ...(type === INFO.searchCourses && {
+  ...(type === Info.searchCourses && {
     height: 'auto',
   }),
-  ...(type !== (INFO.detailedCourse || INFO.searchCourses) && {
+  ...(type !== (Info.detailedCourse || Info.searchCourses) && {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -52,5 +51,5 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   display: 'flex',
   flexDirection: 'row',
   paddingLeft: '15px',
-  paddingBottom: '0',
+  paddingBottom: 0,
 }));

@@ -4,26 +4,21 @@ import { Link } from 'react-router-dom';
 import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
-import { IEmployeeProfile } from 'types/employee';
 
 import { BackButton, EmployeeProfileWrapper } from './styled';
 import EmployeeInfo from './EmployeeInfo';
 import EmployeeSkillsAndCourses from './EmployeeSkillsAndCourses';
+import { IEmployeeProfile } from './types';
 
 const EmployeeProfile: React.FC<IEmployeeProfile> = ({
   employee,
-  employeeCourses,
-  employeeInfo,
-  toggleEmployeeInfo,
-  toggleHover,
   profileInfoOpened,
   toggleProfileInfoOpened,
-  isSkillOpened,
-  isCourseOpened,
+  ...props
 }) => (
   <AuthorizedLayout pageName="Employee">
     <EmployeeProfileWrapper>
-      <BackButton component={Link} to={PATHS.employees} variant="medium" color="primary">
+      <BackButton color="primary" variant="medium" component={Link} to={PATHS.employees}>
         {ButtonLabels.back}
       </BackButton>
       <EmployeeInfo
@@ -31,15 +26,7 @@ const EmployeeProfile: React.FC<IEmployeeProfile> = ({
         profileInfoOpened={profileInfoOpened}
         toggleProfileInfoOpened={toggleProfileInfoOpened}
       />
-      <EmployeeSkillsAndCourses
-        employee={employee}
-        employeeCourses={employeeCourses}
-        employeeInfo={employeeInfo}
-        toggleEmployeeInfo={toggleEmployeeInfo}
-        toggleHover={toggleHover}
-        isSkillOpened={isSkillOpened}
-        isCourseOpened={isCourseOpened}
-      />
+      <EmployeeSkillsAndCourses employee={employee} {...props} />
     </EmployeeProfileWrapper>
   </AuthorizedLayout>
 );

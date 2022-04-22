@@ -1,6 +1,7 @@
 export enum ButtonLabels {
   applyCourse = 'Apply the Course',
   applyTheCourse = 'Apply the course',
+  deleteCourse = 'Delete',
   startTest = 'Start the Test',
   details = 'Details',
   stay = 'Stay',
@@ -20,4 +21,8 @@ export enum ButtonLabels {
   loading = 'Loading...',
   login = 'LOG IN',
   cancel = 'Cancel',
+  comments = 'Comments',
+  accept = 'Accept',
+  acceptWithInterview = 'Accept with interview',
+  reject = 'Reject',
 }

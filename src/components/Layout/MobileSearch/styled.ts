@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { Input } from '@mui/material';
+import { styled, Input } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -12,12 +11,12 @@ export const Search = styled(Input)({
   height: '30px',
   marginRight: '8px',
   [theme.breakpoints.up('xs')]: {
-    display: 'inline-flex!important',
+    display: 'inline-flex',
     width: '100%',
     height: '30px',
     marginRight: '8px',
   },
   [theme.breakpoints.up(950)]: {
-    display: 'none!important',
+    display: 'none',
   },
 });
