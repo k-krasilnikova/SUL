@@ -15,10 +15,16 @@ import {
   CoursesListItem,
   CourseStatus,
   CourseTitle,
+  HoverCourseTitle,
   NoCourses,
 } from './styled';
 
-const EmployeeCoursesList: React.FC<IEmployeeCoursesList> = ({ courses }) => (
+const EmployeeCoursesList: React.FC<IEmployeeCoursesList> = ({
+  courses,
+  isShown,
+  showCourseInfo,
+  hideCourseInfo,
+}) => (
   <CoursesList>
     {courses?.length ? (
       courses.map((course, id, coursesArray) => {
@@ -29,7 +35,10 @@ const EmployeeCoursesList: React.FC<IEmployeeCoursesList> = ({ courses }) => (
             <CoursesListItem>
               <ProgressBar size={Size.small} value={progressValue} variant={progressVariant} />
               <CourseItemText>
-                <CourseTitle>{course.course.title}</CourseTitle>
+                <CourseTitle onMouseEnter={showCourseInfo} onMouseLeave={hideCourseInfo}>
+                  {course.course.title.slice(0, 40)}
+                </CourseTitle>
+                {isShown && <HoverCourseTitle> {course.course.title}</HoverCourseTitle>}
                 <CourseStatus>{setFirstLetterUppercase(course.status)}</CourseStatus>
               </CourseItemText>
             </CoursesListItem>

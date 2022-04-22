@@ -36,6 +36,7 @@ export const CoursesListItem = styled('div')({
 });
 
 export const CourseItemText = styled('div')({
+  position: 'relative',
   marginLeft: '17px',
   [theme.breakpoints.down('xl')]: {
     marginLeft: '8px',
@@ -47,11 +48,34 @@ export const CourseTitle = styled(Typography)({
   fontSize: '20px',
   lineHeight: '26px',
   marginBottom: '8px',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  '&: hover': {
+    cursor: 'pointer',
+  },
   [theme.breakpoints.down('xl')]: {
+    maxWidth: '140px',
     fontSize: '16px',
     lineHeight: '20px',
     marginBottom: '4px',
   },
+});
+
+export const HoverCourseTitle = styled('div')({
+  width: 'fit-content',
+  padding: '3px',
+  display: 'flex',
+  justifyContent: 'center',
+  position: 'absolute',
+  top: '16px',
+  right: '-35px',
+  fontSize: '12px',
+  backgroundColor: '#000',
+  color: '#FFF',
+  overflow: 'inherit',
+  textOverflow: 'unset',
+  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
 });
 
 export const CourseStatus = styled(Typography)({
