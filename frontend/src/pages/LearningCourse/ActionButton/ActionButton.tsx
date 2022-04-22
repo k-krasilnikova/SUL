@@ -28,7 +28,7 @@ const ActionButton: FC<IProps> = ({
       {isTestEnabled ? (
         <StartTestButton
           status={status}
-          testDate={finishTestDate}
+          finishTestDate={finishTestDate}
           progress={progress}
           timeout={TEST_DISABLE_DAYS}
         />
