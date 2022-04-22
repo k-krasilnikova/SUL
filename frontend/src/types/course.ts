@@ -8,16 +8,17 @@ export type TContentElement = {
   type: TMaterialVariants;
   material: string;
 };
+export interface IExercise {
+  eN: number;
+  title: string;
+  task: string;
+  code?: string;
+}
 
 export interface IMaterial {
   stage: number;
   content: TContentElement[];
-  exercise?: {
-    eN: number;
-    title: string;
-    task: string;
-    code: string;
-  };
+  exercise?: IExercise;
 }
 
 export type CourseTechnology = { skill: string; points: number };
