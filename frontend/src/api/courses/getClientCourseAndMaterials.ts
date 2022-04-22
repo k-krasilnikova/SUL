@@ -7,11 +7,11 @@ import { API } from 'constants/routes';
 import { ICourseMaterialsResponse } from 'types/course';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 
 const useGetClientCourseAndMaterials = (
   courseId?: string,
-): UseQueryResult<[ClientCourse, ICourseMaterialsResponse], AxiosError> => {
+): UseQueryResult<[IClientCourse, ICourseMaterialsResponse], AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -22,10 +22,10 @@ const useGetClientCourseAndMaterials = (
       const apiClient = apiClientWrapper();
 
       const courseResponse = await apiClient.get(`${API.getMyCourses}/${courseId}`);
-      const courseData: ClientCourse = courseResponse.data;
+      const courseData: IClientCourse = courseResponse.data;
 
       const materialsResponse = await apiClient.get(
-        `${API.getCourses}/${courseData.course._id}/materials`,
+        `${API.courses}/${courseData.course._id}/materials`,
       );
       const materialsData: ICourseMaterialsResponse = materialsResponse.data;
       return [courseData, materialsData];

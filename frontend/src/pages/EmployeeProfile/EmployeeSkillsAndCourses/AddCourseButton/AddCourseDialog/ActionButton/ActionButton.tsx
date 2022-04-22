@@ -14,7 +14,7 @@ interface IProps {
 
 const ActionButton: FC<IProps> = ({ isDisabled, isLoading, handleClick }) => (
   <StyledButton
-    variant="mediumContained"
+    variant={isLoading ? 'mediumOutlined' : 'mediumContained'}
     color="primary"
     disabled={isDisabled}
     onClick={handleClick}

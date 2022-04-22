@@ -1,18 +1,17 @@
-import { Box, TableCell, TableRow } from '@mui/material';
-import { styled } from '@mui/styles';
+import { styled, Box, TableCell, TableRow } from '@mui/material';
 
 import theme from 'themeSettings';
 
 export const Cell = styled(TableCell)({
   '&.MuiTableCell-root': {
     textAlign: 'left',
-    paddingTop: '0',
-    paddingBottom: '0',
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   '&.MuiTableCell-head': {
     color: '#6c6c6c',
     fontSize: '16px',
-    fontWeight: '400',
+    fontWeight: 400,
     lineHeight: '21px',
     paddingBottom: '30px',
     [theme.breakpoints.down('xl')]: {
@@ -22,7 +21,7 @@ export const Cell = styled(TableCell)({
   },
   '&.MuiTableCell-body': {
     fontSize: '18px',
-    fontWeight: '400',
+    fontWeight: 400,
     letterSpacing: '0.01em',
     color: '#131313',
     marginTop: '19px',
@@ -40,7 +39,7 @@ export const UserInfo = styled(Box)({
 });
 
 export const StackItem = styled('p')({
-  margin: '0',
+  margin: 0,
 });
 
 export const ImageWrapper = styled('div')({
@@ -58,8 +57,8 @@ export const UserName = styled('p')({
   whiteSpace: 'nowrap',
   lineHeight: '28px',
   color: theme.palette.text.primary,
-  margin: '0',
-  padding: '0',
+  margin: 0,
+  padding: 0,
   [theme.breakpoints.down('xl')]: {
     lineHeight: '21px',
   },

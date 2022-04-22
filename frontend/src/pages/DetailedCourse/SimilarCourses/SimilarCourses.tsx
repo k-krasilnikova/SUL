@@ -4,12 +4,12 @@ import { Grid } from '@mui/material';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { CustomButton } from 'components/Button/ButtonVariants/styled';
 import Course from 'components/Course';
-import { INFO } from 'constants/courseInfoTypes';
 import { SIMILAR_COURSES_TITLE } from 'constants/detailedCourse';
 import { PAGES } from 'constants/pages';
 import { CourseActionsWrapper } from 'pages/CoursesList/CourseActions/styled';
 import { ISimilarCourses } from 'types/detailedCourse';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
+import { Info } from 'enums/info';
 
 import {
   CourseActionsBox,
@@ -29,7 +29,7 @@ const SimilarCourses: React.FC<ISimilarCourses> = ({ commonCourseData, windowWid
           duration={convertDurationToString(commonCourseData.duration)}
           lessons={commonCourseData.lessons}
           windowWidth={windowWidth}
-          type={INFO.similarCourses}
+          type={Info.similarCourses}
           pageName={PAGES.detailed}
           imageUrl={commonCourseData.avatar}
         >

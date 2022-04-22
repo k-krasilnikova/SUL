@@ -1,6 +1,5 @@
+import { styled, Box, List, ListItem } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Box, List, ListItem } from '@mui/material';
-import styled from 'styled-components';
 
 import theme from 'themeSettings';
 
@@ -13,17 +12,17 @@ export const ProfileBox = styled('div')({
   display: 'flex',
   margin: '24px 0 92px 165px',
   [theme.breakpoints.down('xl')]: {
-    margin: '8px 0 50px 122px !important',
+    margin: '8px 0 50px 122px',
   },
   [theme.breakpoints.down('md')]: {
-    margin: '16px 0 50px 16px !important',
+    margin: '16px 0 50px 16px',
     width: '100%',
   },
 });
 
 export const AvatarWrapper = styled('div')({
   marginRight: '100px',
-  marginLeft: '0',
+  marginLeft: 0,
   width: '220px',
   [theme.breakpoints.down('lg')]: {
     width: '150px',
@@ -33,7 +32,7 @@ export const AvatarWrapper = styled('div')({
 
 export const EmployeeName = styled(ListItem)({
   fontSize: '24px',
-  fontWeight: '400',
+  fontWeight: 400,
   lineHeight: '28px',
   textAlign: 'left',
   marginBottom: '24px',
@@ -54,12 +53,12 @@ export const EmployeeName = styled(ListItem)({
 
 export const UserInfoList = styled(List)({
   color: '#2C2525',
-  fontWeight: '400',
+  fontWeight: 400,
   display: 'inline-block',
   verticalAlign: 'top',
   marginRight: '5px',
   '&.MuiList-root': {
-    padding: '0',
+    padding: 0,
     marginTop: '-10px',
   },
 });
@@ -67,7 +66,7 @@ export const UserInfoList = styled(List)({
 export const UserInfoLabel = styled('span')({
   width: '132px',
   fontSize: '18px',
-  fontWeight: '500',
+  fontWeight: 500,
   lineHeight: '23px',
   margin: 0,
   color: '#9b9b9b',
@@ -98,7 +97,7 @@ export const UserInfoText = styled('p')({
 });
 
 export const EmployeeInfoItem = styled(ListItem)({
-  alignItems: 'baseline !important',
+  alignItems: 'baseline',
 });
 
 export const UserInfoListItems = styled('div')<ShowOnMobile>(({ displayInfo }) => ({
@@ -125,6 +124,6 @@ export const StackItem = styled('p')({
   margin: '0 0 5px 0',
   fontSize: '18px',
   ':last-of-type': {
-    margin: '0',
+    margin: 0,
   },
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import ProgressBar from 'components/ProgressBar';
-import { SIZE } from 'constants/sizes';
 import { ITestProgress } from 'types/test';
+import { Size } from 'enums/sizes';
 
 import { ProgressBarBox } from './styled';
 
@@ -13,7 +13,7 @@ const ResultProgressBar: React.FC<ITestProgress> = ({
 }) => (
   <ProgressBarBox>
     <ProgressBar
-      size={SIZE.xlarge}
+      size={Size.xlarge}
       value={progressValue}
       text={progressText}
       variant={progressVariant}

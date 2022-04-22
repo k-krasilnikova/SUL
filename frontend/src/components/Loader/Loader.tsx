@@ -1,19 +1,20 @@
-import React from 'react';
 import { CircularProgress } from '@mui/material';
+import { FC } from 'react';
+
+import { TLoaderVariants } from 'enums/loader';
+import { TColorVariants } from 'types/muiTypes';
 
 import { LoaderBox } from './styled';
 
 interface ILoader {
-  color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'inherit';
-  type?: string;
+  color?: TColorVariants;
+  type?: TLoaderVariants;
 }
 
-const Loader: React.FC<ILoader> = ({ color, type }) => {
-  return (
-    <LoaderBox type={type}>
-      <CircularProgress color={color} />
-    </LoaderBox>
-  );
-};
+const Loader: FC<ILoader> = ({ color, type }) => (
+  <LoaderBox type={type}>
+    <CircularProgress color={color} />
+  </LoaderBox>
+);
 
 export default Loader;

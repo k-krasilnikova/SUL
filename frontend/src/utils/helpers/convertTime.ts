@@ -1,10 +1,5 @@
 import { NO_TIME, TO_MILLISECONDS_RATIO } from 'constants/time';
-
-interface ITime {
-  days: number;
-  hours: number;
-  minutes: number;
-}
+import { TimeProps } from 'types/time';
 
 export const convertTestTimeout = (sec: number): string => {
   const [SEC_IN_HOUR, SEC_IN_MIN] = [3600, 60];
@@ -62,12 +57,12 @@ export const makeLeftTime = (
   }
   const applyDate = new Date(date);
   return formatTimeout(
-    applyDate.setDate(applyDate.getDate() + timeout * TO_MILLISECONDS_RATIO) - Date.now(),
+    (applyDate.setDate(applyDate.getDate() + timeout) - Date.now()) / TO_MILLISECONDS_RATIO,
     format,
   );
 };
 
-export const convertRequestTime = (time?: ITime): string | undefined => {
+export const convertRequestTime = (time?: TimeProps): string | undefined => {
   let convertedTime;
   if (time && time.days > NO_TIME) {
     convertedTime = `${time.days} d`;

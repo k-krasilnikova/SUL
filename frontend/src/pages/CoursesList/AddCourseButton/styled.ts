@@ -1,4 +1,4 @@
-import { styled } from '@mui/styles';
+import { styled } from '@mui/material';
 
 import Button from 'components/Button';
 import theme from 'themeSettings';
@@ -24,6 +24,6 @@ export const AddButton = styled(Button)({
     height: '40px',
     fontSize: '14px',
     lineHeight: '16px',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+    boxShadow: '0 4px 4px rgba(0, 0, 0, 0.25)',
   },
 });
