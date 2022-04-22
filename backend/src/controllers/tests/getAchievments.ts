@@ -34,7 +34,7 @@ const getAchievments = async (
         (skill): skill is IUserSkill => !!skill,
       );
       const insertedUserSkills = await Promise.all(
-        newSkills.map(async (newSkill) => addUserSkill(userId, newSkill.skill)),
+        newSkills.map(async (newSkill) => addUserSkill(userId, newSkill)),
       );
 
       const updatedTechnologies = await specifyUserTechnologies(
