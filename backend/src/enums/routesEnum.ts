@@ -22,6 +22,7 @@ enum SubRoutes {
   getCourseTest = '/:id/test',
   startCourse = '/:id/start',
   updateCourse = '/:id/edit',
+  createCourse = '/create',
   getClientCourse = '/:id',
   getClientCourses = '',
   passCourseStage = '/:id',

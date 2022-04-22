@@ -7,7 +7,7 @@ export type TMaterial = {
   content: {
     _id: string;
     stage: number;
-    content: Array<string>;
+    content: IContentElement[];
     isCompleted: boolean;
   }[];
   technology: Array<string>;
@@ -40,6 +40,34 @@ export enum CoursesListType {
   COURSES = 'COURSES',
   CHECKED_COURSES = 'CHECKED_COURSES',
 }
+
+export interface CourseDuration {
+  days: number;
+  hours: number;
+  minutes: number;
+}
+
+export interface ICourses {
+  сoursesResponse: ICourse[];
+}
+
+export interface IMaterial {
+  _id: string;
+  stage: number;
+  content: IContentElement[];
+}
+
+export interface IContentElement {
+  type: ContentElementType;
+  material: string;
+}
+
+export enum ContentElementType {
+  video = 'video',
+  plain = 'plain',
+  presentation = 'presentation',
+}
+
 export interface ICourseMaterialsResponse {
   _id: string;
   materials: TMaterial['content'];
