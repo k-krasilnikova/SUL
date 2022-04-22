@@ -15,7 +15,8 @@ export interface IClientCourse {
   ];
   user: string;
   course: ICourse;
-  finishTestDate: string;
+  finishTestDate?: string;
+  startTestDate?: string;
   applyDate?: string;
 }
 
