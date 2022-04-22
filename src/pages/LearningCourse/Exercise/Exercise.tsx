@@ -1,9 +1,14 @@
-import { Code } from '@mui/icons-material';
 import { FC } from 'react';
 
 import { IMaterial } from 'types/course';
 
-import { CourseInfoWrapper, CourseInfoContent, CourseInfoTitle, CourseInfoText } from './styled';
+import {
+  CourseInfoWrapper,
+  CourseInfoContent,
+  CourseInfoTitle,
+  CourseInfoText,
+  CodeBlock,
+} from './styled';
 
 interface IExerciseProps {
   courseExersice: IMaterial['exercise'];
@@ -15,7 +20,11 @@ const Exercise: FC<IExerciseProps> = ({ isCourseInfoOpen, courseExersice }) => (
     <CourseInfoContent>
       <CourseInfoTitle>{courseExersice?.title}</CourseInfoTitle>
       <CourseInfoText>{courseExersice?.task}</CourseInfoText>
-      <Code>{courseExersice?.code}</Code>
+      {courseExersice?.code && (
+        <pre>
+          <CodeBlock>{courseExersice.code}</CodeBlock>
+        </pre>
+      )}
     </CourseInfoContent>
   </CourseInfoWrapper>
 );
