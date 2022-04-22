@@ -6,14 +6,16 @@ import {
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
-import { REQUIRED_PCT } from 'config/constants';
+import { CLIENT_COURSE_FIELDS, REQUIRED_PCT } from 'config/constants';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { checkTestDate } from 'utils/validation/checkTestDate';
+import { generateStartAndFinishTestDates } from 'utils/date/testDate';
+import { getTestProvider } from 'db/providers/testProvider';
 
 const startTest = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
-    const { status: courseStatus, testDate } = await getClientCourseProvider(clientCourseId);
+    const { status: courseStatus, finishTestDate } = await getClientCourseProvider(clientCourseId);
     const [{ currProgress: currentProgress }] = await getCurrentProgress(clientCourseId);
 
     if (courseStatus !== CourseStatus.started) {
@@ -26,11 +28,35 @@ const startTest = async (req: Request, res: Response, next: NextFunction) => {
       throw new BadRequestError("Can not start test till course stages haven't been passed.");
     }
 
-    if (testDate && !checkTestDate(testDate)) {
+    if (finishTestDate && !checkTestDate(finishTestDate)) {
       throw new BadRequestError('Your test is disabled.');
     }
 
-    await updateClientCourseField(clientCourseId, 'status', CourseStatus.testing);
+    const [
+      {
+        test: { timeout: testTimeSeconds },
+      },
+    ] = await getTestProvider(clientCourseId);
+
+    const [startTestDate, estimateFinishTestDate] =
+      generateStartAndFinishTestDates(testTimeSeconds);
+
+    await updateClientCourseField(
+      clientCourseId,
+      CLIENT_COURSE_FIELDS.startTestDate,
+      startTestDate,
+    );
+    await updateClientCourseField(
+      clientCourseId,
+      CLIENT_COURSE_FIELDS.finishTestDate,
+      estimateFinishTestDate,
+    );
+    await updateClientCourseField(
+      clientCourseId,
+      CLIENT_COURSE_FIELDS.status,
+      CourseStatus.testing,
+    );
+
     res.json('Test has been started successfully.');
   } catch (err) {
     next(err);

@@ -9,12 +9,17 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import { ICourse } from 'interfaces/Ientities/Icourses';
-import { ICourseWithStatus, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import {
+  ICourseWithStatus,
+  ICreateCourseBody,
+  IQueryCourses,
+} from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
 import ClientCourseModel from 'db/models/ClientCourses';
+import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
 
 interface ICourseWithStatusDb extends ICourse {
   status: [{ status?: string }];
@@ -198,7 +203,7 @@ const deleteCourseProvider = async (courseId: string) => {
   await ClientCourseModel.deleteMany({ course: courseId });
 };
 
-const updateCourseField = async (courseId: string, field: string, value: unknown) => {
+const updateCourseField = async (courseId: string, field: TCourseFields, value: unknown) => {
   const updatedCourse = await CourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { [field]: value } },
@@ -264,6 +269,7 @@ const getAllCoursesProvider = async (
     throw new BadRequestError('Invalid query.');
   }
 };
+const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
 
 export {
   getCoursesProvider,
@@ -273,4 +279,5 @@ export {
   getMaterialsProvider,
   deleteCourseProvider,
   updateCourseField,
+  addCourseProvider,
 };
