@@ -21,7 +21,11 @@ const getCoursesMap = async (
 
     const userStackWithStatuses = await fillStackWithStatuses(userStack, userId);
 
-    const responseCascade = generateCoursesMapResponse(userStackWithStatuses, userRank);
+    const responseCascade = await generateCoursesMapResponse(
+      userStackWithStatuses,
+      userRank,
+      userId,
+    );
 
     const filledResponse = addMissingCoursesMapElements(responseCascade);
 
