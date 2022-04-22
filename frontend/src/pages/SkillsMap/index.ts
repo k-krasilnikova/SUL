@@ -1,1 +1,1 @@
-export { default } from './SkillsMap';
+export { default } from './SkillsMapContainer';
