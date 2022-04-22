@@ -20,18 +20,23 @@ interface ICourseInfoProps {
 
 const CourseInfo: FC<ICourseInfoProps> = ({ duration, lessons, type }) => (
   <InfoContainer type={type}>
-    <InfoItem>
-      <DurationIcon alt="lessons" src={clock} />
-      <InfoItemTextBox>
-        <InfoItemText>{duration}</InfoItemText>
-      </InfoItemTextBox>
-    </InfoItem>
-    <InfoItem>
-      <LessonsIcon alt="lessons" src={videoPlayer} />
-      <InfoItemTextBox>
-        <InfoItemText>{`${lessons} lessons`}</InfoItemText>
-      </InfoItemTextBox>
-    </InfoItem>
+    {duration && (
+      <InfoItem>
+        <DurationIcon alt="lessons" src={clock} />
+        <InfoItemTextBox>
+          <InfoItemText>{duration}</InfoItemText>
+        </InfoItemTextBox>
+      </InfoItem>
+    )}
+
+    {lessons && (
+      <InfoItem>
+        <LessonsIcon alt="lessons" src={videoPlayer} />
+        <InfoItemTextBox>
+          <InfoItemText>{`${lessons} lessons`}</InfoItemText>
+        </InfoItemTextBox>
+      </InfoItem>
+    )}
   </InfoContainer>
 );
 
