@@ -1,10 +1,10 @@
 import mongoose, { ObjectId } from 'mongoose';
 
 import ClientCourseModel from 'db/models/ClientCourses';
-import { ITest, TestDb } from 'interfaces/Ientities/Itest';
 import TestModel from 'db/models/Tests';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import CourseModel from 'db/models/Course';
+import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import { ITest, TestDb } from 'interfaces/Ientities/Itest';
 
 const getTestProvider = async (courseId: string) => {
   const test: TestDb[] = await ClientCourseModel.aggregate([
@@ -88,4 +88,18 @@ const getCourseTest = async (courseId: string | ObjectId): Promise<ITest> => {
   return test as unknown as ITest;
 };
 
-export { getTestProvider, getTestById, getTrueAnswersProvider, updateTestQuestions, getCourseTest };
+const addCourseTest = async (testData: ITest, questions: ITest['questions']) =>
+  TestModel.create({
+    title: testData.title,
+    questions,
+    timeout: testData.timeout,
+  });
+
+export {
+  getTestProvider,
+  getTestById,
+  getTrueAnswersProvider,
+  updateTestQuestions,
+  getCourseTest,
+  addCourseTest,
+};
