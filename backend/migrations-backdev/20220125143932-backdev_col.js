@@ -1486,13 +1486,14 @@ module.exports = {
   },
 
   async down(db) {
-    await db.collection('courses').drop();
-    await db.collection('skillGroups').drop();
-    await db.collection('skills').drop();
-    await db.collection('tests').drop();
-    await db.collection('clientCourses').drop();
-    await db.collection('users').drop();
-    await db.collection('userSkills').drop();
-    await db.collection('stackMembers').drop();
+    await db.dropCollection('courses');
+    await db.dropCollection('skillGroups');
+    await db.dropCollection('skills');
+    await db.dropCollection('tests');
+    await db.dropCollection('clientCourses');
+    await db.dropCollection('users');
+    await db.dropCollection('userSkills');
+    await db.dropCollection('stackMembers');
+    await db.dropCollection('accessTokenBlacklist');
   },
 };
