@@ -13,11 +13,11 @@ interface IQueryCourses {
   nPerPage?: number;
 }
 
-interface ICourseStatus extends ICourse {
+interface ICourseWithStatus extends ICourse {
   status?: string;
 }
 
-interface ICourseInfo extends Omit<ICourseStatus, 'materials'> {
+interface ICourseInfo extends Omit<ICourseWithStatus, 'materials'> {
   duration: ICourseDuration;
   lessons: number;
   materials: undefined;
@@ -81,7 +81,7 @@ type ICourseInfoPopulated = ICourseInfo & { technologies: ISkill[] };
 
 export {
   IQueryCourses,
-  ICourseStatus,
+  ICourseWithStatus,
   ICourseInfo,
   ICoursePopulated,
   ICourseInfoPopulated,

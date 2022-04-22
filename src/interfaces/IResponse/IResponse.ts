@@ -1,4 +1,10 @@
-import { IStackMember } from '../Ientities/IStackMember';
+import { UserRank } from 'enums/users';
+
+import {
+  IStackMember,
+  IUserStackMemberDatabase,
+  TUserStackMemberShort,
+} from '../Ientities/IStackMember';
 import { ICourse } from '../Ientities/Icourses';
 import { IClientCourse } from '../Ientities/IclientCourses';
 import { ITechnologyGroup, IUser, TUserPopulated } from '../Ientities/Iusers';
@@ -29,7 +35,7 @@ interface IEmployeeInfo
   > {
   courses: IEmployeeClientCourse[];
   technologies: ITechnologyGroup[];
-  stack: Pick<IStackMember, 'name'>[];
+  stack: TUserStackMemberShort[];
 }
 
 interface IEmployeeShortInfo
@@ -49,6 +55,29 @@ interface ITestResultResponse {
   percentage: number;
 }
 
+interface ICoursesMapResponse {
+  userRank: UserRank;
+  stackMap: IStackMapElement[];
+}
+
+interface IStackMapElement {
+  stack: IStackMember['name'];
+  isPrimary: IUserStackMemberDatabase['isPrimary'];
+  coursesMap: ICoursesMapElement[];
+}
+
+interface ICoursesMapElement {
+  rank: UserRank;
+  courses: ICourseShortInfo[];
+}
+
+interface ICourseShortInfo {
+  _id: ICourse['_id'];
+  title: ICourse['title'];
+  avatar: ICourse['avatar'];
+  isCompleted: boolean;
+}
+
 type TEmployeeCourse = Pick<ICourse, 'title' | 'avatar'>;
 
 type TLocalsManager = ILocals;
@@ -60,6 +89,10 @@ export {
   IEmployeeInfo,
   IEmployeeShortInfo,
   IEmployeeClientCourse,
+  ICoursesMapResponse,
   TEmployeeCourse,
   ITestResultResponse,
+  ICourseShortInfo,
+  ICoursesMapElement,
+  IStackMapElement,
 };

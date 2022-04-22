@@ -1350,9 +1350,10 @@ module.exports = {
       DEFAULT_USERS_DOCS.map(async (doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
-        const stack = doc.stack.map(
-          (memberName) => stackMembers.filter((member) => member.name === memberName)[0].insertedId,
-        );
+        const stack = doc.stack.map((memberName, index) => ({
+          member: stackMembers.filter((member) => member.name === memberName)[0].insertedId,
+          isPrimary: index === 0,
+        }));
         const newUserDoc = { ...doc, stack };
         return { ...(await db.collection('users').insertOne(newUserDoc)), username: doc.username };
       }),
@@ -1362,9 +1363,10 @@ module.exports = {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
         doc.managerId = users[1].insertedId;
-        const stack = doc.stack.map(
-          (memberName) => stackMembers.filter((member) => member.name === memberName)[0].insertedId,
-        );
+        const stack = doc.stack.map((memberName, index) => ({
+          member: stackMembers.filter((member) => member.name === memberName)[0].insertedId,
+          isPrimary: index === 0,
+        }));
         const newUserDoc = { ...doc, stack };
         return { ...(await db.collection('users').insertOne(newUserDoc)), username: doc.username };
       }),

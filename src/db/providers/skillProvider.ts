@@ -164,7 +164,10 @@ const populateUserTechnologies = async (employee: IUser): Promise<IUser> =>
   ]);
 
 const populateUserStack = async (user: IUser): Promise<IUser> =>
-  UserModel.populate(user, { path: 'stack', select: '-_id name' });
+  UserModel.populate(user, {
+    path: 'stack',
+    populate: { path: 'member', model: 'StackMember', select: '-_id name' },
+  });
 
 const skillsExist = async (ids?: string[] | ObjectId[]): Promise<boolean> => {
   if (!ids) {
