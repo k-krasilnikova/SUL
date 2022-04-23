@@ -14,9 +14,6 @@ const EmployeeCourses: React.FC<IEmployeeCourses> = ({
   checkSpace,
   checkPastedValue,
   searchCourse,
-  isShown,
-  showCourseInfo,
-  hideCourseInfo,
 }) => (
   <CoursesBox>
     <Suspense fallback={<Loader color="primary" type={Loaders.component} />}>
@@ -26,12 +23,7 @@ const EmployeeCourses: React.FC<IEmployeeCourses> = ({
         checkPastedValue={checkPastedValue}
         searchCourse={searchCourse}
       />
-      <EmployeeCoursesList
-        courses={courses}
-        isShown={isShown}
-        showCourseInfo={showCourseInfo}
-        hideCourseInfo={hideCourseInfo}
-      />
+      <EmployeeCoursesList courses={courses} />
     </Suspense>
   </CoursesBox>
 );
