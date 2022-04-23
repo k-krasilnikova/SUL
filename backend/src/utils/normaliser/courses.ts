@@ -1,4 +1,4 @@
-import { Dictionary, groupBy, pullAll, sortBy } from 'lodash';
+import { Dictionary, groupBy, orderBy, pullAll, sortBy } from 'lodash';
 import { ObjectId } from 'mongoose';
 
 import CourseStatus from 'enums/coursesEnums';
@@ -135,10 +135,32 @@ const fillStackWithStatuses = async (
     }),
   );
 
+const sortCoursesMapElement = (mapElement: ICoursesMapElement): ICoursesMapElement => ({
+  ...mapElement,
+  courses: sortBy(mapElement.courses, ['isCompleted', 'title']),
+});
+
+const sortCoursesMap = (coursesMap: ICoursesMapElement[]): ICoursesMapElement[] =>
+  coursesMap.map(sortCoursesMapElement);
+
+const sortStackMapElement = (stackMapElement: IStackMapElement): IStackMapElement => ({
+  ...stackMapElement,
+  coursesMap: sortCoursesMap(stackMapElement.coursesMap),
+});
+
+const sortStackMap = (stackMap: IStackMapElement[]): IStackMapElement[] =>
+  orderBy(stackMap, ['isPrimary', 'stack'], ['desc', 'asc']);
+
+const sortCoursesMapResponse = (mapResponse: ICoursesMapResponse): ICoursesMapResponse => ({
+  ...mapResponse,
+  stackMap: sortStackMap(mapResponse.stackMap.map(sortStackMapElement)),
+});
+
 export {
   shortifyCourseInfo,
   shortifyCourses,
   generateCoursesMapResponse,
   addMissingCoursesMapElements,
   fillStackWithStatuses,
+  sortCoursesMapResponse,
 };
