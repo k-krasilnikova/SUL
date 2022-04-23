@@ -101,4 +101,5 @@ export interface ICourseShortInfo {
   avatar: string;
   title: string;
   isCompleted: boolean;
+  clientCourseId?: string;
 }
