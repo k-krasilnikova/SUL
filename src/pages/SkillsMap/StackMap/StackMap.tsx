@@ -12,7 +12,7 @@ const StackMap: FC<IStackMapProps> = ({ coursesMapResponce }) => {
     <>
       {stackMap?.map(
         ({ stack: stackName, coursesMap: courseMapForCurrentStack, isPrimary: isPrimaryStack }) => (
-          <StackWrapper>
+          <StackWrapper key={stackName}>
             <StackName>{stackName}</StackName>
             <CourseMapWrapper>
               <CourseMapForCurrentStack
