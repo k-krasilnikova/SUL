@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
 import { NO_COURSES } from 'constants/messages';
-import { TCoursesListProps } from 'pages/SkillsMap/types';
+import { ICoursesListProps } from 'pages/SkillsMap/types';
 
 import Course from './Course';
 import { NoCoursesText } from './styled';
 
-const CoursesList: FC<TCoursesListProps> = ({ courses }) => (
+const CoursesList: FC<ICoursesListProps> = ({ courses }) => (
   <>
     {courses.length ? (
       <>

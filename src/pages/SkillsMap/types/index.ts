@@ -2,11 +2,9 @@ import { BaseSyntheticEvent } from 'react';
 
 import { ICoursesMapResponse, ICourseShortInfo, ICoursesMapElement } from 'types/course';
 
-export interface ICoursesListContainerProps {
+export interface ICoursesListProps {
   courses: ICourseShortInfo[];
 }
-
-export type TCoursesListProps = ICoursesListContainerProps;
 
 export interface IStackMapProps {
   coursesMapResponce?: ICoursesMapResponse;
