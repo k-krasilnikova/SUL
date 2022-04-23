@@ -7,6 +7,7 @@ import { IEmployeeCoursesList } from 'types/employee';
 import { setFirstLetterUppercase } from 'utils/helpers/setFirstLetterUppercase';
 import { convertEmployeeCourseProgress } from 'utils/helpers/convertCourseStatusToProgress';
 import { Size } from 'enums/sizes';
+import CourseItemTitle from './CourseItemTitle';
 
 import {
   CourseItemText,
@@ -14,17 +15,10 @@ import {
   CoursesList,
   CoursesListItem,
   CourseStatus,
-  CourseTitle,
-  HoverCourseTitle,
   NoCourses,
 } from './styled';
 
-const EmployeeCoursesList: React.FC<IEmployeeCoursesList> = ({
-  courses,
-  isShown,
-  showCourseInfo,
-  hideCourseInfo,
-}) => (
+const EmployeeCoursesList: React.FC<IEmployeeCoursesList> = ({ courses }) => (
   <CoursesList>
     {courses?.length ? (
       courses.map((course, id, coursesArray) => {
@@ -35,10 +29,7 @@ const EmployeeCoursesList: React.FC<IEmployeeCoursesList> = ({
             <CoursesListItem>
               <ProgressBar size={Size.small} value={progressValue} variant={progressVariant} />
               <CourseItemText>
-                <CourseTitle onMouseEnter={showCourseInfo} onMouseLeave={hideCourseInfo}>
-                  {course.course.title.slice(0, 40)}
-                </CourseTitle>
-                {isShown && <HoverCourseTitle> {course.course.title}</HoverCourseTitle>}
+                <CourseItemTitle title={course.course.title} />
                 <CourseStatus>{setFirstLetterUppercase(course.status)}</CourseStatus>
               </CourseItemText>
             </CoursesListItem>
