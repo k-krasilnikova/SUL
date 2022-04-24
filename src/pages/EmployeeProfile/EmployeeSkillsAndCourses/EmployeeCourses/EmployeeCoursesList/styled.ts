@@ -14,6 +14,12 @@ export const CoursesList = styled('div')({
   },
 });
 
+export const CourseListItemWrapper = styled('div')({
+  '&:last-child .MuiDivider-root': {
+    display: 'none',
+  },
+});
+
 export const CoursesListItem = styled('div')({
   display: 'flex',
   alignItems: 'center',
@@ -26,9 +32,6 @@ export const CoursesListItem = styled('div')({
   fontWeight: 400,
   margin: '24px 0 16px 63px',
   padding: '15px',
-  '&:last-child .MuiDivider-root': {
-    display: 'none',
-  },
   [theme.breakpoints.down('xl')]: {
     margin: '8px 0',
     padding: '8px',

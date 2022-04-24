@@ -15,6 +15,7 @@ import {
   CourseItemText,
   CoursesDivider,
   CoursesListItem,
+  CourseListItemWrapper,
   CourseStatus,
   NoCourses,
 } from './styled';
@@ -27,11 +28,10 @@ const EmployeeCoursesList: FC<IEmployeeCoursesList> = ({
 }) => (
   <CoursesList>
     {courses?.length ? (
-      courses.map((course, id, coursesArray) => {
-        const isDividerVisible = id < coursesArray.length - 1;
+      courses.map((course) => {
         const { progressValue, progressVariant } = convertEmployeeCourseProgress(course.status);
         return (
-          <div key={course.course.title}>
+          <CourseListItemWrapper key={course.course.title}>
             <CoursesListItem>
               <ProgressBar size={Size.small} value={progressValue} variant={progressVariant} />
               <CourseItemText>
@@ -44,8 +44,8 @@ const EmployeeCoursesList: FC<IEmployeeCoursesList> = ({
                 <CourseStatus>{setFirstLetterUppercase(course.status)}</CourseStatus>
               </CourseItemText>
             </CoursesListItem>
-            {isDividerVisible && <CoursesDivider />}
-          </div>
+            <CoursesDivider />
+          </CourseListItemWrapper>
         );
       })
     ) : (
