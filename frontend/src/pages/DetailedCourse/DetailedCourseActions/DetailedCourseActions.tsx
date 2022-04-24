@@ -36,19 +36,19 @@ const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
       />
     </CourseInfoBox>
     {isAdmin && <DeleteCourseButton />}
-    {!isAdmin &&
-      (page === PAGES.coursesList ? (
-        <CustomButton
-          color="primary"
-          variant={isLoading ? 'mediumOutlined' : 'mediumContained'}
-          disabled={isLoading}
-          onClick={handleApplyCourse}
-        >
-          {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.applyCourse}
-        </CustomButton>
-      ) : (
-        <ButtonsWrapper>
-          {!isCourseCompleted && (
+    {!isAdmin && (
+      <ButtonsWrapper>
+        {page === PAGES.coursesList ? (
+          <CustomButton
+            color="primary"
+            variant={isLoading ? 'mediumOutlined' : 'mediumContained'}
+            disabled={isLoading}
+            onClick={handleApplyCourse}
+          >
+            {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.applyCourse}
+          </CustomButton>
+        ) : (
+          !isCourseCompleted && (
             <ActionButton
               label={COURSE_LABELS[status]}
               status={status}
@@ -57,9 +57,10 @@ const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
               courseId={id}
               applyDate={clientCourseData?.applyDate}
             />
-          )}
-        </ButtonsWrapper>
-      ))}
+          )
+        )}
+      </ButtonsWrapper>
+    )}
   </DetailedCourseActionsBox>
 );
 

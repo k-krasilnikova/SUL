@@ -32,34 +32,39 @@ export const EmployeeButtonGroup = styled(ButtonGroup)({
 });
 
 export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({ isOpened }) => ({
-  backgroundColor: '#FFF',
-  color: '#000',
-  fontSize: '16px',
-  fontWeight: 400,
-  width: '135px',
-  height: '40px',
-  borderRadius: '4px 4px 0 0',
-  border: '1px solid #0000001A',
-  padding: 0,
-  ...(isOpened && {
-    width: '146px',
-    height: '44px',
-  }),
-  [theme.breakpoints.down('xl')]: {
-    height: '36px',
+  '&.MuiButton-root': {
+    background: '#FFF',
+    color: '#000',
+    fontSize: '16px',
+    fontWeight: 400,
+    width: '135px',
+    height: '40px',
+    letterSpacing: '-0.62px',
+    padding: 0,
     ...(isOpened && {
-      height: '40px',
+      width: '146px',
+      height: '44px',
     }),
-  },
-  [theme.breakpoints.down('lg')]: {
-    fontSize: '14px',
-    height: '28px',
-    width: '90px',
-    paddingTop: '3px',
-    ...(isOpened && {
-      width: '100px',
-      height: '32px',
-    }),
+    '&.MuiButtonGroup-grouped': {
+      border: '1px solid #0000001A',
+      borderRadius: '4px 4px 0 0',
+    },
+    [theme.breakpoints.down('xl')]: {
+      height: '36px',
+      ...(isOpened && {
+        height: '40px',
+      }),
+    },
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '14px',
+      height: '28px',
+      width: '90px',
+      paddingTop: '3px',
+      ...(isOpened && {
+        width: '100px',
+        height: '32px',
+      }),
+    },
   },
 }));
 

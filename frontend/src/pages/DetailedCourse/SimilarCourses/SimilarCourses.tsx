@@ -8,7 +8,6 @@ import { CustomButton } from 'components/Button/ButtonVariants/styled';
 import Course from 'components/Course';
 import { DEFAULT_DISPLAYING_COURSES, SIMILAR_COURSES_TITLE } from 'constants/detailedCourse';
 import { PAGES } from 'constants/pages';
-import { CourseActionsWrapper } from 'pages/CoursesList/CourseActions/styled';
 import { ISimilarCourses } from 'types/detailedCourse';
 import { Info } from 'enums/info';
 import transformRoute from 'utils/helpers/paths/transformRoute';
@@ -16,6 +15,7 @@ import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import {
   CourseActionsBox,
+  CourseActionsWrapper,
   SimilarCoursesItemWrapper,
   SimilarCoursesTitle,
   SimilarCoursesWrapper,
