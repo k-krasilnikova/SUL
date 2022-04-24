@@ -26,6 +26,9 @@ export const CoursesListItem = styled('div')({
   fontWeight: 400,
   margin: '24px 0 16px 63px',
   padding: '15px',
+  '&:last-child .MuiDivider-root': {
+    display: 'none',
+  },
   [theme.breakpoints.down('xl')]: {
     margin: '8px 0',
     padding: '8px',
