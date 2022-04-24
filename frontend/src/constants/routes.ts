@@ -46,6 +46,7 @@ export const API: {
   getProfile: string;
   getToken: string;
   courses: string;
+  coursesMap: string;
   getCoursesRequests: string;
   getEmployeesList: string;
   approveRequest: string;
@@ -59,6 +60,7 @@ export const API: {
   getProfile: '/api/users',
   getToken: '/api/account/login',
   courses: '/api/courses',
+  coursesMap: '/api/courses/map',
   getCoursesRequests: '/api/pendingCourses',
   getEmployeesList: '/api/employees',
   approveRequest: '/api/pendingCourses/approveCourse',

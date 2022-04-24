@@ -1,8 +1,9 @@
-import { ICourse } from './course';
 import { TGroupedSkills, Technologies } from './skill';
 import { Notification } from './notification';
+import { IClientCourse } from './clientCourse';
 
-export interface User {
+export interface IUser {
+  _id?: string;
   firstName?: string;
   lastName?: string;
   role?: string;
@@ -15,9 +16,11 @@ export interface User {
   phone?: string;
   skype?: string;
   position?: string;
-  courses?: ICourse[];
+  courses?: IClientCourse[];
   handleLogOut?: () => void;
   technologies?: Technologies;
   notifications?: Notification[];
   skills?: TGroupedSkills;
 }
+
+export type TRequestedUser = Pick<IUser, '_id' | 'avatar' | 'firstName' | 'lastName' | 'position'>;

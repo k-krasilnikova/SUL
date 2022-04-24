@@ -4,9 +4,10 @@ import { shortifyCourseDescription } from 'utils/helpers/shortifyCourseDescripti
 import { convertCourseStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
 
 import { checkIcon } from 'icons';
-import { COURSE_STATUSES } from 'constants/statuses';
 import { PAGES } from 'constants/pages';
-import { SIZE } from 'constants/sizes';
+import { Size } from 'enums/sizes';
+import { CourseStatus } from 'enums/course';
+import { Info } from 'enums/info';
 
 import CourseInfo from './CourseInfo';
 import {
@@ -24,20 +25,20 @@ import {
 import CourseButtons from './CourseButtons';
 import ProgressBar from '../ProgressBar';
 
-interface Props {
+interface IProps {
   description: string;
   title?: string;
   duration?: string;
   lessons?: number;
-  status?: string;
+  status?: CourseStatus;
   pageName?: string;
   windowWidth?: string;
-  type?: string;
+  type?: Info;
   imageUrl?: string;
   courseRef?: (node?: Element | null) => void;
 }
 
-const Course: React.FC<Props> = ({
+const Course: React.FC<IProps> = ({
   title,
   description,
   duration,
@@ -63,16 +64,16 @@ const Course: React.FC<Props> = ({
         <MobileCourseInfoBox>
           <CourseInfo duration={duration} lessons={lessons} />
         </MobileCourseInfoBox>
-        {status === COURSE_STATUSES.completed && (
+        {status === CourseStatus.completed && (
           <MobileCourseCompleted>
             Completed <img alt="" src={checkIcon} />
           </MobileCourseCompleted>
         )}
       </CourseTextContainer>
-      {pageName === PAGES.myCourses && status !== COURSE_STATUSES.completed && (
+      {pageName === PAGES.myCourses && status !== CourseStatus.completed && (
         <MobileCourseProgress>
           <ProgressBar
-            size={SIZE.medium}
+            size={Size.medium}
             text={convertCourseStatusToProgress(status).progressText}
             value={convertCourseStatusToProgress(status).progressValue}
             variant={convertCourseStatusToProgress(status).progressVariant}

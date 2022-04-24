@@ -1,7 +1,7 @@
 import mongoose, { ObjectId } from 'mongoose';
 
 import { IProgress, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
+import { IClientCoursePopulated, TClientCourseFields } from 'interfaces/Ientities/IclientCourses';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -134,7 +134,11 @@ const getCurrentProgress = async (clientCourseId: string) => {
   return progress;
 };
 
-const updateClientCourseField = async (courseId: string, field: string, value: unknown) => {
+const updateClientCourseField = async (
+  courseId: string,
+  field: TClientCourseFields,
+  value: unknown,
+) => {
   const updatedCourse = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { [field]: value } },
@@ -170,15 +174,15 @@ const checkNotDeleteCoursesProvider = async (courseId: string) => {
   );
 
   if (notDeleteCourses) {
-    throw new BadRequestError('The course has already started or is being tested for some people');
+    throw new BadRequestError('The course has already started or is being tested for some people.');
   }
 };
 
 const assignCourseToEmployee = async (
-    assignTo: string | ObjectId,
-    courseId: string | ObjectId,
-    progressDto: IProgress[],
-    withAssessment?: boolean,
+  assignTo: string | ObjectId,
+  courseId: string | ObjectId,
+  progressDto: IProgress[],
+  withAssessment?: boolean,
 ) => {
   const createdDoc = await ClientCourseModel.create({
     user: assignTo,

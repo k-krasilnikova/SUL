@@ -3,9 +3,9 @@ import { ObjectId } from 'mongoose';
 import { UserRank } from 'enums/users';
 
 import { ICourse } from './Icourses';
-import { TCourseStatus } from './IclientCourses';
+import { IClientCourse } from './IclientCourses';
 import { IUserSkillPopulated } from './IUserSkill';
-import { IStackMember } from './IStackMember';
+import { IUserStackMemberDatabase } from './IStackMember';
 import { ITimePeriod } from '../common/datetime';
 import { TUserPosition, TUserRole } from '../common/users';
 
@@ -23,7 +23,7 @@ type TCourseForPendingCourses = Pick<ICourse, 'title' | 'avatar'>;
 interface IPendingCourse {
   user: TUserForPendingCourses;
   course: TCourseForPendingCourses;
-  status: TCourseStatus;
+  status: IClientCourse['status'];
   date?: Date;
   elapsed?: ITimePeriod;
 }
@@ -41,7 +41,7 @@ interface IUser {
   rank: UserRank;
   firstName: string;
   lastName: string;
-  stack: IStackMember[];
+  stack: IUserStackMemberDatabase[];
   technologies: ITechnologyGroup[];
   courses: ObjectId[];
   group: string;

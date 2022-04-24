@@ -1,32 +1,32 @@
 import { useCallback } from 'react';
 import { useParams } from 'react-router';
 
-import { COURSE_STATUSES } from 'constants/statuses';
-import { ClientCourse } from 'types/clientCourse';
-import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import { useToggle } from 'hooks';
 import { useGetTestTime, useStartCourseTest } from 'api/test';
 import checkTestDate from 'utils/helpers/checkTestDate';
-import { useToggle } from 'hooks';
+import { isProgressCompleted } from 'utils/helpers/isTestEnable';
+import { IClientCourse } from 'types/clientCourse';
+import { CourseStatus } from 'enums/course';
 
 import StartTestDialog from './StartTestDialog';
 
-type IncomingProps = {
+type TIncomingProps = {
   timeout?: number;
-  status?: string;
-  progress?: ClientCourse['progress'];
-  testDate?: string;
+  status?: CourseStatus;
+  progress?: IClientCourse['progress'];
+  finishTestDate?: string;
 };
 
 const withStartTest =
-  <T extends IncomingProps>(Component: React.ComponentType<T>) =>
+  <T extends TIncomingProps>(Component: React.ComponentType<T>) =>
   (props: T): JSX.Element => {
     const { courseId } = useParams();
 
-    const { progress, testDate, status, timeout } = props;
+    const { progress, finishTestDate, status, timeout } = props;
     const [isOpen, setOpen] = useToggle();
 
     const { mutate: startTestMutate } = useStartCourseTest(courseId);
-    const { data: testTimeout } = useGetTestTime({ courseId, enabled: isOpen });
+    const { data: testTimeoutData } = useGetTestTime({ courseId, enabled: isOpen });
 
     const handleStartTest = () => {
       startTestMutate(courseId);
@@ -35,12 +35,12 @@ const withStartTest =
     const isTestDisabled = useCallback(
       () =>
         (status &&
-          [COURSE_STATUSES.completed, COURSE_STATUSES.testing, COURSE_STATUSES.assessment].includes(
+          [CourseStatus.completed, CourseStatus.testing, CourseStatus.assessment].includes(
             status,
           )) ||
-        !checkTestDate(testDate, timeout) ||
+        !checkTestDate(finishTestDate, timeout) ||
         !isProgressCompleted(progress),
-      [progress, status, testDate, timeout],
+      [progress, status, finishTestDate, timeout],
     );
 
     return (
@@ -49,7 +49,7 @@ const withStartTest =
         <StartTestDialog
           handleStartTest={handleStartTest}
           isOpened={isOpen}
-          testTimeout={testTimeout}
+          testTimeout={testTimeoutData}
           handleClose={setOpen}
         />
       </>

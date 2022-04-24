@@ -4,25 +4,29 @@ import { useToggle } from 'hooks';
 import { TIME_FORMAT } from 'constants/time';
 import { makeLeftTime } from 'utils/helpers/convertTime';
 
-type IncomingProps = {
+type TIncomingProps = {
   timeout: number;
   applyDate?: string;
-  testDate?: string;
+  finishTestDate?: string;
 };
 
 const withTimeLeft =
-  <T extends IncomingProps>(Component: React.ComponentType<T>) =>
+  <T extends TIncomingProps>(Component: React.ComponentType<T>) =>
   (props: T): JSX.Element => {
     const [isTimeVisible, setTimeVisible] = useToggle();
     const [time, setTime] = useState<string | undefined>();
-    const { applyDate, testDate, timeout } = props;
+    const { applyDate, finishTestDate, timeout } = props;
     useEffect(() => {
-      if (applyDate || testDate) {
+      if (applyDate || finishTestDate) {
         setTime(
-          makeLeftTime(applyDate || testDate, `${TIME_FORMAT.days}:${TIME_FORMAT.hours}`, timeout),
+          makeLeftTime(
+            applyDate || finishTestDate,
+            `${TIME_FORMAT.days}:${TIME_FORMAT.hours}`,
+            timeout,
+          ),
         );
       }
-    }, [applyDate, testDate, timeout]);
+    }, [applyDate, finishTestDate, timeout]);
 
     return (
       <div onMouseEnter={setTimeVisible} onMouseLeave={setTimeVisible}>

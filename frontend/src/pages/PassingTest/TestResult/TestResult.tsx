@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import Loader from 'components/Loader';
@@ -6,7 +6,6 @@ import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
 import { TEST_RESULT_TEXT } from 'constants/test';
-import { ITestResult } from 'types/test';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import {
@@ -19,8 +18,9 @@ import {
 } from './styled';
 import ResultProgressBar from './ResultProgressBar';
 import ResultDescription from './ResultDescription';
+import { ITestResultPageProps } from './types';
 
-const TestResult: React.FC<ITestResult> = ({
+const TestResult: FC<ITestResultPageProps> = ({
   assessment,
   isLoading,
   isFailed,

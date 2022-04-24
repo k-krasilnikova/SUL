@@ -3,11 +3,11 @@ import 'react-circular-progressbar/dist/styles.css';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 
 import { PROGRESS_COLOR, TEXT_COLOR, TRAIL_COLOR, VARIANTS } from 'constants/progressBar';
-import { ProgressProps } from 'types/progressBar';
+import { IProgressProps } from 'types/progressBar';
 
 import { ProgressBarBox } from './styled';
 
-const ProgressBar: React.FC<ProgressProps> = ({
+const ProgressBar: React.FC<IProgressProps> = ({
   value,
   color,
   textColor,
