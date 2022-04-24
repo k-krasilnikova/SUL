@@ -4,7 +4,7 @@ import StartTestButton from 'components/Button/ButtonVariants/StartTestButton';
 import { CustomButton } from 'components/Button/ButtonVariants/styled';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { TEST_DISABLE_DAYS } from 'constants/time';
-import { ClientCourse } from 'types/clientCourse';
+import { IClientCourse } from 'types/clientCourse';
 
 import { ActionButtonWrapper } from './styled';
 
@@ -12,7 +12,7 @@ interface IProps {
   isTestEnabled: boolean;
   isLoading: boolean;
   handleStageForward: () => void;
-  clientCourse?: ClientCourse;
+  clientCourse?: IClientCourse;
 }
 
 const ActionButton: FC<IProps> = ({
@@ -21,14 +21,14 @@ const ActionButton: FC<IProps> = ({
   clientCourse,
   handleStageForward,
 }) => {
-  const { status, testDate, progress } = clientCourse || {};
+  const { status, finishTestDate, progress } = clientCourse || {};
 
   return (
     <ActionButtonWrapper>
       {isTestEnabled ? (
         <StartTestButton
           status={status}
-          testDate={testDate}
+          finishTestDate={finishTestDate}
           progress={progress}
           timeout={TEST_DISABLE_DAYS}
         />

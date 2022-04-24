@@ -3,6 +3,7 @@ export const MIN_STAGE = 1;
 export const STAGE_CHANGE = 1;
 export const PERCENTAGE = 100;
 export const NOTHING = 0;
+export const MIN_TEST_DURATION = 0;
 
 export const TEST_RESULT_TEXT = {
   failed: 'Test failed',

@@ -1,27 +1,29 @@
-import React from 'react';
+import { FC } from 'react';
 
 import Loader from 'components/Loader';
 import NoContent from 'components/NoContent';
 import { AuthorizedLayout } from 'components/Layout';
-import { LOADER } from 'constants/loaderTypes';
+import { IRequest } from 'types/request';
 import { NO_REQUESTS } from 'constants/messages';
-import { IRequestsProps } from 'types/request';
+import { Loaders } from 'enums/loader';
 
 import RequestItem from './RequestItem';
 import { RequestsWrapper } from './styled';
 
-const Requests: React.FC<IRequestsProps> = ({
-  requests,
-  isLoading,
-  targetId,
-  approveRequest,
-  approveLoading,
-  declineRequest,
-  declineLoading,
-}) => (
+interface IRequestsProps {
+  approveRequest: (requestId: string) => void;
+  declineRequest: (requestId: string) => void;
+  approveLoading: boolean;
+  declineLoading: boolean;
+  isLoading?: boolean;
+  targetId?: string;
+  requests?: IRequest[];
+}
+
+const Requests: FC<IRequestsProps> = ({ requests, isLoading, targetId, ...props }) => (
   <AuthorizedLayout pageName="Requests">
     {isLoading ? (
-      <Loader color="primary" type={LOADER.content} />
+      <Loader color="primary" type={Loaders.content} />
     ) : requests?.length ? (
       <RequestsWrapper container>
         {requests.map((request) => {
@@ -30,12 +32,8 @@ const Requests: React.FC<IRequestsProps> = ({
             <RequestItem
               key={request._id}
               request={request}
-              approveRequest={approveRequest}
-              approveLoading={approveLoading}
-              declineRequest={declineRequest}
-              declineLoading={declineLoading}
               isTargetRequest={isTargetRequest}
-              status={request.status}
+              {...props}
             />
           );
         })}
