@@ -6,7 +6,7 @@ import { Loaders } from 'enums/loader';
 
 import { CoursesBox } from './styled';
 import SearchEmployeeCourse from './SearchEmployeeCourse';
-import EmployeeCoursesListContainer from './EmployeeCoursesList';
+import EmployeeCoursesList from './EmployeeCoursesList';
 
 const EmployeeCourses: React.FC<IEmployeeCourses> = ({
   courses,
@@ -23,7 +23,7 @@ const EmployeeCourses: React.FC<IEmployeeCourses> = ({
         checkPastedValue={checkPastedValue}
         searchCourse={searchCourse}
       />
-      <EmployeeCoursesListContainer courses={courses} />
+      <EmployeeCoursesList courses={courses} />
     </Suspense>
   </CoursesBox>
 );
