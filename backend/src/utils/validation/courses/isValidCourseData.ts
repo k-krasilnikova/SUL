@@ -5,7 +5,7 @@ import isValidText from './isValidText';
 import isValidComplexity from './isValidComplexity';
 import validateMaterials from './isValidMaterials';
 import isValidAvatar from './isValidAvatar';
-import isValidTest from './isValidTest';
+import validateTest from './isValidTest';
 
 const isValidCourseData = (courseData: ICreateCourseBody): boolean => {
   const isTitleValid = isValidText(courseData.title);
@@ -32,7 +32,7 @@ const isValidCourseData = (courseData: ICreateCourseBody): boolean => {
     throw new BadRequestError('Invalid course materials.');
   }
 
-  const isQuestionsValid = isValidTest(courseData.test);
+  const isQuestionsValid = validateTest(courseData.test);
 
   if (!isQuestionsValid) {
     throw new BadRequestError('Invalid course questions.');
