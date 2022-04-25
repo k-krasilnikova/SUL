@@ -1,6 +1,7 @@
 import { COURSE_LABELS } from 'constants/statuses';
 import { CourseStatus } from 'enums/course';
 import { EmployeeRank } from 'enums/employee';
+
 import { TMaterialVariants } from './materials';
 
 import { TimeProps } from './time';
@@ -9,6 +10,7 @@ export type TContentElement = {
   type: TMaterialVariants;
   material: string;
 };
+
 export interface IExercise {
   eN: number;
   title: string;
