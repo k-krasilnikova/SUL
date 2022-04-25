@@ -9,12 +9,12 @@ import { addMaterialStages } from 'utils/normaliser/materials';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
 import {
   isValidAvatar,
-  isValidText,
   isValidMaterials,
   isValidTechnologies,
   isValidTest,
   validateTitle,
 } from 'utils/validation/courses';
+import validateDescription from 'utils/validation/courses/validateDescription';
 
 const editCourse = async (
   req: Request<{ id: string }, never, IUpdateCourseBody>,
@@ -33,12 +33,12 @@ const editCourse = async (
       updatedData.title = title;
     }
 
-    const isDescriptionValid = isValidText(dataToUpdate.description);
-    if (isDescriptionValid) {
+    const validDescription = validateDescription(dataToUpdate.description);
+    if (validDescription) {
       const { description } = await updateCourseField(
         courseId,
         COURSE_FIELDS.description,
-        dataToUpdate.description,
+        validDescription,
       );
       updatedData.description = description;
     }
