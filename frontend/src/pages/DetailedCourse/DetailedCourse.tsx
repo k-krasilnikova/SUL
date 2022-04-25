@@ -9,7 +9,7 @@ import SimilarCourses from './SimilarCourses';
 import DetailedCourseActions from './DetailedCourseActions';
 import DetailedCourseInfo from './DetailedCourseInfo';
 
-const DetailedCourse: FC<IDetailedCourse> = ({ page, similarCourses, ...props }) => (
+const DetailedCourse: FC<IDetailedCourse> = ({ page, commonCourseData, ...props }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
       <BackButton page={page} />
@@ -17,11 +17,12 @@ const DetailedCourse: FC<IDetailedCourse> = ({ page, similarCourses, ...props })
         <MobileSearch />
       </MobileSearchWrapper>
       <InnerWrapper>
-        <DetailedCourseInfo {...props} />
-        <DetailedCourseActions page={page} {...props} />
-        {similarCourses && (
-          <SimilarCourses similarCourses={similarCourses} windowWidth={props.windowWidth} />
-        )}
+        <DetailedCourseInfo commonCourseData={commonCourseData} {...props} />
+        <DetailedCourseActions commonCourseData={commonCourseData} page={page} {...props} />
+        <SimilarCourses
+          similarCourses={commonCourseData.similarCourses}
+          windowWidth={props.windowWidth}
+        />
       </InnerWrapper>
     </DetailedCourseWrapper>
   </AuthorizedLayout>

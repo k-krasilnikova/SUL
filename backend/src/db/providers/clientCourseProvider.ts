@@ -160,7 +160,7 @@ const arrangeAssessment = async (courseId: string) => {
 };
 
 const getClientCoursesByCourseId = async (courseId: string) => {
-  const allClientCoursesByCourseId = await ClientCourseModel.find({ course: courseId });
+  const allClientCoursesByCourseId = await ClientCourseModel.findOne({ course: courseId }).lean();
 
   return allClientCoursesByCourseId;
 };

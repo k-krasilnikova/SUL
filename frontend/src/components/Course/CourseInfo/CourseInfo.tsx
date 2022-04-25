@@ -28,7 +28,6 @@ const CourseInfo: FC<ICourseInfoProps> = ({ duration, lessons, type }) => (
         </InfoItemTextBox>
       </InfoItem>
     )}
-
     {lessons && (
       <InfoItem>
         <LessonsIcon alt="lessons" src={videoPlayer} />
