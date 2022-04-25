@@ -12,6 +12,7 @@ import { CourseActionsWrapper } from 'pages/CoursesList/CourseActions/styled';
 import { ISimilarCourses } from 'types/detailedCourse';
 import { Info } from 'enums/info';
 import transformRoute from 'utils/helpers/paths/transformRoute';
+import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import {
   CourseActionsBox,
@@ -20,35 +21,42 @@ import {
   SimilarCoursesWrapper,
 } from './styled';
 
+const DEFAULT_DISPLAYING_COURSES = 2;
+
 const SimilarCourses: FC<ISimilarCourses> = ({ similarCourses, windowWidth }) => (
   <SimilarCoursesWrapper container xs={12}>
     <Grid item xs={12}>
       <SimilarCoursesTitle>{SIMILAR_COURSES_TITLE}</SimilarCoursesTitle>
-      {similarCourses.map((course) => (
-        <SimilarCoursesItemWrapper key={course._id}>
-          <Course
-            title={course.title}
-            description={course.description}
-            windowWidth={windowWidth}
-            type={Info.similarCourses}
-            pageName={PAGES.detailed}
-            imageUrl={course.avatar}
-          >
-            <CourseActionsBox>
-              <CourseActionsWrapper>
-                <CustomButton
-                  color="primary"
-                  variant="mediumOutlined"
-                  component={Link}
-                  to={transformRoute(PATHS.courseDetails, course._id)}
-                >
-                  {ButtonLabels.details}
-                </CustomButton>
-              </CourseActionsWrapper>
-            </CourseActionsBox>
-          </Course>
-        </SimilarCoursesItemWrapper>
-      ))}
+      {similarCourses.map(
+        (course, index) =>
+          index < DEFAULT_DISPLAYING_COURSES && (
+            <SimilarCoursesItemWrapper key={course._id}>
+              <Course
+                title={course.title}
+                description={course.description}
+                windowWidth={windowWidth}
+                type={Info.similarCourses}
+                pageName={PAGES.detailed}
+                imageUrl={course.avatar}
+                duration={convertDurationToString(course.duration)}
+                lessons={course.lessons}
+              >
+                <CourseActionsBox>
+                  <CourseActionsWrapper>
+                    <CustomButton
+                      color="primary"
+                      variant="mediumOutlined"
+                      component={Link}
+                      to={transformRoute(PATHS.courseDetails, course._id)}
+                    >
+                      {ButtonLabels.details}
+                    </CustomButton>
+                  </CourseActionsWrapper>
+                </CourseActionsBox>
+              </Course>
+            </SimilarCoursesItemWrapper>
+          ),
+      )}
     </Grid>
   </SimilarCoursesWrapper>
 );

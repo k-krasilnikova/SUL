@@ -26,4 +26,4 @@ const useGetMyCourses = (): UseQueryResult<Array<IClientCourse>, AxiosError> => 
   );
 };
 
-export { useGetMyCourses };
+export default useGetMyCourses;

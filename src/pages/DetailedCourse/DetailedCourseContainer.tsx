@@ -4,13 +4,11 @@ import { useNavigate, useParams } from 'react-router';
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { useGetProfile } from 'api/profile';
-import { useGetMyCourses } from 'api/myCourses/getClientCourses';
 import { getWindowWidth } from 'utils/helpers/getWindowWidth';
 import {
   convertCourseStatusToProgress,
   ConvertedProgress,
 } from 'utils/helpers/convertCourseStatusToProgress';
-import similarCoursePreparing from 'utils/helpers/similarCoursePreparing';
 import { Role } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
 import { CourseStatus } from 'enums/course';
@@ -27,7 +25,6 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
   const navigate = useNavigate();
   const useGetInfo = page === PAGES.coursesList ? useGetCourseInfo : useGetClientCourseInfo;
   const { data: courseData } = useGetInfo(params.courseId);
-  const { data: clientCoursesData } = useGetMyCourses();
   const { mutate, isLoading } = useApplyCourse();
   const [isFullTextOpen, setFullTextOpen] = useState(false);
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
@@ -79,8 +76,6 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     progressVariant = currentProgress.progressVariant;
   }
 
-  const preparedSimilarCourses = similarCoursePreparing(commonCourseInfo, clientCoursesData);
-
   return (
     <>
       {commonCourseInfo && courseData && (
@@ -89,7 +84,6 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
           navigate={navigate}
           commonCourseData={commonCourseInfo}
           clientCourseData={clientCourseInfo}
-          similarCourses={preparedSimilarCourses}
           handleApplyCourse={handleApplyCourse}
           isLoading={isLoading}
           page={page}
