@@ -10,5 +10,5 @@ export interface ICourseItemProps extends ConvertedProgress {
   status: string;
   showCourseInfo?: () => void;
   hideCourseInfo?: () => void;
-  isShown?: boolean;
+  isCourseTitleShown?: boolean;
 }

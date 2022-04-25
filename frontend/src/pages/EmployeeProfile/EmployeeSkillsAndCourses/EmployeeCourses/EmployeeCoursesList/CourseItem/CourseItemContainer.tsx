@@ -6,15 +6,15 @@ import CourseItem from './CourseItem';
 import { ICourseItemContainerProps } from './types';
 
 const CourseItemContainer: FC<ICourseItemContainerProps> = ({ title, status }) => {
-  const [isShown, setIsShown] = useState(false);
+  const [isCourseTitleShown, setCourseTitleShown] = useState(false);
   const { progressValue, progressVariant } = convertEmployeeCourseProgress(status);
 
   const showCourseInfo = () => {
-    setIsShown(true);
+    setCourseTitleShown(true);
   };
 
   const hideCourseInfo = () => {
-    setIsShown(false);
+    setCourseTitleShown(false);
   };
 
   return (
@@ -23,7 +23,7 @@ const CourseItemContainer: FC<ICourseItemContainerProps> = ({ title, status }) =
       status={status}
       hideCourseInfo={hideCourseInfo}
       showCourseInfo={showCourseInfo}
-      isShown={isShown}
+      isCourseTitleShown={isCourseTitleShown}
       progressValue={progressValue}
       progressVariant={progressVariant}
     />

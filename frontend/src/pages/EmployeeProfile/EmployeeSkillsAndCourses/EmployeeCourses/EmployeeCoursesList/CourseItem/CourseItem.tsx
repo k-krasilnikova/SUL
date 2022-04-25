@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import ProgressBar from 'components/ProgressBar';
-
 import { Size } from 'enums/sizes';
 import { setFirstLetterUppercase } from 'utils/helpers/setFirstLetterUppercase';
 
@@ -22,7 +21,7 @@ const CourseItem: FC<ICourseItemProps> = ({
   progressVariant,
   hideCourseInfo,
   showCourseInfo,
-  isShown,
+  isCourseTitleShown,
 }) => (
   <>
     <CoursesListItem>
@@ -30,7 +29,7 @@ const CourseItem: FC<ICourseItemProps> = ({
       <CourseItemText>
         <CourseTitle onMouseEnter={showCourseInfo} onMouseLeave={hideCourseInfo}>
           {title}
-          {isShown && <HoverCourseTitle>{title}</HoverCourseTitle>}
+          {isCourseTitleShown && <HoverCourseTitle>{title}</HoverCourseTitle>}
         </CourseTitle>
         <CourseStatus>{setFirstLetterUppercase(status)}</CourseStatus>
       </CourseItemText>
