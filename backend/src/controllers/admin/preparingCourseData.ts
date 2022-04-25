@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { addMaterialStages } from 'utils/normaliser/materials';
-import isValidCourseData from 'utils/validation/isValidCourseData';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
+import { isValidCourseData } from 'utils/validation/courses';
 import { getSkillsToCourseTechs } from 'db/providers/skillProvider';
 import { addCourseTest } from 'db/providers/testProvider';
 import { ICreateCourseBody, IPreparedCourseData } from 'interfaces/ICourses/IQueryCourses';
