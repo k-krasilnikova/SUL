@@ -208,6 +208,7 @@ const getSkillsToCourseTechs = async (technologies: ICourseTechsFromWeb[]) => {
     skill: currentSkill?._id as ObjectId,
     points: technologies[index].points,
   }));
+
   return techsForCourse;
 };
 

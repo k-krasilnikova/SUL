@@ -38,6 +38,8 @@ const courseSchema = new Schema<ICourse>({
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
   avatar: { type: String, required: true },
   similarCourses: [{ type: Schema.Types.ObjectId, ref: 'Courses' }],
+  lessons: { type: Number },
+  duration: { days: { type: Number }, hours: { type: Number }, minutes: { type: Number } },
 });
 
 const CourseModel = model<ICourse>('Courses', courseSchema, 'courses');
