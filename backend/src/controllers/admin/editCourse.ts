@@ -13,6 +13,7 @@ import {
   isValidMaterials,
   isValidTechnologies,
   isValidTest,
+  validateTitle,
 } from 'utils/validation/courses';
 
 const editCourse = async (
@@ -26,9 +27,9 @@ const editCourse = async (
 
     const updatedData: IUpdateCourseBody = {};
 
-    const isTitleValid = isValidText(dataToUpdate.title);
-    if (isTitleValid) {
-      const { title } = await updateCourseField(courseId, COURSE_FIELDS.title, dataToUpdate.title);
+    const validTitle = validateTitle(dataToUpdate.title);
+    if (validTitle) {
+      const { title } = await updateCourseField(courseId, COURSE_FIELDS.title, validTitle);
       updatedData.title = title;
     }
 

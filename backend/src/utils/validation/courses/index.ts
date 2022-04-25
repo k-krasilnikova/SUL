@@ -5,6 +5,7 @@ import isValidMaterials from './isValidMaterials';
 import isValidTechnologies from './isValidTechnologies';
 import isValidTest from './isValidTest';
 import isValidText from './isValidText';
+import validateTitle from './validateTitle';
 
 export {
   isValidAvatar,
@@ -14,4 +15,5 @@ export {
   isValidTechnologies,
   isValidTest,
   isValidText,
+  validateTitle,
 };
