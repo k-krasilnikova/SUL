@@ -3,7 +3,7 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 import isValidText from './isValidText';
 import isValidComplexity from './isValidComplexity';
-import isValidMaterials from './isValidMaterials';
+import validateMaterials from './isValidMaterials';
 import isValidAvatar from './isValidAvatar';
 import isValidTest from './isValidTest';
 
@@ -26,7 +26,7 @@ const isValidCourseData = (courseData: ICreateCourseBody): boolean => {
     throw new BadRequestError('Invalid course description.');
   }
 
-  const isMaterialsValid = isValidMaterials(courseData.materials);
+  const isMaterialsValid = validateMaterials(courseData.materials);
 
   if (!isMaterialsValid) {
     throw new BadRequestError('Invalid course materials.');

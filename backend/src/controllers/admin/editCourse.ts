@@ -9,7 +9,7 @@ import { addMaterialStages } from 'utils/normaliser/materials';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
 import {
   isValidAvatar,
-  isValidMaterials,
+  validateMaterials,
   isValidTechnologies,
   isValidTest,
   validateTitle,
@@ -53,9 +53,9 @@ const editCourse = async (
       updatedData.avatar = avatar;
     }
 
-    const isMaterialsValid = isValidMaterials(dataToUpdate.materials);
-    if (isMaterialsValid && dataToUpdate.materials) {
-      const materialsWithStages = addMaterialStages(dataToUpdate.materials);
+    const validMaterials = validateMaterials(dataToUpdate.materials);
+    if (validMaterials) {
+      const materialsWithStages = addMaterialStages(validMaterials);
       const { materials } = await updateCourseField(
         courseId,
         COURSE_FIELDS.materials,
