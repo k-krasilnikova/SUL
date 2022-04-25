@@ -7,11 +7,13 @@ import { getCourseTest, updateTestQuestionsAndTimeout } from 'db/providers/testP
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
-import isValidAvatar from 'utils/validation/isValidAvatar';
-import isValidText from 'utils/validation/isValidText';
-import isValidMaterials from 'utils/validation/isValidMaterials';
-import isValidTest from 'utils/validation/isValidTest';
-import isValidTechnologies from 'utils/validation/isValidTechnologies';
+import {
+  isValidAvatar,
+  isValidText,
+  isValidMaterials,
+  isValidTechnologies,
+  isValidTest,
+} from 'utils/validation/courses';
 
 const editCourse = async (
   req: Request<{ id: string }, never, IUpdateCourseBody>,
