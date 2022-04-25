@@ -67,7 +67,7 @@ export const HoverCourseTitle = styled('div')({
 });
 
 export const CourseStatus = styled(Typography)({
-  color: '#b6b6b6',
+  color: '#B6B6B6',
   fontSize: '18px',
   lineHeight: '23px',
   [theme.breakpoints.down('xl')]: {
