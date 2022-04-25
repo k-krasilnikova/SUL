@@ -31,7 +31,7 @@ const EmployeeItem: React.FC<IEmployeeProps> = ({ handleNavigate, employee }) =>
     </Cell>
     <Cell variant="body">
       {employee.stack.map((stackItem) => (
-        <StackItem key={stackItem.name}>{stackItem.name}</StackItem>
+        <StackItem key={stackItem.member.name}>{stackItem.member.name}</StackItem>
       ))}
     </Cell>
     <Cell variant="body">{EmployeeRank[employee.rank]}</Cell>

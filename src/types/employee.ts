@@ -6,7 +6,7 @@ import { IUser } from './user';
 export interface IEmployee extends IUser {
   _id: string;
   rank: number;
-  stack: { name: string }[];
+  stack: { member: { name: string } }[];
 }
 
 export interface IEmployeesProps {

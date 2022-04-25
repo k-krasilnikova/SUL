@@ -50,7 +50,7 @@ const EmployeeInfo: React.FC<IEmployeeInfo> = ({
           <UserInfoLabel>{EMPLOYEE_INFO_LABEL.stack}</UserInfoLabel>
           <UserInfoText>
             {employee?.stack.map((stackItem) => (
-              <StackItem key={stackItem.name}>{stackItem.name}</StackItem>
+              <StackItem>{stackItem.member.name}</StackItem>
             ))}
           </UserInfoText>
         </EmployeeInfoItem>
