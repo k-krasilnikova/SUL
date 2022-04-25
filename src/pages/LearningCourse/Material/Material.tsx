@@ -7,13 +7,13 @@ import { TMaterialVariants } from 'types/materials';
 
 import { MaterialWrapper, MaterialText, MaterialVideo } from './styled';
 
-interface IProps {
+interface IMaterialProps {
   material: string;
   materialType: TMaterialVariants;
   videoPreview: string | boolean;
 }
 
-const Material: FC<IProps> = ({ material, materialType, videoPreview }) => (
+const Material: FC<IMaterialProps> = ({ material, materialType, videoPreview }) => (
   <MaterialWrapper>
     {materialType === ContentElementType.video ? (
       <MaterialVideo

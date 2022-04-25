@@ -70,7 +70,7 @@ export const CourseInfoTitle = styled('span')({
 export const CodeBlock = styled('code')({
   fontSize: '14px',
   display: 'block',
-  backgroundColor: '#eee',
+  backgroundColor: '#EEE',
   border: '1px solid #999',
   padding: '20px',
   whiteSpace: 'break-spaces',
