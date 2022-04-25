@@ -11,7 +11,7 @@ import {
   isValidAvatar,
   validateMaterials,
   isValidTechnologies,
-  isValidTest,
+  validateTest,
   validateTitle,
 } from 'utils/validation/courses';
 import validateDescription from 'utils/validation/courses/validateDescription';
@@ -77,11 +77,11 @@ const editCourse = async (
       updatedData.skills = technologies as unknown as IUpdateCourseBody['skills'];
     }
 
-    const isTestValid = isValidTest(dataToUpdate.test);
-    if (isTestValid) {
+    const validTest = validateTest(dataToUpdate.test);
+    if (validTest) {
       const test = await getCourseTest(courseId);
       if (test._id && dataToUpdate.test) {
-        const properQuestionsToSet = setAnswerProperNumbersToQuestions(dataToUpdate.test.questions);
+        const properQuestionsToSet = setAnswerProperNumbersToQuestions(validTest.questions);
         const { questions, timeout } = await updateTestQuestionsAndTimeout(
           test._id,
           properQuestionsToSet,
