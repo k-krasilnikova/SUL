@@ -15,4 +15,5 @@ const SkillItem: FC<ISkillItemProps> = ({ name, skillImage }) => (
     <SkillGroup>{name}</SkillGroup>
   </SkillContainer>
 );
+
 export default SkillItem;

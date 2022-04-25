@@ -22,4 +22,5 @@ const SkillGroup: FC<ISkillGroupProps> = ({ skillFounded, skills }) => {
     </>
   );
 };
+
 export default SkillGroup;
