@@ -9,14 +9,14 @@ import transformRoute from 'utils/helpers/paths/transformRoute';
 import { CourseWrapper, ImageWrapper, CourseTitle } from './styled';
 
 const Course: FC<ICourseProps> = ({ course, handleCourseClick }) => {
-  const { _id: courseId, avatar, title, isCompleted } = course;
+  const { _id: courseId, clientCourseId, avatar, title, isCompleted } = course;
+
+  const navigatePath = clientCourseId
+    ? transformRoute(PATHS.myCourseDetails, clientCourseId)
+    : transformRoute(PATHS.courseDetails, courseId);
 
   return (
-    <CourseWrapper
-      to={transformRoute(PATHS.courseDetails, courseId)}
-      isCompleted={isCompleted}
-      onClick={handleCourseClick}
-    >
+    <CourseWrapper to={navigatePath} isCompleted={isCompleted} onClick={handleCourseClick}>
       <ImageWrapper>
         <Avatar size={Size.xsmall} avatar={avatar} />
       </ImageWrapper>
