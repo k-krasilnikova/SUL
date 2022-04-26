@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { buttonSpinner } from 'animations';
 import { ButtonsWrapper, CustomButton } from 'components/Button/ButtonVariants/styled';
@@ -16,7 +16,7 @@ import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import DeleteCourseButton from './DeleteCourseButton';
 import { CourseInfoBox, DetailedCourseActionsBox } from './styled';
 
-const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
+const DetailedCourseActions: FC<IDetailedCourseActions> = ({
   commonCourseData,
   isAdmin,
   isLoading,
