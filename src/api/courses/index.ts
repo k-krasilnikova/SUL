@@ -5,4 +5,5 @@ export { default as searchAllCourses } from './searchAllCourses';
 export { default as useGetPaginatedCourses } from './getPaginatedCourses';
 export { default as useGetCourseMaterials } from './getCourseMaterials';
 export { default as useGetClientCourseAndMaterials } from './getClientCourseAndMaterials';
+export { default as useGetAvailableCourses } from './getAvailableCourses';
 export { default as useGetCoursesMap } from './getCoursesMap';

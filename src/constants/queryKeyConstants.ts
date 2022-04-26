@@ -4,6 +4,7 @@ export const QUERY_KEYS = {
   coursesMap: 'CoursesMap',
   paginatedCoursesList: 'PaginatedCoursesList',
   myCourses: 'MyCourses',
+  availableCourses: 'AvailableCourses',
   employeeProfile: 'EmployeeProfile',
   coursesRequests: 'CoursesRequests',
   employeesList: 'EmployeesList',
