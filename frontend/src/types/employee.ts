@@ -30,6 +30,9 @@ export interface IEmployeeCourses {
 
 export interface IEmployeeCoursesList {
   courses?: IClientCourse[];
+  showCourseInfo?: () => void;
+  hideCourseInfo?: () => void;
+  isShown?: boolean;
 }
 
 export interface IEmployeeInfo {

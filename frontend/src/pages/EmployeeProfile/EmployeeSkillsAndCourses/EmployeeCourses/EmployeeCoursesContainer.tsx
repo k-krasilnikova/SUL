@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { IClientCourse } from 'types/clientCourse';
 import { IEmployeeCoursesList } from 'types/employee';
-import { formatInputValue, checkWhitespace, checkPastedText } from 'utils/helpers/searchHelpers';
+import { checkPastedText, checkWhitespace, formatInputValue } from 'utils/helpers/searchHelpers';
 import { compareStrings } from 'utils/helpers/compareStrings';
 
 import EmployeeCourses from './EmployeeCourses';
