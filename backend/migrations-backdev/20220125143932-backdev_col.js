@@ -1447,6 +1447,7 @@ module.exports = {
       },
     );
     await db.createCollection('clientCourses');
+    await db.createCollection('accessTokenBlacklist');
   },
 
   async down(db) {
