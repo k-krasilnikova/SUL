@@ -1,11 +1,8 @@
 import { UserRank } from 'enums/users';
 
+import { ComplexityValidator } from '../schemas/courses';
+
 const isValidComplexity = (complexity?: UserRank): boolean =>
-  Boolean(
-    complexity &&
-      typeof complexity === 'number' &&
-      complexity > 0 &&
-      Object.values(UserRank).includes(complexity),
-  );
+  ComplexityValidator.isValidSync(complexity);
 
 export default isValidComplexity;

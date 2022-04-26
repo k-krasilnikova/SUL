@@ -1,7 +1,10 @@
-import { string, StringSchema } from 'yup';
+import { number, NumberSchema, string, StringSchema } from 'yup';
 
-import capitalizeFirstLetter from 'utils/string/capitalizeFirstLetter';
-import fullTrim from 'utils/string/fullTrim';
+import { UserRank } from 'enums/users';
+
+import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
+import fullTrim from '../../string/fullTrim';
+import { convertToTypeUnsafe } from '../../typeConversion/common';
 
 import {
   MAX_DESCRIPTION_LENGTH,
@@ -31,4 +34,8 @@ const DescriptionValidator: StringSchema = string()
   .max(MAX_DESCRIPTION_LENGTH)
   .min(MIN_DESCRIPTION_LENGTH);
 
-export { TitleValidator, DescriptionValidator };
+const ComplexityValidator: NumberSchema = number()
+  .required()
+  .test((complexity) => Object.values(UserRank).includes(convertToTypeUnsafe<number>(complexity)));
+
+export { TitleValidator, DescriptionValidator, ComplexityValidator };
