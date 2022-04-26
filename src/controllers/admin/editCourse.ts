@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { COURSE_FIELDS } from 'config/constants';
 import { updateCourseField } from 'db/providers/courseProvider';
 import { isProperTechnologies } from 'db/providers/skillProvider';
-import { getCourseTest, updateTestQuestionsAndTimeout } from 'db/providers/testProvider';
+import { getCourseTest, updateTest } from 'db/providers/testProvider';
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
@@ -82,12 +82,13 @@ const editCourse = async (
       const test = await getCourseTest(courseId);
       if (test._id && dataToUpdate.test) {
         const properQuestionsToSet = setAnswerProperNumbersToQuestions(validTest.questions);
-        const { questions, timeout } = await updateTestQuestionsAndTimeout(
-          test._id,
-          properQuestionsToSet,
-          dataToUpdate.test.timeout,
-        );
-        const newTest: IUpdateCourseBody['test'] = { questions, timeout };
+        const { questions, timeout, title } = await updateTest({
+          testId: test._id,
+          questions: properQuestionsToSet,
+          timeout: validTest.timeout,
+          title: validTest.title,
+        });
+        const newTest: IUpdateCourseBody['test'] = { timeout, title, questions };
         updatedData.test = newTest;
       }
     }
