@@ -32,6 +32,7 @@ export const CourseItemText = styled('div')({
 });
 
 export const CourseTitle = styled(Typography)({
+  maxWidth: '230px',
   color: '#2C2525',
   fontSize: '20px',
   lineHeight: '26px',
