@@ -751,12 +751,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=xu87YWbr4X0&list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH&index=2&ab_channel=WesBos',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
       {
         _id: '3',
@@ -783,12 +777,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=zIdg7hkqNE0&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q&index=2&ab_channel=CodeWithHarry',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
       {
         _id: '6',
@@ -842,26 +830,13 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=cSYHjWJ5Q8g&list=PLtX3ATr7wKKlhdq3unb2TiyoOcT8jVUGC&index=2',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
-
       {
         _id: '8',
         stage: 2,
         content: [
           'https://www.youtube.com/watch?v=Zd3bAA9TRk8&list=PLtX3ATr7wKKlhdq3unb2TiyoOcT8jVUGC&index=3',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
     ],
     technologies: ['Scala'],
@@ -881,12 +856,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=9Ia16QOY8rk&list=PLrCZzMib1e9q-X5V9pTM6J0AemRWseM7I&index=2',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
     ],
     technologies: ['Go'],
@@ -918,12 +887,6 @@ const MATERIALS = [
         content: [
           'https://www.youtube.com/watch?v=l77oxzJUhMQ&list=PLQOaTSbfxUtD6kMmAYc8Fooqya3pjLs1N&index=2',
         ],
-        exercise: {
-          eN: 1,
-          title: 'CSS in JS',
-          task: 'Write code to select an element with the data-widget-name attribute from the document and read its value.',
-          code: '<html><body><div data-widget-name="menu">Choose the genre</div><script>/* your code */</script></body></html>',
-        },
       },
       {
         _id: '8',
@@ -1387,10 +1350,9 @@ module.exports = {
       DEFAULT_USERS_DOCS.map(async (doc) => {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
-        const stack = doc.stack.map((memberName, index) => ({
-          member: stackMembers.filter((member) => member.name === memberName)[0].insertedId,
-          isPrimary: index === 0,
-        }));
+        const stack = doc.stack.map(
+          (memberName) => stackMembers.filter((member) => member.name === memberName)[0].insertedId,
+        );
         const newUserDoc = { ...doc, stack };
         return { ...(await db.collection('users').insertOne(newUserDoc)), username: doc.username };
       }),
@@ -1400,10 +1362,9 @@ module.exports = {
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         doc.passwordHash = bcrypt.hashSync(doc.passwordHash, salt);
         doc.managerId = users[1].insertedId;
-        const stack = doc.stack.map((memberName, index) => ({
-          member: stackMembers.filter((member) => member.name === memberName)[0].insertedId,
-          isPrimary: index === 0,
-        }));
+        const stack = doc.stack.map(
+          (memberName) => stackMembers.filter((member) => member.name === memberName)[0].insertedId,
+        );
         const newUserDoc = { ...doc, stack };
         return { ...(await db.collection('users').insertOne(newUserDoc)), username: doc.username };
       }),
@@ -1483,6 +1444,7 @@ module.exports = {
       },
     );
     await db.createCollection('clientCourses');
+    await db.createCollection('accessTokenBlacklist');
   },
 
   async down(db) {
