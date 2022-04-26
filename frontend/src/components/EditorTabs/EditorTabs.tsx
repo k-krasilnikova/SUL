@@ -26,13 +26,9 @@ const EditorTabs: React.FC<IProps> = ({ defaultActiveTab, tabs, basePath }) => {
     setActiveKey(tab);
   }, [keyFromPath, defaultActiveTab]);
 
-  return (
-    <>
-      {tabs.map((tab) => (
-        <Fragment key={tab.key}>{tab.key === activeKey && tab.node}</Fragment>
-      ))}
-    </>
-  );
+  const activeTab = tabs.find((tab) => tab.key === activeKey);
+
+  return <Fragment key={activeTab?.key}>{activeTab?.node}</Fragment>;
 };
 
 export default EditorTabs;
