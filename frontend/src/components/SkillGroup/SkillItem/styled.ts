@@ -25,42 +25,24 @@ export const SkillContainer = styled('div')({
   },
 });
 
-export const SkillName = styled('p')({
+export const SkillNameWrapper = styled('div')({
+  position: 'relative',
   display: 'flex',
   justifyContent: 'center',
+});
+
+export const SkillName = styled('p')({
+  maxWidth: '140px',
   margin: '17px 0 16px',
   fontFamily: theme.typography.fontFamily,
   fontWeight: '400',
   fontSize: '18px',
   lineHeight: 1.2,
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   color: COLORS.primaryTextColor,
   [theme.breakpoints.down('md')]: {
-    fontSize: '16px',
-    lineHeight: '18px',
-  },
-});
-
-export const SkillGroup = styled('p')({
-  width: '140px',
-  height: '29px',
-  margin: 0,
-  padding: 0,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontFamily: theme.typography.fontFamily,
-  fontStyle: 'normal',
-  fontWeight: 400,
-  fontSize: '18px',
-  lineHeight: 1.2,
-  textAlign: 'center',
-  textTransform: 'uppercase',
-  color: '#848488',
-  borderRadius: '4px',
-  backgroundColor: COLORS.secondaryColor,
-  [theme.breakpoints.down('lg')]: {
-    width: '125px',
-    height: '26px',
     fontSize: '16px',
     lineHeight: '18px',
   },
