@@ -35,6 +35,7 @@ interface IUpdateCourseBody {
   technologies?: ICourseTechsFromWeb[];
   materials?: ICourse['materials'];
   test?: IUpdateCourseTest;
+  complexity?: ICourse['complexity'];
 }
 
 interface IUpdateCourseTest {
