@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import { IExercise } from 'types/course';
-
 import {
   CourseInfoWrapper,
   CourseInfoContent,
@@ -9,11 +7,7 @@ import {
   CourseInfoText,
   CodeBlock,
 } from './styled';
-
-interface IExerciseProps {
-  courseExercise: IExercise;
-  isCourseInfoOpen: boolean;
-}
+import { IExerciseProps } from '../types';
 
 const Exercise: FC<IExerciseProps> = ({ isCourseInfoOpen, courseExercise }) => {
   const { title, task, code } = courseExercise;
