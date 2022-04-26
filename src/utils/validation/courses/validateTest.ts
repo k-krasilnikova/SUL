@@ -8,7 +8,7 @@ const validateTest = (test: IUpdateCourseBody['test']): IUpdateCourseBody['test'
     const validatedTest =
       test && convertToTypeUnsafe<IUpdateCourseBody['test']>(TestValidator.validateSync(test));
     return validatedTest;
-  } catch (err) {
+  } catch {
     return null;
   }
 };
