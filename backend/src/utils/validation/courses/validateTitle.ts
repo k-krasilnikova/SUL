@@ -1,8 +1,8 @@
-import { TitleValidation } from '../schemas/courses';
+import { TitleValidator } from '../schemas/courses';
 
 const validateTitle = (title?: string): string | null => {
   try {
-    return TitleValidation.validateSync(title) || null;
+    return TitleValidator.validateSync(title) || null;
   } catch {
     return null;
   }
