@@ -32,6 +32,10 @@ export interface ICourse {
   avatar?: string;
 }
 
+export interface IShortCourseInfo {
+  _id: string;
+  title: string;
+}
 export type TCheckedCourse = Pick<ICourse, '_id' | 'title'>;
 export type TCourseInfo = Pick<ICourse, 'title' | 'description'>;
 export type TRequestedCourse = Pick<ICourse, '_id' | 'avatar' | 'title'>;

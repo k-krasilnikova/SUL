@@ -1,4 +1,4 @@
-import { Technologies } from './skill';
+import { TGroupedSkills, Technologies } from './skill';
 import { Notification } from './notification';
 import { IClientCourse } from './clientCourse';
 
@@ -20,6 +20,7 @@ export interface IUser {
   handleLogOut?: () => void;
   technologies?: Technologies;
   notifications?: Notification[];
+  skills?: TGroupedSkills;
 }
 
 export type TRequestedUser = Pick<IUser, '_id' | 'avatar' | 'firstName' | 'lastName' | 'position'>;
