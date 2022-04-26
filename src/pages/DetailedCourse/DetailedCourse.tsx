@@ -19,10 +19,12 @@ const DetailedCourse: FC<IDetailedCourse> = ({ page, commonCourseData, ...props 
       <InnerWrapper>
         <DetailedCourseInfo commonCourseData={commonCourseData} {...props} />
         <DetailedCourseActions commonCourseData={commonCourseData} page={page} {...props} />
-        <SimilarCourses
-          similarCourses={commonCourseData.similarCourses}
-          windowWidth={props.windowWidth}
-        />
+        {!!commonCourseData.similarCourses.length && (
+          <SimilarCourses
+            similarCourses={commonCourseData.similarCourses}
+            windowWidth={props.windowWidth}
+          />
+        )}
       </InnerWrapper>
     </DetailedCourseWrapper>
   </AuthorizedLayout>
