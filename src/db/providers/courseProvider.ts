@@ -192,6 +192,61 @@ const updateCourseField = async (courseId: string, field: TCourseFields, value: 
   return updatedCourse;
 };
 
+const getAllCoursesProvider = async (
+  userId: string,
+  title?: string,
+): Promise<ICourseWithStatus[]> => {
+  try {
+    const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
+      {
+        $match: title
+          ? { title: { $regex: new RegExp(decodeAndFormatSearchParams(title)), $options: 'i' } }
+          : NO_FILTER,
+      },
+      {
+        $lookup: {
+          from: 'clientCourses',
+          localField: '_id',
+          foreignField: 'course',
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $and: [{ $eq: ['$user', new mongoose.Types.ObjectId(userId)] }],
+                },
+              },
+            },
+            {
+              $project: {
+                status: 1,
+                _id: 0,
+              },
+            },
+          ],
+          as: 'status',
+        },
+      },
+    ]);
+
+    const courses: ICourseWithStatus[] = aggregation.map((agregatedCourse) => {
+      const course: ICourseWithStatus = { ...agregatedCourse, status: 'not set' };
+
+      if (agregatedCourse.status.length) {
+        const [{ status: courseStatus }]: [{ status?: string }] = agregatedCourse.status;
+        course.status = courseStatus;
+      } else {
+        delete course.status;
+      }
+
+      return course;
+    });
+
+    return courses;
+  } catch (error) {
+    throw new BadRequestError('Invalid query.');
+  }
+};
+
 const getCourseStatusProvider = async (
   courseId: string | ObjectId,
   userId: string | ObjectId,
@@ -203,11 +258,13 @@ const getCourseStatusProvider = async (
 
   return relateClientCourse?.status;
 };
+
 const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
 
 export {
   getCoursesProvider,
   getCourseProvider,
+  getAllCoursesProvider,
   materialsCounterProvider,
   getMaterialsProvider,
   deleteCourseProvider,
