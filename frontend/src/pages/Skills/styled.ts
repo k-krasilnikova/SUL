@@ -25,9 +25,7 @@ export const SearchSkill = styled(SearchInput)({
   },
   fontFamily: theme.typography.fontFamily,
   fontWeight: 400,
-  fontSize: '26px',
-  lineHeight: 1.4,
-  letterSpacing: '1px',
+  fontSize: '18px',
   [theme.breakpoints.down('lg')]: {
     fontSize: '20px',
     lineHeight: '34px',
