@@ -48,6 +48,22 @@ export const SkillName = styled('p')({
   },
 });
 
+export const HoverSkillName = styled('div')({
+  position: 'absolute',
+  top: '16px',
+  right: '-35px',
+  display: 'flex',
+  justifyContent: 'center',
+  width: 'fit-content',
+  padding: '3px',
+  fontSize: '12px',
+  backgroundColor: '#000',
+  color: '#FFF',
+  overflow: 'inherit',
+  textOverflow: 'unset',
+  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+});
+
 export const ImageWrapper = styled('div')({
   display: 'flex',
   justifyContent: 'center',
