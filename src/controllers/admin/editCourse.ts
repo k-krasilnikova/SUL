@@ -10,11 +10,12 @@ import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
 import {
   isValidAvatar,
   validateMaterials,
-  isValidTechnologies,
+  validateTechnologies,
   validateTest,
   validateTitle,
 } from 'utils/validation/courses';
 import validateDescription from 'utils/validation/courses/validateDescription';
+import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const editCourse = async (
   req: Request<{ id: string }, never, IUpdateCourseBody>,
@@ -64,17 +65,18 @@ const editCourse = async (
       updatedData.materials = materials;
     }
 
-    const isSkillsValid =
-      dataToUpdate.skills &&
-      isValidTechnologies(dataToUpdate.skills) &&
-      (await isProperTechnologies(dataToUpdate.skills));
-    if (isSkillsValid) {
+    const isTechsValid =
+      dataToUpdate.technologies &&
+      validateTechnologies(dataToUpdate.technologies) &&
+      (await isProperTechnologies(dataToUpdate.technologies));
+    if (isTechsValid) {
       const { technologies } = await updateCourseField(
         courseId,
         COURSE_FIELDS.technologies,
-        dataToUpdate.skills,
+        dataToUpdate.technologies,
       );
-      updatedData.skills = technologies as unknown as IUpdateCourseBody['skills'];
+      updatedData.technologies =
+        convertToTypeUnsafe<IUpdateCourseBody['technologies']>(technologies);
     }
 
     const validTest = validateTest(dataToUpdate.test);

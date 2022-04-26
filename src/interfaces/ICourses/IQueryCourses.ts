@@ -32,7 +32,7 @@ interface IUpdateCourseBody {
   title?: ICourse['title'];
   avatar?: ICourse['avatar'];
   description?: ICourse['description'];
-  skills?: ICourseTechsFromWeb[];
+  technologies?: ICourseTechsFromWeb[];
   materials?: ICourse['materials'];
   test?: IUpdateCourseTest;
 }

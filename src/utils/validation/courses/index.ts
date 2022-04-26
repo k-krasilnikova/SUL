@@ -2,7 +2,7 @@ import isValidAvatar from './isValidAvatar';
 import isValidComplexity from './isValidComplexity';
 import isValidCourseData from './isValidCourseData';
 import validateMaterials from './validateMaterials';
-import isValidTechnologies from './isValidTechnologies';
+import validateTechnologies from './validateTechnologies';
 import validateTest from './validateTest';
 import validateTitle from './validateTitle';
 
@@ -11,7 +11,7 @@ export {
   isValidComplexity,
   isValidCourseData,
   validateMaterials,
-  isValidTechnologies,
+  validateTechnologies,
   validateTest,
   validateTitle,
 };
