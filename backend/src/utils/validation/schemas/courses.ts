@@ -1,3 +1,4 @@
+import { isValidObjectId } from 'mongoose';
 import { array, number, NumberSchema, object, string, StringSchema } from 'yup';
 import { uniqWith } from 'lodash';
 
@@ -25,6 +26,7 @@ import { isNotNumbersOnly, isNotSpecialsOnly } from '../strings';
 const CORRECT_ANSWERS_AMOUNT = 1;
 const MIN_MATERIALS_AMOUNT = 1;
 const MIN_CONTENT_ELEMENTS_AMOUNT = 1;
+const MIN_TECHS_PER_COURSE_AMOUNT = 1;
 
 const TitleValidator: StringSchema = string()
   .required()
@@ -143,10 +145,23 @@ const materialObjectValidationSchema = {
   content: array().of(ContentElementValidator).required().min(MIN_CONTENT_ELEMENTS_AMOUNT),
 };
 
-const MaterialsValidator = array()
-  .of(object(materialObjectValidationSchema).required())
+const MaterialObjectValidator = object(materialObjectValidationSchema).required();
+
+const MaterialsValidator = array().of(MaterialObjectValidator).required().min(MIN_MATERIALS_AMOUNT);
+
+const technologyObjectValidationSchema = {
+  skill: string()
+    .required()
+    .test((skill) => isValidObjectId(skill)),
+  points: number().required().positive(),
+};
+
+const TechnologyObjectValidator = object(technologyObjectValidationSchema).required();
+
+const TechnologiesValidator = array()
+  .of(TechnologyObjectValidator)
   .required()
-  .min(MIN_MATERIALS_AMOUNT);
+  .min(MIN_TECHS_PER_COURSE_AMOUNT);
 
 export {
   TitleValidator,
@@ -154,4 +169,5 @@ export {
   ComplexityValidator,
   TestValidator,
   MaterialsValidator,
+  TechnologiesValidator,
 };

@@ -177,7 +177,7 @@ const skillsExist = async (ids?: string[] | ObjectId[]): Promise<boolean> => {
   return foundSkillsCount === ids.length;
 };
 
-const isProperTechnologies = async (techs: IUpdateCourseBody['skills']): Promise<boolean> => {
+const isProperTechnologies = async (techs: IUpdateCourseBody['technologies']): Promise<boolean> => {
   if (!techs) {
     return false;
   }
