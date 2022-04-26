@@ -1,21 +1,10 @@
-/* eslint-disable react/prop-types */
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState, useEffect, FC } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { IEditorTabsProps } from './types';
 import { getKeyFromPath } from './utils';
 
-interface ITab {
-  key: string;
-  node: React.ReactNode;
-}
-
-interface IProps {
-  defaultActiveTab: string;
-  tabs: ITab[];
-  basePath: string;
-}
-
-const EditorTabs: React.FC<IProps> = ({ defaultActiveTab, tabs, basePath }) => {
+const EditorTabs: FC<IEditorTabsProps> = ({ defaultActiveTab, tabs, basePath }) => {
   const location = useLocation();
 
   const keyFromPath = getKeyFromPath(location.pathname, basePath);
