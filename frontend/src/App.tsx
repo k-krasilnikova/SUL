@@ -19,6 +19,7 @@ import {
   SkillsMap,
   EmployeeProfile,
   PendingAssessments,
+  CourseEditor,
 } from 'pages';
 import { AnonymousRoute, PrivateRoute, RoleRoute } from 'components/Routes';
 import Loader from 'components/Loader';
@@ -76,6 +77,14 @@ const App: React.FC = () => (
               element={
                 <RoleRoute roles={[Role.admin]}>
                   <Skills />
+                </RoleRoute>
+              }
+            />
+            <Route
+              path={PATHS.courseEditor}
+              element={
+                <RoleRoute roles={[Role.admin]}>
+                  <CourseEditor />
                 </RoleRoute>
               }
             />
