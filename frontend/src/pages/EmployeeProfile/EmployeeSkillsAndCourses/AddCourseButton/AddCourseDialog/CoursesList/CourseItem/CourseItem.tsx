@@ -10,17 +10,10 @@ interface IProps {
   isChecked: boolean;
   title: string;
   handleCheckboxChange: (event: BaseSyntheticEvent) => void;
-  courseRef?: (node?: Element | null) => void;
 }
 
-const CourseItem: FC<IProps> = ({
-  checkboxValue,
-  isChecked,
-  title,
-  handleCheckboxChange,
-  courseRef,
-}) => (
-  <StyledItem ref={courseRef}>
+const CourseItem: FC<IProps> = ({ checkboxValue, isChecked, title, handleCheckboxChange }) => (
+  <StyledItem>
     <StyledLabel
       control={
         <Checkbox
