@@ -3,15 +3,9 @@ import { FC } from 'react';
 import PPViewer from 'components/PPViewer';
 import { playVideo } from 'icons';
 import { ContentElementType } from 'enums/materials';
-import { TMaterialVariants } from 'types/materials';
 
 import { MaterialWrapper, MaterialText, MaterialVideo } from './styled';
-
-interface IMaterialProps {
-  material: string;
-  materialType: TMaterialVariants;
-  videoPreview: string | boolean;
-}
+import { IMaterialProps } from '../types';
 
 const Material: FC<IMaterialProps> = ({ material, materialType, videoPreview }) => (
   <MaterialWrapper>

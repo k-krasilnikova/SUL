@@ -1,5 +1,6 @@
 import { IClientCourse } from 'types/clientCourse';
-import { IMaterial, TContentElement, TCourseInfo } from 'types/course';
+import { IExercise, IMaterial, TContentElement, TCourseInfo } from 'types/course';
+import { TMaterialVariants } from 'types/materials';
 
 export interface ILearningProps {
   stage: number;
@@ -16,4 +17,15 @@ export interface ILearningProps {
   handleStageForward: () => void;
   toggleCourseInfoOpen: () => void;
   clientCourse?: IClientCourse;
+}
+
+export interface IExerciseProps {
+  courseExercise: IExercise;
+  isCourseInfoOpen: boolean;
+}
+
+export interface IMaterialProps {
+  material: string;
+  materialType: TMaterialVariants;
+  videoPreview: string | boolean;
 }
