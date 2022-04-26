@@ -1,20 +1,19 @@
 import { FC, BaseSyntheticEvent } from 'react';
 
-import { ICourse, CoursesListType, TCheckedCourse } from 'types/course';
 import Loader from 'components/Loader';
 import { Loaders } from 'enums/loader';
+import { IShortCourseInfo, CoursesListType } from 'types/course';
 
 import { CourseItem } from './CourseItem';
 import { StyledList, StyledHorizontalLine } from './styled';
 
 interface IProps {
-  courses: ICourse[] | TCheckedCourse[];
-  checkedCourses: TCheckedCourse[];
+  checkedCourses: IShortCourseInfo[];
   type: CoursesListType;
   handleCheckboxChange: (event: BaseSyntheticEvent) => void;
+  courses?: IShortCourseInfo[];
   isCoursesLoading?: boolean;
   withUpperLine?: boolean;
-  lastCourseRef?: (node?: Element | null) => void;
 }
 
 const CoursesList: FC<IProps> = ({
@@ -24,7 +23,6 @@ const CoursesList: FC<IProps> = ({
   handleCheckboxChange,
   isCoursesLoading,
   withUpperLine,
-  lastCourseRef,
 }) => (
   <>
     {withUpperLine && !!checkedCourses.length && <StyledHorizontalLine />}
@@ -33,9 +31,7 @@ const CoursesList: FC<IProps> = ({
         <Loader color="primary" type={Loaders.component} />
       ) : (
         <>
-          {courses.map(({ _id: courseId, title }, courseIndex) => {
-            const courseRef = courses.length - 1 === courseIndex ? lastCourseRef : undefined;
-
+          {courses?.map(({ _id: courseId, title }) => {
             const isChecked = Boolean(
               checkedCourses.find(({ _id: checkedCourseId }) => checkedCourseId === courseId),
             );
@@ -47,7 +43,6 @@ const CoursesList: FC<IProps> = ({
                 checkboxValue={checkboxValue}
                 isChecked={isChecked}
                 title={title}
-                courseRef={courseRef}
                 handleCheckboxChange={handleCheckboxChange}
               />
             );

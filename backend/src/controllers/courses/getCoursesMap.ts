@@ -6,6 +6,7 @@ import {
   addMissingCoursesMapElements,
   fillStackWithStatuses,
   generateCoursesMapResponse,
+  sortCoursesMapResponse,
 } from 'utils/normaliser/courses';
 
 const getCoursesMap = async (
@@ -21,11 +22,17 @@ const getCoursesMap = async (
 
     const userStackWithStatuses = await fillStackWithStatuses(userStack, userId);
 
-    const responseCascade = generateCoursesMapResponse(userStackWithStatuses, userRank);
+    const responseCascade = await generateCoursesMapResponse(
+      userStackWithStatuses,
+      userRank,
+      userId,
+    );
 
     const filledResponse = addMissingCoursesMapElements(responseCascade);
 
-    res.locals.results = filledResponse;
+    const sortedCoursesMapResponse = sortCoursesMapResponse(filledResponse);
+
+    res.locals.results = sortedCoursesMapResponse;
 
     next();
   } catch (error) {

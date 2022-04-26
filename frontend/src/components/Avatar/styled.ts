@@ -31,6 +31,10 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '100px',
       height: '100px',
     }),
+    ...(size === Size.submedium && {
+      width: '80px',
+      height: '80px',
+    }),
     ...(size === Size.small && {
       width: '50px',
       height: '50px',
@@ -48,6 +52,10 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
     ...(size === Size.xsmall && {
       width: '40px',
       height: '40px',
+    }),
+    ...(size === Size.submedium && {
+      width: '70px',
+      height: '70px',
     }),
     ...(size === Size.medium && {
       width: '60px',
@@ -88,6 +96,10 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
     ...(size === Size.medium && {
       width: '150px',
       height: '150px',
+    }),
+    ...(size === Size.submedium && {
+      width: '80px',
+      height: '80px',
     }),
     ...(size === Size.xsmall && {
       width: '50px',

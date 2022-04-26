@@ -18,6 +18,11 @@ export interface IUserSkill {
   skill: ISkill;
 }
 
-export type GroupedSkills = Map<string | number, ISkill[]>;
+export interface ISkillsListProps {
+  name: string;
+  skills: ISkill[];
+}
+
+export type TGroupedSkills = Map<string | number, ISkill[]>;
 
 export type Technologies = ITechnologyGroup[];
