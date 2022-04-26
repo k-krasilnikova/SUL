@@ -91,11 +91,14 @@ const getPopulatedUserSkill = async (
 ): Promise<IUserSkillPopulated> =>
   UserSkillModel.findById(userSkillId).populate({ path: 'skill', model: 'Skill' }).lean();
 
-const addUserSkill = async (userId: string, skillId?: ObjectId): Promise<IUserSkill> => {
+const addUserSkill = async (
+  userId: string,
+  { skill, points }: { skill: ObjectId; points: number },
+): Promise<IUserSkill> => {
   const insertedUserSkill: IUserSkill = await UserSkillModel.create({
     user: new mongoose.Types.ObjectId(userId),
-    skill: skillId,
-    score: 1,
+    skill,
+    score: points,
   });
 
   return insertedUserSkill;
