@@ -4,7 +4,7 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import isValidComplexity from './isValidComplexity';
 import validateMaterials from './isValidMaterials';
 import isValidAvatar from './isValidAvatar';
-import validateTest from './isValidTest';
+import validateTest from './validateTest';
 import validateTitle from './validateTitle';
 import validateDescription from './validateDescription';
 
