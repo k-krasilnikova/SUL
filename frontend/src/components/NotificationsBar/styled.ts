@@ -61,4 +61,7 @@ export const RedMark = styled('div')({
   position: 'relative',
   top: '-18px',
   right: '30px',
+  [theme.breakpoints.down('sm')]: {
+    top: '-15px',
+  },
 });

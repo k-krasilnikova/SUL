@@ -53,13 +53,4 @@ export const SimilarCoursesTitle = styled(Typography)({
 
 export const CourseActionsBox = styled(Box)({
   marginLeft: '16px',
-  width: 'inherit',
-});
-
-export const CourseActionsWrapper = styled('div')({
-  display: 'flex',
-  [theme.breakpoints.down('md')]: {
-    justifyContent: 'flex-end',
-    // margin: 0,
-  },
 });
