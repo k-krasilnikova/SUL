@@ -4,7 +4,6 @@ import isValidCourseData from './isValidCourseData';
 import validateMaterials from './validateMaterials';
 import isValidTechnologies from './isValidTechnologies';
 import validateTest from './validateTest';
-import isValidText from './isValidText';
 import validateTitle from './validateTitle';
 
 export {
@@ -14,6 +13,5 @@ export {
   validateMaterials,
   isValidTechnologies,
   validateTest,
-  isValidText,
   validateTitle,
 };
