@@ -3,7 +3,7 @@ import { FC } from 'react';
 import Avatar from 'components/Avatar';
 import { Size } from 'enums/sizes';
 
-import { SkillContainer, ImageWrapper, SkillName } from './styled';
+import { SkillContainer, ImageWrapper, SkillNameWrapper, SkillName } from './styled';
 import { ISkillItemProps } from '../types';
 
 const SkillItem: FC<ISkillItemProps> = ({ name, skillImage }) => (
@@ -11,7 +11,9 @@ const SkillItem: FC<ISkillItemProps> = ({ name, skillImage }) => (
     <ImageWrapper>
       <Avatar size={Size.submedium} avatar={skillImage} />
     </ImageWrapper>
-    <SkillName>{name}</SkillName>
+    <SkillNameWrapper>
+      <SkillName>{name}</SkillName>
+    </SkillNameWrapper>
   </SkillContainer>
 );
 
