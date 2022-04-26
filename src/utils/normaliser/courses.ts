@@ -3,7 +3,6 @@ import { ObjectId } from 'mongoose';
 
 import CourseStatus from 'enums/coursesEnums';
 import { UserRank } from 'enums/users';
-import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 import {
   ICourseShortInfo,
   ICoursesMapElement,
@@ -11,10 +10,17 @@ import {
   IStackMapElement,
 } from 'interfaces/IResponse/IResponse';
 import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
+import { ICourseWithStatus, TAvailableCourse } from 'interfaces/ICourses/IQueryCourses';
 import { COURSE_FIELDS } from 'config/constants';
 import { getCourseStatusProvider } from 'db/providers/courseProvider';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import { getClientCourseByCourseId } from 'db/providers/clientCourseProvider';
+
+const filterOnlyAvailableCourses = (courses: ICourseWithStatus[]): ICourseWithStatus[] =>
+  courses.filter((course) => !course.status);
+
+const normalizeeAvailableCoursesInfo = (courses: ICourseWithStatus[]): TAvailableCourse[] =>
+  courses.map((course) => ({ _id: course._id, title: course.title }));
 
 const shortifyCourseInfo = (course: ICourseWithStatus): ICourseShortInfo => ({
   _id: course._id,
@@ -163,4 +169,6 @@ export {
   addMissingCoursesMapElements,
   fillStackWithStatuses,
   sortCoursesMapResponse,
+  filterOnlyAvailableCourses,
+  normalizeeAvailableCoursesInfo,
 };
