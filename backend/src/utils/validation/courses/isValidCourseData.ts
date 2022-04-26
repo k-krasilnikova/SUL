@@ -2,7 +2,7 @@ import { ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 import isValidComplexity from './isValidComplexity';
-import validateMaterials from './isValidMaterials';
+import validateMaterials from './validateMaterials';
 import isValidAvatar from './isValidAvatar';
 import validateTest from './validateTest';
 import validateTitle from './validateTitle';

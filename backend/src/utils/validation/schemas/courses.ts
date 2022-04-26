@@ -2,6 +2,7 @@ import { array, number, NumberSchema, object, string, StringSchema } from 'yup';
 import { uniqWith } from 'lodash';
 
 import { UserRank } from 'enums/users';
+import { MaterialContentType } from 'enums/materials';
 import { TIME_1M_SEC } from 'config/constants';
 import { ITest } from 'interfaces/Ientities/Itest';
 
@@ -10,9 +11,11 @@ import fullTrim from '../../string/fullTrim';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import {
   MAX_DESCRIPTION_LENGTH,
+  MAX_PLAIN_MATERIAL_LENGTH,
   MAX_QUESTION_LENGTH,
   MAX_TITLE_LENGTH,
   MIN_DESCRIPTION_LENGTH,
+  MIN_PLAIN_MATERIAL_LENGTH,
   MIN_QUESTIONS_PER_TEST,
   MIN_QUESTION_LENGTH,
   MIN_TITLE_LENGTH,
@@ -20,6 +23,8 @@ import {
 import { isNotNumbersOnly, isNotSpecialsOnly } from '../strings';
 
 const CORRECT_ANSWERS_AMOUNT = 1;
+const MIN_MATERIALS_AMOUNT = 1;
+const MIN_CONTENT_ELEMENTS_AMOUNT = 1;
 
 const TitleValidator: StringSchema = string()
   .required()
@@ -108,4 +113,45 @@ const testValidationSchema = {
 
 const TestValidator = object(testValidationSchema).required();
 
-export { TitleValidator, DescriptionValidator, ComplexityValidator, TestValidator };
+const isValidContentType = (type: MaterialContentType): boolean =>
+  Object.values(MaterialContentType).some((typeValue) => typeValue === type);
+
+const contentElementValidationSchema = {
+  type: string()
+    .required()
+    .test((type) => isValidContentType(convertToTypeUnsafe<MaterialContentType>(type))),
+  material: string()
+    .required()
+    .when('type', {
+      is: MaterialContentType.plain,
+      then: (schema) =>
+        schema
+          .test(isNotNumbersOnly)
+          .test(isNotSpecialsOnly)
+          .trim()
+          .transform(fullTrim)
+          .transform(capitalizeFirstLetter)
+          .min(MIN_PLAIN_MATERIAL_LENGTH)
+          .max(MAX_PLAIN_MATERIAL_LENGTH),
+    }),
+};
+
+const ContentElementValidator = object(contentElementValidationSchema).required();
+
+const materialObjectValidationSchema = {
+  stage: number().optional(),
+  content: array().of(ContentElementValidator).required().min(MIN_CONTENT_ELEMENTS_AMOUNT),
+};
+
+const MaterialsValidator = array()
+  .of(object(materialObjectValidationSchema).required())
+  .required()
+  .min(MIN_MATERIALS_AMOUNT);
+
+export {
+  TitleValidator,
+  DescriptionValidator,
+  ComplexityValidator,
+  TestValidator,
+  MaterialsValidator,
+};
