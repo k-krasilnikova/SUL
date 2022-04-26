@@ -23,7 +23,7 @@ export const AddButton = styled(Button)({
     width: '69px',
     height: '40px',
     fontSize: '14px',
-    lineHeight: '16px',
+    lineHeight: '10px',
     boxShadow: '0 4px 4px rgba(0, 0, 0, 0.25)',
   },
 });

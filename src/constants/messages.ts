@@ -10,6 +10,6 @@ export const NO_NOTIFICATIONS = 'No notifications yet';
 export const LABEL_MESSAGE = 'New';
 export const CONFIRM_LEAVE_PAGE = 'Are you sure you want to leave this page?';
 export const CONFIRM_DELETE_COURSE = 'Are you sure you want to delete the course?';
-export const CONFIRM_LOGOUT = 'Log out of this account?';
+export const CONFIRM_LOGOUT = 'Are you sure you want to log out?';
 export const TIME_FOR_TEST_EXPIRED =
   'The time allotted for passing the test has expired. The next attempt to pass the test will be available in 1 week';

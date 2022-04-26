@@ -8,6 +8,7 @@ export const StyledButton = styled(Button)({
   minWidth: '86px',
   marginLeft: '300px',
   fontSize: '16px',
+  lineHeight: '12px',
   [theme.breakpoints.down('xl')]: {
     height: '36px',
     marginLeft: '150px',

@@ -40,6 +40,7 @@ export const ImageWrapper = styled('div')<Image>(({ imageUrl }) => {
 
 export const DetailedCourseText = styled(Typography)({
   fontWeight: 'normal',
+  textAlign: 'justify',
   letterSpacing: '-0.4px',
   color: '#131313',
   [theme.breakpoints.up('xs')]: {

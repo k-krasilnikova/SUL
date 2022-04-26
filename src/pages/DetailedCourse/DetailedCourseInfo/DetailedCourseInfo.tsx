@@ -1,9 +1,10 @@
 import React from 'react';
 
 import ProgressBar from 'components/ProgressBar';
-import { OPEN_FULL_TEXT, PROGRESS_COLOR } from 'constants/detailedCourse';
+import { PROGRESS_COLOR } from 'constants/detailedCourse';
 import { IDetailedCourseInfo } from 'types/detailedCourse';
 import { shortifyDetailedCourseDescription } from 'utils/helpers/shortifyDetailedCourseDescription';
+import { ButtonLabels } from 'constants/ButtonLabels';
 
 import {
   ButtonFullText,
@@ -40,7 +41,7 @@ const DetailedCourseInfo: React.FC<IDetailedCourseInfo> = ({
       <DetailedCourseTextMobile>
         {shortifyDetailedCourseDescription(commonCourseData.description)}
         <ButtonFullText onClick={toggleFullText}>
-          {!isFullTextOpen && OPEN_FULL_TEXT}
+          {!isFullTextOpen && ButtonLabels.lookInFull}
         </ButtonFullText>
       </DetailedCourseTextMobile>
     )}
