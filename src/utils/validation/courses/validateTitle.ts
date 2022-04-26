@@ -1,24 +1,23 @@
-import { MAX_TITLE_LENGTH, MIN_TITLE_LENGTH } from './constants';
-import isValidText from './isValidText';
 import { isNotNumbersOnly, isNotSpecialsOnly } from '../strings';
-import fullTrim from '../../string/fullTrim';
-import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
-
-const isValidLength = (value: string) =>
-  value.length <= MAX_TITLE_LENGTH && value.length >= MIN_TITLE_LENGTH;
+import { TitleValidation } from '../schemas/courses';
+import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
+import fullTrim from '../../string/fullTrim';
 
 const validateTitle = (title?: string): string | null => {
-  if (!isValidText(title)) {
+  try {
+    const partlyValidatedTitle = TitleValidation.validateSync(title);
+
+    const titleValue = capitalizeFirstLetter(
+      fullTrim(convertToTypeUnsafe<string>(partlyValidatedTitle)),
+    );
+
+    const isValidated = isNotNumbersOnly(titleValue) && isNotSpecialsOnly(titleValue);
+
+    return isValidated ? titleValue : null;
+  } catch {
     return null;
   }
-
-  const titleValue = capitalizeFirstLetter(fullTrim(convertToTypeUnsafe<string>(title)));
-
-  const isValidated =
-    isValidLength(titleValue) && isNotNumbersOnly(titleValue) && isNotSpecialsOnly(titleValue);
-
-  return isValidated ? titleValue : null;
 };
 
 export default validateTitle;
