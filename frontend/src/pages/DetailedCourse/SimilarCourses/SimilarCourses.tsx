@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
