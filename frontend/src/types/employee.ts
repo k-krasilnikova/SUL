@@ -6,7 +6,7 @@ import { IUser } from './user';
 export interface IEmployee extends IUser {
   _id: string;
   rank: number;
-  stack: { name: string }[];
+  stack: { member: { name: string } }[];
 }
 
 export interface IEmployeesProps {
@@ -30,6 +30,9 @@ export interface IEmployeeCourses {
 
 export interface IEmployeeCoursesList {
   courses?: IClientCourse[];
+  showCourseInfo?: () => void;
+  hideCourseInfo?: () => void;
+  isShown?: boolean;
 }
 
 export interface IEmployeeInfo {

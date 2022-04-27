@@ -17,8 +17,9 @@ export interface IDetailedCourse {
   toggleFullText: () => void;
   navigate: NavigateFunction;
   clientCourseData?: PureClientCourse;
+  similarCourses?: ICourse[];
   isLoading?: boolean;
-  targetId?: string | undefined;
+  targetId?: string;
   isProgressBarDisplayed?: boolean;
   isCourseCompleted?: boolean;
   isCourseDeclined?: boolean;
@@ -60,6 +61,6 @@ export interface IBackButton {
 }
 
 export interface ISimilarCourses {
-  commonCourseData: ICourse;
+  similarCourses: ICourse[];
   windowWidth: string;
 }
