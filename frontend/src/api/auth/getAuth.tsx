@@ -28,9 +28,9 @@ const useGetAuth = (): UseMutationResult => {
       const accessToken = JSON.stringify(tokenResponse.accessToken);
       const refreshToken = JSON.stringify(tokenResponse.refreshToken);
       const userId = JSON.stringify(tokenResponse._id);
-      Cookies.set(COOKIE_VALUES.uniqAccessToken, accessToken, { secure: true });
-      Cookies.set(COOKIE_VALUES.uniqUserId, userId, { secure: true });
-      Cookies.set(COOKIE_VALUES.uniqRefreshToken, refreshToken, { secure: true });
+      Cookies.set(COOKIE_VALUES.uniqAccessToken, accessToken, { secure: true, expires: 2 });
+      Cookies.set(COOKIE_VALUES.uniqUserId, userId, { secure: true, expires: 2 });
+      Cookies.set(COOKIE_VALUES.uniqRefreshToken, refreshToken, { secure: true, expires: 2 });
       handleSubmitSuccess();
       return tokenResponse;
     },

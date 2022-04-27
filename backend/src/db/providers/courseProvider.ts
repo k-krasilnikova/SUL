@@ -77,6 +77,7 @@ const populateCourse = async (course: ICourseWithStatus): Promise<ICourseWithSta
   const populated = await CourseModel.populate(course, [
     { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
     { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+    { path: 'similarCourses' },
   ]);
 
   return populated;
@@ -261,6 +262,22 @@ const getCourseStatusProvider = async (
 
 const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
 
+const addSimilarCoursesProvider = async (course: ICourse) => {
+  course.technologies.map(async (currentSkill) => {
+    const similarCourses = await CourseModel.find({ 'technologies.skill': currentSkill.skill });
+    similarCourses.map(async (similarCourse) => {
+      await CourseModel.updateMany(
+        {
+          'technologies.skill': currentSkill.skill,
+          similarCourses: { $nin: [similarCourse._id] },
+          _id: { $ne: similarCourse._id },
+        },
+        { $push: { similarCourses: similarCourse._id } },
+      );
+    });
+  });
+};
+
 export {
   getCoursesProvider,
   getCourseProvider,
@@ -271,4 +288,5 @@ export {
   updateCourseField,
   getCourseStatusProvider,
   addCourseProvider,
+  addSimilarCoursesProvider,
 };
