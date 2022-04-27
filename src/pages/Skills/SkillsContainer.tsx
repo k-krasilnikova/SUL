@@ -16,7 +16,7 @@ const SkillsContainer: FC = () => {
   const { data: skillsResponse } = useGetSkills();
 
   useEffect(() => {
-    if (debouncedSearchValue) {
+    if (debouncedSearchValue && debouncedSearchValue.length >= 2) {
       if (
         skillSearchResponse?.filter((skillList) => {
           return skillList.skills.filter((skill) =>
