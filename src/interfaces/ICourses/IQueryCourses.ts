@@ -3,7 +3,7 @@ import { SortOrder } from 'enums/common';
 import ISkill from '../Ientities/ISkill';
 import { ICourse } from '../Ientities/Icourses';
 import { ITest } from '../Ientities/Itest';
-import { ICourseDuration } from '../common/datetime';
+import { ICourseDuration, ITimePeriod } from '../common/datetime';
 
 interface IQueryCourses {
   pageN?: number;
@@ -68,12 +68,17 @@ interface IPreparedCourseData {
   complexity?: ICourse['complexity'];
   test?: ITest;
   technologies?: ICourse['technologies'];
+  lessons?: number;
+  duration?: ITimePeriod;
+  similarCourses?: ICourse[];
 }
 
 interface ICourseToAssign {
   courseId: string;
   assessment?: boolean;
 }
+
+type TAvailableCourse = Pick<ICourse, '_id' | 'title'>;
 
 type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
 
@@ -88,6 +93,7 @@ export {
   IProgress,
   IUpdateCourseBody,
   ICourseToAssign,
+  TAvailableCourse,
   IUpdateCourseTest,
   ICreateCourseBody,
   IPreparedCourseData,

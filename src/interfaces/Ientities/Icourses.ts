@@ -3,6 +3,8 @@ import { ObjectId } from 'mongoose';
 import { UserRank } from 'enums/users';
 import { MaterialContentType } from 'enums/materials';
 
+import { ITimePeriod } from '../common/datetime';
+
 interface ICourse {
   _id?: ObjectId;
   title: string;
@@ -22,6 +24,9 @@ interface ICourse {
   }[];
   test: ObjectId;
   avatar: string;
+  similarCourses: ICourse[];
+  lessons: number;
+  duration: ITimePeriod;
 }
 
 interface IContentElement {

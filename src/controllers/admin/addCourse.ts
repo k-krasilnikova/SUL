@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { addCourseProvider } from 'db/providers/courseProvider';
+import { addCourseProvider, addSimilarCoursesProvider } from 'db/providers/courseProvider';
 import { ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 
@@ -13,6 +13,9 @@ const addCourse = async (
     const { preparedCourseData } = res.locals;
 
     const newCourse = await addCourseProvider(preparedCourseData);
+
+    await addSimilarCoursesProvider(newCourse);
+
     res.locals.results = newCourse;
     next();
   } catch (error) {
