@@ -1,10 +1,10 @@
-import React from 'react';
+import { FC } from 'react';
 
 import ProgressBar from 'components/ProgressBar';
 import { PROGRESS_COLOR } from 'constants/detailedCourse';
+import { ButtonLabels } from 'constants/ButtonLabels';
 import { IDetailedCourseInfo } from 'types/detailedCourse';
 import { shortifyDetailedCourseDescription } from 'utils/helpers/shortifyDetailedCourseDescription';
-import { ButtonLabels } from 'constants/ButtonLabels';
 
 import {
   ButtonFullText,
@@ -14,7 +14,7 @@ import {
   ImageWrapper,
 } from './styled';
 
-const DetailedCourseInfo: React.FC<IDetailedCourseInfo> = ({
+const DetailedCourseInfo: FC<IDetailedCourseInfo> = ({
   commonCourseData,
   isProgressBarDisplayed,
   toggleFullText,
@@ -22,6 +22,7 @@ const DetailedCourseInfo: React.FC<IDetailedCourseInfo> = ({
   progressText,
   progressVariant,
   isFullTextOpen,
+  isDescriptionLengthExceed,
 }) => (
   <>
     <ImageWrapper imageUrl={commonCourseData.avatar} />
@@ -41,7 +42,7 @@ const DetailedCourseInfo: React.FC<IDetailedCourseInfo> = ({
       <DetailedCourseTextMobile>
         {shortifyDetailedCourseDescription(commonCourseData.description)}
         <ButtonFullText onClick={toggleFullText}>
-          {!isFullTextOpen && ButtonLabels.lookInFull}
+          {isDescriptionLengthExceed && ButtonLabels.lookInFull}
         </ButtonFullText>
       </DetailedCourseTextMobile>
     )}

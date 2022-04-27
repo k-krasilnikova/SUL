@@ -13,11 +13,12 @@ export interface IDetailedCourse {
   id: string;
   status: CourseStatus;
   windowWidth: string;
-  isFullTextOpen: boolean;
   toggleFullText: () => void;
   navigate: NavigateFunction;
   clientCourseData?: PureClientCourse;
   similarCourses?: ICourse[];
+  isFullTextOpen?: boolean;
+  isDescriptionLengthExceed?: boolean;
   isLoading?: boolean;
   targetId?: string;
   isProgressBarDisplayed?: boolean;
@@ -37,7 +38,8 @@ export interface IDetailedCourse {
 export interface IDetailedCourseInfo {
   commonCourseData: ICourse;
   toggleFullText: () => void;
-  isFullTextOpen: boolean;
+  isFullTextOpen?: boolean;
+  isDescriptionLengthExceed?: boolean;
   isProgressBarDisplayed?: boolean;
   progressValue?: number;
   progressText?: string;
