@@ -30,6 +30,7 @@ export interface ICourse {
   materials: TMaterial[];
   status: CourseStatus;
   avatar?: string;
+  similarCourses: ICourse[];
 }
 
 export interface IShortCourseInfo {
