@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getCourseProvider } from 'db/providers/courseProvider';
-import { convertToCourseInfo } from 'utils/typeConversion/courses/coursesTypeConversions';
-import { ICourseInfo } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+import prepareSimilarCourses from 'utils/normaliser/prepareSimilarCourses';
 
 const getCourseById = async (
   req: Request,
-  res: Response<ICourseInfo, { id: string }>,
+  res: Response<ICourseWithStatus, { id: string }>,
   next: NextFunction,
 ) => {
   try {
@@ -15,9 +15,9 @@ const getCourseById = async (
 
     const course = await getCourseProvider(courseId, userId);
 
-    const courseInfo = await convertToCourseInfo(course);
+    const preparedSimilarCourses = await prepareSimilarCourses(course.similarCourses);
 
-    res.json(courseInfo);
+    res.json({ ...course, similarCourses: preparedSimilarCourses });
   } catch (error) {
     next(error);
   }

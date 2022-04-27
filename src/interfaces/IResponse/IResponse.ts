@@ -76,6 +76,7 @@ interface ICourseShortInfo {
   title: ICourse['title'];
   avatar: ICourse['avatar'];
   isCompleted: boolean;
+  clientCourseId?: IClientCourse['_id'];
 }
 
 type TEmployeeCourse = Pick<ICourse, 'title' | 'avatar'>;
