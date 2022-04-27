@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getCoursesProvider } from 'db/providers/courseProvider';
-import { ICourseInfo, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
-import { convertToCourseInfoArray } from 'utils/typeConversion/courses/coursesTypeConversions';
+import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import { ICourse } from 'interfaces/Ientities/Icourses';
 
 const getAllCourses = async (
   req: Request,
-  res: Response<ICourseInfo[], { id: string }>,
+  res: Response<ICourse[], { id: string }>,
   next: NextFunction,
 ) => {
   try {
@@ -15,9 +15,7 @@ const getAllCourses = async (
 
     const allCourses = await getCoursesProvider({ ...params }, userId);
 
-    const allCoursesInfo = await convertToCourseInfoArray(allCourses);
-
-    res.json(allCoursesInfo);
+    res.json(allCourses);
   } catch (error) {
     next(error);
   }

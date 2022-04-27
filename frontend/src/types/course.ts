@@ -38,8 +38,13 @@ export interface ICourse {
   lessons: number;
   status: CourseStatus;
   avatar?: string;
+  similarCourses: ICourse[];
 }
 
+export interface IShortCourseInfo {
+  _id: string;
+  title: string;
+}
 export type TCheckedCourse = Pick<ICourse, '_id' | 'title'>;
 export type TCourseInfo = Pick<ICourse, 'title' | 'description'>;
 export type TRequestedCourse = Pick<ICourse, '_id' | 'avatar' | 'title'>;
@@ -92,4 +97,5 @@ export interface ICourseShortInfo {
   avatar: string;
   title: string;
   isCompleted: boolean;
+  clientCourseId?: string;
 }

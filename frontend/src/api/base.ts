@@ -32,8 +32,8 @@ export const apiClientWrapper = (): AxiosInstance => {
         const tokens = tokenRefreshResponse.data;
         const accessToken = JSON.stringify(tokens.accessToken);
         const refreshToken = JSON.stringify(tokens.refreshToken);
-        Cookies.set(COOKIE_VALUES.uniqAccessToken, accessToken, { secure: true });
-        Cookies.set(COOKIE_VALUES.uniqRefreshToken, refreshToken, { secure: true });
+        Cookies.set(COOKIE_VALUES.uniqAccessToken, accessToken, { secure: true, expires: 2 });
+        Cookies.set(COOKIE_VALUES.uniqRefreshToken, refreshToken, { secure: true, expires: 2 });
         if (failedRequest?.response?.config.headers) {
           // eslint-disable-next-line no-param-reassign
           failedRequest.response.config.headers.Authorization = `Bearer ${accessToken}`;

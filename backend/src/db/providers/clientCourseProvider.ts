@@ -1,7 +1,11 @@
 import mongoose, { ObjectId } from 'mongoose';
 
 import { IProgress, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
-import { IClientCoursePopulated, TClientCourseFields } from 'interfaces/Ientities/IclientCourses';
+import {
+  IClientCourse,
+  IClientCoursePopulated,
+  TClientCourseFields,
+} from 'interfaces/Ientities/IclientCourses';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -53,7 +57,7 @@ const getClientCourseProvider = async (clientCourseId: string): Promise<IClientC
   const clientCourse: IClientCoursePopulated = await ClientCourseModel.findOne({
     _id: clientCourseId,
   })
-    .populate('course')
+    .populate({ path: 'course', populate: 'similarCourses' })
     .lean();
 
   if (!clientCourse) {
@@ -160,10 +164,15 @@ const arrangeAssessment = async (courseId: string) => {
 };
 
 const getClientCoursesByCourseId = async (courseId: string) => {
-  const allClientCoursesByCourseId = await ClientCourseModel.find({ course: courseId });
+  const allClientCoursesByCourseId = await ClientCourseModel.findOne({ course: courseId }).lean();
 
   return allClientCoursesByCourseId;
 };
+
+const getClientCourseByCourseId = async (
+  courseId: string | ObjectId,
+  userId: string | ObjectId,
+): Promise<IClientCourse> => ClientCourseModel.findOne({ course: courseId, user: userId }).lean();
 
 const checkNotDeleteCoursesProvider = async (courseId: string) => {
   const clientCourses = await ClientCourseModel.find({ course: courseId });
@@ -208,6 +217,7 @@ export {
   updateCourseProgress,
   updateClientCourseField,
   getClientCoursesByCourseId,
+  getClientCourseByCourseId,
   assignCourseToEmployee,
   checkNotDeleteCoursesProvider,
 };

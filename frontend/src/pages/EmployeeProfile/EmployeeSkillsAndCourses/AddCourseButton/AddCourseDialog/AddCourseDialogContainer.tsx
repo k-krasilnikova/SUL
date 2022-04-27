@@ -1,10 +1,10 @@
 import { FC, useState, BaseSyntheticEvent } from 'react';
 import { useParams } from 'react-router';
 
-import { useGetPaginatedCourses } from 'api/courses';
+import { useGetAvailableCourses } from 'api/courses';
 import { useAddCourseToEmployee } from 'api/manager';
-import { useDebounce, useFetchNextPage } from 'hooks';
-import { ICourse, TCheckedCourse } from 'types/course';
+import { useDebounce } from 'hooks';
+import { IShortCourseInfo } from 'types/course';
 import { formatInputValue } from 'utils/helpers/searchHelpers';
 
 import AddCourseDialog from './AddCourseDialog';
@@ -18,16 +18,15 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
   const { employeeId } = useParams();
 
   const [searchInputValue, setSearchInputValue] = useState('');
-  const [selectedCoursesList, setSelectedCoursesList] = useState<TCheckedCourse[]>([]);
+  const [selectedCoursesList, setSelectedCoursesList] = useState<IShortCourseInfo[]>([]);
 
   const debouncedSearchInputValue = useDebounce(searchInputValue);
 
   const {
     data: coursesListResponse,
-    hasNextPage,
-    fetchNextPage,
     isLoading: isCoursesLoading,
-  } = useGetPaginatedCourses(debouncedSearchInputValue);
+    isFetching: isCoursesFetching,
+  } = useGetAvailableCourses(employeeId, debouncedSearchInputValue);
 
   const handleDialogClose = () => {
     setSearchInputValue('');
@@ -44,16 +43,11 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
       onSuccess: handleDialogClose,
     });
 
-  const lastCourseRef = useFetchNextPage({ hasNextPage, fetchNextPage });
-
-  const foundedCoursesList =
-    coursesListResponse?.pages?.reduce(
-      (list, currentPage) => [...list, ...currentPage?.courses],
-      [] as ICourse[],
-    ) || [];
-
   const isNoSearchResult =
-    !foundedCoursesList.length && !!debouncedSearchInputValue.length && !isCoursesLoading;
+    !coursesListResponse?.length &&
+    !!debouncedSearchInputValue.length &&
+    !isCoursesLoading &&
+    !isCoursesFetching;
 
   const handleSearchInputChange = ({ target }: BaseSyntheticEvent) => {
     setSearchInputValue(formatInputValue(target.value));
@@ -78,12 +72,11 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
   return (
     <AddCourseDialog
       selectedCoursesList={selectedCoursesList}
-      foundedCoursesList={foundedCoursesList}
+      foundedCoursesList={coursesListResponse}
       isAddCourseToEmployeeLoading={isAddCourseToEmployeeLoading}
-      isCoursesLoading={isCoursesLoading}
+      isCoursesLoading={isCoursesLoading || isCoursesFetching}
       isNoSearchResult={isNoSearchResult}
       searchInputValue={searchInputValue}
-      lastCourseRef={lastCourseRef}
       handleAddCourse={handleAddCourse}
       handleClose={handleDialogClose}
       handleCheckboxChange={handleCheckboxChange}
