@@ -5,7 +5,7 @@ import { ICourseInfo, ICourseWithStatus } from 'interfaces/ICourses/IQueryCourse
 import { convertToCourseDuration } from '../datetime/datetimeTypeConversions';
 
 const convertToCourseInfo = async (course: ICourseWithStatus): Promise<ICourseInfo> => {
-  const lessons = course.materials.length;
+  const lessons: number = course.materials.length;
 
   const test = await getTestById(course.test);
 

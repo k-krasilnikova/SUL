@@ -12,6 +12,7 @@ import {
 import { Role } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
 import { CourseStatus } from 'enums/course';
+import { ICourse } from 'types/course';
 
 import DetailedCourse from './DetailedCourse';
 
@@ -44,7 +45,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
 
   const windowWidth = getWindowWidth();
 
-  let commonCourseInfo;
+  let commonCourseInfo: ICourse | undefined;
   let clientCourseInfo;
   if (courseData && 'course' in courseData) {
     const { course, ...clientCourse } = courseData;
