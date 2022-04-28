@@ -3,11 +3,12 @@ import { FC } from 'react';
 import { buttonSpinner } from 'animations';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import ButtonLoader from 'components/ButtonLoader';
+import { IApproveCourseDto } from 'types/api.dto';
 
 import { ActionButton, ButtonsContainer, InterviewActionButton } from './styled';
 
 interface IRequestProps {
-  approveRequest: (requestId: string) => void;
+  approveRequest: (variables: IApproveCourseDto) => void;
   approveLoading: boolean;
   declineRequest: (requestId: string) => void;
   declineLoading: boolean;
@@ -26,7 +27,7 @@ const RequestButtons: FC<IRequestProps> = ({
   <ButtonsContainer item xs={4} rowSpacing={1}>
     <ActionButton
       variant="mediumContained"
-      onClick={() => approveRequest(id)}
+      onClick={() => approveRequest({ id })}
       disabled={approveLoading}
     >
       {approveLoading && isTargetRequest ? (
@@ -37,7 +38,7 @@ const RequestButtons: FC<IRequestProps> = ({
     </ActionButton>
     <InterviewActionButton
       variant="mediumContained"
-      onClick={() => approveRequest(id)}
+      onClick={() => approveRequest({ id, assessment: true })}
       disabled={approveLoading}
     >
       {approveLoading && isTargetRequest ? (

@@ -30,6 +30,7 @@ export interface ITestResult {
     testStatus: string;
   };
   updatedSkills: [];
+  techsToAchieve: [];
 }
 
 export interface IPassingTestResponse {

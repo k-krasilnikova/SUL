@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TEST_RESULT_TEXT } from 'constants/test';
-import CourseMaterialInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
+import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import { IResultDescription } from 'types/test';
 
 import {
@@ -25,22 +25,31 @@ const ResultDescription: React.FC<IResultDescription> = ({
       {isFailed ? TEST_RESULT_TEXT.failed : TEST_RESULT_TEXT.completed}
     </TestResultText>
     <AboutSkillsBox>
-      <SkillsText>{TEST_RESULT_TEXT.skills}</SkillsText>
+      <SkillsText>
+        {assessment ? TEST_RESULT_TEXT.skillsToBeApproved : TEST_RESULT_TEXT.skills}
+      </SkillsText>
       <TestSkillsBox>
-        {isFailed || assessment ? (
+        {isFailed ? (
           <>
             <FailedCourseText>{TEST_RESULT_TEXT.none}</FailedCourseText>
-            {assessment && <FailedCourseText>{TEST_RESULT_TEXT.assessment}</FailedCourseText>}
             <StyledDivider />
           </>
         ) : (
           <SkillsInfoList>
-            {responseData?.newSkills?.map((newSkillItem) => (
-              <CourseMaterialInfoContainer skillItem={newSkillItem} key={newSkillItem} />
-            ))}
-            {responseData?.updatedSkills?.map((updatedSkillItem) => (
-              <CourseMaterialInfoContainer skillItem={updatedSkillItem} key={updatedSkillItem} />
-            ))}
+            {assessment ? (
+              responseData?.techsToAchieve?.map((tech) => (
+                <SkillInfoContainer skillItem={tech} key={tech} />
+              ))
+            ) : (
+              <>
+                {responseData?.newSkills?.map((newSkillItem) => (
+                  <SkillInfoContainer skillItem={newSkillItem} key={newSkillItem} />
+                ))}
+                {responseData?.updatedSkills?.map((updatedSkillItem) => (
+                  <SkillInfoContainer skillItem={updatedSkillItem} key={updatedSkillItem} />
+                ))}
+              </>
+            )}
           </SkillsInfoList>
         )}
       </TestSkillsBox>

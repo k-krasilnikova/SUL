@@ -18,6 +18,11 @@ export interface IUserSkill {
   skill: ISkill;
 }
 
+export interface ITechnology {
+  points: IUserSkill['score'];
+  skill: IUserSkill['skill'];
+}
+
 export interface ISkillsListProps {
   name: string;
   skills: ISkill[];
