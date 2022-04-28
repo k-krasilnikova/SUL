@@ -13,10 +13,8 @@ import { handleError, handleInternalError } from 'middlewares/errorHandlingMiddl
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
-
 const localhost = process.env.LOCAL_HOST || 'http://localhost:3000';
 const webhost = process.env.WEB_HOST || 'https://sul-web.herokuapp.com';
-
 app.use(json());
 app.use(cookieParser());
 app.use(
@@ -25,6 +23,12 @@ app.use(
     credentials: true,
   }),
 );
+
+export const DB_URL: Record<string, string | undefined> = {
+  local: process.env.DATABASE_LOCAL_URL,
+  dev: process.env.DATABASE_URL,
+  backdev: process.env.DATABASE_BACKDEV_URL,
+};
 
 app.use(connectionMiddleware);
 app.use(loggerMiddleware);
