@@ -5,6 +5,7 @@ export enum ButtonLabels {
   startTest = 'Start the Test',
   details = 'Details',
   stay = 'Stay',
+  edit = 'Edit',
   exit = 'Exit',
   ok = 'OK',
   previous = 'Previous',
