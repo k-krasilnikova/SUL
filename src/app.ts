@@ -24,12 +24,6 @@ app.use(
   }),
 );
 
-export const DB_URL: Record<string, string | undefined> = {
-  local: process.env.DATABASE_LOCAL_URL,
-  dev: process.env.DATABASE_URL,
-  backdev: process.env.DATABASE_BACKDEV_URL,
-};
-
 app.use(connectionMiddleware);
 app.use(loggerMiddleware);
 app.use(`${Routes.namespace}`, routers);
