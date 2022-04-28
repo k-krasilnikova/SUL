@@ -183,6 +183,7 @@ const ESTIMATE_TIME_PER_LESSON = 1 * TIME_1D_SEC;
 
 module.exports = {
   async up(db) {
+    await db.collection('courses').updateMany({}, { $set: { similarCourses: [] } });
     const courses = await db.collection('courses').find().toArray();
     courses.map(async (course) => {
       const lessons = course.materials.length;
