@@ -1,7 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 
 import CourseStatus from 'enums/coursesEnums';
-import { NotificationStatuses, NotificationTitles } from 'enums/notificationEnums';
+import {
+  NotificationDescription,
+  NotificationStatuses,
+  NotificationTitles,
+} from 'enums/notificationEnums';
 import {
   arrangeAssessment,
   getClientCourseProvider,
@@ -55,6 +59,7 @@ const approvePendingCourse = async (
       clientCourse.user,
       NotificationStatuses.new,
       NotificationTitles.approved,
+      NotificationDescription.approved,
     );
 
     results.updateStatus = `Course was approved ${withAssessment ? 'with' : 'without'} assessment.`;
