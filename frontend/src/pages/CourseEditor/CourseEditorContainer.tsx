@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
@@ -6,7 +7,7 @@ import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import CourseEditor from './CourseEditor';
 
-const CourseEditorContainer: React.FC = () => {
+const CourseEditorContainer: FC = () => {
   const formik = useFormik({
     initialValues: {},
     onSubmit: (): void => {},

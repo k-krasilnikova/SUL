@@ -7,15 +7,15 @@ import { ButtonsWrapper, DetailedCourseWrapper, InnerWrapper, MobileSearchWrappe
 import BackButton from './BackButton';
 import SimilarCourses from './SimilarCourses';
 import DetailedCourseInfo from './DetailedCourseInfo';
-import EditButton from './EditCourseButton';
 import DetailedCourseActions from './DetailedCourseActions';
+import EditCourseButton from './EditCourseButton';
 
 const DetailedCourse: FC<IDetailedCourse> = ({ page, commonCourseData, isAdmin, ...props }) => (
   <AuthorizedLayout pageName="Course">
     <DetailedCourseWrapper>
       <ButtonsWrapper>
         <BackButton page={page} />
-        {isAdmin && <EditButton {...props} />}
+        {isAdmin && <EditCourseButton {...props} />}
       </ButtonsWrapper>
       <MobileSearchWrapper>
         <MobileSearch />
