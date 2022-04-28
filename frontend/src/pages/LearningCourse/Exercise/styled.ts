@@ -30,8 +30,8 @@ export const CourseInfoWrapper = styled('div')<CourseInfoWrapperProps>(({ isCour
 
 export const CourseInfoContent = styled('div')({
   display: 'block',
-  width: 'calc(100% - 196px)',
-  padding: '31px 238px 31px 54px',
+  padding: '31px 50px 31px 54px',
+  width: '100%',
   textAlign: 'left',
   color: 'black',
   border: '1px solid #E0E0E3',
@@ -45,6 +45,9 @@ export const CourseInfoContent = styled('div')({
     display: 'block',
     width: '100%',
     padding: '8px 19px 3px 8px',
+  },
+  [theme.breakpoints.down(800)]: {
+    padding: '8px 10px 3px 8px',
   },
 });
 
@@ -64,9 +67,21 @@ export const CourseInfoTitle = styled('span')({
   },
 });
 
+export const CodeBlock = styled('code')({
+  fontSize: '14px',
+  display: 'block',
+  backgroundColor: '#EEE',
+  border: '1px solid #999',
+  padding: '20px',
+  whiteSpace: 'break-spaces',
+  [theme.breakpoints.down('xl')]: {
+    fontSize: '11px',
+  },
+});
+
 export const CourseInfoText = styled('p')({
   fontFamily: '"Ubuntu", sans-serif',
-  fontSize: '24px',
+  fontSize: '20px',
   fontWeight: 400,
   lineHeight: '31px',
   letterSpacing: '-0.4px',
