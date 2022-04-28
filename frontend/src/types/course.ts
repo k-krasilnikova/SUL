@@ -2,18 +2,27 @@ import { COURSE_LABELS } from 'constants/statuses';
 import { CourseStatus } from 'enums/course';
 import { EmployeeRank } from 'enums/employee';
 
+import { TMaterialVariants } from './materials';
+
 import { TimeProps } from './time';
 
-export type TMaterial = {
-  content: {
-    _id: string;
-    stage: number;
-    content: IContentElement[];
-    isCompleted: boolean;
-  }[];
-  technology: Array<string>;
-  _id?: string;
+export type TContentElement = {
+  type: TMaterialVariants;
+  material: string;
 };
+
+export interface IExercise {
+  eN: number;
+  title: string;
+  task: string;
+  code?: string;
+}
+
+export interface IMaterial {
+  stage: number;
+  content: TContentElement[];
+  exercise?: IExercise;
+}
 
 export type CourseTechnology = { skill: string; points: number };
 export type TCourseStatus = `${CourseStatus}`;
@@ -27,7 +36,6 @@ export interface ICourse {
   duration: TimeProps;
   testLink: string;
   lessons: number;
-  materials: TMaterial[];
   status: CourseStatus;
   avatar?: string;
   similarCourses: ICourse[];
@@ -57,26 +65,9 @@ export interface ICourses {
   сoursesResponse: ICourse[];
 }
 
-export interface IMaterial {
-  _id: string;
-  stage: number;
-  content: IContentElement[];
-}
-
-export interface IContentElement {
-  type: ContentElementType;
-  material: string;
-}
-
-export enum ContentElementType {
-  video = 'video',
-  plain = 'plain',
-  presentation = 'presentation',
-}
-
 export interface ICourseMaterialsResponse {
   _id: string;
-  materials: TMaterial['content'];
+  materials: IMaterial[];
 }
 
 export interface ICourseInfo {

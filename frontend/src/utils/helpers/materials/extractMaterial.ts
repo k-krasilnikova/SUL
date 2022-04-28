@@ -1,8 +1,9 @@
-import { ContentElementType, IContentElement } from 'types/course';
+import { ContentElementType } from 'enums/materials';
+import { TContentElement } from 'types/course';
 
 import { optimizeLink } from '../videoPlayer/videoLink';
 
-const extractMaterial = (contentElement: IContentElement): IContentElement['material'] => {
+const extractMaterial = (contentElement: TContentElement): TContentElement['material'] => {
   const { type: contentType, material: contentMaterial } = contentElement;
 
   const returnedContentMaterial = {

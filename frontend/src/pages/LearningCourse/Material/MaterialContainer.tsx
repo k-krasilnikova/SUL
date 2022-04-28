@@ -2,12 +2,12 @@ import { FC } from 'react';
 
 import { getPreviewId } from 'utils/helpers/videoPlayer/getPreviewId';
 import extractMaterial from 'utils/helpers/materials/extractMaterial';
-import { IContentElement } from 'types/course';
+import { TContentElement } from 'types/course';
 
 import Material from './Material';
 
 interface IProps {
-  courseMaterial: IContentElement;
+  courseMaterial: TContentElement;
 }
 
 const MaterialContainer: FC<IProps> = ({ courseMaterial }) => {

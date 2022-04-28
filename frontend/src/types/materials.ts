@@ -1,3 +1,3 @@
-import { MATERIAL } from 'constants/materials';
+import { ContentElementType } from 'enums/materials';
 
-export type TMaterialVariants = typeof MATERIAL[keyof typeof MATERIAL];
+export type TMaterialVariants = `${ContentElementType}`;

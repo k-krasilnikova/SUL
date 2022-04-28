@@ -1,4 +1,4 @@
-import { MATERIAL } from 'constants/materials';
+import { ContentElementType } from 'enums/materials';
 import { TMaterialVariants } from 'types/materials';
 
 export const defineMaterialType = (material: string): TMaterialVariants => {
@@ -8,9 +8,9 @@ export const defineMaterialType = (material: string): TMaterialVariants => {
     material.indexOf('.com') >= 0 ||
     material.indexOf('.org') >= 0
   ) {
-    type = MATERIAL.video;
+    type = ContentElementType.video;
   } else {
-    type = MATERIAL.text;
+    type = ContentElementType.plain;
   }
   return type;
 };

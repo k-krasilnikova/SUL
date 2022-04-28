@@ -1,18 +1,13 @@
 import { FC } from 'react';
 
 import PPViewer from 'components/PPViewer';
-import { ContentElementType } from 'types/course';
 import { playVideo } from 'icons';
+import { ContentElementType } from 'enums/materials';
 
 import { MaterialWrapper, MaterialText, MaterialVideo } from './styled';
+import { IMaterialProps } from '../types';
 
-interface IProps {
-  material: string;
-  materialType: ContentElementType;
-  videoPreview: string | boolean;
-}
-
-const Material: FC<IProps> = ({ material, materialType, videoPreview }) => (
+const Material: FC<IMaterialProps> = ({ material, materialType, videoPreview }) => (
   <MaterialWrapper>
     {materialType === ContentElementType.video ? (
       <MaterialVideo

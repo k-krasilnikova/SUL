@@ -5,6 +5,7 @@ import { useGetClientCourseAndMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import Loader from 'components/Loader';
 import { CourseStatus } from 'enums/course';
+import { Numbers } from 'enums/numbers';
 import { useToggle } from 'hooks';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 
@@ -70,7 +71,7 @@ const LearningCourseContainer: React.FC = () => {
 
   const { materials: courseMaterials } = courseMaterialsResponse;
 
-  const courseMaterial = courseMaterials[stage - 1]?.content[CONTENT_ELEMENT];
+  const courseContent = courseMaterials[stage - Numbers.one]?.content[CONTENT_ELEMENT];
 
   const maxStage = courseMaterials?.length || MAX_STAGE_INITIAL;
 
@@ -91,11 +92,12 @@ const LearningCourseContainer: React.FC = () => {
   };
   return (
     <LearningCourse
-      key={courseMaterialsResponse.materials[stage - 1]._id}
+      key={courseMaterialsResponse.materials[stage - Numbers.one].stage}
       stage={stage}
       maxStage={maxStage}
       courseInfo={courseInfo}
-      courseMaterial={courseMaterial}
+      courseMaterial={courseMaterials[stage - Numbers.one]}
+      courseContent={courseContent}
       isBackDisabled={stage === MIN_STAGE}
       isCourseInfoOpen={isCourseInfoOpen}
       isLoading={isStartMutateLoading || isPassMutateLoading || isClientCourseAndMaterialsFetching}
