@@ -1,7 +1,6 @@
 import { styled, Box, Grid } from '@mui/material';
 
 import { REQUEST_STATUS } from 'constants/requests';
-import theme from 'themeSettings';
 import { CourseStatus } from 'enums/course';
 
 interface IStatus {
@@ -9,13 +8,14 @@ interface IStatus {
 }
 
 export const ImageWrapper = styled('div')({
-  height: '50px',
-  width: '50px',
+  height: '60px',
+  width: '60px',
 });
 
 export const CourseImageWrapper = styled('div')({
-  margin: '2px 8px 0 35px',
+  minHeight: '20px',
   height: '20px',
+  minWidth: '30px',
   width: '30px',
 });
 
@@ -33,16 +33,19 @@ export const DisabledText = styled(Text)({
 });
 
 export const CourseTitle = styled(Text)<IStatus>(({ status }) => ({
+  position: 'relative',
   color: '#2c2525',
   padding: 0,
+  paddingLeft: '10px',
   lineHeight: '21px',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   ...(status !== REQUEST_STATUS.pending && {
     color: '#8e8e93',
   }),
 }));
 
 export const UserName = styled(Text)<IStatus>(({ status }) => ({
-  whiteSpace: 'nowrap',
   lineHeight: '21px',
   ...(status !== REQUEST_STATUS.pending && {
     color: '#8e8e93',
@@ -62,17 +65,10 @@ export const Position = styled(Text)<IStatus>(({ status }) => ({
 export const SecondaryText = styled(Text)<IStatus>(({ status }) => ({
   color: '#8e8e93',
   fontSize: '16px',
-  marginRight: '60px',
   whiteSpace: 'nowrap',
   ...(status !== REQUEST_STATUS.pending && {
     color: '#c6c6c9',
   }),
-  [theme.breakpoints.down('xl')]: {
-    marginRight: '30px',
-  },
-  [theme.breakpoints.down(1300)]: {
-    marginRight: '10px',
-  },
 }));
 
 export const RequestContainer = styled(Grid)({
@@ -99,6 +95,6 @@ export const CourseContainer = styled(CustomGrid)({
 });
 
 export const TimeContainer = styled(CustomGrid)({
-  justifyContent: 'flex-end',
+  justifyContent: 'center',
   marginTop: '8px',
 });

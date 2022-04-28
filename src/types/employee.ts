@@ -35,9 +35,7 @@ export interface IEmployeeCoursesList {
   isShown?: boolean;
 }
 
-export interface IEmployeeInfo {
-  profileInfoOpened: boolean;
-  toggleProfileInfoOpened: () => void;
+export interface IEmployeeInfoProps {
   employee?: IEmployee;
 }
 

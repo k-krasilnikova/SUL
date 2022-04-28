@@ -8,6 +8,10 @@
   text-transform: none !important;
 }
 
+::-webkit-scrollbar {
+  height: 4px;
+}
+
 body {
   margin: 0;
   font-family: 'Ubuntu', sans-serif;
