@@ -1,7 +1,11 @@
 import { ObjectId } from 'mongoose';
 
 import NotificationModel from 'db/models/Notification';
-import { NotificationStatuses, NotificationTitles } from 'enums/notificationEnums';
+import {
+  NotificationDescription,
+  NotificationStatuses,
+  NotificationTitles,
+} from 'enums/notificationEnums';
 import BadRequestError from '../../classes/errors/clientErrors/BadRequestError';
 
 export const getUserNotifications = async (userId: string) => {
@@ -14,13 +18,14 @@ export const addUserNotification = async (
   userId: ObjectId,
   status: NotificationStatuses,
   title: NotificationTitles,
+  description: NotificationDescription,
 ) => {
   if (userId) {
     await NotificationModel.create({
       userId,
       status,
       title,
-      description: `Request for course was ${title}`,
+      description,
     });
   } else {
     throw new BadRequestError('Invalid data for notification.');

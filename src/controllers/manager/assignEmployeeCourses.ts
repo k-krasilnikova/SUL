@@ -15,7 +15,11 @@ import {
   isCoursesToAssignHaveDuplicates,
   removeCoursesToAssignDuplicates,
 } from 'utils/normaliser/queryCourses';
-import { NotificationStatuses, NotificationTitles } from 'enums/notificationEnums';
+import {
+  NotificationDescription,
+  NotificationStatuses,
+  NotificationTitles,
+} from 'enums/notificationEnums';
 
 const assignEmployeeCourses = async (
   req: Request<{ id: string }, never, ICourseToAssign[]>,
@@ -67,7 +71,12 @@ const assignEmployeeCourses = async (
 
     const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
 
-    await addUserNotification(employee._id, NotificationStatuses.new, NotificationTitles.approved);
+    await addUserNotification(
+      employee._id,
+      NotificationStatuses.new,
+      NotificationTitles.assigned,
+      NotificationDescription.assigned,
+    );
 
     res.locals.results = `${assignedCoursesAmount}/${assignedCourses.length} courses successfully assigned.`;
 
