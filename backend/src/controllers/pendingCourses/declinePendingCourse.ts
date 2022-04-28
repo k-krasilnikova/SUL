@@ -11,6 +11,8 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
+import { addUserNotification } from '../../db/providers/notificationProvider';
+import { NotificationStatuses, NotificationTitles } from '../../enums/notificationEnums';
 
 const declinePendingCourse = async (
   req: Request,
@@ -45,6 +47,12 @@ const declinePendingCourse = async (
 
     results.updateStatus = 'Course was declined.';
     await updateClientCourseField(clientCourseId, CLIENT_COURSE_FIELDS.applyDate, Date.now());
+
+    await addUserNotification(
+      clientCourse.user,
+      NotificationStatuses.new,
+      NotificationTitles.declined,
+    );
     next();
   } catch (error) {
     next(error);
