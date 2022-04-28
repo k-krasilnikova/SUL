@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import CourseStatus from 'enums/coursesEnums';
+import { NotificationStatuses, NotificationTitles } from 'enums/notificationEnums';
 import {
   arrangeAssessment,
   getClientCourseProvider,
@@ -8,12 +9,11 @@ import {
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
+import { addUserNotification } from 'db/providers/notificationProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
-import { addUserNotification } from '../../db/providers/notificationProvider';
-import { NotificationStatuses, NotificationTitles } from '../../enums/notificationEnums';
 
 const approvePendingCourse = async (
   req: Request,
