@@ -14,4 +14,5 @@ export const QUERY_KEYS = {
   courseTest: 'CourseTest',
   getTestTime: 'GetTestTime',
   skills: 'Skills',
+  pendingAssessments: 'PendingAssessments',
 };
