@@ -19,6 +19,7 @@ export const PATHS: {
   learnClientCourse: string;
   courseTest: string;
   skillsMap: string;
+  pendingAssessments: string;
 } = {
   home: '/',
   profile: '/profile',
@@ -40,6 +41,7 @@ export const PATHS: {
   learnClientCourse: 'learn/:courseId',
   courseTest: 'learn/:courseId/test',
   skillsMap: '/skills-map',
+  pendingAssessments: '/pending-assessments',
 };
 
 export const API: {

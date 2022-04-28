@@ -6,3 +6,4 @@ export { ReactComponent as employeeIcon } from './employeeIcon.svg';
 export { ReactComponent as skillsIcon } from './skillsIcon.svg';
 export { ReactComponent as leftArrow } from './leftArrow.svg';
 export { ReactComponent as rightArrow } from './rightArrow.svg';
+export { ReactComponent as assessmentsIcon } from './pendingAssessments.svg';
