@@ -4,7 +4,7 @@ import theme from 'themeSettings';
 
 export const EmployeesWrapper = styled('div')({
   padding: '41px 40px',
-  fontFamily: '"Ubuntu", sans-serif',
+  overflow: 'auto',
   [theme.breakpoints.down('xl')]: {
     padding: '16px',
   },

@@ -37,28 +37,28 @@ const RequestItem: FC<IReuestItemProps> = ({
   ...props
 }) => (
   <RequestContainer item container spacing={2}>
-    <CustomGrid item xs={4}>
+    <CustomGrid item xs={12} md={6} lg={5}>
       <ImageWrapper>
-        <Avatar size={Size.small} avatar={user.avatar} />
+        <Avatar size={Size.subsmall} avatar={user.avatar} />
       </ImageWrapper>
       <UserContainer>
         <UserName status={status}>{`${user.firstName} ${user.lastName}`}</UserName>
         <Position status={status}>{user.position}</Position>
       </UserContainer>
     </CustomGrid>
-    <CourseContainer item xs={3}>
+    <CourseContainer item xs={10} md={4} lg={2}>
       <CourseImageWrapper>
         <Image imageUrl={course.avatar} />
       </CourseImageWrapper>
       <CourseTitle status={status}>{course.title}</CourseTitle>
     </CourseContainer>
-    <TimeContainer item xs={1}>
+    <TimeContainer item xs={2} md={1} lg={1}>
       <SecondaryText status={status}>{convertRequestTime(elapsed)}</SecondaryText>
     </TimeContainer>
     {status === REQUEST_STATUS.pending ? (
       <RequestButtons id={_id} {...props} />
     ) : (
-      <CustomGrid item xs={4}>
+      <CustomGrid item xs={12} lg={4}>
         <DisabledText>{status !== REQUEST_STATUS.pending && status}</DisabledText>
       </CustomGrid>
     )}

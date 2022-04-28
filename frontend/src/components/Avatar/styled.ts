@@ -23,7 +23,7 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '220px',
       height: '220px',
     }),
-    ...(size === Size.large && {
+    ...((size === Size.large || size === Size.sublarge) && {
       width: '150px',
       height: '150px',
     }),
@@ -34,6 +34,10 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
     ...(size === Size.submedium && {
       width: '80px',
       height: '80px',
+    }),
+    ...(size === Size.subsmall && {
+      width: '60px',
+      height: '60px',
     }),
     ...(size === Size.small && {
       width: '50px',
@@ -65,6 +69,10 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '130px',
       height: '130px',
     }),
+    ...(size === Size.sublarge && {
+      width: '100px',
+      height: '100px',
+    }),
     ...(size === Size.small && {
       width: '50px',
       height: '50px',
@@ -79,6 +87,10 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '130px',
       height: '130px',
     }),
+    ...(size === Size.sublarge && {
+      width: '60px',
+      height: '60px',
+    }),
     ...(size === Size.small && {
       width: '30px',
       height: '30px',
@@ -89,7 +101,7 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '220px',
       height: '220px',
     }),
-    ...(size === Size.large && {
+    ...((size === Size.large || size === Size.sublarge) && {
       width: '220px',
       height: '220px',
     }),
@@ -108,6 +120,10 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
     ...(size === Size.small && {
       width: '50px',
       height: '50px',
+    }),
+    ...(size === Size.subsmall && {
+      width: '60px',
+      height: '60px',
     }),
   },
 }));

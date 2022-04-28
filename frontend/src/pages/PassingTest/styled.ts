@@ -54,7 +54,7 @@ export const BackButton = styled(Button)({
     height: '32px',
     width: '64px',
     padding: 0,
-    fontSize: '12px',
+    fontSize: '14px',
     fontWeight: 500,
   },
   [theme.breakpoints.down('sm')]: {

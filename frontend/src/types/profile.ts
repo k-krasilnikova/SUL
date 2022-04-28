@@ -1,5 +1,5 @@
 import { IUser } from './user';
 
-export interface IProfile {
+export interface IProfileProps {
   user?: IUser;
 }
