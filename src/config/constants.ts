@@ -2,6 +2,8 @@ const ENVIROMENTS = {
   qa: 'test',
   prod: 'production',
   local: 'local',
+  dev: 'dev',
+  backdev: 'backdev',
 };
 
 const DEFAULT_ACCESS_TIMEOUT = '1d';
