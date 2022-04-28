@@ -14,6 +14,8 @@ import {
   isCoursesToAssignHaveDuplicates,
   removeCoursesToAssignDuplicates,
 } from 'utils/normaliser/queryCourses';
+import { addUserNotification } from '../../db/providers/notificationProvider';
+import { NotificationStatuses, NotificationTitles } from '../../enums/notificationEnums';
 
 const assignEmployeeCourses = async (
   req: Request<{ id: string }, never, ICourseToAssign[]>,
@@ -42,7 +44,7 @@ const assignEmployeeCourses = async (
     );
 
     if (hasDuplicates) {
-      throw new BadRequestError(`Attemt to assign duplicated courses.`);
+      throw new BadRequestError(`Attempt to assign duplicated courses.`);
     }
 
     const assignedCourses = await Promise.all(
@@ -63,9 +65,11 @@ const assignEmployeeCourses = async (
       }),
     );
 
-    const assignedCoursesAmmount = assignedCourses.filter((doc) => !!doc).length;
+    const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
 
-    res.locals.results = `${assignedCoursesAmmount}/${assignedCourses.length} courses successfully assigned.`;
+    await addUserNotification(employee._id, NotificationStatuses.new, NotificationTitles.approved);
+
+    res.locals.results = `${assignedCoursesAmount}/${assignedCourses.length} courses successfully assigned.`;
 
     next();
   } catch (error) {

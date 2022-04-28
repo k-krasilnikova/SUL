@@ -2,9 +2,9 @@ import { NextFunction, Request, Response } from 'express';
 
 import CourseStatus from 'enums/coursesEnums';
 import {
-  getStatusProvider,
-  getClientCourseProvider,
   arrangeAssessment,
+  getClientCourseProvider,
+  getStatusProvider,
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
@@ -12,6 +12,8 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
+import { addUserNotification } from '../../db/providers/notificationProvider';
+import { NotificationStatuses, NotificationTitles } from '../../enums/notificationEnums';
 
 const approvePendingCourse = async (
   req: Request,
@@ -48,6 +50,12 @@ const approvePendingCourse = async (
     if (withAssessment) {
       await arrangeAssessment(clientCourseId);
     }
+
+    await addUserNotification(
+      clientCourse.user,
+      NotificationStatuses.new,
+      NotificationTitles.approved,
+    );
 
     results.updateStatus = `Course was approved ${withAssessment ? 'with' : 'without'} assessment.`;
     next();
