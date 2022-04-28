@@ -6,12 +6,9 @@ import { PATHS } from 'constants/routes';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import { StyledButton } from './styled';
+import { IEditCourseButton } from '../types';
 
-interface IEditButton {
-  id: string;
-}
-
-const EditButton: FC<IEditButton> = ({ id }) => (
+const EditCourseButton: FC<IEditCourseButton> = ({ id }) => (
   <StyledButton
     color="primary"
     variant="medium"
@@ -22,4 +19,4 @@ const EditButton: FC<IEditButton> = ({ id }) => (
   </StyledButton>
 );
 
-export default EditButton;
+export default EditCourseButton;
