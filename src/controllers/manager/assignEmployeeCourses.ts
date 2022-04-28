@@ -8,14 +8,14 @@ import {
 } from 'db/providers/clientCourseProvider';
 import { materialsCounterProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
+import { addUserNotification } from 'db/providers/notificationProvider';
 import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
 import {
   isCoursesToAssignHaveDuplicates,
   removeCoursesToAssignDuplicates,
 } from 'utils/normaliser/queryCourses';
-import { addUserNotification } from '../../db/providers/notificationProvider';
-import { NotificationStatuses, NotificationTitles } from '../../enums/notificationEnums';
+import { NotificationStatuses, NotificationTitles } from 'enums/notificationEnums';
 
 const assignEmployeeCourses = async (
   req: Request<{ id: string }, never, ICourseToAssign[]>,
