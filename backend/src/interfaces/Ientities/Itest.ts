@@ -1,3 +1,6 @@
+import { ObjectId } from 'mongoose';
+import { IUserSkill } from './IUserSkill';
+
 interface ITest {
   _id?: string;
   title: string;
@@ -12,8 +15,14 @@ interface ITest {
 }
 
 type TAchievments = {
-  newSkills: Array<unknown>;
-  updatedSkills: Array<unknown>;
+  newSkills: Array<IUserSkill>;
+  updatedSkills: Array<IUserSkill>;
+  techsToAchieve?: Array<IUserSkill>;
+};
+
+type TTechToAchieve = {
+  skill: ObjectId;
+  points: number;
 };
 
 type TestRuslt = { result: number; testStatus: string };
@@ -27,4 +36,4 @@ interface IAnswer {
 
 type TCorrectAnswers<T, K extends keyof T, R extends PropertyKey> = Omit<T, K> & { [P in R]: T[K] };
 
-export { ITest, TestDb, IAnswer, TCorrectAnswers, TestRuslt, TAchievments };
+export { ITest, TestDb, IAnswer, TCorrectAnswers, TestRuslt, TAchievments, TTechToAchieve };

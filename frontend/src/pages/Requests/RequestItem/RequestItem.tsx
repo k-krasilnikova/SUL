@@ -5,6 +5,7 @@ import Image from 'components/Image';
 import { REQUEST_STATUS } from 'constants/requests';
 import { Size } from 'enums/sizes';
 import { convertRequestTime } from 'utils/helpers/convertTime';
+import { IApproveCourseDto } from 'types/api.dto';
 import { IRequest } from 'types/request';
 
 import {
@@ -25,7 +26,7 @@ import RequestButtons from './RequestButtons';
 
 interface IReuestItemProps {
   request: IRequest;
-  approveRequest: (requestId: string) => void;
+  approveRequest: (variables: IApproveCourseDto) => void;
   declineRequest: (requestId: string) => void;
   approveLoading: boolean;
   declineLoading: boolean;
