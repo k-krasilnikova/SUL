@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 import { ITest } from 'interfaces/Ientities/Itest';
 
 const testSchema = new Schema<ITest>({
-  title: { type: String, required: true, unique: true },
+  title: { type: String, required: true },
   questions: [
     {
       qN: { type: Number, unique: true },
