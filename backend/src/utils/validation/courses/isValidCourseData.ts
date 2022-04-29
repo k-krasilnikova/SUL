@@ -1,14 +1,15 @@
 import { ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
-import isValidText from './isValidText';
 import isValidComplexity from './isValidComplexity';
-import isValidMaterials from './isValidMaterials';
+import validateMaterials from './validateMaterials';
 import isValidAvatar from './isValidAvatar';
-import isValidTest from './isValidTest';
+import validateTest from './validateTest';
+import validateTitle from './validateTitle';
+import validateDescription from './validateDescription';
 
 const isValidCourseData = (courseData: ICreateCourseBody): boolean => {
-  const isTitleValid = isValidText(courseData.title);
+  const isTitleValid = validateTitle(courseData.title);
 
   if (!isTitleValid) {
     throw new BadRequestError('Invalid course title.');
@@ -20,19 +21,19 @@ const isValidCourseData = (courseData: ICreateCourseBody): boolean => {
     throw new BadRequestError('Invalid course complexity.');
   }
 
-  const isDescriptionValid = isValidText(courseData.description);
+  const isDescriptionValid = validateDescription(courseData.description);
 
   if (!isDescriptionValid) {
     throw new BadRequestError('Invalid course description.');
   }
 
-  const isMaterialsValid = isValidMaterials(courseData.materials);
+  const isMaterialsValid = validateMaterials(courseData.materials);
 
   if (!isMaterialsValid) {
     throw new BadRequestError('Invalid course materials.');
   }
 
-  const isQuestionsValid = isValidTest(courseData.test);
+  const isQuestionsValid = validateTest(courseData.test);
 
   if (!isQuestionsValid) {
     throw new BadRequestError('Invalid course questions.');
@@ -44,13 +45,13 @@ const isValidCourseData = (courseData: ICreateCourseBody): boolean => {
     throw new BadRequestError('Invalid course avatar.');
   }
 
-  return (
+  return Boolean(
     isTitleValid &&
-    isComplexityValid &&
-    isDescriptionValid &&
-    isMaterialsValid &&
-    isQuestionsValid &&
-    isAvatarValid
+      isComplexityValid &&
+      isDescriptionValid &&
+      isMaterialsValid &&
+      isQuestionsValid &&
+      isAvatarValid,
   );
 };
 
