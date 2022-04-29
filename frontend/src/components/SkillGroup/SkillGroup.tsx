@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import SkillItemContainer from './SkillItem';
+import SkillItem from './SkillItem';
 import { ISkillGroupProps } from './types';
 import { SkillsGroupWrapper, SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
@@ -13,7 +13,7 @@ const SkillGroup: FC<ISkillGroupProps> = ({ skillFounded, skills }) => {
           <SkillsTitle>{skillsGroupName}</SkillsTitle>
           <SkillsBox>
             {skillsGroup.map(({ name: skillName, image: skillImage }) => (
-              <SkillItemContainer key={skillName} name={skillName} skillImage={skillImage} />
+              <SkillItem key={skillName} name={skillName} skillImage={skillImage} />
             ))}
           </SkillsBox>
           <SkillsDivider />
