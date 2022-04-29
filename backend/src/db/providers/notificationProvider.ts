@@ -6,7 +6,7 @@ import {
   NotificationStatuses,
   NotificationTitles,
 } from 'enums/notificationEnums';
-import BadRequestError from '../../classes/errors/clientErrors/BadRequestError';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 export const getUserNotifications = async (userId: string) => {
   const dbNotifications = await NotificationModel.find({ userId }).lean();

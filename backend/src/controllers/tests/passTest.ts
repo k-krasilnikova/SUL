@@ -1,25 +1,25 @@
 import { NextFunction, Request, Response } from 'express';
 
+import { CLIENT_COURSE_FIELDS, PASS_THRESHOLD } from 'config/constants';
 import {
   getAssessmentProvider,
   getClientCourseProvider,
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
-import { CLIENT_COURSE_FIELDS, PASS_THRESHOLD } from 'config/constants';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
+import { getUserProvider } from 'db/providers/userProvider';
+import { addUserNotification } from 'db/providers/notificationProvider';
 import CourseStatus from 'enums/coursesEnums';
-import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
-import { TestRuslt } from 'interfaces/Ientities/Itest';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { TestStatus } from 'enums/common';
-import { isTestAvailableByDate } from 'utils/validation/tests';
-import { getUserProvider } from '../../db/providers/userProvider';
-import { addUserNotification } from '../../db/providers/notificationProvider';
 import {
   NotificationDescription,
   NotificationStatuses,
   NotificationTitles,
-} from '../../enums/notificationEnums';
+} from 'enums/notificationEnums';
+import { TestStatus } from 'enums/common';
+import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
+import { isTestAvailableByDate } from 'utils/validation/tests';
+import { TestRuslt } from 'interfaces/Ientities/Itest';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const passTest = async (
   req: Request<
