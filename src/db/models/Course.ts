@@ -5,7 +5,7 @@ import { MaterialContentType } from 'enums/materials';
 import { validationTask, validationTitle } from 'utils/validation/courseModel';
 
 const courseSchema = new Schema<ICourse>({
-  title: { type: String, required: true, unique: true },
+  title: { type: String, required: true },
   description: { type: String },
   technologies: [
     { skill: { type: Schema.Types.ObjectId, required: true }, points: { type: Number } },
