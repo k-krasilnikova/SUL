@@ -1,10 +1,14 @@
 import { FC } from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
+import Loader from 'components/Loader';
+import { Loaders } from 'enums/loader';
 
-const PendingAssessments: FC = () => (
+import { IPendingAssessmentsProps } from './types';
+
+const PendingAssessments: FC<IPendingAssessmentsProps> = ({ isLoading, assessments }) => (
   <AuthorizedLayout pageName="Pending Assessments">
-    <>hello world</>
+    {isLoading ? <Loader color="primary" type={Loaders.content} /> : <>{'loaded' || assessments}</>}
   </AuthorizedLayout>
 );
 
