@@ -59,6 +59,7 @@ export const API: {
   refresh: string;
   skills: string;
   manageAssessment: string;
+  getPendingAssessments: string;
 } = {
   getProfile: '/api/users',
   getToken: '/api/account/login',
@@ -74,4 +75,5 @@ export const API: {
   refresh: '/api/account/refresh',
   skills: '/api/skills',
   manageAssessment: 'api/clientCourses/:id/assessment',
+  getPendingAssessments: 'api/clientCourses/assessments',
 };
