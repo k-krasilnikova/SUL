@@ -1,33 +1,26 @@
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
+import { AuthorizedLayout } from 'components/Layout';
+import UserProfile from 'components/UserProfile';
 
-import { BackButton, EmployeeProfileWrapper } from './styled';
-import EmployeeInfo from './EmployeeInfo';
+import { BackButton, EmployeeWrapper, ProfileWrapper } from './styled';
 import EmployeeSkillsAndCourses from './EmployeeSkillsAndCourses';
-import { IEmployeeProfile } from './types';
+import { IEmployeeProfileProps } from './types';
 
-const EmployeeProfile: React.FC<IEmployeeProfile> = ({
-  employee,
-  profileInfoOpened,
-  toggleProfileInfoOpened,
-  ...props
-}) => (
+const EmployeeProfile: FC<IEmployeeProfileProps> = ({ employee, ...props }) => (
   <AuthorizedLayout pageName="Employee">
-    <EmployeeProfileWrapper>
+    <EmployeeWrapper>
       <BackButton color="primary" variant="medium" component={Link} to={PATHS.employees}>
         {ButtonLabels.back}
       </BackButton>
-      <EmployeeInfo
-        employee={employee}
-        profileInfoOpened={profileInfoOpened}
-        toggleProfileInfoOpened={toggleProfileInfoOpened}
-      />
+      <ProfileWrapper>
+        <UserProfile {...employee} />
+      </ProfileWrapper>
       <EmployeeSkillsAndCourses employee={employee} {...props} />
-    </EmployeeProfileWrapper>
+    </EmployeeWrapper>
   </AuthorizedLayout>
 );
 

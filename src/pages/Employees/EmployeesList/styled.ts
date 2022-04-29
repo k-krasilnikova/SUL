@@ -26,6 +26,9 @@ export const Cell = styled(TableCell)({
       lineHeight: '18px',
       paddingBottom: '26px',
     },
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '14px',
+    },
   },
   '&.MuiTableCell-body': {
     fontSize: '18px',
