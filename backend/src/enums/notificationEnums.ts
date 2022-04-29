@@ -4,11 +4,11 @@ enum NotificationStatuses {
 }
 
 enum NotificationTitles {
-  approved = 'approved',
-  declined = 'declined',
-  assigned = 'assigned',
-  employeePassTestSuccessfully = 'employeePassTestSuccessfully',
-  employeePassTestFailed = 'employeePassTestFailed',
+  approved = 'Approved',
+  declined = 'Declined',
+  assigned = 'Assigned',
+  employeePassTestSuccessfully = 'Employee pass test successfully',
+  employeePassTestFailed = 'Employee failed the test',
 }
 
 enum NotificationDescription {

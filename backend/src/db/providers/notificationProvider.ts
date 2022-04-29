@@ -31,3 +31,11 @@ export const addUserNotification = async (
     throw new BadRequestError('Invalid data for notification.');
   }
 };
+
+export const readNotificationProvider = async (userId: string) => {
+  if (userId) {
+    await NotificationModel.updateMany({ userId }, { status: NotificationStatuses.old });
+  } else {
+    throw new BadRequestError('Invalid data for notification.');
+  }
+};

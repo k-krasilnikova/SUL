@@ -44,6 +44,7 @@ export const PATHS: {
 
 export const API: {
   getProfile: string;
+  readNotifications: string;
   getToken: string;
   courses: string;
   coursesMap: string;
@@ -58,6 +59,7 @@ export const API: {
   skills: string;
 } = {
   getProfile: '/api/users',
+  readNotifications: '/api/users/notifications',
   getToken: '/api/account/login',
   courses: '/api/courses',
   coursesMap: '/api/courses/map',

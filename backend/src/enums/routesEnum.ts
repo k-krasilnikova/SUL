@@ -43,6 +43,7 @@ enum SubRoutes {
   declinePendingCourse = '/declineCourse',
   getUserInfo = '/:id',
   getAllSkills = '',
+  readNotifications = '/notifications',
 }
 
 export { Routes, SubRoutes };
