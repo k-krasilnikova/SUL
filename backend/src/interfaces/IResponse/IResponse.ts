@@ -85,7 +85,7 @@ type TEmployeeCourse = Pick<ICourse, 'title' | 'avatar'>;
 type TLocalsManager = ILocals;
 type TLocalsUser = Omit<ILocals, 'managerId'>;
 
-type TAssessmentRequest = Pick<IClientCoursePopulated, 'user' | 'course'> & {
+type TAssessmentRequest = Pick<IClientCoursePopulated, 'user' | 'course' | '_id'> & {
   elapsed: ITimePeriod;
 };
 
