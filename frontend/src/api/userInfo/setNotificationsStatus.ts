@@ -9,8 +9,7 @@ const useReadNotifications = (): UseMutationResult => {
   return useMutation(
     async () => {
       const apiClient = apiClientWrapper();
-      const url = `${API.readNotifications}`;
-      const response = await apiClient.put(url);
+      const response = await apiClient.put(API.readNotifications);
       return response.data;
     },
     {

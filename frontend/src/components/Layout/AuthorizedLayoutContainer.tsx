@@ -6,6 +6,7 @@ import { getMenuToggle } from 'utils/helpers/menuHelpers/getMenuToggle';
 
 import AuthorizedLayout from './AuthorizedLayout';
 import { useLayOutStyles } from './styled';
+import Loader from '../Loader';
 
 interface Props {
   pageName: string;
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
-  const { data: profileInfoData } = useGetUserInfo();
+  const { data: profileInfoData, isLoading: isProfileLoading } = useGetUserInfo();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
@@ -28,13 +29,15 @@ const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
 
   return (
     <>
-      {profileInfoData && (
+      {isProfileLoading ? (
+        <Loader />
+      ) : (
         <AuthorizedLayout
           pageName={pageName}
-          firstName={profileInfoData.firstName}
-          lastName={profileInfoData.lastName}
-          avatar={profileInfoData.avatar}
-          notifications={profileInfoData.notifications}
+          firstName={profileInfoData?.firstName}
+          lastName={profileInfoData?.lastName}
+          avatar={profileInfoData?.avatar}
+          notifications={profileInfoData?.notifications}
           isMobileMenuOpen={isMobileMenuOpen}
           toggleMobileMenu={toggleMobileMenu}
           isSqueeze={isSqueeze}

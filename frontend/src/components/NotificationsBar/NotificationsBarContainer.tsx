@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, FC } from 'react';
 
 import { Notification as NotificationType } from 'types/notification';
 import { NOTIFICATION_STATUSES } from 'constants/statuses';
@@ -12,7 +12,7 @@ interface Props {
   notifications?: NotificationType[];
 }
 
-const NotificationsBarContainer: React.FC<Props> = ({
+const NotificationsBarContainer: FC<Props> = ({
   isMobileMenuOpen,
   toggleMobileMenu,
   notifications,
