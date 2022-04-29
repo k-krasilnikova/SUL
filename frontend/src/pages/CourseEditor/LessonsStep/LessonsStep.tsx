@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react';
+import React, { FC, BaseSyntheticEvent } from 'react';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
 
@@ -9,13 +9,18 @@ import {
   BackButton,
   LessonsStepTitle,
   LessonsStepBox,
+  ButtonsBox,
+  NextButton,
+  PreviousButton,
 } from './styled';
 
 interface ILessonsStepProps {
-  handleBackButtonClick?: () => void;
+  handleBackButtonClick?: (event: BaseSyntheticEvent) => void;
   handleSubmit?: () => void;
-  handleChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
+  handleChange?: (event: BaseSyntheticEvent) => void;
   selectOption: string;
+  stageNext?: () => void;
+  stageBack?: () => void;
 }
 
 const LessonsStep: FC<ILessonsStepProps> = ({
@@ -23,6 +28,8 @@ const LessonsStep: FC<ILessonsStepProps> = ({
   handleSubmit,
   selectOption,
   handleChange,
+  stageNext,
+  stageBack,
 }) => (
   <LessonsStepContainer>
     <BackButton variant="medium" onClick={handleBackButtonClick}>
@@ -30,10 +37,22 @@ const LessonsStep: FC<ILessonsStepProps> = ({
     </BackButton>
     <LessonsStepWrapper>
       <LessonsStepTitle>Add course files and description</LessonsStepTitle>
-      <LessonsStepBox component="form" onSubmit={handleSubmit}>
-        <LessonItem handleChange={handleChange} selectOption={selectOption} />
+      <LessonsStepBox>
+        <LessonItem
+          selectOption={selectOption}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
       </LessonsStepBox>
     </LessonsStepWrapper>
+    <ButtonsBox>
+      <PreviousButton variant="medium" onClick={stageBack}>
+        {ButtonLabels.previous}
+      </PreviousButton>
+      <NextButton variant="medium" onClick={stageNext}>
+        {ButtonLabels.next}
+      </NextButton>
+    </ButtonsBox>
   </LessonsStepContainer>
 );
 
