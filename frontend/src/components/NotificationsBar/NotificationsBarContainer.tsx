@@ -19,7 +19,7 @@ const NotificationsBarContainer: FC<Props> = ({
 }) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
 
-  const { mutateAsync: readNotificationsMutation } = useReadNotifications();
+  const { mutate: readNotificationsMutation } = useReadNotifications();
 
   const newNotification = notifications?.find(
     (notification) => notification.status === NOTIFICATION_STATUSES.new,
