@@ -22,7 +22,7 @@ const CourseEditor: React.FC<IProps> = ({ basePath }) => {
     <AuthorizedLayout pageName="Courses Editor">
       <EditorTabs
         basePath={basePath}
-        defaultActiveTab="definition-setup"
+        defaultActiveTab="lessons-setup"
         tabs={[
           {
             key: 'definition-setup',
