@@ -1,20 +1,24 @@
-import { FC, ChangeEvent, useState } from 'react';
+import { FC, useState, BaseSyntheticEvent } from 'react';
+import { useNavigate } from 'react-router';
 
 import LessonsStep from './LessonsStep';
 
 interface ILessonsStepContainerProps {
-  handleBackButtonClick?: () => void;
   handleSubmit?: () => void;
 }
 
-const LessonsStepContainer: FC<ILessonsStepContainerProps> = ({
-  handleBackButtonClick,
-  handleSubmit,
-}) => {
-  const [selectOption, setSelectOption] = useState('');
+const LessonsStepContainer: FC<ILessonsStepContainerProps> = ({ handleSubmit }) => {
+  const [selectOption, setSelectOption] = useState('video');
 
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const navigate = useNavigate();
+
+  const handleChange = (event: BaseSyntheticEvent) => {
     setSelectOption(event.target.value);
+  };
+
+  const handleBackButtonClick = (event: BaseSyntheticEvent) => {
+    event.preventDefault();
+    navigate(-1);
   };
 
   return (
