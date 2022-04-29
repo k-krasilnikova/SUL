@@ -58,7 +58,7 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
 
 export const InfoItem = styled('div')({
   display: 'inline-flex',
-  color: 'black',
+  color: '#131313',
   alignItems: 'center',
   marginRight: '10px',
   [theme.breakpoints.down('xl')]: {

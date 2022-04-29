@@ -18,6 +18,8 @@ body {
   background-color: var(--layout-background-color);
   overflow-y: hidden;
   scrollbar-color: #b6b6b6 #f1f1f1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
 }
 
 body > iframe {
