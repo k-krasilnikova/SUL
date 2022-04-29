@@ -1,7 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { COURSE_FIELDS } from 'config/constants';
-import { updateCourseField } from 'db/providers/courseProvider';
+import {
+  addSimilarCoursesProvider,
+  getCourseProvider,
+  updateCourseField,
+} from 'db/providers/courseProvider';
 import { isProperTechnologies } from 'db/providers/skillProvider';
 import { getCourseTest, updateTest } from 'db/providers/testProvider';
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
@@ -20,11 +24,12 @@ import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const editCourse = async (
   req: Request<{ id: string }, never, IUpdateCourseBody>,
-  res: Response,
+  res: Response<never, { id: string; results: IUpdateCourseBody }>,
   next: NextFunction,
 ) => {
   try {
     const { id: courseId } = req.params;
+    const { id: userId } = res.locals;
     const dataToUpdate = req.body;
 
     const updatedData: IUpdateCourseBody = {};
@@ -86,6 +91,8 @@ const editCourse = async (
         COURSE_FIELDS.technologies,
         dataToUpdate.technologies,
       );
+      const course = await getCourseProvider(courseId, userId);
+      await addSimilarCoursesProvider(course);
       updatedData.technologies =
         convertToTypeUnsafe<IUpdateCourseBody['technologies']>(technologies);
     }
