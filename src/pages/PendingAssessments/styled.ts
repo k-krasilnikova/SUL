@@ -1,1 +1,1 @@
-export {};
+export { RequestsWrapper } from '../Requests/styled';

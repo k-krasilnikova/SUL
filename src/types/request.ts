@@ -13,7 +13,8 @@ export interface IRequest {
 }
 
 export interface IAssessment {
+  _id: string;
   user: Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
   course: Pick<ICourse, 'title' | 'technologies' | 'avatar'>;
-  startTestDate: string;
+  elapsed: TimeProps;
 }

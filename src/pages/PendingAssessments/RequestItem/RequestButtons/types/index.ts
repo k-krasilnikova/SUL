@@ -1,9 +1,7 @@
 import { IManageAssessmentDto } from 'types/api.dto';
-import { IAssessment } from 'types/request';
 
-export interface IPendingAssessmentsProps {
-  isLoading: boolean;
-  assessments?: IAssessment[];
+export interface IAssessmentRequestButtonsProps {
+  id: string;
   manageAssessment: (payload: IManageAssessmentDto) => void;
   isActionLoading: boolean;
 }
