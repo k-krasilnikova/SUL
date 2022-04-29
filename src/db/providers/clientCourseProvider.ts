@@ -224,7 +224,7 @@ const getPendingAssessmentsProvider = async (
       },
     })
     .populate('user', '-_id avatar firstName lastName position')
-    .select('-_id user course startTestDate')
+    .select('user course startTestDate')
     .lean();
 
 export {
