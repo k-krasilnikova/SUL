@@ -1,5 +1,34 @@
-import { styled, Grid } from '@mui/material';
+import { styled } from '@mui/material';
 
-export const RequestContainer = styled(Grid)({
-  marginBottom: '26px',
+import {
+  Position as Pos,
+  UserName as UName,
+  CourseTitle as CTitle,
+  SecondaryText as SecText,
+} from '../../Requests/RequestItem/styled';
+
+export const Position = styled(Pos)({
+  color: '#131313',
 });
+
+export const UserName = styled(UName)({
+  color: '#131313',
+});
+
+export const CourseTitle = styled(CTitle)({
+  color: '#131313',
+});
+
+export const SecondaryText = styled(SecText)({
+  color: '#8e8e93',
+});
+
+export {
+  CustomGrid,
+  ImageWrapper,
+  RequestContainer,
+  UserContainer,
+  CourseContainer,
+  CourseImageWrapper,
+  TimeContainer,
+} from '../../Requests/RequestItem/styled';
