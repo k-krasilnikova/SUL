@@ -15,4 +15,5 @@ export interface IRequest {
 export interface IAssessment {
   user: Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
   course: Pick<ICourse, 'title' | 'technologies' | 'avatar'>;
+  startTestDate: string;
 }
