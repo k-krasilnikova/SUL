@@ -8,7 +8,7 @@ import {
 import { ICourse } from '../Ientities/Icourses';
 import { IClientCourse, IClientCoursePopulated } from '../Ientities/IclientCourses';
 import { ITechnologyGroup, IUser, TUserPopulated } from '../Ientities/Iusers';
-import { ITimePeriod } from 'interfaces/common/datetime';
+import { ITimePeriod } from '../common/datetime';
 
 interface ILocals {
   id: string;
