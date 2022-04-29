@@ -1,7 +1,6 @@
 import { styled } from '@mui/material';
 
 import { IAvatarWrapperProps } from 'components/UserProfile/types';
-
 import theme from 'themeSettings';
 
 export const AvatarWrapper = styled('div')<IAvatarWrapperProps>(({ visible }) => ({
