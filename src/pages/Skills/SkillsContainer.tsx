@@ -4,6 +4,7 @@ import { useDebounce } from 'hooks';
 import { useGetSkills, useSearchSkills } from 'api/skills';
 import { formatInputValue } from 'utils/helpers/searchHelpers';
 import { ISkillsListProps } from 'types/skill';
+import { Numbers } from 'enums/numbers';
 
 import Skills from './Skills';
 
@@ -16,7 +17,7 @@ const SkillsContainer: FC = () => {
   const { data: skillsResponse } = useGetSkills();
 
   useEffect(() => {
-    if (debouncedSearchValue && debouncedSearchValue.length >= 2) {
+    if (debouncedSearchValue.length >= Numbers.two) {
       if (
         skillSearchResponse?.filter((skillList) => {
           return skillList.skills.filter((skill) =>
