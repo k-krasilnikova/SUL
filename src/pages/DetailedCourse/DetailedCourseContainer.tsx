@@ -56,10 +56,11 @@ const DetailedCourseContainer: FC<Props> = ({ page }) => {
     commonCourseInfo = courseData;
   }
 
-  const isDescriptionLengthExceed =
-    commonCourseInfo && commonCourseInfo.description.length >= MAX_LENGTH;
+  const isDescriptionLengthExceed = commonCourseInfo
+    ? commonCourseInfo.description.length >= MAX_LENGTH
+    : false;
 
-  const [isFullTextOpen, setFullTextOpen] = useState(isDescriptionLengthExceed);
+  const [isFullTextOpen, setFullTextOpen] = useState<boolean>(isDescriptionLengthExceed);
 
   const toggleFullText = () => {
     setFullTextOpen(!isDescriptionLengthExceed);

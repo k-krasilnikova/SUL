@@ -17,11 +17,6 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
   ...(type === Info.similarCourses && {
     justifyContent: 'flex-end',
   }),
-  [theme.breakpoints.down('lg')]: {
-    ...(type === Info.similarCourses && {
-      justifyContent: 'flex-end',
-    }),
-  },
   [theme.breakpoints.down('md')]: {
     alignItems: 'end',
     paddingBottom: '16px',
