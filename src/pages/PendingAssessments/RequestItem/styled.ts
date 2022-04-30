@@ -5,6 +5,7 @@ import {
   UserName as UName,
   CourseTitle as CTitle,
   SecondaryText as SecText,
+  CustomGrid as CustGrid,
 } from '../../Requests/RequestItem/styled';
 
 export const Position = styled(Pos)({
@@ -22,6 +23,8 @@ export const CourseTitle = styled(CTitle)({
 export const SecondaryText = styled(SecText)({
   color: '#8e8e93',
 });
+
+export const RequestTechnologiesContainer = styled(CustGrid)({});
 
 export {
   CustomGrid,
