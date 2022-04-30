@@ -1,4 +1,5 @@
 export enum Size {
+  xxsmal = 'xxsmall',
   xsmall = 'xsmall',
   small = 'small',
   submedium = 'submedium',

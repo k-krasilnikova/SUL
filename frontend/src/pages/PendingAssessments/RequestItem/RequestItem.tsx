@@ -17,9 +17,11 @@ import {
   CourseTitle,
   TimeContainer,
   SecondaryText,
+  RequestTechnologiesContainer,
 } from './styled';
 import { IAssessmentRequestItemProps } from './types';
 import RequestButtons from './RequestButtons';
+import RequestTechnologies from './RequestTechnologies';
 
 const RequestItem: FC<IAssessmentRequestItemProps> = ({
   user,
@@ -29,7 +31,7 @@ const RequestItem: FC<IAssessmentRequestItemProps> = ({
   ...props
 }) => (
   <RequestContainer item container spacing={2}>
-    <CustomGrid item xs={4}>
+    <CustomGrid item xs={3}>
       <ImageWrapper>
         <Avatar size={Size.small} avatar={user.avatar} />
       </ImageWrapper>
@@ -44,7 +46,10 @@ const RequestItem: FC<IAssessmentRequestItemProps> = ({
       </CourseImageWrapper>
       <CourseTitle>{course.title}</CourseTitle>
     </CourseContainer>
-    <TimeContainer item xs={1}>
+    <RequestTechnologiesContainer item xs={2}>
+      <RequestTechnologies technologies={course.technologies} />
+    </RequestTechnologiesContainer>
+    <TimeContainer item xs={2}>
       <SecondaryText>{convertRequestTime(elapsed)}</SecondaryText>
     </TimeContainer>
     <RequestButtons id={clientCourseId} {...props} />

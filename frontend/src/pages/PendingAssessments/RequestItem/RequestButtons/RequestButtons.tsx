@@ -13,7 +13,7 @@ const RequestButtons: FC<IAssessmentRequestButtonsProps> = ({
   manageAssessment,
   isActionLoading,
 }) => (
-  <ButtonsContainer item xs={4} rowSpacing={1}>
+  <ButtonsContainer item xs={2} rowSpacing={1}>
     <ActionButton
       variant="mediumContained"
       onClick={() => manageAssessment({ id, action: AssessmentManagmentAction.approve })}
