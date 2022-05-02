@@ -8,7 +8,7 @@ import TechnologyItem from './TechnologyItem';
 const RequestTechnologies: FC<IRequestTechnologiesProps> = ({ technologies }) => (
   <TechnologiesWrapper>
     {technologies.map((technology) => (
-      <TechnologyItem technology={technology} />
+      <TechnologyItem key={technology.skill.name} technology={technology} />
     ))}
   </TechnologiesWrapper>
 );
