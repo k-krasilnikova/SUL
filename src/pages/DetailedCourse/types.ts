@@ -2,6 +2,6 @@ export interface IDetailedCourseContainerProps {
   page: string;
 }
 
-export interface IEditCourseButton {
+export interface IEditCourseButtonProps {
   id: string;
 }
