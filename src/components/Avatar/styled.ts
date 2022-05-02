@@ -47,7 +47,7 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '30px',
       height: '30px',
     }),
-    ...(size === Size.xxsmal && {
+    ...(size === Size.xxsmall && {
       width: '25px',
       height: '25px',
     }),
@@ -61,7 +61,7 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '40px',
       height: '40px',
     }),
-    ...(size === Size.xxsmal && {
+    ...(size === Size.xxsmall && {
       width: '25px',
       height: '25px',
     }),
@@ -103,7 +103,7 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '30px',
       height: '30px',
     }),
-    ...(size === Size.xxsmal && {
+    ...(size === Size.xxsmall && {
       width: '25px',
       height: '25px',
     }),
@@ -125,7 +125,7 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '80px',
       height: '80px',
     }),
-    ...(size === Size.xxsmal && {
+    ...(size === Size.xxsmall && {
       width: '25px',
       height: '25px',
     }),

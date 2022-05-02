@@ -17,7 +17,6 @@ import {
   CourseTitle,
   TimeContainer,
   SecondaryText,
-  RequestTechnologiesContainer,
 } from './styled';
 import { IAssessmentRequestItemProps } from './types';
 import RequestButtons from './RequestButtons';
@@ -46,9 +45,9 @@ const RequestItem: FC<IAssessmentRequestItemProps> = ({
       </CourseImageWrapper>
       <CourseTitle>{course.title}</CourseTitle>
     </CourseContainer>
-    <RequestTechnologiesContainer item xs={2}>
+    <CustomGrid item xs={2}>
       <RequestTechnologies technologies={course.technologies} />
-    </RequestTechnologiesContainer>
+    </CustomGrid>
     <TimeContainer item xs={1}>
       <SecondaryText>{convertRequestTime(elapsed)}</SecondaryText>
     </TimeContainer>
