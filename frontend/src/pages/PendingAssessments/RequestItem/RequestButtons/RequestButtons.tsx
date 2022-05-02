@@ -3,9 +3,9 @@ import { FC } from 'react';
 import { buttonSpinner } from 'animations';
 import ButtonLoader from 'components/ButtonLoader';
 import { ButtonLabels } from 'constants/ButtonLabels';
+import { IAssessmentRequestButtonsProps } from 'pages/PendingAssessments/types';
 
 import { ActionButton, ButtonsContainer } from './styled';
-import { IAssessmentRequestButtonsProps } from './types';
 
 const RequestButtons: FC<IAssessmentRequestButtonsProps> = ({
   approveAssessment,

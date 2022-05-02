@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
 import { AssessmentManagmentAction } from 'enums/api';
+import { IAssessmentRequestButtonsContainerProps } from 'pages/PendingAssessments/types';
 
 import RequestButtons from './RequestButtons';
-import { IAssessmentRequestButtonsContainerProps } from './types';
 
 const RequestButtonsContainer: FC<IAssessmentRequestButtonsContainerProps> = ({
   manageAssessment,
