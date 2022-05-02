@@ -49,11 +49,16 @@ export interface IContentGridProps extends IContentGridContainerProps {
 }
 export interface IContentColumnProps {
   columnName: TColumnLabel;
+  contentType?: EmployeeContentType;
 }
 
 export interface IStyledGridProps {
   isVisible?: IContentGridContainerProps['isVisible'];
   contentHeight?: IContentGridProps['contentHeight'];
+  contentType?: EmployeeContentType;
+}
+
+export interface IStyledColumnProps {
   contentType?: EmployeeContentType;
 }
 export interface IStyledExpandMoreIconProps {
