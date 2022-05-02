@@ -24,7 +24,7 @@ const RequestButtons: FC<IRequestProps> = ({
   declineLoading,
   isTargetRequest,
 }) => (
-  <ButtonsContainer item xs={4} rowSpacing={1}>
+  <ButtonsContainer item xs={12} lg={4} rowSpacing={1}>
     <ActionButton
       variant="mediumContained"
       onClick={() => approveRequest({ id })}

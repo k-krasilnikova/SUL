@@ -921,4 +921,7 @@ module.exports = {
       ),
     );
   },
+
+  COURSE_DATA: MOCKED_COURSES_DATA,
+  OLD_MATERIALS: MOCKED_MATERIALS
 };

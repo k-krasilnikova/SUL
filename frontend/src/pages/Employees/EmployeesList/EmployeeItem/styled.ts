@@ -18,6 +18,9 @@ export const Cell = styled(TableCell)({
       lineHeight: '18px',
       paddingBottom: '26px',
     },
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '14px',
+    },
   },
   '&.MuiTableCell-body': {
     fontSize: '18px',
@@ -31,6 +34,9 @@ export const Cell = styled(TableCell)({
       paddingBottom: '16px',
       paddingTop: '14px',
     },
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '14px',
+    },
   },
 });
 
@@ -43,8 +49,8 @@ export const StackItem = styled('p')({
 });
 
 export const ImageWrapper = styled('div')({
-  height: '50px',
-  width: '50px',
+  height: '60px',
+  width: '60px',
 });
 
 export const InfoContainer = styled(Box)({
@@ -72,6 +78,9 @@ export const Position = styled('p')({
   [theme.breakpoints.down('xl')]: {
     lineHeight: '18px',
     marginTop: '10px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    fontSize: '14px',
   },
 });
 

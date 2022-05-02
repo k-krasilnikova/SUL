@@ -7,9 +7,10 @@
         "node": "15.x"
     },
     "scripts": {
-        "dev": "cross-env NODE_ENV=local nodemon ./src/app.ts",
+        "dev": "cross-env NODE_ENV=dev nodemon ./src/app.ts",
         "devdebug": "cross-env NODE_ENV=test nodemon ./src/app.ts",
-        "backdev": "cross-env NODE_ENV=dev nodemon ./src/app.ts",
+        "local": "cross-env NODE_ENV=local nodemon ./src/app.ts",
+        "backdev": "cross-env NODE_ENV=backdev nodemon ./src/app.ts",
         "build": "cross-env NODE_ENV=production tsc && npx tsc-alias",
         "test": "cross-env NODE_ENV=test jest --coverage",
         "migrate": "migrate-mongo up",
@@ -72,6 +73,7 @@
         "mongoose": "^6.1.2",
         "nodemailer": "^6.7.2",
         "tsconfig-paths": "^3.12.0",
-        "winston": "^3.3.3"
+        "winston": "^3.3.3",
+        "yup": "^0.32.11"
     }
 }

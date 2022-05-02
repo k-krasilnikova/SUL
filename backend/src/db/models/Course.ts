@@ -29,10 +29,13 @@ const courseSchema = new Schema<ICourse>({
         },
       ],
       exercise: {
-        eN: { type: Number },
-        title: { type: String, required: true, ...validationTitle },
-        task: { type: String, required: true, ...validationTask },
-        code: { type: String },
+        type: {
+          eN: { type: Number },
+          title: { type: String, required: true, ...validationTitle },
+          task: { type: String, required: true, ...validationTask },
+          code: { type: String },
+        },
+        required: false,
       },
     },
   ],

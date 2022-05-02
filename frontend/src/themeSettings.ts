@@ -152,6 +152,56 @@ const theme = createTheme(
           },
         ],
       },
+      MuiAccordion: {
+        styleOverrides: {
+          root: {
+            boxShadow: 'none',
+            border: 'none',
+            '&:before': {
+              height: 0,
+            },
+            '&.Mui-expanded': {
+              margin: 0,
+            },
+            '&.Mui-disabled': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      },
+      MuiAccordionSummary: {
+        styleOverrides: {
+          root: {
+            justifyContent: 'flex-start',
+            minHeight: 'auto',
+            padding: 0,
+            '&.Mui-expanded': {
+              minHeight: 'auto',
+            },
+            '&.Mui-disabled': {
+              opacity: 1,
+            },
+          },
+          content: {
+            flexGrow: 0,
+            minHeight: 'auto',
+            margin: 0,
+            '&.Mui-expanded': {
+              margin: 0,
+            },
+          },
+          expandIconWrapper: {
+            alignSelf: 'flex-start',
+          },
+        },
+      },
+      MuiAccordionDetails: {
+        styleOverrides: {
+          root: {
+            padding: 0,
+          },
+        },
+      },
     },
   },
   globalTheme,
