@@ -1,1 +1,1 @@
-export { default } from './DefinitionStep';
+export { default } from './DefinitionStepContainer';
