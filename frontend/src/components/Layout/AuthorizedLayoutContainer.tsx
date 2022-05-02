@@ -7,6 +7,7 @@ import { getMenuToggle } from 'utils/helpers/menuHelpers/getMenuToggle';
 import AuthorizedLayout from './AuthorizedLayout';
 import { useLayOutStyles } from './styled';
 import Loader from '../Loader';
+import { Loaders } from '../../enums/loader';
 
 interface Props {
   pageName: string;
@@ -30,7 +31,7 @@ const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
   return (
     <>
       {isProfileLoading ? (
-        <Loader />
+        <Loader type={Loaders.content} />
       ) : (
         <AuthorizedLayout
           pageName={pageName}
