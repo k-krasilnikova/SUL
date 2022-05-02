@@ -5,9 +5,13 @@ import ServiceUnavailableError from 'classes/errors/serverErrors/ServiceUnavaila
 
 const connectionMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const CONNECTION_STRING: string | undefined =
-      process.env.NODE_ENV === 'dev' ? process.env.DATABASE_BACKDEV_URL : process.env.DATABASE_URL;
+    const DB_URL: Record<string, string | undefined> = {
+      local: process.env.DATABASE_LOCAL_URL,
+      dev: process.env.DATABASE_URL,
+      backdev: process.env.DATABASE_BACKDEV_URL,
+    };
 
+    const CONNECTION_STRING = process.env.NODE_ENV && DB_URL[`${process.env.NODE_ENV}`];
     if (CONNECTION_STRING) {
       await connect(CONNECTION_STRING);
     }

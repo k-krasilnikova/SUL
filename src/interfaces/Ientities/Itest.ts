@@ -4,14 +4,21 @@ import { IUserSkill } from './IUserSkill';
 interface ITest {
   _id?: string;
   title: string;
-  questions: Array<{
-    qN: number;
-    question: string;
-    answers: { variant: string; aN: number }[];
-    correctAnswer: number;
-  }>;
+  questions: ITestQuestion[];
   timeout: number;
   attempts: number;
+}
+
+interface ITestQuestion {
+  qN: number;
+  question: string;
+  answers: ITestAnswer[];
+  correctAnswer: number;
+}
+
+interface ITestAnswer {
+  variant: string;
+  aN: number;
 }
 
 type TAchievments = {
@@ -36,4 +43,14 @@ interface IAnswer {
 
 type TCorrectAnswers<T, K extends keyof T, R extends PropertyKey> = Omit<T, K> & { [P in R]: T[K] };
 
-export { ITest, TestDb, IAnswer, TCorrectAnswers, TestRuslt, TAchievments, TTechToAchieve };
+export {
+  ITest,
+  TestDb,
+  IAnswer,
+  TCorrectAnswers,
+  TestRuslt,
+  TAchievments,
+  TTechToAchieve,
+  ITestQuestion,
+  ITestAnswer,
+};

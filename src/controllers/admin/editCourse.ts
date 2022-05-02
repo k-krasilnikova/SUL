@@ -3,15 +3,20 @@ import { NextFunction, Request, Response } from 'express';
 import { COURSE_FIELDS } from 'config/constants';
 import { updateCourseField } from 'db/providers/courseProvider';
 import { isProperTechnologies } from 'db/providers/skillProvider';
-import { getCourseTest, updateTestQuestionsAndTimeout } from 'db/providers/testProvider';
+import { getCourseTest, updateTest } from 'db/providers/testProvider';
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
-import isValidAvatar from 'utils/validation/isValidAvatar';
-import isValidText from 'utils/validation/isValidText';
-import isValidMaterials from 'utils/validation/isValidMaterials';
-import isValidTest from 'utils/validation/isValidTest';
-import isValidTechnologies from 'utils/validation/isValidTechnologies';
+import {
+  isValidAvatar,
+  isValidComplexity,
+  validateMaterials,
+  validateTechnologies,
+  validateTest,
+  validateTitle,
+} from 'utils/validation/courses';
+import validateDescription from 'utils/validation/courses/validateDescription';
+import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const editCourse = async (
   req: Request<{ id: string }, never, IUpdateCourseBody>,
@@ -24,20 +29,30 @@ const editCourse = async (
 
     const updatedData: IUpdateCourseBody = {};
 
-    const isTitleValid = isValidText(dataToUpdate.title);
-    if (isTitleValid) {
-      const { title } = await updateCourseField(courseId, COURSE_FIELDS.title, dataToUpdate.title);
+    const validTitle = validateTitle(dataToUpdate.title);
+    if (validTitle) {
+      const { title } = await updateCourseField(courseId, COURSE_FIELDS.title, validTitle);
       updatedData.title = title;
     }
 
-    const isDescriptionValid = isValidText(dataToUpdate.description);
-    if (isDescriptionValid) {
+    const validDescription = validateDescription(dataToUpdate.description);
+    if (validDescription) {
       const { description } = await updateCourseField(
         courseId,
         COURSE_FIELDS.description,
-        dataToUpdate.description,
+        validDescription,
       );
       updatedData.description = description;
+    }
+
+    const isComplexityValid = isValidComplexity(dataToUpdate.complexity);
+    if (isComplexityValid) {
+      const { complexity } = await updateCourseField(
+        courseId,
+        COURSE_FIELDS.complexity,
+        dataToUpdate.complexity,
+      );
+      updatedData.complexity = complexity;
     }
 
     const isAvatarValid = isValidAvatar(dataToUpdate.avatar);
@@ -50,9 +65,9 @@ const editCourse = async (
       updatedData.avatar = avatar;
     }
 
-    const isMaterialsValid = isValidMaterials(dataToUpdate.materials);
-    if (isMaterialsValid && dataToUpdate.materials) {
-      const materialsWithStages = addMaterialStages(dataToUpdate.materials);
+    const validMaterials = validateMaterials(dataToUpdate.materials);
+    if (validMaterials) {
+      const materialsWithStages = addMaterialStages(validMaterials);
       const { materials } = await updateCourseField(
         courseId,
         COURSE_FIELDS.materials,
@@ -61,30 +76,32 @@ const editCourse = async (
       updatedData.materials = materials;
     }
 
-    const isSkillsValid =
-      dataToUpdate.skills &&
-      isValidTechnologies(dataToUpdate.skills) &&
-      (await isProperTechnologies(dataToUpdate.skills));
-    if (isSkillsValid) {
+    const isTechsValid =
+      dataToUpdate.technologies &&
+      validateTechnologies(dataToUpdate.technologies) &&
+      (await isProperTechnologies(dataToUpdate.technologies));
+    if (isTechsValid) {
       const { technologies } = await updateCourseField(
         courseId,
         COURSE_FIELDS.technologies,
-        dataToUpdate.skills,
+        dataToUpdate.technologies,
       );
-      updatedData.skills = technologies as unknown as IUpdateCourseBody['skills'];
+      updatedData.technologies =
+        convertToTypeUnsafe<IUpdateCourseBody['technologies']>(technologies);
     }
 
-    const isTestValid = isValidTest(dataToUpdate.test);
-    if (isTestValid) {
+    const validTest = validateTest(dataToUpdate.test);
+    if (validTest) {
       const test = await getCourseTest(courseId);
       if (test._id && dataToUpdate.test) {
-        const properQuestionsToSet = setAnswerProperNumbersToQuestions(dataToUpdate.test.questions);
-        const { questions, timeout } = await updateTestQuestionsAndTimeout(
-          test._id,
-          properQuestionsToSet,
-          dataToUpdate.test.timeout,
-        );
-        const newTest: IUpdateCourseBody['test'] = { questions, timeout };
+        const properQuestionsToSet = setAnswerProperNumbersToQuestions(validTest.questions);
+        const { questions, timeout, title } = await updateTest({
+          testId: test._id,
+          questions: properQuestionsToSet,
+          timeout: validTest.timeout,
+          title: validTest.title,
+        });
+        const newTest: IUpdateCourseBody['test'] = { timeout, title, questions };
         updatedData.test = newTest;
       }
     }

@@ -32,17 +32,16 @@ interface IUpdateCourseBody {
   title?: ICourse['title'];
   avatar?: ICourse['avatar'];
   description?: ICourse['description'];
-  skills?: {
-    skill: string;
-    points: number;
-  }[];
+  technologies?: ICourseTechsFromWeb[];
   materials?: ICourse['materials'];
   test?: IUpdateCourseTest;
+  complexity?: ICourse['complexity'];
 }
 
 interface IUpdateCourseTest {
   questions: ITest['questions'];
   timeout: ITest['timeout'];
+  title: ITest['title'];
 }
 
 interface ICourseTechsFromWeb {

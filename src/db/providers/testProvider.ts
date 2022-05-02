@@ -5,6 +5,7 @@ import TestModel from 'db/models/Tests';
 import CourseModel from 'db/models/Course';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { ITest, TestDb } from 'interfaces/Ientities/Itest';
+import { IUpdateTestDto } from 'interfaces/dto/courses';
 
 const getTestProvider = async (courseId: string) => {
   const test: TestDb[] = await ClientCourseModel.aggregate([
@@ -59,17 +60,16 @@ const getTrueAnswersProvider = async (testId: string) => {
   return trueAnswers;
 };
 
-const updateTestQuestionsAndTimeout = async (
-  testId: string | ObjectId,
-  questions: ITest['questions'],
-  timeout: ITest['timeout'],
-): Promise<ITest> => {
+const updateTest = async (updateTestDto: IUpdateTestDto): Promise<ITest> => {
+  const { testId, title, questions, timeout } = updateTestDto;
+
   const updated = await TestModel.findByIdAndUpdate(
     testId,
     {
       $set: {
         questions,
         timeout,
+        title,
       },
     },
     { returnDocument: 'after' },
@@ -101,7 +101,7 @@ export {
   getTestProvider,
   getTestById,
   getTrueAnswersProvider,
-  updateTestQuestionsAndTimeout,
+  updateTest,
   getCourseTest,
   addCourseTest,
 };
