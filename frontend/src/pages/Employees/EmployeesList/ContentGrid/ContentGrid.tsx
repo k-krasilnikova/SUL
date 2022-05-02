@@ -1,15 +1,15 @@
-import { FC, forwardRef } from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 import { IContentGridProps } from 'pages/Employees/types';
 
 import { StyledGrid } from './styled';
 
-const ContentGrid: FC<IContentGridProps> = forwardRef<HTMLDivElement, IContentGridProps>(
-  ({ children, ...props }, ref) => (
-    <StyledGrid container columns={16} ref={ref} {...props}>
-      {children}
-    </StyledGrid>
-  ),
+const ContentGrid = (
+  { children, ...props }: IContentGridProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) => (
+  <StyledGrid container columns={16} ref={ref} {...props}>
+    {children}
+  </StyledGrid>
 );
-
-export default ContentGrid;
+export default forwardRef(ContentGrid);
