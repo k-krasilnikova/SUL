@@ -9,7 +9,7 @@ export const COLORS = {
   secondaryTextColor: '#FFF',
 };
 
-const globalTheme = createTheme({
+const themeOptions = {
   palette: {
     primary: {
       main: COLORS.primaryColor,
@@ -32,11 +32,14 @@ const globalTheme = createTheme({
       xs: 320,
       sm: 425,
       md: 770,
+      xmd: 850,
       lg: 1025,
       xl: 1441,
     },
   },
-});
+};
+
+const globalTheme = createTheme(themeOptions);
 
 const theme = createTheme(
   {

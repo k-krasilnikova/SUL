@@ -1,18 +1,18 @@
 export const WINDOW_SIZE = {
   xs: {
-    width: 320,
+    width: 319,
     name: 'xs',
   },
   sm: {
-    width: 425,
+    width: 424,
     name: 'sm',
   },
   md: {
-    width: 768,
+    width: 769,
     name: 'md',
   },
   xmd: {
-    width: 850,
+    width: 849,
     name: 'xmd',
   },
   lg: {
@@ -24,7 +24,7 @@ export const WINDOW_SIZE = {
     name: 'xl',
   },
   xxl: {
-    width: 1700,
+    width: 1699,
     name: 'xxl',
   },
 };

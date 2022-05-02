@@ -1,1 +1,1 @@
-export { default } from './EmployeesList';
+export { default } from './EmployeesListContainer';
