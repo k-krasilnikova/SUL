@@ -1,21 +1,13 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
+import { FC } from 'react';
 
 import useGetEmployeesList from 'api/manager/getEmployeesList';
-import { PATHS } from 'constants/routes';
-import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import Employees from './Employees';
 
-const EmployeesContainer: React.FC = () => {
-  const { data: employees, isLoading } = useGetEmployeesList();
-  const navigateTo = useNavigate();
+const EmployeesContainer: FC = () => {
+  const { data: employeesResponse, isLoading: isEmployeesLoading } = useGetEmployeesList();
 
-  const handleNavigate = (id: string) => {
-    navigateTo(transformRoute(PATHS.employeeProfile, id));
-  };
-
-  return <Employees employees={employees} isLoading={isLoading} handleNavigate={handleNavigate} />;
+  return <Employees employees={employeesResponse} isLoading={isEmployeesLoading} />;
 };
 
 export default EmployeesContainer;

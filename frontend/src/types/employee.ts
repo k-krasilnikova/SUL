@@ -9,16 +9,7 @@ export interface IEmployee extends IUser {
   stack: { member: { name: string } }[];
 }
 
-export interface IEmployeesProps {
-  handleNavigate: (_id: string) => void;
-  employees?: IEmployee[];
-  isLoading?: boolean;
-}
 
-export interface IEmployeeProps {
-  handleNavigate: (_id: string) => void;
-  employee: IEmployee;
-}
 
 export interface IEmployeeCourses {
   searchCourseInList: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -33,10 +24,6 @@ export interface IEmployeeCoursesList {
   showCourseInfo?: () => void;
   hideCourseInfo?: () => void;
   isShown?: boolean;
-}
-
-export interface IEmployeeInfoProps {
-  employee?: IEmployee;
 }
 
 export interface IEmployeeSkillsAndCourses {
