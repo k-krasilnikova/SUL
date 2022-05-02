@@ -6,7 +6,7 @@ import {
 } from '../../../Requests/RequestItem/RequestButtons/styled';
 
 export const ButtonsContainer = styled(ButCont)({
-  justifyContent: 'space-between',
+  justifyContent: 'space-around',
 });
 
 export const ActionButton = styled(ActBut)({
