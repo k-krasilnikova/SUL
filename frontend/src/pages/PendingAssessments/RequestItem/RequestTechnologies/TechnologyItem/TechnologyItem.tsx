@@ -13,7 +13,7 @@ const TechnologyItem: FC<ITechnologyItemProps> = ({
   hideInfo,
 }) => (
   <TechnologyWrapper onMouseEnter={showInfo} onMouseLeave={hideInfo}>
-    <Avatar size={Size.xxsmal} avatar={technology.skill.image} />
+    <Avatar size={Size.xxsmall} avatar={technology.skill.image} />
     {isInfoShown && (
       <HoverSkillInfoText>{`${technology.skill.name}:
       (${technology.points}/${technology.skill.maxScore})`}</HoverSkillInfoText>

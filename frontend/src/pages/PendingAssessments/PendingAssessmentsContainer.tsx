@@ -1,18 +1,19 @@
 import { FC } from 'react';
 
 import { useGetPendingAssessments, useManageAssessment } from 'api/manager';
+
 import PendingAssessments from './PendingAssessments';
 
 const PendingAssessmentsContainer: FC = () => {
-  const { data: assessments, isLoading } = useGetPendingAssessments();
-  const { mutate: manageAssessment, isLoading: isActionLoading } = useManageAssessment();
+  const { data: assessmentsRequest, isLoading: isAssessmentsLoading } = useGetPendingAssessments();
+  const { mutate: manageAssessment, isLoading: isManageAssessmentLoading } = useManageAssessment();
 
   return (
     <PendingAssessments
-      isLoading={isLoading}
-      assessments={assessments}
+      isLoading={isAssessmentsLoading}
+      assessments={assessmentsRequest}
       manageAssessment={manageAssessment}
-      isActionLoading={isActionLoading}
+      isActionLoading={isManageAssessmentLoading}
     />
   );
 };

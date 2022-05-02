@@ -3,7 +3,7 @@ import { IAssessment } from 'types/request';
 
 export interface IPendingAssessmentsProps {
   isLoading: boolean;
-  assessments?: IAssessment[];
-  manageAssessment: (payload: IManageAssessmentDto) => void;
   isActionLoading: boolean;
+  manageAssessment: (payload: IManageAssessmentDto) => void;
+  assessments?: IAssessment[];
 }

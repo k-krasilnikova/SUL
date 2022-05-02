@@ -5,8 +5,7 @@ import {
   UserName as UName,
   CourseTitle as CTitle,
   SecondaryText as SecText,
-  CustomGrid as CustGrid,
-} from '../../Requests/RequestItem/styled';
+} from 'pages/Requests/RequestItem/styled';
 
 export const Position = styled(Pos)({
   color: '#131313',
@@ -21,10 +20,8 @@ export const CourseTitle = styled(CTitle)({
 });
 
 export const SecondaryText = styled(SecText)({
-  color: '#8e8e93',
+  color: '#8E8E93',
 });
-
-export const RequestTechnologiesContainer = styled(CustGrid)({});
 
 export {
   CustomGrid,
@@ -34,4 +31,4 @@ export {
   CourseContainer,
   CourseImageWrapper,
   TimeContainer,
-} from '../../Requests/RequestItem/styled';
+} from 'pages/Requests/RequestItem/styled';
