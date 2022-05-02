@@ -12,6 +12,12 @@ export const SkillsBox = styled(Box)({
   display: 'flex',
   flexWrap: 'wrap',
   marginBottom: '40px',
+  [theme.breakpoints.down('lg')]: {
+    marginBottom: '32px',
+  },
+  [theme.breakpoints.down('md')]: {
+    marginBottom: '16px',
+  },
 });
 
 export const SkillsTitle = styled('div')({
@@ -22,9 +28,9 @@ export const SkillsTitle = styled('div')({
   lineHeight: 1.2,
   color: '#131313',
   [theme.breakpoints.down('lg')]: {
-    margin: '31px 0 16px',
+    margin: '24px 0 16px',
   },
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('md')]: {
     margin: '16px',
   },
 });

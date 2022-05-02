@@ -1,1 +1,1 @@
-export { default } from './EmployeeItem';
+export { default } from './EmployeeItemContainer';

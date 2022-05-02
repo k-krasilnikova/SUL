@@ -28,7 +28,7 @@ export const BackButton = styled(Button)({
   [theme.breakpoints.down('xl')]: {
     height: '32px',
     width: '64px',
-    fontSize: '12px',
+    fontSize: '14px',
     lineHeight: '16px',
   },
   [theme.breakpoints.down('md')]: {

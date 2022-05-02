@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { useGetProfile } from 'api/profile';
-import { getWindowWidth } from 'utils/helpers/getWindowWidth';
+import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 import {
   convertCourseStatusToProgress,
   ConvertedProgress,
@@ -43,7 +43,7 @@ const DetailedCourseContainer: React.FC<Props> = ({ page }) => {
     mutate(params.courseId);
   };
 
-  const windowWidth = getWindowWidth();
+  const windowWidth = getWindowLabelByWidth();
 
   let commonCourseInfo: ICourse | undefined;
   let clientCourseInfo;

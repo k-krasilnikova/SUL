@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 import { useGetClientPaginatedCourses } from 'api/myCourses';
 import { WINDOW_SIZE } from 'constants/windowWidth';
-import { getWindowWidth } from 'utils/helpers/getWindowWidth';
+import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 import { IClientCourse } from 'types/clientCourse';
 import CoursesList from 'pages/CoursesList/CoursesList';
 
@@ -24,7 +24,7 @@ const MyCoursesContainer: React.FC = () => {
     }
   };
 
-  const windowWidth = getWindowWidth();
+  const windowWidth = getWindowLabelByWidth();
 
   const formattedClientCourses = data?.pages.reduce(
     (prev, page) => [...prev, ...page.clientCourses],
