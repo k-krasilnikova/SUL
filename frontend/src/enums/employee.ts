@@ -9,3 +9,15 @@ export enum EmployeeRank {
   Middle = 2,
   Senior = 3,
 }
+
+export enum EmployeeContentType {
+  visible = 'visible',
+  hidden = 'hidden',
+}
+
+export enum EmployeeColumnName {
+  empty = '',
+  rank = 'rank',
+  stack = 'stack',
+  button = 'button',
+}

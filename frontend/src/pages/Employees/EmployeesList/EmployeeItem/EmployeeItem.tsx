@@ -1,44 +1,33 @@
-import React from 'react';
+import { FC } from 'react';
 
-import Avatar from 'components/Avatar';
-import { IEmployeeProps } from 'types/employee';
-import { EmployeeRank } from 'enums/employee';
-import { Size } from 'enums/sizes';
+import { EmployeeContentType } from 'enums/employee';
+import { IEmployeeItemProps } from 'pages/Employees/types';
 
-import {
-  Cell,
-  ImageWrapper,
-  InfoContainer,
-  Position,
-  Row,
-  StackItem,
-  UserInfo,
-  UserName,
-} from './styled';
+import EmployeeContent from '../EmployeeContent';
 
-const EmployeeItem: React.FC<IEmployeeProps> = ({ handleNavigate, employee }) => (
-  <Row key={employee._id} onClick={() => handleNavigate(employee._id)}>
-    <Cell variant="body">
-      <UserInfo>
-        <ImageWrapper>
-          <Avatar size={Size.subsmall} avatar={employee.avatar} />
-        </ImageWrapper>
-        <InfoContainer>
-          <UserName>{`${employee.firstName} ${employee.lastName}`}</UserName>
-          <Position>{employee.position}</Position>
-        </InfoContainer>
-      </UserInfo>
-    </Cell>
-    <Cell variant="body">
-      {employee.stack.map((stackItem) => (
-        <StackItem key={stackItem.member.name}>{stackItem.member.name}</StackItem>
-      ))}
-    </Cell>
-    <Cell variant="body">{EmployeeRank[employee.rank]}</Cell>
-    <Cell variant="body">{employee.group}</Cell>
-    <Cell variant="body">{employee.phone}</Cell>
-    <Cell variant="body">{employee.skype}</Cell>
-  </Row>
+const EmployeeItem: FC<IEmployeeItemProps> = ({
+  employee,
+  visibleColumnLabels,
+  hiddenColumnLabels,
+  isVisibleContent,
+  handleShowButtonClick,
+}) => (
+  <>
+    <EmployeeContent
+      employee={employee}
+      config={visibleColumnLabels}
+      isVisible={isVisibleContent}
+      handleShowButtonClick={handleShowButtonClick}
+    />
+    {Boolean(hiddenColumnLabels.length) && (
+      <EmployeeContent
+        type={EmployeeContentType.hidden}
+        employee={employee}
+        config={hiddenColumnLabels}
+        isVisible={isVisibleContent}
+      />
+    )}
+  </>
 );
 
 export default EmployeeItem;

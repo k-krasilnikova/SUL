@@ -1,29 +1,38 @@
-import React from 'react';
-import { TableBody, TableHead } from '@mui/material';
+import { FC } from 'react';
 
-import { HEADER_COLUMNS } from 'constants/employeeInfo';
-import { IEmployeesProps } from 'types/employee';
+import { TABLE_CONFIGURATION } from 'constants/employeesPage';
+import { IEmployeesListProps, TTableConfig } from 'pages/Employees/types';
+import { EmployeeColumnName } from 'enums/employee';
 
-import { Cell, EmployeesTable, HeaderRow } from './styled';
+import { ColumnLabel } from './styled';
+import ContentGrid from './ContentGrid';
+import ContentColumn from './ContentColumn';
 import EmployeeItem from './EmployeeItem';
 
-const EmployeesList: React.FC<IEmployeesProps> = ({ employees, handleNavigate }) => (
-  <EmployeesTable stickyHeader>
-    <TableHead>
-      <HeaderRow>
-        {HEADER_COLUMNS.map((columnName: string) => (
-          <Cell key={columnName} variant="head">
-            {columnName}
-          </Cell>
+const EmployeesList: FC<IEmployeesListProps> = ({ employees, windowSize }) => {
+  const { visibleColumnLabels, hiddenColumnLabels } = TABLE_CONFIGURATION[
+    windowSize
+  ] as TTableConfig;
+
+  return (
+    <>
+      <ContentGrid>
+        {visibleColumnLabels.map((columnName) => (
+          <ContentColumn key={columnName} columnName={columnName}>
+            <ColumnLabel>{columnName === EmployeeColumnName.button ? '' : columnName}</ColumnLabel>
+          </ContentColumn>
         ))}
-      </HeaderRow>
-    </TableHead>
-    <TableBody>
+      </ContentGrid>
       {employees?.map((employee) => (
-        <EmployeeItem employee={employee} handleNavigate={handleNavigate} />
+        <EmployeeItem
+          key={employee._id}
+          employee={employee}
+          visibleColumnLabels={visibleColumnLabels}
+          hiddenColumnLabels={hiddenColumnLabels}
+        />
       ))}
-    </TableBody>
-  </EmployeesTable>
-);
+    </>
+  );
+};
 
 export default EmployeesList;

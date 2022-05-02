@@ -6,7 +6,7 @@ import { useGetProfile } from 'api/profile';
 import { useFetchNextPage } from 'hooks';
 import { WINDOW_SIZE } from 'constants/windowWidth';
 import { Role } from 'constants/menuRoles';
-import { getWindowWidth } from 'utils/helpers/getWindowWidth';
+import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 
 import CoursesList from './CoursesList';
 
@@ -38,7 +38,7 @@ const CoursesContainer: React.FC = () => {
     mutate((event.target as HTMLElement).id);
   };
 
-  const windowWidth = getWindowWidth();
+  const windowWidth = getWindowLabelByWidth();
 
   const formattedCoursesList = data?.pages.reduce(
     (prev, page) => [...prev, ...page.courses.filter((course) => !course.status)],
