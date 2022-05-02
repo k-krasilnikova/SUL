@@ -37,8 +37,9 @@ export interface ICourse {
   testLink: string;
   lessons: number;
   status: CourseStatus;
-  avatar?: string;
   similarCourses: ICourse[];
+  complexity: number;
+  avatar?: string;
 }
 
 export interface IShortCourseInfo {
