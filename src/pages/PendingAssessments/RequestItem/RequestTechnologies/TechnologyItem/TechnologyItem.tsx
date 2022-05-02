@@ -2,9 +2,9 @@ import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
 import { Size } from 'enums/sizes';
+import { ITechnologyItemProps } from 'pages/PendingAssessments/types';
 
 import { HoverSkillInfoText, TechnologyWrapper } from './styled';
-import { ITechnologyItemProps } from './types';
 
 const TechnologyItem: FC<ITechnologyItemProps> = ({
   technology,

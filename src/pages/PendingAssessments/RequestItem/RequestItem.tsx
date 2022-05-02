@@ -18,9 +18,9 @@ import {
   TimeContainer,
   SecondaryText,
 } from './styled';
-import { IAssessmentRequestItemProps } from './types';
 import RequestButtons from './RequestButtons';
 import RequestTechnologies from './RequestTechnologies';
+import { IAssessmentRequestItemProps } from '../types';
 
 const RequestItem: FC<IAssessmentRequestItemProps> = ({
   user,

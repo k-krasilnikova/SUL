@@ -1,7 +1,8 @@
 import { FC, useState } from 'react';
 
+import { ITechnologyItemContainerProps } from 'pages/PendingAssessments/types';
+
 import TechnologyItem from './TechnologyItem';
-import { ITechnologyItemContainerProps } from './types';
 
 const TechnologyItemContainer: FC<ITechnologyItemContainerProps> = ({ technology }) => {
   const [isFullInfoShown, setIsFullInfoShown] = useState(false);
