@@ -5,8 +5,8 @@ import { IContentColumnProps } from 'pages/Employees/types';
 
 import { StyledColumn } from './styled';
 
-const ContentColumn: FC<IContentColumnProps> = ({ columnName, children }) => (
-  <StyledColumn item {...COLUMNS_SIZE_CONFIGURATION[columnName]}>
+const ContentColumn: FC<IContentColumnProps> = ({ columnName, contentType, children }) => (
+  <StyledColumn item contentType={contentType} {...COLUMNS_SIZE_CONFIGURATION[columnName]}>
     {children}
   </StyledColumn>
 );
