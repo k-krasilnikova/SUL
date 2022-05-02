@@ -49,7 +49,7 @@ const RequestItem: FC<IAssessmentRequestItemProps> = ({
     <RequestTechnologiesContainer item xs={2}>
       <RequestTechnologies technologies={course.technologies} />
     </RequestTechnologiesContainer>
-    <TimeContainer item xs={2}>
+    <TimeContainer item xs={1}>
       <SecondaryText>{convertRequestTime(elapsed)}</SecondaryText>
     </TimeContainer>
     <RequestButtons id={clientCourseId} {...props} />
