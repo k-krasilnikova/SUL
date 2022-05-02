@@ -21,7 +21,7 @@ const EmployeeItem: React.FC<IEmployeeProps> = ({ handleNavigate, employee }) =>
     <Cell variant="body">
       <UserInfo>
         <ImageWrapper>
-          <Avatar size={Size.small} avatar={employee.avatar} />
+          <Avatar size={Size.subsmall} avatar={employee.avatar} />
         </ImageWrapper>
         <InfoContainer>
           <UserName>{`${employee.firstName} ${employee.lastName}`}</UserName>

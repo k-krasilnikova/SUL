@@ -1,22 +1,17 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
-import Avatar from 'components/Avatar';
-import { IProfile } from 'types/profile';
-import { Size } from 'enums/sizes';
+import UserProfile from 'components/UserProfile';
+import { IProfileProps } from 'types/profile';
 
 import { UserSkills } from './UserSkills';
-import { ProfileBox, AvatarWrapper } from './styled';
-import UserInfo from './UserInfo';
+import { ProfileWrapper } from './styled';
 
-const Profile: React.FC<IProfile> = ({ user }) => (
+const Profile: FC<IProfileProps> = ({ user }) => (
   <AuthorizedLayout pageName="Profile">
-    <ProfileBox>
-      <AvatarWrapper>
-        <Avatar avatar={user?.avatar} size={Size.large} />
-      </AvatarWrapper>
-      <UserInfo user={user} />
-    </ProfileBox>
+    <ProfileWrapper>
+      <UserProfile {...user} />
+    </ProfileWrapper>
     <UserSkills technologies={user?.technologies} />
   </AuthorizedLayout>
 );

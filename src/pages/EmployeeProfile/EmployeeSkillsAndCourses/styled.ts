@@ -7,12 +7,12 @@ interface ToggleButtonProps {
 }
 
 export const SkillsAndCoursesBox = styled('div')({
-  marginLeft: '63px',
-  width: '80%',
   display: 'flex',
+  marginLeft: '63px',
   [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    width: '190px',
     marginLeft: '16px',
-    width: '100%',
   },
 });
 
@@ -25,6 +25,9 @@ export const EmployeeButtonGroup = styled(ButtonGroup)({
   },
   [theme.breakpoints.down('lg')]: {
     height: '28px',
+  },
+  [theme.breakpoints.down('md')]: {
+    marginBottom: '20px',
   },
 });
 
