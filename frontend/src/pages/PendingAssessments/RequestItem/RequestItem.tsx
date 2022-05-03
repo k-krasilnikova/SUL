@@ -36,7 +36,7 @@ const RequestItem: FC<IAssessmentRequestItemProps> = ({
       </ImageWrapper>
       <UserContainer>
         <UserName>{`${user.firstName} ${user.lastName}`}</UserName>
-        <Position>{`${user.position}`}</Position>
+        <Position>{user.position}</Position>
       </UserContainer>
     </CustomGrid>
     <CourseContainer item xs={3}>

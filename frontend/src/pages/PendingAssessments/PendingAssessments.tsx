@@ -16,6 +16,7 @@ const PendingAssessments: FC<IPendingAssessmentsProps> = ({ isLoading, assessmen
       <RequestsWrapper>
         {assessments?.map((assessment) => (
           <RequestItem
+            key={assessment._id}
             user={assessment.user}
             course={assessment.course}
             elapsed={assessment.elapsed}
