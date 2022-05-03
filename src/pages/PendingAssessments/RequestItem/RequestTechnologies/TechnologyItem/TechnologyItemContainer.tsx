@@ -5,10 +5,10 @@ import { ITechnologyItemContainerProps } from 'pages/PendingAssessments/types';
 import TechnologyItem from './TechnologyItem';
 
 const TechnologyItemContainer: FC<ITechnologyItemContainerProps> = ({ technology }) => {
-  const [isFullInfoShown, setIsFullInfoShown] = useState(false);
+  const [isFullInfoShown, setFullInfoShown] = useState(false);
 
-  const showFullInfo = () => setIsFullInfoShown(true);
-  const hideFullInfo = () => setIsFullInfoShown(false);
+  const showFullInfo = () => setFullInfoShown(true);
+  const hideFullInfo = () => setFullInfoShown(false);
 
   return (
     <TechnologyItem
