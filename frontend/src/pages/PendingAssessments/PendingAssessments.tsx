@@ -14,13 +14,13 @@ const PendingAssessments: FC<IPendingAssessmentsProps> = ({ isLoading, assessmen
       <Loader color="primary" type={Loaders.content} />
     ) : (
       <RequestsWrapper>
-        {assessments?.map((assessment) => (
+        {assessments?.map(({ _id, user, course, elapsed }) => (
           <RequestItem
-            key={assessment._id}
-            user={assessment.user}
-            course={assessment.course}
-            elapsed={assessment.elapsed}
-            clientCourseId={assessment._id}
+            key={_id}
+            user={user}
+            course={course}
+            elapsed={elapsed}
+            clientCourseId={_id}
             {...props}
           />
         ))}

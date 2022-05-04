@@ -38,15 +38,15 @@ const ResultDescription: React.FC<IResultDescription> = ({
           <SkillsInfoList>
             {assessment ? (
               responseData?.techsToAchieve?.map((tech) => (
-                <SkillInfoContainer skillItem={tech} key={tech} />
+                <SkillInfoContainer key={tech} skillItem={tech} />
               ))
             ) : (
               <>
                 {responseData?.newSkills?.map((newSkillItem) => (
-                  <SkillInfoContainer skillItem={newSkillItem} key={newSkillItem} />
+                  <SkillInfoContainer key={newSkillItem} skillItem={newSkillItem} />
                 ))}
                 {responseData?.updatedSkills?.map((updatedSkillItem) => (
-                  <SkillInfoContainer skillItem={updatedSkillItem} key={updatedSkillItem} />
+                  <SkillInfoContainer key={updatedSkillItem} skillItem={updatedSkillItem} />
                 ))}
               </>
             )}

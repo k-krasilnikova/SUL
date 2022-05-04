@@ -1,21 +1,18 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { ITechnologyItemContainerProps } from 'pages/PendingAssessments/types';
+import { useToggle } from 'hooks';
 
 import TechnologyItem from './TechnologyItem';
 
 const TechnologyItemContainer: FC<ITechnologyItemContainerProps> = ({ technology }) => {
-  const [isFullInfoShown, setFullInfoShown] = useState(false);
-
-  const showFullInfo = () => setFullInfoShown(true);
-  const hideFullInfo = () => setFullInfoShown(false);
+  const [isFullInfoShown, toogleFullInfoShown] = useToggle();
 
   return (
     <TechnologyItem
       technology={technology}
       isInfoShown={isFullInfoShown}
-      showInfo={showFullInfo}
-      hideInfo={hideFullInfo}
+      toggleFullInfoShown={toogleFullInfoShown}
     />
   );
 };

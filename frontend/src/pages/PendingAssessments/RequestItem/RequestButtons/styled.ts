@@ -1,14 +1,11 @@
 import { styled } from '@mui/material';
 
-import {
-  ButtonsContainer as ButCont,
-  ActionButton as ActBut,
-} from 'pages/Requests/RequestItem/RequestButtons/styled';
+import { ButtonsContainer, ActionButton } from 'pages/Requests/RequestItem/RequestButtons/styled';
 
-export const ButtonsContainer = styled(ButCont)({
+export const StyledButtonsContainer = styled(ButtonsContainer)({
   justifyContent: 'space-around',
 });
 
-export const ActionButton = styled(ActBut)({
+export const StyledActionButton = styled(ActionButton)({
   width: '90px',
 });
