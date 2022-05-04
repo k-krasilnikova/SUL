@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
+import TextTooltip from 'components/TextTooltip';
 import { EmployeeRank, EmployeeContentType, EmployeeColumnName } from 'enums/employee';
 import { Size } from 'enums/sizes';
 import { IEmployeeContentProps } from 'pages/Employees/types';
@@ -28,10 +29,10 @@ const EmployeeContent: FC<IEmployeeContentProps> = ({
   handleShowButtonClick,
 }) => {
   const { avatar, firstName, lastName, position } = employee;
-  const contentIsVisible = isVisible || type !== EmployeeContentType.hidden;
+  const isContentVisible = isVisible || type !== EmployeeContentType.hidden;
 
   return (
-    <ContentGrid contentType={type} isVisible={contentIsVisible}>
+    <ContentGrid contentType={type} isVisible={isContentVisible}>
       {config.map((columnName) => (
         <ContentColumn key={columnName} columnName={columnName} contentType={type}>
           {type === EmployeeContentType.hidden && <ColumnLabel>{columnName}</ColumnLabel>}
@@ -52,6 +53,10 @@ const EmployeeContent: FC<IEmployeeContentProps> = ({
               employee[columnName].map((stackItem) => (
                 <StackItem key={stackItem.member.name}>{stackItem.member.name}</StackItem>
               ))
+            ) : (columnName === EmployeeColumnName.phone ||
+                columnName === EmployeeColumnName.skype) &&
+              type !== EmployeeContentType.hidden ? (
+              <TextTooltip>{employee[columnName]}</TextTooltip>
             ) : columnName === EmployeeColumnName.button ? (
               <StyledExpandMoreIcon isVisible={isVisible} onClick={handleShowButtonClick} />
             ) : (
