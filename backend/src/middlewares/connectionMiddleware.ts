@@ -10,6 +10,7 @@ const connectionMiddleware = async (req: Request, res: Response, next: NextFunct
       dev: process.env.DATABASE_URL,
       backdev: process.env.DATABASE_BACKDEV_URL,
       test: process.env.DATABASE_URL,
+      production: process.env.DATABASE_URL,
     };
 
     const CONNECTION_STRING = process.env.NODE_ENV && DB_URL[`${process.env.NODE_ENV}`];

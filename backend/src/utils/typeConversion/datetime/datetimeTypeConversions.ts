@@ -23,4 +23,10 @@ const convertToTimePeriod = (milliseconds: number): ITimePeriod => {
   return period;
 };
 
-export { convertToCourseDuration, convertToTimePeriod };
+const calculateTimeElapsed = (from: Date, to: Date): ITimePeriod => {
+  const difference = to.getTime() - from.getTime();
+  const timePeriod = convertToTimePeriod(difference);
+  return timePeriod;
+};
+
+export { convertToCourseDuration, convertToTimePeriod, calculateTimeElapsed };

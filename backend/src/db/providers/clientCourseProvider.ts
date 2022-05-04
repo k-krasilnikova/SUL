@@ -205,6 +205,28 @@ const assignCourseToEmployee = async (
   return createdDoc;
 };
 
+const getPendingAssessmentsProvider = async (
+  usersIds: string[],
+): Promise<IClientCoursePopulated[]> =>
+  ClientCourseModel.find({
+    user: {
+      $in: usersIds,
+    },
+    status: CourseStatus.assessment,
+  })
+    .populate({
+      path: 'course',
+      select: '-_id avatar title technologies',
+      populate: {
+        path: 'technologies.skill',
+        model: 'Skill',
+        select: '-_id name image maxScore',
+      },
+    })
+    .populate('user', '-_id avatar firstName lastName position')
+    .select('user course startTestDate')
+    .lean();
+
 export {
   getClientCoursesProvider,
   getAllClientCoursesProvider,
@@ -220,4 +242,5 @@ export {
   getClientCourseByCourseId,
   assignCourseToEmployee,
   checkNotDeleteCoursesProvider,
+  getPendingAssessmentsProvider,
 };

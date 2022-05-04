@@ -10,6 +10,7 @@ import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
 import { specifyUserTechnologies } from 'utils/technologies/userTechnologies';
 import { addPointToUserSkill } from 'utils/skillsUtils';
+import { convertTechnologiesToUserSkills } from 'utils/typeConversion/skills/skillsAndTechs';
 
 const getAchievments = async (
   req: Request,
@@ -53,7 +54,14 @@ const getAchievments = async (
 
       next();
     } else {
-      res.locals.achievments = { newSkills: [], updatedSkills: [] };
+      const techsToAchievePopulated = await populateUserSkills(
+        convertTechnologiesToUserSkills(techsToAchieve),
+      );
+      res.locals.achievments = {
+        newSkills: [],
+        updatedSkills: [],
+        techsToAchieve: extractCommonUserSkillInfo(techsToAchievePopulated),
+      };
       next();
     }
   } catch (err) {

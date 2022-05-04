@@ -22,6 +22,7 @@ const applyCourse = async (
     if (!courseId || !userId) {
       throw new BadRequestError('Invalid query');
     }
+
     const applyedCourses = await getAllClientCoursesProvider(userId);
     const isDuplicate = checkCourseDuplicates(applyedCourses, courseId);
     if (isDuplicate) {
@@ -31,6 +32,7 @@ const applyCourse = async (
     const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
     const course: IClientCourse = await applyCourseProvider(courseId, userId, progressDto);
     res.locals.clientCourseId = String(course._id);
+
     results.course = course;
     next();
   } catch (err) {

@@ -57,12 +57,24 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
 }));
 
 export const InfoItem = styled('div')({
+  display: 'inline-flex',
+  alignItems: 'center',
+  marginRight: '10px',
+  color: '#131313',
+  [theme.breakpoints.down('xl')]: {
+    '&:not(:last-of-type)': {
+      marginBottom: '3px',
+    },
+  },
   [theme.breakpoints.down('lg')]: {
     paddingBottom: 0,
     display: 'flex',
   },
   [theme.breakpoints.down('md')]: {
     display: 'inline-flex',
+    '&:not(:last-of-type)': {
+      marginBottom: 0,
+    },
   },
   [theme.breakpoints.down(550)]: {
     padding: '5px',
@@ -72,10 +84,6 @@ export const InfoItem = styled('div')({
     padding: 0,
     display: 'inline-flex',
   },
-  display: 'inline-flex',
-  color: 'black',
-  alignItems: 'center',
-  marginRight: '10px',
 });
 
 export const InfoItemText = styled(Typography)({
