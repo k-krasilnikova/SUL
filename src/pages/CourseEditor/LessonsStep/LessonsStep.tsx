@@ -18,9 +18,12 @@ interface ILessonsStepProps {
   handleBackButtonClick?: (event: BaseSyntheticEvent) => void;
   handleSubmit?: () => void;
   handleChange?: (event: BaseSyntheticEvent) => void;
+  checkPastedValue?: (event: BaseSyntheticEvent) => void;
+  lessonInputValues?: any;
   selectOption: string;
   stageNext?: () => void;
   stageBack?: () => void;
+  formValues?: any;
 }
 
 const LessonsStep: FC<ILessonsStepProps> = ({
@@ -28,8 +31,11 @@ const LessonsStep: FC<ILessonsStepProps> = ({
   handleSubmit,
   selectOption,
   handleChange,
+  checkPastedValue,
+  lessonInputValues,
   stageNext,
   stageBack,
+  formValues,
 }) => (
   <LessonsStepContainer>
     <BackButton variant="medium" onClick={handleBackButtonClick}>
@@ -39,9 +45,12 @@ const LessonsStep: FC<ILessonsStepProps> = ({
       <LessonsStepTitle>Add course files and description</LessonsStepTitle>
       <LessonsStepBox>
         <LessonItem
+          formValues={formValues}
           selectOption={selectOption}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          checkPastedValue={checkPastedValue}
+          lessonInputValues={lessonInputValues}
         />
       </LessonsStepBox>
     </LessonsStepWrapper>
