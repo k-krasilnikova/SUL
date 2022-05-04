@@ -45,7 +45,7 @@ const NotificationsBarContainer: FC<Props> = ({
       isNotificationsOpen={isNotificationsOpen}
       handleNotificationsOpen={handleNotificationsOpen}
       handleNotificationsClose={handleNotificationsClose}
-      isContainsUnread={!!newNotification}
+      isContainsUnread={Boolean(newNotification)}
     />
   );
 };

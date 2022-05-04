@@ -1,11 +1,13 @@
-import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
+import { useMutation, UseMutationResult } from 'react-query';
 
-import { apiClientWrapper } from 'api/base';
+import { apiClientWrapper, queryClient } from 'api/base';
 import { API } from 'constants/routes';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const useReadNotifications = (): UseMutationResult => {
-  const queryClient = useQueryClient();
+  const handleSubmitSuccess = () => {
+    queryClient.invalidateQueries(QUERY_KEYS.profile);
+  };
   return useMutation(
     async () => {
       const apiClient = apiClientWrapper();
@@ -13,7 +15,7 @@ const useReadNotifications = (): UseMutationResult => {
       return response.data;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(QUERY_KEYS.profile),
+      onSuccess: handleSubmitSuccess,
     },
   );
 };
