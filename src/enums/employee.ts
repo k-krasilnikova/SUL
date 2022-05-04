@@ -19,5 +19,7 @@ export enum EmployeeColumnName {
   empty = '',
   rank = 'rank',
   stack = 'stack',
+  phone = 'phone',
+  skype = 'skype',
   button = 'button',
 }
