@@ -9,6 +9,7 @@ const unitTestResults = async (
       result: TestRuslt;
       newSkills: TAchievments['newSkills'];
       updatedSkills: TAchievments['updatedSkills'];
+      techsToAchieve: TAchievments['techsToAchieve'];
     },
     {
       id: string;
@@ -21,9 +22,9 @@ const unitTestResults = async (
   try {
     const {
       result,
-      achievments: { newSkills, updatedSkills },
+      achievments: { newSkills, updatedSkills, techsToAchieve },
     } = res.locals;
-    res.json({ result, newSkills, updatedSkills });
+    res.json({ result, newSkills, updatedSkills, techsToAchieve });
   } catch (error) {
     next(error);
   }

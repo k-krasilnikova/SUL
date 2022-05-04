@@ -6,8 +6,9 @@ import {
   TUserStackMemberShort,
 } from '../Ientities/IStackMember';
 import { ICourse } from '../Ientities/Icourses';
-import { IClientCourse } from '../Ientities/IclientCourses';
+import { IClientCourse, IClientCoursePopulated } from '../Ientities/IclientCourses';
 import { ITechnologyGroup, IUser, TUserPopulated } from '../Ientities/Iusers';
+import { ITimePeriod } from '../common/datetime';
 
 interface ILocals {
   id: string;
@@ -84,6 +85,10 @@ type TEmployeeCourse = Pick<ICourse, 'title' | 'avatar'>;
 type TLocalsManager = ILocals;
 type TLocalsUser = Omit<ILocals, 'managerId'>;
 
+type TAssessmentRequest = Pick<IClientCoursePopulated, 'user' | 'course' | '_id'> & {
+  elapsed: ITimePeriod;
+};
+
 export {
   TLocalsManager,
   TLocalsUser,
@@ -96,4 +101,5 @@ export {
   ICourseShortInfo,
   ICoursesMapElement,
   IStackMapElement,
+  TAssessmentRequest,
 };
