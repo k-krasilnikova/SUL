@@ -19,6 +19,7 @@ export const PATHS: {
   learnClientCourse: string;
   courseTest: string;
   skillsMap: string;
+  pendingAssessments: string;
 } = {
   home: '/',
   profile: '/profile',
@@ -40,6 +41,7 @@ export const PATHS: {
   learnClientCourse: 'learn/:courseId',
   courseTest: 'learn/:courseId/test',
   skillsMap: '/skills-map',
+  pendingAssessments: '/pending-assessments',
 };
 
 export const API: {
@@ -57,6 +59,8 @@ export const API: {
   employees: string;
   refresh: string;
   skills: string;
+  manageAssessment: string;
+  getPendingAssessments: string;
 } = {
   getProfile: '/api/users',
   readNotifications: '/api/users/notifications',
@@ -72,4 +76,6 @@ export const API: {
   employees: '/api/employees',
   refresh: '/api/account/refresh',
   skills: '/api/skills',
+  manageAssessment: 'api/clientCourses/:id/assessment',
+  getPendingAssessments: 'api/clientCourses/assessments',
 };
