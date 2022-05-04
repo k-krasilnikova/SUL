@@ -14,15 +14,15 @@ const RequestButtons: FC<IAssessmentRequestButtonsProps> = ({
 }) => (
   <StyledButtonsContainer item xs={3} rowSpacing={1}>
     <StyledActionButton
-      disabled={isActionLoading}
       variant={isActionLoading ? 'mediumOutlined' : 'mediumContained'}
+      disabled={isActionLoading}
       onClick={approveAssessment}
     >
       {isActionLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.approve}
     </StyledActionButton>
     <StyledActionButton
-      disabled={isActionLoading}
       variant="mediumOutlined"
+      disabled={isActionLoading}
       onClick={declineAssessment}
     >
       {isActionLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.decline}
