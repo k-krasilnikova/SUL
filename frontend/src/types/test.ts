@@ -1,6 +1,7 @@
 import { Params } from 'react-router';
 
 import { TVariantProgressBar } from './progressBar';
+import { IUserSkill } from './skill';
 
 export interface IAnswer {
   variant: string;
@@ -24,12 +25,13 @@ export interface ITestResponse {
 }
 
 export interface ITestResult {
-  newSkills: [];
+  newSkills: IUserSkill[];
   result: {
     result: number;
     testStatus: string;
   };
-  updatedSkills: [];
+  updatedSkills: IUserSkill[];
+  techsToAchieve: IUserSkill[];
 }
 
 export interface IPassingTestResponse {

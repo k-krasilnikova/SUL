@@ -18,6 +18,7 @@ import {
   PassingTest,
   SkillsMap,
   EmployeeProfile,
+  PendingAssessments,
 } from 'pages';
 import { AnonymousRoute, PrivateRoute, RoleRoute } from 'components/Routes';
 import Loader from 'components/Loader';
@@ -93,6 +94,14 @@ const App: React.FC = () => (
               <AnonymousRoute>
                 <SignIn />
               </AnonymousRoute>
+            }
+          />
+          <Route
+            path={PATHS.pendingAssessments}
+            element={
+              <RoleRoute roles={[Role.manager]}>
+                <PendingAssessments />
+              </RoleRoute>
             }
           />
           <Route path="*" element={<NotFound />} />

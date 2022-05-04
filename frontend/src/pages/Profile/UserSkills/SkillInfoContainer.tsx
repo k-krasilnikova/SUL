@@ -10,7 +10,7 @@ interface ISkillProps {
   skillItem: IUserSkill;
 }
 
-const CourseMaterialInfoContainer: FC<ISkillProps> = ({ skillItem }) => {
+const SkillInfoContainer: FC<ISkillProps> = ({ skillItem }) => {
   const progress = (skillItem.score / skillItem.skill.maxScore) * PERCENTAGE;
   const [isShown, setIsShown] = useState(false);
 
@@ -36,4 +36,4 @@ const CourseMaterialInfoContainer: FC<ISkillProps> = ({ skillItem }) => {
   );
 };
 
-export default CourseMaterialInfoContainer;
+export default SkillInfoContainer;

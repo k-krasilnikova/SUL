@@ -9,6 +9,7 @@ export const TEST_RESULT_TEXT = {
   failed: 'Test failed',
   completed: 'Test successfully completed',
   skills: 'Acquired skills:',
+  skillsToBeApproved: 'Skills to be approved by manager:',
   assessment: 'Assessment arranged',
   score: 'Your Score',
   none: 'None',

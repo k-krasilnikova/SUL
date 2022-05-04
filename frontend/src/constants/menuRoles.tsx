@@ -9,6 +9,7 @@ import {
   pendingIcon,
   employeeIcon,
   skillsIcon,
+  assessmentsIcon,
 } from 'icons/menuIcons';
 
 import { PATHS } from './routes';
@@ -51,6 +52,11 @@ const MANAGER_MENU: Array<MenuItemProps> = [
     path: PATHS.requests,
     title: 'Pending requests',
     icon: <Icon fontSize="large" component={pendingIcon} />,
+  },
+  {
+    path: PATHS.pendingAssessments,
+    title: 'Assessments',
+    icon: <Icon fontSize="large" component={assessmentsIcon} />,
   },
   {
     path: PATHS.employees,
