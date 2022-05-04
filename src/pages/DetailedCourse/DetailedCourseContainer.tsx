@@ -4,24 +4,22 @@ import { useNavigate, useParams } from 'react-router';
 import { useApplyCourse, useGetCourseInfo } from 'api/courses';
 import { useGetClientCourseInfo } from 'api/myCourses';
 import { useGetProfile } from 'api/profile';
+import { Role } from 'constants/menuRoles';
+import { PAGES } from 'constants/pages';
+import { CourseStatus } from 'enums/course';
+import { useToggle } from 'hooks';
+import { ICourse } from 'types/course';
 import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 import {
   convertCourseStatusToProgress,
   ConvertedProgress,
 } from 'utils/helpers/convertCourseStatusToProgress';
-import { Role } from 'constants/menuRoles';
-import { PAGES } from 'constants/pages';
-import { CourseStatus } from 'enums/course';
-import { ICourse } from 'types/course';
 import { MAX_LENGTH } from 'utils/helpers/shortifyDetailedCourseDescription';
 
 import DetailedCourse from './DetailedCourse';
+import { IDetailedCourseContainerProps } from './types';
 
-interface Props {
-  page: string;
-}
-
-const DetailedCourseContainer: FC<Props> = ({ page }) => {
+const DetailedCourseContainer: FC<IDetailedCourseContainerProps> = ({ page }) => {
   const params = useParams();
   const navigate = useNavigate();
 
@@ -56,15 +54,10 @@ const DetailedCourseContainer: FC<Props> = ({ page }) => {
     commonCourseInfo = courseData;
   }
 
-  const isDescriptionLengthExceed = commonCourseInfo
-    ? commonCourseInfo.description.length >= MAX_LENGTH
-    : false;
+  const isDescriptionLengthExceed =
+    commonCourseInfo && commonCourseInfo.description.length >= MAX_LENGTH;
 
-  const [isFullTextOpen, setFullTextOpen] = useState<boolean>(isDescriptionLengthExceed);
-
-  const toggleFullText = () => {
-    setFullTextOpen(!isDescriptionLengthExceed);
-  };
+  const [isFullTextOpen, toggleFullTextOpen] = useToggle(isDescriptionLengthExceed);
 
   const { data: profileResponse } = useGetProfile();
   const isAdmin = profileResponse?.role === Role.admin;
@@ -107,7 +100,7 @@ const DetailedCourseContainer: FC<Props> = ({ page }) => {
           windowWidth={windowWidth}
           isFullTextOpen={isFullTextOpen}
           isDescriptionLengthExceed={isDescriptionLengthExceed}
-          toggleFullText={toggleFullText}
+          toggleFullText={toggleFullTextOpen}
           isProgressBarDisplayed={isProgressBarDisplayed}
           isCourseCompleted={isCourseCompleted}
         />

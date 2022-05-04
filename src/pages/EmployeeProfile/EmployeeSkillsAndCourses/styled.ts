@@ -33,17 +33,17 @@ export const EmployeeButtonGroup = styled(ButtonGroup)({
 
 export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({ isOpened }) => ({
   '&.MuiButton-root': {
-    background: '#FFF',
-    color: '#000',
+    height: '40px',
+    width: '135px',
+    padding: 0,
     fontSize: '16px',
     fontWeight: 400,
-    width: '135px',
-    height: '40px',
+    color: '#000',
+    background: '#FFF',
     letterSpacing: '-0.62px',
-    padding: 0,
     ...(isOpened && {
-      width: '146px',
       height: '44px',
+      width: '146px',
     }),
     '&.MuiButtonGroup-grouped': {
       border: '1px solid #0000001A',
@@ -56,13 +56,13 @@ export const SkillsAndCoursesButton = styled(ToggleButton)<ToggleButtonProps>(({
       }),
     },
     [theme.breakpoints.down('lg')]: {
-      fontSize: '14px',
       height: '28px',
       width: '90px',
       paddingTop: '3px',
+      fontSize: '14px',
       ...(isOpened && {
-        width: '100px',
         height: '32px',
+        width: '100px',
       }),
     },
   },
