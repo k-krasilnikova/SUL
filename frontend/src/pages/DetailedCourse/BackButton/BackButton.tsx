@@ -19,7 +19,9 @@ const BackButton: FC<IBackButton> = ({ page }) => (
     >
       {ButtonLabels.back}
     </StyledButton>
-    <BackArrow alt="backIconMobile" src={backIconMobile} />
+    <Link to={page === PAGES.coursesList ? PATHS.coursesList : PATHS.myCourses}>
+      <BackArrow alt="backIconMobile" src={backIconMobile} />
+    </Link>
   </BackWrapper>
 );
 
