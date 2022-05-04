@@ -263,8 +263,13 @@ const getCourseStatusProvider = async (
 const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
 
 const addSimilarCoursesProvider = async (course: ICourse) => {
+  await CourseModel.findOneAndUpdate({ _id: course._id }, { $set: { similarCourses: [] } });
+
   course.technologies.map(async (currentSkill) => {
-    const similarCourses = await CourseModel.find({ 'technologies.skill': currentSkill.skill });
+    const similarCourses = await CourseModel.find({
+      'technologies.skill': currentSkill.skill,
+    }).lean();
+
     similarCourses.map(async (similarCourse) => {
       await CourseModel.updateMany(
         {
