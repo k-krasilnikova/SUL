@@ -28,22 +28,24 @@ const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
   };
   const classes = useLayOutStyles();
 
+  const { firstName, lastName, avatar, notifications } = profileInfoData || {};
+
   return (
     <>
       {isProfileLoading ? (
         <Loader type={Loaders.content} />
       ) : (
         <AuthorizedLayout
-          pageName={pageName}
-          firstName={profileInfoData?.firstName}
-          lastName={profileInfoData?.lastName}
-          avatar={profileInfoData?.avatar}
-          notifications={profileInfoData?.notifications}
-          isMobileMenuOpen={isMobileMenuOpen}
-          toggleMobileMenu={toggleMobileMenu}
-          isSqueeze={isSqueeze}
-          handleSqueeze={handleSqueeze}
           classes={classes}
+          avatar={avatar}
+          pageName={pageName}
+          firstName={firstName}
+          lastName={lastName}
+          notifications={notifications}
+          isMobileMenuOpen={isMobileMenuOpen}
+          isSqueeze={isSqueeze}
+          toggleMobileMenu={toggleMobileMenu}
+          handleSqueeze={handleSqueeze}
         >
           {children}
         </AuthorizedLayout>
