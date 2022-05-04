@@ -14,13 +14,24 @@ import {
 
 export interface ILessonItemProps {
   handleChange?: (event: BaseSyntheticEvent) => void;
+  checkPastedValue?: (event: BaseSyntheticEvent) => void;
+  lessonInputValues?: any;
   handleSubmit?: () => void;
   selectOption: string;
+  formValues?: any;
 }
 
-const LessonItem: FC<ILessonItemProps> = ({ handleChange, selectOption, handleSubmit }) => (
+const LessonItem: FC<ILessonItemProps> = ({
+  handleChange,
+  selectOption,
+  handleSubmit,
+  checkPastedValue,
+  formValues,
+  lessonInputValues,
+}) => (
   <LessonItemWrapper>
     <LessonItemTitle>Lesson № 1</LessonItemTitle>
+    <LessonItemTitle>{formValues.exerciseTitle}</LessonItemTitle>
     <form onSubmit={handleSubmit}>
       <LessonInput>
         <InputSelect onChange={handleChange}>
@@ -34,14 +45,34 @@ const LessonItem: FC<ILessonItemProps> = ({ handleChange, selectOption, handleSu
         <InputBox>
           <InputLabel>{selectOption === 'video' ? 'Video URL' : 'Text URL'}</InputLabel>
           {selectOption === 'video' ? (
-            <InputText type="link" value="/youtube.com/" />
+            <InputText
+              id="videoURL"
+              defaultValue="/youtube.com/"
+              value={lessonInputValues.videoUrl}
+              onChange={checkPastedValue}
+            />
           ) : (
-            <InputTextArea>Description</InputTextArea>
+            <InputTextArea
+              id="textDescription"
+              value={lessonInputValues.textDescription}
+              defaultValue="Description"
+              onChange={checkPastedValue}
+            />
           )}
           <InputLabel>Exercise Title</InputLabel>
-          <InputText type="link" value="/youtube.com/" />
+          <InputText
+            id="exerciseTitle"
+            defaultValue="/youtube.com/"
+            onChange={checkPastedValue}
+            value={lessonInputValues.exerciseTitle}
+          />
           <InputLabel>Exercise Description</InputLabel>
-          <InputTextArea>Description</InputTextArea>
+          <InputTextArea
+            id="exerciseDescription"
+            value={lessonInputValues.exerciseDescription}
+            defaultValue="Description"
+            onChange={checkPastedValue}
+          />
         </InputBox>
       </LessonInput>
       <button type="submit">Add more Lessons</button>

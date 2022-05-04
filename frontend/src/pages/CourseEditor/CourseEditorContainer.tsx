@@ -8,16 +8,25 @@ import CourseEditor from './CourseEditor';
 
 const CourseEditorContainer: React.FC = () => {
   const formik = useFormik({
-    initialValues: {},
+    initialValues: {
+      videoUrl: '',
+      textDescription: '',
+      exerciseTitle: '',
+      exerciseDescription: '',
+    },
+    enableReinitialize: true,
     onSubmit: (): void => {},
   });
 
   const params = useParams();
   const basePath = transformRoute(PATHS.courseEditor, params.courseId);
 
+  // eslint-disable-next-line no-console
+  console.log(formik, 'FORMIK');
+
   return (
     <FormikProvider value={formik}>
-      <CourseEditor basePath={basePath} />
+      <CourseEditor basePath={basePath} formValues={formik.values} />
     </FormikProvider>
   );
 };

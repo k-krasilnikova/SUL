@@ -10,9 +10,10 @@ import TestStep from './TestStep';
 
 interface IProps {
   basePath: string;
+  formValues?: any;
 }
 
-const CourseEditor: React.FC<IProps> = ({ basePath }) => {
+const CourseEditor: React.FC<IProps> = ({ basePath, formValues }) => {
   //   const definitionForm = useRef();
   //   const skillsForm = useRef();
   //   const lessonsForm = useRef();
@@ -37,7 +38,7 @@ const CourseEditor: React.FC<IProps> = ({ basePath }) => {
           {
             key: 'lessons-setup',
             //   formRef: lessonsForm,
-            node: <LessonsStep />,
+            node: <LessonsStep formValues={formValues} />,
           },
           {
             key: 'test-setup',
