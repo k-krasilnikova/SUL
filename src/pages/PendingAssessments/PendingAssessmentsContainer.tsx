@@ -10,9 +10,9 @@ const PendingAssessmentsContainer: FC = () => {
 
   return (
     <PendingAssessments
-      isLoading={isAssessmentsLoading}
       assessments={assessmentsRequest}
       manageAssessment={manageAssessment}
+      isLoading={isAssessmentsLoading}
       isActionLoading={isManageAssessmentLoading}
     />
   );

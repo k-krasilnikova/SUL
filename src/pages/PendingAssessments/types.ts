@@ -25,8 +25,7 @@ export interface IRequestTechnologiesProps {
 export interface ITechnologyItemProps {
   technology: ITechnology;
   isInfoShown: boolean;
-  showInfo: () => void;
-  hideInfo: () => void;
+  toggleFullInfoShown: () => void;
 }
 
 export interface ITechnologyItemContainerProps {

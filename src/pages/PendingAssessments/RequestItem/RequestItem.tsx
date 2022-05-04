@@ -28,31 +28,36 @@ const RequestItem: FC<IAssessmentRequestItemProps> = ({
   elapsed,
   clientCourseId,
   ...props
-}) => (
-  <RequestContainer item container spacing={2}>
-    <CustomGrid item xs={3}>
-      <ImageWrapper>
-        <Avatar size={Size.small} avatar={user.avatar} />
-      </ImageWrapper>
-      <UserContainer>
-        <UserName>{`${user.firstName} ${user.lastName}`}</UserName>
-        <Position>{user.position}</Position>
-      </UserContainer>
-    </CustomGrid>
-    <CourseContainer item xs={3}>
-      <CourseImageWrapper>
-        <Image imageUrl={course.avatar} />
-      </CourseImageWrapper>
-      <CourseTitle>{course.title}</CourseTitle>
-    </CourseContainer>
-    <CustomGrid item xs={2}>
-      <RequestTechnologies technologies={course.technologies} />
-    </CustomGrid>
-    <TimeContainer item xs={1}>
-      <SecondaryText>{convertRequestTime(elapsed)}</SecondaryText>
-    </TimeContainer>
-    <RequestButtons id={clientCourseId} {...props} />
-  </RequestContainer>
-);
+}) => {
+  const { avatar: userAvatar, firstName, lastName, position } = user || {};
+  const { avatar: courseAvatar, title, technologies } = course || {};
+
+  return (
+    <RequestContainer item container spacing={2}>
+      <CustomGrid item xs={3}>
+        <ImageWrapper>
+          <Avatar size={Size.small} avatar={userAvatar} />
+        </ImageWrapper>
+        <UserContainer>
+          <UserName>{`${firstName} ${lastName}`}</UserName>
+          <Position>{position}</Position>
+        </UserContainer>
+      </CustomGrid>
+      <CourseContainer item xs={3}>
+        <CourseImageWrapper>
+          <Image imageUrl={courseAvatar} />
+        </CourseImageWrapper>
+        <CourseTitle>{title}</CourseTitle>
+      </CourseContainer>
+      <CustomGrid item xs={2}>
+        <RequestTechnologies technologies={technologies} />
+      </CustomGrid>
+      <TimeContainer item xs={1}>
+        <SecondaryText>{convertRequestTime(elapsed)}</SecondaryText>
+      </TimeContainer>
+      <RequestButtons id={clientCourseId} {...props} />
+    </RequestContainer>
+  );
+};
 
 export default RequestItem;

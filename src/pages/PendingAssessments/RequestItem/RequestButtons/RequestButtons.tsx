@@ -5,25 +5,29 @@ import ButtonLoader from 'components/ButtonLoader';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { IAssessmentRequestButtonsProps } from 'pages/PendingAssessments/types';
 
-import { ActionButton, ButtonsContainer } from './styled';
+import { StyledActionButton, StyledButtonsContainer } from './styled';
 
 const RequestButtons: FC<IAssessmentRequestButtonsProps> = ({
   approveAssessment,
   declineAssessment,
   isActionLoading,
 }) => (
-  <ButtonsContainer item xs={3} rowSpacing={1}>
-    <ActionButton
+  <StyledButtonsContainer item xs={3} rowSpacing={1}>
+    <StyledActionButton
+      disabled={isActionLoading}
       variant={isActionLoading ? 'mediumOutlined' : 'mediumContained'}
       onClick={approveAssessment}
-      disabled={isActionLoading}
     >
       {isActionLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.approve}
-    </ActionButton>
-    <ActionButton variant="mediumOutlined" onClick={declineAssessment} disabled={isActionLoading}>
+    </StyledActionButton>
+    <StyledActionButton
+      disabled={isActionLoading}
+      variant="mediumOutlined"
+      onClick={declineAssessment}
+    >
       {isActionLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.decline}
-    </ActionButton>
-  </ButtonsContainer>
+    </StyledActionButton>
+  </StyledButtonsContainer>
 );
 
 export default RequestButtons;
