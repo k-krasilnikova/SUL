@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 
-const useGetWindowSizeLabel = () => {
+const useGetWindowSizeLabel = (): string => {
   const [sizeLabel, setSizeLabel] = useState(getWindowLabelByWidth());
 
   useEffect(() => {
