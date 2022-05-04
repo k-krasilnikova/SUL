@@ -6,6 +6,8 @@ import { getMenuToggle } from 'utils/helpers/menuHelpers/getMenuToggle';
 
 import AuthorizedLayout from './AuthorizedLayout';
 import { useLayOutStyles } from './styled';
+import Loader from '../Loader';
+import { Loaders } from '../../enums/loader';
 
 interface Props {
   pageName: string;
@@ -13,7 +15,7 @@ interface Props {
 }
 
 const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
-  const { data } = useGetUserInfo();
+  const { data: profileInfoData, isLoading: isProfileLoading } = useGetUserInfo();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
@@ -25,21 +27,30 @@ const AuthorizedLayoutContainer: React.FC<Props> = ({ pageName, children }) => {
     setSqueeze(toggleStatus);
   };
   const classes = useLayOutStyles();
+
+  const { firstName, lastName, avatar, notifications } = profileInfoData || {};
+
   return (
-    <AuthorizedLayout
-      pageName={pageName}
-      firstName={data?.firstName}
-      lastName={data?.lastName}
-      avatar={data?.avatar}
-      notifications={data?.notifications}
-      isMobileMenuOpen={isMobileMenuOpen}
-      toggleMobileMenu={toggleMobileMenu}
-      isSqueeze={isSqueeze}
-      handleSqueeze={handleSqueeze}
-      classes={classes}
-    >
-      {children}
-    </AuthorizedLayout>
+    <>
+      {isProfileLoading ? (
+        <Loader type={Loaders.content} />
+      ) : (
+        <AuthorizedLayout
+          classes={classes}
+          avatar={avatar}
+          pageName={pageName}
+          firstName={firstName}
+          lastName={lastName}
+          notifications={notifications}
+          isMobileMenuOpen={isMobileMenuOpen}
+          isSqueeze={isSqueeze}
+          toggleMobileMenu={toggleMobileMenu}
+          handleSqueeze={handleSqueeze}
+        >
+          {children}
+        </AuthorizedLayout>
+      )}
+    </>
   );
 };
 

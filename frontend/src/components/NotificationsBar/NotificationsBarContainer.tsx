@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useState, FC } from 'react';
 
 import { Notification as NotificationType } from 'types/notification';
 import { NOTIFICATION_STATUSES } from 'constants/statuses';
+import useReadNotifications from 'api/userInfo/setNotificationsStatus';
 
 import NotificationsBar from './NotificationsBar';
 
@@ -11,30 +12,32 @@ interface Props {
   notifications?: NotificationType[];
 }
 
-const NotificationsBarContainer: React.FC<Props> = ({
+const NotificationsBarContainer: FC<Props> = ({
   isMobileMenuOpen,
   toggleMobileMenu,
   notifications,
 }) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
-  const [isContainsUnread, setUnread] = useState<boolean>(false);
+
+  const { mutate: readNotificationsMutation } = useReadNotifications();
+
+  const newNotification = notifications?.find(
+    (notification) => notification.status === NOTIFICATION_STATUSES.new,
+  );
 
   const handleNotificationsOpen = () => {
     if (isMobileMenuOpen) {
       toggleMobileMenu();
     }
     setNotificationsOpen(!isNotificationsOpen);
+    if (newNotification) {
+      readNotificationsMutation({});
+    }
   };
 
   const handleNotificationsClose = () => {
     setNotificationsOpen(false);
   };
-
-  useEffect(() => {
-    if (notifications?.find((notification) => notification.status === NOTIFICATION_STATUSES.new)) {
-      setUnread(true);
-    }
-  }, [notifications]);
 
   return (
     <NotificationsBar
@@ -42,7 +45,7 @@ const NotificationsBarContainer: React.FC<Props> = ({
       isNotificationsOpen={isNotificationsOpen}
       handleNotificationsOpen={handleNotificationsOpen}
       handleNotificationsClose={handleNotificationsClose}
-      isContainsUnread={isContainsUnread}
+      isContainsUnread={Boolean(newNotification)}
     />
   );
 };

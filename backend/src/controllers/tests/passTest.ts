@@ -1,18 +1,25 @@
 import { NextFunction, Request, Response } from 'express';
 
+import { CLIENT_COURSE_FIELDS, PASS_THRESHOLD } from 'config/constants';
 import {
   getAssessmentProvider,
   getClientCourseProvider,
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
-import { CLIENT_COURSE_FIELDS, PASS_THRESHOLD } from 'config/constants';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
+import { getUserProvider } from 'db/providers/userProvider';
+import { addUserNotification } from 'db/providers/notificationProvider';
 import CourseStatus from 'enums/coursesEnums';
+import {
+  NotificationDescription,
+  NotificationStatuses,
+  NotificationTitles,
+} from 'enums/notificationEnums';
+import { TestStatus } from 'enums/common';
 import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
+import { isTestAvailableByDate } from 'utils/validation/tests';
 import { TestRuslt } from 'interfaces/Ientities/Itest';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { TestStatus } from 'enums/common';
-import { isTestAvailableByDate } from 'utils/validation/tests';
 
 const passTest = async (
   req: Request<
@@ -27,12 +34,13 @@ const passTest = async (
     const { testId, answers } = req.body;
     const { id: courseId } = req.params;
 
-    const { status, finishTestDate } = await getClientCourseProvider(courseId);
+    const { status, finishTestDate, user } = await getClientCourseProvider(courseId);
+    const { managerId } = await getUserProvider(user);
     if (!status || status !== CourseStatus.testing) {
       throw new BadRequestError('Testing was not started yet.');
     }
-    const isTestAvaiable = isTestAvailableByDate(finishTestDate);
-    if (!isTestAvaiable) {
+    const isTestAvailable = isTestAvailableByDate(finishTestDate);
+    if (!isTestAvailable) {
       await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
       throw new BadRequestError('Time for test has already expired.');
     }
@@ -59,6 +67,12 @@ const passTest = async (
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: TestStatus.notPassed };
       await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
+      await addUserNotification(
+        managerId,
+        NotificationStatuses.new,
+        NotificationTitles.employeePassTestFailed,
+        NotificationDescription.employeePassTestFailed,
+      );
       next();
     } else {
       const assessmentRequired = await getAssessmentProvider(courseId);
@@ -70,6 +84,12 @@ const passTest = async (
         courseId,
         CLIENT_COURSE_FIELDS.status,
         assessmentRequired ? CourseStatus.assessment : CourseStatus.completed,
+      );
+      await addUserNotification(
+        managerId,
+        NotificationStatuses.new,
+        NotificationTitles.employeePassTestSuccessfully,
+        NotificationDescription.employeePassTestSuccessfully,
       );
       next();
     }
