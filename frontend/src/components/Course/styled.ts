@@ -102,37 +102,32 @@ export const ImageWrapper = styled('div')<Image>(({ imageUrl }) => {
 });
 
 export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
-  wordBreak: 'break-word',
+  margin: '9px 5px 16px 0',
   fontSize: '24px',
   fontWeight: 500,
-  margin: '9px 5px 16px 0',
+  wordBreak: 'break-word',
   [theme.breakpoints.down('xl')]: {
-    fontSize: '24px',
-    lineHeight: '31px',
     margin: '9px 0 16px 0',
+    fontSize: '24px',
     ...(type === Info.similarCourses && {
       margin: '0 0 9px 0',
     }),
   },
   [theme.breakpoints.down('md')]: {
+    margin: '9px 10px 16px 0',
     fontSize: '18px',
     fontWeight: 700,
-    lineHeight: '22px',
-    margin: '9px 10px 16px 0',
     ...(type === Info.similarCourses && {
       margin: '5px 18px 9px 0',
     }),
   },
   [theme.breakpoints.down('sm')]: {
     margin: '0 10px 10px 0',
-    fontFamily: '"Ubuntu", sans-serif',
-    color: ' #2C2525',
+    padding: 0,
     fontSize: '16px',
-    lineHeight: '19px',
-    letterSpacing: '-0.4px',
+    fontWeight: 500,
     textAlign: 'left',
-    padding: '0',
-    fontWeight: '500',
+    color: ' #2C2525',
     ...(type === Info.similarCourses && {
       fontSize: '18px',
       fontWeight: 700,
@@ -142,13 +137,11 @@ export const CourseTitle = styled('p')<InfoContainerTypes>(({ type }) => ({
 
 export const CourseDescription = styled('p')<InfoContainerTypes>(
   ({ fontSize, lineHeight, type }) => ({
-    wordBreak: 'break-word',
-    fontSize: '18px',
-    lineHeight: '21px',
     padding: 0,
     margin: 0,
+    fontSize: '18px',
+    wordBreak: 'break-word',
     color: '#131313',
-    fontFamily: '"Ubuntu", sans-serif',
     ...(fontSize && {
       fontSize: `${fontSize}px`,
     }),
@@ -157,22 +150,20 @@ export const CourseDescription = styled('p')<InfoContainerTypes>(
     }),
     [theme.breakpoints.down('xl')]: {
       fontSize: '18px',
-      lineHeight: '27px',
+      lineHeight: 1.5,
       ...(type === Info.similarCourses && {
         margin: '0 0 9px 0',
-        lineHeight: '21px',
         fontSize: '16px',
+        lineHeight: 1.2,
       }),
     },
     [theme.breakpoints.down('md')]: {
       display: 'block',
-      fontSize: '14px',
-      fontWeight: 'normal',
-      lineHeight: '22px',
-      letterSpacing: '-0.4px',
-      textAlign: 'left',
       padding: '0',
       margin: '0 10px 9px 7px',
+      fontSize: '14px',
+      lineHeight: 1.5,
+      textAlign: 'left',
       ...(type === Info.similarCourses && {
         margin: '0 0 9px 0',
       }),
