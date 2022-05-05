@@ -61,15 +61,23 @@ export const InputText = styled(Input)({
   borderColor: 'rgba(0, 0, 0, 0.2)',
   boxSizing: 'border-box',
   borderRadius: '5px',
+  '&::after, &::before': {
+    display: 'none',
+  },
+  '&:hover': {
+    border: '2px solid',
+    borderColor: '#000',
+  },
 });
 
 export const InputTextArea = styled('textarea')({
   width: '667px',
   height: '168px',
-  margin: '20px 0',
+  margin: 0,
+  paddingLeft: '10px',
   fontWight: 400,
-  fontSize: '18px',
-  lineHeight: '21px',
+  fontSize: '16px',
+  lineHeight: '28px',
   color: '#A2A2A2',
   border: '1px solid',
   borderColor: 'rgba(0, 0, 0, 0.2)',
