@@ -34,11 +34,8 @@ export const UserInfoLabel = styled('span')({
   minWidth: '90px',
   margin: 0,
   fontWeight: 500,
-  fontSize: '22px',
+  fontSize: '18px',
   color: '#9B9B9B',
-  [theme.breakpoints.down('xl')]: {
-    fontSize: '20px',
-  },
   [theme.breakpoints.down('lg')]: {
     width: '80px',
     minWidth: '65px',
@@ -51,10 +48,7 @@ export const UserInfoText = styled('p')({
   width: '100%',
   padding: '0 10px',
   margin: 0,
-  fontSize: '20px',
-  [theme.breakpoints.down('xl')]: {
-    fontSize: '18px',
-  },
+  fontSize: '18px',
   [theme.breakpoints.down('lg')]: {
     maxWidth: '200px',
     fontSize: '14px',

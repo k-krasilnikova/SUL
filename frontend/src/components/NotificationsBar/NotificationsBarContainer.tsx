@@ -1,21 +1,15 @@
 import { useState, FC } from 'react';
 
-import { Notification as NotificationType } from 'types/notification';
+import { useReadNotifications } from 'api/userInfo';
 import { NOTIFICATION_STATUSES } from 'constants/statuses';
-import useReadNotifications from 'api/userInfo/setNotificationsStatus';
 
+import { INotificationsBarContainerProps } from './types';
 import NotificationsBar from './NotificationsBar';
 
-interface Props {
-  isMobileMenuOpen: boolean;
-  toggleMobileMenu: () => void;
-  notifications?: NotificationType[];
-}
-
-const NotificationsBarContainer: FC<Props> = ({
+const NotificationsBarContainer: FC<INotificationsBarContainerProps> = ({
+  notifications,
   isMobileMenuOpen,
   toggleMobileMenu,
-  notifications,
 }) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState<boolean>(false);
 
@@ -29,10 +23,10 @@ const NotificationsBarContainer: FC<Props> = ({
     if (isMobileMenuOpen) {
       toggleMobileMenu();
     }
-    setNotificationsOpen(!isNotificationsOpen);
     if (newNotification) {
       readNotificationsMutation({});
     }
+    setNotificationsOpen(true);
   };
 
   const handleNotificationsClose = () => {
@@ -42,10 +36,10 @@ const NotificationsBarContainer: FC<Props> = ({
   return (
     <NotificationsBar
       notifications={notifications}
+      isContainsUnread={Boolean(newNotification)}
       isNotificationsOpen={isNotificationsOpen}
       handleNotificationsOpen={handleNotificationsOpen}
       handleNotificationsClose={handleNotificationsClose}
-      isContainsUnread={Boolean(newNotification)}
     />
   );
 };
