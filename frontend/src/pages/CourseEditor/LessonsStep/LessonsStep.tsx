@@ -1,4 +1,4 @@
-import React, { FC, BaseSyntheticEvent } from 'react';
+import { FC, BaseSyntheticEvent } from 'react';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
 
@@ -12,30 +12,25 @@ import {
   ButtonsBox,
   NextButton,
   PreviousButton,
+  AddMoreLessonsButton,
 } from './styled';
 
 interface ILessonsStepProps {
-  handleBackButtonClick?: (event: BaseSyntheticEvent) => void;
-  handleSubmit?: () => void;
-  handleChange?: (event: BaseSyntheticEvent) => void;
-  checkPastedValue?: (event: BaseSyntheticEvent) => void;
-  lessonInputValues?: any;
+  formik: any;
   selectOption: string;
+  handleBackButtonClick?: (event: BaseSyntheticEvent) => void;
+  handleChangeOption?: (event: BaseSyntheticEvent) => void;
   stageNext?: () => void;
   stageBack?: () => void;
-  formValues?: any;
 }
 
 const LessonsStep: FC<ILessonsStepProps> = ({
-  handleBackButtonClick,
-  handleSubmit,
+  formik,
   selectOption,
-  handleChange,
-  checkPastedValue,
-  lessonInputValues,
+  handleBackButtonClick,
+  handleChangeOption,
   stageNext,
   stageBack,
-  formValues,
 }) => (
   <LessonsStepContainer>
     <BackButton variant="medium" onClick={handleBackButtonClick}>
@@ -45,14 +40,12 @@ const LessonsStep: FC<ILessonsStepProps> = ({
       <LessonsStepTitle>Add course files and description</LessonsStepTitle>
       <LessonsStepBox>
         <LessonItem
-          formValues={formValues}
+          formik={formik}
           selectOption={selectOption}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          checkPastedValue={checkPastedValue}
-          lessonInputValues={lessonInputValues}
+          handleChangeOption={handleChangeOption}
         />
       </LessonsStepBox>
+      <AddMoreLessonsButton type="button">Add more Lessons</AddMoreLessonsButton>
     </LessonsStepWrapper>
     <ButtonsBox>
       <PreviousButton variant="medium" onClick={stageBack}>

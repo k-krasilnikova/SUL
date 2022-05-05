@@ -13,28 +13,24 @@ import {
 } from './styled';
 
 export interface ILessonItemProps {
-  handleChange?: (event: BaseSyntheticEvent) => void;
-  checkPastedValue?: (event: BaseSyntheticEvent) => void;
-  lessonInputValues?: any;
-  handleSubmit?: () => void;
+  formik: {
+    handleSubmit: (event: BaseSyntheticEvent) => void;
+    handleChange?: (event: BaseSyntheticEvent) => void;
+    videoURL?: string;
+    textDescription?: string;
+    exerciseTitle?: string;
+    exerciseDescription?: string;
+  };
   selectOption: string;
-  formValues?: any;
+  handleChangeOption?: (event: BaseSyntheticEvent) => void;
 }
 
-const LessonItem: FC<ILessonItemProps> = ({
-  handleChange,
-  selectOption,
-  handleSubmit,
-  checkPastedValue,
-  formValues,
-  lessonInputValues,
-}) => (
+const LessonItem: FC<ILessonItemProps> = ({ handleChangeOption, selectOption, formik }) => (
   <LessonItemWrapper>
     <LessonItemTitle>Lesson № 1</LessonItemTitle>
-    <LessonItemTitle>{formValues.exerciseTitle}</LessonItemTitle>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       <LessonInput>
-        <InputSelect onChange={handleChange}>
+        <InputSelect onChange={handleChangeOption}>
           <SelectItem value="video" label="Video">
             {selectOption}
           </SelectItem>
@@ -47,35 +43,34 @@ const LessonItem: FC<ILessonItemProps> = ({
           {selectOption === 'video' ? (
             <InputText
               id="videoURL"
-              defaultValue="/youtube.com/"
-              value={lessonInputValues.videoUrl}
-              onChange={checkPastedValue}
+              placeholder="/youtube.com/"
+              value={formik.videoURL}
+              onChange={formik.handleChange}
             />
           ) : (
             <InputTextArea
               id="textDescription"
-              value={lessonInputValues.textDescription}
-              defaultValue="Description"
-              onChange={checkPastedValue}
+              placeholder="Description"
+              value={formik.textDescription}
+              onChange={formik.handleChange}
             />
           )}
           <InputLabel>Exercise Title</InputLabel>
           <InputText
             id="exerciseTitle"
-            defaultValue="/youtube.com/"
-            onChange={checkPastedValue}
-            value={lessonInputValues.exerciseTitle}
+            placeholder="/youtube.com/"
+            value={formik.exerciseTitle}
+            onChange={formik.handleChange}
           />
           <InputLabel>Exercise Description</InputLabel>
           <InputTextArea
             id="exerciseDescription"
-            value={lessonInputValues.exerciseDescription}
-            defaultValue="Description"
-            onChange={checkPastedValue}
+            placeholder="Description"
+            value={formik.exerciseDescription}
+            onChange={formik.handleChange}
           />
         </InputBox>
       </LessonInput>
-      <button type="submit">Add more Lessons</button>
     </form>
   </LessonItemWrapper>
 );
