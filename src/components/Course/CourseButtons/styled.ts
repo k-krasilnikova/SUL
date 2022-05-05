@@ -5,7 +5,7 @@ import { Info } from 'enums/info';
 
 import { InfoContainerTypes } from '../styled';
 
-export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => ({
+export const ButtonsContainer = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
   flexDirection: 'row',
@@ -14,9 +14,6 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
   fontSize: '12px',
   justifyContent: 'space-between',
   padding: '10px 0',
-  ...(type === Info.similarCourses && {
-    justifyContent: 'flex-end',
-  }),
   [theme.breakpoints.down('md')]: {
     alignItems: 'end',
     paddingBottom: '16px',
@@ -24,20 +21,13 @@ export const ButtonsContainer = styled('div')<InfoContainerTypes>(({ type }) => 
   [theme.breakpoints.down('sm')]: {
     display: 'none',
   },
-}));
+});
 
 export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
-  [theme.breakpoints.down('md')]: {
-    paddingLeft: '12px',
-  },
-  [theme.breakpoints.down('xl')]: {
-    ...(type === Info.similarCourses && {
-      display: 'none',
-    }),
-  },
-  ...(type === Info.similarCourses && {
-    display: 'block',
-  }),
+  display: 'flex',
+  flexDirection: 'row',
+  paddingLeft: '15px',
+  paddingBottom: 0,
   ...(type === Info.searchCourses && {
     height: 'auto',
   }),
@@ -46,8 +36,7 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
     justifyContent: 'center',
     alignItems: 'center',
   }),
-  display: 'flex',
-  flexDirection: 'row',
-  paddingLeft: '15px',
-  paddingBottom: 0,
+  [theme.breakpoints.down('md')]: {
+    paddingLeft: '12px',
+  },
 }));

@@ -13,7 +13,7 @@ interface ICourseButtons {
 }
 
 const CourseButtons: React.FC<ICourseButtons> = ({ type, duration, lessons, children }) => (
-  <ButtonsContainer type={type}>
+  <ButtonsContainer>
     <CourseInfoBox type={type}>
       <CourseInfo duration={duration} lessons={lessons} />
     </CourseInfoBox>

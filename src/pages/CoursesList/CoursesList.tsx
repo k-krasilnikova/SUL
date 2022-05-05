@@ -2,6 +2,7 @@ import { FC, Suspense } from 'react';
 
 import { AuthorizedLayout, MobileSearch } from 'components/Layout';
 import Course from 'components/Course';
+import MobileLink from 'components/MobileLink';
 import NoContent from 'components/NoContent';
 import { NO_COURSES } from 'constants/messages';
 import Loader from 'components/Loader';
@@ -12,7 +13,7 @@ import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { ICourse } from 'types/course';
 import { Loaders } from 'enums/loader';
 
-import { PageContainer, GridItem, MobileLink, MobileSearchWrapper } from './styled';
+import { PageContainer, GridItem, MobileSearchWrapper } from './styled';
 import AddCourseButton from './AddCourseButton';
 import CourseActions from './CourseActions';
 import { ICourseProps } from './types';
@@ -24,7 +25,6 @@ const CoursesList: FC<ICourseProps> = ({
   handleApplyCourse,
   targetLoading,
   targetId,
-  disableLink,
   windowWidth,
   lastCourseRef,
   isAdmin,
@@ -44,7 +44,7 @@ const CoursesList: FC<ICourseProps> = ({
             fallback={<Loader color="primary" type={Loaders.content} />}
           >
             <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
-              <MobileLink to={chooseListPath(course, index, clientCourses)} onClick={disableLink}>
+              <MobileLink to={chooseListPath(course, index, clientCourses)}>
                 <Course
                   title={course?.title}
                   description={course?.description}

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { styled, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
@@ -19,8 +18,9 @@ export const PageContainer = styled(Grid)({
 });
 
 export const GridItem = styled(Grid)({
-  height: 'fit-content',
   width: '711px',
+  paddingLeft: '30px',
+  paddingTop: '24px',
   [theme.breakpoints.down('xl')]: {
     width: '100%',
     paddingLeft: '10px',
@@ -28,24 +28,6 @@ export const GridItem = styled(Grid)({
   },
   [theme.breakpoints.down('md')]: {
     paddingLeft: 0,
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '711px',
-    paddingLeft: '30px',
-    paddingTop: '24px',
-  },
-});
-
-export const MobileLink = styled(Link)({
-  [theme.breakpoints.down('sm')]: {
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  [theme.breakpoints.up('sm')]: {
-    '&:hover': {
-      cursor: 'default',
-    },
   },
 });
 

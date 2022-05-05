@@ -6,28 +6,22 @@ export const SimilarCoursesWrapper = styled(Grid)({
   marginTop: '63px',
   marginBottom: '40px',
   [theme.breakpoints.down('md')]: {
+    width: '100%',
     marginTop: '48px',
     marginBottom: '10px',
-    width: '100%',
   },
 });
 
 export const SimilarCoursesItemWrapper = styled(Grid)({
-  width: '711px',
+  maxWidth: '710px',
   marginTop: '40px',
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.down('sm')]: {
     marginTop: '8px',
     width: '100%',
   },
-  [theme.breakpoints.up('md')]: {
-    width: '500px',
+  [theme.breakpoints.down('lg')]: {
+    maxWidth: '500px',
     marginTop: '16px',
-    maxHeight: '254px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '711px',
-    marginTop: '40px',
-    maxHeight: '361px',
   },
 });
 
