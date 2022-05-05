@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router';
 
 import LessonsStep from './LessonsStep';
 
-interface ILessonsStepContainerProps {
-  formik: unknown;
-}
+import { ILessonsStepContainerProps } from '../types';
 
 const LessonsStepContainer: FC<ILessonsStepContainerProps> = ({ formik }) => {
   const [selectOption, setSelectOption] = useState('video');

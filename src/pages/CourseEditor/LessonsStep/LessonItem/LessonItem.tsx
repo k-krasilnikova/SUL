@@ -1,4 +1,4 @@
-import { FC, BaseSyntheticEvent } from 'react';
+import { FC } from 'react';
 
 import {
   LessonItemWrapper,
@@ -12,23 +12,12 @@ import {
   InputTextArea,
 } from './styled';
 
-export interface ILessonItemProps {
-  formik: {
-    handleSubmit: (event: BaseSyntheticEvent) => void;
-    handleChange?: (event: BaseSyntheticEvent) => void;
-    videoURL?: string;
-    textDescription?: string;
-    exerciseTitle?: string;
-    exerciseDescription?: string;
-  };
-  selectOption: string;
-  handleChangeOption?: (event: BaseSyntheticEvent) => void;
-}
+import { ILessonItemProps } from '../../types';
 
 const LessonItem: FC<ILessonItemProps> = ({ handleChangeOption, selectOption, formik }) => (
   <LessonItemWrapper>
     <LessonItemTitle>Lesson № 1</LessonItemTitle>
-    <form onSubmit={formik.handleSubmit}>
+    <form>
       <LessonInput>
         <InputSelect onChange={handleChangeOption}>
           <SelectItem value="video" label="Video">
@@ -44,14 +33,14 @@ const LessonItem: FC<ILessonItemProps> = ({ handleChangeOption, selectOption, fo
             <InputText
               id="videoURL"
               placeholder="/youtube.com/"
-              value={formik.videoURL}
+              value={formik.values.videoURL}
               onChange={formik.handleChange}
             />
           ) : (
             <InputTextArea
               id="textDescription"
               placeholder="Description"
-              value={formik.textDescription}
+              value={formik.values.textDescription}
               onChange={formik.handleChange}
             />
           )}
@@ -59,14 +48,14 @@ const LessonItem: FC<ILessonItemProps> = ({ handleChangeOption, selectOption, fo
           <InputText
             id="exerciseTitle"
             placeholder="/youtube.com/"
-            value={formik.exerciseTitle}
+            value={formik.values.exerciseTitle}
             onChange={formik.handleChange}
           />
           <InputLabel>Exercise Description</InputLabel>
           <InputTextArea
             id="exerciseDescription"
             placeholder="Description"
-            value={formik.exerciseDescription}
+            value={formik.values.exerciseDescription}
             onChange={formik.handleChange}
           />
         </InputBox>
