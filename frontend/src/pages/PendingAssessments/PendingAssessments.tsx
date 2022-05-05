@@ -2,7 +2,9 @@ import { FC } from 'react';
 
 import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
+import NoContent from 'components/NoContent';
 import { Loaders } from 'enums/loader';
+import { NO_REQUESTS } from 'constants/messages';
 
 import { IPendingAssessmentsProps } from './types';
 import RequestItem from './RequestItem';
@@ -17,7 +19,7 @@ const PendingAssessments: FC<IPendingAssessmentsProps> = ({
   <AuthorizedLayout pageName="Pending Assessments">
     {isLoading ? (
       <Loader color="primary" type={Loaders.content} />
-    ) : (
+    ) : assessments?.length ? (
       <RequestsWrapper>
         {assessments?.map(({ _id, user, course, elapsed }) => {
           const isTargetRequest = targetId === _id;
@@ -34,6 +36,8 @@ const PendingAssessments: FC<IPendingAssessmentsProps> = ({
           );
         })}
       </RequestsWrapper>
+    ) : (
+      <NoContent message={NO_REQUESTS} />
     )}
   </AuthorizedLayout>
 );
