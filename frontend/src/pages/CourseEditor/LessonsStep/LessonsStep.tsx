@@ -1,4 +1,4 @@
-import { FC, BaseSyntheticEvent } from 'react';
+import { FC } from 'react';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
 
@@ -15,14 +15,7 @@ import {
   AddMoreLessonsButton,
 } from './styled';
 
-interface ILessonsStepProps {
-  formik: any;
-  selectOption: string;
-  handleBackButtonClick?: (event: BaseSyntheticEvent) => void;
-  handleChangeOption?: (event: BaseSyntheticEvent) => void;
-  stageNext?: () => void;
-  stageBack?: () => void;
-}
+import { ILessonsStepProps } from '../types';
 
 const LessonsStep: FC<ILessonsStepProps> = ({
   formik,

@@ -7,13 +7,9 @@ import DefinitionStep from './DefinitionStep';
 import SkillsStep from './SkillsStep';
 import LessonsStep from './LessonsStep';
 import TestStep from './TestStep';
+import { ICourseEditorProps } from './types';
 
-interface IProps {
-  basePath: string;
-  formik: unknown;
-}
-
-const CourseEditor: React.FC<IProps> = ({ basePath, formik }) => {
+const CourseEditor: React.FC<ICourseEditorProps> = ({ basePath, formik }) => {
   //   const definitionForm = useRef();
   //   const skillsForm = useRef();
   //   const lessonsForm = useRef();
@@ -23,7 +19,7 @@ const CourseEditor: React.FC<IProps> = ({ basePath, formik }) => {
     <AuthorizedLayout pageName="Courses Editor">
       <EditorTabs
         basePath={basePath}
-        defaultActiveTab="definition-setup"
+        defaultActiveTab="lessons-setup"
         tabs={[
           {
             key: 'definition-setup',
