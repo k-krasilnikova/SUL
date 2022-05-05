@@ -15,7 +15,7 @@ const RequestButtons: FC<IAssessmentRequestButtonsProps> = ({
 }) => (
   <StyledButtonsContainer item xs={3} rowSpacing={1}>
     <StyledActionButton
-      variant="mediumContained"
+      variant={isActionLoading ? 'mediumOutlined' : 'mediumContained'}
       disabled={isActionLoading}
       onClick={approveAssessment}
     >
