@@ -23,7 +23,7 @@ const CourseEditor: React.FC<IProps> = ({ basePath, formik }) => {
     <AuthorizedLayout pageName="Courses Editor">
       <EditorTabs
         basePath={basePath}
-        defaultActiveTab="lessons-setup"
+        defaultActiveTab="definition-setup"
         tabs={[
           {
             key: 'definition-setup',
