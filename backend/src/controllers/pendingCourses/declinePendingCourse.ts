@@ -12,6 +12,7 @@ import {
   NotificationDescription,
   NotificationStatuses,
   NotificationTitles,
+  NotificationType,
 } from 'enums/notificationEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
@@ -40,7 +41,7 @@ const declinePendingCourse = async (
       throw new BadRequestError(`Can't decline course with status: ${status}.`);
     }
 
-    const { _id: manager }: IUser = await getUserProvider(managerId);
+    const { _id: manager, firstName, lastName }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
     await updateClientCourseField(
       clientCourseId,
@@ -52,11 +53,16 @@ const declinePendingCourse = async (
     results.updateStatus = 'Course was declined.';
     await updateClientCourseField(clientCourseId, CLIENT_COURSE_FIELDS.applyDate, Date.now());
 
+    const managerName = `${firstName} ${lastName}`;
+
     await addUserNotification(
       clientCourse.user,
+      clientCourse.course.title,
+      managerName,
       NotificationStatuses.new,
       NotificationTitles.declined,
       NotificationDescription.declined,
+      NotificationType.user,
     );
     next();
   } catch (error) {

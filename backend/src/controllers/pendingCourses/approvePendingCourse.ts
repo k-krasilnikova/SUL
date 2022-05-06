@@ -5,6 +5,7 @@ import {
   NotificationDescription,
   NotificationStatuses,
   NotificationTitles,
+  NotificationType,
 } from 'enums/notificationEnums';
 import {
   arrangeAssessment,
@@ -42,8 +43,9 @@ const approvePendingCourse = async (
       throw new BadRequestError(`Can't approve course in status: ${status}.`);
     }
 
-    const { _id: manager }: IUser = await getUserProvider(managerId);
+    const { _id: manager, firstName, lastName }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
+
     await updateClientCourseField(
       clientCourseId,
       CLIENT_COURSE_FIELDS.status,
@@ -55,11 +57,16 @@ const approvePendingCourse = async (
       await arrangeAssessment(clientCourseId);
     }
 
+    const managerName = `${firstName} ${lastName}`;
+
     await addUserNotification(
       clientCourse.user,
+      clientCourse.course.title,
+      managerName,
       NotificationStatuses.new,
       NotificationTitles.approved,
       NotificationDescription.approved,
+      NotificationType.user,
     );
 
     results.updateStatus = `Course was approved ${withAssessment ? 'with' : 'without'} assessment.`;

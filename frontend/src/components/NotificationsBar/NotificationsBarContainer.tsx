@@ -23,14 +23,14 @@ const NotificationsBarContainer: FC<INotificationsBarContainerProps> = ({
     if (isMobileMenuOpen) {
       toggleMobileMenu();
     }
-    if (newNotification) {
-      readNotificationsMutation({});
-    }
-    setNotificationsOpen(true);
+    setNotificationsOpen(!isNotificationsOpen);
   };
 
   const handleNotificationsClose = () => {
     setNotificationsOpen(false);
+    if (newNotification) {
+      readNotificationsMutation({});
+    }
   };
 
   return (
