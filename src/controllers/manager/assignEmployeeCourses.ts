@@ -6,7 +6,7 @@ import {
   assignCourseToEmployee,
   getAllClientCoursesProvider,
 } from 'db/providers/clientCourseProvider';
-import { materialsCounterProvider } from 'db/providers/courseProvider';
+import { getCourseProvider, materialsCounterProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { addUserNotification } from 'db/providers/notificationProvider';
 import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
@@ -19,6 +19,7 @@ import {
   NotificationDescription,
   NotificationStatuses,
   NotificationTitles,
+  NotificationType,
 } from 'enums/notificationEnums';
 
 const assignEmployeeCourses = async (
@@ -62,6 +63,20 @@ const assignEmployeeCourses = async (
             progressDto,
             courseToAssign.assessment,
           );
+
+          const course = await getCourseProvider(assignedCourse.course, employeeId);
+
+          const managerName = `${manager.firstName} ${manager.lastName}`;
+
+          await addUserNotification(
+            employee._id,
+            course.title,
+            managerName,
+            NotificationStatuses.new,
+            NotificationTitles.assigned,
+            NotificationDescription.assigned,
+            NotificationType.user,
+          );
           return assignedCourse;
         } catch {
           return undefined;
@@ -70,13 +85,6 @@ const assignEmployeeCourses = async (
     );
 
     const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
-
-    await addUserNotification(
-      employee._id,
-      NotificationStatuses.new,
-      NotificationTitles.assigned,
-      NotificationDescription.assigned,
-    );
 
     res.locals.results = `${assignedCoursesAmount}/${assignedCourses.length} courses successfully assigned.`;
 
