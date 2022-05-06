@@ -10,7 +10,7 @@ export const StyledAccordionSummary = styled(AccordionSummary)({
   '& .MuiAccordionSummary-expandIconWrapper': {
     visibility: 'hidden',
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(550)]: {
     margin: 0,
     pointerEvents: 'auto',
     cursor: 'pointer',
