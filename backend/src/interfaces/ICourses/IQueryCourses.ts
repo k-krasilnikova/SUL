@@ -60,16 +60,16 @@ interface ICreateCourseBody {
 }
 
 interface IPreparedCourseData {
-  title?: ICourse['title'];
-  avatar?: ICourse['avatar'];
-  description?: ICourse['description'];
-  materials?: ICourse['materials'];
-  complexity?: ICourse['complexity'];
-  test?: ITest;
-  technologies?: ICourse['technologies'];
-  lessons?: number;
-  duration?: ITimePeriod;
-  similarCourses?: ICourse[];
+  title: ICourse['title'];
+  avatar: ICourse['avatar'];
+  description: ICourse['description'];
+  materials: ICourse['materials'];
+  complexity: ICourse['complexity'];
+  test: ITest;
+  technologies: ICourseTechsFromWeb[];
+  lessons: number;
+  duration: ITimePeriod;
+  similarCourses: ICourse[];
 }
 
 interface ICourseToAssign {

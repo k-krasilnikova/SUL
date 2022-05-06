@@ -9,6 +9,8 @@ import { ITest } from 'interfaces/Ientities/Itest';
 
 import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
 import fullTrim from '../../string/fullTrim';
+import { addMaterialStages } from '../../normaliser/materials';
+import { setAnswerProperNumbersToQuestions } from '../../normaliser/test';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import {
   MAX_DESCRIPTION_LENGTH,
@@ -108,7 +110,8 @@ const testValidationSchema = {
     )
     .test((questions) =>
       isQuestionsHaveCorrectAnswer(convertToTypeUnsafe<ITest['questions']>(questions)),
-    ),
+    )
+    .transform(setAnswerProperNumbersToQuestions),
   timeout: number().required().positive().min(TIME_1M_SEC),
   title: TitleValidator,
 };
@@ -147,7 +150,11 @@ const materialObjectValidationSchema = {
 
 const MaterialObjectValidator = object(materialObjectValidationSchema).required();
 
-const MaterialsValidator = array().of(MaterialObjectValidator).required().min(MIN_MATERIALS_AMOUNT);
+const MaterialsValidator = array()
+  .of(MaterialObjectValidator)
+  .required()
+  .min(MIN_MATERIALS_AMOUNT)
+  .transform(addMaterialStages);
 
 const technologyObjectValidationSchema = {
   skill: string()

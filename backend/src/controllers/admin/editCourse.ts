@@ -9,8 +9,6 @@ import {
 import { isProperTechnologies } from 'db/providers/skillProvider';
 import { getCourseTest, updateTest } from 'db/providers/testProvider';
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
-import { addMaterialStages } from 'utils/normaliser/materials';
-import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
 import {
   isValidAvatar,
   isValidComplexity,
@@ -72,11 +70,10 @@ const editCourse = async (
 
     const validMaterials = validateMaterials(dataToUpdate.materials);
     if (validMaterials) {
-      const materialsWithStages = addMaterialStages(validMaterials);
       const { materials } = await updateCourseField(
         courseId,
         COURSE_FIELDS.materials,
-        materialsWithStages,
+        validMaterials,
       );
       updatedData.materials = materials;
     }
@@ -101,10 +98,9 @@ const editCourse = async (
     if (validTest) {
       const test = await getCourseTest(courseId);
       if (test._id && dataToUpdate.test) {
-        const properQuestionsToSet = setAnswerProperNumbersToQuestions(validTest.questions);
         const { questions, timeout, title } = await updateTest({
           testId: test._id,
-          questions: properQuestionsToSet,
+          questions: validTest.questions,
           timeout: validTest.timeout,
           title: validTest.title,
         });
