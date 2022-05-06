@@ -207,6 +207,10 @@ const getSkillsToCourseTechs = async (technologies: ICourseTechsFromWeb[]) => {
     }),
   );
 
+  if (techs.length !== technologies.length) {
+    throw new NotFoundError(`Couldn't find some of mentioned technologies.`);
+  }
+
   const techsForCourse = techs.map((currentSkill, index) => ({
     skill: currentSkill?._id as string,
     points: technologies[index].points,
