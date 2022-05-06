@@ -203,12 +203,12 @@ const isProperTechnologies = async (techs: IUpdateCourseBody['technologies']): P
 const getSkillsToCourseTechs = async (technologies: ICourseTechsFromWeb[]) => {
   const techs = await Promise.all(
     technologies.map(({ skill }) => {
-      return SkillModel.findOne({ name: skill });
+      return SkillModel.findById(skill);
     }),
   );
 
   const techsForCourse = techs.map((currentSkill, index) => ({
-    skill: currentSkill?._id as ObjectId,
+    skill: currentSkill?._id as string,
     points: technologies[index].points,
   }));
 

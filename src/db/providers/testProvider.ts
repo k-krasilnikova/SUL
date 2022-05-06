@@ -90,12 +90,7 @@ const getCourseTest = async (courseId: string | ObjectId): Promise<ITest> => {
   return test as unknown as ITest;
 };
 
-const addCourseTest = async (testData: ITest, questions: ITest['questions']) =>
-  TestModel.create({
-    title: testData.title,
-    questions,
-    timeout: testData.timeout,
-  });
+const addCourseTest = async (testData: ITest) => TestModel.create(testData);
 
 export {
   getTestProvider,
