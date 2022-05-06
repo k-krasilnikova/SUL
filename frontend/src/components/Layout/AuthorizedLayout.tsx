@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import Loader from 'components/Loader';
-import { Notification as NotificationType } from 'types/notification';
+import { INotification as NotificationType } from 'types/INotification';
 
 import Header from './Header';
 import Menu from './Menu';
