@@ -1,37 +1,37 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { NOTIFICATION_STATUSES, NOTIFICATION_TYPES } from 'constants/statuses';
 import { warningIcon, redWarningIcon } from 'icons';
-import { Notification } from 'types/notification';
+import { INotification } from 'types/INotification';
 
 import { NotificationContainer, ImageWrapper, Title, Description } from './styled';
 
 interface NotificationProps {
-  note: Notification;
+  note: INotification;
 }
 
-const NotificationPlate: React.FC<NotificationProps> = ({ note }) => {
+const Notification: FC<NotificationProps> = ({ note }) => {
   const isOldNotification = note.status === NOTIFICATION_STATUSES.old;
   const isUserNotifications = note.type === NOTIFICATION_TYPES.user;
+
+  const { courseName, title, description, userName } = note;
+
+  const notificationTitle = isUserNotifications ? `${courseName} is ${title}` : userName;
+  const notificationDescription = isUserNotifications
+    ? description
+    : `${description} ${courseName}`;
 
   return (
     <NotificationContainer isOld={isOldNotification}>
       <ImageWrapper>
         <img alt="notification" src={isOldNotification ? warningIcon : redWarningIcon} />
       </ImageWrapper>
-      {isUserNotifications ? (
-        <div>
-          <Title>{`${note.courseName} is ${note.title}`}</Title>
-          <Description>{note.description}</Description>
-        </div>
-      ) : (
-        <div>
-          <Title>{note.userName}</Title>
-          <Description>{`${note.description} ${note.courseName}`}</Description>
-        </div>
-      )}
+      <div>
+        <Title>{notificationTitle}</Title>
+        <Description>{notificationDescription}</Description>
+      </div>
     </NotificationContainer>
   );
 };
 
-export default NotificationPlate;
+export default Notification;

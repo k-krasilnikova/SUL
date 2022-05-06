@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { apiClientWrapper } from 'api/base';
 import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
-import { Notification as NotificationType } from 'types/notification';
+import { INotification as NotificationType } from 'types/INotification';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
