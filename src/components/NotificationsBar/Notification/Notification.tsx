@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NOTIFICATION_STATUSES } from 'constants/statuses';
+import { NOTIFICATION_STATUSES, NOTIFICATION_TYPES } from 'constants/statuses';
 import { warningIcon, redWarningIcon } from 'icons';
 import { Notification } from 'types/notification';
 
@@ -12,16 +12,24 @@ interface NotificationProps {
 
 const NotificationPlate: React.FC<NotificationProps> = ({ note }) => {
   const isOldNotification = note.status === NOTIFICATION_STATUSES.old;
+  const isUserNotifications = note.type === NOTIFICATION_TYPES.user;
 
   return (
     <NotificationContainer isOld={isOldNotification}>
       <ImageWrapper>
         <img alt="notification" src={isOldNotification ? warningIcon : redWarningIcon} />
       </ImageWrapper>
-      <div>
-        <Title>{note.title}</Title>
-        <Description>{note.description}</Description>
-      </div>
+      {isUserNotifications ? (
+        <div>
+          <Title>{`${note.courseName} is ${note.title}`}</Title>
+          <Description>{note.description}</Description>
+        </div>
+      ) : (
+        <div>
+          <Title>{note.userName}</Title>
+          <Description>{`${note.description} ${note.courseName}`}</Description>
+        </div>
+      )}
     </NotificationContainer>
   );
 };
