@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 
 import { useGetPendingAssessments, useManageAssessment } from 'api/manager';
 import { AssessmentManagmentAction } from 'enums/api';
@@ -11,15 +11,21 @@ const PendingAssessmentsContainer: FC = () => {
   const { data: assessmentsRequest, isLoading: isAssessmentsLoading } = useGetPendingAssessments();
   const { mutate: manageAssessment, isLoading: isManageAssessmentLoading } = useManageAssessment();
 
-  const approveAssessmentById = (requestId: string) => {
-    setTargetId(requestId);
-    manageAssessment({ id: requestId, action: AssessmentManagmentAction.approve });
-  };
+  const approveAssessmentById = useCallback(
+    (requestId: string) => {
+      setTargetId(requestId);
+      manageAssessment({ id: requestId, action: AssessmentManagmentAction.approve });
+    },
+    [manageAssessment],
+  );
 
-  const declineAssessmentById = (requestId: string) => {
-    setTargetId(requestId);
-    manageAssessment({ id: requestId, action: AssessmentManagmentAction.decline });
-  };
+  const declineAssessmentById = useCallback(
+    (requestId: string) => {
+      setTargetId(requestId);
+      manageAssessment({ id: requestId, action: AssessmentManagmentAction.decline });
+    },
+    [manageAssessment],
+  );
 
   return (
     <PendingAssessments
