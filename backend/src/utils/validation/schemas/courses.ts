@@ -56,7 +56,7 @@ const ComplexityValidator: NumberSchema = number()
   .test((complexity) => Object.values(UserRank).includes(convertToTypeUnsafe<number>(complexity)));
 
 const answerValidationSchema = {
-  aN: number().required().positive().integer(),
+  aN: number().required().integer().positive(),
   variant: string()
     .required()
     .trim()
@@ -79,7 +79,7 @@ const questionObjectValidationSchema = {
     .test(isNotNumbersOnly)
     .test(isNotSpecialsOnly),
   answers: array().required().of(AnswerValidator),
-  correctAnswer: number().required().positive(),
+  correctAnswer: number().required().integer().positive(),
 };
 
 const QuestionObjectValidator = object(questionObjectValidationSchema);
@@ -112,7 +112,7 @@ const testValidationSchema = {
     .test((questions) =>
       isQuestionsHaveCorrectAnswer(convertToTypeUnsafe<ITest['questions']>(questions)),
     ),
-  timeout: number().required().positive().integer().min(TIME_1M_SEC),
+  timeout: number().required().integer().positive().min(TIME_1M_SEC),
   title: TitleValidator,
 };
 
@@ -179,7 +179,7 @@ const technologyObjectValidationSchema = {
   skill: string()
     .required()
     .test((skill) => isValidObjectId(skill)),
-  points: number().required().positive(),
+  points: number().required().integer().positive(),
 };
 
 const TechnologyObjectValidator = object(technologyObjectValidationSchema).required();
