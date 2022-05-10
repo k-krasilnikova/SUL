@@ -10,9 +10,10 @@ export const AvatarWrapper = styled('div')<IAvatarWrapperProps>(({ visible }) =>
     marginRight: '60px',
   },
   [theme.breakpoints.down('lg')]: {
-    marginRight: '20px',
+    marginRight: '30px',
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(550)]: {
     display: `${visible ? 'block' : 'none'}`,
+    marginRight: '20px',
   },
 }));

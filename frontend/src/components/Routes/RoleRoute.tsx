@@ -2,18 +2,23 @@ import { FC } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import { useGetProfile } from 'api/profile';
+import Loader from 'components/Loader';
 import { Role } from 'constants/menuRoles';
 import { PATHS } from 'constants/routes';
-import { Numbers } from 'enums/numbers';
+import { Loaders } from 'enums/loader';
 
 import { IRoleRouteProps } from './types';
 
 const RoleRoute: FC<IRoleRouteProps> = ({ children, roles }) => {
-  const { data: userProfileResponse } = useGetProfile();
-  const isAllowed = roles?.includes(userProfileResponse?.role as Role);
-  const isPageReloaded = window.performance && window.performance.navigation.type === Numbers.one;
+  const { data: userProfileResponse, isLoading: isUserProfileLoading } = useGetProfile();
 
-  return isAllowed || isPageReloaded ? <>{children}</> : <Navigate replace to={PATHS.notFound} />;
+  if (isUserProfileLoading) {
+    return <Loader color="primary" type={Loaders.page} />;
+  }
+
+  const isAllowed = roles?.includes(userProfileResponse?.role as Role);
+
+  return isAllowed ? <>{children}</> : <Navigate replace to={PATHS.notFound} />;
 };
 
 export default RoleRoute;

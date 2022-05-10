@@ -14,10 +14,13 @@ import { setAnswerProperNumbersToQuestions } from '../../normaliser/test';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import {
   MAX_DESCRIPTION_LENGTH,
+  MAX_EXERCISE_TITLE_LENGTH,
   MAX_PLAIN_MATERIAL_LENGTH,
   MAX_QUESTION_LENGTH,
   MAX_TITLE_LENGTH,
   MIN_DESCRIPTION_LENGTH,
+  MIN_EXERCISE_TASK_LENGTH,
+  MIN_EXERCISE_TITLE_LENGTH,
   MIN_PLAIN_MATERIAL_LENGTH,
   MIN_QUESTIONS_PER_TEST,
   MIN_QUESTION_LENGTH,
@@ -55,7 +58,7 @@ const ComplexityValidator: NumberSchema = number()
   .test((complexity) => Object.values(UserRank).includes(convertToTypeUnsafe<number>(complexity)));
 
 const answerValidationSchema = {
-  aN: number().required().positive(),
+  aN: number().required().integer().positive(),
   variant: string()
     .required()
     .trim()
@@ -67,7 +70,7 @@ const answerValidationSchema = {
 const AnswerValidator = object(answerValidationSchema).required();
 
 const questionObjectValidationSchema = {
-  qN: number().optional(),
+  qN: number().integer().optional(),
   question: string()
     .required()
     .trim()
@@ -78,7 +81,7 @@ const questionObjectValidationSchema = {
     .test(isNotNumbersOnly)
     .test(isNotSpecialsOnly),
   answers: array().required().of(AnswerValidator),
-  correctAnswer: number().required().positive(),
+  correctAnswer: number().required().integer().positive(),
 };
 
 const QuestionObjectValidator = object(questionObjectValidationSchema);
@@ -112,7 +115,7 @@ const testValidationSchema = {
       isQuestionsHaveCorrectAnswer(convertToTypeUnsafe<ITest['questions']>(questions)),
     )
     .transform(setAnswerProperNumbersToQuestions),
-  timeout: number().required().positive().min(TIME_1M_SEC),
+  timeout: number().required().integer().positive().min(TIME_1M_SEC),
   title: TitleValidator,
 };
 
@@ -143,9 +146,32 @@ const contentElementValidationSchema = {
 
 const ContentElementValidator = object(contentElementValidationSchema).required();
 
+const exerciseValidationSchema = {
+  eN: number().required().positive().integer(),
+  title: string()
+    .required()
+    .test(isNotNumbersOnly)
+    .test(isNotSpecialsOnly)
+    .trim()
+    .transform(fullTrim)
+    .transform(capitalizeFirstLetter)
+    .min(MIN_EXERCISE_TITLE_LENGTH)
+    .max(MAX_EXERCISE_TITLE_LENGTH),
+  task: string()
+    .required()
+    .trim()
+    .transform(fullTrim)
+    .transform(capitalizeFirstLetter)
+    .min(MIN_EXERCISE_TASK_LENGTH),
+  code: string().trim().optional(),
+};
+
+const ExerciseValidator = object(exerciseValidationSchema);
+
 const materialObjectValidationSchema = {
-  stage: number().optional(),
+  stage: number().integer().optional(),
   content: array().of(ContentElementValidator).required().min(MIN_CONTENT_ELEMENTS_AMOUNT),
+  exercise: ExerciseValidator.optional(),
 };
 
 const MaterialObjectValidator = object(materialObjectValidationSchema).required();
@@ -160,7 +186,7 @@ const technologyObjectValidationSchema = {
   skill: string()
     .required()
     .test((skill) => isValidObjectId(skill)),
-  points: number().required().positive(),
+  points: number().required().integer().positive(),
 };
 
 const TechnologyObjectValidator = object(technologyObjectValidationSchema).required();

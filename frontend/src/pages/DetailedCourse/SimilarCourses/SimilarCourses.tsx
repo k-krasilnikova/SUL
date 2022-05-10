@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
-import { CustomButton } from 'components/Button/ButtonVariants/styled';
-import Course from 'components/Course';
 import { DEFAULT_DISPLAYING_COURSES, SIMILAR_COURSES_TITLE } from 'constants/detailedCourse';
 import { PAGES } from 'constants/pages';
+import { Info } from 'enums/info';
+import { CustomButton } from 'components/Button/ButtonVariants/styled';
+import Course from 'components/Course';
+import MobileLink from 'components/MobileLink';
 import { CourseActionsWrapper } from 'pages/CoursesList/CourseActions/styled';
 import { ISimilarCourses } from 'types/detailedCourse';
-import { Info } from 'enums/info';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
@@ -30,29 +31,31 @@ const SimilarCourses: FC<ISimilarCourses> = ({ similarCourses, windowWidth }) =>
         return (
           isCourseDisplaying && (
             <SimilarCoursesItemWrapper key={course._id}>
-              <Course
-                title={course.title}
-                description={course.description}
-                windowWidth={windowWidth}
-                type={Info.similarCourses}
-                pageName={PAGES.detailed}
-                imageUrl={course.avatar}
-                duration={convertDurationToString(course.duration)}
-                lessons={course.lessons}
-              >
-                <CourseActionsBox>
-                  <CourseActionsWrapper>
-                    <CustomButton
-                      color="primary"
-                      variant="mediumOutlined"
-                      component={Link}
-                      to={transformRoute(PATHS.courseDetails, course._id)}
-                    >
-                      {ButtonLabels.details}
-                    </CustomButton>
-                  </CourseActionsWrapper>
-                </CourseActionsBox>
-              </Course>
+              <MobileLink to={transformRoute(PATHS.courseDetails, course._id)}>
+                <Course
+                  title={course.title}
+                  description={course.description}
+                  windowWidth={windowWidth}
+                  type={Info.similarCourses}
+                  pageName={PAGES.detailed}
+                  imageUrl={course.avatar}
+                  duration={convertDurationToString(course.duration)}
+                  lessons={course.lessons}
+                >
+                  <CourseActionsBox>
+                    <CourseActionsWrapper>
+                      <CustomButton
+                        color="primary"
+                        variant="mediumOutlined"
+                        component={Link}
+                        to={transformRoute(PATHS.courseDetails, course._id)}
+                      >
+                        {ButtonLabels.details}
+                      </CustomButton>
+                    </CourseActionsWrapper>
+                  </CourseActionsBox>
+                </Course>
+              </MobileLink>
             </SimilarCoursesItemWrapper>
           )
         );
