@@ -55,10 +55,7 @@ export const RedMark = styled('div')({
   height: '10px',
   borderRadius: '50%',
   backgroundColor: '#D43E41',
-  position: 'relative',
-  top: '-18px',
-  right: '30px',
-  [theme.breakpoints.down('sm')]: {
-    top: '-15px',
-  },
+  position: 'absolute',
+  top: '0px',
+  right: '0px',
 });
