@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { useGetClientPaginatedCourses } from 'api/myCourses';
-import { WINDOW_SIZE } from 'constants/windowWidth';
 import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 import { IClientCourse } from 'types/clientCourse';
 import CoursesList from 'pages/CoursesList/CoursesList';
@@ -14,15 +13,6 @@ const MyCoursesContainer: React.FC = () => {
     fetchNextPage,
     isLoading: isClientCoursesLoading,
   } = useGetClientPaginatedCourses();
-
-  const disableLinkWidth =
-    window.innerWidth < WINDOW_SIZE.sm.width ? WINDOW_SIZE.xs.name : WINDOW_SIZE.sm.name;
-
-  const disableLink = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    if (disableLinkWidth === WINDOW_SIZE.sm.name) {
-      event.preventDefault();
-    }
-  };
 
   const windowWidth = getWindowLabelByWidth();
 
@@ -49,7 +39,6 @@ const MyCoursesContainer: React.FC = () => {
       courses={commonCourses}
       clientCourses={formattedClientCourses}
       isLoading={isClientCoursesLoading}
-      disableLink={disableLink}
       windowWidth={windowWidth}
       lastCourseRef={clientCourseRef}
     />
