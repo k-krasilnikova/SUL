@@ -168,7 +168,7 @@ const ExerciseValidator = object(exerciseValidationSchema);
 const materialObjectValidationSchema = {
   stage: number().integer().optional(),
   content: array().of(ContentElementValidator).required().min(MIN_CONTENT_ELEMENTS_AMOUNT),
-  exercise: ExerciseValidator.optional(),
+  exercise: ExerciseValidator.default(undefined),
 };
 
 const MaterialObjectValidator = object(materialObjectValidationSchema).required();
@@ -176,9 +176,7 @@ const MaterialObjectValidator = object(materialObjectValidationSchema).required(
 const MaterialsValidator = array().of(MaterialObjectValidator).required().min(MIN_MATERIALS_AMOUNT);
 
 const technologyObjectValidationSchema = {
-  skill: string()
-    .required()
-    .test((skill) => isValidObjectId(skill)),
+  skill: string().required().test(isValidObjectId),
   points: number().required().integer().positive(),
 };
 
