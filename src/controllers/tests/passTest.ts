@@ -1,21 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { CLIENT_COURSE_FIELDS, PASS_THRESHOLD, USER_ROLES } from 'config/constants';
+import { CLIENT_COURSE_FIELDS, PASS_THRESHOLD } from 'config/constants';
 import {
   getAssessmentProvider,
   getClientCourseProvider,
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
-import { getUserProvider } from 'db/providers/userProvider';
-import { addUserNotification } from 'db/providers/notificationProvider';
 import CourseStatus from 'enums/coursesEnums';
-import {
-  NotificationDescription,
-  NotificationStatuses,
-  NotificationTitles,
-  NotificationType,
-} from 'enums/notificationEnums';
 import { TestStatus } from 'enums/common';
 import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
 import { isTestAvailableByDate } from 'utils/validation/tests';
@@ -35,8 +27,7 @@ const passTest = async (
     const { testId, answers } = req.body;
     const { id: courseId } = req.params;
 
-    const { status, finishTestDate, user, course } = await getClientCourseProvider(courseId);
-    const { managerId, role, firstName, lastName } = await getUserProvider(user);
+    const { status, finishTestDate } = await getClientCourseProvider(courseId);
 
     if (!status || status !== CourseStatus.testing) {
       throw new BadRequestError('Testing was not started yet.');
@@ -65,24 +56,10 @@ const passTest = async (
 
     await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.testResult, testResultWithAnswers);
 
-    const userName = `${firstName} ${lastName}`;
-
     const result = countTestResult(userWrongAnswers, correctAnswers.questions);
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: TestStatus.notPassed };
       await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
-
-      if (role !== USER_ROLES.MANAGER) {
-        await addUserNotification(
-          managerId,
-          course.title,
-          userName,
-          NotificationStatuses.new,
-          NotificationTitles.employeePassTestFailed,
-          NotificationDescription.employeePassTestFailed,
-          NotificationType.manager,
-        );
-      }
 
       next();
     } else {
@@ -96,17 +73,6 @@ const passTest = async (
         CLIENT_COURSE_FIELDS.status,
         assessmentRequired ? CourseStatus.assessment : CourseStatus.completed,
       );
-      if (role !== USER_ROLES.MANAGER) {
-        await addUserNotification(
-          managerId,
-          course.title,
-          userName,
-          NotificationStatuses.new,
-          NotificationTitles.employeePassTestSuccessfully,
-          NotificationDescription.employeePassTestSuccessfully,
-          NotificationType.manager,
-        );
-      }
 
       next();
     }

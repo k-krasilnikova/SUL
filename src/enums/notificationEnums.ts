@@ -23,7 +23,7 @@ enum NotificationDescription {
 
 enum NotificationType {
   manager = 'manager',
-  user = 'user',
+  employee = 'employee',
 }
 
 export { NotificationStatuses, NotificationTitles, NotificationDescription, NotificationType };

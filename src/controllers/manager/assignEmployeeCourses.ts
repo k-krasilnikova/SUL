@@ -6,21 +6,14 @@ import {
   assignCourseToEmployee,
   getAllClientCoursesProvider,
 } from 'db/providers/clientCourseProvider';
-import { getCourseProvider, materialsCounterProvider } from 'db/providers/courseProvider';
+import { materialsCounterProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
-import { addUserNotification } from 'db/providers/notificationProvider';
 import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
 import {
   isCoursesToAssignHaveDuplicates,
   removeCoursesToAssignDuplicates,
 } from 'utils/normaliser/queryCourses';
-import {
-  NotificationDescription,
-  NotificationStatuses,
-  NotificationTitles,
-  NotificationType,
-} from 'enums/notificationEnums';
 
 const assignEmployeeCourses = async (
   req: Request<{ id: string }, never, ICourseToAssign[]>,
@@ -64,19 +57,6 @@ const assignEmployeeCourses = async (
             courseToAssign.assessment,
           );
 
-          const course = await getCourseProvider(assignedCourse.course, employeeId);
-
-          const managerName = `${manager.firstName} ${manager.lastName}`;
-
-          await addUserNotification(
-            employee._id,
-            course.title,
-            managerName,
-            NotificationStatuses.new,
-            NotificationTitles.assigned,
-            NotificationDescription.assigned,
-            NotificationType.user,
-          );
           return assignedCourse;
         } catch {
           return undefined;
