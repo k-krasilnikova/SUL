@@ -4,7 +4,6 @@ import { ICourse } from 'types/course';
 import { useApplyCourse, useGetPaginatedCourses } from 'api/courses';
 import { useGetProfile } from 'api/profile';
 import { useFetchNextPage } from 'hooks';
-import { WINDOW_SIZE } from 'constants/windowWidth';
 import { Role } from 'constants/menuRoles';
 import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 
@@ -23,15 +22,6 @@ const CoursesContainer: React.FC = () => {
   const isAdmin = profileResponse?.role === Role.admin;
 
   const [targetId, setTargetId] = useState<string | undefined>();
-
-  const disableLinkWidth =
-    window.innerWidth < WINDOW_SIZE.sm.width ? WINDOW_SIZE.xs.name : WINDOW_SIZE.sm.name;
-
-  const disableLink = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    if (disableLinkWidth === WINDOW_SIZE.sm.name) {
-      event.preventDefault();
-    }
-  };
 
   const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>) => {
     setTargetId((event.target as HTMLElement).id);
@@ -55,7 +45,6 @@ const CoursesContainer: React.FC = () => {
       handleApplyCourse={handleApplyCourse}
       targetId={targetId}
       targetLoading={isLoading}
-      disableLink={disableLink}
       windowWidth={windowWidth}
       lastCourseRef={courseRef}
     />

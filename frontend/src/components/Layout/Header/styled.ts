@@ -102,14 +102,14 @@ export const LogOut = styled('div')({
 });
 export const MobileMenuIcon = styled('div')<MobileMenuProps>(({ openMenu }) => ({
   display: 'none',
+  transition: 'transform 0.2s ease',
   '&:hover': {
     cursor: 'pointer',
   },
   [theme.breakpoints.down('md')]: {
     display: 'block',
-    width: '18px',
-    height: '12px',
+    padding: '8px',
     textAlign: 'center',
-    transform: openMenu ? 'rotate(90deg) translateX(2px) translateY(-5px)' : 'none',
+    transform: openMenu ? 'rotate(90deg)' : 'none',
   },
 }));

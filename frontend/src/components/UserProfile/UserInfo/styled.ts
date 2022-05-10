@@ -23,7 +23,6 @@ export const StyledAccordionSummary = styled(AccordionSummary)({
 export const UserInfoList = styled(List)({
   display: 'inline-block',
   padding: 0,
-  fontWeight: 400,
   verticalAlign: 'top',
   color: '#2C2525',
 });
@@ -31,12 +30,9 @@ export const UserInfoList = styled(List)({
 export const UserName = styled('h4')({
   margin: 0,
   marginRight: '16px',
-  fontSize: '24px',
+  fontSize: '22px',
   fontWeight: 400,
   textAlign: 'left',
-  [theme.breakpoints.down('xl')]: {
-    fontSize: '22px',
-  },
   [theme.breakpoints.down('lg')]: {
     fontSize: '18px',
   },
