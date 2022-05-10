@@ -25,4 +25,5 @@ export enum ButtonLabels {
   accept = 'Accept',
   acceptWithInterview = 'Accept with interview',
   reject = 'Reject',
+  addLessons = 'Add more Lessons',
 }
