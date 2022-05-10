@@ -40,7 +40,6 @@ export const LessonsStepWrapper = styled(Box)({
   flexDirection: 'column',
   alignItems: 'flex-start',
   margin: '24px 0 0 109px',
-  [theme.breakpoints.down('xl')]: {},
 });
 
 export const LessonsStepTitle = styled('p')({
@@ -53,8 +52,6 @@ export const LessonsStepTitle = styled('p')({
   letterSpacing: 1,
   color: '#2C2525',
 });
-
-export const LessonsStepBox = styled(Box)({});
 
 export const AddMoreLessonsButton = styled(Button)({
   position: 'absolute',
