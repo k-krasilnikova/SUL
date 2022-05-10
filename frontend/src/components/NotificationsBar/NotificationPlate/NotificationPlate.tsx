@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
 import { NOTIFICATION_STATUSES, NOTIFICATION_TYPES } from 'constants/statuses';
+import { INotification } from 'types/Notification';
 import { warningIcon, redWarningIcon } from 'icons';
-import { INotification } from 'types/INotification';
 
 import { NotificationContainer, ImageWrapper, Title, Description } from './styled';
 
@@ -10,9 +10,9 @@ interface NotificationProps {
   note: INotification;
 }
 
-const Notification: FC<NotificationProps> = ({ note }) => {
+const NotificationPlate: FC<NotificationProps> = ({ note }) => {
   const isOldNotification = note.status === NOTIFICATION_STATUSES.old;
-  const isUserNotifications = note.type === NOTIFICATION_TYPES.user;
+  const isUserNotifications = note.type === NOTIFICATION_TYPES.employee;
 
   const { courseName, title, description, userName } = note;
 
@@ -34,4 +34,4 @@ const Notification: FC<NotificationProps> = ({ note }) => {
   );
 };
 
-export default Notification;
+export default NotificationPlate;

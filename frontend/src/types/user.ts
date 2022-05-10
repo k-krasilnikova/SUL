@@ -1,5 +1,5 @@
 import { TGroupedSkills, Technologies } from './skill';
-import { INotification } from './INotification';
+import { INotification } from './Notification';
 import { IClientCourse } from './clientCourse';
 
 export interface IUser {

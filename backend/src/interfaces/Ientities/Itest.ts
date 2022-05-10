@@ -21,7 +21,7 @@ interface ITestAnswer {
   aN: number;
 }
 
-type TAchievments = {
+type TAAchievements = {
   newSkills: Array<IUserSkill>;
   updatedSkills: Array<IUserSkill>;
   techsToAchieve?: Array<IUserSkill>;
@@ -49,7 +49,7 @@ export {
   IAnswer,
   TCorrectAnswers,
   TestRuslt,
-  TAchievments,
+  TAAchievements,
   TTechToAchieve,
   ITestQuestion,
   ITestAnswer,

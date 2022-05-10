@@ -17,5 +17,5 @@ export const NOTIFICATION_STATUSES = {
 
 export const NOTIFICATION_TYPES = {
   manager: 'manager',
-  user: 'user',
+  employee: 'employee',
 };

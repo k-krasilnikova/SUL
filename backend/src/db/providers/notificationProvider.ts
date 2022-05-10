@@ -7,12 +7,14 @@ import {
   NotificationTitles,
   NotificationType,
 } from 'enums/notificationEnums';
+import { SortOrder } from 'enums/common';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { DEFAULT_ORDER_FIELD, NOTIFICATIONS_COUNT } from 'config/constants';
 
 export const getUserNotifications = async (userId: string) => {
   const dbNotifications = await NotificationModel.find({ userId })
-    .sort({ _id: -1 })
-    .limit(10)
+    .sort({ [DEFAULT_ORDER_FIELD]: SortOrder.desc })
+    .limit(NOTIFICATIONS_COUNT)
     .lean();
 
   return dbNotifications || [];
