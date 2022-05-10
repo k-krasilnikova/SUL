@@ -12,10 +12,13 @@ import fullTrim from '../../string/fullTrim';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import {
   MAX_DESCRIPTION_LENGTH,
+  MAX_EXERCISE_TITLE_LENGTH,
   MAX_PLAIN_MATERIAL_LENGTH,
   MAX_QUESTION_LENGTH,
   MAX_TITLE_LENGTH,
   MIN_DESCRIPTION_LENGTH,
+  MIN_EXERCISE_TASK_LENGTH,
+  MIN_EXERCISE_TITLE_LENGTH,
   MIN_PLAIN_MATERIAL_LENGTH,
   MIN_QUESTIONS_PER_TEST,
   MIN_QUESTION_LENGTH,
@@ -65,7 +68,7 @@ const answerValidationSchema = {
 const AnswerValidator = object(answerValidationSchema).required();
 
 const questionObjectValidationSchema = {
-  qN: number().optional(),
+  qN: number().integer().optional(),
   question: string()
     .required()
     .trim()
@@ -140,9 +143,32 @@ const contentElementValidationSchema = {
 
 const ContentElementValidator = object(contentElementValidationSchema).required();
 
+const exerciseValidationSchema = {
+  eN: number().required().positive().integer(),
+  title: string()
+    .required()
+    .test(isNotNumbersOnly)
+    .test(isNotSpecialsOnly)
+    .trim()
+    .transform(fullTrim)
+    .transform(capitalizeFirstLetter)
+    .min(MIN_EXERCISE_TITLE_LENGTH)
+    .max(MAX_EXERCISE_TITLE_LENGTH),
+  task: string()
+    .required()
+    .trim()
+    .transform(fullTrim)
+    .transform(capitalizeFirstLetter)
+    .min(MIN_EXERCISE_TASK_LENGTH),
+  code: string().trim().optional(),
+};
+
+const ExerciseValidator = object(exerciseValidationSchema);
+
 const materialObjectValidationSchema = {
-  stage: number().optional(),
+  stage: number().integer().optional(),
   content: array().of(ContentElementValidator).required().min(MIN_CONTENT_ELEMENTS_AMOUNT),
+  exercise: ExerciseValidator.optional(),
 };
 
 const MaterialObjectValidator = object(materialObjectValidationSchema).required();

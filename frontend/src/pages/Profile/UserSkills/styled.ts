@@ -175,13 +175,11 @@ export const SkillInfoFlex = styled('div')({
 export const SkillProgress = styled('div')({
   display: 'flex',
   alignItems: 'center',
-  [theme.breakpoints.up('xs')]: {
+  width: '42px',
+  height: '56px',
+  [theme.breakpoints.down('md')]: {
     width: '24px',
     height: '24px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    width: '41px',
-    height: '56px',
   },
 });
 
@@ -201,10 +199,6 @@ export const SkillInfoText = styled('div')({
   textOverflow: 'ellipsis',
   '&: hover': {
     cursor: 'pointer',
-  },
-  [theme.breakpoints.up('xl')]: {
-    fontSize: '16px',
-    lineHeight: '20px',
   },
 });
 

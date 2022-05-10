@@ -18,7 +18,7 @@ export const StyledButton = styled(Button)({
     margin: '-2px 0 0 40px',
     fontSize: '14px',
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(550)]: {
     height: '28px',
     margin: 0,
   },

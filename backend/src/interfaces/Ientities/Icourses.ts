@@ -15,18 +15,20 @@ interface ICourse {
   materials: {
     stage: number;
     content: Array<IContentElement>;
-    exercise?: {
-      eN: number;
-      title: string;
-      task: string;
-      code: string;
-    };
+    exercise?: ICourseExercise;
   }[];
   test: ObjectId;
   avatar: string;
   similarCourses: ICourse[];
   lessons: number;
   duration: ITimePeriod;
+}
+
+interface ICourseExercise {
+  eN: number;
+  title: string;
+  task: string;
+  code?: string;
 }
 
 interface IContentElement {
@@ -36,4 +38,4 @@ interface IContentElement {
 
 type TCourses = Array<ICourse>;
 
-export { ICourse, TCourses };
+export { ICourse, TCourses, ICourseExercise };
