@@ -1,12 +1,12 @@
 import { FC, useState, BaseSyntheticEvent } from 'react';
 import { useNavigate } from 'react-router';
 
+import { ILessonsStepContainerProps } from 'pages/CourseEditor/types';
+
 import LessonsStep from './LessonsStep';
 
-import { ILessonsStepContainerProps } from '../types';
-
 const LessonsStepContainer: FC<ILessonsStepContainerProps> = ({ formik }) => {
-  const [selectOption, setSelectOption] = useState('video');
+  const [selectOption, setSelectOption] = useState<string>('video');
 
   const navigate = useNavigate();
 
