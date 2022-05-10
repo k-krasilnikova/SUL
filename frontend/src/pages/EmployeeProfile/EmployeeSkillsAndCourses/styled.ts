@@ -10,9 +10,11 @@ export const SkillsAndCoursesBox = styled('div')({
   display: 'flex',
   marginLeft: '63px',
   [theme.breakpoints.down('md')]: {
+    marginLeft: '16px',
+  },
+  [theme.breakpoints.down(550)]: {
     flexDirection: 'column',
     width: '190px',
-    marginLeft: '16px',
   },
 });
 
