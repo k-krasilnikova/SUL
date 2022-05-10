@@ -1,7 +1,7 @@
 import { useState, FC } from 'react';
 
-import { useReadNotifications } from 'api/userInfo';
 import { NOTIFICATION_STATUSES } from 'constants/statuses';
+import useReadNotifications from 'api/userInfo/useReadNotifications';
 
 import { INotificationsBarContainerProps } from './types';
 import NotificationsBar from './NotificationsBar';
