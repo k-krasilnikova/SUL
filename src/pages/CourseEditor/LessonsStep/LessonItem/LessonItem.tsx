@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import { ILessonItemProps } from 'pages/CourseEditor/types';
+
 import {
   LessonItemWrapper,
   LessonItemTitle,
@@ -11,8 +13,6 @@ import {
   InputText,
   InputTextArea,
 } from './styled';
-
-import { ILessonItemProps } from '../../types';
 
 const LessonItem: FC<ILessonItemProps> = ({ handleChangeOption, selectOption, formik }) => (
   <LessonItemWrapper>
