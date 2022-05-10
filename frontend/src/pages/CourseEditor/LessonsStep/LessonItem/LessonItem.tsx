@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import { ILessonItemProps } from 'pages/CourseEditor/types';
+
 import {
   LessonItemWrapper,
   LessonItemTitle,
@@ -12,12 +14,10 @@ import {
   InputTextArea,
 } from './styled';
 
-import { ILessonItemProps } from '../../types';
-
 const LessonItem: FC<ILessonItemProps> = ({ handleChangeOption, selectOption, formik }) => (
   <LessonItemWrapper>
     <LessonItemTitle>Lesson № 1</LessonItemTitle>
-    <form onSubmit={formik.onSubmit}>
+    <form>
       <LessonInput>
         <InputSelect onChange={handleChangeOption}>
           <SelectItem value="video" label="Video">
