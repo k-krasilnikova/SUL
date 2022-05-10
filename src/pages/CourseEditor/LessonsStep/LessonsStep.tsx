@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
+import { ILessonsStepProps } from 'pages/CourseEditor/types';
 
 import LessonItem from './LessonItem';
 import {
@@ -8,14 +9,11 @@ import {
   LessonsStepWrapper,
   BackButton,
   LessonsStepTitle,
-  LessonsStepBox,
   ButtonsBox,
   NextButton,
   PreviousButton,
   AddMoreLessonsButton,
 } from './styled';
-
-import { ILessonsStepProps } from '../types';
 
 const LessonsStep: FC<ILessonsStepProps> = ({
   formik,
@@ -31,14 +29,12 @@ const LessonsStep: FC<ILessonsStepProps> = ({
     </BackButton>
     <LessonsStepWrapper>
       <LessonsStepTitle>Add course files and description</LessonsStepTitle>
-      <LessonsStepBox>
-        <LessonItem
-          formik={formik}
-          selectOption={selectOption}
-          handleChangeOption={handleChangeOption}
-        />
-      </LessonsStepBox>
-      <AddMoreLessonsButton type="button">Add more Lessons</AddMoreLessonsButton>
+      <LessonItem
+        formik={formik}
+        selectOption={selectOption}
+        handleChangeOption={handleChangeOption}
+      />
+      <AddMoreLessonsButton type="button">{ButtonLabels.addLessons}</AddMoreLessonsButton>
     </LessonsStepWrapper>
     <ButtonsBox>
       <PreviousButton variant="medium" onClick={stageBack}>
