@@ -10,7 +10,7 @@ import { isProperTechnologies } from 'db/providers/skillProvider';
 import { getCourseTest, updateTest } from 'db/providers/testProvider';
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { addMaterialStages } from 'utils/normaliser/materials';
-import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
+import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/courseTest';
 import {
   isValidAvatar,
   isValidComplexity,

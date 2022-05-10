@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { ITestResultResponse } from 'interfaces/IResponse/IResponse';
-import { normaliseTestResult } from 'utils/normaliser/tests';
+import { normaliseTestResult } from 'utils/normaliser/courseTests';
 
 const getTestResult = async (
   req: Request<{ id: string }>,

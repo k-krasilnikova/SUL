@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { addMaterialStages } from 'utils/normaliser/materials';
-import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/test';
+import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/courseTest';
 import {
   isValidCourseData,
   validateMaterials,
