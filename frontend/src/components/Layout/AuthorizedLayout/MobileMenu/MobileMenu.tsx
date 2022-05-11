@@ -24,8 +24,7 @@ import {
 
 const MobileMenu: FC<IMenuMobileProps> = ({
   userInfo,
-  isMobileMenuOpen,
-  isMobileWindowSize,
+  isShowMenu,
   handleConfirmLogOutOpen,
   handleSpaceHolderClick,
   toggleMobileMenu,
@@ -33,14 +32,8 @@ const MobileMenu: FC<IMenuMobileProps> = ({
   const { avatar, firstName, lastName } = userInfo || {};
 
   return (
-    <MobileMenuBackdrop open={isMobileMenuOpen && isMobileWindowSize} onClick={toggleMobileMenu}>
-      <Slide
-        direction="left"
-        in={isMobileMenuOpen && isMobileWindowSize}
-        appear={false}
-        mountOnEnter
-        unmountOnExit
-      >
+    <MobileMenuBackdrop open={isShowMenu} onClick={toggleMobileMenu}>
+      <Slide direction="left" in={isShowMenu} appear={false} mountOnEnter unmountOnExit>
         <MobileMenuSlide>
           <Menu isMobileVersion />
           <SpaceHolder onClick={handleSpaceHolderClick} />

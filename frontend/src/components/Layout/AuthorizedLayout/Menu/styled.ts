@@ -47,11 +47,11 @@ export const ItemText = styled('p')<IStyledProps>(({ isSqueeze, isMobileVersion 
   width: '100%',
   margin: 0,
   fontSize: '18px',
-  ...(isSqueeze && { width: 0, overflow: 'hidden' }),
+  overflow: 'hidden',
+  ...(isSqueeze && { width: 0 }),
   ...(isMobileVersion && {
     maxWidth: '104px',
     padding: '0px 8px 0px 2px',
-    overflow: 'hidden',
     textOverflow: 'ellipsis',
   }),
   [theme.breakpoints.down('md')]: {

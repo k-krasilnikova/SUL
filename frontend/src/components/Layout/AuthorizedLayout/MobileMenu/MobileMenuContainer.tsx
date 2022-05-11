@@ -6,10 +6,11 @@ import { TMenuMobileContainerProps } from 'components/Layout/types';
 
 import MobileMenu from './MobileMenu';
 
-const MobileMenuContainer: FC<TMenuMobileContainerProps> = (props) => {
+const MobileMenuContainer: FC<TMenuMobileContainerProps> = ({ isMobileMenuOpen, ...props }) => {
   const windowSize = useGetWindowSizeLabel();
 
   const isMobileWindowSize = [WINDOW_SIZE.sm.name, WINDOW_SIZE.xs.name].includes(windowSize);
+  const isShowMenu = isMobileWindowSize && isMobileWindowSize;
 
   const handleSpaceHolderClick = (event: BaseSyntheticEvent) => {
     event.stopPropagation();
@@ -17,7 +18,7 @@ const MobileMenuContainer: FC<TMenuMobileContainerProps> = (props) => {
 
   return (
     <MobileMenu
-      isMobileWindowSize={isMobileWindowSize}
+      isShowMenu={isShowMenu}
       handleSpaceHolderClick={handleSpaceHolderClick}
       {...props}
     />
