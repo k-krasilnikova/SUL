@@ -11,6 +11,7 @@ const RequestButtons: FC<IAssessmentRequestButtonsProps> = ({
   approveAssessment,
   declineAssessment,
   isActionLoading,
+  isTargetRequest,
 }) => (
   <StyledButtonsContainer item xs={3} rowSpacing={1}>
     <StyledActionButton
@@ -18,7 +19,11 @@ const RequestButtons: FC<IAssessmentRequestButtonsProps> = ({
       disabled={isActionLoading}
       onClick={approveAssessment}
     >
-      {isActionLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.approve}
+      {isActionLoading && isTargetRequest ? (
+        <ButtonLoader buttonSpinner={buttonSpinner} />
+      ) : (
+        ButtonLabels.approve
+      )}
     </StyledActionButton>
     <StyledActionButton
       variant="mediumOutlined"

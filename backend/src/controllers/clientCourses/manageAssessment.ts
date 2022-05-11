@@ -5,11 +5,11 @@ import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { getStatusProvider, updateClientCourseField } from 'db/providers/clientCourseProvider';
 import { ASSESSMENT_RESULTS, CLIENT_COURSE_FIELDS } from 'config/constants';
-import { TAchievments } from 'interfaces/Ientities/Itest';
+import { TAchievements } from 'interfaces/Ientities/Itest';
 
 const manageAssessment = async (
   req: Request<{ id: string }, unknown, { action: AssessmentAction }>,
-  res: Response<never, { id: string; achievments: TAchievments; results: string }>,
+  res: Response<never, { id: string; achievements: TAchievements; results: string }>,
   next: NextFunction,
 ) => {
   try {

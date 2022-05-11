@@ -7,14 +7,7 @@ import {
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
-import { getUserProvider } from 'db/providers/userProvider';
-import { addUserNotification } from 'db/providers/notificationProvider';
 import CourseStatus from 'enums/coursesEnums';
-import {
-  NotificationDescription,
-  NotificationStatuses,
-  NotificationTitles,
-} from 'enums/notificationEnums';
 import { TestStatus } from 'enums/common';
 import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
 import { isTestAvailableByDate } from 'utils/validation/tests';
@@ -34,8 +27,8 @@ const passTest = async (
     const { testId, answers } = req.body;
     const { id: courseId } = req.params;
 
-    const { status, finishTestDate, user } = await getClientCourseProvider(courseId);
-    const { managerId } = await getUserProvider(user);
+    const { status, finishTestDate } = await getClientCourseProvider(courseId);
+
     if (!status || status !== CourseStatus.testing) {
       throw new BadRequestError('Testing was not started yet.');
     }
@@ -67,12 +60,7 @@ const passTest = async (
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: TestStatus.notPassed };
       await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
-      await addUserNotification(
-        managerId,
-        NotificationStatuses.new,
-        NotificationTitles.employeePassTestFailed,
-        NotificationDescription.employeePassTestFailed,
-      );
+
       next();
     } else {
       const assessmentRequired = await getAssessmentProvider(courseId);
@@ -85,12 +73,7 @@ const passTest = async (
         CLIENT_COURSE_FIELDS.status,
         assessmentRequired ? CourseStatus.assessment : CourseStatus.completed,
       );
-      await addUserNotification(
-        managerId,
-        NotificationStatuses.new,
-        NotificationTitles.employeePassTestSuccessfully,
-        NotificationDescription.employeePassTestSuccessfully,
-      );
+
       next();
     }
   } catch (err) {

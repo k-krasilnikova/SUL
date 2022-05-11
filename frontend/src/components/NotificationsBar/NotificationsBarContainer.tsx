@@ -1,7 +1,7 @@
 import { useState, FC } from 'react';
 
-import { useReadNotifications } from 'api/userInfo';
 import { NOTIFICATION_STATUSES } from 'constants/statuses';
+import useReadNotifications from 'api/userInfo/useReadNotifications';
 
 import { INotificationsBarContainerProps } from './types';
 import NotificationsBar from './NotificationsBar';
@@ -23,14 +23,14 @@ const NotificationsBarContainer: FC<INotificationsBarContainerProps> = ({
     if (isMobileMenuOpen) {
       toggleMobileMenu();
     }
-    if (newNotification) {
-      readNotificationsMutation({});
-    }
-    setNotificationsOpen(true);
+    setNotificationsOpen(!isNotificationsOpen);
   };
 
   const handleNotificationsClose = () => {
     setNotificationsOpen(false);
+    if (newNotification) {
+      readNotificationsMutation({});
+    }
   };
 
   return (
