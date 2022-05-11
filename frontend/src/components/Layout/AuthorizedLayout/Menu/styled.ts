@@ -1,7 +1,7 @@
 import { styled, ListItemIcon } from '@mui/material';
 import { makeStyles, Theme } from '@material-ui/core';
 
-import { rightArrow } from 'icons/menuIcons';
+import { leftArrow } from 'icons/menuIcons';
 import { IStyledProps } from 'components/Layout/types';
 import theme from 'themeSettings';
 
@@ -27,7 +27,7 @@ export const SqueezeButton = styled('div')({
   },
 });
 
-export const StyledArrow = styled(rightArrow)<IStyledProps>(({ isSqueeze }) => ({
+export const StyledArrow = styled(leftArrow)<IStyledProps>(({ isSqueeze }) => ({
   display: 'block',
   transform: 'rotate(0deg)',
   ...(isSqueeze && {
@@ -46,12 +46,12 @@ export const MenuTabsWrapper = styled('div')<IStyledProps>(({ isMobileVersion })
 export const ItemText = styled('p')<IStyledProps>(({ isSqueeze, isMobileVersion }) => ({
   width: '100%',
   margin: 0,
+  marginLeft: '14px',
   fontSize: '18px',
   overflow: 'hidden',
-  ...(isSqueeze && { width: 0 }),
+  ...(isSqueeze && { width: 0, marginLeft: 0 }),
   ...(isMobileVersion && {
-    maxWidth: '106px',
-    padding: '0px 6px 0px 2px',
+    marginLeft: '10px',
     textOverflow: 'ellipsis',
   }),
   [theme.breakpoints.down('md')]: {
@@ -61,8 +61,8 @@ export const ItemText = styled('p')<IStyledProps>(({ isSqueeze, isMobileVersion 
 
 export const StyledListItemIcon = styled(ListItemIcon)<IStyledProps>(({ isMobileVersion }) => ({
   ...(isMobileVersion
-    ? { minWidth: '40px', '& svg': { width: '25px', height: '25px' } }
-    : { '& svg': { width: '35px', height: '35px' } }),
+    ? { minWidth: '25px', '& svg': { width: '25px', height: '25px' } }
+    : { minWidth: '35px', '& svg': { width: '35px', height: '35px' } }),
 }));
 
 export const useListStyles = makeStyles<Theme, IStyledProps>({
@@ -71,7 +71,7 @@ export const useListStyles = makeStyles<Theme, IStyledProps>({
     alignItems: 'center',
     ...(isMobileVersion
       ? { minHeight: '50px', padding: '0px 18px 0px 12px' }
-      : { minHeight: '56px', padding: '8px 26px 8px 20px' }),
+      : { minHeight: '56px', padding: '8px 35px 8px 25px' }),
     '& p': {
       fontWeight: 400,
     },
