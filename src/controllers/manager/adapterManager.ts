@@ -18,6 +18,7 @@ const adapterManager = async (
     res.locals.withAssessment = withAssessment;
     res.locals.clientCourseId = courseId;
     res.locals.managerId = managerId;
+    res.locals.userId = managerId;
     res.locals.results = {};
     next();
   } catch (error) {
