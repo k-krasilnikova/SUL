@@ -7,14 +7,20 @@ import { apiClientWrapper, queryClient } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { logOutHandler } from 'utils/helpers/logOutHandler';
-import { removeMenuStatus } from 'utils/helpers/menuHelpers/removeMenuStatus';
 
 const useLogOut = (): UseMutationResult => {
   const { enqueueSnackbar } = useSnackbar();
+  const navigateTo = useNavigate();
+
+  const handleSubmitSuccess = () => {
+    logOutHandler();
+    queryClient.clear();
+    navigateTo(PATHS.signIn);
+  };
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
-  const navigateTo = useNavigate();
+
   return useMutation(
     async () => {
       const apiClient = apiClientWrapper();
@@ -22,12 +28,7 @@ const useLogOut = (): UseMutationResult => {
       return logOutResponse;
     },
     {
-      onSuccess: () => {
-        logOutHandler();
-        removeMenuStatus();
-        queryClient.clear();
-        navigateTo(PATHS.signIn);
-      },
+      onSuccess: handleSubmitSuccess,
       onError: handleSubmitError,
     },
   );
