@@ -1460,4 +1460,5 @@ module.exports = {
     await db.dropCollection('stackMembers');
     await db.dropCollection('accessTokenBlacklist');
   },
+  COURSES: MOCKED_COURSES,
 };
