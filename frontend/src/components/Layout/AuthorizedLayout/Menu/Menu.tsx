@@ -1,8 +1,9 @@
 import { FC } from 'react';
 
-import Badge from 'components/Badge';
 import CustomNavLink from 'components/CustomNavLink';
 import { IMenuProps } from 'components/Layout/types';
+
+import Badge from './Badge';
 
 import {
   MenuTabs,
@@ -13,7 +14,13 @@ import {
   StyledArrow,
 } from './styled';
 
-const Menu: FC<IMenuProps> = ({ menuItemsList, classes, isSqueeze, toggleSqueeze }) => {
+const Menu: FC<IMenuProps> = ({
+  menuItemsList,
+  classes,
+  isMobileVersion,
+  isSqueeze,
+  toggleSqueeze,
+}) => {
   const {
     active: activeClassName,
     inactive: inactiveClassName,
@@ -21,11 +28,13 @@ const Menu: FC<IMenuProps> = ({ menuItemsList, classes, isSqueeze, toggleSqueeze
   } = classes;
 
   return (
-    <MenuTabs>
-      <SqueezeButton onClick={toggleSqueeze}>
-        <StyledArrow isSqueeze={isSqueeze} />
-      </SqueezeButton>
-      <MenuTabsWrapper>
+    <MenuTabs isMobileVersion={isMobileVersion}>
+      {!isMobileVersion && (
+        <SqueezeButton onClick={toggleSqueeze}>
+          <StyledArrow isSqueeze={isSqueeze} />
+        </SqueezeButton>
+      )}
+      <MenuTabsWrapper isMobileVersion={isMobileVersion}>
         {menuItemsList.map(({ icon, title, path, badgeType, withBadge }) => (
           <CustomNavLink
             key={title}
@@ -34,8 +43,10 @@ const Menu: FC<IMenuProps> = ({ menuItemsList, classes, isSqueeze, toggleSqueeze
             inactiveClassName={inactiveClassName}
             defaultClassName={defaultClassName}
           >
-            <StyledListItemIcon>{icon}</StyledListItemIcon>
-            <ItemText isSqueeze={isSqueeze}>{title}</ItemText>
+            <StyledListItemIcon isMobileVersion={isMobileVersion}>{icon}</StyledListItemIcon>
+            <ItemText isSqueeze={isSqueeze} isMobileVersion={isMobileVersion}>
+              {title}
+            </ItemText>
             {withBadge && <Badge type={badgeType} />}
           </CustomNavLink>
         ))}

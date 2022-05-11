@@ -6,7 +6,7 @@ import Notifications from 'components/NotificationsBar';
 import { logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
 import { Size } from 'enums/sizes';
-import { IHeaderProps } from 'components/Layout/types';
+import { THeaderProps } from 'components/Layout/types';
 
 import {
   LayoutHeader,
@@ -20,11 +20,11 @@ import {
 } from './styled';
 import SearchCourses from './SearchCourses';
 
-const Header: FC<IHeaderProps> = ({
+const Header: FC<THeaderProps> = ({
   userInfo,
   notifications,
   isMobileMenuOpen,
-  handleConfirmOpen,
+  handleConfirmLogOutOpen,
   toggleMobileMenu,
 }) => {
   const { avatar, firstName, lastName } = userInfo || {};
@@ -45,7 +45,7 @@ const Header: FC<IHeaderProps> = ({
           <Avatar avatar={avatar} size={Size.small} />
           <UserName>{`${firstName} ${lastName}`}</UserName>
         </UserBlock>
-        <LogOut onClick={handleConfirmOpen}>
+        <LogOut onClick={handleConfirmLogOutOpen}>
           <img alt="logOut" src={logOutIcon} />
         </LogOut>
         <MobileMenuIcon openMenu={isMobileMenuOpen} onClick={toggleMobileMenu}>

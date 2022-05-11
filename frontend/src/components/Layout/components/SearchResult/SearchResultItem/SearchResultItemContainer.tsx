@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import transformRoute from 'utils/helpers/paths/transformRoute';
 import { PATHS } from 'constants/routes';
+import { IClientCourseIds, ISearchResultItemContainer } from 'components/Layout/components/types';
+import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import SearchResultItem from './SearchResultItem';
-import { IClientCourseIds, ISearchResultItemContainer } from '../../types';
 
 const SearchResultItemContainer: React.FC<ISearchResultItemContainer> = ({
   course,

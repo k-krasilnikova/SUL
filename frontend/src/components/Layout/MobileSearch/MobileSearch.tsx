@@ -2,8 +2,8 @@ import React from 'react';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { ClickAwayListener, InputAdornment } from '@mui/material';
 
+import { SearchResult } from 'components/Layout/components';
 import { ICourse } from 'types/course';
-import SearchResult from 'components/Layout/AuthorizedLayout/Header/SearchCourses/SearchResult';
 
 import { Search } from './styled';
 

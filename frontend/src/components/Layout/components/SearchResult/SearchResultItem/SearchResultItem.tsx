@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import CourseInfo from 'components/Course/CourseInfo';
 import { LABEL_MESSAGE } from 'constants/messages';
+import CourseInfo from 'components/Course/CourseInfo';
 import Label from 'components/Label';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { Info } from 'enums/info';
+import { ISearchResultItem } from 'components/Layout/components/types';
 
 import { Image, CourseTitle, SearchResultCourse, RedirectButton } from './styled';
-import { ISearchResultItem } from '../../types';
 
 const SearchResultItem: React.FC<ISearchResultItem> = ({
   course,
