@@ -1,3 +1,5 @@
+import { ISchedulerTimeOptions } from 'interfaces/common/scheduler';
+
 export const createSchedulePattern = ({
   second,
   minute,
@@ -5,14 +7,7 @@ export const createSchedulePattern = ({
   dayOfMonth,
   month,
   dayOfWeek,
-}: {
-  second?: string;
-  minute?: string;
-  hour?: string;
-  dayOfMonth?: string;
-  month?: string;
-  dayOfWeek?: string;
-}): string =>
+}: ISchedulerTimeOptions): string =>
   `${second || '*'} ${minute || '*'} ${hour || '*'} ${dayOfMonth || '*'} ${month || '*'} ${
     dayOfWeek || '*'
   }`;
