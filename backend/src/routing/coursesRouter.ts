@@ -15,6 +15,7 @@ import editCourse from 'controllers/admin/editCourse';
 import getCoursesMap from 'controllers/courses/getCoursesMap';
 import addCourse from 'controllers/admin/addCourse';
 import preparingCourseData from 'controllers/admin/preparingCourseData';
+import addNotification from 'controllers/notifications/addNotification';
 
 const coursesRouter = Router();
 coursesRouter.get(
@@ -39,6 +40,7 @@ coursesRouter.post(
   adapterUser,
   applyCourse,
   updatePendingCourse,
+  addNotification,
   adapterSender,
 );
 coursesRouter.get(

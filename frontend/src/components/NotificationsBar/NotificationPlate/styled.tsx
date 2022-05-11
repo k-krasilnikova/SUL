@@ -11,15 +11,16 @@ export const NotificationContainer = styled('div')<NotificationStyleType>(({ isO
   borderRadius: '6px',
   backgroundColor: 'rgba(118, 118, 128, 0.12);',
   display: 'flex',
+  alignItems: 'center',
   ...(isOld && {
     color: '#727272',
   }),
 }));
 
 export const ImageWrapper = styled('p')({
-  margin: '0 10px 0 0',
   display: 'flex',
-  justifyContent: 'center',
+  height: '40px',
+  margin: '0 10px 0 0',
   padding: '5px',
 });
 

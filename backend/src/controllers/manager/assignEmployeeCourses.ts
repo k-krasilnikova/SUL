@@ -8,18 +8,12 @@ import {
 } from 'db/providers/clientCourseProvider';
 import { materialsCounterProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
-import { addUserNotification } from 'db/providers/notificationProvider';
 import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
 import {
   isCoursesToAssignHaveDuplicates,
   removeCoursesToAssignDuplicates,
 } from 'utils/normaliser/queryCourses';
-import {
-  NotificationDescription,
-  NotificationStatuses,
-  NotificationTitles,
-} from 'enums/notificationEnums';
 
 const assignEmployeeCourses = async (
   req: Request<{ id: string }, never, ICourseToAssign[]>,
@@ -62,6 +56,7 @@ const assignEmployeeCourses = async (
             progressDto,
             courseToAssign.assessment,
           );
+
           return assignedCourse;
         } catch {
           return undefined;
@@ -70,13 +65,6 @@ const assignEmployeeCourses = async (
     );
 
     const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
-
-    await addUserNotification(
-      employee._id,
-      NotificationStatuses.new,
-      NotificationTitles.assigned,
-      NotificationDescription.assigned,
-    );
 
     res.locals.results = `${assignedCoursesAmount}/${assignedCourses.length} courses successfully assigned.`;
 

@@ -41,6 +41,7 @@ const NOTHING = 0;
 const INITIAL_INDX = 0;
 const NO_FILTER = {};
 const DEFAULT_ORDER_FIELD = '_id';
+const NOTIFICATIONS_COUNT = 10;
 
 const ASSESSMENT_RESULTS = {
   approved: 'approved',
@@ -117,4 +118,5 @@ export {
   PERCENTS,
   CLIENT_COURSE_FIELDS,
   COURSE_FIELDS,
+  NOTIFICATIONS_COUNT,
 };

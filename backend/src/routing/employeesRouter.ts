@@ -11,6 +11,7 @@ import getEmployeeInfo from 'controllers/manager/getEmployeeInfo';
 import { SubRoutes } from 'enums/routesEnum';
 import assignEmployeeCourses from 'controllers/manager/assignEmployeeCourses';
 import getEmployeeAvailableCourses from 'controllers/manager/getEmployeeAvailableCourses';
+import addNotification from 'controllers/notifications/addNotification';
 
 const employeesRouter = Router();
 
@@ -20,6 +21,7 @@ employeesRouter.post(
   adapterManager,
   applyCourse,
   updatePendingCourse,
+  addNotification,
   adapterSender,
 );
 employeesRouter.post(
