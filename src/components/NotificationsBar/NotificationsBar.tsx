@@ -5,7 +5,6 @@ import { NO_NOTIFICATIONS } from 'constants/messages';
 import { alertIcon } from 'icons';
 
 import { INotificationsProps } from './types';
-
 import { NotificationsButton, Notifications, TextWrapper, RedMark } from './styled';
 import NotificationPlate from './NotificationPlate';
 

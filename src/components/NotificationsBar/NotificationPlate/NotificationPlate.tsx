@@ -1,14 +1,10 @@
 import { FC } from 'react';
 
 import { NOTIFICATION_STATUSES, NOTIFICATION_TYPES } from 'constants/statuses';
-import { INotification } from 'types/Notification';
 import { warningIcon, redWarningIcon } from 'icons';
 
 import { NotificationContainer, ImageWrapper, Title, Description } from './styled';
-
-interface NotificationProps {
-  note: INotification;
-}
+import { NotificationProps } from '../types';
 
 const NotificationPlate: FC<NotificationProps> = ({ note }) => {
   const isOldNotification = note.status === NOTIFICATION_STATUSES.old;

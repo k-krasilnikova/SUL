@@ -13,3 +13,7 @@ export interface INotificationsBarContainerProps {
   toggleMobileMenu: () => void;
   notifications?: INotification[];
 }
+
+export interface NotificationProps {
+  note: INotification;
+}
