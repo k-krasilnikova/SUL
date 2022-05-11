@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
+
 export interface ITab {
   key: string;
-  node: React.ReactNode;
+  node: ReactNode;
 }
 
 export interface IEditorTabsProps {
