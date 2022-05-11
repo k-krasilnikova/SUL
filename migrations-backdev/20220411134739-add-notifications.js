@@ -8,11 +8,15 @@ const NOTIFICATIONS = [
     title: 'Declined',
     description: 'Request for course was declined',
     status: 'new',
+    courseName: 'JS',
+    type: 'user',
   },
   {
     title: 'Approved',
     description: 'Request for course was approved',
     status: 'old',
+    courseName: 'Java',
+    type: 'user',
   },
 ];
 
@@ -31,7 +35,7 @@ module.exports = {
       }),
     );
   },
-  async down(db, client) {
+  async down(db) {
     return db.dropCollection('notifications');
   },
 };

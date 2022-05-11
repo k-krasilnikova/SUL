@@ -2,7 +2,6 @@ import { Schema, model } from 'mongoose';
 
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { MaterialContentType } from 'enums/materials';
-import { validationTask, validationTitle } from 'utils/validation/courseModel';
 
 const courseSchema = new Schema<ICourse>({
   title: { type: String, required: true },
@@ -31,8 +30,8 @@ const courseSchema = new Schema<ICourse>({
       exercise: {
         type: {
           eN: { type: Number },
-          title: { type: String, required: true, ...validationTitle },
-          task: { type: String, required: true, ...validationTask },
+          title: { type: String, required: true },
+          task: { type: String, required: true },
           code: { type: String, required: false },
         },
         required: false,
