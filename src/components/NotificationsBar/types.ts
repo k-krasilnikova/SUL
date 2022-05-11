@@ -14,6 +14,6 @@ export interface INotificationsBarContainerProps {
   notifications?: INotification[];
 }
 
-export interface NotificationPlateProps {
+export interface INotificationPlateProps {
   note: INotification;
 }
