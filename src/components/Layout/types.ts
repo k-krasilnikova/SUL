@@ -49,8 +49,8 @@ export type TMenuMobileContainerProps = Pick<
   'userInfo' | 'isMobileMenuOpen' | 'toggleMobileMenu' | 'handleConfirmLogOutOpen'
 >;
 
-export interface IMenuMobileProps extends TMenuMobileContainerProps {
-  isMobileWindowSize: boolean;
+export interface IMenuMobileProps extends Omit<TMenuMobileContainerProps, 'isMobileMenuOpen'> {
+  isShowMenu: boolean;
   handleSpaceHolderClick: (event: BaseSyntheticEvent) => void;
 }
 
