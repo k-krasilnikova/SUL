@@ -1,15 +1,11 @@
-import React, { Suspense } from 'react';
-import Grid from '@mui/material/Grid';
+import { FC, Suspense } from 'react';
 import { Helmet } from 'react-helmet';
+import Grid from '@mui/material/Grid';
 
 import Loader from 'components/Loader';
+import { IDefaultLayoutProps } from 'components/Layout/types';
 
-interface Props {
-  pageName: string;
-  children: React.ReactNode;
-}
-
-const DefaultLayout: React.FC<Props> = ({ pageName, children }) => (
+const DefaultLayout: FC<IDefaultLayoutProps> = ({ pageName, children }) => (
   <>
     <Helmet>
       <title>{pageName}</title>

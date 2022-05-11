@@ -1,6 +1,6 @@
 import { styled, Typography } from '@mui/material';
 
-import { HEADER_HEIGHT_IPAD } from 'components/Layout/Header/styled';
+import { HEADER_HEIGHT_IPAD } from 'components/Layout/AuthorizedLayout/Header/styled';
 import theme from 'themeSettings';
 
 export const SearchResultWrapper = styled('div')({

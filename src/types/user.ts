@@ -1,5 +1,5 @@
 import { TGroupedSkills, Technologies } from './skill';
-import { Notification } from './notification';
+import { INotification } from './notification';
 import { IClientCourse } from './clientCourse';
 
 export interface IUser {
@@ -17,10 +17,12 @@ export interface IUser {
   skype?: string;
   position?: string;
   courses?: IClientCourse[];
-  handleLogOut?: () => void;
   technologies?: Technologies;
-  notifications?: Notification[];
+  notifications?: INotification[];
   skills?: TGroupedSkills;
+  pendingRequestsAmount?: number;
+  pendingAssessmentsAmount?: number;
 }
 
-export type TRequestedUser = Pick<IUser, '_id' | 'avatar' | 'firstName' | 'lastName' | 'position'>;
+export type TUserInfo = Pick<IUser, 'avatar' | 'firstName' | 'lastName'>;
+export type TRequestedUser = TUserInfo & Pick<IUser, '_id' | 'position'>;

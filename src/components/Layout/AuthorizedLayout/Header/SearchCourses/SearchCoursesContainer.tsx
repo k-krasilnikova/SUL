@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 
-import { ICourse } from 'types/course';
-import SearchCourses from 'components/Layout/Header/SearchCourses/SearchCourses';
+import useSearchAllCourses from 'api/courses/searchAllCourses';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { SEARCH_DEBOUNCE_TIME } from 'constants/time';
-import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
 import { useDebounce } from 'hooks';
-import useSearchAllCourses from 'api/courses/searchAllCourses';
+import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
+import { ICourse } from 'types/course';
+
+import SearchCourses from './SearchCourses';
 
 const SearchCoursesContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
