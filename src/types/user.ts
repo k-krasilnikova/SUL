@@ -1,5 +1,5 @@
 import { TGroupedSkills, Technologies } from './skill';
-import { Notification } from './notification';
+import { INotification } from './Notification';
 import { IClientCourse } from './clientCourse';
 
 export interface IUser {
@@ -19,7 +19,7 @@ export interface IUser {
   courses?: IClientCourse[];
   handleLogOut?: () => void;
   technologies?: Technologies;
-  notifications?: Notification[];
+  notifications?: INotification[];
   skills?: TGroupedSkills;
 }
 
