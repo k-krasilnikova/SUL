@@ -50,8 +50,8 @@ export const ItemText = styled('p')<IStyledProps>(({ isSqueeze, isMobileVersion 
   overflow: 'hidden',
   ...(isSqueeze && { width: 0 }),
   ...(isMobileVersion && {
-    maxWidth: '104px',
-    padding: '0px 8px 0px 2px',
+    maxWidth: '106px',
+    padding: '0px 6px 0px 2px',
     textOverflow: 'ellipsis',
   }),
   [theme.breakpoints.down('md')]: {
