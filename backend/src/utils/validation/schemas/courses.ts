@@ -1,11 +1,12 @@
 import { isValidObjectId } from 'mongoose';
 import { array, number, NumberSchema, object, string, StringSchema } from 'yup';
-import { uniqWith } from 'lodash';
+import { uniqBy, uniqWith } from 'lodash';
 
 import { UserRank } from 'enums/users';
 import { MaterialContentType } from 'enums/materials';
 import { TIME_1M_SEC } from 'config/constants';
 import { ITest } from 'interfaces/Ientities/Itest';
+import { ICourseTechsFromWeb } from 'interfaces/ICourses/IQueryCourses';
 
 import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
 import fullTrim from '../../string/fullTrim';
@@ -168,12 +169,15 @@ const ExerciseValidator = object(exerciseValidationSchema);
 const materialObjectValidationSchema = {
   stage: number().integer().optional(),
   content: array().of(ContentElementValidator).required().min(MIN_CONTENT_ELEMENTS_AMOUNT),
-  exercise: ExerciseValidator.optional(),
+  exercise: ExerciseValidator.default(undefined),
 };
 
 const MaterialObjectValidator = object(materialObjectValidationSchema).required();
 
 const MaterialsValidator = array().of(MaterialObjectValidator).required().min(MIN_MATERIALS_AMOUNT);
+
+const isTechsArrayUnique = (techs: ICourseTechsFromWeb[]): boolean =>
+  uniqBy(techs, 'skill').length === techs.length;
 
 const technologyObjectValidationSchema = {
   skill: string()
@@ -187,7 +191,8 @@ const TechnologyObjectValidator = object(technologyObjectValidationSchema).requi
 const TechnologiesValidator = array()
   .of(TechnologyObjectValidator)
   .required()
-  .min(MIN_TECHS_PER_COURSE_AMOUNT);
+  .min(MIN_TECHS_PER_COURSE_AMOUNT)
+  .test((techs) => isTechsArrayUnique(convertToTypeUnsafe<ICourseTechsFromWeb[]>(techs)));
 
 export {
   TitleValidator,
