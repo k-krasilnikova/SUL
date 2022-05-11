@@ -8,7 +8,7 @@ import passCourse from 'controllers/clientCourses/passCourse';
 import startCourse from 'controllers/clientCourses/startCourse';
 import getClientCourseById from 'controllers/clientCourses/getClientCourse';
 import getTest from 'controllers/tests/getTest';
-import getAchievments from 'controllers/tests/getAchievments';
+import getAchievements from 'controllers/tests/getAchievements';
 import startTest from 'controllers/tests/startTest';
 import passTest from 'controllers/tests/passTest';
 import unitTestResults from 'controllers/tests/sendTestResults';
@@ -17,6 +17,8 @@ import getTestTime from 'controllers/tests/getTestTime';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
 import getTestResult from 'controllers/tests/getTestResult';
 import getPendingAssessments from 'controllers/manager/getPendingAssessments';
+import addNotification from 'controllers/notifications/addNotification';
+import adapterClientCourse from 'controllers/clientCourses/adapterClientCourse';
 
 const clientCoursesRouter = Router();
 
@@ -28,8 +30,10 @@ clientCoursesRouter.get(
 clientCoursesRouter.put(
   SubRoutes.passTest,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
+  adapterClientCourse,
   passTest,
-  getAchievments,
+  getAchievements,
+  addNotification,
   unitTestResults,
 );
 clientCoursesRouter.get(
@@ -78,7 +82,7 @@ clientCoursesRouter.put(
   SubRoutes.manageCourseAssessment,
   withAuth([USER_ROLES.MANAGER]),
   manageAssessment,
-  getAchievments,
+  getAchievements,
   adapterSender,
 );
 

@@ -13,14 +13,12 @@ const adapterManager = async (
 ) => {
   try {
     const { id: managerId } = res.locals;
-    const { id: employeeId } = req.params;
     const { id: courseId } = req.body;
     const { assessment: withAssessment } = req.body;
     res.locals.withAssessment = withAssessment;
-    res.locals.courseId = courseId;
     res.locals.clientCourseId = courseId;
-    res.locals.userId = employeeId;
     res.locals.managerId = managerId;
+    res.locals.userId = managerId;
     res.locals.results = {};
     next();
   } catch (error) {

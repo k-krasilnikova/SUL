@@ -7,16 +7,23 @@ enum NotificationTitles {
   approved = 'Approved',
   declined = 'Declined',
   assigned = 'Assigned',
-  employeePassTestSuccessfully = 'Employee pass test successfully',
-  employeePassTestFailed = 'Employee failed the test',
+  employeePassTestSuccessfully = 'Successfully',
+  employeePassTestFailed = 'Failed',
+  applied = 'Apply',
 }
 
 enum NotificationDescription {
-  approved = 'Request for course was approved.',
-  declined = 'Request for course was declined.',
-  assigned = 'Manager assigned new course for you.',
-  employeePassTestSuccessfully = 'The employee passed the test successfully.',
-  employeePassTestFailed = 'The employee failed the test.',
+  approved = 'Request for course was approved',
+  declined = 'Request for course was declined',
+  assigned = 'Manager assigned new course',
+  employeePassTestSuccessfully = 'The employee successfully passed the test',
+  employeePassTestFailed = 'The employee failed the test',
+  applied = 'The employee apply the course',
 }
 
-export { NotificationStatuses, NotificationTitles, NotificationDescription };
+enum NotificationType {
+  manager = 'manager',
+  employee = 'employee',
+}
+
+export { NotificationStatuses, NotificationTitles, NotificationDescription, NotificationType };
