@@ -10,7 +10,7 @@ const MobileMenuContainer: FC<TMenuMobileContainerProps> = ({ isMobileMenuOpen, 
   const windowSize = useGetWindowSizeLabel();
 
   const isMobileWindowSize = [WINDOW_SIZE.sm.name, WINDOW_SIZE.xs.name].includes(windowSize);
-  const isShowMenu = isMobileWindowSize && isMobileWindowSize;
+  const isShowMenu = isMobileMenuOpen && isMobileWindowSize;
 
   const handleSpaceHolderClick = (event: BaseSyntheticEvent) => {
     event.stopPropagation();
