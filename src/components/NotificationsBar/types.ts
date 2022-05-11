@@ -1,4 +1,4 @@
-import { Notification } from 'types/notification';
+import { INotification } from 'types/notification';
 
 export interface INotificationsProps {
   isNotificationsOpen: boolean;
@@ -11,5 +11,9 @@ export interface INotificationsProps {
 export interface INotificationsBarContainerProps {
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
-  notifications?: Notification[];
+  notifications?: INotification[];
+}
+
+export interface INotificationPlateProps {
+  note: INotification;
 }
