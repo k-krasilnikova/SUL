@@ -4,7 +4,7 @@ import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import { addUserSkill, getUserSkills, populateUserSkills } from 'db/providers/skillProvider';
 import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
-import { TAAchievements } from 'interfaces/Ientities/Itest';
+import { TAchievements } from 'interfaces/Ientities/Itest';
 import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
@@ -14,7 +14,7 @@ import { convertTechnologiesToUserSkills } from 'utils/typeConversion/skills/ski
 
 const getAchievements = async (
   req: Request,
-  res: Response<void, { id: string; achievements: TAAchievements }>,
+  res: Response<void, { id: string; achievements: TAchievements }>,
   next: NextFunction,
 ) => {
   try {

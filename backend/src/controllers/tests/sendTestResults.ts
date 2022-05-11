@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { TAAchievements, TestRuslt } from 'interfaces/Ientities/Itest';
+import { TAchievements, TestRuslt } from 'interfaces/Ientities/Itest';
 import { TNotification } from 'interfaces/IResponse/IResponse';
 
 const unitTestResults = async (
@@ -8,14 +8,14 @@ const unitTestResults = async (
   res: Response<
     {
       result: TestRuslt;
-      newSkills: TAAchievements['newSkills'];
-      updatedSkills: TAAchievements['updatedSkills'];
-      techsToAchieve: TAAchievements['techsToAchieve'];
+      newSkills: TAchievements['newSkills'];
+      updatedSkills: TAchievements['updatedSkills'];
+      techsToAchieve: TAchievements['techsToAchieve'];
     },
     {
       id: string;
       result: TestRuslt;
-      achievements: TAAchievements;
+      achievements: TAchievements;
     } & TNotification
   >,
   next: NextFunction,

@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { addUserNotification } from 'db/providers/notificationProvider';
 import { getCourseProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
-import { fullNameCreator } from 'utils/fullNameCreator';
+import { combineFullName } from 'utils/combineFullName';
 import { NotificationStatuses, NotificationType } from 'enums/notificationEnums';
 import { USER_ROLES } from 'config/constants';
 import {
@@ -44,7 +44,7 @@ const addNotification = async (
 
       const targetForNotification = user.managerId ? user.managerId : clientCourse?.user;
 
-      const userFullName = fullNameCreator(user.firstName, user.lastName);
+      const userFullName = combineFullName(user.firstName, user.lastName);
       const notificationType =
         user.role === USER_ROLES.EMPLOYEE ? NotificationType.manager : NotificationType.employee;
 

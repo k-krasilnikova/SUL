@@ -56,6 +56,6 @@ export const RedMark = styled('div')({
   borderRadius: '50%',
   backgroundColor: '#D43E41',
   position: 'absolute',
-  top: '0px',
-  right: '0px',
+  top: 0,
+  right: 0,
 });
