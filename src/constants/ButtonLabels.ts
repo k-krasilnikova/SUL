@@ -29,4 +29,6 @@ export enum ButtonLabels {
   reject = 'Reject',
   approve = 'Approve',
   decline = 'Decline',
+  removeSkill = 'Remove skill',
+  addMoreSkills = 'Add more skills',
 }

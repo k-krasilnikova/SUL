@@ -3,20 +3,19 @@ import React from 'react';
 import EditorTabs from 'components/EditorTabs';
 import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
-import { ICourse } from 'types/course';
 
 import DefinitionStep from './DefinitionStep';
 import SkillsStep from './SkillsStep';
 import LessonsStep from './LessonsStep';
 import TestStep from './TestStep';
+import { ICourseEditorProps } from './types';
 
-interface IProps {
-  basePath: string;
-  courseData?: ICourse;
-  isCourseDataLoading?: boolean;
-}
-
-const CourseEditor: React.FC<IProps> = ({ basePath, courseData, isCourseDataLoading }) => {
+const CourseEditor: React.FC<ICourseEditorProps> = ({
+  formik,
+  basePath,
+  courseData,
+  isCourseDataLoading,
+}) => {
   //   const definitionForm = useRef();
   //   const skillsForm = useRef();
   //   const lessonsForm = useRef();
@@ -29,17 +28,17 @@ const CourseEditor: React.FC<IProps> = ({ basePath, courseData, isCourseDataLoad
       ) : (
         <EditorTabs
           basePath={basePath}
-          defaultActiveTab="definition-setup"
+          defaultActiveTab="skills-setup"
           tabs={[
             {
               key: 'definition-setup',
               //   formRef: definitionForm,
-              node: <DefinitionStep courseData={courseData} />,
+              node: <DefinitionStep courseData={courseData} formik={formik} />,
             },
             {
               key: 'skills-setup',
               //   formRef: skillsForm,
-              node: <SkillsStep />,
+              node: <SkillsStep courseData={courseData} formik={formik} />,
             },
             {
               key: 'lessons-setup',
