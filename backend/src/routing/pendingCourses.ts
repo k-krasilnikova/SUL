@@ -8,6 +8,7 @@ import approvePendingCourse from 'controllers/pendingCourses/approvePendingCours
 import declinePendingCourse from 'controllers/pendingCourses/declinePendingCourse';
 import adapterManager from 'controllers/manager/adapterManager';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
+import addNotification from 'controllers/notifications/addNotification';
 // import sendMail from 'middlewares/mailSender';
 
 const pendingCoursesRouter = Router();
@@ -22,6 +23,7 @@ pendingCoursesRouter.put(
   withAuth([USER_ROLES.MANAGER]),
   adapterManager,
   approvePendingCourse,
+  addNotification,
   // sendMail,
   adapterSender,
 );
