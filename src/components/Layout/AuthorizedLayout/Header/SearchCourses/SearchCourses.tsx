@@ -1,10 +1,10 @@
 import React from 'react';
 import { ClickAwayListener } from '@mui/material';
 
+import { SearchResult } from 'components/Layout/components';
 import { ICourse } from 'types/course';
 
 import { Search, RelativeWrapper } from './styled';
-import SearchResult from './SearchResult';
 
 interface Props {
   isSearchOpen: boolean;

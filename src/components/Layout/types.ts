@@ -1,3 +1,5 @@
+import { BaseSyntheticEvent } from 'react';
+
 import { TUserInfo } from 'types/user';
 import { INotification } from 'types/notification';
 import { IMenuItemProps } from 'types/menu';
@@ -6,28 +8,26 @@ interface ILayoutProps {
   pageName: string;
 }
 
-export interface IDefaultLayoutProps extends ILayoutProps {}
+export type TDefaultLayoutProps = ILayoutProps;
 
-export interface IAuthorizedLayoutContainerProps extends ILayoutProps {}
+export type TAuthorizedLayoutContainerProps = ILayoutProps;
 
-export interface IAuthorizedLayoutProps extends IAuthorizedLayoutContainerProps {
+export interface IAuthorizedLayoutProps extends TAuthorizedLayoutContainerProps {
   isMobileMenuOpen: boolean;
   isSqueeze: boolean;
+  handleConfirmLogOutOpen: () => void;
   toggleMobileMenu: () => void;
   toggleSqueeze: () => void;
   userInfo?: TUserInfo;
   notifications?: INotification[];
 }
 
-export interface IHeaderContainerProps
-  extends Omit<IAuthorizedLayoutProps, 'isSqueeze' | 'toggleSqueeze' | 'pageName'> {}
-
-export interface IHeaderProps extends IHeaderContainerProps {
-  handleConfirmOpen: () => void;
-}
+export type THeaderProps = Omit<IAuthorizedLayoutProps, 'isSqueeze' | 'toggleSqueeze' | 'pageName'>;
 
 export interface IMenuContainerProps
-  extends Pick<IAuthorizedLayoutProps, 'isSqueeze' | 'toggleSqueeze'> {}
+  extends Partial<Pick<IAuthorizedLayoutProps, 'isSqueeze' | 'toggleSqueeze'>> {
+  isMobileVersion?: boolean;
+}
 
 enum MenuNavLinkClassNames {
   active = 'active',
@@ -35,11 +35,26 @@ enum MenuNavLinkClassNames {
   default = 'default',
 }
 
-type TMenuNavLinkClasses = {
+export type TMenuNavLinkClasses = {
   [key in MenuNavLinkClassNames]: string;
 };
 
 export interface IMenuProps extends IMenuContainerProps {
   menuItemsList: IMenuItemProps[];
   classes: TMenuNavLinkClasses;
+}
+
+export type TMenuMobileContainerProps = Pick<
+  IAuthorizedLayoutProps,
+  'userInfo' | 'isMobileMenuOpen' | 'toggleMobileMenu' | 'handleConfirmLogOutOpen'
+>;
+
+export interface IMenuMobileProps extends TMenuMobileContainerProps {
+  isMobileWindowSize: boolean;
+  handleSpaceHolderClick: (event: BaseSyntheticEvent) => void;
+}
+
+export interface IStyledProps {
+  isMobileVersion?: boolean;
+  isSqueeze?: boolean;
 }

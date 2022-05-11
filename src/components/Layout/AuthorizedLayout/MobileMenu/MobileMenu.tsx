@@ -1,18 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ListItemIcon, ListItemText, Slide } from '@mui/material';
+import { FC } from 'react';
+
+import { Slide } from '@mui/material';
 
 import Avatar from 'components/Avatar';
-import { Size } from 'enums/sizes';
-import { PATHS } from 'constants/routes';
 import { logOutIcon } from 'icons/mobileMenuIcons';
-import { IMenuProps } from 'types/menu';
+import { PATHS } from 'constants/routes';
+import { Size } from 'enums/sizes';
+import { IMenuMobileProps } from 'components/Layout/types';
+
+import Menu from '../Menu';
 
 import {
   MobileMenuSlide,
-  MenuTabs,
-  MenuTabsWrapper,
-  TabWrapper,
   MobileMenuBackdrop,
   MobileUserBlock,
   UserProfile,
@@ -23,90 +22,46 @@ import {
   LogOut,
 } from './styled';
 
-interface MobileMenuProps extends IMenuProps {
-  isMobileMenuOpen: boolean;
-  toggleMobileMenu: () => void;
-  handleConfirm: () => void;
-  preventMenuClose: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  firstName?: string;
-  lastName?: string;
-  avatar?: string;
-}
-
-const MobileMenu: React.FC<MobileMenuProps> = ({
-  menuList,
-  classes,
-  pathname,
+const MobileMenu: FC<IMenuMobileProps> = ({
+  userInfo,
   isMobileMenuOpen,
+  isMobileWindowSize,
+  handleConfirmLogOutOpen,
+  handleSpaceHolderClick,
   toggleMobileMenu,
-  firstName,
-  lastName,
-  avatar,
-  handleConfirm,
-  preventMenuClose,
-}) => (
-  <MobileMenuBackdrop open={isMobileMenuOpen} onClick={toggleMobileMenu}>
-    <Slide direction="left" in={isMobileMenuOpen} appear={false} mountOnEnter unmountOnExit>
-      <MobileMenuSlide>
-        <MenuTabs>
-          <MenuTabsWrapper>
-            {menuList.map((item) =>
-              pathname?.includes(item.path) ? (
-                <TabWrapper
-                  id={item.path}
-                  key={item.title}
-                  component={Link}
-                  classes={{ root: classes.selected }}
-                  to={item.path}
-                >
-                  <ListItemIcon classes={{ root: classes.selectedLogo }}>{item.icon}</ListItemIcon>
-                  <ListItemText
-                    primary={item.title}
-                    primaryTypographyProps={{ variant: 'h6' }}
-                    classes={{ root: classes.selectedText }}
-                  />
-                </TabWrapper>
-              ) : (
-                <TabWrapper
-                  id={item.path}
-                  key={item.title}
-                  component={Link}
-                  classes={{ root: classes.default }}
-                  to={item.path}
-                >
-                  <ListItemIcon classes={{ root: classes.default }}>{item.icon}</ListItemIcon>
-                  <ListItemText
-                    primary={item.title}
-                    primaryTypographyProps={{ variant: 'h6' }}
-                    classes={{ root: classes.default }}
-                  />
-                </TabWrapper>
-              ),
-            )}
-          </MenuTabsWrapper>
-        </MenuTabs>
-        <SpaceHolder
-          onClick={(event) => {
-            preventMenuClose(event);
-          }}
-        />
-        <MobileUserBlock>
-          <UserProfile to={PATHS.profile}>
-            <AvatarWrapper>
-              <Avatar size={Size.xsmall} avatar={avatar} />
-            </AvatarWrapper>
-            <UserNameWrapper>
-              <UserName>{firstName}</UserName>
-              <UserName>{lastName}</UserName>
-            </UserNameWrapper>
-          </UserProfile>
-          <LogOut onClick={handleConfirm}>
-            <img alt="log_out" src={logOutIcon} />
-          </LogOut>
-        </MobileUserBlock>
-      </MobileMenuSlide>
-    </Slide>
-  </MobileMenuBackdrop>
-);
+}) => {
+  const { avatar, firstName, lastName } = userInfo || {};
+
+  return (
+    <MobileMenuBackdrop open={isMobileMenuOpen && isMobileWindowSize} onClick={toggleMobileMenu}>
+      <Slide
+        direction="left"
+        in={isMobileMenuOpen && isMobileWindowSize}
+        appear={false}
+        mountOnEnter
+        unmountOnExit
+      >
+        <MobileMenuSlide>
+          <Menu isMobileVersion />
+          <SpaceHolder onClick={handleSpaceHolderClick} />
+          <MobileUserBlock>
+            <UserProfile to={PATHS.profile}>
+              <AvatarWrapper>
+                <Avatar size={Size.xsmall} avatar={avatar} />
+              </AvatarWrapper>
+              <UserNameWrapper>
+                <UserName>{firstName}</UserName>
+                <UserName>{lastName}</UserName>
+              </UserNameWrapper>
+            </UserProfile>
+            <LogOut onClick={handleConfirmLogOutOpen}>
+              <img alt="log_out" src={logOutIcon} />
+            </LogOut>
+          </MobileUserBlock>
+        </MobileMenuSlide>
+      </Slide>
+    </MobileMenuBackdrop>
+  );
+};
 
 export default MobileMenu;

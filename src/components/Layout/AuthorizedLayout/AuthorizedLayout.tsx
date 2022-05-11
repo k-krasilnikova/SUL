@@ -17,6 +17,7 @@ const AuthorizedLayout: FC<IAuthorizedLayoutProps> = ({
   notifications,
   isSqueeze,
   isMobileMenuOpen,
+  handleConfirmLogOutOpen,
   toggleMobileMenu,
   toggleSqueeze,
 }) => (
@@ -30,6 +31,7 @@ const AuthorizedLayout: FC<IAuthorizedLayoutProps> = ({
           userInfo={userInfo}
           notifications={notifications}
           isMobileMenuOpen={isMobileMenuOpen}
+          handleConfirmLogOutOpen={handleConfirmLogOutOpen}
           toggleMobileMenu={toggleMobileMenu}
         />
       </GridHeader>
@@ -42,6 +44,7 @@ const AuthorizedLayout: FC<IAuthorizedLayoutProps> = ({
           <MobileMenu
             userInfo={userInfo}
             isMobileMenuOpen={isMobileMenuOpen}
+            handleConfirmLogOutOpen={handleConfirmLogOutOpen}
             toggleMobileMenu={toggleMobileMenu}
           />
         </PageWrapper>

@@ -1,30 +1,25 @@
-import { ReactFragment } from 'react';
 import { Link } from 'react-router-dom';
-import { styled, ListItemButton, Backdrop } from '@mui/material';
-import { makeStyles } from '@material-ui/core';
+import { styled, Backdrop } from '@mui/material';
 
 import theme from 'themeSettings';
 
 import { HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from '../Header/styled';
 
-interface TabWrapperTypes {
-  component?: ReactFragment;
-  to?: string;
-}
+const MOBILE_MENU_WIDTH = '190px';
 
 export const MobileMenuSlide = styled('div')({
-  width: '176px',
-  height: '100%',
-  backgroundColor: theme.palette.secondary.main,
-  padding: '8px 16px 40px 8px',
   position: 'absolute',
+  top: HEADER_HEIGHT_IPAD,
   right: 0,
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start',
-  top: HEADER_HEIGHT_IPAD,
+  width: `${MOBILE_MENU_WIDTH}`,
+  height: `calc(100% - ${HEADER_HEIGHT_IPAD})`,
+  padding: '8px 0px 40px 0px',
+  backgroundColor: theme.palette.secondary.main,
   [theme.breakpoints.down('md')]: {
     top: HEADER_HEIGHT_MOBILE,
+    height: `calc(100% - ${HEADER_HEIGHT_MOBILE})`,
   },
 });
 
@@ -33,58 +28,20 @@ export const MobileMenuBackdrop = styled(Backdrop)({
   background: '#1B1B1C91',
 });
 
-export const MenuTabsWrapper = styled('div')({
-  flexGrow: 0,
-  flexShrink: 0,
-  width: '100%',
-  height: 'fit-content',
-  backgroundColor: theme.palette.secondary.main,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'left',
-  [theme.breakpoints.up('md')]: {
-    display: 'none',
-  },
-});
-
-export const MenuTabs = styled('div')({
-  fontSize: '24px',
-  fontFamily: '"Ubuntu", sans-serif',
-  margin: 0,
-});
-
-export const TabWrapper = styled(ListItemButton)<TabWrapperTypes>({
-  height: '50px',
-});
-
 export const SpaceHolder = styled('div')({
-  flexGrow: '2',
-  flexShrink: '1',
-  maxHeight: '100%',
+  flex: '1 1 0',
 });
 
 export const MobileUserBlock = styled('div')({
-  flexGrow: 0,
-  flexShrink: 0,
-  paddingBottom: '40px',
   display: 'inline-flex',
-  flexDirection: 'row',
   justifyContent: 'space-between',
-  alignItems: 'middle',
+  padding: '0px 18px 0px 12px',
 });
 
 export const UserProfile = styled(Link)({
   display: 'inline-flex',
-  flexDirection: 'row',
   justifyContent: 'space-between',
-  width: '126px',
-  alignItems: 'middle',
-  fontFamily: '"Ubuntu", sans-serif',
   fontSize: '14px',
-  fontWeight: 400,
-  lineHeight: '16px',
-  textAlign: 'left',
   color: '#131313',
 });
 
@@ -97,64 +54,18 @@ export const UserNameWrapper = styled('div')({
 });
 
 export const UserName = styled('p')({
-  width: '80px',
-  height: '16px',
+  maxWidth: '80px',
   margin: 0,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 });
 
 export const LogOut = styled('div')({
   display: 'inline-block',
   width: '26px',
   height: '24px',
-  marginTop: '3px',
+  marginTop: '2px',
   '&:hover': {
     cursor: 'pointer',
-  },
-});
-
-export const useListStyles = makeStyles({
-  default: {
-    background: 'none',
-    color: 'black',
-    padding: 0,
-    '& span': {
-      fontFamily: 'Ubuntu, sans-serif',
-      fontWeight: 400,
-      fontSize: '16px',
-      paddingLeft: '2px',
-    },
-    '& svg': {
-      width: '25px',
-      height: '25px',
-      margin: '12.5px',
-    },
-  },
-  selected: {
-    color: theme.palette.primary.main,
-    padding: 0,
-    background: 'none',
-    '& span': {
-      fontFamily: 'Ubuntu, sans-serif',
-      fontWeight: 400,
-      fontSize: '16px',
-      paddingLeft: '2px',
-      color: theme.palette.primary.main,
-    },
-    '& svg': {
-      width: '25px',
-      height: '25px',
-      margin: '12.5px',
-      color: theme.palette.primary.main,
-    },
-  },
-  selectedLogo: {
-    '& svg': {
-      color: theme.palette.primary.main,
-    },
-  },
-  selectedText: {
-    '& span': {
-      color: theme.palette.primary.main,
-    },
   },
 });
