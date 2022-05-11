@@ -4,9 +4,9 @@ import { NOTIFICATION_STATUSES, NOTIFICATION_TYPES } from 'constants/statuses';
 import { warningIcon, redWarningIcon } from 'icons';
 
 import { NotificationContainer, ImageWrapper, Title, Description } from './styled';
-import { NotificationProps } from '../types';
+import { NotificationPlateProps } from '../types';
 
-const NotificationPlate: FC<NotificationProps> = ({ note }) => {
+const NotificationPlate: FC<NotificationPlateProps> = ({ note }) => {
   const isOldNotification = note.status === NOTIFICATION_STATUSES.old;
   const isUserNotifications = note.type === NOTIFICATION_TYPES.employee;
 
