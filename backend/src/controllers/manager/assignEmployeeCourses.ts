@@ -74,22 +74,20 @@ const assignEmployeeCourses = async (
 
     const userFullName = combineFullName(employee.firstName, employee.lastName);
 
-    await Promise.all(
-      assignedCourses.map(async (clientCourse) => {
-        if (clientCourse) {
-          const course = await getCourseProvider(clientCourse.course, employeeId);
-          await addUserNotification(
-            employeeId,
-            course.title,
-            userFullName,
-            NotificationStatuses.new,
-            NotificationTitles.assigned,
-            NotificationDescription.assigned,
-            NotificationType.employee,
-          );
-        }
-      }),
-    );
+    assignedCourses.map(async (clientCourse) => {
+      if (clientCourse) {
+        const course = await getCourseProvider(clientCourse.course, employeeId);
+        await addUserNotification(
+          employeeId,
+          course.title,
+          userFullName,
+          NotificationStatuses.new,
+          NotificationTitles.assigned,
+          NotificationDescription.assigned,
+          NotificationType.employee,
+        );
+      }
+    });
 
     const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
 
