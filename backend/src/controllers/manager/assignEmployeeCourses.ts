@@ -55,38 +55,32 @@ const assignEmployeeCourses = async (
 
     const assignedCourses = await Promise.all(
       reducedCoursesToAssign.map(async (courseToAssign) => {
-        try {
-          const materialsCount = await materialsCounterProvider(courseToAssign.courseId);
-          const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
-          const assignedCourse = await assignCourseToEmployee(
-            employeeId,
-            courseToAssign.courseId,
-            progressDto,
-            courseToAssign.assessment,
-          );
+        const materialsCount = await materialsCounterProvider(courseToAssign.courseId);
+        const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
+        const assignedCourse = await assignCourseToEmployee(
+          employeeId,
+          courseToAssign.courseId,
+          progressDto,
+          courseToAssign.assessment,
+        );
 
-          return assignedCourse;
-        } catch {
-          return undefined;
-        }
+        return assignedCourse;
       }),
     );
 
     const userFullName = combineFullName(employee.firstName, employee.lastName);
 
     assignedCourses.map(async (clientCourse) => {
-      if (clientCourse) {
-        const course = await getCourseProvider(clientCourse.course, employeeId);
-        await addUserNotification(
-          employeeId,
-          course.title,
-          userFullName,
-          NotificationStatuses.new,
-          NotificationTitles.assigned,
-          NotificationDescription.assigned,
-          NotificationType.employee,
-        );
-      }
+      const course = await getCourseProvider(clientCourse.course, employeeId);
+      await addUserNotification(
+        employeeId,
+        course.title,
+        userFullName,
+        NotificationStatuses.new,
+        NotificationTitles.assigned,
+        NotificationDescription.assigned,
+        NotificationType.employee,
+      );
     });
 
     const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
