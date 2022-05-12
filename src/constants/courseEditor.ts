@@ -12,3 +12,11 @@ export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
     label: 'For senior',
   },
 ];
+
+export const INITIAL_VALUES = {
+  title: '',
+  complexity: 0,
+  avatar: '',
+  description: '',
+  technologies: [],
+};
