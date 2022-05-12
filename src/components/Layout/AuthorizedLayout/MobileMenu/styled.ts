@@ -15,7 +15,7 @@ export const MobileMenuSlide = styled('div')({
   flexDirection: 'column',
   width: `${MOBILE_MENU_WIDTH}`,
   height: `calc(100% - ${HEADER_HEIGHT_IPAD})`,
-  padding: '8px 0px 40px 0px',
+  padding: '8px 0 40px 0',
   backgroundColor: theme.palette.secondary.main,
   [theme.breakpoints.down('md')]: {
     top: HEADER_HEIGHT_MOBILE,
@@ -35,7 +35,7 @@ export const SpaceHolder = styled('div')({
 export const MobileUserBlock = styled('div')({
   display: 'inline-flex',
   justifyContent: 'space-between',
-  padding: '0px 18px 0px 12px',
+  padding: '0 18px 0 12px',
 });
 
 export const UserProfile = styled(Link)({

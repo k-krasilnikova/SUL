@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 
-import useSearchAllCourses from 'api/courses/searchAllCourses';
+import { useSearchAllCourses } from 'api/courses';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { SEARCH_DEBOUNCE_TIME } from 'constants/time';
 import { useDebounce } from 'hooks';

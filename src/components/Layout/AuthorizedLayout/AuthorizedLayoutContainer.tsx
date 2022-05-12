@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
 
-import { useLogOut } from 'api/logOut/';
+import { useLogOut } from 'api/logOut';
 import { useGetUserInfo } from 'api/userInfo';
-import ConfirmLogOut from 'components/ConfirmLogOut';
+import { ConfirmLogOut } from 'components/Dialogs';
 import Loader from 'components/Loader';
 import { useToggle } from 'hooks';
 import { Loaders } from 'enums/loader';

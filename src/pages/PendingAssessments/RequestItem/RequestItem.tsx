@@ -4,6 +4,7 @@ import Avatar from 'components/Avatar';
 import Image from 'components/Image';
 import { Size } from 'enums/sizes';
 import { convertRequestTime } from 'utils/helpers/convertTime';
+import { convertToFullName } from 'utils/helpers/convertToFullName';
 
 import {
   CustomGrid,
@@ -31,6 +32,7 @@ const RequestItem: FC<IAssessmentRequestItemProps> = ({
 }) => {
   const { avatar: userAvatar, firstName, lastName, position } = user || {};
   const { avatar: courseAvatar, title, technologies } = course || {};
+  const userFullName = convertToFullName(firstName, lastName);
 
   return (
     <RequestContainer item container spacing={2}>
@@ -39,7 +41,7 @@ const RequestItem: FC<IAssessmentRequestItemProps> = ({
           <Avatar size={Size.small} avatar={userAvatar} />
         </ImageWrapper>
         <UserContainer>
-          <UserName>{`${firstName} ${lastName}`}</UserName>
+          <UserName>{userFullName}</UserName>
           <Position>{position}</Position>
         </UserContainer>
       </CustomGrid>

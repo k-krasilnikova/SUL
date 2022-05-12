@@ -7,6 +7,7 @@ import { logOutIcon, menuMobileIcon } from 'icons';
 import { brandLogo } from 'images';
 import { Size } from 'enums/sizes';
 import { THeaderProps } from 'components/Layout/types';
+import { convertToFullName } from 'utils/helpers/convertToFullName';
 
 import {
   LayoutHeader,
@@ -28,6 +29,7 @@ const Header: FC<THeaderProps> = ({
   toggleMobileMenu,
 }) => {
   const { avatar, firstName, lastName } = userInfo || {};
+  const userFullName = convertToFullName(firstName, lastName);
 
   return (
     <LayoutHeader container>
@@ -43,7 +45,7 @@ const Header: FC<THeaderProps> = ({
         />
         <UserBlock to={PATHS.profile}>
           <Avatar avatar={avatar} size={Size.small} />
-          <UserName>{`${firstName} ${lastName}`}</UserName>
+          <UserName>{userFullName}</UserName>
         </UserBlock>
         <LogOut onClick={handleConfirmLogOutOpen}>
           <img alt="logOut" src={logOutIcon} />

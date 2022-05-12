@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import { Slide } from '@mui/material';
 
 import Avatar from 'components/Avatar';
