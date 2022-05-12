@@ -10,6 +10,7 @@ enum NotificationTitles {
   employeePassTestSuccessfully = 'Successfully',
   employeePassTestFailed = 'Failed',
   applied = 'Apply',
+  assessment = 'Approved with interview',
 }
 
 enum NotificationDescription {
@@ -18,7 +19,8 @@ enum NotificationDescription {
   assigned = 'Manager assigned new course',
   employeePassTestSuccessfully = 'The employee successfully passed the test',
   employeePassTestFailed = 'The employee failed the test',
-  applied = 'The employee apply the course',
+  applied = 'The employee applied the course',
+  assessment = 'Request for course was approved with interview',
 }
 
 enum NotificationType {

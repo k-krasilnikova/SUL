@@ -30,6 +30,10 @@ const convertCourseStatusToNotificationInfo = (status: CourseStatus) => {
       title: NotificationTitles.employeePassTestSuccessfully,
       description: NotificationDescription.employeePassTestSuccessfully,
     },
+    [CourseStatus.assessment]: {
+      title: NotificationTitles.assessment,
+      description: NotificationDescription.assessment,
+    },
   };
 
   return convertedNotification[status];
