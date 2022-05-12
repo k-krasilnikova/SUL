@@ -19,7 +19,7 @@ const addNotification = async (
   next: NextFunction,
 ) => {
   try {
-    const { userId, courseId, clientCourseId } = res.locals;
+    const { userId, courseId, clientCourseId, withAssessment } = res.locals;
 
     if (userId) {
       let course;
@@ -37,7 +37,10 @@ const addNotification = async (
 
       let convertedNotification;
       if (clientCourse) {
-        convertedNotification = convertCourseStatusToNotificationInfo(clientCourse.status);
+        convertedNotification = convertCourseStatusToNotificationInfo(
+          clientCourse.status,
+          withAssessment,
+        );
       }
 
       const user = await getUserProvider(userId);
