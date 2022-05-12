@@ -1,3 +1,5 @@
+import { COURSE_FIELDS } from 'config/constants';
+
 const MIN_TITLE_LENGTH = 2;
 const MAX_TITLE_LENGTH = 100;
 
@@ -20,6 +22,16 @@ const SECOND_LETTER_INDEX = 1;
 
 const MIN_QUESTIONS_PER_TEST = 5;
 
+const COURSE_VALIDATION_ERRORS: { [key: string]: string } = {
+  [COURSE_FIELDS.title]: 'Invalid course title.',
+  [COURSE_FIELDS.description]: 'Invalid course description.',
+  [COURSE_FIELDS.technologies]: 'Invalid course technologies.',
+  [COURSE_FIELDS.materials]: 'Invalid course materials.',
+  [COURSE_FIELDS.test]: 'Invalid course test.',
+  [COURSE_FIELDS.avatar]: 'Invalid course avatar.',
+  [COURSE_FIELDS.complexity]: 'Invalid course complexity.',
+};
+
 export {
   MIN_TITLE_LENGTH,
   MAX_TITLE_LENGTH,
@@ -35,4 +47,5 @@ export {
   MIN_EXERCISE_TITLE_LENGTH,
   MAX_EXERCISE_TITLE_LENGTH,
   MIN_EXERCISE_TASK_LENGTH,
+  COURSE_VALIDATION_ERRORS,
 };

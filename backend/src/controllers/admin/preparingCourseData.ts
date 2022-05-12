@@ -2,12 +2,11 @@ import { NextFunction, Request, Response } from 'express';
 
 import { validateCourseData } from 'utils/validation/courses';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
-import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
 import { getSkillsToCourseTechs } from 'db/providers/skillProvider';
 import { addCourseTest } from 'db/providers/testProvider';
 import { ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { ITest } from 'interfaces/Ientities/Itest';
-import { ESTIMATE_TIME_PER_LESSON } from 'config/constants';
+import checkCourseValidationResult from 'utils/validation/courses/checkCourseValidationResult';
 
 const preparingCourseData = async (
   req: Request<never, never, ICreateCourseBody>,
@@ -17,19 +16,21 @@ const preparingCourseData = async (
   try {
     const courseDataFromRequest = req.body;
 
-    const validCourseData = validateCourseData(courseDataFromRequest);
+    const validationResult = validateCourseData(courseDataFromRequest);
 
-    validCourseData.technologies = await getSkillsToCourseTechs(validCourseData.technologies);
+    checkCourseValidationResult(validationResult);
 
-    validCourseData.test = convertToTypeUnsafe<ITest>(await addCourseTest(validCourseData.test));
+    if (validationResult.technologies) {
+      validationResult.technologies = await getSkillsToCourseTechs(validationResult.technologies);
+    }
 
-    const durationSeconds =
-      validCourseData.materials.length * ESTIMATE_TIME_PER_LESSON + validCourseData.test.timeout;
-    const duration = convertToCourseDuration(durationSeconds);
+    if (validationResult.test) {
+      validationResult.test = convertToTypeUnsafe<ITest>(
+        await addCourseTest(validationResult.test),
+      );
+    }
 
-    validCourseData.duration = duration;
-
-    res.locals.preparedCourseData = validCourseData;
+    res.locals.preparedCourseData = validationResult;
     next();
   } catch (err) {
     next(err);
