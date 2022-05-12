@@ -155,7 +155,7 @@ const updateClientCourseField = async (
 
 const arrangeAssessment = async (courseId: string) => {
   const updatedCourse = await ClientCourseModel.findByIdAndUpdate(courseId, {
-    $set: { withAssessment: true },
+    $set: { withAssessment: true, status: CourseStatus.assessment },
   });
 
   if (!updatedCourse) {
