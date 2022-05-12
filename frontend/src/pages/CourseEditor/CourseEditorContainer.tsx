@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 
 import useGetCourseEditorData from 'api/admin';
 import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
-import courseEditorValidationSchema from 'validations/courseEditorValidationSchema';
+// import courseEditorValidationSchema from 'validations/courseEditorValidationSchema';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
@@ -18,7 +18,7 @@ const CourseEditorContainer: FC = () => {
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
     onSubmit: (): void => {},
-    validationSchema: courseEditorValidationSchema,
+    // validationSchema: courseEditorValidationSchema,
     validateOnBlur: true,
     validateOnChange: false,
   });
