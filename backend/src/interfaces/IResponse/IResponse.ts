@@ -39,6 +39,11 @@ interface IEmployeeInfo
   stack: TUserStackMemberShort[];
 }
 
+type TUserInfoResponse = IUser & {
+  pendingRequestsAmount?: number;
+  pendingAssessmentsAmount?: number;
+};
+
 interface IEmployeeShortInfo
   extends Pick<
     IUser,
@@ -104,5 +109,6 @@ export {
   ICoursesMapElement,
   IStackMapElement,
   TAssessmentRequest,
+  TUserInfoResponse,
   TNotification,
 };

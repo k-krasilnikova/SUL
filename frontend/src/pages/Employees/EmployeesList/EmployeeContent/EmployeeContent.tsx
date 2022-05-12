@@ -5,6 +5,7 @@ import TextTooltip from 'components/TextTooltip';
 import { EmployeeRank, EmployeeContentType, EmployeeColumnName } from 'enums/employee';
 import { Size } from 'enums/sizes';
 import { IEmployeeContentProps } from 'pages/Employees/types';
+import { convertToFullName } from 'utils/helpers/convertToFullName';
 
 import {
   ContentWrapper,
@@ -29,6 +30,7 @@ const EmployeeContent: FC<IEmployeeContentProps> = ({
   handleShowButtonClick,
 }) => {
   const { avatar, firstName, lastName, position } = employee;
+  const userFullName = convertToFullName(firstName, lastName);
   const isContentVisible = isVisible || type !== EmployeeContentType.hidden;
 
   return (
@@ -43,7 +45,7 @@ const EmployeeContent: FC<IEmployeeContentProps> = ({
                   <Avatar size={Size.subsmall} avatar={avatar} />
                 </ImageWrapper>
                 <InfoContainer>
-                  <UserName>{`${firstName} ${lastName}`}</UserName>
+                  <UserName>{userFullName}</UserName>
                   <Position>{position}</Position>
                 </InfoContainer>
               </UserInfo>

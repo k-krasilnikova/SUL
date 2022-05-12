@@ -1,22 +1,15 @@
-export interface MenuItemProps {
+import { ReactElement } from 'react';
+
+import { BadgeType } from 'enums/badgeType';
+
+export interface IMenuItemProps {
   path: string;
   title: string;
-  icon: React.ReactElement;
-}
-
-export interface IMenuProps {
-  classes: {
-    [key: string]: string | undefined;
-  };
-  menuList: MenuItemProps[];
-  isSqueeze?: boolean;
-  handleSqueeze?: () => void;
-  children?: React.ReactNode;
-  menuItem?: string;
-  pathname?: string;
-  isTabHeader?: null;
+  icon: ReactElement;
+  badgeType?: BadgeType;
+  withBadge?: boolean;
 }
 
 export interface IRolesMenu {
-  [key: string]: Array<MenuItemProps>;
+  [key: string]: IMenuItemProps[];
 }
