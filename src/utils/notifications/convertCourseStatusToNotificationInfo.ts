@@ -6,7 +6,7 @@ type NotificationInfo = {
   description: NotificationDescription;
 };
 
-const convertCourseStatusToNotificationInfo = (status: CourseStatus) => {
+const convertCourseStatusToNotificationInfo = (status: CourseStatus, withAssessment?: boolean) => {
   const convertedNotification: {
     [key: string]: NotificationInfo;
   } = {
@@ -15,8 +15,12 @@ const convertCourseStatusToNotificationInfo = (status: CourseStatus) => {
       description: NotificationDescription.applied,
     },
     [CourseStatus.approved]: {
-      title: NotificationTitles.approved,
-      description: NotificationDescription.approved,
+      title: withAssessment
+        ? NotificationTitles.approvedWithInterview
+        : NotificationTitles.approved,
+      description: withAssessment
+        ? NotificationDescription.approvedWithInterview
+        : NotificationDescription.approved,
     },
     [CourseStatus.rejected]: {
       title: NotificationTitles.declined,
@@ -29,10 +33,6 @@ const convertCourseStatusToNotificationInfo = (status: CourseStatus) => {
     [CourseStatus.completed]: {
       title: NotificationTitles.employeePassTestSuccessfully,
       description: NotificationDescription.employeePassTestSuccessfully,
-    },
-    [CourseStatus.assessment]: {
-      title: NotificationTitles.assessment,
-      description: NotificationDescription.assessment,
     },
   };
 
