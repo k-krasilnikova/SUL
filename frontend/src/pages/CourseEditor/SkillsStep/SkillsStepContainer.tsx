@@ -1,16 +1,13 @@
-import useGetAllSkills from 'api/skills/getAllSkills';
 import { FC } from 'react';
-import { ICourse } from 'types/course';
-import { IFormik } from '../types';
+
+import useGetAllSkills from 'api/skills/getAllSkills';
+import Loader from 'components/Loader';
+
 import SkillsStep from './SkillsStep';
+import { IStepProps } from '../types';
 
-export interface ISkillsStepContProp {
-  courseData?: ICourse;
-  formik: IFormik;
-}
-
-const SkillsStepContainer: FC<ISkillsStepContProp> = ({ courseData, formik }) => {
-  const { data: allSkillsResponse } = useGetAllSkills();
+const SkillsStepContainer: FC<IStepProps> = ({ courseData, formik }) => {
+  const { data: allSkillsResponse, isLoading: isAllSkillsLoading } = useGetAllSkills();
 
   let ungroupedSkills = {};
   if (allSkillsResponse) {
@@ -23,24 +20,10 @@ const SkillsStepContainer: FC<ISkillsStepContProp> = ({ courseData, formik }) =>
     );
   }
 
-  const arrOfObj1 = Object.entries(ungroupedSkills).map((entry) => entry[1]) as {
-    group: string;
-    image: string;
-    maxScore: number;
-    name: string;
-    _id: string;
-  }[];
-
-  const namesArr = arrOfObj1.map((obj) => obj.name);
-
-  return (
-    <SkillsStep
-      ungroupedSkills={ungroupedSkills}
-      arrOfObj1={arrOfObj1}
-      courseData={courseData}
-      formik={formik}
-      namesArr={namesArr}
-    />
+  return isAllSkillsLoading ? (
+    <Loader type="content" />
+  ) : (
+    <SkillsStep ungroupedSkills={ungroupedSkills} courseData={courseData} formik={formik} />
   );
 };
 

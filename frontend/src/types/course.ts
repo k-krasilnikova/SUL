@@ -27,18 +27,19 @@ export type TCourseTechnology = { skill: string; points: number };
 export type TCourseStatus = `${CourseStatus}`;
 
 export interface ICourse {
-  _id: string;
-  title: string;
-  description: string;
-  technologies: TCourseTechnology[];
-  requiredSkills: { image: string; maxScore: number; name: string }[];
-  duration: TimeProps;
-  testLink: string;
-  lessons: number;
-  status: CourseStatus;
-  similarCourses: ICourse[];
   complexity: number;
+  description: string;
+  duration: TimeProps;
+  lessons: number;
+  requiredSkills: { image: string; maxScore: number; name: string }[];
+  similarCourses: ICourse[];
+  technologies: TCourseTechnology[];
+  test: string;
+  title: string;
+  _id: string;
+  status: CourseStatus;
   avatar?: string;
+  materials?: IMaterial[];
 }
 
 export interface IShortCourseInfo {
