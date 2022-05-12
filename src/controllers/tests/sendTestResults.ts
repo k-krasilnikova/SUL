@@ -1,28 +1,29 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { TAchievments, TestRuslt } from 'interfaces/Ientities/Itest';
+import { TAchievements, TestRuslt } from 'interfaces/Ientities/Itest';
+import { TNotification } from 'interfaces/IResponse/IResponse';
 
 const unitTestResults = async (
   req: Request,
   res: Response<
     {
       result: TestRuslt;
-      newSkills: TAchievments['newSkills'];
-      updatedSkills: TAchievments['updatedSkills'];
-      techsToAchieve: TAchievments['techsToAchieve'];
+      newSkills: TAchievements['newSkills'];
+      updatedSkills: TAchievements['updatedSkills'];
+      techsToAchieve: TAchievements['techsToAchieve'];
     },
     {
       id: string;
       result: TestRuslt;
-      achievments: TAchievments;
-    }
+      achievements: TAchievements;
+    } & TNotification
   >,
   next: NextFunction,
 ) => {
   try {
     const {
       result,
-      achievments: { newSkills, updatedSkills, techsToAchieve },
+      achievements: { newSkills, updatedSkills, techsToAchieve },
     } = res.locals;
     res.json({ result, newSkills, updatedSkills, techsToAchieve });
   } catch (error) {

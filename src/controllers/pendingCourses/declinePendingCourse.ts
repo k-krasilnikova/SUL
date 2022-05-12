@@ -6,13 +6,7 @@ import {
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
-import { addUserNotification } from 'db/providers/notificationProvider';
 import CourseStatus from 'enums/coursesEnums';
-import {
-  NotificationDescription,
-  NotificationStatuses,
-  NotificationTitles,
-} from 'enums/notificationEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
@@ -52,12 +46,6 @@ const declinePendingCourse = async (
     results.updateStatus = 'Course was declined.';
     await updateClientCourseField(clientCourseId, CLIENT_COURSE_FIELDS.applyDate, Date.now());
 
-    await addUserNotification(
-      clientCourse.user,
-      NotificationStatuses.new,
-      NotificationTitles.declined,
-      NotificationDescription.declined,
-    );
     next();
   } catch (error) {
     next(error);

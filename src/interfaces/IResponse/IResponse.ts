@@ -89,6 +89,8 @@ type TAssessmentRequest = Pick<IClientCoursePopulated, 'user' | 'course' | '_id'
   elapsed: ITimePeriod;
 };
 
+type TNotification = Omit<ILocals, 'managerId' | 'results'>;
+
 export {
   TLocalsManager,
   TLocalsUser,
@@ -102,4 +104,5 @@ export {
   ICoursesMapElement,
   IStackMapElement,
   TAssessmentRequest,
+  TNotification,
 };
