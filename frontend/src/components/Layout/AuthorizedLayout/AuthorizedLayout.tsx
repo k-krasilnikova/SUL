@@ -1,5 +1,5 @@
 import { FC, Suspense } from 'react';
-import Grid from '@mui/material/Grid';
+import { Grid } from '@mui/material';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import Loader from 'components/Loader';
@@ -40,7 +40,7 @@ const AuthorizedLayout: FC<IAuthorizedLayoutProps> = ({
           <Menu isSqueeze={isSqueeze} toggleSqueeze={toggleSqueeze} />
         </GridMenu>
         <PageWrapper isSqueeze={isSqueeze}>
-          <Suspense fallback={<Loader color="primary" />}>{children}</Suspense>
+          <Suspense fallback={<Loader />}>{children}</Suspense>
           <MobileMenu
             userInfo={userInfo}
             isMobileMenuOpen={isMobileMenuOpen}

@@ -1,5 +1,4 @@
 import { BadgeType } from 'enums/badgeType';
-
 import { getUserProfileCache } from 'utils/cache';
 
 export const getBadgeContentByType = (type?: BadgeType) => {

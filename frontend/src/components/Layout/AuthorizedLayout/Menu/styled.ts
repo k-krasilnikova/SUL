@@ -70,7 +70,7 @@ export const useListStyles = makeStyles<Theme, IStyledProps>({
     display: 'flex',
     alignItems: 'center',
     ...(isMobileVersion
-      ? { minHeight: '50px', padding: '0px 18px 0px 12px' }
+      ? { minHeight: '50px', padding: '0 18px 0 12px' }
       : { minHeight: '56px', padding: '8px 35px 8px 25px' }),
     '& p': {
       fontWeight: 400,
@@ -80,7 +80,7 @@ export const useListStyles = makeStyles<Theme, IStyledProps>({
     ...(!isMobileVersion && {
       width: `calc(100% + ${BORDER_CANCELER})`,
       backgroundColor: theme.palette.secondary.main,
-      boxShadow: '-10px 0px 15px 4px rgba(0, 0, 0, 0.1)',
+      boxShadow: '-10px 0 15px 4px rgba(0, 0, 0, 0.1)',
     }),
     '& p': {
       fontWeight: 500,

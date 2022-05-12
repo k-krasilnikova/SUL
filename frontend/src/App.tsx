@@ -26,11 +26,10 @@ import { queryClient } from 'api/base';
 import { PATHS } from 'constants/routes';
 import { PAGES } from 'constants/pages';
 import { Role } from 'constants/menuRoles';
-import { Loaders } from 'enums/loader';
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
-    <Suspense fallback={<Loader color="primary" type={Loaders.page} />}>
+    <Suspense fallback={<Loader />}>
       <BrowserRouter basename={PATHS.home}>
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
