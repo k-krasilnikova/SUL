@@ -1,93 +1,89 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/no-array-index-key */
+
 import { FC } from 'react';
-import { Autocomplete, Box, UseAutocompleteProps } from '@mui/material';
+import { MenuItem } from '@mui/material';
+import { FieldArray } from 'formik';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
-import { ICourse } from 'types/course';
+import isLastElem from 'utils/helpers/arrays/isLastElem';
 
-import { BackButton, FormWrapper, InnerWrapper, SectionName } from '../DefinitionStep/styled';
-import { SkillButton, SkillField, SkillsText, SkillWrapper } from './styled';
-import { IFormik } from '../types';
+import {
+  InnerWrapper,
+  SkillButton,
+  SkillField,
+  SkillsText,
+  SkillsTitleWrapper,
+  SkillWrapper,
+} from './styled';
+import { FormWrapper, SectionName } from '../DefinitionStep/styled';
+import { ISkillsStepProps } from '../types';
+import { getPointsArr } from '../utils';
 
-export interface ISkillsStepProps {
-  ungroupedSkills: {
-    [key: string]: { group: string; image: string; maxScore: number; name: string; _id: string };
-  };
-  namesArr: string[];
-  courseData?: ICourse;
-  formik: IFormik;
-  isNextSkillVisible?: boolean;
-  handleAddSkill?: () => void;
-  handleRemoveSkill?: () => void;
-  arrOfObj1: { group: string; image: string; maxScore: number; name: string; _id: string }[];
-}
-
-const SkillsStep: FC<ISkillsStepProps> = ({
-  ungroupedSkills,
-  courseData,
-  arrOfObj1,
-  formik,
-  namesArr,
-}) => {
-  return (
-    <InnerWrapper>
-      <BackButton variant="medium" color="primary">
-        {ButtonLabels.back}
-      </BackButton>
-      <FormWrapper>
-        <SectionName>Edit course skills</SectionName>
-        <Box sx={{ marginTop: '50px', marginBottom: '25px' }}>
-          <SkillsText>Achieved skill</SkillsText>
-        </Box>
-        {courseData &&
-          courseData.technologies.map((technology: { skill: string; points: number }, index) => {
-            console.log('technology', technology);
-            const commonTechnologies = arrOfObj1.filter((commonTechnology) =>
-              commonTechnology._id === technology.skill ? commonTechnology.name : null,
-            );
-
-            console.log({ commonTechnologies });
-
-            return commonTechnologies.map((commonTechnology) => {
-              let pointsArr = [];
-              for (let i = 1; i <= commonTechnology.maxScore; i += 1) {
-                pointsArr.push(i);
-              }
-              pointsArr = pointsArr.map((point) => `${point}/${commonTechnology.maxScore}`);
-              return (
-                <>
-                  <SkillWrapper key={commonTechnology._id}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        marginBottom: '28px',
-                      }}
-                    >
-                      <Autocomplete
-                        value={commonTechnology.name}
-                        inputValue={commonTechnology.name}
-                        options={namesArr}
-                        id="skill"
-                        renderInput={(params) => <SkillField {...params} label="Technology" />}
-                      />
-                      <Autocomplete
-                        value={`${technology.points}`}
-                        inputValue={`${technology.points}/${commonTechnology.maxScore}`}
-                        options={pointsArr}
-                        id="points"
-                        renderInput={(params) => <SkillField {...params} label="Level" />}
-                      />
-                    </Box>
-                    <SkillButton variant="mediumOutlined">{ButtonLabels.removeSkill}</SkillButton>
-                  </SkillWrapper>
-                </>
-              );
-            });
-          })}
-      </FormWrapper>
-    </InnerWrapper>
-  );
-};
+const SkillsStep: FC<ISkillsStepProps> = ({ ungroupedSkills, courseData, formik }) => (
+  <FormWrapper>
+    <SectionName>Edit course skills</SectionName>
+    <SkillsTitleWrapper>
+      <SkillsText>Achieved skill</SkillsText>
+    </SkillsTitleWrapper>
+    {courseData &&
+      Object.values(ungroupedSkills).length &&
+      formik.values?.technologies?.map((technology: { skill: string; points: number }, index) => (
+        <SkillWrapper key={index}>
+          <FieldArray name="technologies">
+            {({ remove, push }) => (
+              <>
+                <InnerWrapper>
+                  <SkillField
+                    select
+                    value={technology.skill}
+                    label="Technology"
+                    onChange={formik.handleChange}
+                    variant="outlined"
+                    id={`technologies[${index}].skill`}
+                    name={`technologies[${index}].skill`}
+                  >
+                    <MenuItem key="null" value={-1}>
+                      select skill
+                    </MenuItem>
+                    {Object.values(ungroupedSkills).map((option) => (
+                      <MenuItem key={option._id} value={option._id}>
+                        {option.name}
+                      </MenuItem>
+                    ))}
+                  </SkillField>
+                  <SkillField
+                    select
+                    value={technology.points}
+                    label="Level"
+                    onChange={formik.handleChange}
+                    variant="outlined"
+                    id={`technologies[${index}].points`}
+                    name={`technologies[${index}].points`}
+                  >
+                    {getPointsArr(ungroupedSkills?.[technology.skill]?.maxScore || 0).map(
+                      (option) => (
+                        <MenuItem key={option} value={option}>
+                          {`${option}/${ungroupedSkills?.[technology.skill]?.maxScore || 0}`}
+                        </MenuItem>
+                      ),
+                    )}
+                  </SkillField>
+                </InnerWrapper>
+                {isLastElem(formik.values.technologies, index) ? (
+                  <SkillButton variant="mediumOutlined" onClick={() => push({})}>
+                    {ButtonLabels.addMoreSkills}
+                  </SkillButton>
+                ) : (
+                  <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
+                    {ButtonLabels.removeSkill}
+                  </SkillButton>
+                )}
+              </>
+            )}
+          </FieldArray>
+        </SkillWrapper>
+      ))}
+  </FormWrapper>
+);
 
 export default SkillsStep;

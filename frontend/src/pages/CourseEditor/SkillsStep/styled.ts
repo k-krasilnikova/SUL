@@ -28,3 +28,14 @@ export const SkillButton = styled(Button)({
   height: '50px',
   fontWeight: 500,
 });
+
+export const InnerWrapper = styled(Box)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginBottom: '28px',
+});
+
+export const SkillsTitleWrapper = styled(Box)({
+  marginTop: '50px',
+  marginBottom: '25px',
+});
