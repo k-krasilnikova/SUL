@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PATHS } from 'constants/routes';
 import { IUser } from 'types/user';
-import { Notification as NotificationType } from 'types/notification';
+import { INotification } from 'types/Notification';
 import Avatar from 'components/Avatar';
 import Notifications from 'components/NotificationsBar';
 import { logOutIcon, menuMobileIcon } from 'icons';
@@ -27,7 +27,7 @@ interface Props {
   firstName?: string;
   lastName?: string;
   avatar?: string;
-  notifications?: NotificationType[];
+  notifications?: INotification[];
 }
 
 type HeaderProps = IUser & Props;
