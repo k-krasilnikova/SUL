@@ -1,7 +1,8 @@
 import { UserRank } from 'enums/users';
-import { ICreateCourseBody, IPreparedCourseData } from 'interfaces/ICourses/IQueryCourses';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { ICourseDataValidationResult, ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { ESTIMATE_TIME_PER_LESSON } from 'config/constants';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
+import { convertToTimePeriod } from 'utils/typeConversion/datetime/datetimeTypeConversions';
 
 import isValidComplexity from './isValidComplexity';
 import validateMaterials from './validateMaterials';
@@ -11,52 +12,34 @@ import validateTitle from './validateTitle';
 import validateDescription from './validateDescription';
 import validateTechnologies from './validateTechnologies';
 
-const validateCourseData = (courseData: ICreateCourseBody): IPreparedCourseData => {
-  const validTitle = validateTitle(courseData.title);
-  if (!validTitle) {
-    throw new BadRequestError('Invalid course title.');
-  }
+const validateCourseData = (courseData: ICreateCourseBody): ICourseDataValidationResult => {
+  const validatedTitle = validateTitle(courseData.title);
+  const validatedComplexity = isValidComplexity(courseData.complexity)
+    ? convertToTypeUnsafe<UserRank>(courseData.complexity)
+    : null;
+  const validatedDescription = validateDescription(courseData.description);
+  const validatedMaterias = validateMaterials(courseData.materials);
+  const validatedAvatar = isValidAvatar(courseData.avatar)
+    ? convertToTypeUnsafe<string>(courseData.avatar)
+    : null;
+  const validatedTest = validateTest(courseData.test);
+  const validatedTechnologies = validateTechnologies(courseData.technologies);
+  const validatedLessons = validatedMaterias?.length || null;
+  const validatedDuration =
+    validatedLessons && validatedTest
+      ? convertToTimePeriod(validatedLessons * ESTIMATE_TIME_PER_LESSON + validatedTest.timeout)
+      : null;
 
-  const isComplexityValid = isValidComplexity(courseData.complexity);
-  if (!isComplexityValid) {
-    throw new BadRequestError('Invalid course complexity.');
-  }
-
-  const validDescription = validateDescription(courseData.description);
-  if (!validDescription) {
-    throw new BadRequestError('Invalid course description.');
-  }
-
-  const validMaterias = validateMaterials(courseData.materials);
-  if (!validMaterias) {
-    throw new BadRequestError('Invalid course materials.');
-  }
-
-  const validTest = validateTest(courseData.test);
-  if (!validTest) {
-    throw new BadRequestError('Invalid course test.');
-  }
-
-  const isAvatarValid = isValidAvatar(courseData.avatar);
-  if (!isAvatarValid) {
-    throw new BadRequestError('Invalid course avatar.');
-  }
-
-  const validTechnologies = validateTechnologies(courseData.technologies);
-  if (!validTechnologies) {
-    throw new BadRequestError('Invalid course technologies.');
-  }
-
-  const validCourseData: IPreparedCourseData = {
-    title: validTitle,
-    description: validDescription,
-    avatar: convertToTypeUnsafe<string>(courseData.avatar),
-    materials: validMaterias,
-    complexity: convertToTypeUnsafe<UserRank>(courseData.complexity),
-    test: validTest,
-    technologies: validTechnologies,
-    lessons: validMaterias.length,
-    duration: {},
+  const validCourseData: ICourseDataValidationResult = {
+    title: validatedTitle,
+    description: validatedDescription,
+    avatar: validatedAvatar,
+    materials: validatedMaterias,
+    complexity: validatedComplexity,
+    test: validatedTest,
+    technologies: validatedTechnologies,
+    lessons: validatedLessons,
+    duration: validatedDuration,
     similarCourses: [],
   };
 
