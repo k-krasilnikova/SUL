@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { Titles } from 'constants/courseEditor';
 import { ILessonItemProps } from 'pages/CourseEditor/types';
 
 import {
@@ -16,7 +17,7 @@ import {
 
 const LessonItem: FC<ILessonItemProps> = ({ handleChangeOption, selectOption, formik }) => (
   <LessonItemWrapper>
-    <LessonItemTitle>Lesson № 1</LessonItemTitle>
+    <LessonItemTitle>{Titles.lessonCount}</LessonItemTitle>
     <form>
       <LessonInput>
         <InputSelect onChange={handleChangeOption}>
@@ -44,14 +45,14 @@ const LessonItem: FC<ILessonItemProps> = ({ handleChangeOption, selectOption, fo
               onChange={formik.handleChange}
             />
           )}
-          <InputLabel>Exercise Title</InputLabel>
+          <InputLabel>{Titles.exerciseTitle}</InputLabel>
           <InputText
             id="exerciseTitle"
             placeholder="/youtube.com/"
             value={formik.values.exerciseTitle}
             onChange={formik.handleChange}
           />
-          <InputLabel>Exercise Description</InputLabel>
+          <InputLabel>{Titles.exerciseDescription}</InputLabel>
           <InputTextArea
             id="exerciseDescription"
             placeholder="Description"

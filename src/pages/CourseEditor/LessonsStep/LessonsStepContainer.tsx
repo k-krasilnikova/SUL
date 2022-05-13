@@ -7,6 +7,7 @@ import LessonsStep from './LessonsStep';
 
 const LessonsStepContainer: FC<ILessonsStepContainerProps> = ({ formik }) => {
   const [selectOption, setSelectOption] = useState<string>('video');
+  const [isAddMoreLessons, setAddMoreLessons] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -19,12 +20,20 @@ const LessonsStepContainer: FC<ILessonsStepContainerProps> = ({ formik }) => {
     setSelectOption(event.target.value);
   };
 
+  // TODO change
+  const handleAddMoreLessons = (event: BaseSyntheticEvent) => {
+    event.preventDefault();
+    setAddMoreLessons(true);
+  };
+
   return (
     <LessonsStep
       formik={formik}
       handleBackButtonClick={handleBackButtonClick}
       handleChangeOption={handleChangeOption}
       selectOption={selectOption}
+      handleAddMoreLessons={handleAddMoreLessons}
+      isAddMoreLessons={isAddMoreLessons}
     />
   );
 };
