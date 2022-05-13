@@ -120,7 +120,7 @@ describe('database collections', () => {
     expect(clientCourses).toBeInstanceOf(Array);
   });
 
-  it('clientCourse collection exists', async () => {
+  it('accessTokenBlacklist collection exists', async () => {
     const tokenBlacklist = await AccessTokenBlacklistModel.find();
     expect(tokenBlacklist).toBeInstanceOf(Array);
   });
