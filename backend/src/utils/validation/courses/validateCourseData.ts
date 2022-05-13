@@ -4,7 +4,7 @@ import {
   IUpdateCourseBody,
 } from 'interfaces/ICourses/IQueryCourses';
 import { ESTIMATE_TIME_PER_LESSON } from 'config/constants';
-import { convertToTimePeriod } from 'utils/typeConversion/datetime/datetimeTypeConversions';
+import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
 
 import validateComplexity from './validateComplexity';
 import validateMaterials from './validateMaterials';
@@ -26,11 +26,11 @@ const validateCourseData = (
   const validatedAvatar = validateAvatar(avatar);
   const validatedTest = validateTest(test);
   const validatedTechnologies = validateTechnologies(technologies);
-  const validatedLessons = validatedMaterias?.length || null;
+  const validatedLessons = materials ? materials.length : undefined;
   const validatedDuration =
     validatedLessons && validatedTest
-      ? convertToTimePeriod(validatedLessons * ESTIMATE_TIME_PER_LESSON + validatedTest.timeout)
-      : null;
+      ? convertToCourseDuration(validatedLessons * ESTIMATE_TIME_PER_LESSON + validatedTest.timeout)
+      : undefined;
 
   const validCourseData: ICourseDataValidationResult = {
     title: validatedTitle,
