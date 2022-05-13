@@ -66,9 +66,7 @@ module.exports =  {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-   moduleDirectories: [
-     "node_modules", "src"
-   ],
+   moduleDirectories: ['node_modules', '<rootDir>/src'],
 
   // An array of file extensions your modules use
   // moduleFileExtensions: [
@@ -93,7 +91,7 @@ module.exports =  {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+   preset: "@shelf/jest-mongodb",
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -172,13 +170,12 @@ module.exports =  {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+   //transform:{ "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest" },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "\\\\node_modules\\\\",
-  //   "\\.pnp\\.[^\\\\]+$"
-  // ],
+   transformIgnorePatterns: [
+    "node_modules/(?!variables/.*)"
+   ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
