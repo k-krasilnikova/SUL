@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
+import PageTitle from 'components/PageTitle';
 import NoContent from 'components/NoContent';
 import { Loaders } from 'enums/loader';
 import { NO_REQUESTS } from 'constants/messages';
@@ -16,9 +16,9 @@ const PendingAssessments: FC<IPendingAssessmentsProps> = ({
   targetId,
   ...props
 }) => (
-  <AuthorizedLayout pageName="Pending Assessments">
+  <PageTitle title="Pending Assessments">
     {isLoading ? (
-      <Loader color="primary" type={Loaders.content} />
+      <Loader type={Loaders.content} />
     ) : assessments?.length ? (
       <RequestsWrapper>
         {assessments?.map(({ _id, user, course, elapsed }) => {
@@ -39,7 +39,7 @@ const PendingAssessments: FC<IPendingAssessmentsProps> = ({
     ) : (
       <NoContent message={NO_REQUESTS} />
     )}
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default PendingAssessments;

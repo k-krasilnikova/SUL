@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AuthorizedLayout } from 'components/Layout';
+import PageTitle from 'components/PageTitle';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
 
@@ -14,7 +14,7 @@ import Exercise from './Exercise';
 import { ILearningProps } from './types';
 
 const LearningCourse: FC<ILearningProps> = ({ courseContent, courseMaterial, ...props }) => (
-  <AuthorizedLayout pageName="Learning course">
+  <PageTitle title="Learning course">
     <LearningPageContainer>
       <BackButton disableElevation variant="contained" component={Link} to={PATHS.myCourses}>
         {ButtonLabels.back}
@@ -29,7 +29,7 @@ const LearningCourse: FC<ILearningProps> = ({ courseContent, courseMaterial, ...
         )}
       </LearningWrapper>
     </LearningPageContainer>
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default LearningCourse;

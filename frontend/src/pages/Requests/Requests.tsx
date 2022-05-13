@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
+import { NO_REQUESTS } from 'constants/messages';
 import Loader from 'components/Loader';
+import PageTitle from 'components/PageTitle';
 import NoContent from 'components/NoContent';
-import { AuthorizedLayout } from 'components/Layout';
+import { Loaders } from 'enums/loader';
 import { IApproveCourseDto } from 'types/api.dto';
 import { IRequest } from 'types/request';
-import { NO_REQUESTS } from 'constants/messages';
-import { Loaders } from 'enums/loader';
 
 import RequestItem from './RequestItem';
 import { RequestsWrapper } from './styled';
@@ -22,9 +22,9 @@ interface IRequestsProps {
 }
 
 const Requests: FC<IRequestsProps> = ({ requests, isLoading, targetId, ...props }) => (
-  <AuthorizedLayout pageName="Requests">
+  <PageTitle title="Requests">
     {isLoading ? (
-      <Loader color="primary" type={Loaders.content} />
+      <Loader type={Loaders.content} />
     ) : requests?.length ? (
       <RequestsWrapper container>
         {requests.map((request) => {
@@ -42,7 +42,7 @@ const Requests: FC<IRequestsProps> = ({ requests, isLoading, targetId, ...props 
     ) : (
       <NoContent message={NO_REQUESTS} />
     )}
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default Requests;

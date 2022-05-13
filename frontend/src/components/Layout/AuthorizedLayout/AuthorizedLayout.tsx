@@ -1,8 +1,9 @@
 import { FC, Suspense } from 'react';
 import { Grid } from '@mui/material';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Outlet } from 'react-router-dom';
 
 import Loader from 'components/Loader';
+import { Loaders } from 'enums/loader';
 import { IAuthorizedLayoutProps } from 'components/Layout/types';
 
 import Header from './Header';
@@ -11,8 +12,6 @@ import MobileMenu from './MobileMenu';
 import { GridHeader, PageWrapper, GridMenu } from '../styled';
 
 const AuthorizedLayout: FC<IAuthorizedLayoutProps> = ({
-  children,
-  pageName,
   userInfo,
   notifications,
   isSqueeze,
@@ -21,36 +20,33 @@ const AuthorizedLayout: FC<IAuthorizedLayoutProps> = ({
   toggleMobileMenu,
   toggleSqueeze,
 }) => (
-  <HelmetProvider>
-    <Helmet>
-      <title>{pageName}</title>
-    </Helmet>
-    <Grid container>
-      <GridHeader item xs={12}>
-        <Header
+  <Grid container>
+    <GridHeader item xs={12}>
+      <Header
+        userInfo={userInfo}
+        notifications={notifications}
+        isMobileMenuOpen={isMobileMenuOpen}
+        handleConfirmLogOutOpen={handleConfirmLogOutOpen}
+        toggleMobileMenu={toggleMobileMenu}
+      />
+    </GridHeader>
+    <>
+      <GridMenu isSqueeze={isSqueeze}>
+        <Menu isSqueeze={isSqueeze} toggleSqueeze={toggleSqueeze} />
+      </GridMenu>
+      <PageWrapper isSqueeze={isSqueeze}>
+        <Suspense fallback={<Loader type={Loaders.content} />}>
+          <Outlet />
+        </Suspense>
+        <MobileMenu
           userInfo={userInfo}
-          notifications={notifications}
           isMobileMenuOpen={isMobileMenuOpen}
           handleConfirmLogOutOpen={handleConfirmLogOutOpen}
           toggleMobileMenu={toggleMobileMenu}
         />
-      </GridHeader>
-      <>
-        <GridMenu isSqueeze={isSqueeze}>
-          <Menu isSqueeze={isSqueeze} toggleSqueeze={toggleSqueeze} />
-        </GridMenu>
-        <PageWrapper isSqueeze={isSqueeze}>
-          <Suspense fallback={<Loader />}>{children}</Suspense>
-          <MobileMenu
-            userInfo={userInfo}
-            isMobileMenuOpen={isMobileMenuOpen}
-            handleConfirmLogOutOpen={handleConfirmLogOutOpen}
-            toggleMobileMenu={toggleMobileMenu}
-          />
-        </PageWrapper>
-      </>
-    </Grid>
-  </HelmetProvider>
+      </PageWrapper>
+    </>
+  </Grid>
 );
 
 export default AuthorizedLayout;
