@@ -1,4 +1,4 @@
-import { styled, Box, Grid, Typography } from '@mui/material';
+import { styled, Grid, Typography } from '@mui/material';
 
 import theme from 'themeSettings';
 
@@ -6,10 +6,6 @@ export const NotFoundWrapper = styled(Grid)({
   height: '100%',
   justifyContent: 'center',
   alignItems: 'center',
-});
-
-export const DefaultWrapper = styled(Box)({
-  height: '100vh',
 });
 
 export const ErrorText = styled(Typography)({

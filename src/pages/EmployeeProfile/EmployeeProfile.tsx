@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
-import { AuthorizedLayout } from 'components/Layout';
+import PageTitle from 'components/PageTitle';
 import UserProfile from 'components/UserProfile';
 
 import { BackButton, EmployeeWrapper, ProfileWrapper } from './styled';
@@ -11,7 +11,7 @@ import EmployeeSkillsAndCourses from './EmployeeSkillsAndCourses';
 import { IEmployeeProfileProps } from './types';
 
 const EmployeeProfile: FC<IEmployeeProfileProps> = ({ employee, ...props }) => (
-  <AuthorizedLayout pageName="Employee">
+  <PageTitle title="Employee">
     <EmployeeWrapper>
       <BackButton color="primary" variant="medium" component={Link} to={PATHS.employees}>
         {ButtonLabels.back}
@@ -21,7 +21,7 @@ const EmployeeProfile: FC<IEmployeeProfileProps> = ({ employee, ...props }) => (
       </ProfileWrapper>
       <EmployeeSkillsAndCourses employee={employee} {...props} />
     </EmployeeWrapper>
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default EmployeeProfile;

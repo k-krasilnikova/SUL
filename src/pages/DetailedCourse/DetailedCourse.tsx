@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
-import { AuthorizedLayout, MobileSearch } from 'components/Layout';
+import { MobileSearch } from 'components/Layout';
+import PageTitle from 'components/PageTitle';
 import { IDetailedCourse } from 'types/detailedCourse';
 
 import { DetailedCourseWrapper, InnerWrapper, MobileSearchWrapper } from './styled';
@@ -10,7 +11,7 @@ import DetailedCourseActions from './DetailedCourseActions';
 import DetailedCourseInfo from './DetailedCourseInfo';
 
 const DetailedCourse: FC<IDetailedCourse> = ({ page, commonCourseData, ...props }) => (
-  <AuthorizedLayout pageName="Course">
+  <PageTitle title="Course">
     <DetailedCourseWrapper>
       <BackButton page={page} />
       <MobileSearchWrapper>
@@ -27,7 +28,7 @@ const DetailedCourse: FC<IDetailedCourse> = ({ page, commonCourseData, ...props 
         )}
       </InnerWrapper>
     </DetailedCourseWrapper>
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default DetailedCourse;

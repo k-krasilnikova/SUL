@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { AuthorizedLayout } from 'components/Layout';
+import PageTitle from 'components/PageTitle';
 import UserProfile from 'components/UserProfile';
 import { IProfileProps } from 'types/profile';
 
@@ -8,12 +8,12 @@ import { UserSkills } from './UserSkills';
 import { ProfileWrapper } from './styled';
 
 const Profile: FC<IProfileProps> = ({ user }) => (
-  <AuthorizedLayout pageName="Profile">
+  <PageTitle title="Profile">
     <ProfileWrapper>
       <UserProfile {...user} />
     </ProfileWrapper>
     <UserSkills technologies={user?.technologies} />
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default Profile;

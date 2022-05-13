@@ -1,6 +1,7 @@
-import { FC, Suspense } from 'react';
+import { FC } from 'react';
 
-import { AuthorizedLayout, MobileSearch } from 'components/Layout';
+import { MobileSearch } from 'components/Layout';
+import PageTitle from 'components/PageTitle';
 import Course from 'components/Course';
 import MobileLink from 'components/MobileLink';
 import NoContent from 'components/NoContent';
@@ -29,9 +30,9 @@ const CoursesList: FC<ICourseProps> = ({
   lastCourseRef,
   isAdmin,
 }) => (
-  <AuthorizedLayout pageName="Courses List">
+  <PageTitle title="Courses List">
     {isLoading ? (
-      <Loader color="primary" type={Loaders.content} />
+      <Loader type={Loaders.content} />
     ) : courses?.length ? (
       <PageContainer container>
         <MobileSearchWrapper>
@@ -39,42 +40,37 @@ const CoursesList: FC<ICourseProps> = ({
         </MobileSearchWrapper>
         {isAdmin && <AddCourseButton />}
         {courses.map((course, index) => (
-          <Suspense
-            key={`${course._id}_item`}
-            fallback={<Loader color="primary" type={Loaders.content} />}
-          >
-            <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
-              <MobileLink to={chooseListPath(course, index, clientCourses)}>
-                <Course
-                  title={course?.title}
-                  description={course?.description}
-                  duration={convertDurationToString(course?.duration)}
-                  lessons={course?.lessons}
-                  windowWidth={windowWidth}
-                  pageName={getCurrentPageName()}
-                  imageUrl={course?.avatar}
-                  status={clientCourses && clientCourses[index].status}
-                  courseRef={isLastElem<ICourse>(courses, index) ? lastCourseRef : undefined}
-                >
-                  <CourseActions
-                    course={course}
-                    clientCourses={clientCourses}
-                    isAdmin={isAdmin}
-                    index={index}
-                    targetLoading={targetLoading}
-                    targetId={targetId}
-                    handleApplyCourse={handleApplyCourse}
-                  />
-                </Course>
-              </MobileLink>
-            </GridItem>
-          </Suspense>
+          <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
+            <MobileLink to={chooseListPath(course, index, clientCourses)}>
+              <Course
+                title={course?.title}
+                description={course?.description}
+                duration={convertDurationToString(course?.duration)}
+                lessons={course?.lessons}
+                windowWidth={windowWidth}
+                pageName={getCurrentPageName()}
+                imageUrl={course?.avatar}
+                status={clientCourses && clientCourses[index].status}
+                courseRef={isLastElem<ICourse>(courses, index) ? lastCourseRef : undefined}
+              >
+                <CourseActions
+                  course={course}
+                  clientCourses={clientCourses}
+                  isAdmin={isAdmin}
+                  index={index}
+                  targetLoading={targetLoading}
+                  targetId={targetId}
+                  handleApplyCourse={handleApplyCourse}
+                />
+              </Course>
+            </MobileLink>
+          </GridItem>
         ))}
       </PageContainer>
     ) : (
       <NoContent message={NO_COURSES} />
     )}
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default CoursesList;

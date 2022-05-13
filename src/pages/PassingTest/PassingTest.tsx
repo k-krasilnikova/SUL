@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
+import PageTitle from 'components/PageTitle';
 import NoContent from 'components/NoContent';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { NO_CONTENT } from 'constants/messages';
@@ -20,9 +20,9 @@ const PassingTest: React.FC<IPassingTestProps> = ({
   handleBackButtonClick,
   ...props
 }) => (
-  <AuthorizedLayout pageName="Passing Test">
+  <PageTitle title="Passing Test">
     {isLoading ? (
-      <Loader color="primary" type={Loaders.content} />
+      <Loader type={Loaders.content} />
     ) : testTitle ? (
       <PassingTestWrapper>
         <InnerWrapper>
@@ -37,7 +37,7 @@ const PassingTest: React.FC<IPassingTestProps> = ({
     ) : (
       <NoContent message={NO_CONTENT} />
     )}
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default PassingTest;

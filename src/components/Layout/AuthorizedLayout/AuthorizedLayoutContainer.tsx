@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { useLogOut } from 'api/logOut';
 import { useGetUserInfo } from 'api/userInfo';
@@ -6,20 +7,21 @@ import { ConfirmLogOut } from 'components/Dialogs';
 import Loader from 'components/Loader';
 import { useToggle } from 'hooks';
 import { Loaders } from 'enums/loader';
-import { TAuthorizedLayoutContainerProps } from 'components/Layout/types';
 
 import AuthorizedLayout from './AuthorizedLayout';
 
 const EMPTY_ARGUMENT = null;
 
-const AuthorizedLayoutContainer: FC<TAuthorizedLayoutContainerProps> = ({ pageName, children }) => {
-  const { data: profileInfoData, isLoading: isProfileLoading } = useGetUserInfo();
-
-  const { mutate: logOutMutate, isLoading: isLogOutLoading } = useLogOut();
+const AuthorizedLayoutContainer: FC = () => {
+  const { pathname } = useLocation();
 
   const [isMobileMenuOpen, toggleMobileMenuOpen] = useToggle();
   const [isSqueeze, toggleSqueeze] = useToggle();
   const [isConfirmOpen, setConfirmOpen] = useState<boolean>(false);
+
+  const { data: profileInfoData, isLoading: isProfileLoading } = useGetUserInfo();
+
+  const { mutate: logOutMutate, isLoading: isLogOutLoading } = useLogOut(pathname);
 
   const { avatar, firstName, lastName, notifications } = profileInfoData || {};
   const userInfo = { avatar, firstName, lastName };
@@ -41,7 +43,6 @@ const AuthorizedLayoutContainer: FC<TAuthorizedLayoutContainerProps> = ({ pageNa
       ) : (
         <>
           <AuthorizedLayout
-            pageName={pageName}
             userInfo={userInfo}
             notifications={notifications}
             isMobileMenuOpen={isMobileMenuOpen}
@@ -49,9 +50,7 @@ const AuthorizedLayoutContainer: FC<TAuthorizedLayoutContainerProps> = ({ pageNa
             handleConfirmLogOutOpen={handleConfirmLogOutOpen}
             toggleMobileMenu={toggleMobileMenuOpen}
             toggleSqueeze={toggleSqueeze}
-          >
-            {children}
-          </AuthorizedLayout>
+          />
           <ConfirmLogOut
             isOpened={isConfirmOpen}
             isLoading={isLogOutLoading}
