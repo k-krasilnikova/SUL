@@ -18,7 +18,7 @@ const preparingCourseData = async (
 
     const validationResult = validateCourseData(courseDataFromRequest);
 
-    checkCourseValidationResult(validationResult);
+    checkCourseValidationResult(validationResult, true);
 
     if (validationResult.technologies) {
       validationResult.technologies = await getSkillsToCourseTechs(validationResult.technologies);

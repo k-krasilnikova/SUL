@@ -1,8 +1,8 @@
 import { DescriptionValidator } from '../schemas/courses';
 
-const validateDescription = (description?: string): string | null => {
+const validateDescription = (description?: string): string | null | undefined => {
   try {
-    return DescriptionValidator.validateSync(description) || null;
+    return description ? DescriptionValidator.validateSync(description) : undefined;
   } catch {
     return null;
   }

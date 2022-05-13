@@ -73,16 +73,16 @@ interface IPreparedCourseData {
 }
 
 interface ICourseDataValidationResult {
-  title: ICourse['title'] | null;
-  avatar: ICourse['avatar'] | null;
-  description: ICourse['description'] | null;
-  materials: ICourse['materials'] | null;
-  complexity: ICourse['complexity'] | null;
-  test: ITest | null;
-  technologies: ICourseTechsFromWeb[] | null;
-  lessons: number | null;
-  duration: ITimePeriod | null;
-  similarCourses: ICourse[] | null;
+  title?: ICourse['title'] | null;
+  avatar?: ICourse['avatar'] | null;
+  description?: ICourse['description'] | null;
+  materials?: ICourse['materials'] | null;
+  complexity?: ICourse['complexity'] | null;
+  test?: ITest | null;
+  technologies?: ICourseTechsFromWeb[] | null;
+  lessons?: number | null;
+  duration?: ITimePeriod | null;
+  similarCourses?: ICourse[] | null;
 }
 
 interface ICourseToAssign {

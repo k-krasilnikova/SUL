@@ -4,9 +4,9 @@ import { ITest } from 'interfaces/Ientities/Itest';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import { TestValidator } from '../schemas/courses';
 
-const validateTest = (test: IUpdateCourseBody['test']): ITest | null => {
+const validateTest = (test: IUpdateCourseBody['test']): ITest | null | undefined => {
   try {
-    return convertToTypeUnsafe<ITest>(TestValidator.validateSync(test));
+    return test ? convertToTypeUnsafe<ITest>(TestValidator.validateSync(test)) : undefined;
   } catch {
     return null;
   }

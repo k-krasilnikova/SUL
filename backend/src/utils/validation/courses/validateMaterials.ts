@@ -6,9 +6,11 @@ import { MaterialsValidator } from '../schemas/courses';
 
 const validateMaterials = (
   materials: IUpdateCourseBody['materials'],
-): ICourse['materials'] | null => {
+): ICourse['materials'] | null | undefined => {
   try {
-    return convertToTypeUnsafe<ICourse['materials']>(MaterialsValidator.validateSync(materials));
+    return materials
+      ? convertToTypeUnsafe<ICourse['materials']>(MaterialsValidator.validateSync(materials))
+      : undefined;
   } catch {
     return null;
   }

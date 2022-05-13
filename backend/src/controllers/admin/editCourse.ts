@@ -10,8 +10,8 @@ import { isProperTechnologies } from 'db/providers/skillProvider';
 import { getCourseTest, updateTest } from 'db/providers/testProvider';
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import {
-  isValidAvatar,
-  isValidComplexity,
+  validateAvatar,
+  validateComplexity,
   validateMaterials,
   validateTechnologies,
   validateTest,
@@ -48,7 +48,7 @@ const editCourse = async (
       updatedData.description = description;
     }
 
-    const isComplexityValid = isValidComplexity(dataToUpdate.complexity);
+    const isComplexityValid = validateComplexity(dataToUpdate.complexity);
     if (isComplexityValid) {
       const { complexity } = await updateCourseField(
         courseId,
@@ -58,7 +58,7 @@ const editCourse = async (
       updatedData.complexity = complexity;
     }
 
-    const isAvatarValid = isValidAvatar(dataToUpdate.avatar);
+    const isAvatarValid = validateAvatar(dataToUpdate.avatar);
     if (isAvatarValid) {
       const { avatar } = await updateCourseField(
         courseId,
