@@ -38,7 +38,7 @@ const TestStep: FC<ITestStepProps> = ({
       <PreviousButton variant="medium" onClick={stageBack}>
         {ButtonLabels.previous}
       </PreviousButton>
-      <SaveButton variant="medium" onClick={formik.onSubmit}>
+      <SaveButton variant="medium" onClick={stageBack}>
         {ButtonLabels.save}
       </SaveButton>
     </ButtonsBox>
