@@ -14,6 +14,7 @@ export enum ButtonLabels {
   next = 'Next',
   add = 'Add',
   addWithInterview = 'Add with the interview',
+  save = 'Save',
   submit = 'Submit',
   addWithPlus = '+Add',
   addCourse = '+ Add course',
@@ -32,4 +33,6 @@ export enum ButtonLabels {
   removeSkill = 'Remove skill',
   addMoreSkills = 'Add more skills',
   addLessons = 'Add more Lessons',
+  addQuestion = 'Add question',
+  removeQuestion = 'Remove question',
 }
