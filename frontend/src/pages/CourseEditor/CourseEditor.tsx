@@ -39,7 +39,7 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({ basePath, formik }) => {
           {
             key: 'test-setup',
             //   formRef: testForm,
-            node: <TestStep />,
+            node: <TestStep formik={formik} />,
           },
         ]}
       />
