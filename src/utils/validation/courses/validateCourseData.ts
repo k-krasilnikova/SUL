@@ -1,29 +1,31 @@
-import { UserRank } from 'enums/users';
-import { ICourseDataValidationResult, ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import {
+  ICourseDataValidationResult,
+  ICreateCourseBody,
+  IUpdateCourseBody,
+} from 'interfaces/ICourses/IQueryCourses';
 import { ESTIMATE_TIME_PER_LESSON } from 'config/constants';
-import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import { convertToTimePeriod } from 'utils/typeConversion/datetime/datetimeTypeConversions';
 
-import isValidComplexity from './isValidComplexity';
+import validateComplexity from './validateComplexity';
 import validateMaterials from './validateMaterials';
-import isValidAvatar from './isValidAvatar';
+import validateAvatar from './validateAvatar';
 import validateTest from './validateTest';
 import validateTitle from './validateTitle';
 import validateDescription from './validateDescription';
 import validateTechnologies from './validateTechnologies';
 
-const validateCourseData = (courseData: ICreateCourseBody): ICourseDataValidationResult => {
-  const validatedTitle = validateTitle(courseData.title);
-  const validatedComplexity = isValidComplexity(courseData.complexity)
-    ? convertToTypeUnsafe<UserRank>(courseData.complexity)
-    : null;
-  const validatedDescription = validateDescription(courseData.description);
-  const validatedMaterias = validateMaterials(courseData.materials);
-  const validatedAvatar = isValidAvatar(courseData.avatar)
-    ? convertToTypeUnsafe<string>(courseData.avatar)
-    : null;
-  const validatedTest = validateTest(courseData.test);
-  const validatedTechnologies = validateTechnologies(courseData.technologies);
+const validateCourseData = (
+  courseData: ICreateCourseBody | IUpdateCourseBody,
+): ICourseDataValidationResult => {
+  const { title, complexity, description, materials, avatar, test, technologies } = courseData;
+
+  const validatedTitle = validateTitle(title);
+  const validatedComplexity = validateComplexity(complexity);
+  const validatedDescription = validateDescription(description);
+  const validatedMaterias = validateMaterials(materials);
+  const validatedAvatar = validateAvatar(avatar);
+  const validatedTest = validateTest(test);
+  const validatedTechnologies = validateTechnologies(technologies);
   const validatedLessons = validatedMaterias?.length || null;
   const validatedDuration =
     validatedLessons && validatedTest

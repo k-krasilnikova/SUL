@@ -4,9 +4,9 @@ import { TechnologiesValidator } from '../schemas/courses';
 
 const validateTechnologies = (
   techs: IUpdateCourseBody['technologies'],
-): ICourseTechsFromWeb[] | null => {
+): ICourseTechsFromWeb[] | null | undefined => {
   try {
-    return TechnologiesValidator.validateSync(techs);
+    return techs ? TechnologiesValidator.validateSync(techs) : undefined;
   } catch {
     return null;
   }
