@@ -10,7 +10,7 @@ import { COOKIE_VALUES } from 'constants/authConstants';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 import { ITokenResponse } from 'types/auth';
 
-import { TLocation } from './type';
+import { TLocation } from './types';
 
 const useGetAuth = (): UseMutationResult => {
   const navigateTo = useNavigate();
