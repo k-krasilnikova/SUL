@@ -32,7 +32,8 @@ export enum ButtonLabels {
   decline = 'Decline',
   removeSkill = 'Remove skill',
   addMoreSkills = 'Add more skills',
-  addLessons = 'Add more Lessons',
+  addMoreLessons = 'Add more Lessons',
+  removeLesson = 'Remove lesson',
   addQuestion = 'Add question',
   removeQuestion = 'Remove question',
 }

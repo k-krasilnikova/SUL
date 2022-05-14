@@ -43,7 +43,7 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({
           </BackButton>
           <EditorTabs
             basePath={basePath}
-            defaultActiveTab="skills-setup"
+            defaultActiveTab="lessons-setup"
             tabs={[
               {
                 key: 'definition-setup',
@@ -58,7 +58,7 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({
               {
                 key: 'lessons-setup',
                 //   formRef: lessonsForm,
-                node: <LessonsStep formik={formik} />,
+                node: <LessonsStep courseData={courseData} formik={formik} />,
               },
               {
                 key: 'test-setup',

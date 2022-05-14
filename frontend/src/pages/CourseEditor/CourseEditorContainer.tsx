@@ -27,6 +27,9 @@ const CourseEditorContainer: FC = () => {
     validateOnChange: false,
   });
 
+  // eslint-disable-next-line no-console
+  console.log(formik, 'formik');
+
   const onSuccessLoadCourseData = (data: any): void => {
     formik.setValues(data, false);
   };
@@ -35,6 +38,9 @@ const CourseEditorContainer: FC = () => {
     params.courseId,
     onSuccessLoadCourseData,
   );
+
+  // eslint-disable-next-line no-console
+  console.log(courseData, 'courseData');
 
   return (
     <FormikProvider value={formik}>
