@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
-import { useGetCourseInfo, useGetCourseMaterials } from 'api/courses';
+import { useGetCourseInfo } from 'api/courses';
 import { PATHS } from 'constants/routes';
 import { INITIAL_VALUES } from 'constants/courseEditor';
 import transformRoute from 'utils/helpers/paths/transformRoute';
@@ -14,10 +14,10 @@ import CourseEditor from './CourseEditor';
 const CourseEditorContainer: FC = () => {
   const params = useParams();
   const basePath = transformRoute(PATHS.courseEditor, params.courseId);
-  const { data: courseMaterials } = useGetCourseMaterials(params.courseId);
+  // const { data: courseMaterials } = useGetCourseMaterials(params.courseId);
 
   // eslint-disable-next-line no-console
-  console.log(courseMaterials, 'courseMaterials');
+  // console.log(courseMaterials, 'courseMaterials');
 
   const formik = useFormik({
     initialValues: INITIAL_VALUES,

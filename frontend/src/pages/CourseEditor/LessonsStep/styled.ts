@@ -12,27 +12,6 @@ export const LessonsStepContainer = styled(Box)({
   },
 });
 
-export const BackButton = styled(Button)({
-  width: '85px',
-  height: '40px',
-  fontSize: '16px',
-  lineHeight: '20px',
-  [theme.breakpoints.down('lg')]: {
-    height: '32px',
-    width: '64px',
-    padding: 0,
-    fontSize: '14px',
-    fontWeight: 500,
-  },
-  [theme.breakpoints.down('sm')]: {
-    height: '20px',
-    width: '40px',
-    minWidth: '40px',
-    fontSize: '12px',
-    fontWeight: 400,
-  },
-});
-
 export const LessonsStepWrapper = styled(Box)({
   position: 'relative',
   width: '1011px',
@@ -70,39 +49,6 @@ export const AddMoreLessonsButton = styled(Button)({
   },
   '&:focus': {
     color: '#2C2525',
-  },
-  [theme.breakpoints.down('lg')]: {
-    padding: 0,
-    fontSize: '14px',
-  },
-});
-
-export const ButtonsBox = styled(Box)({
-  display: 'flex',
-  justifyContent: 'space-between',
-});
-
-export const PreviousButton = styled(Button)({
-  width: '103px',
-  height: '40px',
-  fontSize: '16px',
-  lineHeight: '20px',
-  fontWeight: 500,
-  [theme.breakpoints.down('lg')]: {
-    padding: 0,
-    fontSize: '14px',
-  },
-});
-
-export const NextButton = styled(Button)({
-  width: '85px',
-  height: '40px',
-  fontSize: '16px',
-  lineHeight: '20px',
-  fontWeight: 500,
-  '&:disabled': {
-    backgroundColor: '#E19697',
-    color: '#FFF',
   },
   [theme.breakpoints.down('lg')]: {
     padding: 0,

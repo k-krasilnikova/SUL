@@ -64,8 +64,6 @@ export interface ITestStepContainerProps {
 
 export interface ITestStepProps {
   formik: IFormik;
-  handleBackButtonClick?: (event: BaseSyntheticEvent) => void;
-  stageBack?: () => void;
   isCurrentAnswer: string;
   handleChangeAnswer?: (event: BaseSyntheticEvent) => void;
 }
@@ -73,10 +71,7 @@ export interface ITestStepProps {
 export interface ILessonsStepProps {
   formik: IFormik;
   selectOption: string;
-  handleBackButtonClick?: (event: BaseSyntheticEvent) => void;
   handleChangeOption?: (event: BaseSyntheticEvent) => void;
-  stageNext?: () => void;
-  stageBack?: () => void;
   handleAddMoreLessons?: (event: BaseSyntheticEvent) => void;
   isAddMoreLessons?: boolean;
 }
