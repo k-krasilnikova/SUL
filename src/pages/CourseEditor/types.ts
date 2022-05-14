@@ -1,6 +1,6 @@
 import { ChangeEventHandler, BaseSyntheticEvent } from 'react';
 
-import { TCourseTechnology, ICourse } from 'types/course';
+import { TCourseTechnology, IMaterial, ICourse } from 'types/course';
 
 export interface IFormik {
   initialValues: {
@@ -9,6 +9,7 @@ export interface IFormik {
     complexity?: number;
     avatar?: string;
     description?: string;
+    materials: IMaterial[];
     videoURL?: string;
     textDescription?: string;
     exerciseTitle?: string;
@@ -24,6 +25,7 @@ export interface IFormik {
     complexity?: number;
     avatar?: string;
     description?: string;
+    materials: IMaterial[];
     videoURL?: string;
     textDescription?: string;
     exerciseTitle?: string;
@@ -54,8 +56,7 @@ export interface ISkillsStepProps extends IStepProps {
 
 export interface ILessonsStepContainerProps {
   formik: IFormik;
-  handleAddMoreLessons?: (event: BaseSyntheticEvent) => void;
-  isAddMoreLessons?: boolean;
+  courseData?: ICourse;
 }
 
 export interface ITestStepContainerProps {
@@ -68,19 +69,17 @@ export interface ITestStepProps {
   handleChangeAnswer?: (event: BaseSyntheticEvent) => void;
 }
 
-export interface ILessonsStepProps {
+export interface ILessonsStepProps extends ILessonsStepContainerProps {
   formik: IFormik;
   selectOption: string;
   handleChangeOption?: (event: BaseSyntheticEvent) => void;
-  handleAddMoreLessons?: (event: BaseSyntheticEvent) => void;
-  isAddMoreLessons?: boolean;
 }
 
 export interface ILessonItemProps {
   formik: IFormik;
   selectOption: string;
   handleChangeOption?: (event: BaseSyntheticEvent) => void;
-  isAddMoreLessons?: boolean;
+  material?: IMaterial;
 }
 
 export interface ITestItemProps {
