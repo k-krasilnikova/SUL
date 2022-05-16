@@ -1,10 +1,11 @@
 import { FC } from 'react';
 
-import { AuthorizedLayout } from 'components/Layout';
+import { NO_SKILLS } from 'constants/messages';
 import Loader from 'components/Loader';
+import PageTitle from 'components/PageTitle';
 import SkillGroup from 'components/SkillGroup';
 import NoContent from 'components/NoContent';
-import { NO_SKILLS } from 'constants/messages';
+import { Loaders } from 'enums/loader';
 
 import { ISkillsPageProps } from './types';
 import {
@@ -22,9 +23,9 @@ const Skills: FC<ISkillsPageProps> = ({
   handleSearchInputChange,
   isLoading,
 }) => (
-  <AuthorizedLayout pageName="Skills">
+  <PageTitle title="Skills">
     {isLoading ? (
-      <Loader color="primary" type="content" />
+      <Loader type={Loaders.content} />
     ) : skills?.length ? (
       <SkillsPageContainer container>
         <SkillsWrapper>
@@ -38,7 +39,7 @@ const Skills: FC<ISkillsPageProps> = ({
     ) : (
       <NoContent message={NO_SKILLS} />
     )}
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default Skills;

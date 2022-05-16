@@ -1,17 +1,13 @@
-import React, { Suspense } from 'react';
+import { FC } from 'react';
 
-import { AuthorizedLayout } from 'components/Layout';
-import Loader from 'components/Loader';
+import PageTitle from 'components/PageTitle';
 import pdf from 'docs/sul.pdf';
-import { Loaders } from 'enums/loader';
 import { PDFViewer } from 'components/PDFViewer';
 
-const Help: React.FC = () => (
-  <AuthorizedLayout pageName="Help">
-    <Suspense fallback={<Loader color="primary" type={Loaders.content} />}>
-      <PDFViewer src={pdf} />
-    </Suspense>
-  </AuthorizedLayout>
+const Help: FC = () => (
+  <PageTitle title="Help">
+    <PDFViewer src={pdf} />
+  </PageTitle>
 );
 
 export default Help;

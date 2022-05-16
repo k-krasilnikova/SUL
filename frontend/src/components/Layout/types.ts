@@ -4,15 +4,7 @@ import { TUserInfo } from 'types/user';
 import { INotification } from 'types/notification';
 import { IMenuItemProps } from 'types/menu';
 
-interface ILayoutProps {
-  pageName: string;
-}
-
-export type TDefaultLayoutProps = ILayoutProps;
-
-export type TAuthorizedLayoutContainerProps = ILayoutProps;
-
-export interface IAuthorizedLayoutProps extends TAuthorizedLayoutContainerProps {
+export interface IAuthorizedLayoutProps {
   isMobileMenuOpen: boolean;
   isSqueeze: boolean;
   handleConfirmLogOutOpen: () => void;

@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Divider } from '@mui/material';
 import { Search } from '@mui/icons-material';
@@ -9,8 +9,6 @@ import { NO_SKILLS } from 'constants/messages';
 import { Size } from 'enums/sizes';
 import { starContained } from 'icons';
 import { Technologies } from 'types/skill';
-import Loader from 'components/Loader';
-import { Loaders } from 'enums/loader';
 
 import {
   SearchWrapper,
@@ -42,62 +40,60 @@ const UserSkills: React.FC<Props> = ({
   searchSkill,
 }) => (
   <SkillsBox>
-    <Suspense fallback={<Loader color="primary" type={Loaders.component} />}>
-      <SearchWrapper>
-        <SearchSkill
-          disableUnderline
-          placeholder="Search"
-          inputProps={{ maxLength: 100 }}
-          fullWidth
-          startAdornment={
-            <InputAdornment position="start">
-              <Search color="disabled" fontSize="medium" />
-            </InputAdornment>
-          }
-          onKeyDown={(event) => {
-            checkSpace(event);
-          }}
-          onChange={(event) => {
-            searchSkillInList(event.target.value);
-          }}
-          onPaste={(event) => {
-            event.preventDefault();
-            checkPastedValue(event.clipboardData.getData('Text'));
-          }}
-          value={searchSkill}
-        />
-        <Divider />
-      </SearchWrapper>
-      <SkillsList>
-        {technologies && technologies.length ? (
-          technologies.map((techGroup, id) => {
-            const isDividerVisible = id < technologies.length - 1;
-            return (
-              <div key={`${techGroup.group.name}_id`}>
-                <SkillsListItem>
-                  <SkillTitle>
-                    {techGroup.isPrimary && <Star alt="primary" src={starContained} />}
-                    <Title>{techGroup.group.name || 'No group'}</Title>
-                  </SkillTitle>
-                  <SkillsInfoList>
-                    {techGroup.achievedSkills.map((skillInfo) => (
-                      <React.Fragment key={`${skillInfo.skill.name}_id`}>
-                        <SkillInfoContainer skillItem={skillInfo} />
-                      </React.Fragment>
-                    ))}
-                  </SkillsInfoList>
-                </SkillsListItem>
-                {isDividerVisible && <SkillsDivider />}
-              </div>
-            );
-          })
-        ) : (
-          <NoSkills>
-            <NoContent message={NO_SKILLS} size={Size.medium} />
-          </NoSkills>
-        )}
-      </SkillsList>
-    </Suspense>
+    <SearchWrapper>
+      <SearchSkill
+        disableUnderline
+        placeholder="Search"
+        inputProps={{ maxLength: 100 }}
+        fullWidth
+        startAdornment={
+          <InputAdornment position="start">
+            <Search color="disabled" fontSize="medium" />
+          </InputAdornment>
+        }
+        onKeyDown={(event) => {
+          checkSpace(event);
+        }}
+        onChange={(event) => {
+          searchSkillInList(event.target.value);
+        }}
+        onPaste={(event) => {
+          event.preventDefault();
+          checkPastedValue(event.clipboardData.getData('Text'));
+        }}
+        value={searchSkill}
+      />
+      <Divider />
+    </SearchWrapper>
+    <SkillsList>
+      {technologies && technologies.length ? (
+        technologies.map((techGroup, id) => {
+          const isDividerVisible = id < technologies.length - 1;
+          return (
+            <div key={`${techGroup.group.name}_id`}>
+              <SkillsListItem>
+                <SkillTitle>
+                  {techGroup.isPrimary && <Star alt="primary" src={starContained} />}
+                  <Title>{techGroup.group.name || 'No group'}</Title>
+                </SkillTitle>
+                <SkillsInfoList>
+                  {techGroup.achievedSkills.map((skillInfo) => (
+                    <React.Fragment key={`${skillInfo.skill.name}_id`}>
+                      <SkillInfoContainer skillItem={skillInfo} />
+                    </React.Fragment>
+                  ))}
+                </SkillsInfoList>
+              </SkillsListItem>
+              {isDividerVisible && <SkillsDivider />}
+            </div>
+          );
+        })
+      ) : (
+        <NoSkills>
+          <NoContent message={NO_SKILLS} size={Size.medium} />
+        </NoSkills>
+      )}
+    </SkillsList>
   </SkillsBox>
 );
 

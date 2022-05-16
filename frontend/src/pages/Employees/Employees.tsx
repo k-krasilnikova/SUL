@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { NO_EMPLOYEES } from 'constants/messages';
-import { AuthorizedLayout } from 'components/Layout';
+import PageTitle from 'components/PageTitle';
 import NoContent from 'components/NoContent';
 import Loader from 'components/Loader';
 import { Loaders } from 'enums/loader';
@@ -11,9 +11,9 @@ import { EmployeesWrapper } from './styled';
 import EmployeesList from './EmployeesList';
 
 const Employees: FC<IEmployeesProps> = ({ employees, isLoading }) => (
-  <AuthorizedLayout pageName="Employees">
+  <PageTitle title="Employees">
     {isLoading ? (
-      <Loader color="primary" type={Loaders.content} />
+      <Loader type={Loaders.content} />
     ) : employees?.length ? (
       <EmployeesWrapper>
         <EmployeesList employees={employees} />
@@ -21,7 +21,7 @@ const Employees: FC<IEmployeesProps> = ({ employees, isLoading }) => (
     ) : (
       <NoContent message={NO_EMPLOYEES} />
     )}
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default Employees;
