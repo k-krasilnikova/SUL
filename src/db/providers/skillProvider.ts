@@ -1,4 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose';
+import { isNull } from 'lodash';
 
 import UserSkillModel from 'db/models/UserSkill';
 import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
@@ -207,9 +208,11 @@ const getSkillsToCourseTechs = async (technologies: ICourseTechsFromWeb[]) => {
     }),
   );
 
-  if (techs.length !== technologies.length) {
-    throw new NotFoundError(`Couldn't find some of mentioned technologies.`);
-  }
+  techs.forEach((tech) => {
+    if (isNull(tech)) {
+      throw new NotFoundError(`Couldn't find some of mentioned technologies.`);
+    }
+  });
 
   const techsForCourse = techs.map((currentSkill, index) => ({
     skill: currentSkill?._id as string,
