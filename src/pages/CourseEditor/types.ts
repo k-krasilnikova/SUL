@@ -10,10 +10,6 @@ export interface IFormik {
     avatar?: string;
     description?: string;
     materials: IMaterial[];
-    videoURL?: string;
-    textDescription?: string;
-    exerciseTitle?: string;
-    exerciseDescription?: string;
     testTitle?: string;
     testDuration?: string;
     testQuestion?: string;
@@ -26,10 +22,6 @@ export interface IFormik {
     avatar?: string;
     description?: string;
     materials: IMaterial[];
-    videoURL?: string;
-    textDescription?: string;
-    exerciseTitle?: string;
-    exerciseDescription?: string;
     testTitle?: string;
     testDuration?: string;
     testQuestion?: string;
@@ -80,6 +72,7 @@ export interface ILessonItemProps {
   selectOption: string;
   handleChangeOption?: (event: BaseSyntheticEvent) => void;
   material?: IMaterial;
+  id: number;
 }
 
 export interface ITestItemProps {

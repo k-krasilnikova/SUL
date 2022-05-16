@@ -1,16 +1,13 @@
-/* eslint-disable react/no-array-index-key */
-
 import { FC } from 'react';
 import { FieldArray } from 'formik';
 
+import { ILessonsStepProps } from 'pages/CourseEditor/types';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { Titles } from 'constants/courseEditor';
-import { ILessonsStepProps } from 'pages/CourseEditor/types';
-
 import isLastElem from 'utils/helpers/arrays/isLastElem';
+
 import LessonItem from './LessonItem';
-import { LessonsStepContainer, LessonsStepWrapper, LessonsStepTitle } from './styled';
-import { SkillButton } from '../SkillsStep/styled';
+import { LessonsStepContainer, LessonsStepWrapper, LessonsStepTitle, LessonButton } from './styled';
 
 const LessonsStep: FC<ILessonsStepProps> = ({
   formik,
@@ -21,25 +18,27 @@ const LessonsStep: FC<ILessonsStepProps> = ({
   <LessonsStepContainer>
     <LessonsStepTitle>{Titles.lessonStepTitle}</LessonsStepTitle>
     {courseData &&
+      Object.values(formik.values.materials).length &&
       formik.values?.materials.map((material, index) => (
-        <LessonsStepWrapper key={index}>
+        <LessonsStepWrapper key={material.stage}>
           <FieldArray name="materials">
             {({ remove, push }) => (
               <>
                 <LessonItem
+                  id={index}
                   material={material}
                   formik={formik}
                   selectOption={selectOption}
                   handleChangeOption={handleChangeOption}
                 />
                 {isLastElem(formik.values.materials, index) ? (
-                  <SkillButton variant="mediumOutlined" onClick={() => push({})}>
+                  <LessonButton variant="mediumOutlined" onClick={() => push({})}>
                     {ButtonLabels.addMoreLessons}
-                  </SkillButton>
+                  </LessonButton>
                 ) : (
-                  <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
+                  <LessonButton variant="mediumOutlined" onClick={() => remove(index)}>
                     {ButtonLabels.removeLesson}
-                  </SkillButton>
+                  </LessonButton>
                 )}
               </>
             )}

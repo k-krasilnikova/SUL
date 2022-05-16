@@ -13,8 +13,6 @@ export const LessonsStepContainer = styled(Box)({
 });
 
 export const LessonsStepWrapper = styled(Box)({
-  position: 'relative',
-  width: '1011px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
@@ -54,4 +52,13 @@ export const AddMoreLessonsButton = styled(Button)({
     padding: 0,
     fontSize: '14px',
   },
+});
+
+export const LessonButton = styled(Button)({
+  display: 'flex',
+  alignSelf: 'flex-end',
+  fontSize: '18px',
+  width: '136px',
+  height: '50px',
+  fontWeight: 500,
 });
