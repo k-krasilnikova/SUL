@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 import { isEmpty } from 'lodash';
 
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
@@ -13,7 +13,7 @@ import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
 import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
-const getUserProvider = async (userId: string | ObjectId) => {
+const getUserProvider = async (userId: string | Types.ObjectId) => {
   const dbUser = await UserModel.findById(userId).lean();
 
   if (!dbUser) {
@@ -65,7 +65,7 @@ const getFullUserInformationProvider = async (userId: string) => {
 };
 
 const getUserStackProvider = async (
-  userId: ObjectId | string,
+  userId: Types.ObjectId | string,
 ): Promise<TUserStackMemberPopulated[]> => {
   const { stack } = await UserModel.findById(userId)
     .populate('stack.member')
@@ -85,7 +85,7 @@ const getEmployeesProvider = async (managerId: string) => {
 };
 
 const updatePendingFieldCourses = async (
-  managerId: ObjectId,
+  managerId: Types.ObjectId,
   applyedCourseId: string | undefined,
 ) => {
   if (!applyedCourseId) {
@@ -94,7 +94,10 @@ const updatePendingFieldCourses = async (
   await UserModel.updateOne({ _id: managerId }, { $push: { pendingCourses: applyedCourseId } });
 };
 
-const updateUserTechnologies = async (userId: ObjectId | string, techs: ITechnologyGroup[]) => {
+const updateUserTechnologies = async (
+  userId: Types.ObjectId | string,
+  techs: ITechnologyGroup[],
+) => {
   await UserModel.updateOne(
     { _id: userId },
     {
@@ -105,7 +108,10 @@ const updateUserTechnologies = async (userId: ObjectId | string, techs: ITechnol
   );
 };
 
-const removeFromPendingFieldCourses = async (managerId: ObjectId, approvedCourseId?: ObjectId) => {
+const removeFromPendingFieldCourses = async (
+  managerId: Types.ObjectId,
+  approvedCourseId?: Types.ObjectId,
+) => {
   if (!approvedCourseId) {
     throw new BadRequestError('Approved course is missing');
   }

@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 import { IUserSkill } from './IUserSkill';
 
 interface ITest {
@@ -28,7 +28,7 @@ type TAchievments = {
 };
 
 type TTechToAchieve = {
-  skill: ObjectId;
+  skill: Types.ObjectId;
   points: number;
 };
 

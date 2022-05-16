@@ -1,5 +1,5 @@
 import { Dictionary, groupBy, orderBy, pullAll, sortBy } from 'lodash';
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import CourseStatus from 'enums/coursesEnums';
 import { UserRank } from 'enums/users';
@@ -42,12 +42,12 @@ const groupedCoursesReducer =
 
 const addClientCoursesIdsToCoursesMapElement = async (
   mapElement: ICoursesMapElement,
-  userId: string | ObjectId,
+  userId: string | Types.ObjectId,
 ): Promise<ICoursesMapElement> => {
   const updatedCourses = await Promise.all(
     mapElement.courses.map(async (courseShortInfo) => {
       const clientCourse = await getClientCourseByCourseId(
-        convertToTypeUnsafe<string | ObjectId>(courseShortInfo._id),
+        convertToTypeUnsafe<string | Types.ObjectId>(courseShortInfo._id),
         userId,
       );
       const updatedCourseInfo: ICourseShortInfo = {
@@ -63,14 +63,14 @@ const addClientCoursesIdsToCoursesMapElement = async (
 
 const addClientCoursesIdsToCoursesMap = async (
   courseMap: ICoursesMapElement[],
-  userId: string | ObjectId,
+  userId: string | Types.ObjectId,
 ): Promise<ICoursesMapElement[]> =>
   Promise.all(courseMap.map((map) => addClientCoursesIdsToCoursesMapElement(map, userId)));
 
 const generateCoursesMapResponse = async (
   stack: TUserStackMemberPopulated[],
   userRank: UserRank,
-  userId: string | ObjectId,
+  userId: string | Types.ObjectId,
 ): Promise<ICoursesMapResponse> => {
   const coursesMapResponseCascade: ICoursesMapResponse = { userRank, stackMap: [] };
 
@@ -125,14 +125,17 @@ const addMissingCoursesMapElements = (
 
 const fillStackWithStatuses = async (
   userStack: TUserStackMemberPopulated[],
-  userId: string | ObjectId,
+  userId: string | Types.ObjectId,
 ): Promise<TUserStackMemberPopulated[]> =>
   Promise.all(
     userStack.map(async (stackMember) => {
       const updatedRelatedCourses = await Promise.all(
         stackMember.member.relatedCourses.map(async (course) => ({
           ...course,
-          status: await getCourseStatusProvider(convertToTypeUnsafe<ObjectId>(course._id), userId),
+          status: await getCourseStatusProvider(
+            convertToTypeUnsafe<Types.ObjectId>(course._id),
+            userId,
+          ),
         })),
       );
       const newMember = { ...stackMember };

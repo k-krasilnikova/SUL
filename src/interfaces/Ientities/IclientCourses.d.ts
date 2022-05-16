@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import CourseStatus from 'enums/coursesEnums';
 import { ICourseInfo } from 'interfaces/ICourses/IQueryCourses';
@@ -11,9 +11,9 @@ export type TClientCourseFields =
   typeof CLIENT_COURSE_FIELDS[`${keyof typeof CLIENT_COURSE_FILEDS}`];
 
 interface IClientCourse {
-  _id?: ObjectId;
-  user: ObjectId;
-  course: ObjectId;
+  _id?: Types.ObjectId;
+  user: Types.ObjectId;
+  course: Types.ObjectId;
   status: `${CourseStatus}`;
   withAssessment: boolean;
   testResult: { qN: number; aN: boolean }[];

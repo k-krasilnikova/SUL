@@ -1,11 +1,11 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 interface ISkill {
-  _id?: ObjectId;
+  _id?: Types.ObjectId;
   name: string;
   image: string;
   maxScore: number;
-  group: ObjectId;
+  group: Types.ObjectId;
 }
 
 export default ISkill;

@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 interface IMaterial {
-  _id?: ObjectId;
+  _id?: Types.ObjectId;
   content: {
     _id: string;
     stage: number;
