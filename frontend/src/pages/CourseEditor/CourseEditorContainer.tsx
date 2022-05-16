@@ -14,11 +14,6 @@ import CourseEditor from './CourseEditor';
 const CourseEditorContainer: FC = () => {
   const params = useParams();
   const basePath = transformRoute(PATHS.courseEditor, params.courseId);
-  // const { data: courseMaterials } = useGetCourseMaterials(params.courseId);
-
-  // eslint-disable-next-line no-console
-  // console.log(courseMaterials, 'courseMaterials');
-
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
     onSubmit: (): void => {},
@@ -26,9 +21,6 @@ const CourseEditorContainer: FC = () => {
     validateOnBlur: true,
     validateOnChange: false,
   });
-
-  // eslint-disable-next-line no-console
-  console.log(formik, 'formik');
 
   const onSuccessLoadCourseData = (data: any): void => {
     formik.setValues(data, false);
@@ -38,9 +30,6 @@ const CourseEditorContainer: FC = () => {
     params.courseId,
     onSuccessLoadCourseData,
   );
-
-  // eslint-disable-next-line no-console
-  console.log(courseData, 'courseData');
 
   return (
     <FormikProvider value={formik}>

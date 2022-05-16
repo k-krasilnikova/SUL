@@ -2,17 +2,18 @@ import { FC } from 'react';
 
 import { Titles } from 'constants/courseEditor';
 import { ILessonItemProps } from 'pages/CourseEditor/types';
+import { ContentElementType } from 'enums/materials';
 
 import {
-  LessonItemWrapper,
-  LessonItemTitle,
-  LessonInput,
-  InputSelect,
-  SelectItem,
   InputBox,
   InputLabel,
+  InputSelect,
   InputText,
   InputTextArea,
+  LessonInput,
+  LessonItemTitle,
+  LessonItemWrapper,
+  SelectItem,
 } from './styled';
 
 const LessonItem: FC<ILessonItemProps> = ({
@@ -20,14 +21,15 @@ const LessonItem: FC<ILessonItemProps> = ({
   selectOption,
   formik,
   material,
+  id,
 }) => (
   <LessonItemWrapper>
-    <LessonItemTitle>
-      {Titles.lessonCount} {material?.exercise?.eN}
-    </LessonItemTitle>
     {material &&
-      material?.content.map((lesson) => (
-        <form>
+      material?.content.map((lesson, n) => (
+        <form key={material.stage}>
+          <LessonItemTitle>
+            {Titles.lessonCount} {material.stage}
+          </LessonItemTitle>
           <LessonInput>
             <InputSelect onChange={handleChangeOption}>
               <SelectItem value="video" label="Video">
@@ -38,34 +40,42 @@ const LessonItem: FC<ILessonItemProps> = ({
               </SelectItem>
             </InputSelect>
             <InputBox>
-              <InputLabel>{`${lesson.type}` === 'video' ? 'Video URL' : 'Text URL'}</InputLabel>
-              {selectOption === 'video' ? (
+              <InputLabel>
+                {selectOption === (ContentElementType.video || ContentElementType.presentation)
+                  ? 'Video URL'
+                  : 'Text URL'}
+              </InputLabel>
+              {selectOption === (ContentElementType.video || ContentElementType.presentation) ? (
                 <InputText
-                  id="videoURL"
+                  id={`materials[${id}].content[${n}].material`}
+                  name={`materials[${id}].content[${n}].material`}
                   placeholder={lesson.material}
-                  value={formik.values.videoURL}
+                  value={lesson.material}
                   onChange={formik.handleChange}
                 />
               ) : (
                 <InputTextArea
-                  id="textDescription"
+                  id={`materials[${id}].content[${n}].material`}
+                  name={`materials[${id}].content[${n}].material`}
                   placeholder={lesson.material}
-                  value={formik.values.textDescription}
+                  value={lesson.material}
                   onChange={formik.handleChange}
                 />
               )}
               <InputLabel>{Titles.exerciseTitle}</InputLabel>
               <InputText
-                id="exerciseTitle"
+                id={`materials[${id}].exercise.title`}
+                name={`materials[${id}].exercise.title`}
                 placeholder={material.exercise?.title}
-                value={formik.values.exerciseTitle}
+                value={material.exercise?.title}
                 onChange={formik.handleChange}
               />
               <InputLabel>{Titles.exerciseDescription}</InputLabel>
               <InputTextArea
-                id="exerciseDescription"
+                id={`materials[${id}].exercise.task`}
+                name={`materials[${id}].exercise.task`}
                 placeholder={material.exercise?.task}
-                value={formik.values.exerciseDescription}
+                value={material.exercise?.task}
                 onChange={formik.handleChange}
               />
             </InputBox>
