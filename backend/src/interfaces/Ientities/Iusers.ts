@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import { UserRank } from 'enums/users';
 
@@ -10,11 +10,11 @@ import { ITimePeriod } from '../common/datetime';
 import { TUserPosition, TUserRole } from '../common/users';
 
 interface INotification {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   title: string;
   description: string;
   status: string;
-  userId: ObjectId;
+  userId: Types.ObjectId;
 }
 
 type TUserForPendingCourses = Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;
@@ -31,7 +31,7 @@ interface IPendingCourse {
 type TPendingCourses = IPendingCourse[];
 
 interface IUser {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   username: string;
   passwordHash: string;
   email: string;
@@ -43,21 +43,21 @@ interface IUser {
   lastName: string;
   stack: IUserStackMemberDatabase[];
   technologies: ITechnologyGroup[];
-  courses: ObjectId[];
+  courses: Types.ObjectId[];
   group: string;
-  employees: ObjectId[];
-  pendingCourses: ObjectId[] | TPendingCourses;
+  employees: Types.ObjectId[];
+  pendingCourses: Types.ObjectId[] | TPendingCourses;
   avatar: string;
   birthday: Date;
   skype: string;
   phone: string;
-  managerId: ObjectId;
+  managerId: Types.ObjectId;
   notifications?: INotification[];
 }
 
 interface ITechnologyGroup {
-  group: ObjectId;
-  achievedSkills: ObjectId[];
+  group: Types.ObjectId;
+  achievedSkills: Types.ObjectId[];
   isPrimary: boolean;
 }
 

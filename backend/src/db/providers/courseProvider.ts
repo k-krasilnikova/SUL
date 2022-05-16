@@ -1,4 +1,4 @@
-import mongoose, { ObjectId } from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import { isEmpty } from 'lodash';
 
 import {
@@ -22,7 +22,7 @@ import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
 
-const generateCourseStatusLookup = (userId: ObjectId | string) => ({
+const generateCourseStatusLookup = (userId: Types.ObjectId | string) => ({
   $lookup: {
     from: 'clientCourses',
     localField: '_id',
@@ -126,7 +126,10 @@ const getCoursesProvider = async (
   }
 };
 
-const getCourseProvider = async (courseId: string | ObjectId, userId: string | ObjectId) => {
+const getCourseProvider = async (
+  courseId: string | Types.ObjectId,
+  userId: string | Types.ObjectId,
+) => {
   const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
     {
       $match: {
@@ -249,8 +252,8 @@ const getAllCoursesProvider = async (
 };
 
 const getCourseStatusProvider = async (
-  courseId: string | ObjectId,
-  userId: string | ObjectId,
+  courseId: string | Types.ObjectId,
+  userId: string | Types.ObjectId,
 ): Promise<ICourseWithStatus['status']> => {
   const relateClientCourse = await ClientCourseModel.findOne({
     course: courseId,

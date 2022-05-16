@@ -1,11 +1,11 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import ISkill from './ISkill';
 
 interface IUserSkill {
-  _id?: ObjectId;
-  user: ObjectId;
-  skill: ObjectId;
+  _id?: Types.ObjectId;
+  user: Types.ObjectId;
+  skill: Types.ObjectId;
   score: number;
 }
 
