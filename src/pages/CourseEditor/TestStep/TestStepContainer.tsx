@@ -7,8 +7,8 @@ import TestStep from './TestStep';
 const TestStepContainer: FC<ITestStepContainerProps> = ({ formik }) => {
   const [isCurrentAnswer, setCurrentAnswer] = useState<string>('Answer');
 
-  const handleChangeAnswer = (event: BaseSyntheticEvent) => {
-    setCurrentAnswer(event.target.value);
+  const handleChangeAnswer = ({ target }: BaseSyntheticEvent) => {
+    setCurrentAnswer(target.value);
   };
 
   return (
