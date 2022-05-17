@@ -4,12 +4,14 @@ import { useParams } from 'react-router';
 import { useGetClientCourseAndMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import Loader from 'components/Loader';
-import { CourseStatus } from 'enums/course';
-import { Numbers } from 'enums/numbers';
 import { useToggle } from 'hooks';
+import { CourseStatus } from 'enums/course';
+import { Loaders } from 'enums/loader';
+import { Numbers } from 'enums/numbers';
 import { isProgressCompleted } from 'utils/helpers/isTestEnable';
 
 import LearningCourse from './LearningCourse';
+import { getIsNextStageCompleted } from './utils';
 
 const MIN_STAGE = 1;
 const STAGE_CHANGE = 1;
@@ -54,7 +56,7 @@ const LearningCourseContainer: React.FC = () => {
   );
 
   if (isClientCourseAndMaterialsLoading) {
-    return <Loader color="primary" />;
+    return <Loader type={Loaders.content} />;
   }
 
   const isResponsesDefined = clientCourseResponse && courseMaterialsResponse;
@@ -75,38 +77,49 @@ const LearningCourseContainer: React.FC = () => {
 
   const maxStage = courseMaterials?.length || MAX_STAGE_INITIAL;
 
+  const isLoading =
+    isStartMutateLoading || isPassMutateLoading || isClientCourseAndMaterialsFetching;
+  const isBackDisabled = stage === MIN_STAGE || isLoading;
+  const isForwardDisabled = stage === maxStage || isLoading;
+
   const handleStageForward = () => {
     const nextStage = stage + STAGE_CHANGE;
+    const IsNextStageCompleted = getIsNextStageCompleted({
+      nextStage,
+      progress: clientCourseResponse.progress,
+    });
+    const isPassStageAvailable =
+      clientCourseResponse?.status === CourseStatus.started &&
+      !IsNextStageCompleted &&
+      nextStage <= maxStage;
 
-    setStage(nextStage);
-    if (clientCourseResponse?.status === CourseStatus.started) {
-      passCourseStageMutate(stage);
-      if (nextStage === maxStage) {
-        passCourseStageMutate(maxStage);
-      }
+    if (isPassStageAvailable) {
+      passCourseStageMutate(nextStage);
     }
+    setStage(nextStage);
   };
 
   const handleStageBack = () => {
     setStage(stage - STAGE_CHANGE);
   };
+
   return (
     <LearningCourse
       key={courseMaterialsResponse.materials[stage - Numbers.one].stage}
       stage={stage}
       maxStage={maxStage}
       courseInfo={courseInfo}
+      clientCourse={clientCourseResponse}
       courseMaterial={courseMaterials[stage - Numbers.one]}
       courseContent={courseContent}
-      isBackDisabled={stage === MIN_STAGE}
+      isBackDisabled={isBackDisabled}
       isCourseInfoOpen={isCourseInfoOpen}
-      isLoading={isStartMutateLoading || isPassMutateLoading || isClientCourseAndMaterialsFetching}
-      isForwardDisabled={stage === maxStage}
+      isLoading={isLoading}
+      isForwardDisabled={isForwardDisabled}
       isTestEnabled={isTestEnabled}
       handleStageBack={handleStageBack}
       handleStageForward={handleStageForward}
       toggleCourseInfoOpen={setCourseInfoOpen}
-      clientCourse={clientCourseResponse}
     />
   );
 };
