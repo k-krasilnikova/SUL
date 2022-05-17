@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
-import TextTooltip from 'components/TextTooltip';
+import Tooltip from 'components/Tooltip';
 import { EmployeeRank, EmployeeContentType, EmployeeColumnName } from 'enums/employee';
 import { Size } from 'enums/sizes';
 import { IEmployeeContentProps } from 'pages/Employees/types';
@@ -16,6 +16,7 @@ import {
   InfoContainer,
   Position,
   StyledExpandMoreIcon,
+  OverFlowedText,
 } from './styled';
 import { ColumnLabel } from '../styled';
 import ContentGrid from '../ContentGrid';
@@ -58,7 +59,9 @@ const EmployeeContent: FC<IEmployeeContentProps> = ({
             ) : (columnName === EmployeeColumnName.phone ||
                 columnName === EmployeeColumnName.skype) &&
               type !== EmployeeContentType.hidden ? (
-              <TextTooltip>{employee[columnName]}</TextTooltip>
+              <Tooltip title={employee[columnName] as string}>
+                <OverFlowedText>{employee[columnName]}</OverFlowedText>
+              </Tooltip>
             ) : columnName === EmployeeColumnName.button ? (
               <StyledExpandMoreIcon isVisible={isVisible} onClick={handleShowButtonClick} />
             ) : (

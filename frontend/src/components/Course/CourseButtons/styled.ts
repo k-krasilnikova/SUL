@@ -15,7 +15,6 @@ export const ButtonsContainer = styled('div')({
   justifyContent: 'space-between',
   padding: '10px 0',
   [theme.breakpoints.down('md')]: {
-    alignItems: 'end',
     paddingBottom: '16px',
   },
   [theme.breakpoints.down('sm')]: {
@@ -26,8 +25,7 @@ export const ButtonsContainer = styled('div')({
 export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   display: 'flex',
   flexDirection: 'row',
-  paddingLeft: '15px',
-  paddingBottom: 0,
+  padding: '20px 0 0 15px',
   ...(type === Info.searchCourses && {
     height: 'auto',
   }),
