@@ -53,6 +53,7 @@ interface IUser {
   phone: string;
   managerId: Types.ObjectId;
   notifications?: INotification[];
+  accessToken?: string;
 }
 
 interface ITechnologyGroup {

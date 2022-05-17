@@ -14,7 +14,7 @@ interface IClientCourse {
   _id?: Types.ObjectId;
   user: Types.ObjectId;
   course: Types.ObjectId;
-  status: `${CourseStatus}`;
+  status: CourseStatus;
   withAssessment: boolean;
   testResult: { qN: number; aN: boolean }[];
   progress: [
