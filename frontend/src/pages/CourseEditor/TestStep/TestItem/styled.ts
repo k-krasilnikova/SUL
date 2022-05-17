@@ -1,6 +1,4 @@
-import { styled, Box, Input, Button, RadioGroup, Radio, TextField } from '@mui/material';
-
-import theme from 'themeSettings';
+import { styled, Box, Input, RadioGroup, Radio, TextField } from '@mui/material';
 
 export const TestItemWrapper = styled(Box)({
   width: '734px',
@@ -17,10 +15,10 @@ export const TestItemTitle = styled('p')({
 });
 
 export const TestTitleBox = styled(Box)({
-  width: '100%',
-  margin: '20px 0',
   display: 'flex',
   justifyContent: 'space-between',
+  width: '100%',
+  margin: '20px 0',
 });
 
 export const QuestionWrapper = styled(Box)({
@@ -43,14 +41,14 @@ export const QuestionInputBox = styled(Box)({
 });
 
 export const RadioButtonWrapper = styled(RadioGroup)({
-  marginTop: '14px',
   display: 'flex',
   flexDirection: 'column',
+  marginTop: '14px',
 });
 
 export const RadioButtonBox = styled(Box)({
-  marginTop: '16px',
   display: 'inline-block',
+  marginTop: '16px',
 });
 
 export const RadioSelectAnswer = styled(Radio)({
@@ -69,52 +67,15 @@ export const InputAnswer = styled(Input)({
   },
 });
 
-export const ButtonBox = styled(Box)({
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'end',
-});
-
-export const QuestionActionButton = styled(Button)({
-  width: '138px',
-  height: '40px',
-  fontSize: '16px',
-  lineHeight: '18px',
-  fontWeight: 500,
-  backgroundColor: '#FFF',
-  color: '#D43E41',
-  border: '1px solid #D43E41',
-  '&:hover': {
-    color: '#E19697',
-  },
-  '&:focus': {
-    color: '#2C2525',
-  },
-  [theme.breakpoints.down('lg')]: {
-    padding: 0,
-    fontSize: '14px',
-  },
-});
-
-export const InputText = styled(Input)({
+export const InputText = styled(TextField)({
   width: '350px',
   height: '53px',
-  paddingLeft: '12px',
   fontWight: 400,
-  fontSize: '16px',
-  lineHeight: '18px',
-  color: '#A2A2A2',
+  fontSize: '12px',
+  lineHeight: '21px',
+  color: '#000',
   backgroundColor: '#FFF',
-  border: '1px solid',
-  borderColor: 'rgba(0, 0, 0, 0.2)',
-  boxSizing: 'border-box',
   borderRadius: '5px',
-  '&::after, &::before': {
-    display: 'none',
-  },
-  '&:hover': {
-    borderColor: '#000',
-  },
 });
 
 export const TestBasicField = styled(TextField)({
@@ -129,8 +90,7 @@ export const TestBasicField = styled(TextField)({
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset, &:hover fieldset': {
-      border: '1px solid',
-      borderColor: 'rgba(0, 0, 0, 0.2)',
+      border: '1px solid #00000033',
     },
     '&.Mui-focused fieldset': {
       borderColor: '#000',
@@ -138,7 +98,7 @@ export const TestBasicField = styled(TextField)({
   },
 });
 
-export const InputSelect = styled('select')({
+export const FieldSelect = styled('select')({
   width: '350px',
   height: '53px',
   paddingLeft: '12px',
@@ -147,8 +107,7 @@ export const InputSelect = styled('select')({
   lineHeight: '18x',
   color: '#A2A2A2',
   backgroundColor: '#FFF',
-  border: '1px solid',
-  borderColor: 'rgba(0, 0, 0, 0.2)',
+  border: '1px solid #00000033',
   boxSizing: 'border-box',
   borderRadius: '5px',
 });

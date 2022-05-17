@@ -1,7 +1,7 @@
-import { styled, Box, Input } from '@mui/material';
+import { styled, Box, TextField, TextareaAutosize } from '@mui/material';
 
 export const LessonItemWrapper = styled(Box)({
-  margin: '32px 0 50px 0',
+  marginTop: '32px 0',
 });
 
 export const LessonItemTitle = styled('p')({
@@ -13,11 +13,11 @@ export const LessonItemTitle = styled('p')({
   color: '#2C2525',
 });
 
-export const LessonInput = styled(Box)({
-  margin: '30px 0',
+export const LessonInnerBox = styled(Box)({
+  marginTop: '30px',
 });
 
-export const InputSelect = styled('select')({
+export const FieldSelect = styled('select')({
   width: '350px',
   height: '53px',
   paddingLeft: '12px',
@@ -26,13 +26,9 @@ export const InputSelect = styled('select')({
   lineHeight: '18x',
   color: '#000',
   backgroundColor: '#FFF',
-  border: '1px solid',
-  borderColor: 'rgba(0, 0, 0, 0.2)',
-  boxSizing: 'border-box',
+  border: '1px solid #00000033',
   borderRadius: '5px',
 });
-
-export const SelectItem = styled('option')({});
 
 export const InputBox = styled(Box)({
   display: 'flex',
@@ -48,37 +44,36 @@ export const InputLabel = styled('label')({
   color: '#000',
 });
 
-export const InputText = styled(Input)({
+export const InputText = styled(TextField)({
   width: '350px',
   height: '53px',
-  paddingLeft: '12px',
   fontWight: 400,
   fontSize: '12px',
   lineHeight: '21px',
   color: '#000',
   backgroundColor: '#FFF',
-  border: '1px solid',
-  borderColor: 'rgba(0, 0, 0, 0.2)',
-  boxSizing: 'border-box',
   borderRadius: '5px',
-  '&::after, &::before': {
-    display: 'none',
+  '& label, & label.Mui-focused': {
+    color: '#A2A2A2',
   },
-  '&:hover': {
-    border: '2px solid',
-    borderColor: '#000',
+  '& .MuiOutlinedInput-root': {
+    '& fieldset, &:hover fieldset': {
+      border: '1px solid #00000033',
+    },
+    '&.Mui-focused fieldset': {
+      border: '1px solid #000',
+    },
   },
 });
 
-export const InputTextArea = styled('textarea')({
+export const InputTextArea = styled(TextareaAutosize)({
   width: '667px',
-  height: '168px',
+  minHeight: '168px',
   margin: 0,
   paddingLeft: '10px',
   fontWight: 400,
   fontSize: '16px',
   lineHeight: '28px',
   color: '#A2A2A2',
-  border: '1px solid',
-  borderColor: 'rgba(0, 0, 0, 0.2)',
+  border: '1px solid #00000033',
 });

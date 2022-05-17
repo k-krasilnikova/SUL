@@ -13,10 +13,10 @@ export const TestStepContainer = styled(Box)({
 
 export const TestStepWrapper = styled(Box)({
   position: 'relative',
-  width: '1011px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
+  width: '1011px',
   margin: '24px 0 0 109px',
 });
 
