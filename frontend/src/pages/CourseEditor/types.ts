@@ -5,11 +5,11 @@ import { TCourseTechnology, IMaterial, ICourse } from 'types/course';
 export interface IFormik {
   initialValues: {
     technologies: TCourseTechnology[];
+    materials: IMaterial[];
     title?: string;
     complexity?: number;
     avatar?: string;
     description?: string;
-    materials: IMaterial[];
     testTitle?: string;
     testDuration?: string;
     testQuestion?: string;
@@ -17,11 +17,11 @@ export interface IFormik {
   };
   values: {
     technologies: TCourseTechnology[];
+    materials: IMaterial[];
     title?: string;
     complexity?: number;
     avatar?: string;
     description?: string;
-    materials: IMaterial[];
     testTitle?: string;
     testDuration?: string;
     testQuestion?: string;
@@ -46,11 +46,6 @@ export interface ISkillsStepProps extends IStepProps {
   };
 }
 
-export interface ILessonsStepContainerProps {
-  formik: IFormik;
-  courseData?: ICourse;
-}
-
 export interface ITestStepContainerProps {
   formik: IFormik;
 }
@@ -61,7 +56,7 @@ export interface ITestStepProps {
   handleChangeAnswer?: (event: BaseSyntheticEvent) => void;
 }
 
-export interface ILessonsStepProps extends ILessonsStepContainerProps {
+export interface ILessonsStepProps extends IStepProps {
   formik: IFormik;
   selectOption: string;
   handleChangeOption?: (event: BaseSyntheticEvent) => void;
@@ -69,10 +64,10 @@ export interface ILessonsStepProps extends ILessonsStepContainerProps {
 
 export interface ILessonItemProps {
   formik: IFormik;
+  material: IMaterial;
+  index: number;
   selectOption: string;
   handleChangeOption?: (event: BaseSyntheticEvent) => void;
-  material?: IMaterial;
-  id: number;
 }
 
 export interface ITestItemProps {
