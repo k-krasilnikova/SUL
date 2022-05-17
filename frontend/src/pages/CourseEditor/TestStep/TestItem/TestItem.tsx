@@ -14,53 +14,46 @@ import {
   RadioButtonBox,
   RadioSelectAnswer,
   InputAnswer,
-  ButtonBox,
-  QuestionActionButton,
   InputText,
   TestBasicField,
-  InputSelect,
+  FieldSelect,
 } from './styled';
 
 const TestItem: FC<ITestItemProps> = ({ formik, handleChangeAnswer, isCurrentAnswer }) => (
   <TestItemWrapper>
-    <form>
-      <TestItemTitle>{Titles.testDetails}</TestItemTitle>
-      <TestTitleBox>
-        <TestBasicField label="Title" value={formik.values.testTitle} variant="outlined" />
-        <TestBasicField label="Duration" value={formik.values.testDuration} variant="outlined" />
-      </TestTitleBox>
-      <QuestionWrapper>
-        <QuestionTitle>Question № 1</QuestionTitle>
-        <QuestionInputBox>
-          <InputText value="Question" aria-label="Question" />
-          <InputSelect disabled>
-            <option>Answer Option</option>
-          </InputSelect>
-        </QuestionInputBox>
-        <RadioButtonWrapper
-          aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="Answer"
-          name="radio-buttons-group"
-        >
-          <RadioButtonBox>
-            <RadioSelectAnswer name="Answer" value="Answer" disableRipple />
-            <InputAnswer value="Answer" />
-          </RadioButtonBox>
-          <RadioButtonBox>
-            <RadioSelectAnswer
-              name="Answer 1"
-              value={formik.values.testAnswer}
-              disableRipple
-              id="testAnswer"
-            />
-            <InputAnswer value={isCurrentAnswer} onChange={handleChangeAnswer} />
-          </RadioButtonBox>
-        </RadioButtonWrapper>
-        <ButtonBox>
-          <QuestionActionButton type="button">Remove question</QuestionActionButton>
-        </ButtonBox>
-      </QuestionWrapper>
-    </form>
+    <TestItemTitle>{Titles.testDetails}</TestItemTitle>
+    <TestTitleBox>
+      <TestBasicField label="Title" value={formik.values.testTitle} variant="outlined" />
+      <TestBasicField label="Duration" value={formik.values.testDuration} variant="outlined" />
+    </TestTitleBox>
+    <QuestionWrapper>
+      <QuestionTitle>{Titles.questionCount}</QuestionTitle>
+      <QuestionInputBox>
+        <InputText value="Question" aria-label="Question" />
+        <FieldSelect disabled>
+          <option>{Titles.answerTestOption}</option>
+        </FieldSelect>
+      </QuestionInputBox>
+      <RadioButtonWrapper
+        aria-labelledby="demo-radio-buttons-group-label"
+        defaultValue="Answer"
+        name="radio-buttons-group"
+      >
+        <RadioButtonBox>
+          <RadioSelectAnswer name="Answer" value="Answer" disableRipple />
+          <InputAnswer value="Answer" />
+        </RadioButtonBox>
+        <RadioButtonBox>
+          <RadioSelectAnswer
+            name="Answer 1"
+            value={formik.values.testAnswer}
+            disableRipple
+            id="testAnswer"
+          />
+          <InputAnswer value={isCurrentAnswer} onChange={handleChangeAnswer} />
+        </RadioButtonBox>
+      </RadioButtonWrapper>
+    </QuestionWrapper>
   </TestItemWrapper>
 );
 
