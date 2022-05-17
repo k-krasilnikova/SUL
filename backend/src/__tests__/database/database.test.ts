@@ -59,7 +59,7 @@ describe('database connections', () => {
 });
 
 describe('database collections', () => {
-  const notEmptyNumber = 0;
+  const emptyNumber = 0;
 
   beforeAll(async () => {
     dotenv.config();
@@ -77,42 +77,42 @@ describe('database collections', () => {
 
   it('courses collection is not empty', async () => {
     const courses = await CourseModel.count();
-    expect(courses).not.toBe(notEmptyNumber);
+    expect(courses).not.toBe(emptyNumber);
   });
 
   it(' skillGroups collection is not empty', async () => {
     const skillGroups = await SkillGroupModel.count();
-    expect(skillGroups).not.toBe(notEmptyNumber);
+    expect(skillGroups).not.toBe(emptyNumber);
   });
 
   it('skills collection is not empty', async () => {
     const skills = await SkillModel.count();
-    expect(skills).not.toBe(notEmptyNumber);
+    expect(skills).not.toBe(emptyNumber);
   });
 
   it('tests collection is not empty', async () => {
     const tests = await TestModel.count();
-    expect(tests).not.toBe(notEmptyNumber);
+    expect(tests).not.toBe(emptyNumber);
   });
 
   it('users collection is not empty', async () => {
     const users = await UserModel.count();
-    expect(users).not.toBe(notEmptyNumber);
+    expect(users).not.toBe(emptyNumber);
   });
 
   it('usersSkills collection is not empty', async () => {
     const userSkills = await UserSkillModel.count();
-    expect(userSkills).not.toBe(notEmptyNumber);
+    expect(userSkills).not.toBe(emptyNumber);
   });
 
   it('stackMembers collection is not empty', async () => {
     const stackMembers = await StackMemberModel.count();
-    expect(stackMembers).not.toBe(notEmptyNumber);
+    expect(stackMembers).not.toBe(emptyNumber);
   });
 
   it('notifications collection is not empty', async () => {
     const notifications = await NotificationModel.count();
-    expect(notifications).not.toBe(notEmptyNumber);
+    expect(notifications).not.toBe(emptyNumber);
   });
 
   it('clientCourse collection exists', async () => {
