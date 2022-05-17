@@ -1,2 +1,2 @@
-export const convertToFullName = (firstName?: string, lastName?: string) =>
+export const convertToFullName = (firstName?: string, lastName?: string): string =>
   `${firstName} ${lastName}`;

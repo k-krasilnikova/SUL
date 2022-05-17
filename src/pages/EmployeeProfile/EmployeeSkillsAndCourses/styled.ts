@@ -19,14 +19,14 @@ export const SkillsAndCoursesBox = styled('div')({
 });
 
 export const EmployeeButtonGroup = styled(ButtonGroup)({
-  height: '40px',
+  height: '44px',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
   alignItems: 'end',
   [theme.breakpoints.down('xl')]: {
-    height: '36px',
+    height: '40px',
   },
   [theme.breakpoints.down('lg')]: {
-    height: '28px',
+    height: '32px',
   },
   [theme.breakpoints.down('md')]: {
     marginBottom: '20px',

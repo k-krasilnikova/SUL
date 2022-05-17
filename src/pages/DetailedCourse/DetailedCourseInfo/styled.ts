@@ -43,6 +43,7 @@ export const DetailedCourseText = styled(Typography)({
   textAlign: 'justify',
   letterSpacing: '-0.4px',
   color: '#131313',
+  wordBreak: 'break-word',
   [theme.breakpoints.up('xs')]: {
     display: 'none',
   },
@@ -66,8 +67,8 @@ export const DetailedCourseText = styled(Typography)({
 
 export const DetailedCourseTitle = styled(Typography)({
   fontWeight: 700,
-  letterSpacing: '-0.4px',
   color: '#2c2525',
+  wordBreak: 'break-word',
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px',
     lineHeight: '28px',
@@ -91,6 +92,7 @@ export const DetailedCourseTextMobile = styled(Typography)({
   fontWeight: 'normal',
   letterSpacing: '-0.4px',
   color: '#131313',
+  wordBreak: 'break-word',
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px',
     lineHeight: '25px',

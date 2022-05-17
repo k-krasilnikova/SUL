@@ -2,6 +2,7 @@ import { styled, Box, Grid } from '@mui/material';
 
 import { REQUEST_STATUS } from 'constants/requests';
 import { CourseStatus } from 'enums/course';
+import theme from 'themeSettings';
 
 interface IStatus {
   status?: CourseStatus;
@@ -13,10 +14,22 @@ export const ImageWrapper = styled('div')({
 });
 
 export const CourseImageWrapper = styled('div')({
-  minHeight: '20px',
-  height: '20px',
-  minWidth: '30px',
-  width: '30px',
+  minHeight: '40px',
+  height: '40px',
+  minWidth: '72px',
+  width: '72px',
+  [theme.breakpoints.down('xl')]: {
+    minHeight: '34px',
+    height: '34px',
+    minWidth: '64px',
+    width: '64px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    minHeight: '30px',
+    height: '30px',
+    minWidth: '54px',
+    width: '54px',
+  },
 });
 
 export const Text = styled('p')({
