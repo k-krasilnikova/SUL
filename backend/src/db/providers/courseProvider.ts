@@ -4,6 +4,7 @@ import { isEmpty } from 'lodash';
 import {
   DEFAULT_N_PER_PAGE,
   DEFAULT_ORDER_FIELD,
+  ESTIMATE_TIME_PER_LESSON,
   FIRST_PAGE,
   NOTHING,
   NO_FILTER,
@@ -21,6 +22,9 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
+import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
+
+import { getTestById } from './testProvider';
 
 const generateCourseStatusLookup = (userId: ObjectId | string) => ({
   $lookup: {
@@ -283,6 +287,22 @@ const addSimilarCoursesProvider = async (course: ICourse) => {
   });
 };
 
+const refreshCourseLessonsAndDuration = async (courseId: string): Promise<void> => {
+  const course = await CourseModel.findById(courseId).lean();
+  if (!course) {
+    throw new BadRequestError('Course not found.');
+  }
+  const test = await getTestById(course.test);
+  await CourseModel.findByIdAndUpdate(courseId, {
+    $set: {
+      lessons: course.materials.length,
+      duration: convertToCourseDuration(
+        course.materials.length * ESTIMATE_TIME_PER_LESSON + test.timeout,
+      ),
+    },
+  });
+};
+
 export {
   getCoursesProvider,
   getCourseProvider,
@@ -294,4 +314,5 @@ export {
   getCourseStatusProvider,
   addCourseProvider,
   addSimilarCoursesProvider,
+  refreshCourseLessonsAndDuration,
 };

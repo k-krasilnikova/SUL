@@ -1,15 +1,16 @@
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { ICourse } from 'interfaces/Ientities/Icourses';
 
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import { MaterialsValidator } from '../schemas/courses';
 
 const validateMaterials = (
   materials: IUpdateCourseBody['materials'],
-): IUpdateCourseBody['materials'] | null => {
+): ICourse['materials'] | null | undefined => {
   try {
-    return convertToTypeUnsafe<IUpdateCourseBody['materials']>(
-      MaterialsValidator.validateSync(materials),
-    );
+    return materials
+      ? convertToTypeUnsafe<ICourse['materials']>(MaterialsValidator.validateSync(materials))
+      : undefined;
   } catch {
     return null;
   }
