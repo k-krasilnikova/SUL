@@ -3,17 +3,9 @@ import { FC } from 'react';
 import { Back, Forward } from 'components/Arrows';
 
 import { StageControllerWrapper, StyledButton, Step } from './styled';
+import { TStageControllerProps } from '../types';
 
-interface IProps {
-  stage: number;
-  maxStage: number;
-  isBackDisabled: boolean;
-  isForwardDisabled: boolean;
-  handleStageBack: () => void;
-  handleStageForward: () => void;
-}
-
-const StageController: FC<IProps> = ({
+const StageController: FC<TStageControllerProps> = ({
   stage,
   maxStage,
   isBackDisabled,
