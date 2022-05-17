@@ -1,14 +1,14 @@
 import { FC, useState, BaseSyntheticEvent } from 'react';
 
-import { ILessonsStepContainerProps } from 'pages/CourseEditor/types';
+import { IStepProps } from 'pages/CourseEditor/types';
 
 import LessonsStep from './LessonsStep';
 
-const LessonsStepContainer: FC<ILessonsStepContainerProps> = ({ formik, courseData }) => {
+const LessonsStepContainer: FC<IStepProps> = ({ formik, courseData }) => {
   const [selectOption, setSelectOption] = useState<string>('video');
 
-  const handleChangeOption = (event: BaseSyntheticEvent) => {
-    setSelectOption(event.target.value);
+  const handleChangeOption = ({ target }: BaseSyntheticEvent) => {
+    setSelectOption(target.value);
   };
 
   return (
