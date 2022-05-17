@@ -5,15 +5,14 @@ import { ILessonItemProps } from 'pages/CourseEditor/types';
 import { ContentElementType } from 'enums/materials';
 
 import {
+  FieldSelect,
   InputBox,
   InputLabel,
-  InputSelect,
   InputText,
   InputTextArea,
-  LessonInput,
+  LessonInnerBox,
   LessonItemTitle,
   LessonItemWrapper,
-  SelectItem,
 } from './styled';
 
 const LessonItem: FC<ILessonItemProps> = ({
@@ -21,42 +20,42 @@ const LessonItem: FC<ILessonItemProps> = ({
   selectOption,
   formik,
   material,
-  id,
+  index,
 }) => (
-  <LessonItemWrapper>
+  <>
     {material &&
-      material?.content.map((lesson, n) => (
-        <form key={material.stage}>
+      formik.values?.materials[index]?.content?.map((lesson, key) => (
+        <LessonItemWrapper key={formik.values.materials[index].stage}>
           <LessonItemTitle>
-            {Titles.lessonCount} {material.stage}
+            {Titles.lessonCount} {formik.values.materials[index].stage}
           </LessonItemTitle>
-          <LessonInput>
-            <InputSelect onChange={handleChangeOption}>
-              <SelectItem value="video" label="Video">
+          <LessonInnerBox>
+            <FieldSelect onChange={handleChangeOption}>
+              <option value="video" label="Video">
                 {selectOption}
-              </SelectItem>
-              <SelectItem value="text" label="Text">
+              </option>
+              <option value="text" label="Text">
                 {selectOption}
-              </SelectItem>
-            </InputSelect>
+              </option>
+            </FieldSelect>
             <InputBox>
               <InputLabel>
                 {selectOption === (ContentElementType.video || ContentElementType.presentation)
-                  ? 'Video URL'
-                  : 'Text URL'}
+                  ? `${Titles.videUrlTitle}`
+                  : `${Titles.textUrlTitle}`}
               </InputLabel>
               {selectOption === (ContentElementType.video || ContentElementType.presentation) ? (
                 <InputText
-                  id={`materials[${id}].content[${n}].material`}
-                  name={`materials[${id}].content[${n}].material`}
+                  id={`materials[${index}].content[${key}].material`}
+                  name={`materials[${index}].content[${key}].material`}
                   placeholder={lesson.material}
                   value={lesson.material}
                   onChange={formik.handleChange}
                 />
               ) : (
                 <InputTextArea
-                  id={`materials[${id}].content[${n}].material`}
-                  name={`materials[${id}].content[${n}].material`}
+                  id={`materials[${index}].content[${key}].material`}
+                  name={`materials[${index}].content[${key}].material`}
                   placeholder={lesson.material}
                   value={lesson.material}
                   onChange={formik.handleChange}
@@ -64,25 +63,25 @@ const LessonItem: FC<ILessonItemProps> = ({
               )}
               <InputLabel>{Titles.exerciseTitle}</InputLabel>
               <InputText
-                id={`materials[${id}].exercise.title`}
-                name={`materials[${id}].exercise.title`}
+                id={`materials[${index}].exercise.title`}
+                name={`materials[${index}].exercise.title`}
                 placeholder={material.exercise?.title}
                 value={material.exercise?.title}
                 onChange={formik.handleChange}
               />
               <InputLabel>{Titles.exerciseDescription}</InputLabel>
               <InputTextArea
-                id={`materials[${id}].exercise.task`}
-                name={`materials[${id}].exercise.task`}
+                id={`materials[${index}].exercise.task`}
+                name={`materials[${index}].exercise.task`}
                 placeholder={material.exercise?.task}
                 value={material.exercise?.task}
                 onChange={formik.handleChange}
               />
             </InputBox>
-          </LessonInput>
-        </form>
+          </LessonInnerBox>
+        </LessonItemWrapper>
       ))}
-  </LessonItemWrapper>
+  </>
 );
 
 export default LessonItem;

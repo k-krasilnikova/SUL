@@ -43,7 +43,7 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({
           </BackButton>
           <EditorTabs
             basePath={basePath}
-            defaultActiveTab="definition-setup"
+            defaultActiveTab="lessons-setup"
             tabs={[
               {
                 key: 'definition-setup',

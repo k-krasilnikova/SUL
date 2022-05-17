@@ -20,19 +20,19 @@ const LessonsStep: FC<ILessonsStepProps> = ({
     {courseData &&
       Object.values(formik.values.materials).length &&
       formik.values?.materials.map((material, index) => (
-        <LessonsStepWrapper key={material.stage}>
+        <LessonsStepWrapper key={formik.values.materials[index].stage}>
           <FieldArray name="materials">
             {({ remove, push }) => (
               <>
                 <LessonItem
-                  id={index}
+                  index={index}
                   material={material}
                   formik={formik}
                   selectOption={selectOption}
                   handleChangeOption={handleChangeOption}
                 />
                 {isLastElem(formik.values.materials, index) ? (
-                  <LessonButton variant="mediumOutlined" onClick={() => push({})}>
+                  <LessonButton variant="mediumOutlined" onClick={() => push(material)}>
                     {ButtonLabels.addMoreLessons}
                   </LessonButton>
                 ) : (
