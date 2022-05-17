@@ -1,12 +1,12 @@
-import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseTechsFromWeb, IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 
 import { TechnologiesValidator } from '../schemas/courses';
 
 const validateTechnologies = (
   techs: IUpdateCourseBody['technologies'],
-): IUpdateCourseBody['technologies'] | null => {
+): ICourseTechsFromWeb[] | null | undefined => {
   try {
-    return TechnologiesValidator.validateSync(techs);
+    return techs ? TechnologiesValidator.validateSync(techs) : undefined;
   } catch {
     return null;
   }

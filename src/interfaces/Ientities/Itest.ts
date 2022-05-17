@@ -6,7 +6,7 @@ interface ITest {
   title: string;
   questions: ITestQuestion[];
   timeout: number;
-  attempts: number;
+  attempts?: number;
 }
 
 interface ITestQuestion {

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { isValidObjectId } from 'mongoose';
 import { array, number, NumberSchema, object, string, StringSchema } from 'yup';
 import { uniqBy, uniqWith } from 'lodash';
@@ -10,6 +11,8 @@ import { ICourseTechsFromWeb } from 'interfaces/ICourses/IQueryCourses';
 
 import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
 import fullTrim from '../../string/fullTrim';
+import { addMaterialStages } from '../../normaliser/materials';
+import { setAnswerProperNumbersToQuestions } from '../../normaliser/test';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import {
   MAX_DESCRIPTION_LENGTH,
@@ -31,6 +34,8 @@ const CORRECT_ANSWERS_AMOUNT = 1;
 const MIN_MATERIALS_AMOUNT = 1;
 const MIN_CONTENT_ELEMENTS_AMOUNT = 1;
 const MIN_TECHS_PER_COURSE_AMOUNT = 1;
+const LINK_PATTERN =
+  /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/i;
 
 const TitleValidator: StringSchema = string()
   .required()
@@ -112,7 +117,8 @@ const testValidationSchema = {
     )
     .test((questions) =>
       isQuestionsHaveCorrectAnswer(convertToTypeUnsafe<ITest['questions']>(questions)),
-    ),
+    )
+    .transform(setAnswerProperNumbersToQuestions),
   timeout: number().required().integer().positive().min(TIME_1M_SEC),
   title: TitleValidator,
 };
@@ -174,7 +180,11 @@ const materialObjectValidationSchema = {
 
 const MaterialObjectValidator = object(materialObjectValidationSchema).required();
 
-const MaterialsValidator = array().of(MaterialObjectValidator).required().min(MIN_MATERIALS_AMOUNT);
+const MaterialsValidator = array()
+  .of(MaterialObjectValidator)
+  .required()
+  .min(MIN_MATERIALS_AMOUNT)
+  .transform(addMaterialStages);
 
 const isTechsArrayUnique = (techs: ICourseTechsFromWeb[]): boolean =>
   uniqBy(techs, 'skill').length === techs.length;
@@ -194,6 +204,10 @@ const TechnologiesValidator = array()
   .min(MIN_TECHS_PER_COURSE_AMOUNT)
   .test((techs) => isTechsArrayUnique(convertToTypeUnsafe<ICourseTechsFromWeb[]>(techs)));
 
+const isLink = (link?: string): boolean => Boolean(link && LINK_PATTERN.test(link));
+
+const AvatarValidator: StringSchema = string().required().test(isLink);
+
 export {
   TitleValidator,
   DescriptionValidator,
@@ -201,4 +215,5 @@ export {
   TestValidator,
   MaterialsValidator,
   TechnologiesValidator,
+  AvatarValidator,
 };
