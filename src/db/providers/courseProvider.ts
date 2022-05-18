@@ -13,11 +13,8 @@ import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
-import {
-  ICourseWithStatus,
-  IQueryCourses,
-  ICreateCourseBody,
-} from 'interfaces/ICourses/IQueryCourses';
+import { ICourseWithStatus, ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
@@ -94,7 +91,7 @@ const getCoursesProvider = async (
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
     nPerPage = DEFAULT_N_PER_PAGE,
-  }: IQueryCourses,
+  }: IGetCoursesRequestQuery,
   userId: string,
 ) => {
   try {

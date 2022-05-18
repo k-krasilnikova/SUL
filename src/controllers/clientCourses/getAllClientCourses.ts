@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getClientCoursesProvider } from 'db/providers/clientCourseProvider';
-import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
 
 import { convertToCourseInfo } from 'utils/typeConversion/courses/coursesTypeConversions';
+import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 
 const getClientCourses = async (
   req: Request,
@@ -11,7 +11,7 @@ const getClientCourses = async (
   next: NextFunction,
 ) => {
   try {
-    const params: IQueryCourses = req.query;
+    const params: IGetCoursesRequestQuery = req.query;
     const { id: userId } = res.locals;
 
     const clientCourses = await getClientCoursesProvider(userId, { ...params });

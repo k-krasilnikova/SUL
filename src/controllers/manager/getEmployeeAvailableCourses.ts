@@ -2,7 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 
 import { getUserProvider } from 'db/providers/userProvider';
 import { getAllCoursesProvider } from 'db/providers/courseProvider';
-import { IQueryCourses, TAvailableCourse } from 'interfaces/ICourses/IQueryCourses';
+import { TAvailableCourse } from 'interfaces/ICourses/IQueryCourses';
+import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
 import {
   filterOnlyAvailableCourses,
@@ -11,7 +12,7 @@ import {
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const getEmployeeAvailableCourses = async (
-  req: Request<{ id: string }, never, never, { title?: IQueryCourses['title'] }>,
+  req: Request<{ id: string }, never, never, { title?: IGetCoursesRequestQuery['title'] }>,
   res: Response<
     never,
     {
