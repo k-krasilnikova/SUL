@@ -4,12 +4,12 @@ import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
 import { IParamsId } from '../common/params';
 
-type TGetCourseRequestParams = IParamsId;
+type TRequestParams = IParamsId;
 
-type TGetCourseResponsePayload = ICourseWithStatus;
-type TGetCourseResponseLocals = IAuthLocals;
+type TResponsePayload = ICourseWithStatus;
+type TResponseLocals = IAuthLocals;
 
-type TGetCourseRequest = TBaseRequest<TGetCourseRequestParams>;
-type TGetCourseResponse = TBaseResponse<TGetCourseResponsePayload, TGetCourseResponseLocals>;
+type TGetCourseRequest = TBaseRequest<TRequestParams>;
+type TGetCourseResponse = TBaseResponse<TResponsePayload, TResponseLocals>;
 
 export { TGetCourseRequest, TGetCourseResponse };

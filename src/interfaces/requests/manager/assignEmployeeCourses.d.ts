@@ -4,21 +4,15 @@ import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
 import { IParamsId } from '../common/params';
 
-type TAssignEmployeeCoursesRequestParams = IParamsId;
-type TAssignEmployeeCoursesRequestBody = ICourseToAssign[];
+type TRequestParams = IParamsId;
+type TRequestBody = ICourseToAssign[];
 
-type TAssignEmployeeCoursesResponsePayload = string;
-type TAssignEmployeeCoursesResponseLocals = IAuthLocals & {
-  results: TAssignEmployeeCoursesResponsePayload; // remove results in "V1-247 Remove adapters"
+type TResponsePayload = string;
+type TResponseLocals = IAuthLocals & {
+  results: TResponsePayload; // remove results in "V1-247 Remove adapters"
 };
 
-type TAssignEmployeeCoursesRequest = TBaseRequest<
-  TAssignEmployeeCoursesRequestParams,
-  TAssignEmployeeCoursesRequestBody
->;
-type TAssignEmployeeCoursesResponse = TBaseResponse<
-  TAssignEmployeeCoursesResponsePayload,
-  TAssignEmployeeCoursesResponseLocals
->;
+type TAssignEmployeeCoursesRequest = TBaseRequest<TRequestParams, TRequestBody>;
+type TAssignEmployeeCoursesResponse = TBaseResponse<TResponsePayload, TResponseLocals>;
 
 export { TAssignEmployeeCoursesRequest, TAssignEmployeeCoursesResponse };

@@ -4,12 +4,12 @@ import { IUser } from 'interfaces/Ientities/Iusers';
 import { TBaseRequest, TBaseResponse } from '../base';
 import { ILoginPayload } from '../common/payloads';
 
-type TLoginRequestParams = never;
-type TLoginRequestBody = ILoginPayload;
+type TRequestParams = never;
+type TRequestBody = ILoginPayload;
 
-type TLoginResponsePayload = ITokens & Pick<IUser, '_id'>;
+type TResponsePayload = ITokens & Pick<IUser, '_id'>;
 
-type TLoginRequest = TBaseRequest<TLoginRequestParams, TLoginRequestBody>;
-type TLoginResponse = TBaseResponse<TLoginResponsePayload>;
+type TLoginRequest = TBaseRequest<TRequestParams, TRequestBody>;
+type TLoginResponse = TBaseResponse<TResponsePayload>;
 
 export { TLoginRequest, TLoginResponse };
