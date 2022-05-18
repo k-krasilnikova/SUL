@@ -1,13 +1,14 @@
-import { Request, Response } from 'express';
-
 import { ITest } from 'interfaces/Ientities/Itest';
 
-type TGetTestRequestParams = {
-  id: string;
-};
+import { TBaseRequest, TBaseResponse } from '../base';
+import { IParamsId } from '../common/params';
 
-type TGetTestRequest = Request<TGetTestRequestParams>;
+type TRequestParams = IParamsId;
 
-type TGetTestResponse = Response<ITest>;
+type TResponsePayload = ITest;
+
+type TGetTestRequest = TBaseRequest<TRequestParams>;
+
+type TGetTestResponse = TBaseResponse<TResponsePayload>;
 
 export { TGetTestRequest, TGetTestResponse };
