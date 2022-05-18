@@ -1,10 +1,13 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
-import { TLocalsUser } from 'interfaces/IResponse/IResponse';
+import {
+  TApplyCourseRequest,
+  TApplyCourseResponse,
+} from 'interfaces/requests/clientCourses/applyCourse';
 
 const adapterUser = async (
-  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
-  res: Response<never, TLocalsUser>,
+  req: TApplyCourseRequest,
+  res: TApplyCourseResponse,
   next: NextFunction,
 ) => {
   try {
@@ -12,7 +15,6 @@ const adapterUser = async (
     const { id: courseId } = req.body;
     res.locals.courseId = courseId;
     res.locals.userId = userId;
-    res.locals.results = {};
     next();
   } catch (error) {
     next(error);

@@ -1,5 +1,10 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TApplyCourseRequest,
+  TApplyCourseResponse,
+} from 'interfaces/requests/clientCourses/applyCourse';
+import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 import {
   applyCourseProvider,
   getAllClientCoursesProvider,
@@ -9,12 +14,10 @@ import { generateProgressDto } from 'utils/dto/dtoUtils';
 import { checkCourseDuplicates } from 'utils/validation/checkDuplicates';
 import { INITIAL_INDX } from 'config/constants';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
-import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
 
 const applyCourse = async (
-  req: Request,
-  res: Response<never, TCourseLocals & { results: Record<'course', IClientCourse> }>,
+  req: TApplyCourseRequest,
+  res: TApplyCourseResponse,
   next: NextFunction,
 ) => {
   try {
