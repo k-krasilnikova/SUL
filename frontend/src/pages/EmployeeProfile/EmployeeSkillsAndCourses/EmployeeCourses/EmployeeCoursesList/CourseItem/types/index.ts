@@ -8,7 +8,4 @@ export interface ICourseItemContainerProps {
 export interface ICourseItemProps extends ConvertedProgress {
   title: string;
   status: string;
-  showCourseInfo?: () => void;
-  hideCourseInfo?: () => void;
-  isCourseTitleShown?: boolean;
 }

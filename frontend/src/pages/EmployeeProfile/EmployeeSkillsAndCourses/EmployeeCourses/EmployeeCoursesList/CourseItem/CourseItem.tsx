@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import ProgressBar from 'components/ProgressBar';
+import Tooltip from 'components/Tooltip';
 import { Size } from 'enums/sizes';
 import { setFirstLetterUppercase } from 'utils/helpers/setFirstLetterUppercase';
 
@@ -11,26 +12,16 @@ import {
   CoursesListItem,
   CourseStatus,
   CourseTitle,
-  HoverCourseTitle,
 } from './styled';
 
-const CourseItem: FC<ICourseItemProps> = ({
-  title,
-  status,
-  progressValue,
-  progressVariant,
-  hideCourseInfo,
-  showCourseInfo,
-  isCourseTitleShown,
-}) => (
+const CourseItem: FC<ICourseItemProps> = ({ title, status, progressValue, progressVariant }) => (
   <>
     <CoursesListItem>
       <ProgressBar size={Size.small} value={progressValue} variant={progressVariant} />
       <CourseItemText>
-        <CourseTitle onMouseEnter={showCourseInfo} onMouseLeave={hideCourseInfo}>
-          {title}
-          {isCourseTitleShown && <HoverCourseTitle>{title}</HoverCourseTitle>}
-        </CourseTitle>
+        <Tooltip title={title}>
+          <CourseTitle>{title}</CourseTitle>
+        </Tooltip>
         <CourseStatus>{setFirstLetterUppercase(status)}</CourseStatus>
       </CourseItemText>
     </CoursesListItem>
