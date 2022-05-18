@@ -1,25 +1,22 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
+
+import {
+  TGetEmployeeAvailableCoursesRequest,
+  TGetEmployeeAvailableCoursesResponse,
+} from 'interfaces/requests/manager/getEmployeeAvailableCourses';
 
 import { getUserProvider } from 'db/providers/userProvider';
 import { getAllCoursesProvider } from 'db/providers/courseProvider';
-import { TAvailableCourse } from 'interfaces/ICourses/IQueryCourses';
-import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
 import {
   filterOnlyAvailableCourses,
-  normalizeeAvailableCoursesInfo,
+  normalizeAvailableCoursesInfo,
 } from 'utils/normaliser/courses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const getEmployeeAvailableCourses = async (
-  req: Request<{ id: string }, never, never, { title?: IGetCoursesRequestQuery['title'] }>,
-  res: Response<
-    never,
-    {
-      id: string;
-      results: TAvailableCourse[];
-    }
-  >,
+  req: TGetEmployeeAvailableCoursesRequest,
+  res: TGetEmployeeAvailableCoursesResponse,
   next: NextFunction,
 ) => {
   try {
@@ -38,7 +35,7 @@ const getEmployeeAvailableCourses = async (
 
     const availableCourses = filterOnlyAvailableCourses(courses);
 
-    const availableCoursesResponse = normalizeeAvailableCoursesInfo(availableCourses);
+    const availableCoursesResponse = normalizeAvailableCoursesInfo(availableCourses);
 
     res.locals.results = availableCoursesResponse;
     next();
