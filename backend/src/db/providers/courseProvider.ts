@@ -149,13 +149,8 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
   return populated;
 };
 
-const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {
-  const material = await CourseModel.findOne(
-    {
-      $and: [{ _id: courseId }, stage?.length ? { 'materials.stage': Number(stage) } : {}],
-    },
-    stage?.length ? { 'materials.$': 1 } : { materials: 1 },
-  ).lean();
+const getMaterialsProvider = async (courseId: string) => {
+  const material = await CourseModel.findOne({ _id: courseId }).select('materials').lean();
   if (!material) {
     throw new NotFoundError('Materials not found.');
   }
