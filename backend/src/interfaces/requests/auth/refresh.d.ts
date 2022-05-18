@@ -2,9 +2,9 @@ import { ITokens } from 'interfaces/Iauth/authInterfaces';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 
-type TRefreshResponsePaylaod = ITokens;
+type TResponsePaylaod = ITokens;
 
 type TRefreshRequest = TBaseRequest;
-type TRefreshResponse = TBaseResponse<TRefreshResponsePaylaod>;
+type TRefreshResponse = TBaseResponse<TResponsePaylaod>;
 
 export { TRefreshRequest, TRefreshResponse };

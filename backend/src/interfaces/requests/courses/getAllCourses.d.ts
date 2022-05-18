@@ -4,21 +4,14 @@ import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
 import { IGetCoursesRequestQuery } from '../common/queries';
 
-type TGetAllCoursesRequestParams = never;
-type TGetAllCoursesRequestBody = never;
-type TGetAllCoursesRequestQuery = IGetCoursesRequestQuery;
+type TRequestParams = never;
+type TRequestBody = never;
+type TRequestQuery = IGetCoursesRequestQuery;
 
-type TGetAllCoursesResponsePayload = ICourseWithStatus[];
-type TGetAllCoursesResponseLocals = IAuthLocals;
+type TResponsePayload = ICourseWithStatus[];
+type TResponseLocals = IAuthLocals;
 
-type TGetAllCoursesRequest = TBaseRequest<
-  TGetAllCoursesRequestParams,
-  TGetAllCoursesRequestBody,
-  TGetAllCoursesRequestQuery
->;
-type TGetAllCoursesResponse = TBaseResponse<
-  TGetAllCoursesResponsePayload,
-  TGetAllCoursesResponseLocals
->;
+type TGetAllCoursesRequest = TBaseRequest<TRequestParams, TRequestBody, TRequestQuery>;
+type TGetAllCoursesResponse = TBaseResponse<TResponsePayload, TResponseLocals>;
 
 export { TGetAllCoursesRequest, TGetAllCoursesResponse };
