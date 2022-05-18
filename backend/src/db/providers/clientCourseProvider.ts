@@ -1,11 +1,12 @@
 import mongoose, { ObjectId } from 'mongoose';
 
-import { IProgress, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import {
   IClientCourse,
   IClientCoursePopulated,
   TClientCourseFields,
 } from 'interfaces/Ientities/IclientCourses';
+import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -30,7 +31,7 @@ const getClientCoursesProvider = async (
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
     nPerPage = DEFAULT_N_PER_PAGE,
-  }: IQueryCourses,
+  }: IGetCoursesRequestQuery,
 ): Promise<IClientCoursePopulated[]> => {
   const sortingField = { [orderField]: order };
   const clientCourses: IClientCoursePopulated[] = await ClientCourseModel.find({
