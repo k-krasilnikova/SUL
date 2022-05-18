@@ -19,7 +19,7 @@ import { getClientCourseByCourseId } from 'db/providers/clientCourseProvider';
 const filterOnlyAvailableCourses = (courses: ICourseWithStatus[]): ICourseWithStatus[] =>
   courses.filter((course) => !course.status);
 
-const normalizeeAvailableCoursesInfo = (courses: ICourseWithStatus[]): TAvailableCourse[] =>
+const normalizeAvailableCoursesInfo = (courses: ICourseWithStatus[]): TAvailableCourse[] =>
   courses.map((course) => ({ _id: course._id, title: course.title }));
 
 const shortifyCourseInfo = (course: ICourseWithStatus): ICourseShortInfo => ({
@@ -170,5 +170,5 @@ export {
   fillStackWithStatuses,
   sortCoursesMapResponse,
   filterOnlyAvailableCourses,
-  normalizeeAvailableCoursesInfo,
+  normalizeAvailableCoursesInfo,
 };
