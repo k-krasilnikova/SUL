@@ -150,7 +150,7 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
 };
 
 const getMaterialsProvider = async (courseId: string) => {
-  const material = await CourseModel.findOne({ _id: courseId }).select('materials').lean();
+  const material = await CourseModel.findById(courseId).select('materials').lean();
   if (!material) {
     throw new NotFoundError('Materials not found.');
   }
