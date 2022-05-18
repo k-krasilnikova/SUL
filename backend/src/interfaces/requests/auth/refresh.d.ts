@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
-
 import { ITokens } from 'interfaces/Iauth/authInterfaces';
+
+import { TBaseRequest, TBaseResponse } from '../base';
 
 type TRefreshResponsePaylaod = ITokens;
 
-type TRefreshRequest = Request;
-type TRefreshResponse = Response<TRefreshResponsePaylaod>;
+type TRefreshRequest = TBaseRequest;
+type TRefreshResponse = TBaseResponse<TRefreshResponsePaylaod>;
 
 export { TRefreshRequest, TRefreshResponse };

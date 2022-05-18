@@ -1,17 +1,15 @@
-import { Request, Response } from 'express';
-
 import { ITokens } from 'interfaces/Iauth/authInterfaces';
 import { IUser } from 'interfaces/Ientities/Iusers';
 
+import { TBaseRequest, TBaseResponse } from '../base';
 import { ILoginPayload } from '../common/payloads';
 
 type TLoginRequestParams = never;
-type TLoginRequestResBody = never;
 type TLoginRequestBody = ILoginPayload;
 
 type TLoginResponsePayload = ITokens & Pick<IUser, '_id'>;
 
-type TLoginRequest = Request<TLoginRequestParams, TLoginRequestResBody, TLoginRequestBody>;
-type TLoginResponse = Response<TLoginResponsePayload>;
+type TLoginRequest = TBaseRequest<TLoginRequestParams, TLoginRequestBody>;
+type TLoginResponse = TBaseResponse<TLoginResponsePayload>;
 
 export { TLoginRequest, TLoginResponse };
