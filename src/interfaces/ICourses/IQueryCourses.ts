@@ -1,17 +1,13 @@
 import ISkill from '../Ientities/ISkill';
 import { ICourse } from '../Ientities/Icourses';
 import { ITest } from '../Ientities/Itest';
-import { ICourseDuration, ITimePeriod } from '../common/datetime';
+import { ITimePeriod } from '../common/datetime';
 
 interface ICourseWithStatus extends ICourse {
   status?: string;
 }
 
-interface ICourseInfo extends Omit<ICourseWithStatus, 'materials'> {
-  duration: ICourseDuration;
-  lessons: number;
-  materials: undefined;
-}
+type ICourseInfo = Omit<ICourse, 'materials'>;
 
 interface IProgress {
   stage: number;

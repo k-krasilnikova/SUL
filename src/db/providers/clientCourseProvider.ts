@@ -41,7 +41,7 @@ const getClientCoursesProvider = async (
     .sort(sortingField)
     .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
     .limit(nPerPage)
-    .populate('course')
+    .populate({ path: 'course', select: '-materials' })
     .lean();
   return clientCourses;
 };

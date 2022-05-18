@@ -1,30 +1,23 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TGetClientCoursesRequest,
+  TGetClientCoursesResponse,
+} from 'interfaces/requests/clientCourses/getAllClientCourses';
 import { getClientCoursesProvider } from 'db/providers/clientCourseProvider';
 
-import { convertToCourseInfo } from 'utils/typeConversion/courses/coursesTypeConversions';
-import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
-
 const getClientCourses = async (
-  req: Request,
-  res: Response<unknown, { id: string }>,
+  req: TGetClientCoursesRequest,
+  res: TGetClientCoursesResponse,
   next: NextFunction,
 ) => {
   try {
-    const params: IGetCoursesRequestQuery = req.query;
+    const params = req.query;
     const { id: userId } = res.locals;
 
     const clientCourses = await getClientCoursesProvider(userId, { ...params });
 
-    const clientCoursesWithCoursesInfo = await Promise.all(
-      clientCourses.map(async (clCourse) => {
-        const courseInfoPopulated = await convertToCourseInfo(clCourse.course);
-
-        return { ...clCourse, course: courseInfoPopulated };
-      }),
-    );
-
-    res.json(clientCoursesWithCoursesInfo);
+    res.json(clientCourses);
   } catch (err) {
     next(err);
   }
