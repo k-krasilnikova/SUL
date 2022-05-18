@@ -29,3 +29,13 @@ export interface IMaterialProps {
   materialType: TMaterialVariants;
   videoPreview: string | boolean;
 }
+
+export type TStageControllerProps = Pick<
+  ILearningProps,
+  | 'stage'
+  | 'maxStage'
+  | 'isBackDisabled'
+  | 'isForwardDisabled'
+  | 'handleStageBack'
+  | 'handleStageForward'
+>;

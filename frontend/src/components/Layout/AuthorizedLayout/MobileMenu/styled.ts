@@ -8,7 +8,7 @@ import { HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from '../Header/styled';
 const MOBILE_MENU_WIDTH = '190px';
 
 export const MobileMenuSlide = styled('div')({
-  position: 'absolute',
+  position: 'fixed',
   top: HEADER_HEIGHT_IPAD,
   right: 0,
   display: 'flex',
@@ -17,6 +17,7 @@ export const MobileMenuSlide = styled('div')({
   height: `calc(100% - ${HEADER_HEIGHT_IPAD})`,
   padding: '8px 0 40px 0',
   backgroundColor: theme.palette.secondary.main,
+  overflowY: 'auto',
   [theme.breakpoints.down('md')]: {
     top: HEADER_HEIGHT_MOBILE,
     height: `calc(100% - ${HEADER_HEIGHT_MOBILE})`,
@@ -35,6 +36,7 @@ export const SpaceHolder = styled('div')({
 export const MobileUserBlock = styled('div')({
   display: 'inline-flex',
   justifyContent: 'space-between',
+  marginTop: '40px',
   padding: '0 18px 0 12px',
 });
 

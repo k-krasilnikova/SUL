@@ -9,6 +9,7 @@ import clientCoursesRouter from './clientCoursesRouter';
 import pendingCoursesRouter from './pendingCourses';
 import employeesRouter from './employeesRouter';
 import skillsRouter from './skillsRouter';
+import testsRouter from './testsRouter';
 
 const routers = Router();
 
@@ -19,5 +20,6 @@ routers.use(`${Routes.users}`, userRouter);
 routers.use(`${Routes.courses}`, coursesRouter);
 routers.use(`${Routes.employees}`, employeesRouter);
 routers.use(`${Routes.skills}`, skillsRouter);
+routers.use(`${Routes.tests}`, testsRouter);
 
 export default routers;
