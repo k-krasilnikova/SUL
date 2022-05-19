@@ -1,1 +1,1 @@
-export { default } from './EditorTabs';
+export { default } from './EditorTabsContainer';

@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 
-export interface ITab {
-  key: string;
-  node: ReactNode;
+export interface IEditorTabsProps {
+  currentChild?: ReactNode;
+  handleNextStep?: () => void;
+  handlePreviousStep?: () => void;
 }
 
-export interface IEditorTabsProps {
-  defaultActiveTab: string;
-  tabs: ITab[];
-  basePath: string;
+export interface IActionButtons {
+  handlePreviousStep?: () => void;
+  handleNextStep?: () => void;
 }

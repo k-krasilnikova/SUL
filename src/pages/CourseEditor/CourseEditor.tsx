@@ -12,21 +12,14 @@ import DefinitionStep from './DefinitionStep';
 import SkillsStep from './SkillsStep';
 import LessonsStep from './LessonsStep';
 import TestStep from './TestStep';
-import ActionButtons from './ActionButtons';
 import { ICourseEditorProps } from './types';
 import { BackButton, InnerWrapper } from './styled';
 
 const CourseEditor: React.FC<ICourseEditorProps> = ({
   formik,
-  basePath,
   courseData,
   isCourseDataLoading,
 }) => {
-  //   const definitionForm = useRef();
-  //   const skillsForm = useRef();
-  //   const lessonsForm = useRef();
-  //   const testForm = useRef();
-
   return (
     <AuthorizedLayout pageName="Course Editor">
       {isCourseDataLoading ? (
@@ -41,33 +34,12 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({
           >
             {ButtonLabels.back}
           </BackButton>
-          <EditorTabs
-            basePath={basePath}
-            defaultActiveTab="lessons-setup"
-            tabs={[
-              {
-                key: 'definition-setup',
-                //   formRef: definitionForm,
-                node: <DefinitionStep courseData={courseData} formik={formik} />,
-              },
-              {
-                key: 'skills-setup',
-                //   formRef: skillsForm,
-                node: <SkillsStep courseData={courseData} formik={formik} />,
-              },
-              {
-                key: 'lessons-setup',
-                //   formRef: lessonsForm,
-                node: <LessonsStep courseData={courseData} formik={formik} />,
-              },
-              {
-                key: 'test-setup',
-                //   formRef: testForm,
-                node: <TestStep formik={formik} />,
-              },
-            ]}
-          />
-          <ActionButtons />
+          <EditorTabs>
+            <DefinitionStep courseData={courseData} formik={formik} />
+            <SkillsStep courseData={courseData} formik={formik} />
+            <LessonsStep courseData={courseData} formik={formik} />
+            <TestStep formik={formik} />
+          </EditorTabs>
         </InnerWrapper>
       )}
     </AuthorizedLayout>
