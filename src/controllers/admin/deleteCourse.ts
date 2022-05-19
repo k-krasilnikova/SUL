@@ -1,10 +1,18 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TDeleteCourseRequest,
+  TDeleteCourseResponse,
+} from 'interfaces/requests/admin/deleteCourse';
 import { checkNotDeleteCoursesProvider } from 'db/providers/clientCourseProvider';
 import { deleteCourseProvider } from 'db/providers/courseProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
-const deleteCourse = async (req: Request, res: Response, next: NextFunction) => {
+const deleteCourse = async (
+  req: TDeleteCourseRequest,
+  res: TDeleteCourseResponse,
+  next: NextFunction,
+) => {
   try {
     const { id: courseId } = req.params;
 
