@@ -85,11 +85,16 @@ const applyCourseProvider = async (courseId: string, userId: string, progressDto
 };
 
 const updateCourseProgress = async (courseId: string, stage: string) => {
-  const updatedProgress = await ClientCourseModel.updateOne(
+  const updatedProgress = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { 'progress.$[elem].isCompleted': true } },
-    { arrayFilters: [{ 'elem.stage': stage }] },
-  );
+    { arrayFilters: [{ 'elem.stage': stage }], returnDocument: 'after' },
+  ).lean();
+
+  if (!updatedProgress) {
+    throw new NotFoundError('Course was not found.');
+  }
+
   return updatedProgress;
 };
 
