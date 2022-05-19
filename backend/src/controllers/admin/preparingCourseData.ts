@@ -7,6 +7,7 @@ import { validateCourseData } from 'utils/validation/courses';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import { getSkillsToCourseTechs } from 'db/providers/skillProvider';
 import { addCourseTest } from 'db/providers/testProvider';
+import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
 
 const preparingCourseData = async (
   req: TAddCourseRequest,
@@ -30,7 +31,8 @@ const preparingCourseData = async (
       );
     }
 
-    res.locals.preparedCourseData = validationResult;
+    res.locals.preparedCourseData =
+      convertToTypeUnsafe<IPreparedCourseDataPayload>(validationResult);
     next();
   } catch (err) {
     next(err);

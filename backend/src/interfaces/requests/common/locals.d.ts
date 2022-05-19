@@ -1,11 +1,11 @@
-import { IPreparedCourseData } from 'interfaces/ICourses/IQueryCourses';
+import { IPreparedCourseDataPayload } from './payloads';
 
 interface IAuthLocals {
   id: string;
 }
 
 interface IPreparedCourseDataLocals {
-  preparedCourseData: IPreparedCourseData;
+  preparedCourseData: IPreparedCourseDataPayload;
 }
 
 export { IAuthLocals, IPreparedCourseDataLocals, INotificationLocals };
