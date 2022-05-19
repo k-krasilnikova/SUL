@@ -58,6 +58,9 @@ export interface ITestStepProps {
 
 export interface ILessonsStepProps extends IStepProps {
   formik: IFormik;
+  lessonsContent: {
+    [index: number]: { type: string; material: string };
+  };
   selectOption: string;
   handleChangeOption?: (event: BaseSyntheticEvent) => void;
 }
@@ -65,6 +68,9 @@ export interface ILessonsStepProps extends IStepProps {
 export interface ILessonItemProps {
   formik: IFormik;
   material: IMaterial;
+  lessonsContent: {
+    [index: number]: { type: string; material: string };
+  };
   index: number;
   selectOption: string;
   handleChangeOption?: (event: BaseSyntheticEvent) => void;
