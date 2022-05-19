@@ -1,5 +1,5 @@
-import { ICourseDataValidationResult, IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
-import { TCreateCoursePayload } from 'interfaces/requests/common/payloads';
+import { ICourseDataValidationResult } from 'interfaces/ICourses/IQueryCourses';
+import { IEditCoursePayload, TCreateCoursePayload } from 'interfaces/requests/common/payloads';
 import { ESTIMATE_TIME_PER_LESSON } from 'config/constants';
 import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
 
@@ -12,7 +12,7 @@ import validateDescription from './validateDescription';
 import validateTechnologies from './validateTechnologies';
 
 const validateCourseData = (
-  courseData: TCreateCoursePayload | IUpdateCourseBody,
+  courseData: TCreateCoursePayload | IEditCoursePayload,
 ): ICourseDataValidationResult => {
   const { title, complexity, description, materials, avatar, test, technologies } = courseData;
 
