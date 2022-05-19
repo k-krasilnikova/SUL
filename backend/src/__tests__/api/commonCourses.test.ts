@@ -5,10 +5,12 @@ import dotenv from 'dotenv';
 import supertest from 'supertest';
 
 import { app } from 'app';
-import { STATUS_CODES } from 'config/constants';
+import { JEST_TIMEOUT, STATUS_CODES } from 'config/constants';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { ICoursesMapResponse } from 'interfaces/IResponse/IResponse';
+
+jest.setTimeout(JEST_TIMEOUT);
 
 describe('user endpoints', () => {
   const noToken = 'no token';
