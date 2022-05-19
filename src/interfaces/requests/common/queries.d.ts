@@ -16,4 +16,8 @@ interface ITitleQuery {
   title: string;
 }
 
-export { IGetCoursesRequestQuery, IStageQuery, ITitleQuery };
+interface ISearchQuery {
+  search: string;
+}
+
+export { IGetCoursesRequestQuery, IStageQuery, ITitleQuery, ISearchQuery };

@@ -5,6 +5,7 @@ import UserSkillModel from 'db/models/UserSkill';
 import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
 import { ICourseTechsFromWeb, IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { IUser } from 'interfaces/Ientities/Iusers';
+import { ISearchQuery } from 'interfaces/requests/common/queries';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
@@ -20,7 +21,7 @@ const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   return skills;
 };
 
-const getAllGroupsWithSkills = async ({ search }: { search?: string }): Promise<ISkillGroup[]> => {
+const getAllGroupsWithSkills = async ({ search }: ISearchQuery): Promise<ISkillGroup[]> => {
   const groups: ISkillGroup[] = await SkillGroupModel.aggregate([
     {
       $match: search ? { name: { $regex: new RegExp(search), $options: 'i' } } : NO_FILTER,
