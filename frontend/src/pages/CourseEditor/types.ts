@@ -1,6 +1,7 @@
 import { ChangeEventHandler, BaseSyntheticEvent } from 'react';
 
 import { TCourseTechnology, IMaterial, ICourse } from 'types/course';
+import { ITestItem } from 'types/test';
 
 export interface IFormik {
   initialValues: {
@@ -48,11 +49,14 @@ export interface ISkillsStepProps extends IStepProps {
 
 export interface ITestStepContainerProps {
   formik: IFormik;
+  courseData?: ICourse;
 }
 
 export interface ITestStepProps {
   formik: IFormik;
+  isTestLoading: boolean;
   isCurrentAnswer: string;
+  testResponse?: ITestItem[];
   handleChangeAnswer?: (event: BaseSyntheticEvent) => void;
 }
 

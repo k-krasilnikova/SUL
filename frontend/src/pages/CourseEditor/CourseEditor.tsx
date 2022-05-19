@@ -38,7 +38,7 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({
             <DefinitionStep courseData={courseData} formik={formik} />
             <SkillsStep courseData={courseData} formik={formik} />
             <LessonsStep courseData={courseData} formik={formik} />
-            <TestStep formik={formik} />
+            <TestStep courseData={courseData} formik={formik} />
           </EditorTabs>
         </InnerWrapper>
       )}
