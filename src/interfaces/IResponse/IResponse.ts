@@ -39,7 +39,7 @@ interface IEmployeeInfo
   stack: TUserStackMemberShort[];
 }
 
-type TUserInfoResponse = IUser & {
+type TUserInfoResponse = Omit<IUser, 'passwordHash'> & {
   pendingRequestsAmount?: number;
   pendingAssessmentsAmount?: number;
 };
