@@ -7,7 +7,7 @@ import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
-import { INotification } from 'types/Notification';
+import { INotification } from 'types/notification';
 
 interface UserResponse {
   role: string;

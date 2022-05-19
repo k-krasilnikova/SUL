@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PATHS } from 'constants/routes';
 import { IUser } from 'types/user';
-import { INotification } from 'types/Notification';
+import { INotification } from 'types/notification';
 import Avatar from 'components/Avatar';
 import Notifications from 'components/NotificationsBar';
 import { logOutIcon, menuMobileIcon } from 'icons';

@@ -1,4 +1,4 @@
-import { INotification } from 'types/Notification';
+import { INotification } from 'types/notification';
 
 export interface INotificationsProps {
   isNotificationsOpen: boolean;
