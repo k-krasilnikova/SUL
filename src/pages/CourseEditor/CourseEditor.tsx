@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import EditorTabs from 'components/EditorTabs';
-import { AuthorizedLayout } from 'components/Layout';
 import Loader from 'components/Loader';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
+import PageTitle from 'components/PageTitle';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import DefinitionStep from './DefinitionStep';
@@ -21,7 +21,7 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({
   isCourseDataLoading,
 }) => {
   return (
-    <AuthorizedLayout pageName="Course Editor">
+    <PageTitle title="Course Editor">
       {isCourseDataLoading ? (
         <Loader type="content" color="primary" />
       ) : (
@@ -42,7 +42,7 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({
           </EditorTabs>
         </InnerWrapper>
       )}
-    </AuthorizedLayout>
+    </PageTitle>
   );
 };
 
