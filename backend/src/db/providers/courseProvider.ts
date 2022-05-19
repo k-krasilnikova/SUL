@@ -13,7 +13,8 @@ import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
-import { ICourseWithStatus, ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -256,7 +257,8 @@ const getCourseStatusProvider = async (
   return relateClientCourse?.status;
 };
 
-const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
+const addCourseProvider = async (newCourse: IPreparedCourseDataPayload) =>
+  CourseModel.create(newCourse);
 
 const addSimilarCoursesProvider = async (course: ICourse) => {
   await CourseModel.findOneAndUpdate({ _id: course._id }, { $set: { similarCourses: [] } });

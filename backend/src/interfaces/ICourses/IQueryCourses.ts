@@ -35,29 +35,6 @@ interface ICourseTechsFromWeb {
   points: number;
 }
 
-interface ICreateCourseBody {
-  title?: ICourse['title'];
-  avatar?: ICourse['avatar'];
-  description?: ICourse['description'];
-  technologies?: ICourseTechsFromWeb[];
-  materials?: ICourse['materials'];
-  complexity?: ICourse['complexity'];
-  test?: ITest;
-}
-
-interface IPreparedCourseData {
-  title: ICourse['title'];
-  avatar: ICourse['avatar'];
-  description: ICourse['description'];
-  materials: ICourse['materials'];
-  complexity: ICourse['complexity'];
-  test: ITest;
-  technologies: ICourseTechsFromWeb[];
-  lessons: number;
-  duration: ITimePeriod;
-  similarCourses: ICourse[];
-}
-
 interface ICourseDataValidationResult {
   title?: ICourse['title'] | null;
   avatar?: ICourse['avatar'] | null;
@@ -92,8 +69,6 @@ export {
   ICourseToAssign,
   TAvailableCourse,
   IUpdateCourseTest,
-  ICreateCourseBody,
-  IPreparedCourseData,
   ICourseTechsFromWeb,
   ICourseDataValidationResult,
 };

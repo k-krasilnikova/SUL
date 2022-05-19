@@ -1,5 +1,11 @@
+import { IPreparedCourseData } from 'interfaces/ICourses/IQueryCourses';
+
 interface IAuthLocals {
   id: string;
 }
 
-export { IAuthLocals };
+interface IPreparedCourseDataLocals {
+  preparedCourseData: IPreparedCourseData;
+}
+
+export { IAuthLocals, IPreparedCourseDataLocals };
