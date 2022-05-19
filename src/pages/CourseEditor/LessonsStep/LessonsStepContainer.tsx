@@ -7,6 +7,17 @@ import LessonsStep from './LessonsStep';
 const LessonsStepContainer: FC<IStepProps> = ({ formik, courseData }) => {
   const [selectOption, setSelectOption] = useState<string>('video');
 
+  let lessonsContent = {};
+  if (courseData && courseData.materials) {
+    lessonsContent = courseData.materials.reduce(
+      (acc, group) => ({
+        ...acc,
+        ...group.content.reduce((j, o) => ({ o, ...j }), {}),
+      }),
+      {},
+    );
+  }
+
   const handleChangeOption = ({ target }: BaseSyntheticEvent) => {
     setSelectOption(target.value);
   };
@@ -14,6 +25,7 @@ const LessonsStepContainer: FC<IStepProps> = ({ formik, courseData }) => {
   return (
     <LessonsStep
       formik={formik}
+      lessonsContent={lessonsContent}
       courseData={courseData}
       handleChangeOption={handleChangeOption}
       selectOption={selectOption}

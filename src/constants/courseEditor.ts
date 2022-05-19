@@ -29,7 +29,7 @@ export enum Titles {
   exerciseTitle = 'Exercise Title',
   exerciseDescription = 'Exercise Description',
   testDetails = 'Test details',
-  videUrlTitle = 'Video URL',
+  videoUrlTitle = 'Video URL',
   textUrlTitle = 'Text URL',
   questionCount = 'Question № 1',
   answerTestOption = 'Answer Option',

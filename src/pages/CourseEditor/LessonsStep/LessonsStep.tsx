@@ -11,6 +11,7 @@ import { LessonsStepContainer, LessonsStepWrapper, LessonsStepTitle, LessonButto
 
 const LessonsStep: FC<ILessonsStepProps> = ({
   formik,
+  lessonsContent,
   courseData,
   selectOption,
   handleChangeOption,
@@ -20,19 +21,21 @@ const LessonsStep: FC<ILessonsStepProps> = ({
     {courseData &&
       Object.values(formik.values.materials).length &&
       formik.values?.materials.map((material, index) => (
-        <LessonsStepWrapper key={formik.values.materials[index].stage}>
+        // eslint-disable-next-line react/no-array-index-key
+        <LessonsStepWrapper key={index}>
           <FieldArray name="materials">
             {({ remove, push }) => (
               <>
                 <LessonItem
-                  index={index}
                   material={material}
+                  lessonsContent={lessonsContent}
+                  index={index}
                   formik={formik}
                   selectOption={selectOption}
                   handleChangeOption={handleChangeOption}
                 />
                 {isLastElem(formik.values.materials, index) ? (
-                  <LessonButton variant="mediumOutlined" onClick={() => push(material)}>
+                  <LessonButton variant="mediumOutlined" onClick={() => push({})}>
                     {ButtonLabels.addMoreLessons}
                   </LessonButton>
                 ) : (
