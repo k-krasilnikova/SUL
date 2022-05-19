@@ -55,6 +55,7 @@ const getFullUserInformationProvider = async (userId: string) => {
         },
       },
     ])
+    .select('-passwordHash')
     .lean();
 
   if (!dbUserFullInfo) {
