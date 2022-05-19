@@ -6,7 +6,7 @@ import { IQueryCourses, TAvailableCourse } from 'interfaces/ICourses/IQueryCours
 import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
 import {
   filterOnlyAvailableCourses,
-  normalizeeAvailableCoursesInfo,
+  normalizeAvailableCoursesInfo,
 } from 'utils/normaliser/courses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
@@ -37,7 +37,7 @@ const getEmployeeAvailableCourses = async (
 
     const availableCourses = filterOnlyAvailableCourses(courses);
 
-    const availableCoursesResponse = normalizeeAvailableCoursesInfo(availableCourses);
+    const availableCoursesResponse = normalizeAvailableCoursesInfo(availableCourses);
 
     res.locals.results = availableCoursesResponse;
     next();
