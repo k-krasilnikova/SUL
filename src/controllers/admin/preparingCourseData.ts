@@ -1,16 +1,16 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import { TAddCourseRequest, TAddCourseResponse } from 'interfaces/requests/admin/addCourse';
+import { ITest } from 'interfaces/Ientities/Itest';
+import checkCourseValidationResult from 'utils/validation/courses/checkCourseValidationResult';
 import { validateCourseData } from 'utils/validation/courses';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import { getSkillsToCourseTechs } from 'db/providers/skillProvider';
 import { addCourseTest } from 'db/providers/testProvider';
-import { ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
-import { ITest } from 'interfaces/Ientities/Itest';
-import checkCourseValidationResult from 'utils/validation/courses/checkCourseValidationResult';
 
 const preparingCourseData = async (
-  req: Request<never, never, ICreateCourseBody>,
-  res: Response,
+  req: TAddCourseRequest,
+  res: TAddCourseResponse,
   next: NextFunction,
 ) => {
   try {
