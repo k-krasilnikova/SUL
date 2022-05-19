@@ -8,4 +8,4 @@ interface IPreparedCourseDataLocals {
   preparedCourseData: IPreparedCourseData;
 }
 
-export { IAuthLocals, IPreparedCourseDataLocals };
+export { IAuthLocals, IPreparedCourseDataLocals, INotificationLocals };
