@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/material';
 
-import { BackButton } from '../styled';
+import { BackButton } from 'pages/CourseEditor/styled';
 
 export const ButtonWrapper = styled(Box)({
   display: 'flex',
