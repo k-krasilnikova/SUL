@@ -63,6 +63,7 @@ export const API: {
   skills: string;
   manageAssessment: string;
   getPendingAssessments: string;
+  tests: string;
 } = {
   getProfile: '/api/users',
   readNotifications: '/api/users/notifications',
@@ -80,4 +81,5 @@ export const API: {
   skills: '/api/skills',
   manageAssessment: 'api/clientCourses/:id/assessment',
   getPendingAssessments: 'api/clientCourses/assessments',
+  tests: 'api/tests',
 };
