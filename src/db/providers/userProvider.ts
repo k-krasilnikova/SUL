@@ -109,8 +109,8 @@ const updateUserTechnologies = async (
 };
 
 const removeFromPendingFieldCourses = async (
-  managerId: Types.ObjectId,
-  approvedCourseId?: Types.ObjectId,
+  managerId: Types.ObjectId | string,
+  approvedCourseId?: Types.ObjectId | string,
 ) => {
   if (!approvedCourseId) {
     throw new BadRequestError('Approved course is missing');
