@@ -1,6 +1,6 @@
 import { AssessmentAction } from 'enums/common';
 import { ICourse } from 'interfaces/Ientities/Icourses';
-import { ITest } from 'interfaces/Ientities/Itest';
+import { IAnswer, ITest, TAchievements, TestRuslt } from 'interfaces/Ientities/Itest';
 
 interface ILoginPayload {
   login: string;
@@ -58,6 +58,15 @@ interface IEditCoursePayload {
   complexity?: ICourse['complexity'];
 }
 
+interface IPassTestPayload {
+  testId: string;
+  answers: IAnswer[];
+}
+
+interface IPassTestResultPayload extends TAchievements {
+  result: TestRuslt;
+}
+
 export {
   ILoginPayload,
   IAssessmentActionPayload,
@@ -68,4 +77,6 @@ export {
   IPreparedCourseDataPayload,
   IEditCoursePayload,
   IUpdateCourseTestPayload,
+  IPassTestPayload,
+  IPassTestResultPayload,
 };
