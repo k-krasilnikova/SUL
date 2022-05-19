@@ -17,7 +17,7 @@ interface ILocals {
   userId: string | undefined;
   managerId: string | undefined;
   withAssessment?: boolean;
-  results: Record<string, never>;
+  results: Record<string, unknown>;
 }
 
 interface IEmployeeInfo

@@ -8,4 +8,12 @@ interface IGetCoursesRequestQuery {
   nPerPage?: number;
 }
 
-export { IGetCoursesRequestQuery };
+interface IStageQuery {
+  stage: string;
+}
+
+interface ITitleQuery {
+  title: string;
+}
+
+export { IGetCoursesRequestQuery, IStageQuery, ITitleQuery };

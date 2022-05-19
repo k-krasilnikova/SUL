@@ -1,11 +1,12 @@
-import { AssessmentAction } from 'enums/common';
 import { TAchievements } from 'interfaces/Ientities/Itest';
+
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
-import { IParamsId } from '../common/params';
+import { IIdParams } from '../common/params';
+import { IAssessmentActionPayload } from '../common/payloads';
 
-type TRequestParams = IParamsId;
-type TRequestBody = { action: AssessmentAction };
+type TRequestParams = IIdParams;
+type TRequestBody = IAssessmentActionPayload;
 
 type TResponsePayload = string;
 type TResponseLocals = IAuthLocals & {

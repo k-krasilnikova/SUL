@@ -2,10 +2,11 @@ import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
-import { IParamsId } from '../common/params';
+import { IIdParams } from '../common/params';
+import { IIdPayload } from '../common/payloads';
 
-type TRequestParams = IParamsId;
-type TRequestBody = IParamsId;
+type TRequestParams = IIdParams;
+type TRequestBody = IIdPayload;
 
 type TResponsePayload = IClientCourse;
 type TResponseLocals = IAuthLocals & {
