@@ -18,7 +18,7 @@ const login = async (
     const dbUser: IUser = await authProvider(username);
     const isValidPass = await compare(password, dbUser.passwordHash);
     if (!isValidPass) {
-      throw new UnauthorizedError('Password is incorrect');
+      throw new UnauthorizedError('Password is incorrect.');
     }
     const tokens = generateJWT(dbUser);
     await saveTokenProvider(tokens.refreshToken, dbUser);
