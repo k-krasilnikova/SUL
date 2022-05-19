@@ -1,7 +1,7 @@
 import { NextFunction } from 'express';
 
-import { addCourseProvider, addSimilarCoursesProvider } from 'db/providers/courseProvider';
 import { TAddCourseRequest, TAddCourseResponse } from 'interfaces/requests/admin/addCourse';
+import { addCourseProvider, addSimilarCoursesProvider } from 'db/providers/courseProvider';
 
 const addCourse = async (req: TAddCourseRequest, res: TAddCourseResponse, next: NextFunction) => {
   try {

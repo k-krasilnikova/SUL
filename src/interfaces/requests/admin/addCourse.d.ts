@@ -1,4 +1,5 @@
 import { ICourse } from 'interfaces/Ientities/Icourses';
+
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IPreparedCourseDataLocals } from '../common/locals';
 import { TCreateCoursePayload } from '../common/payloads';
