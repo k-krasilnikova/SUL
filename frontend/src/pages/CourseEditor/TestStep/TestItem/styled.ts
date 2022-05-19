@@ -1,4 +1,4 @@
-import { styled, Box, Input, RadioGroup, Radio, TextField } from '@mui/material';
+import { styled, Box, RadioGroup, Radio, TextField } from '@mui/material';
 
 export const TestItemWrapper = styled(Box)({
   width: '734px',
@@ -55,16 +55,15 @@ export const RadioSelectAnswer = styled(Radio)({
   color: '#131313',
 });
 
-export const InputAnswer = styled(Input)({
-  width: '234px',
+export const InputAnswer = styled(TextField)({
+  width: '80%',
   fontWight: 400,
   fontSize: '16px',
   lineHeight: '18px',
-  color: '#6C6C6C',
-  borderBottom: '1px solid #C6C6C9',
-  '&:after, &:before': {
-    display: 'none',
-  },
+  color: '#000000',
+  // '&:after, &:before': {
+  //   display: 'none',
+  // },
 });
 
 export const InputText = styled(TextField)({

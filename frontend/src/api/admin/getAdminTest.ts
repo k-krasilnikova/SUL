@@ -8,7 +8,7 @@ import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { ITestItem } from 'types/test';
 
-const useGetAdminTest = (testId?: string): UseQueryResult<ITestItem[], AxiosError> => {
+const useGetAdminTest = (testId?: string): UseQueryResult<ITestItem, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);

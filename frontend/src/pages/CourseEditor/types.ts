@@ -56,7 +56,7 @@ export interface ITestStepProps {
   formik: IFormik;
   isTestLoading: boolean;
   isCurrentAnswer: string;
-  testResponse?: ITestItem[];
+  testResponse?: ITestItem;
   handleChangeAnswer?: (event: BaseSyntheticEvent) => void;
 }
 
@@ -83,5 +83,6 @@ export interface ILessonItemProps {
 export interface ITestItemProps {
   formik: IFormik;
   isCurrentAnswer: string;
+  testResponse?: ITestItem;
   handleChangeAnswer?: (event: BaseSyntheticEvent) => void;
 }
