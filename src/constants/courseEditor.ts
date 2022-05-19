@@ -31,7 +31,7 @@ export enum Titles {
   testDetails = 'Test details',
   videoUrlTitle = 'Video URL',
   textUrlTitle = 'Text URL',
-  questionCount = 'Question № 1',
+  questionNumber = 'Question № ',
   answerTestOption = 'Answer Option',
 }
 
