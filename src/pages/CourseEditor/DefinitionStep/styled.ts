@@ -5,12 +5,13 @@ import theme from 'themeSettings';
 export const Field = styled(TextField)({
   width: '350px',
   height: '53px',
+  ':first-letter': 'uppercase',
   '&:not(:last-child)': {
     marginRight: '100px',
   },
   fontSize: '18px',
   [theme.breakpoints.down('xl')]: {
-    marginBottom: '15px',
+    marginBottom: '30px',
   },
 });
 
