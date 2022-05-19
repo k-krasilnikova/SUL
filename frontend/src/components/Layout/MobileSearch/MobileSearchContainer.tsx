@@ -1,6 +1,6 @@
 import { FC, useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
 
-import { searchAllCourses } from 'api/courses';
+import { useSearchAllCourses } from 'api/courses';
 import { ICourse } from 'types/course';
 import { useDebounce } from 'hooks';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
@@ -13,7 +13,7 @@ const MobileSearchContainer: FC = () => {
   const [coursesFound, setCoursesFound] = useState<ICourse[]>([]);
 
   const debouncedSearchValue = useDebounce(searchInputValue);
-  const { data: courseResponse } = searchAllCourses(debouncedSearchValue);
+  const { data: courseResponse } = useSearchAllCourses(debouncedSearchValue);
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -1,13 +1,12 @@
 import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { ITest } from 'interfaces/Ientities/Itest';
 
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import { TestValidator } from '../schemas/courses';
 
-const validateTest = (test: IUpdateCourseBody['test']): IUpdateCourseBody['test'] | null => {
+const validateTest = (test: IUpdateCourseBody['test']): ITest | null | undefined => {
   try {
-    const validatedTest =
-      test && convertToTypeUnsafe<IUpdateCourseBody['test']>(TestValidator.validateSync(test));
-    return validatedTest;
+    return test ? convertToTypeUnsafe<ITest>(TestValidator.validateSync(test)) : undefined;
   } catch {
     return null;
   }

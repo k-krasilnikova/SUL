@@ -1,7 +1,5 @@
-import React from 'react';
 import { Icon } from '@mui/material';
 
-import { IRolesMenu, MenuItemProps } from 'types/menu';
 import {
   coursesListIcon,
   myCoursesIcon,
@@ -11,10 +9,12 @@ import {
   skillsIcon,
   assessmentsIcon,
 } from 'icons/menuIcons';
+import { BadgeType } from 'enums/badgeType';
+import { IRolesMenu, IMenuItemProps } from 'types/menu';
 
 import { PATHS } from './routes';
 
-const EMPLOYEE_MENU: Array<MenuItemProps> = [
+const EMPLOYEE_MENU: IMenuItemProps[] = [
   {
     path: PATHS.coursesList,
     title: 'Courses list',
@@ -37,7 +37,7 @@ const EMPLOYEE_MENU: Array<MenuItemProps> = [
   },
 ];
 
-const MANAGER_MENU: Array<MenuItemProps> = [
+const MANAGER_MENU: IMenuItemProps[] = [
   {
     path: PATHS.coursesList,
     title: 'Courses list',
@@ -52,11 +52,15 @@ const MANAGER_MENU: Array<MenuItemProps> = [
     path: PATHS.requests,
     title: 'Pending requests',
     icon: <Icon fontSize="large" component={pendingIcon} />,
+    badgeType: BadgeType.requests,
+    withBadge: true,
   },
   {
     path: PATHS.pendingAssessments,
     title: 'Assessments',
     icon: <Icon fontSize="large" component={assessmentsIcon} />,
+    badgeType: BadgeType.assessments,
+    withBadge: true,
   },
   {
     path: PATHS.employees,
@@ -70,7 +74,7 @@ const MANAGER_MENU: Array<MenuItemProps> = [
   },
 ];
 
-const ADMIN_MENU: Array<MenuItemProps> = [
+const ADMIN_MENU: IMenuItemProps[] = [
   {
     path: PATHS.coursesList,
     title: 'Courses list',
@@ -87,7 +91,7 @@ export const ROLES_MENU: IRolesMenu = {
   employee: EMPLOYEE_MENU,
   manager: MANAGER_MENU,
   admin: ADMIN_MENU,
-} as const;
+};
 
 export enum Role {
   admin = 'admin',

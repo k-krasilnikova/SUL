@@ -1,1 +1,1 @@
-export { default } from './NotFoundContainer';
+export { default } from './NotFound';

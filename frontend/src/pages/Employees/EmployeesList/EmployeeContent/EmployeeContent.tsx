@@ -1,10 +1,11 @@
 import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
-import TextTooltip from 'components/TextTooltip';
+import Tooltip from 'components/Tooltip';
 import { EmployeeRank, EmployeeContentType, EmployeeColumnName } from 'enums/employee';
 import { Size } from 'enums/sizes';
 import { IEmployeeContentProps } from 'pages/Employees/types';
+import { convertToFullName } from 'utils/helpers/convertToFullName';
 
 import {
   ContentWrapper,
@@ -15,6 +16,7 @@ import {
   InfoContainer,
   Position,
   StyledExpandMoreIcon,
+  OverFlowedText,
 } from './styled';
 import { ColumnLabel } from '../styled';
 import ContentGrid from '../ContentGrid';
@@ -29,6 +31,7 @@ const EmployeeContent: FC<IEmployeeContentProps> = ({
   handleShowButtonClick,
 }) => {
   const { avatar, firstName, lastName, position } = employee;
+  const userFullName = convertToFullName(firstName, lastName);
   const isContentVisible = isVisible || type !== EmployeeContentType.hidden;
 
   return (
@@ -43,7 +46,7 @@ const EmployeeContent: FC<IEmployeeContentProps> = ({
                   <Avatar size={Size.subsmall} avatar={avatar} />
                 </ImageWrapper>
                 <InfoContainer>
-                  <UserName>{`${firstName} ${lastName}`}</UserName>
+                  <UserName>{userFullName}</UserName>
                   <Position>{position}</Position>
                 </InfoContainer>
               </UserInfo>
@@ -56,7 +59,9 @@ const EmployeeContent: FC<IEmployeeContentProps> = ({
             ) : (columnName === EmployeeColumnName.phone ||
                 columnName === EmployeeColumnName.skype) &&
               type !== EmployeeContentType.hidden ? (
-              <TextTooltip>{employee[columnName]}</TextTooltip>
+              <Tooltip title={employee[columnName] as string}>
+                <OverFlowedText>{employee[columnName]}</OverFlowedText>
+              </Tooltip>
             ) : columnName === EmployeeColumnName.button ? (
               <StyledExpandMoreIcon isVisible={isVisible} onClick={handleShowButtonClick} />
             ) : (

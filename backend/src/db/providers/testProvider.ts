@@ -42,8 +42,15 @@ const getTestProvider = async (courseId: string) => {
   return test;
 };
 
-const getTestById = async (testId: string | ObjectId): Promise<ITest> =>
-  TestModel.findById(testId).lean();
+const getTestById = async (testId: string | ObjectId): Promise<ITest> => {
+  const test = await TestModel.findById(testId).select('-__v').lean();
+
+  if (!test) {
+    throw new NotFoundError('Test was not found.');
+  }
+
+  return test;
+};
 
 const getTrueAnswersProvider = async (testId: string) => {
   const trueAnswers = await TestModel.findOne(
@@ -90,12 +97,7 @@ const getCourseTest = async (courseId: string | ObjectId): Promise<ITest> => {
   return test as unknown as ITest;
 };
 
-const addCourseTest = async (testData: ITest, questions: ITest['questions']) =>
-  TestModel.create({
-    title: testData.title,
-    questions,
-    timeout: testData.timeout,
-  });
+const addCourseTest = async (testData: ITest) => TestModel.create(testData);
 
 export {
   getTestProvider,

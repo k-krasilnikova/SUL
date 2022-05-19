@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import Loader from 'components/Loader';
-import { AuthorizedLayout } from 'components/Layout';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
 import { TEST_RESULT_TEXT } from 'constants/test';
+import Loader from 'components/Loader';
+import PageTitle from 'components/PageTitle';
+import { Loaders } from 'enums/loader';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import {
@@ -28,9 +29,9 @@ const TestResult: FC<ITestResultPageProps> = ({
   courseId,
   progressBarData,
 }) => (
-  <AuthorizedLayout pageName="Test Result">
+  <PageTitle title="Test Result">
     {isLoading ? (
-      <Loader color="primary" type="component" />
+      <Loader type={Loaders.component} />
     ) : (
       <TestResultBox>
         <TitleBox>
@@ -59,7 +60,7 @@ const TestResult: FC<ITestResultPageProps> = ({
         </ButtonBox>
       </TestResultBox>
     )}
-  </AuthorizedLayout>
+  </PageTitle>
 );
 
 export default TestResult;

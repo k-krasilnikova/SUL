@@ -9,8 +9,12 @@ import routers from 'routing/routes';
 import connectionMiddleware from 'middlewares/connectionMiddleware';
 import loggerMiddleware from 'middlewares/loggerMiddleware';
 import { handleError, handleInternalError } from 'middlewares/errorHandlingMiddleware';
+import { registerScheduler } from 'utils/schedule';
 
 dotenv.config();
+
+registerScheduler();
+
 const app = express();
 const port = process.env.PORT;
 const localhost = process.env.LOCAL_HOST || 'http://localhost:3000';

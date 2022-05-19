@@ -205,6 +205,15 @@ const theme = createTheme(
           },
         },
       },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            maxWidth: '200px',
+            fontSize: '14px',
+            backgroundColor: 'rgba(78,78,78,0.9)',
+          },
+        },
+      },
     },
   },
   globalTheme,
