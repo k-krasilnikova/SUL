@@ -42,6 +42,22 @@ type TCreateCoursePayload = Pick<
   'title' | 'avatar' | 'description' | 'technologies' | 'materials' | 'complexity' | 'test'
 >;
 
+interface IUpdateCourseTestPayload {
+  questions: ITest['questions'];
+  timeout: ITest['timeout'];
+  title: ITest['title'];
+}
+
+interface IEditCoursePayload {
+  title?: ICourse['title'];
+  avatar?: ICourse['avatar'];
+  description?: ICourse['description'];
+  technologies?: ICourseTechnologyPayload[];
+  materials?: ICourse['materials'];
+  test?: IUpdateCourseTestPayload;
+  complexity?: ICourse['complexity'];
+}
+
 export {
   ILoginPayload,
   IAssessmentActionPayload,
@@ -50,4 +66,6 @@ export {
   ICourseTechnologyPayload,
   TCreateCoursePayload,
   IPreparedCourseDataPayload,
+  IEditCoursePayload,
+  IUpdateCourseTestPayload,
 };
