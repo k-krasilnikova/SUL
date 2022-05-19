@@ -1,10 +1,12 @@
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
-import { TBaseRequest, TBaseResponse } from '../base';
-import { IParamsId } from '../common/params';
 
-type TRequestParams = IParamsId;
+import { TBaseRequest, TBaseResponse } from '../base';
+import { IIdParams } from '../common/params';
+import { IStageQuery } from '../common/queries';
+
+type TRequestParams = IIdParams;
 type TRequestBody = never;
-type TRequestQuery = { stage: string };
+type TRequestQuery = IStageQuery;
 
 type TResponsePayload = IClientCourse;
 

@@ -1,9 +1,9 @@
 import { ICourse } from 'interfaces/Ientities/Icourses';
 
 import { TBaseRequest, TBaseResponse } from '../base';
-import { IParamsId } from '../common/params';
+import { IIdParams } from '../common/params';
 
-type TRequestParams = IParamsId;
+type TRequestParams = IIdParams;
 
 type TResponsePayload = Pick<ICourse, '_id' | 'materials'>; // actually should return only IMaterial[]
 

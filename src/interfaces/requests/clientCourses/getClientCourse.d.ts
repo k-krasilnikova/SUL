@@ -1,9 +1,9 @@
 import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 
 import { TBaseRequest, TBaseResponse } from '../base';
-import { IParamsId } from '../common/params';
+import { IIdParams } from '../common/params';
 
-type TRequestParams = IParamsId;
+type TRequestParams = IIdParams;
 
 type TResponsePayload = IClientCoursePopulated;
 

@@ -2,9 +2,9 @@ import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
-import { IParamsId } from '../common/params';
+import { IIdParams } from '../common/params';
 
-type TRequestParams = IParamsId;
+type TRequestParams = IIdParams;
 
 type TResponsePayload = ICourseWithStatus;
 type TResponseLocals = IAuthLocals;

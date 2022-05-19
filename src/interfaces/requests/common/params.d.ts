@@ -1,5 +1,5 @@
-interface IParamsId {
+interface IIdParams {
   id: string;
 }
 
-export { IParamsId };
+export { IIdParams };

@@ -2,11 +2,12 @@ import { TAvailableCourse } from 'interfaces/ICourses/IQueryCourses';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
-import { IParamsId } from '../common/params';
+import { IIdParams } from '../common/params';
+import { ITitleQuery } from '../common/queries';
 
-type TRequestParams = IParamsId;
+type TRequestParams = IIdParams;
 type TRequestBody = never;
-type TRequestQuery = { title: string };
+type TRequestQuery = ITitleQuery;
 
 type TResponsePayload = TAvailableCourse[];
 type TResponseLocals = IAuthLocals & {

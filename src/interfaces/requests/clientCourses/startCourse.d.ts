@@ -1,7 +1,7 @@
 import { TBaseRequest, TBaseResponse } from '../base';
-import { IParamsId } from '../common/params';
+import { IIdParams } from '../common/params';
 
-type TRequestParams = IParamsId;
+type TRequestParams = IIdParams;
 
 type TResponsePayload = {
   start: boolean; // refactor in "V1-248 Common response style"
