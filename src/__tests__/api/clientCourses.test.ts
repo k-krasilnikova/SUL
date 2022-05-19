@@ -1,5 +1,5 @@
 import { app } from 'app';
-import { STATUS_CODES } from 'config/constants';
+import { JEST_TIMEOUT, STATUS_CODES } from 'config/constants';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import dotenv from 'dotenv';
@@ -8,6 +8,8 @@ import { ICourse } from 'interfaces/Ientities/Icourses';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import mongoose from 'mongoose';
 import supertest from 'supertest';
+
+jest.setTimeout(JEST_TIMEOUT);
 
 describe('testing user apply course', () => {
   let courseId: string;
