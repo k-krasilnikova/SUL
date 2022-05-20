@@ -1,14 +1,9 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import { TAddCourseRequest, TAddCourseResponse } from 'interfaces/requests/admin/addCourse';
 import { addCourseProvider, addSimilarCoursesProvider } from 'db/providers/courseProvider';
-import { ICreateCourseBody } from 'interfaces/ICourses/IQueryCourses';
-import { ICourse } from 'interfaces/Ientities/Icourses';
 
-const addCourse = async (
-  req: Request<never, never, ICreateCourseBody>,
-  res: Response<never, { preparedCourseData: ICreateCourseBody; results: ICourse }>,
-  next: NextFunction,
-) => {
+const addCourse = async (req: TAddCourseRequest, res: TAddCourseResponse, next: NextFunction) => {
   try {
     const { preparedCourseData } = res.locals;
 

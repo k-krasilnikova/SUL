@@ -1,5 +1,9 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TAssignEmployeeCoursesRequest,
+  TAssignEmployeeCoursesResponse,
+} from 'interfaces/requests/manager/assignEmployeeCourses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { INITIAL_INDX } from 'config/constants';
 import {
@@ -9,7 +13,6 @@ import {
 import { getCourseProvider, materialsCounterProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { addUserNotification } from 'db/providers/notificationProvider';
-import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
 import {
   isCoursesToAssignHaveDuplicates,
@@ -24,8 +27,8 @@ import {
 } from 'enums/notificationEnums';
 
 const assignEmployeeCourses = async (
-  req: Request<{ id: string }, never, ICourseToAssign[]>,
-  res: Response<never, { id: string; results: string }>,
+  req: TAssignEmployeeCoursesRequest,
+  res: TAssignEmployeeCoursesResponse,
   next: NextFunction,
 ) => {
   try {

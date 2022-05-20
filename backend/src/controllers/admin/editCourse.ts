@@ -1,5 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import { TEditCourseRequest, TEditCourseResponse } from 'interfaces/requests/admin/editCourse';
+import { IEditCoursePayload } from 'interfaces/requests/common/payloads';
 import { COURSE_FIELDS } from 'config/constants';
 import {
   addSimilarCoursesProvider,
@@ -9,7 +11,6 @@ import {
 } from 'db/providers/courseProvider';
 import { isProperTechnologies } from 'db/providers/skillProvider';
 import { getCourseTest, updateTest } from 'db/providers/testProvider';
-import { IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
 import { validateCourseData } from 'utils/validation/courses';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import checkCourseValidationResult from 'utils/validation/courses/checkCourseValidationResult';
@@ -17,8 +18,8 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { COURSE_VALIDATION_ERRORS } from 'utils/validation/courses/constants';
 
 const editCourse = async (
-  req: Request<{ id: string }, never, IUpdateCourseBody>,
-  res: Response<never, { id: string; results: IUpdateCourseBody }>,
+  req: TEditCourseRequest,
+  res: TEditCourseResponse,
   next: NextFunction,
 ) => {
   try {
@@ -30,7 +31,7 @@ const editCourse = async (
 
     checkCourseValidationResult(courseDataValidationResult);
 
-    const updatedData: IUpdateCourseBody = {};
+    const updatedData: IEditCoursePayload = {};
     const {
       title: validatedTitle,
       complexity: validatedComplexity,
@@ -92,7 +93,7 @@ const editCourse = async (
       const course = await getCourseProvider(courseId, userId);
       await addSimilarCoursesProvider(course);
       updatedData.technologies =
-        convertToTypeUnsafe<IUpdateCourseBody['technologies']>(technologies);
+        convertToTypeUnsafe<IEditCoursePayload['technologies']>(technologies);
     }
 
     if (validatedTest) {
@@ -104,7 +105,7 @@ const editCourse = async (
           timeout: validatedTest.timeout,
           title: validatedTest.title,
         });
-        const newTest: IUpdateCourseBody['test'] = { timeout, title, questions };
+        const newTest: IEditCoursePayload['test'] = { timeout, title, questions };
         updatedData.test = newTest;
       }
     }

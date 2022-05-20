@@ -17,7 +17,7 @@ interface ILocals {
   userId: string | undefined;
   managerId: string | undefined;
   withAssessment?: boolean;
-  results: Record<string, never>;
+  results: Record<string, unknown>;
 }
 
 interface IEmployeeInfo
@@ -39,7 +39,7 @@ interface IEmployeeInfo
   stack: TUserStackMemberShort[];
 }
 
-type TUserInfoResponse = IUser & {
+type TUserInfoResponse = Omit<IUser, 'passwordHash'> & {
   pendingRequestsAmount?: number;
   pendingAssessmentsAmount?: number;
 };

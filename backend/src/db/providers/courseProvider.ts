@@ -13,11 +13,9 @@ import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
-import {
-  ICourseWithStatus,
-  IQueryCourses,
-  ICreateCourseBody,
-} from 'interfaces/ICourses/IQueryCourses';
+import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
+import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
@@ -94,7 +92,7 @@ const getCoursesProvider = async (
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
     nPerPage = DEFAULT_N_PER_PAGE,
-  }: IQueryCourses,
+  }: IGetCoursesRequestQuery,
   userId: string,
 ) => {
   try {
@@ -152,13 +150,8 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
   return populated;
 };
 
-const getMaterialsProvider = async ({ courseId, stage }: { courseId: string; stage?: string }) => {
-  const material = await CourseModel.findOne(
-    {
-      $and: [{ _id: courseId }, stage?.length ? { 'materials.stage': Number(stage) } : {}],
-    },
-    stage?.length ? { 'materials.$': 1 } : { materials: 1 },
-  ).lean();
+const getMaterialsProvider = async (courseId: string) => {
+  const material = await CourseModel.findById(courseId).select('materials').lean();
   if (!material) {
     throw new NotFoundError('Materials not found.');
   }
@@ -264,7 +257,8 @@ const getCourseStatusProvider = async (
   return relateClientCourse?.status;
 };
 
-const addCourseProvider = async (newCourse: ICreateCourseBody) => CourseModel.create(newCourse);
+const addCourseProvider = async (newCourse: IPreparedCourseDataPayload) =>
+  CourseModel.create(newCourse);
 
 const addSimilarCoursesProvider = async (course: ICourse) => {
   await CourseModel.findOneAndUpdate({ _id: course._id }, { $set: { similarCourses: [] } });
