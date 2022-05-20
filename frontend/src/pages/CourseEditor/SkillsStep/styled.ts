@@ -18,6 +18,9 @@ export const SkillWrapper = styled(Box)({
 export const SkillField = styled(TextField)({
   width: '250px',
   height: '53px',
+  '& label': {
+    color: '#A2A2A2',
+  },
 });
 
 export const SkillButton = styled(Button)({
