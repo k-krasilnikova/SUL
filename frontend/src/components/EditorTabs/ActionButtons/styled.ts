@@ -10,4 +10,7 @@ export const ButtonWrapper = styled(Box)({
 
 export const StyledButton = styled(BackButton)({
   fontSize: '18px',
+  '&.Mui-disabled': {
+    visibility: 'hidden',
+  },
 });

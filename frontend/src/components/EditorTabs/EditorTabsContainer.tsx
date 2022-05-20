@@ -10,6 +10,10 @@ const EditorTabsContainer: FC<IEditorTabsProps> = ({ children }) => {
   const childrenArray = Children.toArray(children);
   const currentChild = childrenArray[step];
 
+  const totalSteps = childrenArray.length;
+  const isLastStep = step === totalSteps - 1;
+  const isFirstStep = step === INITIAL_STEP;
+
   const handleNextStep = () => {
     setStep(step + TAB_STEP);
   };
@@ -18,10 +22,18 @@ const EditorTabsContainer: FC<IEditorTabsProps> = ({ children }) => {
     setStep(step - TAB_STEP);
   };
 
+  const handleSubmit = () => {
+    // eslint-disable-next-line no-console
+    console.log('submit');
+  };
+
   return (
     <EditorTabs
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
+      handleSubmit={handleSubmit}
+      isFirstStep={isFirstStep}
+      isLastStep={isLastStep}
       currentChild={currentChild}
     />
   );
