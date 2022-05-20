@@ -42,11 +42,13 @@ const TestItem: FC<ITestItemProps> = ({
     <TestItemTitle>{Titles.testDetails}</TestItemTitle>
     <TestTitleBox>
       <TestBasicField
+        label="Title"
         value={testResponse?.title}
         variant="outlined"
         onChange={formik.handleChange}
       />
       <TestBasicField
+        label="Description"
         value={testResponse?.timeout}
         variant="outlined"
         onChange={formik.handleChange}

@@ -84,16 +84,8 @@ export const TestBasicField = styled(TextField)({
   fontSize: '16px',
   lineHeight: '18x',
   color: '#A2A2A2',
-  '& label, & label.Mui-focused': {
+  '& label': {
     color: '#A2A2A2',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset, &:hover fieldset': {
-      border: '1px solid #00000033',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: '#000',
-    },
   },
 });
 
