@@ -1,3 +1,8 @@
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import { Db, MongoClient } from 'mongodb';
+
+import { JEST_TIMEOUT } from 'config/constants';
 import AccessTokenBlacklistModel from 'db/models/AccessTokens';
 import ClientCourseModel from 'db/models/ClientCourses';
 import CourseModel from 'db/models/Course';
@@ -8,18 +13,17 @@ import StackMemberModel from 'db/models/StackMember';
 import TestModel from 'db/models/Tests';
 import UserModel from 'db/models/User';
 import UserSkillModel from 'db/models/UserSkill';
-import dotenv from 'dotenv';
-import { Db, MongoClient } from 'mongodb';
-import mongoose from 'mongoose';
+
+jest.setTimeout(JEST_TIMEOUT);
 
 describe('database connections', () => {
+  const successfulMsg = { ok: 1 };
+  const ping = { ping: 1 };
   let url: string | null;
   let dbName: string | null;
   let connection: MongoClient;
   let db: Db | null;
   let pingRes: Record<string, unknown> | null;
-  const successfulMsg = { ok: 1 };
-  const ping = { ping: 1 };
 
   beforeAll(() => {
     dotenv.config();
@@ -60,19 +64,19 @@ describe('database connections', () => {
 
 describe('database collections', () => {
   const emptyNumber = 0;
+  let mongooseConnection: typeof mongoose;
 
   beforeAll(async () => {
     dotenv.config();
-    if (process.env.DATABASE_BACKDEV_URL) {
-      const url = process.env.DATABASE_BACKDEV_URL;
-      await mongoose.connect(url);
-    } else {
+    if (!process.env.DATABASE_BACKDEV_URL) {
       throw new Error('Not connected to BACKDEV DB.');
     }
+    const url = process.env.DATABASE_BACKDEV_URL;
+    mongooseConnection = await mongoose.connect(url);
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
+    await mongooseConnection.connection.close();
   });
 
   it('courses collection is not empty', async () => {

@@ -49,7 +49,6 @@ const getAllClientCoursesProvider = async (userId: string): Promise<IClientCours
   const courses: IClientCoursePopulated[] = await ClientCourseModel.find({ user: userId })
     .populate('course')
     .lean();
-
   return courses;
 };
 

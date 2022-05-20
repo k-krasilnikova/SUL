@@ -12,7 +12,7 @@
         "local": "cross-env NODE_ENV=local nodemon ./src/server.ts",
         "backdev": "cross-env NODE_ENV=backdev nodemon ./src/server.ts",
         "build": "cross-env NODE_ENV=production tsc && npx tsc-alias",
-        "test": "cross-env NODE_ENV=test jest  --coverage",
+        "test": "cross-env NODE_ENV=test jest --runInBand --coverage",
         "migrate": "migrate-mongo up",
         "migrate:undo-last": "migrate-mongo down",
         "migrate:status": "migrate-mongo status",
