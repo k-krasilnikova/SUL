@@ -1,36 +1,41 @@
-import { app } from 'app';
-import { JEST_TIMEOUT, STATUS_CODES } from 'config/constants';
-import ClientCourseModel from 'db/models/ClientCourses';
-import { removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import supertest from 'supertest';
+
+import { app } from 'app';
+import { INITIAL_INDX, JEST_TIMEOUT, STATUS_CODES, WRONG_ID } from 'config/constants';
+import { removeFromPendingFieldCourses } from 'db/providers/userProvider';
+import ClientCourseModel from 'db/models/ClientCourses';
+import { Routes, SubRoutes } from 'enums/routesEnum';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { IUser } from 'interfaces/Ientities/Iusers';
-import mongoose from 'mongoose';
-import supertest from 'supertest';
 
 jest.setTimeout(JEST_TIMEOUT);
 
 describe('testing user apply course', () => {
+  const applyCourseRoute = `${Routes.namespace}${Routes.courses}`;
+  const noToken = 'no token';
+  let userCreds: Record<'login' | 'password', string | undefined>;
   let courseId: string;
   let clientCourseId: string;
   let managerId: string;
-  const noToken = 'no token';
   let request: supertest.SuperTest<supertest.Test>;
   let userToken: string;
+  let dbConnection: typeof mongoose;
 
   beforeAll(async () => {
     dotenv.config();
-    if (process.env.DATABASE_BACKDEV_URL) {
-      const url = process.env.DATABASE_BACKDEV_URL;
-      await mongoose.connect(url);
-    } else {
+    userCreds = { login: process.env.USER_LOGIN, password: process.env.USER_PASSWORD };
+    if (!process.env.DATABASE_BACKDEV_URL) {
       throw new Error('Not connected to BACKDEV DB.');
     }
+    const url = process.env.DATABASE_BACKDEV_URL;
+    dbConnection = await mongoose.connect(url);
     request = supertest(app);
     const responseUser = await request
-      .post('/api/account/login')
-      .send({ login: 'user', password: 'user' });
+      .post(`${Routes.namespace}${Routes.account}${SubRoutes.login}`)
+      .send(userCreds);
     const userBody = responseUser.body as IUser;
     userToken = String(userBody.accessToken);
     managerId = String(userBody.managerId);
@@ -39,32 +44,43 @@ describe('testing user apply course', () => {
   afterAll(async () => {
     await ClientCourseModel.findOneAndDelete({ _id: clientCourseId });
     await removeFromPendingFieldCourses(managerId, clientCourseId);
+    await dbConnection.connection.close();
   });
 
-  it('cannot apply no existed course', async () => {
+  it('cannot apply course by no existed id', async () => {
     const applyCourse = await request
-      .post('/api/courses')
-      .set('Authorization', `bearer ${userToken ?? noToken}`)
-      .send({ id: 'no existed id' });
+      .post(applyCourseRoute)
+      .set('Authorization', `bearer ${userToken}`)
+      .send({ id: WRONG_ID });
+    expect(applyCourse.status).toBe(STATUS_CODES.clientErrors.NOT_FOUND);
+  });
+
+  it('return 500 error if id is not a string of 12 bytes', async () => {
+    const inappropriateId = 'wrong';
+    const applyCourse = await request
+      .post(applyCourseRoute)
+      .set('Authorization', `bearer ${userToken}`)
+      .send({ id: inappropriateId });
     expect(applyCourse.status).toBe(STATUS_CODES.serverErrors.INTERNAL_SERVER_ERROR);
   });
 
   it('cannot apply course with wrong access token', async () => {
     const applyCourse = await request
-      .post('/api/courses')
+      .post(applyCourseRoute)
       .set('Authorization', `bearer ${noToken}`)
-      .send({ id: 'no existed id' });
+      .send({ id: courseId });
     expect(applyCourse.status).toBe(STATUS_CODES.clientErrors.FORBIDDEN);
   });
 
   it('user can apply specific course by id', async () => {
-    const allCourses = (
-      await request.get('/api/courses').set('Authorization', `bearer ${userToken ?? noToken}`)
-    ).body as unknown as ICourse[];
-    courseId = String(allCourses[0]._id);
+    const allCoursesRes = await request
+      .get(`${Routes.namespace}${Routes.courses}`)
+      .set('Authorization', `bearer ${userToken}`);
+    const allCourses = allCoursesRes.body as ICourse[];
+    courseId = String(allCourses[INITIAL_INDX]._id);
     const applyCourse = await request
-      .post('/api/courses')
-      .set('Authorization', `bearer ${userToken ?? noToken}`)
+      .post(applyCourseRoute)
+      .set('Authorization', `bearer ${userToken}`)
       .send({ id: courseId });
     const newClientCourse = applyCourse.body as { course: IClientCourse };
     clientCourseId = String(newClientCourse.course._id);
@@ -73,8 +89,8 @@ describe('testing user apply course', () => {
 
   it('cannot apply the same course twice', async () => {
     const applyCourse = await request
-      .post('/api/courses')
-      .set('Authorization', `bearer ${userToken ?? noToken}`)
+      .post(applyCourseRoute)
+      .set('Authorization', `bearer ${userToken}`)
       .send({ id: courseId });
     expect(applyCourse.status).toBe(STATUS_CODES.clientErrors.BAD_REQUEST);
     expect(applyCourse.body).toBe('Course already applied.');

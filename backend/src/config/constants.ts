@@ -6,6 +6,7 @@ const ENVIROMENTS = {
   backdev: 'backdev',
 };
 
+const WRONG_ID = '111111111111';
 const JEST_TIMEOUT = 60000;
 const DEFAULT_ACCESS_TIMEOUT = '1d';
 const DEFAULT_REFRESH_TIMEOUT = '7d';
@@ -118,5 +119,6 @@ export {
   PERCENTS,
   CLIENT_COURSE_FIELDS,
   COURSE_FIELDS,
+  WRONG_ID,
   JEST_TIMEOUT,
 };
