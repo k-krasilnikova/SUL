@@ -13,6 +13,7 @@ import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import { NO_FILTER } from 'config/constants';
+import ISkill from 'interfaces/Ientities/ISkill';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })
@@ -225,6 +226,8 @@ const getSkillsToCourseTechs = async (technologies: ICourseTechnologyPayload[]) 
   return techsForCourse;
 };
 
+const getSkills = async (): Promise<ISkill[]> => SkillModel.find({}).lean();
+
 export {
   getUserSkills,
   getPopulatedUserSkill,
@@ -240,4 +243,5 @@ export {
   skillsExist,
   isProperTechnologies,
   getSkillsToCourseTechs,
+  getSkills,
 };
