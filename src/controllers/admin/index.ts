@@ -1,0 +1,1 @@
+export { getEditCoursePayload } from './getEditCoursePayload';
