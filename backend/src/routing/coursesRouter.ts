@@ -16,7 +16,7 @@ import getCoursesMap from 'controllers/courses/getCoursesMap';
 import addCourse from 'controllers/admin/addCourse';
 import preparingCourseData from 'controllers/admin/preparingCourseData';
 import addNotification from 'controllers/notifications/addNotification';
-import getEditCoursePayload from 'controllers/admin/getEditCoursePayload';
+import { getEditCoursePayload } from 'controllers/admin';
 
 const coursesRouter = Router();
 coursesRouter.get(
