@@ -2,32 +2,19 @@ import { FC } from 'react';
 
 import { Titles } from 'constants/courseEditor';
 import { ITestStepProps } from 'pages/CourseEditor/types';
+import { FormWrapper, SectionName } from 'pages/CourseEditor/DefinitionStep/styled';
 import Loader from 'components/Loader';
 
 import TestItem from './TestItem';
-import { TestStepContainer, TestStepWrapper, TestStepTitle } from './styled';
 
-const TestStep: FC<ITestStepProps> = ({
-  formik,
-  isCurrentAnswer,
-  handleChangeAnswer,
-  testResponse,
-  isTestLoading,
-}) =>
+const TestStep: FC<ITestStepProps> = ({ formik, testResponse, isTestLoading }) =>
   isTestLoading ? (
     <Loader type="content" />
   ) : (
-    <TestStepContainer>
-      <TestStepWrapper>
-        <TestStepTitle>{Titles.testStepTitle}</TestStepTitle>
-        <TestItem
-          formik={formik}
-          handleChangeAnswer={handleChangeAnswer}
-          isCurrentAnswer={isCurrentAnswer}
-          testResponse={testResponse}
-        />
-      </TestStepWrapper>
-    </TestStepContainer>
+    <FormWrapper>
+      <SectionName>{Titles.testStepTitle}</SectionName>
+      <TestItem formik={formik} testResponse={testResponse} />
+    </FormWrapper>
   );
 
 export default TestStep;
