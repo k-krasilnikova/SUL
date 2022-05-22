@@ -7,7 +7,9 @@ import { Titles } from 'constants/courseEditor';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 
 import LessonItem from './LessonItem';
-import { LessonsStepContainer, LessonsStepWrapper, LessonsStepTitle, LessonButton } from './styled';
+import { LessonsStepWrapper, LessonButton } from './styled';
+
+import { FormWrapper, SectionName } from '../DefinitionStep/styled';
 
 const LessonsStep: FC<ILessonsStepProps> = ({
   formik,
@@ -16,8 +18,8 @@ const LessonsStep: FC<ILessonsStepProps> = ({
   selectOption,
   handleChangeOption,
 }) => (
-  <LessonsStepContainer>
-    <LessonsStepTitle>{Titles.lessonStepTitle}</LessonsStepTitle>
+  <FormWrapper>
+    <SectionName>{Titles.lessonStepTitle}</SectionName>
     {courseData &&
       Object.values(formik.values.materials).length &&
       formik.values?.materials.map((material, index) => (
@@ -48,7 +50,7 @@ const LessonsStep: FC<ILessonsStepProps> = ({
           </FieldArray>
         </LessonsStepWrapper>
       ))}
-  </LessonsStepContainer>
+  </FormWrapper>
 );
 
 export default LessonsStep;

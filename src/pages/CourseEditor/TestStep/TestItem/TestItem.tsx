@@ -2,18 +2,18 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { FieldArray } from 'formik';
+import { MenuItem } from '@mui/material';
 
 import { Titles } from 'constants/courseEditor';
-import { ITestItemProps } from 'pages/CourseEditor/types';
-import { Field } from 'pages/CourseEditor/DefinitionStep/styled';
-import { MenuItem } from '@mui/material';
-import isLastElem from 'utils/helpers/arrays/isLastElem';
-import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
 import { ButtonLabels } from 'constants/ButtonLabels';
+import { ITestItemProps } from 'pages/CourseEditor/types';
+import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
+import { Field } from 'pages/CourseEditor/DefinitionStep/styled';
+import isLastElem from 'utils/helpers/arrays/isLastElem';
 
 import {
   TestItemWrapper,
-  TestItemTitle,
+  ItemTitle,
   TestTitleBox,
   QuestionWrapper,
   QuestionTitle,
@@ -24,7 +24,6 @@ import {
   InputAnswer,
   InputText,
   TestBasicField,
-  FieldSelect,
 } from './styled';
 
 // const BUTTON_VARIANT = {
@@ -32,14 +31,9 @@ import {
 //   radio: 'Radiobutton (One answer)',
 // };
 
-const TestItem: FC<ITestItemProps> = ({
-  formik,
-  handleChangeAnswer,
-  isCurrentAnswer,
-  testResponse,
-}) => (
+const TestItem: FC<ITestItemProps> = ({ formik, testResponse }) => (
   <TestItemWrapper>
-    <TestItemTitle>{Titles.testDetails}</TestItemTitle>
+    <ItemTitle>{Titles.testDetails}</ItemTitle>
     <TestTitleBox>
       <TestBasicField
         label="Title"
@@ -99,11 +93,11 @@ const TestItem: FC<ITestItemProps> = ({
                 </RadioButtonWrapper>
                 {isLastElem(testResponse.questions, index) ? (
                   <SkillButton variant="mediumOutlined" onClick={() => push({})}>
-                    {ButtonLabels.addMoreSkills}
+                    {ButtonLabels.addMoreQuestions}
                   </SkillButton>
                 ) : (
                   <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
-                    {ButtonLabels.removeSkill}
+                    {ButtonLabels.removeQuestion}
                   </SkillButton>
                 )}
               </>

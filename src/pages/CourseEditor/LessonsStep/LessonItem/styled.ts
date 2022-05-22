@@ -1,16 +1,13 @@
 import { styled, Box, TextField, TextareaAutosize } from '@mui/material';
 
+import { SectionName } from 'pages/CourseEditor/DefinitionStep/styled';
+
 export const LessonItemWrapper = styled(Box)({
-  marginTop: '32px 0',
+  margin: '32px 0 28px',
 });
 
-export const LessonItemTitle = styled('p')({
-  margin: '0',
-  fontWeight: '400',
+export const ItemTitle = styled(SectionName)({
   fontSize: '24px',
-  lineHeight: '31px',
-  letterSpacing: 1,
-  color: '#2C2525',
 });
 
 export const LessonInnerBox = styled(Box)({
@@ -53,17 +50,6 @@ export const InputText = styled(TextField)({
   color: '#000',
   backgroundColor: '#FFF',
   borderRadius: '5px',
-  '& label, & label.Mui-focused': {
-    color: '#A2A2A2',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset, &:hover fieldset': {
-      border: '1px solid #00000033',
-    },
-    '&.Mui-focused fieldset': {
-      border: '1px solid #000',
-    },
-  },
 });
 
 export const InputTextArea = styled(TextareaAutosize)({

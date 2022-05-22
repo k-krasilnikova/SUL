@@ -1,32 +1,31 @@
 import { styled, Box, RadioGroup, Radio, TextField } from '@mui/material';
 
+import { SectionName } from 'pages/CourseEditor/DefinitionStep/styled';
+
 export const TestItemWrapper = styled(Box)({
   width: '734px',
-  margin: '32px 0 50px 0',
+  margin: '32px 0 28px',
 });
 
-export const TestItemTitle = styled('p')({
-  margin: 0,
-  fontWeight: 400,
+export const ItemTitle = styled(SectionName)({
+  margin: '40px 0 30px',
   fontSize: '24px',
-  lineHeight: '31px',
-  letterSpacing: 1,
-  color: '#2C2525',
 });
 
 export const TestTitleBox = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
-  margin: '20px 0',
+  marginBottom: '40px',
 });
 
 export const QuestionWrapper = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
+  marginBottom: '40px',
 });
 
-export const QuestionTitle = styled('p')({
+export const QuestionTitle = styled(Box)({
   margin: '20px 0 25px',
   fontWeight: 400,
   fontSize: '22px',
@@ -43,12 +42,12 @@ export const QuestionInputBox = styled(Box)({
 export const RadioButtonWrapper = styled(RadioGroup)({
   display: 'flex',
   flexDirection: 'column',
-  marginTop: '14px',
+  margin: '14px 0 28px',
 });
 
 export const RadioButtonBox = styled(Box)({
   display: 'inline-block',
-  marginTop: '16px',
+  margin: '16px',
 });
 
 export const RadioSelectAnswer = styled(Radio)({
@@ -61,9 +60,6 @@ export const InputAnswer = styled(TextField)({
   fontSize: '16px',
   lineHeight: '18px',
   color: '#000000',
-  // '&:after, &:before': {
-  //   display: 'none',
-  // },
 });
 
 export const InputText = styled(TextField)({
@@ -87,18 +83,4 @@ export const TestBasicField = styled(TextField)({
   '& label': {
     color: '#A2A2A2',
   },
-});
-
-export const FieldSelect = styled('select')({
-  width: '350px',
-  height: '53px',
-  paddingLeft: '12px',
-  fontWight: 400,
-  fontSize: '16px',
-  lineHeight: '18x',
-  color: '#A2A2A2',
-  backgroundColor: '#FFF',
-  border: '1px solid #00000033',
-  boxSizing: 'border-box',
-  borderRadius: '5px',
 });

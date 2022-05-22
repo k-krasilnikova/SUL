@@ -11,7 +11,7 @@ import {
   InputText,
   InputTextArea,
   LessonInnerBox,
-  LessonItemTitle,
+  ItemTitle,
   LessonItemWrapper,
 } from './styled';
 
@@ -26,9 +26,9 @@ const LessonItem: FC<ILessonItemProps> = ({
   <>
     {Object.values(lessonsContent)?.map((lesson) => (
       <LessonItemWrapper>
-        <LessonItemTitle>
+        <ItemTitle>
           {Titles.lessonCount} {material.stage}
-        </LessonItemTitle>
+        </ItemTitle>
         <LessonInnerBox>
           <FieldSelect onChange={handleChangeOption}>
             <option value="video" label="Video">
