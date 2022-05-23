@@ -12,9 +12,12 @@ import { TUserPosition, TUserRole } from '../common/users';
 interface INotification {
   _id: Types.ObjectId;
   title: string;
+  courseName: string;
+  userName: string;
   description: string;
   status: string;
   userId: Types.ObjectId;
+  type: string;
 }
 
 type TUserForPendingCourses = Pick<IUser, 'firstName' | 'lastName' | 'position' | 'avatar'>;

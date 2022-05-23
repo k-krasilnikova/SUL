@@ -1,14 +1,18 @@
+/* eslint-disable no-useless-escape */
 import { isValidObjectId } from 'mongoose';
 import { array, number, NumberSchema, object, string, StringSchema } from 'yup';
-import { uniqWith } from 'lodash';
+import { uniqBy, uniqWith } from 'lodash';
 
 import { UserRank } from 'enums/users';
 import { MaterialContentType } from 'enums/materials';
 import { TIME_1M_SEC } from 'config/constants';
 import { ITest } from 'interfaces/Ientities/Itest';
+import { ICourseTechsFromWeb } from 'interfaces/ICourses/IQueryCourses';
+import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/courseTest';
 
 import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
 import fullTrim from '../../string/fullTrim';
+import { addMaterialStages } from '../../normaliser/materials';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import {
   MAX_DESCRIPTION_LENGTH,
@@ -30,6 +34,8 @@ const CORRECT_ANSWERS_AMOUNT = 1;
 const MIN_MATERIALS_AMOUNT = 1;
 const MIN_CONTENT_ELEMENTS_AMOUNT = 1;
 const MIN_TECHS_PER_COURSE_AMOUNT = 1;
+const LINK_PATTERN =
+  /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/i;
 
 const TitleValidator: StringSchema = string()
   .required()
@@ -111,7 +117,8 @@ const testValidationSchema = {
     )
     .test((questions) =>
       isQuestionsHaveCorrectAnswer(convertToTypeUnsafe<ITest['questions']>(questions)),
-    ),
+    )
+    .transform(setAnswerProperNumbersToQuestions),
   timeout: number().required().integer().positive().min(TIME_1M_SEC),
   title: TitleValidator,
 };
@@ -168,12 +175,19 @@ const ExerciseValidator = object(exerciseValidationSchema);
 const materialObjectValidationSchema = {
   stage: number().integer().optional(),
   content: array().of(ContentElementValidator).required().min(MIN_CONTENT_ELEMENTS_AMOUNT),
-  exercise: ExerciseValidator.optional(),
+  exercise: ExerciseValidator.default(undefined),
 };
 
 const MaterialObjectValidator = object(materialObjectValidationSchema).required();
 
-const MaterialsValidator = array().of(MaterialObjectValidator).required().min(MIN_MATERIALS_AMOUNT);
+const MaterialsValidator = array()
+  .of(MaterialObjectValidator)
+  .required()
+  .min(MIN_MATERIALS_AMOUNT)
+  .transform(addMaterialStages);
+
+const isTechsArrayUnique = (techs: ICourseTechsFromWeb[]): boolean =>
+  uniqBy(techs, 'skill').length === techs.length;
 
 const technologyObjectValidationSchema = {
   skill: string()
@@ -187,7 +201,12 @@ const TechnologyObjectValidator = object(technologyObjectValidationSchema).requi
 const TechnologiesValidator = array()
   .of(TechnologyObjectValidator)
   .required()
-  .min(MIN_TECHS_PER_COURSE_AMOUNT);
+  .min(MIN_TECHS_PER_COURSE_AMOUNT)
+  .test((techs) => isTechsArrayUnique(convertToTypeUnsafe<ICourseTechsFromWeb[]>(techs)));
+
+const isLink = (link?: string): boolean => Boolean(link && LINK_PATTERN.test(link));
+
+const AvatarValidator: StringSchema = string().required().test(isLink);
 
 export {
   TitleValidator,
@@ -196,4 +215,5 @@ export {
   TestValidator,
   MaterialsValidator,
   TechnologiesValidator,
+  AvatarValidator,
 };

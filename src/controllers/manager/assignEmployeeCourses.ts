@@ -6,7 +6,7 @@ import {
   assignCourseToEmployee,
   getAllClientCoursesProvider,
 } from 'db/providers/clientCourseProvider';
-import { materialsCounterProvider } from 'db/providers/courseProvider';
+import { getCourseProvider, materialsCounterProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { addUserNotification } from 'db/providers/notificationProvider';
 import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
@@ -15,10 +15,12 @@ import {
   isCoursesToAssignHaveDuplicates,
   removeCoursesToAssignDuplicates,
 } from 'utils/normaliser/queryCourses';
+import { combineFullName } from 'utils/combineFullName';
 import {
   NotificationDescription,
   NotificationStatuses,
   NotificationTitles,
+  NotificationType,
 } from 'enums/notificationEnums';
 
 const assignEmployeeCourses = async (
@@ -53,30 +55,35 @@ const assignEmployeeCourses = async (
 
     const assignedCourses = await Promise.all(
       reducedCoursesToAssign.map(async (courseToAssign) => {
-        try {
-          const materialsCount = await materialsCounterProvider(courseToAssign.courseId);
-          const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
-          const assignedCourse = await assignCourseToEmployee(
-            employeeId,
-            courseToAssign.courseId,
-            progressDto,
-            courseToAssign.assessment,
-          );
-          return assignedCourse;
-        } catch {
-          return undefined;
-        }
+        const materialsCount = await materialsCounterProvider(courseToAssign.courseId);
+        const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
+        const assignedCourse = await assignCourseToEmployee(
+          employeeId,
+          courseToAssign.courseId,
+          progressDto,
+          courseToAssign.assessment,
+        );
+
+        return assignedCourse;
       }),
     );
 
-    const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
+    const userFullName = combineFullName(employee.firstName, employee.lastName);
 
-    await addUserNotification(
-      employee._id,
-      NotificationStatuses.new,
-      NotificationTitles.assigned,
-      NotificationDescription.assigned,
-    );
+    assignedCourses.map(async (clientCourse) => {
+      const course = await getCourseProvider(clientCourse.course, employeeId);
+      await addUserNotification(
+        employeeId,
+        course.title,
+        userFullName,
+        NotificationStatuses.new,
+        NotificationTitles.assigned,
+        NotificationDescription.assigned,
+        NotificationType.employee,
+      );
+    });
+
+    const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
 
     res.locals.results = `${assignedCoursesAmount}/${assignedCourses.length} courses successfully assigned.`;
 

@@ -44,7 +44,7 @@ describe('testing user apply course', () => {
   afterAll(async () => {
     await ClientCourseModel.findOneAndDelete({ _id: clientCourseId });
     await removeFromPendingFieldCourses(managerId, clientCourseId);
-    await dbConnection.connection.close();
+    await dbConnection.disconnect();
   });
 
   it('cannot apply course by no existed id', async () => {

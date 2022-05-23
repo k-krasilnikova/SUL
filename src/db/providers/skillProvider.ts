@@ -1,4 +1,5 @@
 import mongoose, { Types } from 'mongoose';
+import { isNull } from 'lodash';
 
 import UserSkillModel from 'db/models/UserSkill';
 import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
@@ -203,9 +204,15 @@ const isProperTechnologies = async (techs: IUpdateCourseBody['technologies']): P
 const getSkillsToCourseTechs = async (technologies: ICourseTechsFromWeb[]) => {
   const techs = await Promise.all(
     technologies.map(({ skill }) => {
-      return SkillModel.findOne({ name: skill });
+      return SkillModel.findById(skill);
     }),
   );
+
+  techs.forEach((tech) => {
+    if (isNull(tech)) {
+      throw new NotFoundError(`Couldn't find some of mentioned technologies.`);
+    }
+  });
 
   const techsForCourse = techs.map((currentSkill, index) => ({
     skill: currentSkill?._id as Types.ObjectId,

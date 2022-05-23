@@ -9,9 +9,12 @@ import routers from 'routing/routes';
 import connectionMiddleware from 'middlewares/connectionMiddleware';
 import loggerMiddleware from 'middlewares/loggerMiddleware';
 import { handleError, handleInternalError } from 'middlewares/errorHandlingMiddleware';
+import { registerScheduler } from 'utils/schedule';
 
 dotenv.config();
+
 const app = express();
+registerScheduler();
 
 const localhost = process.env.LOCAL_HOST || 'http://localhost:3000';
 const webhost = process.env.WEB_HOST || 'https://sul-web.herokuapp.com';

@@ -43,7 +43,7 @@ describe('auth tests', () => {
   });
 
   afterAll(async () => {
-    await dbConnection.connection.close();
+    await dbConnection.disconnect();
   });
 
   it('cannot login with empty creds', async () => {

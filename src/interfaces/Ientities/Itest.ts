@@ -6,7 +6,7 @@ interface ITest {
   title: string;
   questions: ITestQuestion[];
   timeout: number;
-  attempts: number;
+  attempts?: number;
 }
 
 interface ITestQuestion {
@@ -21,7 +21,7 @@ interface ITestAnswer {
   aN: number;
 }
 
-type TAchievments = {
+type TAchievements = {
   newSkills: Array<IUserSkill>;
   updatedSkills: Array<IUserSkill>;
   techsToAchieve?: Array<IUserSkill>;
@@ -49,7 +49,7 @@ export {
   IAnswer,
   TCorrectAnswers,
   TestRuslt,
-  TAchievments,
+  TAchievements,
   TTechToAchieve,
   ITestQuestion,
   ITestAnswer,

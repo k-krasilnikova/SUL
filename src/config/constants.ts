@@ -43,6 +43,7 @@ const NOTHING = 0;
 const INITIAL_INDX = 0;
 const NO_FILTER = {};
 const DEFAULT_ORDER_FIELD = '_id';
+const NOTIFICATIONS_COUNT = 10;
 
 const ASSESSMENT_RESULTS = {
   approved: 'approved',
@@ -121,4 +122,5 @@ export {
   COURSE_FIELDS,
   WRONG_ID,
   JEST_TIMEOUT,
+  NOTIFICATIONS_COUNT,
 };
