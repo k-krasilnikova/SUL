@@ -1,10 +1,18 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TPassCourseRequest,
+  TPassCourseResponse,
+} from 'interfaces/requests/clientCourses/passCourse';
 import { getStatusProvider, updateCourseProgress } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
-const passCourse = async (req: Request, res: Response, next: NextFunction) => {
+const passCourse = async (
+  req: TPassCourseRequest,
+  res: TPassCourseResponse,
+  next: NextFunction,
+) => {
   try {
     const { stage } = req.query;
     if (typeof stage !== 'string') {

@@ -3,7 +3,7 @@ import UserModel from 'db/models/User';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import AccessTokenBlacklistModel from 'db/models/AccessTokens';
 
-const authProvider = async (login: string) => {
+const authProvider = async (login: string): Promise<IUser> => {
   const dbUser = await UserModel.findOne({ username: login }).lean();
   if (!dbUser) {
     throw new NotFoundError('User not found.');

@@ -1,17 +1,18 @@
 import mongoose, { Types } from 'mongoose';
 import { isNull } from 'lodash';
 
-import UserSkillModel from 'db/models/UserSkill';
 import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
-import { ICourseTechsFromWeb, IUpdateCourseBody } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseTechnologyPayload, IEditCoursePayload } from 'interfaces/requests/common/payloads';
+import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
 import { IUser } from 'interfaces/Ientities/Iusers';
+import { ISearchQuery } from 'interfaces/requests/common/queries';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import UserSkillModel from 'db/models/UserSkill';
 import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
 import SkillGroupModel from 'db/models/SkillGroup';
-import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
 import { NO_FILTER } from 'config/constants';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })
@@ -20,7 +21,7 @@ const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   return skills;
 };
 
-const getAllGroupsWithSkills = async ({ search }: { search?: string }): Promise<ISkillGroup[]> => {
+const getAllGroupsWithSkills = async ({ search }: ISearchQuery): Promise<ISkillGroup[]> => {
   const groups: ISkillGroup[] = await SkillGroupModel.aggregate([
     {
       $match: search ? { name: { $regex: new RegExp(search), $options: 'i' } } : NO_FILTER,
@@ -181,7 +182,9 @@ const skillsExist = async (ids?: string[] | Types.ObjectId[]): Promise<boolean> 
   return foundSkillsCount === ids.length;
 };
 
-const isProperTechnologies = async (techs: IUpdateCourseBody['technologies']): Promise<boolean> => {
+const isProperTechnologies = async (
+  techs: IEditCoursePayload['technologies'],
+): Promise<boolean> => {
   if (!techs) {
     return false;
   }
@@ -201,7 +204,7 @@ const isProperTechnologies = async (techs: IUpdateCourseBody['technologies']): P
   return checksPassed;
 };
 
-const getSkillsToCourseTechs = async (technologies: ICourseTechsFromWeb[]) => {
+const getSkillsToCourseTechs = async (technologies: ICourseTechnologyPayload[]) => {
   const techs = await Promise.all(
     technologies.map(({ skill }) => {
       return SkillModel.findById(skill);

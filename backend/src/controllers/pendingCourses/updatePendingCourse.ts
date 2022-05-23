@@ -1,14 +1,17 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TApprovePendingCourseRequest,
+  TApprovePendingCourseResponse,
+} from 'interfaces/requests/pendingCourses/approvePendingCourse';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
-import { USER_ROLES } from '../../config/constants';
+import { USER_ROLES } from 'config/constants';
 
 const updatePendingCourse = async (
-  req: Request<Record<string, never>, Record<string, never>, { id: string }>,
-  res: Response<never, TCourseLocals>,
+  req: TApprovePendingCourseRequest,
+  res: TApprovePendingCourseResponse,
   next: NextFunction,
 ) => {
   try {

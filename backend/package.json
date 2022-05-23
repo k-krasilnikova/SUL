@@ -6,7 +6,7 @@
     "engines": {
         "node": "15.x"
     },
-    "scripts": {
+    "scripts": { 
         "dev": "cross-env NODE_ENV=dev nodemon ./src/server.ts",
         "devdebug": "cross-env NODE_ENV=test nodemon ./src/server.ts",
         "local": "cross-env NODE_ENV=local nodemon ./src/server.ts",

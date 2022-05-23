@@ -1,13 +1,14 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
 
 import isExpectedHttpError from 'utils/typeGuards/isExpectedHttpError';
 import { extractAccessTokenValue, verifyAccessToken } from 'utils/auth/authUtils';
 import UnauthorizedError from 'classes/errors/clientErrors/UnauthorizedError';
 import ForbiddenError from 'classes/errors/clientErrors/ForbiddenError';
 import { checkTokenInBlacklist } from 'db/providers/authProvider';
+import { TBaseRequest } from 'interfaces/requests/base';
 
 const withAuth =
-  (roles: Array<string>) => async (req: Request, res: Response, next: NextFunction) => {
+  (roles: Array<string>) => async (req: TBaseRequest, res: Response, next: NextFunction) => {
     try {
       const accessToken = extractAccessTokenValue(req);
 

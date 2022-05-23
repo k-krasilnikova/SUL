@@ -7,7 +7,6 @@ const checkCourseDuplicates = (courseArr: IClientCoursePopulated[], courseId: st
     }
     return null;
   });
-  console.log('IN CHECL DUPLICATE', alreadyAppliedCourse, '\n COURSES ARRAY', courseArr);
   return Boolean(alreadyAppliedCourse);
 };
 

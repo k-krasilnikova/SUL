@@ -1,11 +1,11 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import { TPassTestRequest, TPassTestResponse } from 'interfaces/requests/tests/passTest';
+import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import { addUserSkill, getUserSkills, populateUserSkills } from 'db/providers/skillProvider';
 import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
-import { TAchievements } from 'interfaces/Ientities/Itest';
-import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
 import { specifyUserTechnologies } from 'utils/technologies/userTechnologies';
@@ -13,8 +13,8 @@ import { addPointToUserSkill } from 'utils/skillsUtils';
 import { convertTechnologiesToUserSkills } from 'utils/typeConversion/skills/skillsAndTechs';
 
 const getAchievements = async (
-  req: Request,
-  res: Response<void, { id: string; achievements: TAchievements }>,
+  req: TPassTestRequest,
+  res: TPassTestResponse,
   next: NextFunction,
 ) => {
   try {

@@ -1,10 +1,14 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TReadNotificationsRequest,
+  TReadNotificationsResponse,
+} from 'interfaces/requests/notifications/readNotifications';
 import { readNotificationProvider } from 'db/providers/notificationProvider';
 
 const readNotifications = async (
-  req: Request,
-  res: Response<string, { id: string }>,
+  req: TReadNotificationsRequest,
+  res: TReadNotificationsResponse,
   next: NextFunction,
 ) => {
   try {

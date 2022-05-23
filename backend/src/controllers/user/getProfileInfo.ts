@@ -1,13 +1,20 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TGetProfileInfoRequest,
+  TGetProfileInfoResponse,
+} from 'interfaces/requests/user/getProfileInfo';
+import { TUserInfoResponse } from 'interfaces/IResponse/IResponse';
 import { getEmployeesProvider, getFullUserInformationProvider } from 'db/providers/userProvider';
 import { getUserNotifications } from 'db/providers/notificationProvider';
 import { getPendingAssessmentsProvider } from 'db/providers/clientCourseProvider';
-import { generateInitialDto } from 'utils/dto/dtoUtils';
-import { TUserInfoResponse } from 'interfaces/IResponse/IResponse';
 import { USER_ROLES } from 'config/constants';
 
-const getProfileInformation = async (req: Request, res: Response, next: NextFunction) => {
+const getProfileInformation = async (
+  req: TGetProfileInfoRequest,
+  res: TGetProfileInfoResponse,
+  next: NextFunction,
+) => {
   try {
     const { id } = req.params;
     const profileInfo: TUserInfoResponse = await getFullUserInformationProvider(id);
@@ -21,7 +28,7 @@ const getProfileInformation = async (req: Request, res: Response, next: NextFunc
         await getPendingAssessmentsProvider(employeesIds)
       ).length;
     }
-    res.json(generateInitialDto(profileInfo));
+    res.json(profileInfo);
   } catch (error) {
     next(error);
   }

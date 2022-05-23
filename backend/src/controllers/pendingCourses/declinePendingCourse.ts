@@ -1,5 +1,10 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TDeclinePendingCourseRequest,
+  TDeclinePendingCourseResponse,
+} from 'interfaces/requests/pendingCourses/declinePendingCourse';
+import { IUser } from 'interfaces/Ientities/Iusers';
 import {
   getClientCourseProvider,
   getStatusProvider,
@@ -8,20 +13,11 @@ import {
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import CourseStatus from 'enums/coursesEnums';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
 
 const declinePendingCourse = async (
-  req: Request,
-  res: Response<
-    never,
-    TCourseLocals & {
-      managerId?: string;
-      clientCourseId: string | undefined;
-      results: Record<'updateStatus', string>;
-    }
-  >,
+  req: TDeclinePendingCourseRequest,
+  res: TDeclinePendingCourseResponse,
   next: NextFunction,
 ) => {
   try {

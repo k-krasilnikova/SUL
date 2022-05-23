@@ -1,11 +1,16 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import { TGetTestTimeRequest, TGetTestTimeResponse } from 'interfaces/requests/tests/getTestTime';
+import { TestDb } from 'interfaces/Ientities/Itest';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { getTestProvider } from 'db/providers/testProvider';
 import { aggregateNormolizer } from 'utils/normaliser/aggregateNormalizer';
-import { TestDb } from 'interfaces/Ientities/Itest';
 
-const getTestTime = async (req: Request, res: Response, next: NextFunction) => {
+const getTestTime = async (
+  req: TGetTestTimeRequest,
+  res: TGetTestTimeResponse,
+  next: NextFunction,
+) => {
   try {
     const { id: clientCourseId } = req.params;
 

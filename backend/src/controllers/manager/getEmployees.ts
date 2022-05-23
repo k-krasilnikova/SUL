@@ -1,13 +1,16 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TGetEmployeesRequest,
+  TGetEmployeesResponse,
+} from 'interfaces/requests/manager/getEmployees';
 import { getEmployeesProvider } from 'db/providers/userProvider';
 import { populateUserStack } from 'db/providers/skillProvider';
 import { mapEmployeesShortInfo } from 'utils/normaliser/employees';
-import { IEmployeeShortInfo } from 'interfaces/IResponse/IResponse';
 
 const getEmployees = async (
-  req: Request,
-  res: Response<IEmployeeShortInfo[], { id: string }>,
+  req: TGetEmployeesRequest,
+  res: TGetEmployeesResponse,
   next: NextFunction,
 ) => {
   try {
