@@ -30,7 +30,7 @@ interface IClientCourse {
 }
 
 interface IClientCoursePopulated extends IClientCourse {
-  course: ICourse;
+  course: Omit<ICourse, 'materials'>;
 }
 
 type IClientCoursePopulatedResponse = IClientCoursePopulated & { course: ICourseInfo };

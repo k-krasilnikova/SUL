@@ -1,5 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import { TPassTestRequest, TPassTestResponse } from 'interfaces/requests/tests/passTest';
 import { CLIENT_COURSE_FIELDS, PASS_THRESHOLD } from 'config/constants';
 import {
   getAssessmentProvider,
@@ -9,20 +10,11 @@ import {
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { TestStatus } from 'enums/common';
-import { checkTestResults, countTestResult, IAnswer } from 'utils/userTests/userTests';
+import { checkTestResults, countTestResult } from 'utils/userTests/userTests';
 import { isTestAvailableByDate } from 'utils/validation/tests';
-import { TestRuslt } from 'interfaces/Ientities/Itest';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
-const passTest = async (
-  req: Request<
-    Record<string, never>,
-    Record<string, never>,
-    { testId: string; answers: IAnswer[] }
-  >,
-  res: Response<never, { id: string; result: TestRuslt }>,
-  next: NextFunction,
-) => {
+const passTest = async (req: TPassTestRequest, res: TPassTestResponse, next: NextFunction) => {
   try {
     const { testId, answers } = req.body;
     const { id: courseId } = req.params;

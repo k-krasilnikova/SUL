@@ -1,12 +1,12 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import { TGetCourseRequest, TGetCourseResponse } from 'interfaces/requests/courses/getCourse';
 import { getCourseProvider } from 'db/providers/courseProvider';
-import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 import prepareSimilarCourses from 'utils/normaliser/prepareSimilarCourses';
 
 const getCourseById = async (
-  req: Request,
-  res: Response<ICourseWithStatus, { id: string }>,
+  req: TGetCourseRequest,
+  res: TGetCourseResponse,
   next: NextFunction,
 ) => {
   try {

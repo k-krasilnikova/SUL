@@ -1,13 +1,13 @@
-import { Request, Response } from 'express';
+import { TestDb } from 'interfaces/Ientities/Itest';
 
-import { ITest } from 'interfaces/Ientities/Itest';
+import { TBaseRequest, TBaseResponse } from '../base';
+import { IIdParams } from '../common/params';
 
-type TGetTestRequestParams = {
-  id: string;
-};
+type TRequestParams = IIdParams;
 
-type TGetTestRequest = Request<TGetTestRequestParams>;
+type TResponsePayload = TestDb[]; // refactor in V1-244 Types declarations
 
-type TGetTestResponse = Response<ITest>;
+type TGetTestRequest = TBaseRequest<TRequestParams>;
+type TGetTestResponse = TBaseResponse<TResponsePayload>;
 
 export { TGetTestRequest, TGetTestResponse };

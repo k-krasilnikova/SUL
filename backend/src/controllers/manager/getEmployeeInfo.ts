@@ -1,16 +1,19 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TGetEmployeeInfoRequest,
+  TGetEmployeeInfoResponse,
+} from 'interfaces/requests/manager/getEmployeeInfo';
+import { IUser } from 'interfaces/Ientities/Iusers';
+import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 import { getAllClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { populateUserStack, populateUserTechnologies } from 'db/providers/skillProvider';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
-import { IEmployeeInfo } from 'interfaces/IResponse/IResponse';
 import { mapEmployeeInfo } from 'utils/normaliser/employees';
 
 const getEmployeeInfo = async (
-  req: Request,
-  res: Response<IEmployeeInfo, { id: string }>,
+  req: TGetEmployeeInfoRequest,
+  res: TGetEmployeeInfoResponse,
   next: NextFunction,
 ) => {
   try {
