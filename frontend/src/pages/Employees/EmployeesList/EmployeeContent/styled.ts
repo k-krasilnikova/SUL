@@ -60,3 +60,9 @@ export const StackItem = styled('p')({
   margin: 0,
   marginBottom: '8px',
 });
+
+export const OverFlowedText = styled('p')({
+  margin: 0,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+});

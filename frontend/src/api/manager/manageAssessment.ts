@@ -1,26 +1,28 @@
-import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
+import { useMutation, UseMutationResult } from 'react-query';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
 import { errorSnackbar, successSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { API } from 'constants/routes';
-import { apiClientWrapper } from 'api/base';
+import { apiClientWrapper, queryClient } from 'api/base';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { IManageAssessmentDto } from 'types/api.dto';
 
 const useManageAssessment = (): UseMutationResult<unknown, unknown, IManageAssessmentDto> => {
   const { enqueueSnackbar } = useSnackbar();
-  const queryClient = useQueryClient();
+
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
-  const handleSuccess = (data: string) => {
+  const handleSubmitSuccess = (data: string) => {
     queryClient.invalidateQueries([QUERY_KEYS.pendingAssessments]);
+    queryClient.invalidateQueries([QUERY_KEYS.profile]);
     enqueueSnackbar(data, successSnackbar);
   };
+
   return useMutation(
-    async ({ action, id }) => {
+    async ({ id, action }) => {
       const payload = { action };
       const apiClient = apiClientWrapper();
       const response = await apiClient.put(transformRoute(API.manageAssessment, id), payload);
@@ -28,7 +30,7 @@ const useManageAssessment = (): UseMutationResult<unknown, unknown, IManageAsses
     },
     {
       onError: handleSubmitError,
-      onSuccess: handleSuccess,
+      onSuccess: handleSubmitSuccess,
     },
   );
 };

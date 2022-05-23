@@ -1,20 +1,17 @@
 import { FC } from 'react';
 
-import { AssessmentManagmentAction } from 'enums/api';
 import { IAssessmentRequestButtonsContainerProps } from 'pages/PendingAssessments/types';
 
 import RequestButtons from './RequestButtons';
 
 const RequestButtonsContainer: FC<IAssessmentRequestButtonsContainerProps> = ({
-  manageAssessment,
   id,
+  approveAssessmentById,
+  declineAssessmentById,
   ...props
 }) => {
-  const approveAssessment = () =>
-    manageAssessment({ id, action: AssessmentManagmentAction.approve });
-
-  const declineAssessment = () =>
-    manageAssessment({ id, action: AssessmentManagmentAction.decline });
+  const approveAssessment = () => approveAssessmentById(id);
+  const declineAssessment = () => declineAssessmentById(id);
 
   return (
     <RequestButtons

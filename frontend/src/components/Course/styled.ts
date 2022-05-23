@@ -33,7 +33,7 @@ export const CourseContainer = styled(Grid)({
 });
 
 export const AboutCourseContainer = styled('div')<InfoContainerTypes>(({ type }) => ({
-  padding: '16px 0 16px 16px',
+  padding: '16px 0 0 16px',
   textOverflow: 'ellipse',
   overflow: 'hidden',
   [theme.breakpoints.down('xl')]: {

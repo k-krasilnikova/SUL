@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
 import Image from 'components/Image';
+import Tooltip from 'components/Tooltip';
 import { REQUEST_STATUS } from 'constants/requests';
 import { Size } from 'enums/sizes';
 import { convertRequestTime } from 'utils/helpers/convertTime';
@@ -38,7 +39,7 @@ const RequestItem: FC<IReuestItemProps> = ({
   ...props
 }) => (
   <RequestContainer item container spacing={2}>
-    <CustomGrid item xs={12} md={6} lg={5}>
+    <CustomGrid item xs={12} md={6} lg={4}>
       <ImageWrapper>
         <Avatar size={Size.subsmall} avatar={user.avatar} />
       </ImageWrapper>
@@ -47,13 +48,15 @@ const RequestItem: FC<IReuestItemProps> = ({
         <Position status={status}>{user.position}</Position>
       </UserContainer>
     </CustomGrid>
-    <CourseContainer item xs={10} md={4} lg={2}>
+    <CourseContainer item xs={10} md={4} lg={3}>
       <CourseImageWrapper>
         <Image imageUrl={course.avatar} />
       </CourseImageWrapper>
-      <CourseTitle status={status}>{course.title}</CourseTitle>
+      <Tooltip title={course.title}>
+        <CourseTitle status={status}>{course.title}</CourseTitle>
+      </Tooltip>
     </CourseContainer>
-    <TimeContainer item xs={2} md={1} lg={1}>
+    <TimeContainer item xs={2} md={2} lg={1}>
       <SecondaryText status={status}>{convertRequestTime(elapsed)}</SecondaryText>
     </TimeContainer>
     {status === REQUEST_STATUS.pending ? (

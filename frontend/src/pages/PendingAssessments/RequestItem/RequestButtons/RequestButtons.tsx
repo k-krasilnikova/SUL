@@ -11,21 +11,30 @@ const RequestButtons: FC<IAssessmentRequestButtonsProps> = ({
   approveAssessment,
   declineAssessment,
   isActionLoading,
+  isTargetRequest,
 }) => (
-  <StyledButtonsContainer item xs={3} rowSpacing={1}>
+  <StyledButtonsContainer item xs={12} lg={7} xl={3} rowSpacing={1}>
     <StyledActionButton
-      variant={isActionLoading ? 'mediumOutlined' : 'mediumContained'}
+      variant="mediumContained"
       disabled={isActionLoading}
       onClick={approveAssessment}
     >
-      {isActionLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.approve}
+      {isActionLoading && isTargetRequest ? (
+        <ButtonLoader buttonSpinner={buttonSpinner} />
+      ) : (
+        ButtonLabels.approve
+      )}
     </StyledActionButton>
     <StyledActionButton
       variant="mediumOutlined"
       disabled={isActionLoading}
       onClick={declineAssessment}
     >
-      {isActionLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.decline}
+      {isActionLoading && isTargetRequest ? (
+        <ButtonLoader buttonSpinner={buttonSpinner} />
+      ) : (
+        ButtonLabels.decline
+      )}
     </StyledActionButton>
   </StyledButtonsContainer>
 );

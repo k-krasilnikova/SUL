@@ -3,27 +3,13 @@ import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
 import { apiClientWrapper } from 'api/base';
-import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 import { API } from 'constants/routes';
-import { Notification as NotificationType } from 'types/notification';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
+import { IUser } from 'types/user';
+import { getUserIdCookie } from 'utils/helpers/getUserIdCookie';
 
-interface UserResponse {
-  role: string;
-  position?: string;
-  firstName?: string;
-  lastName?: string;
-  skills?: Array<string>;
-  courses?: Array<string>;
-  avatar?: string;
-  birthday?: Date;
-  skype?: string;
-  notifications?: NotificationType[];
-  error?: unknown;
-}
-
-const useGetUserInfo = (): UseQueryResult<UserResponse, AxiosError> => {
+const useGetUserInfo = (): UseQueryResult<IUser, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);

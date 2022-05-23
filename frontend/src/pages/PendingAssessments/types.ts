@@ -1,11 +1,12 @@
-import { IManageAssessmentDto } from 'types/api.dto';
 import { IAssessment } from 'types/request';
 import { ITechnology } from 'types/skill';
 
 export interface IPendingAssessmentsProps {
+  targetId: string;
   isLoading: boolean;
   isActionLoading: boolean;
-  manageAssessment: (payload: IManageAssessmentDto) => void;
+  approveAssessmentById: (id: string) => void;
+  declineAssessmentById: (id: string) => void;
   assessments?: IAssessment[];
 }
 
@@ -14,8 +15,10 @@ export interface IAssessmentRequestItemProps {
   course: IAssessment['course'];
   elapsed: IAssessment['elapsed'];
   clientCourseId: IAssessment['_id'];
-  manageAssessment: (payload: IManageAssessmentDto) => void;
   isActionLoading: boolean;
+  isTargetRequest: boolean;
+  approveAssessmentById: IPendingAssessmentsProps['approveAssessmentById'];
+  declineAssessmentById: IPendingAssessmentsProps['declineAssessmentById'];
 }
 
 export interface IRequestTechnologiesProps {
@@ -34,12 +37,15 @@ export interface ITechnologyItemContainerProps {
 
 export interface IAssessmentRequestButtonsContainerProps {
   id: string;
-  manageAssessment: (payload: IManageAssessmentDto) => void;
   isActionLoading: boolean;
+  isTargetRequest: IAssessmentRequestItemProps['isTargetRequest'];
+  approveAssessmentById: IPendingAssessmentsProps['approveAssessmentById'];
+  declineAssessmentById: IPendingAssessmentsProps['declineAssessmentById'];
 }
 
 export interface IAssessmentRequestButtonsProps {
   isActionLoading: boolean;
+  isTargetRequest: IAssessmentRequestItemProps['isTargetRequest'];
   approveAssessment: () => void;
   declineAssessment: () => void;
 }

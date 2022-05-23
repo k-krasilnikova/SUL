@@ -5,8 +5,8 @@ import { NO_NOTIFICATIONS } from 'constants/messages';
 import { alertIcon } from 'icons';
 
 import { INotificationsProps } from './types';
-import NotificationPlate from './Notification';
 import { NotificationsButton, Notifications, TextWrapper, RedMark } from './styled';
+import NotificationPlate from './NotificationPlate';
 
 const NotificationsBar: FC<INotificationsProps> = ({
   notifications,
@@ -16,10 +16,10 @@ const NotificationsBar: FC<INotificationsProps> = ({
   handleNotificationsClose,
 }) => (
   <>
-    <ClickAwayListener onClickAway={handleNotificationsClose}>
-      <NotificationsButton onClick={handleNotificationsOpen}>
-        <img alt="notifications" src={alertIcon} />
-        {isNotificationsOpen && (
+    <NotificationsButton onClick={handleNotificationsOpen}>
+      <img alt="notifications" src={alertIcon} />
+      {isNotificationsOpen && (
+        <ClickAwayListener onClickAway={handleNotificationsClose}>
           <Notifications>
             {notifications?.length ? (
               notifications.map((note) => <NotificationPlate note={note} key={`${note._id}`} />)
@@ -27,10 +27,10 @@ const NotificationsBar: FC<INotificationsProps> = ({
               <TextWrapper>{NO_NOTIFICATIONS}</TextWrapper>
             )}
           </Notifications>
-        )}
-      </NotificationsButton>
-    </ClickAwayListener>
-    {isContainsUnread && <RedMark />}
+        </ClickAwayListener>
+      )}
+      {isContainsUnread && <RedMark />}
+    </NotificationsButton>
   </>
 );
 

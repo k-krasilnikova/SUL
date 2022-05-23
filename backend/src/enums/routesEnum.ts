@@ -6,7 +6,7 @@ enum Routes {
   clientCourses = '/clientCourses',
   materials = '/materials',
   pendingCourses = '/pendingCourses',
-  test = '/test',
+  tests = '/tests',
   employees = '/employees',
   skills = '/skills',
 }
@@ -20,6 +20,7 @@ enum SubRoutes {
   getTestResult = '/:id/test/result',
   startTest = '/:id/test/start',
   getCourseTest = '/:id/test',
+  getTest = '/:id',
   startCourse = '/:id/start',
   updateCourse = '/:id/edit',
   createCourse = '/create',

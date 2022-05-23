@@ -14,3 +14,8 @@ export const NOTIFICATION_STATUSES = {
   new: 'new',
   old: 'old',
 };
+
+export const NOTIFICATION_TYPES = {
+  manager: 'manager',
+  employee: 'employee',
+};

@@ -2,8 +2,10 @@ import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
 import Image from 'components/Image';
+import Tooltip from 'components/Tooltip';
 import { Size } from 'enums/sizes';
 import { convertRequestTime } from 'utils/helpers/convertTime';
+import { convertToFullName } from 'utils/helpers/convertToFullName';
 
 import {
   CustomGrid,
@@ -31,28 +33,31 @@ const RequestItem: FC<IAssessmentRequestItemProps> = ({
 }) => {
   const { avatar: userAvatar, firstName, lastName, position } = user || {};
   const { avatar: courseAvatar, title, technologies } = course || {};
+  const userFullName = convertToFullName(firstName, lastName);
 
   return (
     <RequestContainer item container spacing={2}>
-      <CustomGrid item xs={3}>
+      <CustomGrid item xs={12} lg={5} xl={4}>
         <ImageWrapper>
-          <Avatar size={Size.small} avatar={userAvatar} />
+          <Avatar size={Size.subsmall} avatar={userAvatar} />
         </ImageWrapper>
         <UserContainer>
-          <UserName>{`${firstName} ${lastName}`}</UserName>
+          <UserName>{userFullName}</UserName>
           <Position>{position}</Position>
         </UserContainer>
       </CustomGrid>
-      <CourseContainer item xs={3}>
+      <CourseContainer item xs={5} lg={3} xl={2}>
         <CourseImageWrapper>
           <Image imageUrl={courseAvatar} />
         </CourseImageWrapper>
-        <CourseTitle>{title}</CourseTitle>
+        <Tooltip title={title}>
+          <CourseTitle>{title}</CourseTitle>
+        </Tooltip>
       </CourseContainer>
-      <CustomGrid item xs={2}>
+      <CustomGrid item xs={5} lg={3} xl={2}>
         <RequestTechnologies technologies={technologies} />
       </CustomGrid>
-      <TimeContainer item xs={1}>
+      <TimeContainer item xs={2} lg={1}>
         <SecondaryText>{convertRequestTime(elapsed)}</SecondaryText>
       </TimeContainer>
       <RequestButtons id={clientCourseId} {...props} />

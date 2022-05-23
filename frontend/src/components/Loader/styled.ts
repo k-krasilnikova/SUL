@@ -5,7 +5,7 @@ import {
   HEADER_HEIGHT,
   HEADER_HEIGHT_IPAD,
   HEADER_HEIGHT_MOBILE,
-} from 'components/Layout/Header/styled';
+} from 'components/Layout/AuthorizedLayout/Header/styled';
 import { Loaders, TLoaderVariants } from 'enums/loader';
 
 interface LoaderType {

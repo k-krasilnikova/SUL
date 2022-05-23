@@ -45,7 +45,7 @@ describe('testing clientCourses', () => {
   afterAll(async () => {
     await ClientCourseModel.findOneAndDelete({ _id: clientCourseId });
     await removeFromPendingFieldCourses(managerId, clientCourseId);
-    await dbConnection.connection.close();
+    await dbConnection.disconnect();
   });
 
   it('user can get all client courses', async () => {
