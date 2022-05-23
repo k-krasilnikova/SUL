@@ -3,12 +3,13 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { Divider } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
-import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
 import NoContent from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
 import { Size } from 'enums/sizes';
 import { starContained } from 'icons';
 import { Technologies } from 'types/skill';
+
+import SkillInfo from './SkillInfo';
 
 import {
   SearchWrapper,
@@ -79,7 +80,7 @@ const UserSkills: React.FC<Props> = ({
                 <SkillsInfoList>
                   {techGroup.achievedSkills.map((skillInfo) => (
                     <React.Fragment key={`${skillInfo.skill.name}_id`}>
-                      <SkillInfoContainer skillItem={skillInfo} />
+                      <SkillInfo skillItem={skillInfo} />
                     </React.Fragment>
                   ))}
                 </SkillsInfoList>
