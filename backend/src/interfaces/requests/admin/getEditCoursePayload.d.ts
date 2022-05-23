@@ -24,7 +24,7 @@ interface IGetEditCoursePayloadResponse
 
 type TRequestParams = IIdParams;
 
-type TResponsePayload = string | IGetEditCoursePayloadResponse;
+type TResponsePayload = IGetEditCoursePayloadResponse;
 
 type TGetEditCoursePayloadRequest = TBaseRequest<TRequestParams>;
 type TGetEditCoursePayloadResponse = TBaseResponse<TResponsePayload>;
