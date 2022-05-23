@@ -7,7 +7,8 @@ import { TBaseRequest, TBaseResponse } from '../base';
 import { IIdParams } from '../common/params';
 
 type TSkillShortened = Pick<ISkill, '_id' | 'name' | 'maxScore'>;
-type TCourseTechnology = Pick<ISkill, '_id' | 'name'> & { points: number };
+type TCourseTechnology = Pick<ISkill, '_id' | 'name'> &
+  Pick<ISkill, 'maxScore'> & { points: number };
 type TCourseMaterialShortened = {
   type: MaterialContentType;
   material: string;
