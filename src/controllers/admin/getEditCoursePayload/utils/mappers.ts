@@ -9,6 +9,7 @@ const mapCourseTechnologies = (
     _id: technology.skill._id,
     name: technology.skill.name,
     points: technology.points,
+    maxScore: technology.skill.maxScore,
   }));
 
 const mapAvailableSkills = (skills: ISkill[]): IGetEditCoursePayloadResponse['allSkills'] =>
