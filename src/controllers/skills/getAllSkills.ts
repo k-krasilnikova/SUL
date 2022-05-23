@@ -1,8 +1,16 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
 import { getAllGroupsWithSkills, getAllSkillsByGroup } from 'db/providers/skillProvider';
+import {
+  TGetAllSkillsRequest,
+  TGetAllSkillsResponse,
+} from 'interfaces/requests/skills/getAllSkills';
 
-const getAllSkills = async (req: Request, res: Response, next: NextFunction) => {
+const getAllSkills = async (
+  req: TGetAllSkillsRequest,
+  res: TGetAllSkillsResponse,
+  next: NextFunction,
+) => {
   try {
     const searchStr = req.query;
     const skillsGroups = await getAllGroupsWithSkills(searchStr);

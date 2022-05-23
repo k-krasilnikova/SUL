@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import { Request } from 'express';
 
 import {
   DEFAULT_ACCESS_TIMEOUT,
@@ -9,6 +8,7 @@ import {
 import { IAccessJwtPayload, IRefreshJwtPayload, ITokens } from 'interfaces/Iauth/authInterfaces';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import InternalServerError from 'classes/errors/serverErrors/InternalServerError';
+import { TBaseRequest } from 'interfaces/requests/base';
 
 const generateJWT = (userData: IUser): ITokens => {
   try {
@@ -47,7 +47,7 @@ const verifyRefreshToken = (refreshToken: string): IRefreshJwtPayload => {
   return payload;
 };
 
-export const extractAccessTokenValue = (req: Request) => {
+export const extractAccessTokenValue = (req: TBaseRequest) => {
   return req.headers.authorization?.split(' ')[1];
 };
 

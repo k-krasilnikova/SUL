@@ -1,13 +1,16 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TGetPendingAssessmentsRequest,
+  TGetPendingAssessmentsResponse,
+} from 'interfaces/requests/manager/getPendingAssessments';
 import { getPendingAssessmentsProvider } from 'db/providers/clientCourseProvider';
 import { getEmployeesProvider } from 'db/providers/userProvider';
-import { TAssessmentRequest } from 'interfaces/IResponse/IResponse';
 import { convertToAssessmentsRequests } from 'utils/typeConversion/clientCourses/clientCoursesTypeConversions';
 
 const getPendingAssessments = async (
-  req: Request,
-  res: Response<never, { id: string; results: TAssessmentRequest[] }>,
+  req: TGetPendingAssessmentsRequest,
+  res: TGetPendingAssessmentsResponse,
   next: NextFunction,
 ) => {
   try {

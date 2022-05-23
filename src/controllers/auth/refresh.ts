@@ -1,17 +1,18 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import { TRefreshRequest, TRefreshResponse } from 'interfaces/requests/auth/refresh';
 import { saveTokenProvider } from 'db/providers/authProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';
+import isExpectedHttpError from 'utils/typeGuards/isExpectedHttpError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import ForbiddenError from 'classes/errors/clientErrors/ForbiddenError';
-import isExpectedHttpError from 'utils/typeGuards/isExpectedHttpError';
 
 interface ICookies {
   refreshToken: string;
 }
 
-const refresh = async (req: Request, res: Response, next: NextFunction) => {
+const refresh = async (req: TRefreshRequest, res: TRefreshResponse, next: NextFunction) => {
   try {
     const { refreshToken } = req.cookies as ICookies;
 
@@ -31,11 +32,11 @@ const refresh = async (req: Request, res: Response, next: NextFunction) => {
       throw new ForbiddenError('Invalid refresh token.');
     }
 
-    const newTokens = generateJWT(dbUser);
+    const refreshedTokens = generateJWT(dbUser);
 
-    await saveTokenProvider(newTokens.refreshToken, dbUser);
+    await saveTokenProvider(refreshedTokens.refreshToken, dbUser);
 
-    res.json({ ...newTokens });
+    res.json(refreshedTokens);
   } catch (error) {
     if (isExpectedHttpError(error)) {
       next(error);

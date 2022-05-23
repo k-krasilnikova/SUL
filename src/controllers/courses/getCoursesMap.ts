@@ -1,7 +1,10 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TGetCoursesMapRequest,
+  TGetCoursesMapResponse,
+} from 'interfaces/requests/courses/getCoursesMap';
 import { getUserProvider, getUserStackProvider } from 'db/providers/userProvider';
-import { ICoursesMapResponse } from 'interfaces/IResponse/IResponse';
 import {
   addMissingCoursesMapElements,
   fillStackWithStatuses,
@@ -10,8 +13,8 @@ import {
 } from 'utils/normaliser/courses';
 
 const getCoursesMap = async (
-  req: Request,
-  res: Response<never, { id: string; results: ICoursesMapResponse }>,
+  req: TGetCoursesMapRequest,
+  res: TGetCoursesMapResponse,
   next: NextFunction,
 ) => {
   try {

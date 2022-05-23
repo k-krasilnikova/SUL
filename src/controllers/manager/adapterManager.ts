@@ -1,14 +1,13 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
-import { TLocalsManager } from 'interfaces/IResponse/IResponse';
+import {
+  TApprovePendingCourseRequest,
+  TApprovePendingCourseResponse,
+} from 'interfaces/requests/pendingCourses/approvePendingCourse';
 
 const adapterManager = async (
-  req: Request<
-    Record<string, string | undefined>,
-    Record<string, never>,
-    { id: string; assessment?: boolean }
-  >,
-  res: Response<never, TLocalsManager>,
+  req: TApprovePendingCourseRequest,
+  res: TApprovePendingCourseResponse,
   next: NextFunction,
 ) => {
   try {

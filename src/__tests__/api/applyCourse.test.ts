@@ -9,7 +9,8 @@ import ClientCourseModel from 'db/models/ClientCourses';
 import { Routes, SubRoutes } from 'enums/routesEnum';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { TUserInfoPayload } from 'interfaces/requests/user/getProfileInfo';
+import { TLoginPayload } from 'interfaces/requests/auth/login';
 
 jest.setTimeout(JEST_TIMEOUT);
 
@@ -20,6 +21,7 @@ describe('testing user apply course', () => {
   let courseId: string;
   let clientCourseId: string;
   let managerId: string;
+  let userId: string;
   let request: supertest.SuperTest<supertest.Test>;
   let userToken: string;
   let dbConnection: typeof mongoose;
@@ -36,9 +38,14 @@ describe('testing user apply course', () => {
     const responseUser = await request
       .post(`${Routes.namespace}${Routes.account}${SubRoutes.login}`)
       .send(userCreds);
-    const userBody = responseUser.body as IUser;
+    const userBody = responseUser.body as TLoginPayload;
     userToken = String(userBody.accessToken);
-    managerId = String(userBody.managerId);
+    userId = String(userBody._id);
+    const userRes = await request
+      .get(`${Routes.namespace}${Routes.users}/${userId}`)
+      .set('Authorization', `bearer ${userToken}`);
+    const userInfo = userRes.body as TUserInfoPayload;
+    managerId = String(userInfo.managerId);
   });
 
   afterAll(async () => {
