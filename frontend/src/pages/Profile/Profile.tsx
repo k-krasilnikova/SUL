@@ -4,7 +4,7 @@ import PageTitle from 'components/PageTitle';
 import UserProfile from 'components/UserProfile';
 import { IProfileProps } from 'types/profile';
 
-import { UserSkills } from './UserSkills';
+import UserSkills from './UserSkills';
 import { ProfileWrapper } from './styled';
 
 const Profile: FC<IProfileProps> = ({ user }) => (

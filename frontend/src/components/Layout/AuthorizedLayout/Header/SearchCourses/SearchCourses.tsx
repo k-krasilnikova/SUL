@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClickAwayListener } from '@mui/material';
+import { ClickAwayListener } from '@material-ui/core';
 
 import { SearchResult } from 'components/Layout/components';
 import { ICourse } from 'types/course';

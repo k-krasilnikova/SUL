@@ -1,1 +1,1 @@
-export { default } from './TechnologyItemContainer';
+export { default } from './TechnologyItem';

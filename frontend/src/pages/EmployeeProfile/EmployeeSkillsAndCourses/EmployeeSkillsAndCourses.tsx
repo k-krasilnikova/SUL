@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
-import { UserSkills } from 'pages/Profile/UserSkills';
+import UserSkills from 'pages/Profile/UserSkills';
 import { IEmployeeSkillsAndCourses } from 'types/employee';
 import { EmployeeInfo } from 'enums/employee';
 
