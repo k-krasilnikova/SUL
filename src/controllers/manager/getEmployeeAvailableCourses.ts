@@ -37,8 +37,7 @@ const getEmployeeAvailableCourses = async (
 
     const availableCoursesResponse = normalizeAvailableCoursesInfo(availableCourses);
 
-    res.locals.results = availableCoursesResponse;
-    next();
+    res.json(availableCoursesResponse);
   } catch (error) {
     next(error);
   }

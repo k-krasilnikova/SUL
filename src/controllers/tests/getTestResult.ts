@@ -32,9 +32,7 @@ const getTestResult = async (
 
     const testResultResponse = normaliseTestResult(testResult);
 
-    res.locals.results = testResultResponse;
-
-    next();
+    res.json(testResultResponse);
   } catch (error) {
     next(error);
   }
