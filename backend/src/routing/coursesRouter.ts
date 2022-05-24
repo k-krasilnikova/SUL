@@ -8,8 +8,6 @@ import getCourseById from 'controllers/courses/getCourse';
 import getMaterials from 'controllers/courses/getMaterials';
 import applyCourse from 'controllers/clientCourses/applyCourse';
 import updatePendingCourse from 'controllers/pendingCourses/updatePendingCourse';
-import adapterUser from 'controllers/user/adapterUser';
-import adapterSender from 'controllers/pendingCourses/adapterSender';
 import deleteCourse from 'controllers/admin/deleteCourse';
 import editCourse from 'controllers/admin/editCourse';
 import getCoursesMap from 'controllers/courses/getCoursesMap';
@@ -27,7 +25,6 @@ coursesRouter.get(
   SubRoutes.getCoursesMap,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getCoursesMap,
-  adapterSender,
 );
 coursesRouter.get(
   SubRoutes.getCourse,
@@ -37,24 +34,21 @@ coursesRouter.get(
 coursesRouter.post(
   SubRoutes.applyCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
-  adapterUser,
   applyCourse,
   updatePendingCourse,
   addNotification,
-  adapterSender,
 );
 coursesRouter.get(
   SubRoutes.getCourses,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getAllCourses,
 );
-coursesRouter.put(SubRoutes.updateCourse, withAuth([USER_ROLES.ADMIN]), editCourse, adapterSender);
+coursesRouter.put(SubRoutes.updateCourse, withAuth([USER_ROLES.ADMIN]), editCourse);
 coursesRouter.post(
   SubRoutes.createCourse,
   withAuth([USER_ROLES.ADMIN]),
   preparingCourseData,
   addCourse,
-  adapterSender,
 );
 coursesRouter.delete(`${SubRoutes.deleteCourse}`, withAuth([USER_ROLES.ADMIN]), deleteCourse);
 
