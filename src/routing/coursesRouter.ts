@@ -13,6 +13,7 @@ import getCoursesMap from 'controllers/courses/getCoursesMap';
 import addCourse from 'controllers/admin/addCourse';
 import preparingCourseData from 'controllers/admin/preparingCourseData';
 import addNotification from 'controllers/notifications/addNotification';
+import { getEditCoursePayload } from 'controllers/admin';
 
 const coursesRouter = Router();
 coursesRouter.get(
@@ -40,6 +41,11 @@ coursesRouter.get(
   SubRoutes.getCourses,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.ADMIN, USER_ROLES.MANAGER]),
   getAllCourses,
+);
+coursesRouter.get(
+  SubRoutes.getEditCoursePayload,
+  withAuth([USER_ROLES.ADMIN]),
+  getEditCoursePayload,
 );
 coursesRouter.put(SubRoutes.updateCourse, withAuth([USER_ROLES.ADMIN]), editCourse);
 coursesRouter.post(
