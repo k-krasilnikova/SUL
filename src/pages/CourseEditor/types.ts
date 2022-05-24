@@ -1,7 +1,7 @@
 import { ChangeEventHandler, BaseSyntheticEvent } from 'react';
 
 import { TCourseTechnology, IMaterial, ICourse } from 'types/course';
-import { ITestItem } from 'types/test';
+import { IQuestionObject, ITestItem } from 'types/test';
 
 export interface IFormik {
   initialValues: {
@@ -11,14 +11,12 @@ export interface IFormik {
     complexity?: number;
     avatar?: string;
     description?: string;
-    testTitle?: string;
-    testDuration?: string;
-    testQuestion?: string;
-    testAnswer?: string;
+    test?: ITestItem;
   };
   values: {
     technologies: TCourseTechnology[];
     materials: IMaterial[];
+    test?: ITestItem;
     title?: string;
     complexity?: number;
     avatar?: string;
@@ -78,7 +76,8 @@ export interface ILessonItemProps {
   handleChangeOption?: (event: BaseSyntheticEvent) => void;
 }
 
-export interface ITestItemProps {
+export interface IQuestionItemProps {
   formik: IFormik;
-  testResponse?: ITestItem;
+  index: number;
+  question?: IQuestionObject;
 }
