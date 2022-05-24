@@ -6,8 +6,6 @@ import { USER_ROLES } from 'config/constants';
 import getPendingCourses from 'controllers/pendingCourses/getPendingCourses';
 import approvePendingCourse from 'controllers/pendingCourses/approvePendingCourse';
 import declinePendingCourse from 'controllers/pendingCourses/declinePendingCourse';
-import adapterManager from 'controllers/manager/adapterManager';
-import adapterSender from 'controllers/pendingCourses/adapterSender';
 import addNotification from 'controllers/notifications/addNotification';
 // import sendMail from 'middlewares/mailSender';
 
@@ -21,20 +19,16 @@ pendingCoursesRouter.get(
 pendingCoursesRouter.put(
   SubRoutes.approvePendingCourse,
   withAuth([USER_ROLES.MANAGER]),
-  adapterManager,
   approvePendingCourse,
   addNotification,
   // sendMail,
-  adapterSender,
 );
 pendingCoursesRouter.put(
   SubRoutes.declinePendingCourse,
   withAuth([USER_ROLES.MANAGER]),
-  adapterManager,
   declinePendingCourse,
   addNotification,
   // sendMail,
-  adapterSender,
 );
 
 export default pendingCoursesRouter;
