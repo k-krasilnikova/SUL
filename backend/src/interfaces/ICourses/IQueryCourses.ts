@@ -34,7 +34,6 @@ interface ICourseDataValidationResult {
 
 interface ICourseToAssign {
   courseId: string;
-  assessment?: boolean;
 }
 
 type TAvailableCourse = Pick<ICourse, '_id' | 'title'>;
