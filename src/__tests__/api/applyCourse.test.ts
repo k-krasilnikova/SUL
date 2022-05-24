@@ -9,8 +9,8 @@ import ClientCourseModel from 'db/models/ClientCourses';
 import { Routes, SubRoutes } from 'enums/routesEnum';
 import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
-import { TUserInfoPayload } from 'interfaces/requests/user/getProfileInfo';
-import { TLoginPayload } from 'interfaces/requests/auth/login';
+import { TResponsePayload as TUserInfoPayload } from 'interfaces/requests/user/getProfileInfo';
+import { TResponsePayload as TLoginPayload } from 'interfaces/requests/auth/login';
 
 jest.setTimeout(JEST_TIMEOUT);
 
