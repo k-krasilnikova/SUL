@@ -31,8 +31,6 @@ const CourseEditorContainer: FC = () => {
     onSuccessLoadCourseData,
   );
 
-  console.log({ courseData });
-
   return (
     <FormikProvider value={formik}>
       <CourseEditor

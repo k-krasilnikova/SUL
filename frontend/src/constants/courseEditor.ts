@@ -20,6 +20,11 @@ export const INITIAL_VALUES = {
   description: '',
   technologies: [],
   materials: [],
+  test: {
+    _id: '',
+    questions: [],
+    timeout: 0,
+  },
 };
 
 export enum Titles {
@@ -37,3 +42,8 @@ export enum Titles {
 
 export const INITIAL_STEP = 0;
 export const TAB_STEP = 1;
+
+export const BUTTON_VARIANT = {
+  input: 'Input',
+  radio: 'Radiobutton (One answer)',
+};
