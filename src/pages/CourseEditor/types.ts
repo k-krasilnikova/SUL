@@ -1,7 +1,23 @@
 import { ChangeEventHandler, BaseSyntheticEvent } from 'react';
 
-import { TCourseTechnology, IMaterial, ICourse } from 'types/course';
+import { TCourseTechnology, IMaterial } from 'types/course';
 import { IQuestionObject, ITestItem } from 'types/test';
+
+export interface ICourseEditorResponse {
+  _id: string;
+  title: string;
+  description: string;
+  complexity: number;
+  avatar: string;
+  technologies: { _id: string; name: string; points: string; maxScore: number }[];
+  materials: {
+    type: string;
+    material: string;
+    exercise?: { eN: number; title: string; task: string; code: string };
+  }[];
+  test: { _id: string; title: string; questions: IQuestionObject[]; timeout: number };
+  allSkills: { _id: string; name: string; maxScore: number }[];
+}
 
 export interface IFormik {
   initialValues: {
@@ -11,49 +27,33 @@ export interface IFormik {
     complexity?: number;
     avatar?: string;
     description?: string;
-    test?: ITestItem;
+    test: ITestItem;
   };
   values: {
     technologies: TCourseTechnology[];
     materials: IMaterial[];
-    test?: ITestItem;
+    test: ITestItem;
     title?: string;
     complexity?: number;
     avatar?: string;
     description?: string;
-    testTitle?: string;
-    testDuration?: string;
-    testQuestion?: string;
-    testAnswer?: string;
   };
   handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 export interface ICourseEditorProps {
-  basePath: string;
   formik: IFormik;
-  courseData?: ICourse;
+  courseData?: ICourseEditorResponse;
   isCourseDataLoading?: boolean;
 }
 export interface IStepProps {
   formik: IFormik;
-  courseData?: ICourse;
+  courseData?: ICourseEditorResponse;
 }
 export interface ISkillsStepProps extends IStepProps {
   ungroupedSkills: {
     [key: string]: { group: string; image: string; maxScore: number; name: string; _id: string };
   };
-}
-
-export interface ITestStepContainerProps {
-  formik: IFormik;
-  courseData?: ICourse;
-}
-
-export interface ITestStepProps {
-  formik: IFormik;
-  isTestLoading: boolean;
-  testResponse?: ITestItem;
 }
 
 export interface ILessonsStepProps extends IStepProps {
