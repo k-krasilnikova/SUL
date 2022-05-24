@@ -22,7 +22,7 @@ const addNotification = async (
   next: NextFunction,
 ) => {
   try {
-    const { userId, courseId, clientCourseId, withAssessment } = res.locals;
+    const { userId, courseId, clientCourseId, withAssessment } = res.locals; // refactor for eugene
 
     if (userId) {
       let course;
