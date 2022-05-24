@@ -8,14 +8,14 @@ import { API, PATHS } from 'constants/routes';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { logOutHandler } from 'utils/helpers/logOutHandler';
 
-const useLogOut = (pathname?: string): UseMutationResult => {
+const useLogOut = (): UseMutationResult => {
   const { enqueueSnackbar } = useSnackbar();
   const navigateTo = useNavigate();
 
   const handleSubmitSuccess = () => {
     logOutHandler();
     queryClient.clear();
-    navigateTo(PATHS.signIn, { replace: true, state: { from: pathname } });
+    navigateTo(PATHS.signIn, { replace: true });
   };
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
