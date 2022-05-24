@@ -12,4 +12,4 @@ type TResponsePayload = ITokens & Pick<IUser, '_id'>;
 type TLoginRequest = TBaseRequest<TRequestParams, TRequestBody>;
 type TLoginResponse = TBaseResponse<TResponsePayload>;
 
-export { TLoginRequest, TLoginResponse, TResponsePayload as TLoginPayload };
+export { TLoginRequest, TLoginResponse, TResponsePayload };

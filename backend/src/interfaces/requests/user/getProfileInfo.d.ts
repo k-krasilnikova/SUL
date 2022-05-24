@@ -9,4 +9,4 @@ type TResponsePayload = TUserInfoResponse;
 type TGetProfileInfoRequest = TBaseRequest<TRequestParams>;
 type TGetProfileInfoResponse = TBaseResponse<TResponsePayload>;
 
-export { TGetProfileInfoRequest, TGetProfileInfoResponse, TResponsePayload as TUserInfoPayload };
+export { TGetProfileInfoRequest, TGetProfileInfoResponse, TResponsePayload };
