@@ -16,4 +16,5 @@ export const QUERY_KEYS = {
   skills: 'Skills',
   adminTest: 'AdminTest',
   pendingAssessments: 'PendingAssessments',
+  courseEditorData: 'CourseEditorData',
 };

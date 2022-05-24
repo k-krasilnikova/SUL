@@ -3,17 +3,14 @@ import { FC } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
-import { useGetCourseInfo } from 'api/courses';
-import { PATHS } from 'constants/routes';
+import { useGetCourseEditorData } from 'api/admin';
 import { INITIAL_VALUES } from 'constants/courseEditor';
-import transformRoute from 'utils/helpers/paths/transformRoute';
 import courseEditorValidationSchema from 'validations/courseEditorValidationSchema';
 
 import CourseEditor from './CourseEditor';
 
 const CourseEditorContainer: FC = () => {
   const params = useParams();
-  const basePath = transformRoute(PATHS.courseEditor, params.courseId);
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
     onSubmit: (): void => {},
@@ -26,7 +23,7 @@ const CourseEditorContainer: FC = () => {
     formik.setValues(data, false);
   };
 
-  const { data: courseData, isLoading: isCourseDataLoading } = useGetCourseInfo(
+  const { data: courseEditorData, isLoading: isCourseEditorDataLoading } = useGetCourseEditorData(
     params.courseId,
     onSuccessLoadCourseData,
   );
@@ -34,9 +31,8 @@ const CourseEditorContainer: FC = () => {
   return (
     <FormikProvider value={formik}>
       <CourseEditor
-        basePath={basePath}
-        courseData={courseData}
-        isCourseDataLoading={isCourseDataLoading}
+        courseData={courseEditorData}
+        isCourseDataLoading={isCourseEditorDataLoading}
         formik={formik}
       />
     </FormikProvider>
