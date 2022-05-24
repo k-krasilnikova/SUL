@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
 import { Size } from 'enums/sizes';
+import { Length, Numbers } from 'enums/numbers';
 
 import {
   SkillContainer,
@@ -18,16 +19,23 @@ const SkillItem: FC<ISkillItemProps> = ({
   isSkillNameShown,
   showSkillName,
   hideSkillName,
-}) => (
-  <SkillContainer>
-    <ImageWrapper>
-      <Avatar size={Size.submedium} avatar={skillImage} />
-    </ImageWrapper>
-    <SkillNameWrapper onMouseEnter={showSkillName} onMouseLeave={hideSkillName}>
-      <SkillName>{name}</SkillName>
-      {isSkillNameShown && <HoverSkillName>{name}</HoverSkillName>}
-    </SkillNameWrapper>
-  </SkillContainer>
-);
+}) => {
+  const shortSkillName =
+    name.length > Length.maxSkillLength
+      ? `${name.slice(Numbers.zero, Length.maxSkillLength)}...`
+      : name;
+
+  return (
+    <SkillContainer>
+      <ImageWrapper>
+        <Avatar size={Size.submedium} avatar={skillImage} />
+      </ImageWrapper>
+      <SkillNameWrapper onMouseEnter={showSkillName} onMouseLeave={hideSkillName}>
+        <SkillName>{shortSkillName}</SkillName>
+        {isSkillNameShown && <HoverSkillName>{name}</HoverSkillName>}
+      </SkillNameWrapper>
+    </SkillContainer>
+  );
+};
 
 export default SkillItem;
