@@ -7,7 +7,6 @@ import getAllCourses from 'controllers/courses/getAllCourses';
 import getCourseById from 'controllers/courses/getCourse';
 import getMaterials from 'controllers/courses/getMaterials';
 import applyCourse from 'controllers/clientCourses/applyCourse';
-import updatePendingCourse from 'controllers/pendingCourses/updatePendingCourse';
 import deleteCourse from 'controllers/admin/deleteCourse';
 import editCourse from 'controllers/admin/editCourse';
 import getCoursesMap from 'controllers/courses/getCoursesMap';
@@ -35,7 +34,6 @@ coursesRouter.post(
   SubRoutes.applyCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   applyCourse,
-  updatePendingCourse,
   addNotification,
 );
 coursesRouter.get(

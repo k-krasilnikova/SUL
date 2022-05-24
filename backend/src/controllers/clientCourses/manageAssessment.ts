@@ -40,13 +40,15 @@ const manageAssessment = async (
 
     await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, statusToSet);
 
-    res.locals.results = `Assessment has been successfully ${
-      statusToSet === CourseStatus.completed
-        ? ASSESSMENT_RESULTS.approved
-        : ASSESSMENT_RESULTS.declined
-    }.`;
-
     next();
+
+    res.json(
+      `Assessment has been successfully ${
+        statusToSet === CourseStatus.completed
+          ? ASSESSMENT_RESULTS.approved
+          : ASSESSMENT_RESULTS.declined
+      }.`,
+    );
   } catch (err) {
     next(err);
   }

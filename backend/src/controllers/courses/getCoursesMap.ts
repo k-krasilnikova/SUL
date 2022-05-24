@@ -35,9 +35,7 @@ const getCoursesMap = async (
 
     const sortedCoursesMapResponse = sortCoursesMapResponse(filledResponse);
 
-    res.locals.results = sortedCoursesMapResponse;
-
-    next();
+    res.json(sortedCoursesMapResponse);
   } catch (error) {
     next(error);
   }
