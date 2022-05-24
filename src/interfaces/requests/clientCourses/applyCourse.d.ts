@@ -9,11 +9,7 @@ type TRequestParams = IIdParams;
 type TRequestBody = IIdPayload;
 
 type TResponsePayload = IClientCourse;
-type TResponseLocals = IAuthLocals & {
-  courseId?: string; // refactor after removing adapters
-  clientCourseId?: string; // refactor after removing adapters
-  userId?: string; // refactor after removing adapters
-} & { results: { course: TResponsePayload } }; // remove results in "V1-247 Remove adapters"
+type TResponseLocals = IAuthLocals;
 
 type TApplyCourseRequest = TBaseRequest<TRequestParams, TRequestBody>;
 type TApplyCourseResponse = TBaseResponse<TResponsePayload, TResponseLocals>;
