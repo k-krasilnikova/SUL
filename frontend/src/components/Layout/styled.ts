@@ -31,13 +31,11 @@ export const PageWrapper = styled(Grid)<{ isSqueeze?: boolean }>(({ isSqueeze })
   overflowY: 'auto',
   overflowX: 'hidden',
   ...(isSqueeze && { width: `calc(100% - ${SQUEEZED_MENU_WIDTH})` }),
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('xl')]: {
     height: `calc(100vh - ${HEADER_HEIGHT_IPAD})`,
   },
   [theme.breakpoints.down('md')]: {
-    width: '100%',
-  },
-  [theme.breakpoints.down('sm')]: {
     height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
+    width: '100%',
   },
 }));

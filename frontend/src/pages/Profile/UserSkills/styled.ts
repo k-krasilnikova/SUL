@@ -2,10 +2,6 @@ import { styled, Input, Divider } from '@mui/material';
 
 import theme from 'themeSettings';
 
-interface SkillProps {
-  completed?: boolean;
-}
-
 export const SearchWrapper = styled('div')({
   [theme.breakpoints.up('xs')]: {
     marginLeft: 0,
@@ -126,110 +122,6 @@ export const SkillsInfoList = styled('div')({
   },
 });
 
-export const SkillInfo = styled('div')<SkillProps>(({ completed }) => ({
-  display: 'inline-block',
-  borderRadius: '5px',
-  fontFamily: theme.typography.fontFamily,
-  maxWidth: '210px',
-  width: '210px',
-  height: '100px',
-  padding: '16px',
-  marginRight: '64px',
-  marginBottom: '7px',
-  background: '#EAEAEA',
-  border: '1px solid rgba(0, 0, 0, 0.2)',
-  ...(completed && {
-    backgroundColor: '#f5f5f5',
-    border: '1px solid #efefef',
-  }),
-  fontWeight: 'normal',
-  verticalAlign: 'middle',
-  [theme.breakpoints.down('md')]: {
-    minWidth: '120px',
-    maxWidth: '150px',
-    height: '70px',
-    padding: '7px 8px 4px 8px',
-    margin: '8px 12px 8px 0',
-  },
-  [theme.breakpoints.down('lg')]: {
-    margin: '12px 32px 12px 0',
-  },
-  [theme.breakpoints.down(1200)]: {
-    marginRight: '32px',
-  },
-}));
-
-export const SkillInfoFlex = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  height: '56px',
-  width: '175px',
-  [theme.breakpoints.down('md')]: {
-    justifyContent: 'flex-start',
-    alignItems: 'top',
-  },
-});
-
-export const SkillProgress = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  width: '42px',
-  height: '56px',
-  [theme.breakpoints.down('md')]: {
-    width: '24px',
-    height: '24px',
-  },
-});
-
-export const SkillInfoTextWrapper = styled('div')({
-  position: 'relative',
-});
-
-export const SkillInfoTextWidth = styled('div')({
-  width: '70px',
-  [theme.breakpoints.down('md')]: {
-    width: '60px',
-  },
-});
-
-export const SkillInfoText = styled('div')({
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  '&: hover': {
-    cursor: 'pointer',
-  },
-});
-
-export const HoverSkillInfoText = styled('div')({
-  width: 'fit-content',
-  padding: '3px',
-  display: 'flex',
-  justifyContent: 'center',
-  position: 'absolute',
-  top: '16px',
-  right: '-35px',
-  fontSize: '12px',
-  backgroundColor: '#000',
-  color: '#FFF',
-  overflow: 'inherit',
-  textOverflow: 'unset',
-  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
-});
-
-export const SkillInfoStage = styled('div')({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '12px',
-    lineHeight: '14px',
-    marginTop: '3px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    fontSize: '13px',
-    lineHeight: '15px',
-  },
-});
-
 export const SkillsDivider = styled(Divider)({
   [theme.breakpoints.up('xs')]: {
     display: 'none',
@@ -245,12 +137,5 @@ export const NoSkills = styled('div')({
   },
   [theme.breakpoints.up('lg')]: {
     marginTop: '80px',
-  },
-});
-
-export const ImageWrapper = styled('div')({
-  marginRight: '20px',
-  [theme.breakpoints.down('md')]: {
-    marginRight: '10px',
   },
 });

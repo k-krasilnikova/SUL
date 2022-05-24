@@ -41,7 +41,10 @@ interface ICourseToAssign {
 
 type TAvailableCourse = Pick<ICourse, '_id' | 'title'>;
 
-type ICoursePopulated = Omit<ICourse, 'technologies'> & { technologies: ISkill[] };
+type ICoursePopulated = Omit<ICourse, 'technologies'> & {
+  technologies: { skill: ISkill; points: number }[];
+  test: ITest;
+};
 
 type ICourseInfoPopulated = ICourseInfo & { technologies: ISkill[] };
 

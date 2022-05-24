@@ -1,1 +1,1 @@
-export { default as UserSkills } from './UserSkillsContainer';
+export { default } from './UserSkillsContainer';

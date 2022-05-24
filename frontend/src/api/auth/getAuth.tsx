@@ -23,7 +23,7 @@ const useGetAuth = (): UseMutationResult => {
 
   const handleSubmitSuccess = () => {
     enqueueSnackbar(successSnackbarMessage.authorized, successSnackbar);
-    navigateTo(state.from || PATHS.profile, { replace: true });
+    navigateTo(state?.from || PATHS.profile, { replace: true });
   };
 
   return useMutation(
