@@ -16,7 +16,7 @@ type TCourseMaterialShortened = {
 };
 
 interface IGetEditCoursePayloadResponse
-  extends Pick<ICourse, 'title' | 'description' | 'avatar' | 'complexity'> {
+  extends Pick<ICourse, '_id' | 'title' | 'description' | 'avatar' | 'complexity'> {
   test: ITest;
   allSkills: TSkillShortened[];
   technologies: TCourseTechnology[];
