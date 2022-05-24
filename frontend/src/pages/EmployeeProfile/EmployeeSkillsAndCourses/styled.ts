@@ -21,7 +21,7 @@ export const SkillsAndCoursesBox = styled('div')({
 export const EmployeeButtonGroup = styled(ButtonGroup)({
   height: '44px',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-  alignItems: 'end',
+  alignItems: 'flex-end',
   [theme.breakpoints.down('xl')]: {
     height: '40px',
   },

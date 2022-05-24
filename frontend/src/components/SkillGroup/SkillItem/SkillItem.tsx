@@ -1,31 +1,21 @@
 import { FC } from 'react';
 
 import Avatar from 'components/Avatar';
+import Tooltip from 'components/Tooltip';
 import { Size } from 'enums/sizes';
 
-import {
-  SkillContainer,
-  ImageWrapper,
-  SkillNameWrapper,
-  SkillName,
-  HoverSkillName,
-} from './styled';
+import { SkillContainer, ImageWrapper, SkillNameWrapper, SkillName } from './styled';
 import { ISkillItemProps } from '../types';
 
-const SkillItem: FC<ISkillItemProps> = ({
-  name,
-  skillImage,
-  isSkillNameShown,
-  showSkillName,
-  hideSkillName,
-}) => (
+const SkillItem: FC<ISkillItemProps> = ({ name, skillImage }) => (
   <SkillContainer>
     <ImageWrapper>
       <Avatar size={Size.submedium} avatar={skillImage} />
     </ImageWrapper>
-    <SkillNameWrapper onMouseEnter={showSkillName} onMouseLeave={hideSkillName}>
-      <SkillName>{name}</SkillName>
-      {isSkillNameShown && <HoverSkillName>{name}</HoverSkillName>}
+    <SkillNameWrapper>
+      <Tooltip title={name}>
+        <SkillName>{name}</SkillName>
+      </Tooltip>
     </SkillNameWrapper>
   </SkillContainer>
 );

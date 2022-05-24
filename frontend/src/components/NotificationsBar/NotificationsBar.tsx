@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ClickAwayListener } from '@mui/material';
+import { ClickAwayListener } from '@material-ui/core';
 
 import { NO_NOTIFICATIONS } from 'constants/messages';
 import { alertIcon } from 'icons';

@@ -1,5 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose';
-import { isEmpty } from 'lodash';
+import { isEmpty, isNull } from 'lodash';
 
 import {
   DEFAULT_N_PER_PAGE,
@@ -13,7 +13,7 @@ import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
-import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+import { ICoursePopulated, ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
@@ -21,6 +21,7 @@ import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
 import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
+import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 import { getTestById } from './testProvider';
 
@@ -148,6 +149,19 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
   const populated = await populateCourse(course);
 
   return populated;
+};
+
+const getCourseByIdProvider = async (courseId: string | ObjectId): Promise<ICoursePopulated> => {
+  const course = await CourseModel.findById(courseId)
+    .populate('test')
+    .populate({ path: 'technologies', populate: { path: 'skill' } })
+    .lean();
+
+  if (isNull(course)) {
+    throw new NotFoundError('Course not found.');
+  }
+
+  return convertToTypeUnsafe<ICoursePopulated>(course);
 };
 
 const getMaterialsProvider = async (courseId: string) => {
@@ -309,4 +323,5 @@ export {
   addCourseProvider,
   addSimilarCoursesProvider,
   refreshCourseLessonsAndDuration,
+  getCourseByIdProvider,
 };
