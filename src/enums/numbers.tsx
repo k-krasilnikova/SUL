@@ -10,3 +10,7 @@ export enum Numbers {
   eight,
   nine,
 }
+
+export enum Length {
+  maxSkillLength = 25,
+}

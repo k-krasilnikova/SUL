@@ -38,9 +38,7 @@ export const SkillName = styled('p')({
   fontWeight: '400',
   fontSize: '18px',
   lineHeight: 1.2,
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
+  textAlign: 'center',
   color: COLORS.primaryTextColor,
   [theme.breakpoints.down('md')]: {
     fontSize: '16px',
