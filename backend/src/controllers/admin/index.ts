@@ -1,1 +1,1 @@
-export { getEditCoursePayload } from './getEditCoursePayload';
+export { default as getEditCoursePayload } from './getEditCoursePayload/getEditCoursePayload';
