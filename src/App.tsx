@@ -8,6 +8,7 @@ import { PATHS } from 'constants/routes';
 import { PAGES } from 'constants/pages';
 import { Role } from 'constants/menuRoles';
 import { AnonymousRoute, AuthRoute, RoleRoute } from 'components/Routes';
+import ScrollToTop from 'components/ScrollToTop';
 import {
   Profile,
   MyCourses,
@@ -29,6 +30,7 @@ import {
 const App: FC = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter basename={PATHS.home}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<AuthRoute />}>
           <Route index element={<Navigate replace to="/profile" />} />

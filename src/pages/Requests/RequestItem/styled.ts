@@ -85,6 +85,7 @@ export const SecondaryText = styled(Text)<IStatus>(({ status }) => ({
 }));
 
 export const RequestContainer = styled(Grid)({
+  justifyContent: 'end',
   marginBottom: '26px',
 });
 
