@@ -1,6 +1,5 @@
-import { ChangeEventHandler, BaseSyntheticEvent } from 'react';
+import { ChangeEventHandler } from 'react';
 
-import { IMaterial } from 'types/course';
 import { IQuestionObject, ITestItem } from 'types/test';
 
 export interface ICourseEditorResponse {
@@ -22,7 +21,11 @@ export interface ICourseEditorResponse {
 export interface IFormik {
   initialValues: {
     technologies: { _id: string; name: string; points: string; maxScore: number }[];
-    materials: IMaterial[];
+    materials: {
+      type: string;
+      material: string;
+      exercise?: { eN: number; title: string; task: string; code: string };
+    }[];
     title?: string;
     complexity?: number;
     avatar?: string;
@@ -31,7 +34,11 @@ export interface IFormik {
   };
   values: {
     technologies: { _id: string; name: string; points: string; maxScore: number }[];
-    materials: IMaterial[];
+    materials: {
+      type: string;
+      material: string;
+      exercise?: { eN: number; title: string; task: string; code: string };
+    }[];
     test: ITestItem;
     title?: string;
     complexity?: number;
@@ -54,26 +61,19 @@ export interface IStepProps {
   isCourseDataLoading?: boolean;
   courseData?: ICourseEditorResponse;
 }
+
 export type ISkillsStepProps = IStepProps;
 
-export interface ILessonsStepProps extends IStepProps {
-  formik: IFormik;
-  lessonsContent: {
-    [index: number]: { type: string; material: string };
-  };
-  selectOption: string;
-  handleChangeOption?: (event: BaseSyntheticEvent) => void;
-}
+export type ILessonsStepProps = IStepProps;
 
 export interface ILessonItemProps {
   formik: IFormik;
-  material: IMaterial;
-  lessonsContent: {
-    [index: number]: { type: string; material: string };
+  material: {
+    type: string;
+    material: string;
+    exercise?: { eN: number; title: string; task: string; code: string };
   };
   index: number;
-  selectOption: string;
-  handleChangeOption?: (event: BaseSyntheticEvent) => void;
 }
 
 export interface IQuestionItemProps {

@@ -10,13 +10,7 @@ import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import LessonItem from './LessonItem';
 import { LessonsStepWrapper, LessonButton } from './styled';
 
-const LessonsStep: FC<ILessonsStepProps> = ({
-  formik,
-  lessonsContent,
-  courseData,
-  selectOption,
-  handleChangeOption,
-}) => (
+const LessonsStep: FC<ILessonsStepProps> = ({ formik, courseData }) => (
   <FormWrapper>
     <SectionName>{Titles.lessonStepTitle}</SectionName>
     {courseData &&
@@ -27,14 +21,7 @@ const LessonsStep: FC<ILessonsStepProps> = ({
           <FieldArray name="materials">
             {({ remove, push }) => (
               <>
-                <LessonItem
-                  material={material}
-                  lessonsContent={lessonsContent}
-                  index={index}
-                  formik={formik}
-                  selectOption={selectOption}
-                  handleChangeOption={handleChangeOption}
-                />
+                <LessonItem material={material} index={index} formik={formik} />
                 {isLastElem(formik.values.materials, index) ? (
                   <LessonButton variant="mediumOutlined" onClick={() => push({})}>
                     {ButtonLabels.addMoreLessons}

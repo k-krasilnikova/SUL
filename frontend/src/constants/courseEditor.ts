@@ -1,3 +1,5 @@
+import { LessonType } from 'enums/materials';
+
 export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
   {
     value: 1,
@@ -10,6 +12,21 @@ export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
   {
     value: 3,
     label: 'For senior',
+  },
+];
+
+export const LESSONS_TYPE: { [key: string]: string | number }[] = [
+  {
+    value: 1,
+    label: LessonType.text,
+  },
+  {
+    value: 2,
+    label: LessonType.video,
+  },
+  {
+    value: 3,
+    label: LessonType.presentation,
   },
 ];
 
@@ -35,8 +52,9 @@ export enum Titles {
   exerciseTitle = 'Exercise Title',
   exerciseDescription = 'Exercise Description',
   testDetails = 'Test details',
-  videoUrlTitle = 'Video URL',
-  textUrlTitle = 'Text URL',
+  videoTitle = 'Video',
+  presentationTitle = 'Presentation',
+  textTitle = 'Text',
   questionNumber = 'Question № ',
   answerTestOption = 'Answer Option',
 }
