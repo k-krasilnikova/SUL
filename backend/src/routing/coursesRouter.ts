@@ -3,13 +3,9 @@ import { Router } from 'express';
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
-import getAllCourses from 'controllers/courses/getAllCourses';
-import getCourseById from 'controllers/courses/getCourse';
-import getMaterials from 'controllers/courses/getMaterials';
 import updatePendingCourse from 'controllers/pendingCourses/updatePendingCourse';
 import adapterUser from 'controllers/user/adapterUser';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
-import getCoursesMap from 'controllers/courses/getCoursesMap';
 import addNotification from 'controllers/notifications/addNotification';
 import {
   getEditCoursePayload,
@@ -19,6 +15,7 @@ import {
   editCourse,
 } from 'controllers/admin';
 import { applyCourse } from 'controllers/clientCourses';
+import { getAllCourses, getCourseById, getCoursesMap, getMaterials } from 'controllers/courses';
 
 const coursesRouter = Router();
 coursesRouter.get(
