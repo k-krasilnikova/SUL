@@ -8,11 +8,9 @@ import {
 import { getUserProvider } from 'db/providers/userProvider';
 import { getAllCoursesProvider } from 'db/providers/courseProvider';
 import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
-import {
-  filterOnlyAvailableCourses,
-  normalizeAvailableCoursesInfo,
-} from 'utils/normaliser/courses';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+
+import { filterOnlyAvailableCourses, mapAvailableCoursesInfo } from './utils/mappers';
 
 const getEmployeeAvailableCourses = async (
   req: TGetEmployeeAvailableCoursesRequest,
@@ -35,7 +33,7 @@ const getEmployeeAvailableCourses = async (
 
     const availableCourses = filterOnlyAvailableCourses(courses);
 
-    const availableCoursesResponse = normalizeAvailableCoursesInfo(availableCourses);
+    const availableCoursesResponse = mapAvailableCoursesInfo(availableCourses);
 
     res.locals.results = availableCoursesResponse;
     next();

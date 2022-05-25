@@ -9,7 +9,8 @@ import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 import { getAllClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { populateUserStack, populateUserTechnologies } from 'db/providers/skillProvider';
-import { mapEmployeeInfo } from 'utils/normaliser/employees';
+
+import { mapEmployeeInfo } from './utils/mappers';
 
 const getEmployeeInfo = async (
   req: TGetEmployeeInfoRequest,

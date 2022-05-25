@@ -11,7 +11,6 @@ import unitTestResults from 'controllers/tests/sendTestResults';
 import getTestTime from 'controllers/tests/getTestTime';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
 import getTestResult from 'controllers/tests/getTestResult';
-import getPendingAssessments from 'controllers/manager/getPendingAssessments';
 import addNotification from 'controllers/notifications/addNotification';
 import adapterClientCourse from 'controllers/clientCourses/adapterClientCourse';
 import {
@@ -21,6 +20,7 @@ import {
   passCourse,
   startCourse,
 } from 'controllers/clientCourses';
+import { getPendingAssessments } from 'controllers/manager';
 
 const clientCoursesRouter = Router();
 
