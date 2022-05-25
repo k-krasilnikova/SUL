@@ -14,10 +14,6 @@ import { getCourseProvider, materialsCounterProvider } from 'db/providers/course
 import { getUserProvider } from 'db/providers/userProvider';
 import { addUserNotification } from 'db/providers/notificationProvider';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
-import {
-  isCoursesToAssignHaveDuplicates,
-  removeCoursesToAssignDuplicates,
-} from 'utils/normaliser/queryCourses';
 import { combineFullName } from 'utils/combineFullName';
 import {
   NotificationDescription,
@@ -25,6 +21,9 @@ import {
   NotificationTitles,
   NotificationType,
 } from 'enums/notificationEnums';
+
+import { isCoursesToAssignHaveDuplicates } from './utils/validations';
+import { removeCoursesToAssignDuplicates } from './utils/mappers';
 
 const assignEmployeeCourses = async (
   req: TAssignEmployeeCoursesRequest,

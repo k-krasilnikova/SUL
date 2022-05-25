@@ -6,7 +6,8 @@ import {
 } from 'interfaces/requests/manager/getPendingAssessments';
 import { getPendingAssessmentsProvider } from 'db/providers/clientCourseProvider';
 import { getEmployeesProvider } from 'db/providers/userProvider';
-import { convertToAssessmentsRequests } from 'utils/typeConversion/clientCourses/clientCoursesTypeConversions';
+
+import { convertToAssessmentsRequests } from './utils/converters';
 
 const getPendingAssessments = async (
   req: TGetPendingAssessmentsRequest,

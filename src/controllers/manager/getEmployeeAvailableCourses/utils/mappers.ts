@@ -3,7 +3,7 @@ import { ICourseWithStatus, TAvailableCourse } from 'interfaces/ICourses/IQueryC
 const filterOnlyAvailableCourses = (courses: ICourseWithStatus[]): ICourseWithStatus[] =>
   courses.filter((course) => !course.status);
 
-const normalizeAvailableCoursesInfo = (courses: ICourseWithStatus[]): TAvailableCourse[] =>
+const mapAvailableCoursesInfo = (courses: ICourseWithStatus[]): TAvailableCourse[] =>
   courses.map((course) => ({ _id: course._id, title: course.title }));
 
-export { filterOnlyAvailableCourses, normalizeAvailableCoursesInfo };
+export { filterOnlyAvailableCourses, mapAvailableCoursesInfo };
