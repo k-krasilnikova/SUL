@@ -16,7 +16,7 @@ import UserSkillModel from 'db/models/UserSkill';
 
 jest.setTimeout(JEST_TIMEOUT);
 
-describe('database connections', () => {
+describe('Database connections', () => {
   const successfulMsg = { ok: 1 };
   const ping = { ping: 1 };
   let url: string | null;
@@ -37,7 +37,7 @@ describe('database connections', () => {
     dbName = null;
   });
 
-  it('correctly connect to backdev db through mongodb client', async () => {
+  it('Correctly connect to backdev db through mongodb client', async () => {
     if (process.env.DATABASE_BACKDEV_URL && process.env.BACKDEV_DB_NAME) {
       url = process.env.DATABASE_BACKDEV_URL;
       dbName = process.env.BACKDEV_DB_NAME;
@@ -49,7 +49,7 @@ describe('database connections', () => {
     expect(pingRes).toEqual(successfulMsg);
   });
 
-  it('correctly connect to dev db through mongodb client', async () => {
+  it('Correctly connect to dev db through mongodb client', async () => {
     if (process.env.DATABASE_URL && process.env.DEV_DB_NAME) {
       url = process.env.DATABASE_URL;
       dbName = process.env.DEV_DB_NAME;
@@ -62,7 +62,7 @@ describe('database connections', () => {
   });
 });
 
-describe('database collections', () => {
+describe('Database collections', () => {
   const emptyNumber = 0;
   let mongooseConnection: typeof mongoose;
 
@@ -79,52 +79,52 @@ describe('database collections', () => {
     await mongooseConnection.connection.close();
   });
 
-  it('courses collection is not empty', async () => {
+  it('Courses collection is not empty', async () => {
     const courses = await CourseModel.count();
     expect(courses).not.toBe(emptyNumber);
   });
 
-  it(' skillGroups collection is not empty', async () => {
+  it('SkillGroups collection is not empty', async () => {
     const skillGroups = await SkillGroupModel.count();
     expect(skillGroups).not.toBe(emptyNumber);
   });
 
-  it('skills collection is not empty', async () => {
+  it('Skills collection is not empty', async () => {
     const skills = await SkillModel.count();
     expect(skills).not.toBe(emptyNumber);
   });
 
-  it('tests collection is not empty', async () => {
+  it('Tests collection is not empty', async () => {
     const tests = await TestModel.count();
     expect(tests).not.toBe(emptyNumber);
   });
 
-  it('users collection is not empty', async () => {
+  it('Users collection is not empty', async () => {
     const users = await UserModel.count();
     expect(users).not.toBe(emptyNumber);
   });
 
-  it('usersSkills collection is not empty', async () => {
+  it('UsersSkills collection is not empty', async () => {
     const userSkills = await UserSkillModel.count();
     expect(userSkills).not.toBe(emptyNumber);
   });
 
-  it('stackMembers collection is not empty', async () => {
+  it('StackMembers collection is not empty', async () => {
     const stackMembers = await StackMemberModel.count();
     expect(stackMembers).not.toBe(emptyNumber);
   });
 
-  it('notifications collection is not empty', async () => {
+  it('Notifications collection is not empty', async () => {
     const notifications = await NotificationModel.count();
     expect(notifications).not.toBe(emptyNumber);
   });
 
-  it('clientCourse collection exists', async () => {
+  it('ClientCourse collection exists', async () => {
     const clientCourses = await ClientCourseModel.find();
     expect(clientCourses).toBeInstanceOf(Array);
   });
 
-  it('accessTokenBlacklist collection exists', async () => {
+  it('AccessTokenBlacklist collection exists', async () => {
     const tokenBlacklist = await AccessTokenBlacklistModel.find();
     expect(tokenBlacklist).toBeInstanceOf(Array);
   });

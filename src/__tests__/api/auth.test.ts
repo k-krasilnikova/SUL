@@ -20,7 +20,7 @@ jest.mock('controllers/auth/login', () => {
   };
 });
 
-describe('auth tests', () => {
+describe('Auth tests', () => {
   const noToken = 'no token';
   const loginRoute = `${Routes.namespace}${Routes.account}${SubRoutes.login}`;
   const logoutRoute = `${Routes.namespace}${Routes.account}${SubRoutes.logout}`;
@@ -46,7 +46,7 @@ describe('auth tests', () => {
     await dbConnection.disconnect();
   });
 
-  it('cannot login with empty creds', async () => {
+  it('Cannot login with empty creds', async () => {
     const emptyCreds = { login: '', password: '' };
     const responseLogin = await request.post(loginRoute).send(emptyCreds);
     expect(login).toHaveBeenCalled();
@@ -54,7 +54,7 @@ describe('auth tests', () => {
     expect(responseLogin.body).toEqual('User not found.');
   });
 
-  it('cannot login with wrong creds', async () => {
+  it('Cannot login with wrong creds', async () => {
     const wrongCreds = { login: 'user', password: '12345678' };
     const responseLogin = await request.post(loginRoute).send(wrongCreds);
     expect(login).toHaveBeenCalled();
@@ -62,7 +62,7 @@ describe('auth tests', () => {
     expect(responseLogin.body).toEqual('Password is incorrect.');
   });
 
-  it('login user', async () => {
+  it('Login user', async () => {
     const responseLogin = await request.post(loginRoute).send(userCreds);
     expect(responseLogin.status).toBe(STATUS_CODES.success.OK);
     loginBody = responseLogin.body as IUser;
@@ -71,13 +71,13 @@ describe('auth tests', () => {
     expect(loginBody).toHaveProperty('accessToken');
   });
 
-  it('user cannot logout with wrong accessToken', async () => {
+  it('User cannot logout with wrong accessToken', async () => {
     const responseLogout = await request.get(logoutRoute).set('Authorization', `bearer ${noToken}`);
     expect(responseLogout.status).toBe(STATUS_CODES.clientErrors.FORBIDDEN);
     expect(responseLogout.body).toEqual('Invalid access token.');
   });
 
-  it('user logout succeccfuly', async () => {
+  it('User logout succeccfuly', async () => {
     const responseLogout = await request
       .get(logoutRoute)
       .set('Authorization', `bearer ${userToken ?? noToken}`);

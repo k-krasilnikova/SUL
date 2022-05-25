@@ -68,6 +68,4 @@ describe('Normalize courses tests', () => {
       });
     });
   });
-
-  it('', () => {});
 });

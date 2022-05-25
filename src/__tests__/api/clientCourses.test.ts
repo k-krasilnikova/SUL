@@ -14,7 +14,7 @@ import { TResponsePayload as TUserInfoPayload } from 'interfaces/requests/user/g
 
 jest.setTimeout(JEST_TIMEOUT);
 
-describe('testing clientCourses', () => {
+describe('Testing clientCourses', () => {
   const clientCoursesRoute = '/api/clientCourses';
   let userCreds: Record<'login' | 'password', string | undefined>;
   let courseId: string;
@@ -55,7 +55,7 @@ describe('testing clientCourses', () => {
     await dbConnection.disconnect();
   });
 
-  it('user can get all client courses', async () => {
+  it('User can get all client courses', async () => {
     const clientCoursesRes = await request
       .get(clientCoursesRoute)
       .set('Authorization', `bearer ${userToken}`);
@@ -63,7 +63,7 @@ describe('testing clientCourses', () => {
     expect(clientCoursesRes.body).toBeInstanceOf(Array);
   });
 
-  it('user can get client course by id', async () => {
+  it('User can get client course by id', async () => {
     const allCoursesRes = await request
       .get(`${Routes.namespace}${Routes.courses}`)
       .set('Authorization', `bearer ${userToken}`);
@@ -83,7 +83,7 @@ describe('testing clientCourses', () => {
     expect(clientCourse._id).toEqual(clientCourseId);
   });
 
-  it("user can't get client course by wrong id", async () => {
+  it("User can't get client course by wrong id", async () => {
     const clientCourseRes = await request
       .get(`${clientCoursesRoute}/${WRONG_ID}`)
       .set('Authorization', `bearer ${userToken}`);
