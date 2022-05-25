@@ -3,13 +3,13 @@ import { FC } from 'react';
 import { FieldArray } from 'formik';
 
 import Loader from 'components/Loader';
+import { EditorTitles } from 'constants/courseEditor';
+import { IStepProps } from 'pages/CourseEditor/types';
+import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { convertTestTimeout } from 'utils/helpers/convertTime';
 import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
-import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
-import { EditorTitles } from 'constants/courseEditor';
 import { ButtonLabels } from 'constants/ButtonLabels';
-import { IStepProps } from 'pages/CourseEditor/types';
 
 import QuestionItem from './QuestionItem';
 import { ItemTitle, TestBasicField, TestItemWrapper, TestTitleBox } from './QuestionItem/styled';
