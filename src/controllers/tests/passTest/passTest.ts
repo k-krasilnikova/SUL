@@ -10,9 +10,10 @@ import {
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { TestStatus } from 'enums/common';
-import { checkTestResults, countTestResult } from 'utils/userTests/userTests';
 import { isTestAvailableByDate } from 'utils/validation/tests';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+
+import { checkTestResults, countTestResult } from './utils/helpers';
 
 const passTest = async (req: TPassTestRequest, res: TPassTestResponse, next: NextFunction) => {
   try {

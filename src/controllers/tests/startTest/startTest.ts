@@ -10,8 +10,9 @@ import CourseStatus from 'enums/coursesEnums';
 import { CLIENT_COURSE_FIELDS, REQUIRED_PCT } from 'config/constants';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { checkTestDate } from 'utils/validation/checkTestDate';
-import { generateStartAndFinishTestDates } from 'utils/date/testDate';
 import { getTestProvider } from 'db/providers/testProvider';
+
+import { generateStartAndFinishTestDates } from './utils/helpers';
 
 const startTest = async (req: TStartTestRequest, res: TStartTestResponse, next: NextFunction) => {
   try {

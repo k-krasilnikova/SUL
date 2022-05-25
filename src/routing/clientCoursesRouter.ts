@@ -3,14 +3,7 @@ import { Router } from 'express';
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
-import getTest from 'controllers/tests/getTest';
-import getAchievements from 'controllers/tests/getAchievements';
-import startTest from 'controllers/tests/startTest';
-import passTest from 'controllers/tests/passTest';
-import unitTestResults from 'controllers/tests/sendTestResults';
-import getTestTime from 'controllers/tests/getTestTime';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
-import getTestResult from 'controllers/tests/getTestResult';
 import adapterClientCourse from 'controllers/clientCourses/adapterClientCourse';
 import {
   getAllClientCourses,
@@ -21,6 +14,15 @@ import {
 } from 'controllers/clientCourses';
 import { getPendingAssessments } from 'controllers/manager';
 import { addNotification } from 'controllers/notifications';
+import {
+  getAchievements,
+  getTest,
+  getTestResult,
+  getTestTime,
+  passTest,
+  unitTestResults,
+  startTest,
+} from 'controllers/tests';
 
 const clientCoursesRouter = Router();
 

@@ -7,7 +7,8 @@ import {
 } from 'interfaces/requests/tests/getTestResult';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { normaliseTestResult } from 'utils/normaliser/tests';
+
+import { mapTestResult } from './utils/mappers';
 
 const getTestResult = async (
   req: TGetTestResultRequest,
@@ -30,7 +31,7 @@ const getTestResult = async (
       throw new BadRequestError(`Test hasn't been passed yet.`);
     }
 
-    const testResultResponse = normaliseTestResult(testResult);
+    const testResultResponse = mapTestResult(testResult);
 
     res.locals.results = testResultResponse;
 
