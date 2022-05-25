@@ -4,6 +4,7 @@ const ENVIROMENTS = {
   local: 'local',
   dev: 'dev',
   backdev: 'backdev',
+  devdebug: 'devdebug',
 };
 
 const WRONG_ID = '111111111111';
