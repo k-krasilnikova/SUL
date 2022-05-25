@@ -4,13 +4,12 @@ import { TPassTestRequest, TPassTestResponse } from 'interfaces/requests/tests/p
 import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import { addUserSkill, getUserSkills, populateUserSkills } from 'db/providers/skillProvider';
-import { specifySkills } from 'utils/dto/skillsDto';
 import CourseStatus from 'enums/coursesEnums';
-import { extractCommonUserSkillInfo } from 'utils/normaliser/skills';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
-import { specifyUserTechnologies } from 'utils/technologies/userTechnologies';
-import { addPointToUserSkill } from 'utils/skillsUtils';
-import { convertTechnologiesToUserSkills } from 'utils/typeConversion/skills/skillsAndTechs';
+
+import { extractCommonUserSkillInfo } from './utils/mappers';
+import { addPointToUserSkill, specifySkills, specifyUserTechnologies } from './utils/helpers';
+import { convertTechnologiesToUserSkills } from './utils/converters';
 
 const getAchievements = async (
   req: TPassTestRequest,
