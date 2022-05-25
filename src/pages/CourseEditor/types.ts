@@ -46,6 +46,9 @@ export interface IStepProps {
   isCourseDataLoading?: boolean;
   courseData?: ICourseEditorResponse;
 }
+export interface ISkillsStepProps extends IStepProps {
+  handleChangeTechnology?: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
 export interface ICourseEditorProps extends IStepProps {
   handleChangeTechnology?: (event: ChangeEvent<HTMLInputElement>) => void;

@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { MenuItem } from '@mui/material';
 
+import { ILessonItemProps } from 'pages/CourseEditor/types';
 import { ContentElementType } from 'enums/materials';
 import { Numbers } from 'enums/numbers';
 import { LESSONS_TYPE, LESSONS_TYPE_TITLE_MAP, EditorTitles } from 'constants/courseEditor';
-import { ILessonItemProps } from 'pages/CourseEditor/types';
 import { Field } from 'pages/CourseEditor/DefinitionStep/styled';
 
 import {
