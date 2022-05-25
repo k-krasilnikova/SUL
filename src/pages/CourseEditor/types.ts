@@ -1,6 +1,6 @@
 import { ChangeEventHandler, BaseSyntheticEvent } from 'react';
 
-import { TCourseTechnology, IMaterial } from 'types/course';
+import { IMaterial } from 'types/course';
 import { IQuestionObject, ITestItem } from 'types/test';
 
 export interface ICourseEditorResponse {
@@ -21,7 +21,7 @@ export interface ICourseEditorResponse {
 
 export interface IFormik {
   initialValues: {
-    technologies: TCourseTechnology[];
+    technologies: { _id: string; name: string; points: string; maxScore: number }[];
     materials: IMaterial[];
     title?: string;
     complexity?: number;
@@ -30,14 +30,16 @@ export interface IFormik {
     test: ITestItem;
   };
   values: {
-    technologies: TCourseTechnology[];
+    technologies: { _id: string; name: string; points: string; maxScore: number }[];
     materials: IMaterial[];
     test: ITestItem;
     title?: string;
     complexity?: number;
     avatar?: string;
     description?: string;
+    skillsById: any;
   };
+  setFieldValue: (field: string, value: any) => void;
   handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
@@ -45,16 +47,14 @@ export interface ICourseEditorProps {
   formik: IFormik;
   courseData?: ICourseEditorResponse;
   isCourseDataLoading?: boolean;
+  handleChangeTechnology?: ({ target }: any) => void;
 }
 export interface IStepProps {
   formik: IFormik;
+  isCourseDataLoading?: boolean;
   courseData?: ICourseEditorResponse;
 }
-export interface ISkillsStepProps extends IStepProps {
-  ungroupedSkills: {
-    [key: string]: { group: string; image: string; maxScore: number; name: string; _id: string };
-  };
-}
+export type ISkillsStepProps = IStepProps;
 
 export interface ILessonsStepProps extends IStepProps {
   formik: IFormik;

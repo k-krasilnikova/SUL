@@ -20,6 +20,7 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({
   courseData,
   isCourseDataLoading,
 }) => {
+  console.log('values', formik.values);
   return (
     <PageTitle title="Course Editor">
       {isCourseDataLoading ? (
@@ -35,10 +36,26 @@ const CourseEditor: React.FC<ICourseEditorProps> = ({
             {ButtonLabels.back}
           </BackButton>
           <EditorTabs>
-            <DefinitionStep courseData={courseData} formik={formik} />
-            <SkillsStep courseData={courseData} formik={formik} />
-            <LessonsStep courseData={courseData} formik={formik} />
-            <TestStep courseData={courseData} formik={formik} />
+            <DefinitionStep
+              courseData={courseData}
+              formik={formik}
+              isCourseDataLoading={isCourseDataLoading}
+            />
+            <SkillsStep
+              courseData={courseData}
+              formik={formik}
+              isCourseDataLoading={isCourseDataLoading}
+            />
+            <LessonsStep
+              courseData={courseData}
+              formik={formik}
+              isCourseDataLoading={isCourseDataLoading}
+            />
+            <TestStep
+              courseData={courseData}
+              formik={formik}
+              isCourseDataLoading={isCourseDataLoading}
+            />
           </EditorTabs>
         </InnerWrapper>
       )}

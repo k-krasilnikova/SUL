@@ -25,6 +25,7 @@ export const INITIAL_VALUES = {
     questions: [],
     timeout: 0,
   },
+  skillsById: {},
 };
 
 export enum Titles {

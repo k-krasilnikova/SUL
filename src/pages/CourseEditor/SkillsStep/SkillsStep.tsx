@@ -6,6 +6,7 @@ import { FieldArray } from 'formik';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
+import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 
 import {
   InnerWrapper,
@@ -15,19 +16,18 @@ import {
   SkillsTitleWrapper,
   SkillWrapper,
 } from './styled';
-import { FormWrapper, SectionName } from '../DefinitionStep/styled';
 import { ISkillsStepProps } from '../types';
 import { getPointsArr } from '../utils';
 
-const SkillsStep: FC<ISkillsStepProps> = ({ ungroupedSkills, courseData, formik }) => (
+const SkillsStep: FC<ISkillsStepProps> = ({ courseData, formik }) => (
   <FormWrapper>
     <SectionName>Edit course skills</SectionName>
     <SkillsTitleWrapper>
       <SkillsText>Achieved skill</SkillsText>
     </SkillsTitleWrapper>
     {courseData &&
-      Object.values(ungroupedSkills).length &&
-      formik.values?.technologies?.map((technology: { skill: string; points: number }, index) => (
+      courseData.allSkills.length &&
+      formik.values?.technologies?.map((technology, index) => (
         <SkillWrapper key={index}>
           <FieldArray name="technologies">
             {({ remove, push }) => (
@@ -35,38 +35,34 @@ const SkillsStep: FC<ISkillsStepProps> = ({ ungroupedSkills, courseData, formik 
                 <InnerWrapper>
                   <SkillField
                     select
-                    value={technology.skill}
+                    value={technology._id || ''}
                     label="Technology"
-                    onChange={formik.handleChange}
+                    // onChange={handleChangeTechnology}
                     variant="outlined"
-                    id={`technologies[${index}].skill`}
-                    name={`technologies[${index}].skill`}
+                    id={`technologies[${index}]._id`}
+                    name={`technologies[${index}]`}
                   >
-                    <MenuItem key="null" value={-1}>
-                      select skill
-                    </MenuItem>
-                    {Object.values(ungroupedSkills).map((option) => (
-                      <MenuItem key={option._id} value={option._id}>
-                        {option.name}
-                      </MenuItem>
-                    ))}
+                    {courseData &&
+                      courseData.allSkills.map((skill) => (
+                        <MenuItem key={skill._id} value={skill._id}>
+                          {skill.name}
+                        </MenuItem>
+                      ))}
                   </SkillField>
                   <SkillField
                     select
-                    value={technology.points}
+                    value={technology.points || ''}
                     label="Level"
                     onChange={formik.handleChange}
                     variant="outlined"
                     id={`technologies[${index}].points`}
                     name={`technologies[${index}].points`}
                   >
-                    {getPointsArr(ungroupedSkills?.[technology.skill]?.maxScore || 0).map(
-                      (option) => (
-                        <MenuItem key={option} value={option}>
-                          {`${option}/${ungroupedSkills?.[technology.skill]?.maxScore || 0}`}
-                        </MenuItem>
-                      ),
-                    )}
+                    {getPointsArr(technology.maxScore).map((option) => (
+                      <MenuItem key={option} value={option}>
+                        {`${option}/${technology.maxScore}`}
+                      </MenuItem>
+                    ))}
                   </SkillField>
                 </InnerWrapper>
                 {isLastElem(formik.values.technologies, index) ? (

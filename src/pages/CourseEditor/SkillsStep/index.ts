@@ -1,1 +1,1 @@
-export { default } from './SkillsStepContainer';
+export { default } from './SkillsStep';
