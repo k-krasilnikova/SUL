@@ -6,7 +6,7 @@ import {
 } from 'interfaces/requests/pendingCourses/getPendingCourses';
 import { TPendingCourses, IUser } from 'interfaces/Ientities/Iusers';
 import { getPendingCoursesProvider } from 'db/providers/pendingCoursesProvider';
-import { mapPendingCourses } from 'utils/normaliser/pendingCourses';
+import { mapPendingCourses } from './utils/mappers';
 
 const getPendingCourses = async (
   req: TGetPendingCoursesRequest,
