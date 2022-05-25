@@ -3,6 +3,7 @@ import { NextFunction } from 'express';
 import { TGetCourseRequest, TGetCourseResponse } from 'interfaces/requests/courses/getCourse';
 import { getCourseProvider } from 'db/providers/courseProvider';
 import prepareSimilarCourses from 'utils/normaliser/prepareSimilarCourses';
+
 import { mapCourse } from './utils/mappers';
 
 const getCourseById = async (
