@@ -15,7 +15,7 @@ const useAddCourseToEmployee = ({
   courseIdsList: { courseId: string }[];
   onSuccess: () => void;
   employeeId?: string;
-}): UseMutationResult => {
+}): UseMutationResult<unknown, AxiosError, boolean> => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmitError = (error: AxiosError) => {
@@ -29,9 +29,12 @@ const useAddCourseToEmployee = ({
   };
 
   return useMutation(
-    async () => {
+    async (withAssessment: boolean) => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.post(`${API.employees}/${employeeId}`, courseIdsList);
+      const response = await apiClient.post(`${API.employees}/${employeeId}`, {
+        courses: courseIdsList,
+        assessment: withAssessment,
+      });
       return response.data;
     },
     {
