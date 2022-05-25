@@ -1,6 +1,6 @@
 import { styled, Box, RadioGroup, Radio, TextField } from '@mui/material';
 
-import { SectionName } from 'pages/CourseEditor/DefinitionStep/styled';
+import { SectionName } from 'pages/CourseEditor/styled';
 
 export const TestItemWrapper = styled(Box)({
   width: '734px',

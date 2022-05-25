@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { Titles } from 'constants/courseEditor';
 import { IStepProps } from 'pages/CourseEditor/types';
-import { FormWrapper, SectionName } from 'pages/CourseEditor/DefinitionStep/styled';
+import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
 import { ButtonLabels } from 'constants/ButtonLabels';

@@ -1,6 +1,6 @@
 import { styled, Box, TextField, TextareaAutosize } from '@mui/material';
 
-import { SectionName } from 'pages/CourseEditor/DefinitionStep/styled';
+import { SectionName } from 'pages/CourseEditor/styled';
 
 export const LessonItemWrapper = styled(Box)({
   margin: '32px 0 28px',

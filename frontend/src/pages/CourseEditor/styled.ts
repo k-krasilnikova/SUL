@@ -1,4 +1,4 @@
-import { Box, styled } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 
 import Button from 'components/Button';
 import theme from 'themeSettings';
@@ -19,4 +19,16 @@ export const InnerWrapper = styled(Box)({
   [theme.breakpoints.down('lg')]: {
     padding: '16px 30px 46px 14px',
   },
+});
+
+export const FormWrapper = styled(Box)({
+  paddingTop: '44px',
+  paddingLeft: '85px',
+});
+
+export const SectionName = styled(Typography)({
+  fontSize: '30px',
+  lineHeight: '130%',
+  letterSpacing: '-0.4px',
+  color: '#2C2525',
 });

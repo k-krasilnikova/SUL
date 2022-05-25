@@ -5,11 +5,10 @@ import { ILessonsStepProps } from 'pages/CourseEditor/types';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { Titles } from 'constants/courseEditor';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
+import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 
 import LessonItem from './LessonItem';
 import { LessonsStepWrapper, LessonButton } from './styled';
-
-import { FormWrapper, SectionName } from '../DefinitionStep/styled';
 
 const LessonsStep: FC<ILessonsStepProps> = ({
   formik,

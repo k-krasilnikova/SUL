@@ -2,18 +2,6 @@ import { styled, Box, Typography, TextField } from '@mui/material';
 
 import theme from 'themeSettings';
 
-export const FormWrapper = styled(Box)({
-  paddingTop: '44px',
-  paddingLeft: '85px',
-});
-
-export const SectionName = styled(Typography)({
-  fontSize: '30px',
-  lineHeight: '130%',
-  letterSpacing: '-0.4px',
-  color: '#2C2525',
-});
-
 export const Field = styled(TextField)({
   width: '350px',
   height: '53px',
