@@ -45,8 +45,14 @@ export const INITIAL_VALUES = {
   skillsById: {},
 };
 
-export enum Titles {
+export enum EditorTitles {
   lessonStepTitle = 'Add course files and description',
+  skillStepTitile = 'Edit course skills',
+  definitionStepTitle = 'Course details',
+  definitionStepDescription = 'Description',
+  skillDescription = 'Achieved skill',
+  avatarTitle = 'Avatar',
+  avatarDescription = 'Max size: 10Mb',
   testStepTitle = 'Add questions to the course',
   lessonCount = 'Lesson № ',
   exerciseTitle = 'Exercise Title',
@@ -59,6 +65,7 @@ export enum Titles {
   answerTestOption = 'Answer Option',
 }
 
+export const INITIAL_NUMBER_POINT = 1;
 export const INITIAL_STEP = 0;
 export const TAB_STEP = 1;
 

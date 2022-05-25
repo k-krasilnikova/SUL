@@ -3,7 +3,7 @@ import { FieldArray } from 'formik';
 
 import { ILessonsStepProps } from 'pages/CourseEditor/types';
 import { ButtonLabels } from 'constants/ButtonLabels';
-import { Titles } from 'constants/courseEditor';
+import { EditorTitles } from 'constants/courseEditor';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 
@@ -12,7 +12,7 @@ import { LessonsStepWrapper, LessonButton } from './styled';
 
 const LessonsStep: FC<ILessonsStepProps> = ({ formik, courseData }) => (
   <FormWrapper>
-    <SectionName>{Titles.lessonStepTitle}</SectionName>
+    <SectionName>{EditorTitles.lessonStepTitle}</SectionName>
     {courseData &&
       Object.values(formik.values.materials).length &&
       formik.values?.materials.map((material, index) => (
