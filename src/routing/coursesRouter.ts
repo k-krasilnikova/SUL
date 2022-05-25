@@ -6,7 +6,6 @@ import withAuth from 'middlewares/authMiddleware';
 import updatePendingCourse from 'controllers/pendingCourses/updatePendingCourse';
 import adapterUser from 'controllers/user/adapterUser';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
-import addNotification from 'controllers/notifications/addNotification';
 import {
   getEditCoursePayload,
   preparingCourseData,
@@ -16,6 +15,7 @@ import {
 } from 'controllers/admin';
 import { applyCourse } from 'controllers/clientCourses';
 import { getAllCourses, getCourseById, getCoursesMap, getMaterials } from 'controllers/courses';
+import { addNotification } from 'controllers/notifications';
 
 const coursesRouter = Router();
 coursesRouter.get(

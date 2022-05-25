@@ -14,7 +14,8 @@ import {
   getClientCourseByCourseId,
   getClientCourseProvider,
 } from 'db/providers/clientCourseProvider';
-import convertCourseStatusToNotificationInfo from 'utils/notifications/convertCourseStatusToNotificationInfo';
+
+import convertCourseStatusToNotificationInfo from './utils/converters';
 
 const addNotification = async (
   req: TAddNotificationRequest,
