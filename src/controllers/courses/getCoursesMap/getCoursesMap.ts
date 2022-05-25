@@ -5,12 +5,13 @@ import {
   TGetCoursesMapResponse,
 } from 'interfaces/requests/courses/getCoursesMap';
 import { getUserProvider, getUserStackProvider } from 'db/providers/userProvider';
+
 import {
   addMissingCoursesMapElements,
   fillStackWithStatuses,
   generateCoursesMapResponse,
-  sortCoursesMapResponse,
-} from 'utils/normaliser/courses';
+} from './utils/mappers';
+import { sortCoursesMapResponse } from './utils/sorts';
 
 const getCoursesMap = async (
   req: TGetCoursesMapRequest,
