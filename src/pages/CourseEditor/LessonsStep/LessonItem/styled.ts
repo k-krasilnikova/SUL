@@ -1,4 +1,4 @@
-import { styled, Box, TextField, TextareaAutosize } from '@mui/material';
+import { styled, Box, TextareaAutosize, Typography } from '@mui/material';
 
 import { SectionName } from 'pages/CourseEditor/styled';
 
@@ -14,42 +14,18 @@ export const LessonInnerBox = styled(Box)({
   marginTop: '30px',
 });
 
-export const FieldSelect = styled('select')({
-  width: '350px',
-  height: '53px',
-  paddingLeft: '12px',
-  fontWight: 400,
-  fontSize: '16px',
-  lineHeight: '18x',
-  color: '#000',
-  backgroundColor: '#FFF',
-  border: '1px solid #00000033',
-  borderRadius: '5px',
-});
-
 export const InputBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
 });
 
-export const InputLabel = styled('label')({
+export const InputTitle = styled(Typography)({
   margin: '40px 0 30px',
   fontWeight: 400,
   fontSize: '22px',
   lineHeight: '29px',
   letterSpacing: 1,
   color: '#000',
-});
-
-export const InputText = styled(TextField)({
-  width: '350px',
-  height: '53px',
-  fontWight: 400,
-  fontSize: '12px',
-  lineHeight: '21px',
-  color: '#000',
-  backgroundColor: '#FFF',
-  borderRadius: '5px',
 });
 
 export const InputTextArea = styled(TextareaAutosize)({
