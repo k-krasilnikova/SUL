@@ -13,10 +13,9 @@ import { registerScheduler } from 'utils/schedule';
 
 dotenv.config();
 
+const app = express();
 registerScheduler();
 
-const app = express();
-const port = process.env.PORT;
 const localhost = process.env.LOCAL_HOST || 'http://localhost:3000';
 const webhost = process.env.WEB_HOST || 'https://sul-web.herokuapp.com';
 app.use(json());
@@ -34,8 +33,4 @@ app.use(`${Routes.namespace}`, routers);
 
 app.use(handleError, handleInternalError);
 
-app.listen(port, () => {
-  if (port) {
-    console.log(`SUL api started on port ${port}.`);
-  }
-});
+export { app };

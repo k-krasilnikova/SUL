@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import { getCommonSkill, getUserSkill, updateUserSkill } from 'db/providers/skillProvider';
 import { NOTHING } from 'config/constants';
@@ -10,7 +10,7 @@ const calculatePoints = (skillPoints: number, userScore: number) => {
 
 export const addPointToUserSkill =
   (userId: string) =>
-  async ({ skill, points }: { skill: string | ObjectId; points: number }) => {
+  async ({ skill, points }: { skill: string | Types.ObjectId; points: number }) => {
     const { score } = await getUserSkill(userId, skill);
     const { maxScore } = await getCommonSkill(skill);
     const isSkillIncomplete = score < maxScore;
