@@ -6,6 +6,7 @@ import {
 } from 'interfaces/requests/clientCourses/getClientCourse';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import prepareSimilarCourses from 'utils/normaliser/prepareSimilarCourses';
+import { mapClientCourse } from './utils/mappers';
 
 const getClientCourseById = async (
   req: TGetClientCourseRequest,
@@ -18,10 +19,9 @@ const getClientCourseById = async (
 
     const preparedSimilarCourses = await prepareSimilarCourses(clientCourse.course.similarCourses);
 
-    res.json({
-      ...clientCourse,
-      course: { ...clientCourse.course, similarCourses: preparedSimilarCourses },
-    });
+    const payload = mapClientCourse(clientCourse, preparedSimilarCourses);
+
+    res.json(payload);
   } catch (err) {
     next(err);
   }
