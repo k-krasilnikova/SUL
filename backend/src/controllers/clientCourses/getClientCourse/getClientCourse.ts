@@ -6,6 +6,7 @@ import {
 } from 'interfaces/requests/clientCourses/getClientCourse';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import prepareSimilarCourses from 'utils/normaliser/prepareSimilarCourses';
+
 import { mapClientCourse } from './utils/mappers';
 
 const getClientCourseById = async (

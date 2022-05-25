@@ -5,6 +5,7 @@ import { TLoginRequest, TLoginResponse } from 'interfaces/requests/auth/login';
 import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
 import { generateJWT } from 'utils/auth/authUtils';
 import UnauthorizedError from 'classes/errors/clientErrors/UnauthorizedError';
+
 import { mapLoginPayload } from './utils/mappers';
 
 const login = async (req: TLoginRequest, res: TLoginResponse, next: NextFunction) => {
