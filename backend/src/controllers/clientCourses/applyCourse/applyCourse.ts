@@ -11,9 +11,10 @@ import {
 } from 'db/providers/clientCourseProvider';
 import { materialsCounterProvider } from 'db/providers/courseProvider';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
-import { checkCourseDuplicates } from 'utils/validation/checkDuplicates';
 import { INITIAL_INDX } from 'config/constants';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+
+import { checkCourseDuplicates } from './utils/validations';
 
 const applyCourse = async (
   req: TApplyCourseRequest,

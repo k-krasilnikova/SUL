@@ -6,7 +6,6 @@ import withAuth from 'middlewares/authMiddleware';
 import getAllCourses from 'controllers/courses/getAllCourses';
 import getCourseById from 'controllers/courses/getCourse';
 import getMaterials from 'controllers/courses/getMaterials';
-import applyCourse from 'controllers/clientCourses/applyCourse';
 import updatePendingCourse from 'controllers/pendingCourses/updatePendingCourse';
 import adapterUser from 'controllers/user/adapterUser';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
@@ -19,6 +18,7 @@ import {
   deleteCourse,
   editCourse,
 } from 'controllers/admin';
+import { applyCourse } from 'controllers/clientCourses';
 
 const coursesRouter = Router();
 coursesRouter.get(
