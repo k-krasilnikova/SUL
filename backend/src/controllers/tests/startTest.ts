@@ -1,5 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import { TStartTestRequest, TStartTestResponse } from 'interfaces/requests/tests/startTest';
 import {
   getClientCourseProvider,
   getCurrentProgress,
@@ -12,7 +13,7 @@ import { checkTestDate } from 'utils/validation/checkTestDate';
 import { generateStartAndFinishTestDates } from 'utils/date/testDate';
 import { getTestProvider } from 'db/providers/testProvider';
 
-const startTest = async (req: Request, res: Response, next: NextFunction) => {
+const startTest = async (req: TStartTestRequest, res: TStartTestResponse, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
     const { status: courseStatus, finishTestDate } = await getClientCourseProvider(clientCourseId);

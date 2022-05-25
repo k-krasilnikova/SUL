@@ -1,12 +1,16 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TGetPendingCoursesRequest,
+  TGetPendingCoursesResponse,
+} from 'interfaces/requests/pendingCourses/getPendingCourses';
 import { TPendingCourses, IUser } from 'interfaces/Ientities/Iusers';
 import { getPendingCoursesProvider } from 'db/providers/pendingCoursesProvider';
 import { mapPendingCourses } from 'utils/normaliser/pendingCourses';
 
 const getPendingCourses = async (
-  req: Request,
-  res: Response<TPendingCourses, { id: string }>,
+  req: TGetPendingCoursesRequest,
+  res: TGetPendingCoursesResponse,
   next: NextFunction,
 ) => {
   const { id: userId } = res.locals;

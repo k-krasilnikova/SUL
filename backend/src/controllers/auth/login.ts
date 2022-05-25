@@ -1,28 +1,23 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 import { compare } from 'bcrypt';
 
+import { TLoginRequest, TLoginResponse } from 'interfaces/requests/auth/login';
 import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
-import { IUser } from 'interfaces/Ientities/Iusers';
 import { generateJWT } from 'utils/auth/authUtils';
-import { generateInitialDto } from 'utils/dto/dtoUtils';
-import { ILoginPayload } from 'interfaces/Iauth/authInterfaces';
 import UnauthorizedError from 'classes/errors/clientErrors/UnauthorizedError';
 
-const login = async (
-  req: Request<Record<string, never>, Record<string, never>, ILoginPayload>,
-  res: Response,
-  next: NextFunction,
-) => {
+const login = async (req: TLoginRequest, res: TLoginResponse, next: NextFunction) => {
   try {
     const { login: username, password } = req.body;
-    const dbUser: IUser = await authProvider(username);
-    const isValidPass = await compare(password, dbUser.passwordHash);
+    const user = await authProvider(username);
+    const isValidPass = await compare(password, user.passwordHash);
     if (!isValidPass) {
-      throw new UnauthorizedError('Password is incorrect');
+      throw new UnauthorizedError('Password is incorrect.');
     }
-    const tokens = generateJWT(dbUser);
-    await saveTokenProvider(tokens.refreshToken, dbUser);
-    res.json(generateInitialDto(dbUser, tokens));
+    const tokens = generateJWT(user);
+    await saveTokenProvider(tokens.refreshToken, user);
+    const responsePayload = { ...tokens, _id: user._id };
+    res.json(responsePayload);
   } catch (error) {
     next(error);
   }

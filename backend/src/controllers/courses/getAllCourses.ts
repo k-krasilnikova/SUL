@@ -1,16 +1,18 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
 import { getCoursesProvider } from 'db/providers/courseProvider';
-import { IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import {
+  TGetAllCoursesRequest,
+  TGetAllCoursesResponse,
+} from 'interfaces/requests/courses/getAllCourses';
 
 const getAllCourses = async (
-  req: Request,
-  res: Response<ICourse[], { id: string }>,
+  req: TGetAllCoursesRequest,
+  res: TGetAllCoursesResponse,
   next: NextFunction,
 ) => {
   try {
-    const params: IQueryCourses = req.query;
+    const params = req.query;
     const { id: userId } = res.locals;
 
     const allCourses = await getCoursesProvider({ ...params }, userId);

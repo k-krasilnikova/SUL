@@ -1,14 +1,17 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 import { isEmpty } from 'lodash';
 
+import {
+  TGetTestResultRequest,
+  TGetTestResultResponse,
+} from 'interfaces/requests/tests/getTestResult';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { ITestResultResponse } from 'interfaces/IResponse/IResponse';
-import { normaliseTestResult } from 'utils/normaliser/tests';
+import { normaliseTestResult } from 'utils/normaliser/courseTests';
 
 const getTestResult = async (
-  req: Request<{ id: string }>,
-  res: Response<never, { id: string; results: ITestResultResponse }>,
+  req: TGetTestResultRequest,
+  res: TGetTestResultResponse,
   next: NextFunction,
 ) => {
   try {

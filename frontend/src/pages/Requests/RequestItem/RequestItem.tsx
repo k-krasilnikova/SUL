@@ -56,7 +56,7 @@ const RequestItem: FC<IReuestItemProps> = ({
         <CourseTitle status={status}>{course.title}</CourseTitle>
       </Tooltip>
     </CourseContainer>
-    <TimeContainer item xs={2} md={1} lg={1}>
+    <TimeContainer item xs={2} md={2} lg={1}>
       <SecondaryText status={status}>{convertRequestTime(elapsed)}</SecondaryText>
     </TimeContainer>
     {status === REQUEST_STATUS.pending ? (

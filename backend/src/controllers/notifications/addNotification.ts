@@ -1,5 +1,9 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TAddNotificationRequest,
+  TAddNotificationResponse,
+} from 'interfaces/requests/notifications/addNotification';
 import { addUserNotification } from 'db/providers/notificationProvider';
 import { getCourseProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
@@ -10,12 +14,11 @@ import {
   getClientCourseByCourseId,
   getClientCourseProvider,
 } from 'db/providers/clientCourseProvider';
-import { TNotification } from 'interfaces/IResponse/IResponse';
 import convertCourseStatusToNotificationInfo from 'utils/notifications/convertCourseStatusToNotificationInfo';
 
 const addNotification = async (
-  req: Request,
-  res: Response<never, TNotification>,
+  req: TAddNotificationRequest,
+  res: TAddNotificationResponse,
   next: NextFunction,
 ) => {
   try {

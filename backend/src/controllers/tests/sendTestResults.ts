@@ -1,23 +1,10 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
-import { TAchievements, TestRuslt } from 'interfaces/Ientities/Itest';
-import { TNotification } from 'interfaces/IResponse/IResponse';
+import { TPassTestRequest, TPassTestResponse } from 'interfaces/requests/tests/passTest';
 
 const unitTestResults = async (
-  req: Request,
-  res: Response<
-    {
-      result: TestRuslt;
-      newSkills: TAchievements['newSkills'];
-      updatedSkills: TAchievements['updatedSkills'];
-      techsToAchieve: TAchievements['techsToAchieve'];
-    },
-    {
-      id: string;
-      result: TestRuslt;
-      achievements: TAchievements;
-    } & TNotification
-  >,
+  req: TPassTestRequest,
+  res: TPassTestResponse,
   next: NextFunction,
 ) => {
   try {

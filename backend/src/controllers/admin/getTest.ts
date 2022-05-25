@@ -1,7 +1,7 @@
 import { NextFunction } from 'express';
 
 import { getTestById } from 'db/providers/testProvider';
-import { TGetTestRequest, TGetTestResponse } from 'interfaces/requests/tests/getTest';
+import { TGetTestRequest, TGetTestResponse } from 'interfaces/requests/admin/getTest';
 
 const getTest = async (req: TGetTestRequest, res: TGetTestResponse, next: NextFunction) => {
   try {

@@ -1,4 +1,4 @@
-import mongoose, { ObjectId } from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 
 import ClientCourseModel from 'db/models/ClientCourses';
 import TestModel from 'db/models/Tests';
@@ -42,7 +42,7 @@ const getTestProvider = async (courseId: string) => {
   return test;
 };
 
-const getTestById = async (testId: string | ObjectId): Promise<ITest> => {
+const getTestById = async (testId: string | Types.ObjectId): Promise<ITest> => {
   const test = await TestModel.findById(testId).select('-__v').lean();
 
   if (!test) {
@@ -89,7 +89,7 @@ const updateTest = async (updateTestDto: IUpdateTestDto): Promise<ITest> => {
   return updated;
 };
 
-const getCourseTest = async (courseId: string | ObjectId): Promise<ITest> => {
+const getCourseTest = async (courseId: string | Types.ObjectId): Promise<ITest> => {
   const { test } = await CourseModel.findById(courseId).populate('test').lean();
   if (!test) {
     throw new NotFoundError('Test not found.');

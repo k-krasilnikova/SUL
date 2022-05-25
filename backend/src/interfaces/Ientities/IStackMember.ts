@@ -1,11 +1,11 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 
 interface IStackMember {
-  _id?: ObjectId;
+  _id?: Types.ObjectId;
   name: string;
-  relatedCourses: ObjectId[];
+  relatedCourses: Types.ObjectId[];
 }
 
 type TStackMemberPopulated = Omit<IStackMember, 'relatedCourses'> & {
@@ -13,7 +13,7 @@ type TStackMemberPopulated = Omit<IStackMember, 'relatedCourses'> & {
 };
 
 interface IUserStackMemberDatabase {
-  member: ObjectId;
+  member: Types.ObjectId;
   isPrimary: boolean;
 }
 

@@ -1,11 +1,12 @@
-import mongoose, { ObjectId } from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 
-import { IProgress, IQueryCourses } from 'interfaces/ICourses/IQueryCourses';
+import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import {
   IClientCourse,
   IClientCoursePopulated,
   TClientCourseFields,
 } from 'interfaces/Ientities/IclientCourses';
+import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -30,7 +31,7 @@ const getClientCoursesProvider = async (
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
     nPerPage = DEFAULT_N_PER_PAGE,
-  }: IQueryCourses,
+  }: IGetCoursesRequestQuery,
 ): Promise<IClientCoursePopulated[]> => {
   const sortingField = { [orderField]: order };
   const clientCourses: IClientCoursePopulated[] = await ClientCourseModel.find({
@@ -40,7 +41,7 @@ const getClientCoursesProvider = async (
     .sort(sortingField)
     .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
     .limit(nPerPage)
-    .populate('course')
+    .populate({ path: 'course', select: '-materials' })
     .lean();
   return clientCourses;
 };
@@ -49,7 +50,6 @@ const getAllClientCoursesProvider = async (userId: string): Promise<IClientCours
   const courses: IClientCoursePopulated[] = await ClientCourseModel.find({ user: userId })
     .populate('course')
     .lean();
-
   return courses;
 };
 
@@ -84,11 +84,16 @@ const applyCourseProvider = async (courseId: string, userId: string, progressDto
 };
 
 const updateCourseProgress = async (courseId: string, stage: string) => {
-  const updatedProgress = await ClientCourseModel.updateOne(
+  const updatedProgress = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { 'progress.$[elem].isCompleted': true } },
-    { arrayFilters: [{ 'elem.stage': stage }] },
-  );
+    { arrayFilters: [{ 'elem.stage': stage }], returnDocument: 'after' },
+  ).lean();
+
+  if (!updatedProgress) {
+    throw new NotFoundError('Course was not found.');
+  }
+
   return updatedProgress;
 };
 
@@ -170,8 +175,8 @@ const getClientCoursesByCourseId = async (courseId: string) => {
 };
 
 const getClientCourseByCourseId = async (
-  courseId: string | ObjectId,
-  userId: string | ObjectId,
+  courseId: string | Types.ObjectId,
+  userId: string | Types.ObjectId,
 ): Promise<IClientCourse> => ClientCourseModel.findOne({ course: courseId, user: userId }).lean();
 
 const checkNotDeleteCoursesProvider = async (courseId: string) => {
@@ -188,8 +193,8 @@ const checkNotDeleteCoursesProvider = async (courseId: string) => {
 };
 
 const assignCourseToEmployee = async (
-  assignTo: string | ObjectId,
-  courseId: string | ObjectId,
+  assignTo: string | Types.ObjectId,
+  courseId: string | Types.ObjectId,
   progressDto: IProgress[],
   withAssessment?: boolean,
 ) => {

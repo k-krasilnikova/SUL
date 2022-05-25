@@ -1,5 +1,10 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 
+import {
+  TApprovePendingCourseRequest,
+  TApprovePendingCourseResponse,
+} from 'interfaces/requests/pendingCourses/approvePendingCourse';
+import { IUser } from 'interfaces/Ientities/Iusers';
 import CourseStatus from 'enums/coursesEnums';
 import {
   arrangeAssessment,
@@ -9,21 +14,11 @@ import {
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import { TCourseLocals } from 'interfaces/Imiddlewares/Imiddlewares';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
 
 const approvePendingCourse = async (
-  req: Request,
-  res: Response<
-    never,
-    TCourseLocals & {
-      managerId?: string;
-      clientCourseId: string | undefined;
-      results: Record<'updateStatus', string>;
-      withAssessment?: boolean;
-    }
-  >,
+  req: TApprovePendingCourseRequest,
+  res: TApprovePendingCourseResponse,
   next: NextFunction,
 ) => {
   try {

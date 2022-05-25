@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TEST_RESULT_TEXT } from 'constants/test';
-import SkillInfoContainer from 'pages/Profile/UserSkills/SkillInfoContainer';
+import SkillInfo from 'pages/Profile/UserSkills/SkillInfo';
 import { IResultDescription } from 'types/test';
 
 import {
@@ -40,19 +40,14 @@ const ResultDescription: React.FC<IResultDescription> = ({
           ) : (
             <SkillsInfoList>
               {assessment ? (
-                techsToAchieve?.map((tech) => (
-                  <SkillInfoContainer key={tech.skill.name} skillItem={tech} />
-                ))
+                techsToAchieve?.map((tech) => <SkillInfo key={tech.skill.name} skillItem={tech} />)
               ) : (
                 <>
                   {newSkills?.map((newSkillItem) => (
-                    <SkillInfoContainer key={newSkillItem.skill.name} skillItem={newSkillItem} />
+                    <SkillInfo key={newSkillItem.skill.name} skillItem={newSkillItem} />
                   ))}
                   {updatedSkills?.map((updatedSkillItem) => (
-                    <SkillInfoContainer
-                      key={updatedSkillItem.skill.name}
-                      skillItem={updatedSkillItem}
-                    />
+                    <SkillInfo key={updatedSkillItem.skill.name} skillItem={updatedSkillItem} />
                   ))}
                 </>
               )}
