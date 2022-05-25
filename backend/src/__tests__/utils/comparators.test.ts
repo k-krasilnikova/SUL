@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 import { containsObjectId } from 'utils/comparator/ObjectId/containsObjectId';
 import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
 
-describe('comparators tests', () => {
+describe('Comparators tests', () => {
   const createObjectId = () => new mongoose.Types.ObjectId();
 
-  it('should checks containing ObjectId', () => {
+  it('Should checks containing ObjectId', () => {
     const falsyId = createObjectId();
     const correctId = createObjectId();
     const arrayOfIds = [createObjectId(), correctId];
@@ -14,7 +14,7 @@ describe('comparators tests', () => {
     expect(containsObjectId(arrayOfIds, falsyId)).toBeFalsy();
   });
 
-  it('should compare two ObjectIds', () => {
+  it('Should compare two ObjectIds', () => {
     const id = createObjectId();
 
     const isEqualObjectIds = isEqualObjectId(id, id);

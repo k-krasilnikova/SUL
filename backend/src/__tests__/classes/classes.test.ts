@@ -10,15 +10,15 @@ import { STATUS_CODES } from 'config/constants';
 
 jest.mock('classes/Mail/Mail');
 
-describe('mail classes', () => {
-  it('calls the class constructor', () => {
+describe('Mail classes', () => {
+  it('Calls the class constructor', () => {
     const newMail = new Mail();
     expect(Mail).toBeCalledTimes(1);
     expect(newMail).toBeInstanceOf(Mail);
     expect(newMail).toHaveProperty('sendMail');
   });
 
-  it('should call sendMail method', async () => {
+  it('Should call sendMail method', async () => {
     const sendMailMock = jest.spyOn(Mail.prototype, 'sendMail').mockImplementation(async () => {
       await Promise.resolve();
     });
@@ -34,12 +34,12 @@ describe('mail classes', () => {
   });
 });
 
-describe('errors classes', () => {
+describe('Errors classes', () => {
   const testMsg = 'test error';
   const noMsg = '';
   const unknownError = 'Unknown error.';
 
-  it('should create CommonHttpError instance', () => {
+  it('Should create CommonHttpError instance', () => {
     let testCommonError = new CommonHttpError(testMsg);
     expect(testCommonError).toHaveProperty('message');
     expect(testCommonError).toHaveProperty('name');
@@ -52,7 +52,7 @@ describe('errors classes', () => {
     expect(testCommonError.message).toBe(unknownError);
   });
 
-  it('should create ServiceUnavailableError', () => {
+  it('Should create ServiceUnavailableError', () => {
     let testServiceUnavailable = new ServiceUnavailableError(testMsg);
     expect(testServiceUnavailable).toBeInstanceOf(ServiceUnavailableError);
     expect(testServiceUnavailable).toBeInstanceOf(CommonHttpError);
@@ -68,7 +68,7 @@ describe('errors classes', () => {
     expect(testServiceUnavailable.message).toEqual(unknownError);
   });
 
-  it('should create InternalServerError', () => {
+  it('Should create InternalServerError', () => {
     let testInternalServerError = new InternalServerError(testMsg);
     expect(testInternalServerError).toBeInstanceOf(InternalServerError);
     expect(testInternalServerError).toBeInstanceOf(CommonHttpError);
@@ -85,7 +85,7 @@ describe('errors classes', () => {
     expect(testInternalServerError.message).toBe('Unknown server error.');
   });
 
-  it('should create BadRequestError', () => {
+  it('Should create BadRequestError', () => {
     let testBadRequestError = new BadRequestError(testMsg);
     expect(testBadRequestError).toBeInstanceOf(BadRequestError);
     expect(testBadRequestError).toBeInstanceOf(CommonHttpError);
@@ -99,7 +99,7 @@ describe('errors classes', () => {
     expect(testBadRequestError.message).toBe(unknownError);
   });
 
-  it('should create ForbiddenError', () => {
+  it('Should create ForbiddenError', () => {
     let testForbiddenError = new ForbiddenError(testMsg);
     expect(testForbiddenError).toBeInstanceOf(ForbiddenError);
     expect(testForbiddenError).toBeInstanceOf(CommonHttpError);
@@ -113,7 +113,7 @@ describe('errors classes', () => {
     expect(testForbiddenError.message).toBe(unknownError);
   });
 
-  it('should create NotFoundError', () => {
+  it('Should create NotFoundError', () => {
     let testNotFoundError = new NotFoundError(testMsg);
     expect(testNotFoundError).toBeInstanceOf(NotFoundError);
     expect(testNotFoundError).toBeInstanceOf(CommonHttpError);
@@ -127,7 +127,7 @@ describe('errors classes', () => {
     expect(testNotFoundError.message).toBe(unknownError);
   });
 
-  it('should create UnauthorizedError', () => {
+  it('Should create UnauthorizedError', () => {
     let testUnathorizedError = new UnauthorizedError(testMsg);
     expect(testUnathorizedError).toBeInstanceOf(UnauthorizedError);
     expect(testUnathorizedError).toBeInstanceOf(CommonHttpError);

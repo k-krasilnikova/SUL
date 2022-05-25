@@ -13,7 +13,7 @@ import { Routes, SubRoutes } from 'enums/routesEnum';
 
 jest.setTimeout(JEST_TIMEOUT);
 
-describe('common courses', () => {
+describe('Common courses', () => {
   const coursesRoute = `${Routes.namespace}${Routes.courses}`;
   let userCreds: Record<'login' | 'password', string | undefined>;
   let commonCourses: ICourse[];
@@ -38,7 +38,7 @@ describe('common courses', () => {
     userToken = String(userBody.accessToken);
   });
 
-  it('user can get all courses', async () => {
+  it('User can get all courses', async () => {
     const response = await request.get(coursesRoute).set('Authorization', `bearer ${userToken}`);
     expect(response.status).toBe(STATUS_CODES.success.OK);
     expect(response.headers['content-type']).toMatch(/json/);
@@ -46,7 +46,7 @@ describe('common courses', () => {
     commonCourses = response.body as ICourse[];
   });
 
-  it('user can get info about specific course', async () => {
+  it('User can get info about specific course', async () => {
     const courseId = String(commonCourses[INITIAL_INDX]._id);
     const response = await request
       .get(`${coursesRoute}/${courseId}`)
@@ -57,7 +57,7 @@ describe('common courses', () => {
     expect(resCourseId).toEqual(courseId);
   });
 
-  it('user can get materials for specific course', async () => {
+  it('User can get materials for specific course', async () => {
     const courseId = String(commonCourses[INITIAL_INDX]._id);
     const response = await request
       .get(`${coursesRoute}/${courseId}/materials`)
@@ -70,7 +70,7 @@ describe('common courses', () => {
     expect(materialsBody.materials.length).toBeGreaterThan(NOTHING);
   });
 
-  it('user can get skills map', async () => {
+  it('User can get skills map', async () => {
     const response = await request
       .get(`${coursesRoute}${SubRoutes.getCoursesMap}`)
       .set('Authorization', `bearer ${userToken}`);

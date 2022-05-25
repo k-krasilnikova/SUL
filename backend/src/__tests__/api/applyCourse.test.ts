@@ -14,7 +14,7 @@ import { TResponsePayload as TLoginPayload } from 'interfaces/requests/auth/logi
 
 jest.setTimeout(JEST_TIMEOUT);
 
-describe('testing user apply course', () => {
+describe('Testing user apply course', () => {
   const applyCourseRoute = `${Routes.namespace}${Routes.courses}`;
   const noToken = 'no token';
   let userCreds: Record<'login' | 'password', string | undefined>;
@@ -54,7 +54,7 @@ describe('testing user apply course', () => {
     await dbConnection.disconnect();
   });
 
-  it('cannot apply course by no existed id', async () => {
+  it('Cannot apply course by no existed id', async () => {
     const applyCourse = await request
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${userToken}`)
@@ -62,7 +62,7 @@ describe('testing user apply course', () => {
     expect(applyCourse.status).toBe(STATUS_CODES.clientErrors.NOT_FOUND);
   });
 
-  it('return 500 error if id is not a string of 12 bytes', async () => {
+  it('Return 500 error if id is not a string of 12 bytes', async () => {
     const inappropriateId = 'wrong';
     const applyCourse = await request
       .post(applyCourseRoute)
@@ -71,7 +71,7 @@ describe('testing user apply course', () => {
     expect(applyCourse.status).toBe(STATUS_CODES.serverErrors.INTERNAL_SERVER_ERROR);
   });
 
-  it('cannot apply course with wrong access token', async () => {
+  it('Cannot apply course with wrong access token', async () => {
     const applyCourse = await request
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${noToken}`)
@@ -79,7 +79,7 @@ describe('testing user apply course', () => {
     expect(applyCourse.status).toBe(STATUS_CODES.clientErrors.FORBIDDEN);
   });
 
-  it('user can apply specific course by id', async () => {
+  it('User can apply specific course by id', async () => {
     const allCoursesRes = await request
       .get(`${Routes.namespace}${Routes.courses}`)
       .set('Authorization', `bearer ${userToken}`);
@@ -94,7 +94,7 @@ describe('testing user apply course', () => {
     expect(applyCourse.status).toBe(STATUS_CODES.success.OK);
   });
 
-  it('cannot apply the same course twice', async () => {
+  it('Cannot apply the same course twice', async () => {
     const applyCourse = await request
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${userToken}`)
