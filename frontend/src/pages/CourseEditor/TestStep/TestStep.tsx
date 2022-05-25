@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 
-import { Titles } from 'constants/courseEditor';
+import { EditorTitles } from 'constants/courseEditor';
 import { IStepProps } from 'pages/CourseEditor/types';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
@@ -14,9 +14,9 @@ import QuestionItem from './QuestionItem';
 
 const TestStep: FC<IStepProps> = ({ formik }) => (
   <FormWrapper>
-    <SectionName>{Titles.testStepTitle}</SectionName>
+    <SectionName>{EditorTitles.testStepTitle}</SectionName>
     <TestItemWrapper>
-      <ItemTitle>{Titles.testDetails}</ItemTitle>
+      <ItemTitle>{EditorTitles.testDetails}</ItemTitle>
       <TestTitleBox>
         <TestBasicField
           label="Title"

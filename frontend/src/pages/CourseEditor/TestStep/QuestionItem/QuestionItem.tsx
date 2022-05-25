@@ -3,7 +3,7 @@
 import { FC } from 'react';
 import { MenuItem } from '@mui/material';
 
-import { BUTTON_VARIANT, Titles } from 'constants/courseEditor';
+import { BUTTON_VARIANT, EditorTitles } from 'constants/courseEditor';
 import { IQuestionItemProps } from 'pages/CourseEditor/types';
 import { Field } from 'pages/CourseEditor/DefinitionStep/styled';
 
@@ -19,7 +19,7 @@ import {
 
 const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
   <QuestionWrapper key={index}>
-    <QuestionTitle>{`${Titles.questionNumber}${question?.qN}`}</QuestionTitle>
+    <QuestionTitle>{`${EditorTitles.questionNumber}${question?.qN}`}</QuestionTitle>
     <QuestionInputBox>
       <InputText
         value={question?.question}

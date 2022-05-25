@@ -3,7 +3,7 @@ import { MenuItem } from '@mui/material';
 
 import Image from 'components/Image';
 import Loader from 'components/Loader';
-import { COURSE_COMPLEXITY } from 'constants/courseEditor';
+import { EditorTitles, COURSE_COMPLEXITY } from 'constants/courseEditor';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 
 import {
@@ -23,7 +23,7 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
   ) : (
     <>
       <FormWrapper>
-        <SectionName>Course details</SectionName>
+        <SectionName>{EditorTitles.definitionStepTitle}</SectionName>
         <SectionWrapper>
           <Field
             variant="outlined"
@@ -34,7 +34,7 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
           />
           <Field
             select
-            value={formik.values.complexity}
+            value={formik.values.complexity || ''}
             onChange={formik.handleChange}
             variant="outlined"
             id="complexity"
@@ -48,14 +48,14 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
           </Field>
         </SectionWrapper>
         <AvatarWrapper>
-          <SectionName>Avatar</SectionName>
-          <SecondaryText>(Max size: 10Mb)</SecondaryText>
+          <SectionName>{EditorTitles.avatarTitle}</SectionName>
+          <SecondaryText>{EditorTitles.avatarDescription}</SecondaryText>
         </AvatarWrapper>
         <ImageWrapper>
           <Image imageUrl={formik.values.avatar} />
         </ImageWrapper>
         <DescriptionWrapper>
-          <SectionName>Description</SectionName>
+          <SectionName>{EditorTitles.definitionStepDescription}</SectionName>
         </DescriptionWrapper>
         <DescriptionField
           multiline

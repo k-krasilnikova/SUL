@@ -4,7 +4,9 @@ import { FC } from 'react';
 import { MenuItem } from '@mui/material';
 import { FieldArray } from 'formik';
 
+import Loader from 'components/Loader';
 import { ButtonLabels } from 'constants/ButtonLabels';
+import { EditorTitles } from 'constants/courseEditor';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 
@@ -19,12 +21,19 @@ import {
 import { ISkillsStepProps } from '../types';
 import { getPointsArr } from '../utils';
 
-const SkillsStep: FC<ISkillsStepProps> = ({ courseData, formik }) => {
-  return (
+const SkillsStep: FC<ISkillsStepProps> = ({
+  courseData,
+  formik,
+  isCourseDataLoading,
+  handleChangeTechnology,
+}) =>
+  isCourseDataLoading ? (
+    <Loader type="content" />
+  ) : (
     <FormWrapper>
-      <SectionName>Edit course skills</SectionName>
+      <SectionName>{EditorTitles.skillStepTitile}</SectionName>
       <SkillsTitleWrapper>
-        <SkillsText>Achieved skill</SkillsText>
+        <SkillsText>{EditorTitles.skillDescription}</SkillsText>
       </SkillsTitleWrapper>
       {courseData &&
         courseData.allSkills.length &&
@@ -36,12 +45,12 @@ const SkillsStep: FC<ISkillsStepProps> = ({ courseData, formik }) => {
                   <InnerWrapper>
                     <SkillField
                       select
-                      value={technology._id || ''}
-                      label="Technology"
-                      // onChange={handleTechnologiChange}
                       variant="outlined"
+                      label="Technology"
+                      value={technology._id || ''}
                       id={`technologies[${index}]._id`}
                       name={`technologies[${index}]`}
+                      onChange={handleChangeTechnology}
                     >
                       {courseData &&
                         courseData.allSkills.map((skill) => (
@@ -52,16 +61,16 @@ const SkillsStep: FC<ISkillsStepProps> = ({ courseData, formik }) => {
                     </SkillField>
                     <SkillField
                       select
-                      value={technology.points || ''}
-                      label="Level"
-                      onChange={formik.handleChange}
                       variant="outlined"
+                      label="Level"
+                      value={technology.points || ''}
                       id={`technologies[${index}].points`}
                       name={`technologies[${index}].points`}
+                      onChange={formik.handleChange}
                     >
-                      {getPointsArr(technology.maxScore).map((option) => (
-                        <MenuItem key={option} value={option}>
-                          {`${option}/${technology.maxScore}`}
+                      {getPointsArr(technology.maxScore).map((point) => (
+                        <MenuItem key={point} value={point}>
+                          {`${point}/${technology.maxScore}`}
                         </MenuItem>
                       ))}
                     </SkillField>
@@ -82,6 +91,5 @@ const SkillsStep: FC<ISkillsStepProps> = ({ courseData, formik }) => {
         ))}
     </FormWrapper>
   );
-};
 
 export default SkillsStep;
