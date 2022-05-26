@@ -1,5 +1,6 @@
-import { styled, Box, TextareaAutosize, Typography } from '@mui/material';
+import { styled, Box, Typography, TextField } from '@mui/material';
 
+import theme from 'themeSettings';
 import { SectionName } from 'pages/CourseEditor/styled';
 
 export const LessonItemWrapper = styled(Box)({
@@ -28,14 +29,9 @@ export const InputTitle = styled(Typography)({
   color: '#000',
 });
 
-export const InputTextArea = styled(TextareaAutosize)({
+export const InputTextArea = styled(TextField)({
   width: '667px',
-  minHeight: '168px',
-  margin: 0,
-  paddingLeft: '10px',
-  fontWight: 400,
-  fontSize: '16px',
-  lineHeight: '28px',
-  color: '#A2A2A2',
-  border: '1px solid #00000033',
+  [theme.breakpoints.down('lg')]: {
+    width: '100%',
+  },
 });
