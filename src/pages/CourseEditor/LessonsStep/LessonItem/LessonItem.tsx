@@ -2,10 +2,7 @@ import { FC } from 'react';
 import { MenuItem } from '@mui/material';
 
 import { ContentElementType } from 'enums/materials';
-import { Numbers } from 'enums/numbers';
-import { LESSONS_TYPE, EditorTitles } from 'constants/courseEditor';
 import { ILessonItemProps } from 'pages/CourseEditor/types';
-import { ContentElementType } from 'enums/materials';
 import { Numbers } from 'enums/numbers';
 import { LESSONS_TYPE, LESSONS_TYPE_TITLE_MAP, EditorTitles } from 'constants/courseEditor';
 import { Field } from 'pages/CourseEditor/DefinitionStep/styled';
@@ -19,7 +16,7 @@ import {
   LessonItemWrapper,
 } from './styled';
 
-const LessonItem: FC<ILessonItemProps> = ({ formik, material, index }) => (
+const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur }) => (
   <LessonItemWrapper>
     <ItemTitle>
       {EditorTitles.lessonCount} {index + Numbers.one}
@@ -31,6 +28,8 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index }) => (
         id={`materials[${index}].type`}
         name={`materials[${index}].type`}
         onChange={formik.handleChange}
+        error={Boolean(formik.errors?.materials?.[index]?.type)}
+        helperText={formik.errors?.materials?.[index]?.type}
       >
         {LESSONS_TYPE.map((type) => (
           <MenuItem key={type.value} value={type.value}>
@@ -48,6 +47,8 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index }) => (
             placeholder={material.material}
             value={material.material}
             onChange={formik.handleChange}
+            error={Boolean(formik.errors?.materials?.[index]?.material)}
+            helperText={formik.errors?.materials?.[index]?.material}
           />
         ) : (
           <InputTextArea
@@ -56,6 +57,9 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index }) => (
             name={`materials[${index}.material`}
             value={material.material}
             onChange={formik.handleChange}
+            onBlur={onFieldBlur}
+            error={Boolean(formik.errors?.materials?.[index]?.material)}
+            helperText={formik.errors?.materials?.[index]?.material}
           />
         )}
         <InputTitle>{EditorTitles.exerciseTitle}</InputTitle>
@@ -65,6 +69,9 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index }) => (
           placeholder={material?.exercise?.title}
           value={material?.exercise?.title}
           onChange={formik.handleChange}
+          onBlur={onFieldBlur}
+          error={Boolean(formik.errors?.materials?.[index]?.exercise?.title)}
+          helperText={formik.errors?.materials?.[index]?.exercise?.title}
         />
         <InputTitle>{EditorTitles.exerciseDescription}</InputTitle>
         <InputTextArea
@@ -73,6 +80,9 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index }) => (
           name={`materials[${index}].exercise.task`}
           value={material?.exercise?.task}
           onChange={formik.handleChange}
+          onBlur={onFieldBlur}
+          error={Boolean(formik.errors?.materials?.[index]?.exercise?.task)}
+          helperText={formik.errors?.materials?.[index]?.exercise?.task}
         />
       </InputBox>
     </LessonInnerBox>

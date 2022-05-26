@@ -3,7 +3,7 @@ import { FC } from 'react';
 import ProgressBar from 'components/ProgressBar';
 import Tooltip from 'components/Tooltip';
 import { Size } from 'enums/sizes';
-import { capitalizeFirstLetter } from 'utils/helpers/strings';
+import capitalizeFirstLetter from 'utils/helpers/strings';
 
 import { ICourseItemProps } from './types';
 import {

@@ -52,6 +52,8 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                         id={`technologies[${index}]._id`}
                         name={`technologies[${index}]`}
                         onChange={handleChangeTechnology}
+                        error={Boolean(formik.errors?.technologies?.[index]?.name)}
+                        helperText={formik.errors?.technologies?.[index]?.name}
                       >
                         {courseData &&
                           courseData.allSkills.map((skill) => (
@@ -68,6 +70,8 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                         id={`technologies[${index}].points`}
                         name={`technologies[${index}].points`}
                         onChange={formik.handleChange}
+                        error={Boolean(formik.errors?.technologies?.[index]?.points)}
+                        helperText={formik.errors?.technologies?.[index]?.points}
                       >
                         {getPointsArr(technology.maxScore).map((point) => (
                           <MenuItem key={point} value={point}>
