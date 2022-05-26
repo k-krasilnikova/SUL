@@ -14,7 +14,7 @@ const login = async (req: TLoginRequest, res: TLoginResponse, next: NextFunction
     const user = await authProvider(username);
     const isValidPass = await compare(password, user.passwordHash);
     if (!isValidPass) {
-      throw new UnauthorizedError('Password is incorrect');
+      throw new UnauthorizedError('Password is incorrect.');
     }
     const tokens = generateJWT(user);
     await saveTokenProvider(tokens.refreshToken, user);

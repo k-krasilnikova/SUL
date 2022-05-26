@@ -8,25 +8,26 @@ import { HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from '../Header/styled';
 const MOBILE_MENU_WIDTH = '190px';
 
 export const MobileMenuSlide = styled('div')({
-  position: 'fixed',
-  top: HEADER_HEIGHT_IPAD,
+  position: 'absolute',
+  top: 0,
   right: 0,
   display: 'flex',
   flexDirection: 'column',
   width: `${MOBILE_MENU_WIDTH}`,
-  height: `calc(100% - ${HEADER_HEIGHT_IPAD})`,
-  padding: '8px 0 40px 0',
+  height: '100%',
+  padding: '8px 0 38px 0',
   backgroundColor: theme.palette.secondary.main,
   overflowY: 'auto',
-  [theme.breakpoints.down('md')]: {
-    top: HEADER_HEIGHT_MOBILE,
-    height: `calc(100% - ${HEADER_HEIGHT_MOBILE})`,
-  },
 });
 
 export const MobileMenuBackdrop = styled(Backdrop)({
+  position: 'absolute',
+  top: HEADER_HEIGHT_IPAD,
   zIndex: '5',
   background: '#1B1B1C91',
+  [theme.breakpoints.down('md')]: {
+    top: HEADER_HEIGHT_MOBILE,
+  },
 });
 
 export const SpaceHolder = styled('div')({

@@ -1,3 +1,5 @@
+import { Types } from 'mongoose';
+
 import ISkill from '../Ientities/ISkill';
 import { ICourse } from '../Ientities/Icourses';
 import { ITest } from '../Ientities/Itest';
@@ -15,7 +17,7 @@ interface IProgress {
 }
 
 interface ICourseTechsFromWeb {
-  skill: string;
+  skill: Types.ObjectId | string;
   points: number;
 }
 
@@ -33,7 +35,7 @@ interface ICourseDataValidationResult {
 }
 
 interface ICourseToAssign {
-  courseId: string;
+  courseId: string | Types.ObjectId;
   assessment?: boolean;
 }
 

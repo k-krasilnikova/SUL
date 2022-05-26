@@ -1,3 +1,5 @@
+import { Types } from 'mongoose';
+
 import { NOTHING } from 'config/constants';
 import {
   getCommonSkill,
@@ -8,7 +10,6 @@ import {
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
 import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
-import { ObjectId } from 'mongoose';
 import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
 import { containsObjectId } from 'utils/comparator/ObjectId/containsObjectId';
 
@@ -63,7 +64,7 @@ const calculatePoints = (skillPoints: number, userScore: number) => {
 
 const addPointToUserSkill =
   (userId: string) =>
-  async ({ skill, points }: { skill: string | ObjectId; points: number }) => {
+  async ({ skill, points }: { skill: string | Types.ObjectId; points: number }) => {
     const { score } = await getUserSkill(userId, skill);
     const { maxScore } = await getCommonSkill(skill);
     const isSkillIncomplete = score < maxScore;
