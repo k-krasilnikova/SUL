@@ -1,4 +1,4 @@
-import { LessonType } from 'enums/materials';
+import { ContentElementType } from 'enums/materials';
 
 export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
   {
@@ -17,16 +17,16 @@ export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
 
 export const LESSONS_TYPE: { [key: string]: string | number }[] = [
   {
-    value: 'text',
-    label: LessonType.text,
+    value: 'plain',
+    label: ContentElementType.plain,
   },
   {
     value: 'video',
-    label: LessonType.video,
+    label: ContentElementType.video,
   },
   {
     value: 'presentation',
-    label: LessonType.presentation,
+    label: ContentElementType.presentation,
   },
 ];
 
