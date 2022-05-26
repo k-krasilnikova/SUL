@@ -17,15 +17,15 @@ export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
 
 export const LESSONS_TYPE: { [key: string]: string | number }[] = [
   {
-    value: 1,
+    value: 'text',
     label: LessonType.text,
   },
   {
-    value: 2,
+    value: 'video',
     label: LessonType.video,
   },
   {
-    value: 3,
+    value: 'presentation',
     label: LessonType.presentation,
   },
 ];
@@ -73,3 +73,6 @@ export const BUTTON_VARIANT = {
   input: 'Input',
   radio: 'Radiobutton (One answer)',
 };
+
+export const FIRST_LETTER_INDEX = 0;
+export const SECOND_LETTER_INDEX = 1;
