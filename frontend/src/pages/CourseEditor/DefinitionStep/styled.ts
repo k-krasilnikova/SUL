@@ -5,7 +5,6 @@ import theme from 'themeSettings';
 export const Field = styled(TextField)({
   width: '350px',
   height: '53px',
-  ':first-letter': 'uppercase',
   '&:not(:last-child)': {
     marginRight: '100px',
   },

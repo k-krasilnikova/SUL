@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { FieldArray } from 'formik';
+import { Alert } from '@mui/material';
 
 import Loader from 'components/Loader';
 import { EditorTitles } from 'constants/courseEditor';
@@ -13,7 +14,7 @@ import { ButtonLabels } from 'constants/ButtonLabels';
 
 import QuestionItem from './QuestionItem';
 import { ItemTitle, TestBasicField, TestItemWrapper, TestTitleBox } from './QuestionItem/styled';
-import { TestStepWrapper } from './styled';
+import { AlertWrapper, TestStepWrapper } from './styled';
 
 const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
   isCourseDataLoading ? (
@@ -60,6 +61,11 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
             </>
           )}
         </FieldArray>
+        <AlertWrapper>
+          {typeof formik.errors?.test?.questions === 'string' && (
+            <Alert severity="error">{formik.errors?.test?.questions}</Alert>
+          )}
+        </AlertWrapper>
       </TestItemWrapper>
     </FormWrapper>
   );
