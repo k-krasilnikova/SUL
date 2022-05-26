@@ -3,9 +3,3 @@ export enum ContentElementType {
   plain = 'plain',
   presentation = 'presentation',
 }
-
-export enum LessonType {
-  video = 'video',
-  text = 'text',
-  presentation = 'presentation',
-}
