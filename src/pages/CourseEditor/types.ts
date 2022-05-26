@@ -75,3 +75,9 @@ export interface ICourseEditorMaterials {
   material: string;
   exercise?: { eN: number; title: string; task: string; code: string };
 }
+
+export interface ICourseEditorMaterials {
+  type: string;
+  material: string;
+  exercise?: { eN: number; title: string; task: string; code: string };
+}

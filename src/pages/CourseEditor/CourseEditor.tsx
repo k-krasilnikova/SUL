@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import EditorTabs from 'components/EditorTabs';
@@ -14,7 +14,7 @@ import TestStep from './TestStep';
 import { ICourseEditorProps } from './types';
 import { BackButton, InnerWrapper } from './styled';
 
-const CourseEditor: React.FC<ICourseEditorProps> = ({ courseData, ...props }) => (
+const CourseEditor: FC<ICourseEditorProps> = ({ courseData, ...props }) => (
   <PageTitle title="Course Editor">
     <InnerWrapper>
       <BackButton
