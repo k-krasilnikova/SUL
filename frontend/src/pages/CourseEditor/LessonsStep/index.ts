@@ -1,1 +1,1 @@
-export { default } from './LessonsStepContainer';
+export { default } from './LessonsStep';
