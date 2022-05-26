@@ -1,4 +1,4 @@
-import mongoose, { ObjectId } from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import { isEmpty, isNull } from 'lodash';
 
 import {
@@ -25,7 +25,7 @@ import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 import { getTestById } from './testProvider';
 
-const generateCourseStatusLookup = (userId: ObjectId | string) => ({
+const generateCourseStatusLookup = (userId: Types.ObjectId | string) => ({
   $lookup: {
     from: 'clientCourses',
     localField: '_id',
@@ -129,7 +129,10 @@ const getCoursesProvider = async (
   }
 };
 
-const getCourseProvider = async (courseId: string | ObjectId, userId: string | ObjectId) => {
+const getCourseProvider = async (
+  courseId: string | Types.ObjectId,
+  userId: string | Types.ObjectId,
+) => {
   const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
     {
       $match: {
@@ -151,7 +154,9 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
   return populated;
 };
 
-const getCourseByIdProvider = async (courseId: string | ObjectId): Promise<ICoursePopulated> => {
+const getCourseByIdProvider = async (
+  courseId: string | Types.ObjectId,
+): Promise<ICoursePopulated> => {
   const course = await CourseModel.findById(courseId)
     .populate('test')
     .populate({ path: 'technologies', populate: { path: 'skill' } })
@@ -172,7 +177,7 @@ const getMaterialsProvider = async (courseId: string) => {
   return material;
 };
 
-const materialsCounterProvider = async (courseId: string) => {
+const materialsCounterProvider = async (courseId: string | Types.ObjectId) => {
   const materialsCount: { _id: string; total: number }[] = await CourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
@@ -260,8 +265,8 @@ const getAllCoursesProvider = async (
 };
 
 const getCourseStatusProvider = async (
-  courseId: string | ObjectId,
-  userId: string | ObjectId,
+  courseId: string | Types.ObjectId,
+  userId: string | Types.ObjectId,
 ): Promise<ICourseWithStatus['status']> => {
   const relateClientCourse = await ClientCourseModel.findOne({
     course: courseId,
