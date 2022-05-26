@@ -6,9 +6,9 @@
     "engines": {
         "node": "15.x"
     },
-    "scripts": { 
+    "scripts": {
         "dev": "cross-env NODE_ENV=dev nodemon ./src/server.ts",
-        "devdebug": "cross-env NODE_ENV=test nodemon ./src/server.ts",
+        "devdebug": "cross-env NODE_ENV=devdebug nodemon ./src/server.ts",
         "local": "cross-env NODE_ENV=local nodemon ./src/server.ts",
         "backdev": "cross-env NODE_ENV=backdev nodemon ./src/server.ts",
         "build": "cross-env NODE_ENV=production tsc && npx tsc-alias",
@@ -17,7 +17,7 @@
         "migrate:undo-last": "migrate-mongo down",
         "migrate:status": "migrate-mongo status",
         "migrate:create": "migrate-mongo create",
-        "prepare": "cd .. & husky install ./backend/.husky"
+        "prepare": "cd .. && husky install backend/.husky"
     },
     "lint-staged": {
         "*.{ts,tsx}": [
@@ -45,8 +45,8 @@
         "@types/mongodb": "^4.0.7",
         "@types/mongoose": "^5.11.97",
         "@types/node": "^16.11.12",
-        "@types/supertest": "^2.0.12",
         "@types/node-cron": "^3.0.1",
+        "@types/supertest": "^2.0.12",
         "@typescript-eslint/eslint-plugin": "^5.7.0",
         "@typescript-eslint/parser": "^5.7.0",
         "babel-jest": "^28.1.0",
@@ -57,7 +57,7 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.25.3",
         "eslint-plugin-prettier": "^4.0.0",
-        "husky": "^7.0.4",
+        "husky": "^7.0.1",
         "lint-staged": "^12.1.4",
         "nodemon": "^2.0.15",
         "prettier": "^2.5.1",
