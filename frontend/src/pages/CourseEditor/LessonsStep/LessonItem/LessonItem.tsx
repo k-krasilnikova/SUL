@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { MenuItem } from '@mui/material';
 
-import { LessonType } from 'enums/materials';
+import { ContentElementType } from 'enums/materials';
 import { Numbers } from 'enums/numbers';
 import { LESSONS_TYPE, EditorTitles } from 'constants/courseEditor';
 import { ILessonItemProps } from 'pages/CourseEditor/types';
