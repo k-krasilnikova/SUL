@@ -17,7 +17,7 @@ import {
   InputText,
 } from './styled';
 
-const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
+const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik, upGroupedAnswers }) => (
   <QuestionWrapper key={index}>
     <QuestionTitle>{`${EditorTitles.questionNumber}${question?.qN}`}</QuestionTitle>
     <QuestionInputBox>
@@ -32,19 +32,19 @@ const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
         <MenuItem value="radio">{BUTTON_VARIANT.radio}</MenuItem>
       </Field>
     </QuestionInputBox>
-    {question?.answers.map((answer, indx) => (
-      <RadioButtonBox key={indx}>
+    {Object.values(upGroupedAnswers).map((answer, key) => (
+      <RadioButtonBox key={answer.aN}>
         <RadioSelectAnswer
-          name={`Answer ${answer.aN}`}
-          value={answer.variant}
-          disableRipple
-          id="testAnswer"
+          name={`test.questions[${index}].answers[${key}].aN`}
+          id={`test.questions[${index}].answers[${key}].aN`}
+          value={answer.aN}
+          onChange={formik.handleChange}
         />
         <InputAnswer
           variant="standard"
           value={answer.variant}
-          id={`test.questions[${index}].answer[${indx}].variant`}
-          name={`test.questions[${index}].answer[${indx}].variant`}
+          id={`test.questions[${index}].answers[${key}].variant`}
+          name={`test.questions[${index}].answers[${key}].variant`}
           onChange={formik.handleChange}
         />
       </RadioButtonBox>

@@ -1,4 +1,4 @@
-import { styled, Box, RadioGroup, Radio, TextField } from '@mui/material';
+import { styled, Box, Radio, TextField } from '@mui/material';
 
 import { SectionName } from 'pages/CourseEditor/styled';
 
@@ -16,17 +16,16 @@ export const TestTitleBox = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
-  marginBottom: '40px',
 });
 
 export const QuestionWrapper = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
-  marginBottom: '40px',
+  margin: '40px 0',
 });
 
 export const QuestionTitle = styled(Box)({
-  margin: '20px 0 25px',
+  margin: '0 0 25px',
   fontWeight: 400,
   fontSize: '22px',
   lineHeight: '29px',
@@ -37,12 +36,6 @@ export const QuestionTitle = styled(Box)({
 export const QuestionInputBox = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
-});
-
-export const RadioButtonWrapper = styled(RadioGroup)({
-  display: 'flex',
-  flexDirection: 'column',
-  margin: '14px 0 28px',
 });
 
 export const RadioButtonBox = styled(Box)({
