@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const adapterSender = async (
   req: Request,

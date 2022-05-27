@@ -2,11 +2,10 @@ import { NextFunction, Request, Response } from 'express';
 
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { getUserProvider } from 'db/providers/userProvider';
 import Mail from 'classes/Mail/Mail';
 import { getCourseProvider } from 'db/providers/courseProvider';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 const sendMail = async (
   req: Request,

@@ -1,8 +1,6 @@
 import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
-import withAuth from 'middlewares/authMiddleware';
-import adapterSender from 'controllers/pendingCourses/adapterSender';
 import { SubRoutes } from 'enums/routesEnum';
 import {
   assignEmployeeCourses,
@@ -10,6 +8,8 @@ import {
   getEmployeeInfo,
   getEmployees,
 } from 'controllers/manager';
+import { adapterSender } from 'controllers/pendingCourses';
+import { withAuth } from 'middlewares';
 
 const employeesRouter = Router();
 

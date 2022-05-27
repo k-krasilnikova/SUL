@@ -4,7 +4,6 @@ import {
   TAssignEmployeeCoursesRequest,
   TAssignEmployeeCoursesResponse,
 } from 'interfaces/requests/manager/assignEmployeeCourses';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { INITIAL_INDX } from 'config/constants';
 import {
   assignCourseToEmployee,
@@ -21,6 +20,7 @@ import {
   NotificationTitles,
   NotificationType,
 } from 'enums/notificationEnums';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { isCoursesToAssignHaveDuplicates } from './utils/validations';
 import { removeCoursesToAssignDuplicates } from './utils/mappers';

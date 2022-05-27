@@ -6,8 +6,8 @@ import {
 } from 'interfaces/requests/pendingCourses/approvePendingCourse';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { USER_ROLES } from 'config/constants';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const updatePendingCourse = async (
   req: TApprovePendingCourseRequest,

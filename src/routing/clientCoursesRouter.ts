@@ -2,7 +2,6 @@ import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routesEnum';
-import withAuth from 'middlewares/authMiddleware';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
 import adapterClientCourse from 'controllers/clientCourses/adapterClientCourse';
 import {
@@ -20,9 +19,10 @@ import {
   getTestResult,
   getTestTime,
   passTest,
-  unitTestResults,
   startTest,
+  sendTestResults,
 } from 'controllers/tests';
+import { withAuth } from 'middlewares';
 
 const clientCoursesRouter = Router();
 
@@ -38,7 +38,7 @@ clientCoursesRouter.put(
   passTest,
   getAchievements,
   addNotification,
-  unitTestResults,
+  sendTestResults,
 );
 clientCoursesRouter.get(
   SubRoutes.startTest,

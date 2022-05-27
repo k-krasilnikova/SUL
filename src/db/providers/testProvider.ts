@@ -3,9 +3,9 @@ import mongoose, { Types } from 'mongoose';
 import ClientCourseModel from 'db/models/ClientCourses';
 import TestModel from 'db/models/Tests';
 import CourseModel from 'db/models/Course';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { ITest, TestDb } from 'interfaces/Ientities/Itest';
 import { IUpdateTestDto } from 'interfaces/dto/courses';
+import { NotFoundError } from 'classes/errors/clientErrors';
 
 const getTestProvider = async (courseId: string) => {
   const test: TestDb[] = await ClientCourseModel.aggregate([

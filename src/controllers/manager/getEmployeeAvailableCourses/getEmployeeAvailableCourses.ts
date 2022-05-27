@@ -8,7 +8,7 @@ import {
 import { getUserProvider } from 'db/providers/userProvider';
 import { getAllCoursesProvider } from 'db/providers/courseProvider';
 import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { filterOnlyAvailableCourses, mapAvailableCoursesInfo } from './utils/mappers';
 

@@ -2,7 +2,7 @@ import { NextFunction } from 'express';
 
 import { TPassTestRequest, TPassTestResponse } from 'interfaces/requests/tests/passTest';
 
-const unitTestResults = async (
+const sendTestResults = async (
   req: TPassTestRequest,
   res: TPassTestResponse,
   next: NextFunction,
@@ -18,4 +18,4 @@ const unitTestResults = async (
   }
 };
 
-export default unitTestResults;
+export default sendTestResults;

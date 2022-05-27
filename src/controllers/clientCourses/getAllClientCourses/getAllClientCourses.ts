@@ -6,7 +6,7 @@ import {
 } from 'interfaces/requests/clientCourses/getAllClientCourses';
 import { getClientCoursesProvider } from 'db/providers/clientCourseProvider';
 
-const getClientCourses = async (
+const getAllClientCourses = async (
   req: TGetClientCoursesRequest,
   res: TGetClientCoursesResponse,
   next: NextFunction,
@@ -23,4 +23,4 @@ const getClientCourses = async (
   }
 };
 
-export default getClientCourses;
+export default getAllClientCourses;
