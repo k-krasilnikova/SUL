@@ -6,8 +6,7 @@ import {
   TGetTestResultResponse,
 } from 'interfaces/requests/tests/getTestResult';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-
+import { BadRequestError } from 'classes/errors/clientErrors';
 import { mapTestResult } from './utils/mappers';
 
 const getTestResult = async (

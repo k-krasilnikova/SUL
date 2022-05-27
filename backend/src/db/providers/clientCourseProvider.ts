@@ -9,8 +9,6 @@ import {
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import {
   DEFAULT_N_PER_PAGE,
   DEFAULT_ORDER_FIELD,
@@ -19,6 +17,7 @@ import {
   NO_FILTER,
   USER_ROLES,
 } from 'config/constants';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 import ClientCourseModel from '../models/ClientCourses';
 import UserModel from '../models/User';

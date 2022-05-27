@@ -6,14 +6,13 @@ import { ICourseTechnologyPayload, IEditCoursePayload } from 'interfaces/request
 import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { ISearchQuery } from 'interfaces/requests/common/queries';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import UserSkillModel from 'db/models/UserSkill';
 import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import { NO_FILTER } from 'config/constants';
 import ISkill from 'interfaces/Ientities/ISkill';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })

@@ -5,8 +5,7 @@ import { saveTokenProvider } from 'db/providers/authProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';
 import isExpectedHttpError from 'utils/typeGuards/isExpectedHttpError';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import ForbiddenError from 'classes/errors/clientErrors/ForbiddenError';
+import { BadRequestError, ForbiddenError } from 'classes/errors/clientErrors';
 
 interface ICookies {
   refreshToken: string;

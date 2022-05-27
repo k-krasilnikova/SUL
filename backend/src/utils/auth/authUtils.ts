@@ -7,8 +7,8 @@ import {
 } from 'config/constants';
 import { IAccessJwtPayload, IRefreshJwtPayload, ITokens } from 'interfaces/Iauth/authInterfaces';
 import { IUser } from 'interfaces/Ientities/Iusers';
-import InternalServerError from 'classes/errors/serverErrors/InternalServerError';
 import { TBaseRequest } from 'interfaces/requests/base';
+import { InternalServerError } from 'classes/errors/serverErrors';
 
 const generateJWT = (userData: IUser): ITokens => {
   try {
