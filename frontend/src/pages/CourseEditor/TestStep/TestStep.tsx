@@ -8,18 +8,13 @@ import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import { EditorTitles } from 'constants/courseEditor';
 import { ButtonLabels } from 'constants/ButtonLabels';
-import { ITestStepProps } from 'pages/CourseEditor/types';
+import { IStepProps } from 'pages/CourseEditor/types';
 
 import QuestionItem from './QuestionItem';
 import { ItemTitle, TestBasicField, TestItemWrapper, TestTitleBox } from './QuestionItem/styled';
 import { TestStepWrapper } from './styled';
 
-const TestStep: FC<ITestStepProps> = ({
-  formik,
-  isCourseDataLoading,
-  courseData,
-  unGroupedAnswers,
-}) =>
+const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, courseData }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
@@ -49,7 +44,6 @@ const TestStep: FC<ITestStepProps> = ({
               {({ remove, push }) => (
                 <>
                   <QuestionItem
-                    unGroupedAnswers={unGroupedAnswers}
                     formik={formik}
                     question={question}
                     index={index}

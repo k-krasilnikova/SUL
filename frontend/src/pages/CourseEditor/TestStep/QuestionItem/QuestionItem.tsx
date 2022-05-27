@@ -17,9 +17,12 @@ import {
   InputText,
 } from './styled';
 
-const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik, unGroupedAnswers }) => (
+const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
   <QuestionWrapper key={index}>
-    <QuestionTitle>{`${EditorTitles.questionNumber}${question?.qN}`}</QuestionTitle>
+    <QuestionTitle>
+      {EditorTitles.questionNumber}
+      {question?.qN}
+    </QuestionTitle>
     <QuestionInputBox>
       <InputText
         value={question?.question}
@@ -32,26 +35,23 @@ const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik, unGroup
         <MenuItem value="radio">{BUTTON_VARIANT.radio}</MenuItem>
       </Field>
     </QuestionInputBox>
-    {question?.answers.map((answer, key) => {
-      console.log('answers', unGroupedAnswers);
-      return (
-        <RadioButtonBox key={answer.aN}>
-          <RadioSelectAnswer
-            name={`test.questions[${index}].answers[${key}].aN`}
-            id={`test.questions[${index}].answers[${key}].aN`}
-            value={answer.aN}
-            onChange={formik.handleChange}
-          />
-          <InputAnswer
-            variant="standard"
-            value={answer.variant}
-            id={`test.questions[${index}].answers[${key}].variant`}
-            name={`test.questions[${index}].answers[${key}].variant`}
-            onChange={formik.handleChange}
-          />
-        </RadioButtonBox>
-      );
-    })}
+    {question?.answers?.map((answer, key) => (
+      <RadioButtonBox key={answer.aN}>
+        <RadioSelectAnswer
+          name={`test.questions[${index}].answers[${key}].aN`}
+          id={`test.questions[${index}].answers[${key}].aN`}
+          value={answer.aN}
+          onChange={formik.handleChange}
+        />
+        <InputAnswer
+          variant="standard"
+          value={answer.variant}
+          id={`test.questions[${index}].answers[${key}].variant`}
+          name={`test.questions[${index}].answers[${key}].variant`}
+          onChange={formik.handleChange}
+        />
+      </RadioButtonBox>
+    ))}
   </QuestionWrapper>
 );
 

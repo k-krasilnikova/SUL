@@ -73,6 +73,3 @@ export const BUTTON_VARIANT = {
   input: 'Input',
   radio: 'Radiobutton (One answer)',
 };
-
-export const FIRST_LETTER_INDEX = 0;
-export const SECOND_LETTER_INDEX = 1;
