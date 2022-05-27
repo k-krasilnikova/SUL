@@ -8,6 +8,7 @@ import {
   filterOnlyAvailableCourses,
   mapAvailableCoursesInfo,
 } from 'controllers/manager/getEmployeeAvailableCourses/utils/mappers';
+import { mapCourse } from 'controllers/courses/getCourse/utils/mappers';
 import {
   shortifyCourseInfo,
   shortifyCourses,
@@ -67,5 +68,14 @@ describe('Normalize courses tests', () => {
         isCompleted: coursesForCurrentTest[index].status === CourseStatus.completed,
       });
     });
+  });
+
+  it('Map course', () => {
+    const course = { ...mockedCourses[0] } as unknown as ICourseWithStatus;
+    const similarCourses = ['a', 'b', 'c'] as unknown as never[];
+
+    const mappedCourse = mapCourse(course, similarCourses);
+
+    expect(mappedCourse).toEqual({ ...course, similarCourses });
   });
 });
