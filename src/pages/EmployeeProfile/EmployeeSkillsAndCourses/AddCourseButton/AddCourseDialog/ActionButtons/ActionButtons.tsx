@@ -10,17 +10,15 @@ const ActionButtons: FC<IActionButtonsProps> = ({
   handleAddCourses,
   handleAddCoursesWithAssessment,
   ...props
-}) => {
-  return (
-    <ActionButtonsWrapper>
-      <ActionButton
-        label={ButtonLabels.addWithInterview}
-        onClick={handleAddCoursesWithAssessment}
-        {...props}
-      />
-      <ActionButton label={ButtonLabels.add} onClick={handleAddCourses} {...props} />
-    </ActionButtonsWrapper>
-  );
-};
+}) => (
+  <ActionButtonsWrapper>
+    <ActionButton
+      label={ButtonLabels.addWithInterview}
+      onClick={handleAddCoursesWithAssessment}
+      {...props}
+    />
+    <ActionButton label={ButtonLabels.add} onClick={handleAddCourses} {...props} />
+  </ActionButtonsWrapper>
+);
 
 export default ActionButtons;
