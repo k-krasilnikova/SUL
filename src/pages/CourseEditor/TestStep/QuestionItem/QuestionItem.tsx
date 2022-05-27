@@ -17,7 +17,7 @@ import {
   InputText,
 } from './styled';
 
-const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik, upGroupedAnswers }) => (
+const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik, unGroupedAnswers }) => (
   <QuestionWrapper key={index}>
     <QuestionTitle>{`${EditorTitles.questionNumber}${question?.qN}`}</QuestionTitle>
     <QuestionInputBox>
@@ -32,7 +32,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik, upGroup
         <MenuItem value="radio">{BUTTON_VARIANT.radio}</MenuItem>
       </Field>
     </QuestionInputBox>
-    {Object.values(upGroupedAnswers).map((answer, key) => (
+    {Object.values(unGroupedAnswers).map((answer, key) => (
       <RadioButtonBox key={answer.aN}>
         <RadioSelectAnswer
           name={`test.questions[${index}].answers[${key}].aN`}

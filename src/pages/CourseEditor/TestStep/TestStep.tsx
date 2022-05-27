@@ -18,7 +18,7 @@ const TestStep: FC<ITestStepProps> = ({
   formik,
   isCourseDataLoading,
   courseData,
-  upGroupedAnswers,
+  unGroupedAnswers,
 }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
@@ -49,7 +49,7 @@ const TestStep: FC<ITestStepProps> = ({
               {({ remove, push }) => (
                 <>
                   <QuestionItem
-                    upGroupedAnswers={upGroupedAnswers}
+                    unGroupedAnswers={unGroupedAnswers}
                     formik={formik}
                     question={question}
                     index={index}
