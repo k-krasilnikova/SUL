@@ -7,6 +7,7 @@ const connectToDatabase = async (): Promise<void> => {
     backdev: process.env.DATABASE_BACKDEV_URL,
     test: process.env.DATABASE_BACKDEV_URL,
     production: process.env.DATABASE_URL,
+    devdebug: process.env.DATABASE_URL,
   };
 
   const CONNECTION_STRING = process.env.NODE_ENV && DB_URL[`${process.env.NODE_ENV}`];
