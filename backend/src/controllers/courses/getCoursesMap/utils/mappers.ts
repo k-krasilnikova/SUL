@@ -138,4 +138,10 @@ const generateCoursesMapResponse = async (
   return coursesMapResponseCascade;
 };
 
-export { addMissingCoursesMapElements, fillStackWithStatuses, generateCoursesMapResponse };
+export {
+  addMissingCoursesMapElements,
+  fillStackWithStatuses,
+  generateCoursesMapResponse,
+  shortifyCourses,
+  shortifyCourseInfo,
+};
