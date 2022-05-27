@@ -47,8 +47,8 @@ const verifyRefreshToken = (refreshToken: string): IRefreshJwtPayload => {
   return payload;
 };
 
-export const extractAccessTokenValue = (req: TBaseRequest) => {
+const extractAccessTokenValue = (req: TBaseRequest) => {
   return req.headers.authorization?.split(' ')[1];
 };
 
-export { generateJWT, verifyAccessToken, verifyRefreshToken };
+export { generateJWT, verifyAccessToken, verifyRefreshToken, extractAccessTokenValue };
