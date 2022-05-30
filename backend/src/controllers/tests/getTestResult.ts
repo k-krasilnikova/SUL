@@ -7,7 +7,7 @@ import {
 } from 'interfaces/requests/tests/getTestResult';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import { normaliseTestResult } from 'utils/normaliser/tests';
+import { normaliseTestResult } from 'utils/normaliser/courseTests';
 
 const getTestResult = async (
   req: TGetTestResultRequest,

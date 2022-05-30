@@ -4,8 +4,11 @@ const ENVIROMENTS = {
   local: 'local',
   dev: 'dev',
   backdev: 'backdev',
+  devdebug: 'devdebug',
 };
 
+const WRONG_ID = '111111111111';
+const JEST_TIMEOUT = 60000;
 const DEFAULT_ACCESS_TIMEOUT = '1d';
 const DEFAULT_REFRESH_TIMEOUT = '7d';
 const DEFAULT_CONNECTION_STRING = 'CONN_STRING_NOT_SET';
@@ -118,5 +121,7 @@ export {
   PERCENTS,
   CLIENT_COURSE_FIELDS,
   COURSE_FIELDS,
+  WRONG_ID,
+  JEST_TIMEOUT,
   NOTIFICATIONS_COUNT,
 };

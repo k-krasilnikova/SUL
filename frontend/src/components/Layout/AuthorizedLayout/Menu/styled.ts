@@ -5,15 +5,23 @@ import { leftArrow } from 'icons/menuIcons';
 import { IStyledProps } from 'components/Layout/types';
 import theme from 'themeSettings';
 
+import { HEADER_HEIGHT, HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from '../Header/styled';
+
 const BORDER_CANCELER = '7px';
 
 export const MenuTabs = styled('div')<IStyledProps>(({ isMobileVersion }) => ({
-  position: 'relative',
   ...(!isMobileVersion && {
-    height: '100%',
+    height: `calc(100vh - ${HEADER_HEIGHT})`,
     backgroundColor: theme.palette.secondary.main,
     borderRight: '1px solid rgba(0, 0, 0, 0.4)',
     boxShadow: '0 4px 4px rgba(0, 0, 0, 0.1)',
+    overflowY: 'auto',
+    [theme.breakpoints.down('xl')]: {
+      height: `calc(100vh - ${HEADER_HEIGHT_IPAD})`,
+    },
+    [theme.breakpoints.down('md')]: {
+      height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
+    },
   }),
 }));
 

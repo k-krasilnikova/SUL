@@ -23,7 +23,7 @@ const prodLoggerOptions = {
 };
 
 const logger =
-  process.env.NODE_ENV === ENVIROMENTS.qa
+  process.env.NODE_ENV === ENVIROMENTS.qa || process.env.NODE_ENV === ENVIROMENTS.devdebug
     ? winston.createLogger(qaLoggerOptions)
     : winston.createLogger(prodLoggerOptions);
 
