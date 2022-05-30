@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import NotificationModel from 'db/models/Notification';
 import {
@@ -21,7 +21,7 @@ export const getUserNotifications = async (userId: string) => {
 };
 
 export const addUserNotification = async (
-  userId: ObjectId | string,
+  userId: Types.ObjectId | string,
   courseName: string,
   userName: string,
   status: NotificationStatuses,

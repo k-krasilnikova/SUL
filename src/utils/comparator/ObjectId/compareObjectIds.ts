@@ -1,6 +1,8 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
-const isEqualObjectId = (value: ObjectId | string, equalTo: ObjectId | string): boolean =>
-  String(value) === String(equalTo);
+const isEqualObjectId = (
+  value: Types.ObjectId | string,
+  equalTo: Types.ObjectId | string,
+): boolean => String(value) === String(equalTo);
 
 export { isEqualObjectId };

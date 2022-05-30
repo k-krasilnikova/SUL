@@ -1,4 +1,4 @@
-import mongoose, { ObjectId } from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
 import {
@@ -50,7 +50,6 @@ const getAllClientCoursesProvider = async (userId: string): Promise<IClientCours
   const courses: IClientCoursePopulated[] = await ClientCourseModel.find({ user: userId })
     .populate('course')
     .lean();
-
   return courses;
 };
 
@@ -176,8 +175,8 @@ const getClientCoursesByCourseId = async (courseId: string) => {
 };
 
 const getClientCourseByCourseId = async (
-  courseId: string | ObjectId,
-  userId: string | ObjectId,
+  courseId: string | Types.ObjectId,
+  userId: string | Types.ObjectId,
 ): Promise<IClientCourse> => ClientCourseModel.findOne({ course: courseId, user: userId }).lean();
 
 const checkNotDeleteCoursesProvider = async (courseId: string) => {
@@ -194,8 +193,8 @@ const checkNotDeleteCoursesProvider = async (courseId: string) => {
 };
 
 const assignCourseToEmployee = async (
-  assignTo: string | ObjectId,
-  courseId: string | ObjectId,
+  assignTo: string | Types.ObjectId,
+  courseId: string | Types.ObjectId,
   progressDto: IProgress[],
   withAssessment?: boolean,
 ) => {

@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import { UserRank } from 'enums/users';
 import { MaterialContentType } from 'enums/materials';
@@ -6,10 +6,10 @@ import { MaterialContentType } from 'enums/materials';
 import { ITimePeriod } from '../common/datetime';
 
 interface ICourse {
-  _id?: ObjectId;
+  _id?: Types.ObjectId;
   title: string;
-  technologies: { skill: ObjectId; points: number }[];
-  requiredSkills?: ObjectId[];
+  technologies: { skill: Types.ObjectId; points: number }[];
+  requiredSkills?: Types.ObjectId[];
   complexity: UserRank;
   description: string;
   materials: {
@@ -17,7 +17,7 @@ interface ICourse {
     content: Array<IContentElement>;
     exercise?: ICourseExercise;
   }[];
-  test: ObjectId;
+  test: Types.ObjectId;
   avatar: string;
   similarCourses: ICourse[];
   lessons: number;
