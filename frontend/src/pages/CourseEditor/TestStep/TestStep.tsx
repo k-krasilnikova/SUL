@@ -14,7 +14,7 @@ import QuestionItem from './QuestionItem';
 import { ItemTitle, TestBasicField, TestItemWrapper, TestTitleBox } from './QuestionItem/styled';
 import { TestStepWrapper } from './styled';
 
-const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, courseData }) =>
+const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
@@ -43,12 +43,7 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, courseData }) =
             <FieldArray name="test.questions">
               {({ remove, push }) => (
                 <>
-                  <QuestionItem
-                    formik={formik}
-                    question={question}
-                    index={index}
-                    courseData={courseData}
-                  />
+                  <QuestionItem formik={formik} question={question} index={index} />
                   {isLastElem(formik.values.test.questions, index) ? (
                     <SkillButton variant="mediumOutlined" onClick={() => push({})}>
                       {ButtonLabels.addMoreQuestions}

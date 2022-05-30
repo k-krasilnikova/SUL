@@ -1,4 +1,4 @@
-import { styled, Box, Radio, TextField } from '@mui/material';
+import { styled, Box, Radio, TextField, RadioGroup, FormControlLabel } from '@mui/material';
 
 import { SectionName } from 'pages/CourseEditor/styled';
 
@@ -38,13 +38,18 @@ export const QuestionInputBox = styled(Box)({
   justifyContent: 'space-between',
 });
 
-export const RadioButtonBox = styled(Box)({
-  display: 'inline-block',
-  margin: '16px',
+export const RadioButtonBox = styled(RadioGroup)({
+  margin: '16px 0 16px',
 });
 
 export const RadioSelectAnswer = styled(Radio)({
   color: '#131313',
+});
+
+export const RadioControlLabel = styled(FormControlLabel)({
+  '& .MuiTypography-root': {
+    width: '80%',
+  },
 });
 
 export const InputAnswer = styled(TextField)({
