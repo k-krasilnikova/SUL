@@ -18,10 +18,9 @@ export const MaterialWrapper = styled(Box)({
 
 export const MaterialText = styled('div')({
   height: '100%',
-  textAlign: 'justify',
   padding: '20px',
-  fontFamily: '"Ubuntu", sans-serif',
-  fontSize: '24px',
+  fontSize: '20px',
+  textAlign: 'justify',
   overflowY: 'auto',
   [theme.breakpoints.down('xl')]: {
     fontSize: '18px',
