@@ -12,6 +12,7 @@ export enum ButtonLabels {
   back = 'Back',
   next = 'Next',
   add = 'Add',
+  addWithInterview = 'Add with the interview',
   submit = 'Submit',
   addWithPlus = '+Add',
   addCourse = '+ Add course',
