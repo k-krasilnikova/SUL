@@ -39,11 +39,11 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
             onChange={formik.handleChange}
           />
         </TestTitleBox>
-        {formik.values.test?.questions?.map((question, index) => (
-          <TestStepWrapper key={index}>
-            <FieldArray name="test.questions">
-              {({ remove, push }) => (
-                <>
+        <FieldArray name="test.questions">
+          {({ remove, push }) => (
+            <>
+              {formik.values.test?.questions?.map((question, index) => (
+                <TestStepWrapper key={index}>
                   <QuestionItem formik={formik} question={question} index={index} />
                   {isLastElem(formik.values.test.questions, index) ? (
                     <SkillButton variant="mediumOutlined" onClick={() => push({})}>
@@ -54,11 +54,11 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
                       {ButtonLabels.removeQuestion}
                     </SkillButton>
                   )}
-                </>
-              )}
-            </FieldArray>
-          </TestStepWrapper>
-        ))}
+                </TestStepWrapper>
+              ))}
+            </>
+          )}
+        </FieldArray>
       </TestItemWrapper>
     </FormWrapper>
   );
