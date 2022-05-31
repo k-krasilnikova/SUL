@@ -1,6 +1,7 @@
 import { styled, Box, Radio, TextField, RadioGroup, FormControlLabel } from '@mui/material';
 
 import { SectionName } from 'pages/CourseEditor/styled';
+import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
 
 export const TestItemWrapper = styled(Box)({
   width: '734px',
@@ -81,4 +82,16 @@ export const TestBasicField = styled(TextField)({
   '& label': {
     color: '#A2A2A2',
   },
+});
+
+export const AddRemoveAnswerButton = styled(SkillButton)({
+  width: '50px',
+  height: '50px',
+  border: 'none',
+});
+
+export const ButtonsWrapper = styled(Box)({
+  display: 'flex',
+  alignSelf: 'start',
+  marginTop: '10px',
 });
