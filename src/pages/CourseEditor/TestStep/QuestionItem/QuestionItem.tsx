@@ -22,7 +22,12 @@ import {
   InputText,
 } from './styled';
 
-const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
+const QuestionItem: FC<IQuestionItemProps> = ({
+  index,
+  question,
+  formik,
+  handleChangeCorrectAnswer,
+}) => (
   <QuestionWrapper>
     <QuestionTitle>
       {EditorTitles.questionNumber}
@@ -40,23 +45,19 @@ const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
         <MenuItem value="radio">{BUTTON_VARIANT.radio}</MenuItem>
       </Field>
     </QuestionInputBox>
-    <RadioButtonBox defaultValue={`test.questions[${index}].answers[${index}].aN`}>
+    <RadioButtonBox
+      name={`test.questions[${index}].correctAnswer`}
+      value={question.correctAnswer}
+      onChange={handleChangeCorrectAnswer}
+    >
       <FieldArray name={`test.questions[${index}].answers`}>
         {({ remove, push }) => (
           <>
             {question?.answers?.map((answer, key) => (
               <RadioControlLabel
                 key={key}
-                value={answer.variant}
-                control={
-                  <RadioSelectAnswer
-                    value={answer.aN}
-                    color="primary"
-                    name={`test.questions[${index}].answers[${key}].aN`}
-                    id={`test.questions[${index}].answers[${key}].aN`}
-                    onChange={formik.handleChange}
-                  />
-                }
+                value={answer.aN}
+                control={<RadioSelectAnswer color="primary" />}
                 label={
                   <InputAnswer
                     variant="standard"
@@ -74,7 +75,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
                 onClick={() =>
                   push({
                     variant: '',
-                    aN: question?.answers?.length + 1,
+                    aN: question?.answers?.length + Numbers.one,
                   })
                 }
               >
@@ -82,7 +83,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
               </AddRemoveAnswerButton>
               <AddRemoveAnswerButton
                 variant="mediumOutlined"
-                onClick={() => remove(question?.answers.length - 1)}
+                onClick={() => remove(question?.answers.length - Numbers.one)}
               >
                 <Remove color="primary" fontSize="medium" />
               </AddRemoveAnswerButton>

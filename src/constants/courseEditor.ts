@@ -30,6 +30,12 @@ export const LESSONS_TYPE: { [key: string]: string | number }[] = [
   },
 ];
 
+export const LESSONS_TYPE_TITLE_MAP: { [key: string]: string } = {
+  plain: ContentElementType.plain,
+  video: ContentElementType.video,
+  presentation: ContentElementType.presentation,
+};
+
 export const INITIAL_VALUES = {
   title: '',
   complexity: 0,
@@ -73,3 +79,5 @@ export const BUTTON_VARIANT = {
   input: 'Input',
   radio: 'Radiobutton (One answer)',
 };
+
+export const RADIX_PARAMETER = 10;

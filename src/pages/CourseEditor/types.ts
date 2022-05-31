@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ChangeEvent, BaseSyntheticEvent } from 'react';
+import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent } from 'react';
 
 import { IQuestionObject, ITestItem } from 'types/test';
 

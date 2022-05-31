@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-restricted-syntax */
-import { ChangeEvent, FC, useState } from 'react';
+import { BaseSyntheticEvent, ChangeEvent, FC, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
 import { useGetCourseEditorData } from 'api/admin';
-import { INITIAL_NUMBER_POINT, INITIAL_VALUES } from 'constants/courseEditor';
+import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
 import courseEditorValidationSchema from 'validations/courseEditorValidationSchema';
 
 import CourseEditor from './CourseEditor';
@@ -43,6 +43,10 @@ const CourseEditorContainer: FC = () => {
     formik.setFieldValue(name, { ...skill, points: INITIAL_NUMBER_POINT });
   };
 
+  const handleChangeCorrectAnswer = (event: BaseSyntheticEvent) => {
+    formik.setFieldValue(event.target.name, Number.parseInt(event.target.value, RADIX_PARAMETER));
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -50,6 +54,7 @@ const CourseEditorContainer: FC = () => {
         isCourseDataLoading={isCourseEditorDataLoading}
         formik={formik}
         handleChangeTechnology={handleChangeTechnology}
+        handleChangeCorrectAnswer={handleChangeCorrectAnswer}
       />
     </FormikProvider>
   );
