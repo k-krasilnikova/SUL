@@ -22,7 +22,7 @@ const applyCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { id: courseId } = req.body;
+    const { courseId } = req.body;
     const { id: userId } = res.locals;
 
     if (!courseId || !userId) {
@@ -41,6 +41,8 @@ const applyCourse = async (
     if (role === USER_ROLES.EMPLOYEE) {
       await updatePendingFieldCourses(managerId, String(course._id));
     }
+
+    next();
 
     res.json(course);
   } catch (err) {

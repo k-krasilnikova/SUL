@@ -61,6 +61,7 @@ interface IEditCoursePayload {
 interface IPassTestPayload {
   testId: string;
   answers: IAnswer[];
+  clientCourseId: string;
 }
 
 interface IPassTestResultPayload extends TAchievements {

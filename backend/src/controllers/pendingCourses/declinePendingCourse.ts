@@ -21,7 +21,7 @@ const declinePendingCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { id: clientCourseId } = req.body;
+    const { clientCourseId } = req.body;
     const { id: managerId } = res.locals;
 
     if (!clientCourseId || !managerId) {
@@ -42,6 +42,8 @@ const declinePendingCourse = async (
     await removeFromPendingFieldCourses(manager, clientCourse._id);
 
     await updateClientCourseField(clientCourseId, CLIENT_COURSE_FIELDS.applyDate, Date.now());
+
+    next();
 
     res.json({ updateStatus: 'Course was declined.' });
   } catch (error) {
