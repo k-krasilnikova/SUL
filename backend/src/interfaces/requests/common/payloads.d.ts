@@ -64,6 +64,12 @@ interface IPassTestPayload {
   clientCourseId: string;
 }
 
+interface IAddNotificationPayload {
+  courseId: string;
+  clientCourseId: string;
+  assessment: boolean;
+}
+
 interface IPassTestResultPayload extends TAchievements {
   result: TestRuslt;
 }
@@ -80,4 +86,5 @@ export {
   IUpdateCourseTestPayload,
   IPassTestPayload,
   IPassTestResultPayload,
+  IAddNotificationPayload,
 };
