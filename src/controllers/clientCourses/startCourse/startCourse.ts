@@ -16,15 +16,18 @@ const startCourse = async (
 ) => {
   try {
     const { id: clientCourseId } = req.params;
+
     const courseStatus = await getStatusProvider(clientCourseId);
     if (courseStatus?.status !== CourseStatus.approved) {
       throw new BadRequestError("Course hasn't been approved yet.");
     }
+
     await updateClientCourseField(
       clientCourseId,
       CLIENT_COURSE_FIELDS.status,
       CourseStatus.started,
     );
+
     res.json({ start: true });
   } catch (err) {
     next(err);

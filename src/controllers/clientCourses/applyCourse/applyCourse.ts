@@ -23,14 +23,17 @@ const applyCourse = async (
 ) => {
   try {
     const { courseId, userId } = res.locals;
+
     if (!courseId || !userId) {
       throw new BadRequestError('Invalid query');
     }
+
     const applyedCourses = await getAllClientCoursesProvider(userId);
     const isDuplicate = checkCourseDuplicates(applyedCourses, courseId);
     if (isDuplicate) {
       throw new BadRequestError('Course already applied.');
     }
+
     const materialsCount = await materialsCounterProvider(courseId);
     const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
     const course: IClientCourse = await applyCourseProvider(courseId, userId, progressDto);
