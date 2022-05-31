@@ -74,8 +74,6 @@ const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
                 onClick={() =>
                   push({
                     variant: '',
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
                     aN: question?.answers?.length + 1,
                   })
                 }
@@ -84,8 +82,6 @@ const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
               </AddRemoveAnswerButton>
               <AddRemoveAnswerButton
                 variant="mediumOutlined"
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
                 onClick={() => remove(question?.answers.length - 1)}
               >
                 <Remove color="primary" fontSize="medium" />
