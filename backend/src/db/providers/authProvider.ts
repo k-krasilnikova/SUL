@@ -1,7 +1,7 @@
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
 import { IUser } from 'interfaces/Ientities/Iusers';
-import AccessTokenBlacklistModel from 'db/models/AccessTokens';
+import { AccessTokenBlacklistModel } from 'db/models/AccessTokens';
 
 const authProvider = async (login: string): Promise<IUser> => {
   const dbUser = await UserModel.findOne({ username: login }).lean();
