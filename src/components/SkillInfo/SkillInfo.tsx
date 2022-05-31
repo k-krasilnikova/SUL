@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import ProgressBar from 'components/ProgressBar/ProgressBar';
+import ProgressBar from 'components/ProgressBar';
 import Avatar from 'components/Avatar';
 import Tooltip from 'components/Tooltip';
 import { Size } from 'enums/sizes';
