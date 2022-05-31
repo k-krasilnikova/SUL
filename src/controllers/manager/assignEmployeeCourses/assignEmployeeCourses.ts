@@ -33,10 +33,14 @@ const assignEmployeeCourses = async (
   try {
     const { id: employeeId } = req.params;
     const { id: managerId } = res.locals;
-    const coursesToAssign = req.body;
+    const { courses: coursesToAssign, assessment: withAssessment } = req.body;
 
     const employee = await getUserProvider(employeeId);
     const manager = await getUserProvider(managerId);
+
+    if (employeeId === managerId) {
+      throw new BadRequestError('Unable to self-assign courses.');
+    }
 
     if (String(employee.managerId) !== String(manager._id)) {
       throw new BadRequestError('Employee does not belong to user.');
@@ -63,7 +67,7 @@ const assignEmployeeCourses = async (
           employeeId,
           courseToAssign.courseId,
           progressDto,
-          courseToAssign.assessment,
+          withAssessment || false,
         );
 
         return assignedCourse;
