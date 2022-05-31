@@ -4,6 +4,7 @@ import { FieldArray } from 'formik';
 
 import Loader from 'components/Loader';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
+import { convertTestTimeout } from 'utils/helpers/convertTime';
 import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import { EditorTitles } from 'constants/courseEditor';
@@ -32,7 +33,7 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
           />
           <TestBasicField
             label="Duration"
-            value={formik.values.test.timeout}
+            value={convertTestTimeout(formik.values.test.timeout)}
             id="test.timeout"
             variant="outlined"
             onChange={formik.handleChange}
