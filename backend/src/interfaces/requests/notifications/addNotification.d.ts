@@ -1,11 +1,11 @@
-import { TNotification } from 'interfaces/IResponse/IResponse';
-
 import { TBaseRequest, TBaseResponse } from '../base';
+import { IAuthLocals } from '../common/locals';
 
 type TResponsePayload = never;
-type TResponseLocals = TNotification; // refactor after removing adapters
 
-type TAddNotificationRequest = TBaseRequest;
-type TAddNotificationResponse = TBaseResponse<TResponsePayload, TResponseLocals>;
+type TRequestBody = { courseId: string; clientCourseId: string; assessment: boolean };
+
+type TAddNotificationRequest = TBaseRequest<IAuthLocals, TRequestBody>;
+type TAddNotificationResponse = TBaseResponse<TResponsePayload>;
 
 export { TAddNotificationRequest, TAddNotificationResponse };
