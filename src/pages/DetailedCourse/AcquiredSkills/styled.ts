@@ -7,6 +7,12 @@ export const SkillsList = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
   gap: '60px',
+  [theme.breakpoints.down('lg')]: {
+    gap: '40px',
+  },
+  [theme.breakpoints.down('md')]: {
+    gap: '20px',
+  },
 });
 
 export const SkillInfoWrapper = styled('div')<{ children: ReactNode }>({
