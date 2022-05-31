@@ -36,6 +36,7 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
             value={convertTestTimeout(formik.values.test.timeout)}
             id="test.timeout"
             variant="outlined"
+            name="test.timeout"
             onChange={formik.handleChange}
           />
         </TestTitleBox>
