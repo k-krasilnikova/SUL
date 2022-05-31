@@ -10,8 +10,8 @@ interface IRefreshJwtPayload extends JwtPayload {
 }
 
 interface ITokens {
-  accessToken: string;
-  refreshToken: string;
+  accessToken?: string;
+  refreshToken?: string;
 }
 
 export { IAccessJwtPayload, IRefreshJwtPayload, ITokens };
