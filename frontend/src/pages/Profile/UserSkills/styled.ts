@@ -70,19 +70,8 @@ export const SkillsListItem = styled('div')({
 
 export const SkillTitle = styled('div')({
   display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  width: '100%',
-  [theme.breakpoints.up('xs')]: {
-    alignItems: 'center',
-  },
-  [theme.breakpoints.up('sm')]: {
-    alignItems: 'start',
-  },
-  [theme.breakpoints.up('xl')]: {
-    alignItems: 'center',
-    height: '23px',
-  },
+  alignItems: 'center',
+  marginBottom: '18px',
 });
 
 export const Star = styled('img')({
@@ -111,14 +100,13 @@ export const Title = styled('div')({
 });
 
 export const SkillsInfoList = styled('div')({
-  [theme.breakpoints.up('md')]: {
-    margin: 0,
-  },
-  [theme.breakpoints.up('sm')]: {
-    margin: '10px 17px',
-  },
-  [theme.breakpoints.up('xl')]: {
-    margin: '17px',
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '24px',
+  marginBottom: '18px',
+  padding: '0 20px',
+  [theme.breakpoints.down('md')]: {
+    gap: '18px',
   },
 });
 

@@ -9,12 +9,12 @@ import { ButtonLabels } from 'constants/ButtonLabels';
 import { COURSE_DISABLE_DAYS } from 'constants/time';
 import { PAGES } from 'constants/pages';
 import { COURSE_LABELS } from 'constants/statuses';
-import { IDetailedCourseActions } from 'types/detailedCourse';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { Info } from 'enums/info';
 
 import DeleteCourseButton from './DeleteCourseButton';
 import { CourseInfoBox, DetailedCourseActionsBox } from './styled';
+import { IDetailedCourseActions } from '../types';
 
 const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
   commonCourseData,

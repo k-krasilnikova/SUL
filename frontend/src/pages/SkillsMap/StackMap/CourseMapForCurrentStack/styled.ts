@@ -32,9 +32,6 @@ export const CoursesWrapper = styled('div')({
   flexDirection: 'column',
   maxHeight: '440px',
   overflowY: 'scroll',
-  [theme.breakpoints.down('xl')]: {
-    maxHeight: '365px',
-  },
   [theme.breakpoints.down('lg')]: {
     maxHeight: '100%',
   },
