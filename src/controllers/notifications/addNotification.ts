@@ -22,7 +22,9 @@ const addNotification = async (
   next: NextFunction,
 ) => {
   try {
-    const { userId, courseId, clientCourseId, withAssessment } = res.locals; // refactor for eugene
+    const { id: userId } = res.locals;
+
+    const { courseId, clientCourseId, assessment: withAssessment } = req.body;
 
     if (userId) {
       let course;
@@ -66,8 +68,6 @@ const addNotification = async (
         );
       }
     }
-
-    next();
   } catch (error) {
     next(error);
   }

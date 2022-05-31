@@ -30,8 +30,8 @@ clientCoursesRouter.put(
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   passTest,
   getAchievements,
-  addNotification,
   unitTestResults,
+  addNotification,
 );
 clientCoursesRouter.get(
   SubRoutes.startTest,

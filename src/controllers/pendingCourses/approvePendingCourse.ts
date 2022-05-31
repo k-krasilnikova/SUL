@@ -22,7 +22,7 @@ const approvePendingCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { id: clientCourseId, assessment: withAssessment } = req.body;
+    const { clientCourseId, assessment: withAssessment } = req.body;
     const { id: managerId } = res.locals;
 
     if (!clientCourseId || !managerId) {
@@ -46,6 +46,8 @@ const approvePendingCourse = async (
     if (withAssessment) {
       await arrangeAssessment(clientCourseId);
     }
+
+    next();
 
     res.json({
       updateStatus: `Course was approved ${withAssessment ? 'with' : 'without'} assessment.`,
