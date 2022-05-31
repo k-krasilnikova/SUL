@@ -16,8 +16,8 @@ const getClientCourseById = async (
 ) => {
   try {
     const { id: clientCourseId } = req.params;
-    const clientCourse = await getClientCourseProvider(clientCourseId);
 
+    const clientCourse = await getClientCourseProvider(clientCourseId);
     const preparedSimilarCourses = await prepareSimilarCourses(clientCourse.course.similarCourses);
 
     const payload = mapClientCourse(clientCourse, preparedSimilarCourses);
