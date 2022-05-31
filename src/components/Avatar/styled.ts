@@ -44,8 +44,8 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       height: '50px',
     }),
     ...(size === Size.xsmall && {
-      width: '30px',
-      height: '30px',
+      width: '40px',
+      height: '40px',
     }),
     ...(size === Size.xxsmall && {
       width: '25px',
@@ -73,14 +73,6 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
       width: '50px',
       height: '50px',
     }),
-    ...(size === Size.xsmall && {
-      width: '40px',
-      height: '40px',
-    }),
-    ...(size === Size.xxsmall && {
-      width: '25px',
-      height: '25px',
-    }),
   },
   [theme.breakpoints.down('md')]: {
     ...((size === Size.xlarge || size === Size.sublarge || size === Size.large) && {
@@ -90,10 +82,6 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
     ...(size === Size.small && {
       width: '30px',
       height: '30px',
-    }),
-    ...(size === Size.xxsmall && {
-      width: '25px',
-      height: '25px',
     }),
   },
   [theme.breakpoints.down(550)]: {
@@ -122,10 +110,6 @@ export const UserAvatarRounded = styled('div')<IProps>(({ size, avatar }) => ({
     ...((size === Size.xsmall || size === Size.small) && {
       width: '50px',
       height: '50px',
-    }),
-    ...(size === Size.xxsmall && {
-      width: '25px',
-      height: '25px',
     }),
   },
 }));

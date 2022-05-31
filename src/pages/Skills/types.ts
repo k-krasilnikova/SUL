@@ -9,3 +9,10 @@ export interface ISkillsPageProps {
   skills?: ISkillsListProps[];
   isLoading?: boolean;
 }
+
+export type TSkillGroupProps = Pick<ISkillsPageProps, 'skills' | 'skillFounded'>;
+
+export interface ISkillItemProps {
+  name: string;
+  skillImage: string;
+}
