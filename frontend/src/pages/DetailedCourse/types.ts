@@ -1,7 +1,6 @@
 import { NavigateFunction } from 'react-router';
 
 import { CourseStatus } from 'enums/course';
-
 import { PureClientCourse } from 'types/clientCourse';
 import { ICourse } from 'types/course';
 import { TVariantProgressBar } from 'types/progressBar';

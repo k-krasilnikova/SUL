@@ -5,9 +5,9 @@ import { ButtonLabels } from 'constants/ButtonLabels';
 import { PAGES } from 'constants/pages';
 import { PATHS } from 'constants/routes';
 import { backIconMobile } from 'icons';
+import { IBackButton } from 'pages/DetailedCourse/types';
 
 import { BackArrow, BackWrapper, StyledButton } from './styled';
-import { IBackButton } from '../../types';
 
 const BackButton: FC<IBackButton> = ({ page }) => (
   <BackWrapper>
