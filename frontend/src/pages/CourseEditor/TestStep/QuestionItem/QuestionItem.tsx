@@ -82,7 +82,12 @@ const QuestionItem: FC<IQuestionItemProps> = ({ index, question, formik }) => (
               >
                 <Add color="primary" fontSize="medium" />
               </AddRemoveAnswerButton>
-              <AddRemoveAnswerButton variant="mediumOutlined" onClick={() => remove(index)}>
+              <AddRemoveAnswerButton
+                variant="mediumOutlined"
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                onClick={() => remove(question?.answers.length - 1)}
+              >
                 <Remove color="primary" fontSize="medium" />
               </AddRemoveAnswerButton>
             </ButtonsWrapper>
