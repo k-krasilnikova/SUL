@@ -23,7 +23,6 @@ const addNotification = async (
 ) => {
   try {
     const { id: userId } = res.locals;
-
     const { courseId, clientCourseId, assessment: withAssessment } = req.body;
 
     if (userId) {
