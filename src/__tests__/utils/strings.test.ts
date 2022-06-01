@@ -1,3 +1,4 @@
+import { combineFullName } from 'utils/combineFullName';
 import capitalizeFirstLetter from 'utils/string/capitalizeFirstLetter';
 import fullTrim from 'utils/string/fullTrim';
 
@@ -22,5 +23,16 @@ describe('String utils tests', () => {
 
     expect(result).toBe(expected);
     expect(resultNoChanges).toBe(expected);
+  });
+
+  it('Combine full name', () => {
+    const firstName = 'FirstName';
+    const lastName = 'SecondName';
+
+    const expected = `${firstName} ${lastName}`;
+
+    const result = combineFullName(firstName, lastName);
+
+    expect(result).toBe(expected);
   });
 });
