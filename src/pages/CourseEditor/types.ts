@@ -2,6 +2,9 @@ import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent } from 'react';
 
 import { IQuestionObject, ITestItem } from 'types/test';
 
+export interface ISkillsById {
+  [key: string]: { _id: string; name: string; maxScore: number };
+}
 export interface ICourseEditorResponse {
   _id: string;
   title: string;
@@ -12,10 +15,6 @@ export interface ICourseEditorResponse {
   materials: ICourseEditorMaterials[];
   test: { _id: string; title: string; questions: IQuestionObject[]; timeout: number };
   allSkills: { _id: string; name: string; maxScore: number }[];
-}
-
-export interface ISkillsById {
-  [key: string]: { _id: string; name: string; maxScore: number };
 }
 
 export interface IFormik {

@@ -9,13 +9,14 @@ import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { ICourseEditorResponse } from 'pages/CourseEditor/types';
 
 const useGetCourseEditorData = (
-  courseId?: string,
+  courseId: string,
   onSuccessLoadCourseData?: (data: ICourseEditorResponse) => void,
 ): UseQueryResult<ICourseEditorResponse, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
+
   return useQuery(
     [QUERY_KEYS.courseEditorData],
     async () => {
