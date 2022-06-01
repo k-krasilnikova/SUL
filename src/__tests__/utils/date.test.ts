@@ -1,4 +1,4 @@
-import { generateStartAndFinishTestDates } from 'utils/date/testDate';
+import { generateStartAndFinishTestDates } from 'controllers/tests/startTest/utils/helpers';
 
 jest.useFakeTimers().setSystemTime(new Date(2022, 0, 1));
 
