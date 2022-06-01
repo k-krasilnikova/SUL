@@ -8,7 +8,6 @@ import { IActionButtons } from '../types';
 const ActionButtons: FC<IActionButtons> = ({
   handlePreviousStep,
   handleNextStep,
-  handleSubmit,
   isFirstStep,
   isLastStep,
 }) => (
@@ -19,11 +18,7 @@ const ActionButtons: FC<IActionButtons> = ({
     <StyledButton variant="mediumContained" onClick={handleNextStep} disabled={isLastStep}>
       {ButtonLabels.next}
     </StyledButton>
-    {isLastStep && (
-      <StyledButton variant="mediumContained" onClick={handleSubmit}>
-        {ButtonLabels.submit}
-      </StyledButton>
-    )}
+    {isLastStep && <StyledButton variant="mediumContained">{ButtonLabels.submit}</StyledButton>}
   </ButtonWrapper>
 );
 

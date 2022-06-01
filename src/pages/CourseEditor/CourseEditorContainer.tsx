@@ -4,7 +4,7 @@ import { BaseSyntheticEvent, ChangeEvent, FC, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
-import { useGetCourseEditorData } from 'api/admin';
+import useGetCourseEditorData from 'api/admin';
 import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
 import courseEditorValidationSchema from 'validations/courseEditorValidationSchema';
 
