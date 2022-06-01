@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search as SearchIcon } from '@mui/icons-material';
-import { ClickAwayListener, InputAdornment } from '@mui/material';
+import { InputAdornment } from '@mui/material';
+import { ClickAwayListener } from '@material-ui/core';
 
 import { SearchResult } from 'components/Layout/components';
 import { ICourse } from 'types/course';
