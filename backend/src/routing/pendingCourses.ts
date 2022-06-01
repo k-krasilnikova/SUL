@@ -3,12 +3,14 @@ import { Router } from 'express';
 import { SubRoutes } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
 import { USER_ROLES } from 'config/constants';
-import getPendingCourses from 'controllers/pendingCourses/getPendingCourses';
-import approvePendingCourse from 'controllers/pendingCourses/approvePendingCourse';
-import declinePendingCourse from 'controllers/pendingCourses/declinePendingCourse';
 import adapterManager from 'controllers/manager/adapterManager';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
-import addNotification from 'controllers/notifications/addNotification';
+import { addNotification } from 'controllers/notifications';
+import {
+  approvePendingCourse,
+  declinePendingCourse,
+  getPendingCourses,
+} from 'controllers/pendingCourses';
 // import sendMail from 'middlewares/mailSender';
 
 const pendingCoursesRouter = Router();

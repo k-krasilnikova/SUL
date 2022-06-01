@@ -5,14 +5,14 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import supertest from 'supertest';
 
-import login from 'controllers/auth/login';
 import { app } from 'app';
 import { STATUS_CODES } from 'config/constants';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { Routes, SubRoutes } from 'enums/routesEnum';
+import { login } from 'controllers/auth';
 
-jest.mock('controllers/auth/login', () => {
-  const originalModule = jest.requireActual('controllers/auth/login');
+jest.mock('controllers/auth/login/login', () => {
+  const originalModule = jest.requireActual('controllers/auth/login/login');
 
   return {
     __esModule: true,
