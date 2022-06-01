@@ -5,8 +5,8 @@ import Loader from 'components/Loader';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import { IStepProps } from 'pages/CourseEditor/types';
-import { ButtonLabels } from 'constants/ButtonLabels';
 import { EditorTitles } from 'constants/courseEditor';
+import { ButtonLabels } from 'constants/ButtonLabels';
 
 import LessonItem from './LessonItem';
 import { LessonsStepWrapper, LessonButton } from './styled';
