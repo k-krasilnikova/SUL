@@ -1,4 +1,4 @@
-import mongoose, { ObjectId } from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import { isNull } from 'lodash';
 
 import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
@@ -11,6 +11,7 @@ import UserSkillModel from 'db/models/UserSkill';
 import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
 import { NO_FILTER } from 'config/constants';
+import ISkill from 'interfaces/Ientities/ISkill';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })
@@ -73,7 +74,7 @@ const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
   return skillsByGroup;
 };
 
-const getUserSkill = async (userId: ObjectId | string, skillId: ObjectId | string) => {
+const getUserSkill = async (userId: Types.ObjectId | string, skillId: Types.ObjectId | string) => {
   const userSkill = await UserSkillModel.findOne({ user: userId, skill: skillId });
 
   if (!userSkill) {
@@ -84,13 +85,13 @@ const getUserSkill = async (userId: ObjectId | string, skillId: ObjectId | strin
 };
 
 const getPopulatedUserSkill = async (
-  userSkillId: ObjectId | string,
+  userSkillId: Types.ObjectId | string,
 ): Promise<IUserSkillPopulated> =>
   UserSkillModel.findById(userSkillId).populate({ path: 'skill', model: 'Skill' }).lean();
 
 const addUserSkill = async (
   userId: string,
-  { skill, points }: { skill: ObjectId; points: number },
+  { skill, points }: { skill: Types.ObjectId; points: number },
 ): Promise<IUserSkill> => {
   const insertedUserSkill: IUserSkill = await UserSkillModel.create({
     user: new mongoose.Types.ObjectId(userId),
@@ -101,7 +102,7 @@ const addUserSkill = async (
   return insertedUserSkill;
 };
 
-const getCommonSkill = async (skillId: ObjectId | string) => {
+const getCommonSkill = async (skillId: Types.ObjectId | string) => {
   const skillInfo = await SkillModel.findById(skillId).lean();
 
   if (!skillInfo) {
@@ -114,7 +115,7 @@ const getCommonSkill = async (skillId: ObjectId | string) => {
 const updateUserSkill = async (
   userId: string,
   points: number,
-  skillId?: ObjectId | string,
+  skillId?: Types.ObjectId | string,
 ): Promise<IUserSkill> => {
   const updatedUserSkill: IUserSkill | null = await UserSkillModel.findOneAndUpdate(
     { user: userId, skill: skillId },
@@ -169,7 +170,7 @@ const populateUserStack = async (user: IUser): Promise<IUser> =>
     populate: { path: 'member', model: 'StackMember', select: '-_id name' },
   });
 
-const skillsExist = async (ids?: string[] | ObjectId[]): Promise<boolean> => {
+const skillsExist = async (ids?: string[] | Types.ObjectId[]): Promise<boolean> => {
   if (!ids) {
     return false;
   }
@@ -213,12 +214,14 @@ const getSkillsToCourseTechs = async (technologies: ICourseTechnologyPayload[]) 
   });
 
   const techsForCourse = techs.map((currentSkill, index) => ({
-    skill: currentSkill?._id as string,
+    skill: currentSkill?._id as Types.ObjectId,
     points: technologies[index].points,
   }));
 
   return techsForCourse;
 };
+
+const getSkills = async (): Promise<ISkill[]> => SkillModel.find({}).lean();
 
 export {
   getUserSkills,
@@ -234,4 +237,5 @@ export {
   skillsExist,
   isProperTechnologies,
   getSkillsToCourseTechs,
+  getSkills,
 };

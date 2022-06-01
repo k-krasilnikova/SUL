@@ -4,7 +4,7 @@ import Loader from 'components/Loader';
 import { Loaders } from 'enums/loader';
 import { IShortCourseInfo, CoursesListType } from 'types/course';
 
-import { CourseItem } from './CourseItem';
+import CourseItem from './CourseItem';
 import { StyledList, StyledHorizontalLine } from './styled';
 
 interface IProps {

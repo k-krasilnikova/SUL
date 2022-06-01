@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent } from 'react';
+import { BaseSyntheticEvent, ReactNode } from 'react';
 
 import { TUserInfo } from 'types/user';
 import { INotification } from 'types/notification';
@@ -44,6 +44,12 @@ export type TMenuMobileContainerProps = Pick<
 export interface IMenuMobileProps extends Omit<TMenuMobileContainerProps, 'isMobileMenuOpen'> {
   isShowMenu: boolean;
   handleSpaceHolderClick: (event: BaseSyntheticEvent) => void;
+}
+
+export type TPageWrapperContainerProps = Pick<IAuthorizedLayoutProps, 'isSqueeze'>;
+
+export interface IPageWrapperProps extends TPageWrapperContainerProps {
+  children: ReactNode;
 }
 
 export interface IStyledProps {

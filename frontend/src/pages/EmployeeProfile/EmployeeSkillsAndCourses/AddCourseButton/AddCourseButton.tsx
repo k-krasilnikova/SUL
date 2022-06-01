@@ -1,16 +1,15 @@
 import { FC } from 'react';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
+import { IAddCourseButtonProps } from 'pages/EmployeeProfile/types';
 
 import { AddCourseDialog } from './AddCourseDialog';
 import { StyledButton } from './styled';
 
-interface IProps {
-  isAddCourseDialogOpen: boolean;
-  toggleAddCourseDiaologOpen: () => void;
-}
-
-const AddCourseButton: FC<IProps> = ({ isAddCourseDialogOpen, toggleAddCourseDiaologOpen }) => (
+const AddCourseButton: FC<IAddCourseButtonProps> = ({
+  isAddCourseDialogOpen,
+  toggleAddCourseDiaologOpen,
+}) => (
   <>
     <StyledButton variant="medium" onClick={toggleAddCourseDiaologOpen}>
       {ButtonLabels.addCourse}

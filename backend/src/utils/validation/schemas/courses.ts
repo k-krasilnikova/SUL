@@ -8,11 +8,11 @@ import { MaterialContentType } from 'enums/materials';
 import { TIME_1M_SEC } from 'config/constants';
 import { ITest } from 'interfaces/Ientities/Itest';
 import { ICourseTechsFromWeb } from 'interfaces/ICourses/IQueryCourses';
+import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/courseTest';
 
 import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
 import fullTrim from '../../string/fullTrim';
 import { addMaterialStages } from '../../normaliser/materials';
-import { setAnswerProperNumbersToQuestions } from '../../normaliser/test';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import {
   MAX_DESCRIPTION_LENGTH,

@@ -1,1 +1,1 @@
-export { default } from './SkillItemContainer';
+export { default } from './SkillItem';

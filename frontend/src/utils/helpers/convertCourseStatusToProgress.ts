@@ -37,6 +37,11 @@ const convertCourseStatusToProgress = (status?: string): ConvertedProgress => {
       progressText: COMPLETED_STATUS_TEXT,
       progressVariant: VARIANTS.completed,
     },
+    [CourseStatus.assessment]: {
+      progressValue: 100,
+      progressText: '100%',
+      progressVariant: VARIANTS.completed,
+    },
     [CourseStatus.failed]: {
       progressValue: 0,
       progressText: FAILED_STATUS_TEXT,
