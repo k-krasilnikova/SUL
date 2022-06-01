@@ -1,5 +1,5 @@
-import mongoose, { ObjectId } from 'mongoose';
-import { isEmpty } from 'lodash';
+import mongoose, { Types } from 'mongoose';
+import { isEmpty, isNull } from 'lodash';
 
 import {
   DEFAULT_N_PER_PAGE,
@@ -13,7 +13,7 @@ import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
-import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+import { ICoursePopulated, ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
@@ -21,10 +21,11 @@ import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
 import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
+import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 import { getTestById } from './testProvider';
 
-const generateCourseStatusLookup = (userId: ObjectId | string) => ({
+const generateCourseStatusLookup = (userId: Types.ObjectId | string) => ({
   $lookup: {
     from: 'clientCourses',
     localField: '_id',
@@ -128,7 +129,10 @@ const getCoursesProvider = async (
   }
 };
 
-const getCourseProvider = async (courseId: string | ObjectId, userId: string | ObjectId) => {
+const getCourseProvider = async (
+  courseId: string | Types.ObjectId,
+  userId: string | Types.ObjectId,
+) => {
   const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
     {
       $match: {
@@ -150,6 +154,21 @@ const getCourseProvider = async (courseId: string | ObjectId, userId: string | O
   return populated;
 };
 
+const getCourseByIdProvider = async (
+  courseId: string | Types.ObjectId,
+): Promise<ICoursePopulated> => {
+  const course = await CourseModel.findById(courseId)
+    .populate('test')
+    .populate({ path: 'technologies', populate: { path: 'skill' } })
+    .lean();
+
+  if (isNull(course)) {
+    throw new NotFoundError('Course not found.');
+  }
+
+  return convertToTypeUnsafe<ICoursePopulated>(course);
+};
+
 const getMaterialsProvider = async (courseId: string) => {
   const material = await CourseModel.findById(courseId).select('materials').lean();
   if (!material) {
@@ -158,7 +177,7 @@ const getMaterialsProvider = async (courseId: string) => {
   return material;
 };
 
-const materialsCounterProvider = async (courseId: string) => {
+const materialsCounterProvider = async (courseId: string | Types.ObjectId) => {
   const materialsCount: { _id: string; total: number }[] = await CourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
@@ -246,8 +265,8 @@ const getAllCoursesProvider = async (
 };
 
 const getCourseStatusProvider = async (
-  courseId: string | ObjectId,
-  userId: string | ObjectId,
+  courseId: string | Types.ObjectId,
+  userId: string | Types.ObjectId,
 ): Promise<ICourseWithStatus['status']> => {
   const relateClientCourse = await ClientCourseModel.findOne({
     course: courseId,
@@ -309,4 +328,5 @@ export {
   addCourseProvider,
   addSimilarCoursesProvider,
   refreshCourseLessonsAndDuration,
+  getCourseByIdProvider,
 };
