@@ -33,7 +33,7 @@ const CourseEditorContainer: FC = () => {
   };
 
   const { data: courseEditorData, isLoading: isCourseEditorDataLoading } = useGetCourseEditorData(
-    params.courseId,
+    params.courseId as string,
     onSuccessLoadCourseData,
   );
 
