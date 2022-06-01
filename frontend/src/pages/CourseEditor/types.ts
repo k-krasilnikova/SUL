@@ -22,11 +22,11 @@ export interface IFormik {
   initialValues: {
     technologies: { _id: string; name: string; points: string; maxScore: number }[];
     materials: ICourseEditorMaterials[];
+    test: ITestItem;
     title?: string;
     complexity?: number;
     avatar?: string;
     description?: string;
-    test: ITestItem;
   };
   values: {
     technologies: { _id: string; name: string; points: number; maxScore: number }[];
@@ -38,7 +38,7 @@ export interface IFormik {
     description?: string;
     skillsById?: ISkillsById;
   };
-  setFieldValue: (field: string, value: any) => void;
+  setFieldValue: (field: string, value: string) => void;
   handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
