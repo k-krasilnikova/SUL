@@ -33,11 +33,14 @@ export const SkillNameWrapper = styled('div')({
 
 export const SkillName = styled('p')({
   maxWidth: '140px',
+  maxHeight: '2.4em',
   margin: '17px 0 16px',
   fontFamily: theme.typography.fontFamily,
   fontWeight: '400',
   fontSize: '18px',
-  lineHeight: 1.2,
+  lineHeight: '1.2em',
+  overflow: 'hidden',
+  lineClamp: 2,
   textAlign: 'center',
   color: COLORS.primaryTextColor,
   [theme.breakpoints.down('md')]: {
