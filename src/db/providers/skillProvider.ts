@@ -1,7 +1,7 @@
 import mongoose, { Types } from 'mongoose';
 import { isNull } from 'lodash';
 
-import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
+import { ISkillTech, IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
 import { ICourseTechnologyPayload, IEditCoursePayload } from 'interfaces/requests/common/payloads';
 import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
 import { IUser } from 'interfaces/Ientities/Iusers';
@@ -79,7 +79,10 @@ const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
   return skillsByGroup;
 };
 
-const getUserSkill = async (userId: Types.ObjectId | string, skillId: Types.ObjectId | string) => {
+const getUserSkill = async (
+  userId: Types.ObjectId | string,
+  skillId: Types.ObjectId | string,
+): Promise<mongoose.Document<Types.ObjectId, IUserSkill, IUserSkill> & IUserSkill> => {
   const userSkill = await UserSkillModel.findOne({ user: userId, skill: skillId });
 
   if (!userSkill) {
@@ -107,7 +110,7 @@ const addUserSkill = async (
   return insertedUserSkill;
 };
 
-const getCommonSkill = async (skillId: Types.ObjectId | string) => {
+const getCommonSkill = async (skillId: Types.ObjectId | string): Promise<ISkill> => {
   const skillInfo = await SkillModel.findById(skillId).lean();
 
   if (!skillInfo) {
@@ -205,7 +208,9 @@ const isProperTechnologies = async (
   return checksPassed;
 };
 
-const getSkillsToCourseTechs = async (technologies: ICourseTechnologyPayload[]) => {
+const getSkillsToCourseTechs = async (
+  technologies: ICourseTechnologyPayload[],
+): Promise<ISkillTech[]> => {
   const techs = await Promise.all(
     technologies.map(({ skill }) => {
       return SkillModel.findById(skill);
