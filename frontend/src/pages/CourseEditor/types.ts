@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent } from 'react';
+import { ChangeEventHandler, ChangeEvent, BaseSyntheticEvent } from 'react';
 
 import { IQuestionObject, ITestItem } from 'types/test';
 
@@ -42,14 +42,17 @@ export interface IFormik {
   handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
+export interface ICourseEditorProps {
+  formik: IFormik;
+  courseData?: ICourseEditorResponse;
+  isCourseDataLoading?: boolean;
+  handleChangeTechnology?: ({ target }: any) => void;
+  handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
+}
 export interface IStepProps {
   formik: IFormik;
   isCourseDataLoading?: boolean;
   courseData?: ICourseEditorResponse;
-}
-
-export interface ICourseEditorProps extends IStepProps {
-  handleChangeTechnology?: (event: ChangeEvent<HTMLInputElement>) => void;
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
 }
 

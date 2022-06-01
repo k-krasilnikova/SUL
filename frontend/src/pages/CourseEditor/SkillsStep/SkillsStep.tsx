@@ -31,7 +31,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
     <Loader type="content" />
   ) : (
     <FormWrapper>
-      <SectionName>{EditorTitles.skillStepTitile}</SectionName>
+      <SectionName>{EditorTitles.skillStepTitle}</SectionName>
       <SkillsTitleWrapper>
         <SkillsText>{EditorTitles.skillDescription}</SkillsText>
       </SkillsTitleWrapper>

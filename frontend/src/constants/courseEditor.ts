@@ -53,7 +53,7 @@ export const INITIAL_VALUES = {
 
 export enum EditorTitles {
   lessonStepTitle = 'Add course files and description',
-  skillStepTitile = 'Edit course skills',
+  skillStepTitle = 'Edit course skills',
   definitionStepTitle = 'Course details',
   definitionStepDescription = 'Description',
   skillDescription = 'Achieved skill',
@@ -64,11 +64,7 @@ export enum EditorTitles {
   exerciseTitle = 'Exercise Title',
   exerciseDescription = 'Exercise Description',
   testDetails = 'Test details',
-  videoTitle = 'Video',
-  presentationTitle = 'Presentation',
-  textTitle = 'Text',
   questionNumber = 'Question № ',
-  answerTestOption = 'Answer Option',
 }
 
 export const INITIAL_NUMBER_POINT = 1;

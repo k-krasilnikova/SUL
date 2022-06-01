@@ -47,6 +47,8 @@ const CourseEditorContainer: FC = () => {
     formik.setFieldValue(event.target.name, Number.parseInt(event.target.value, RADIX_PARAMETER));
   };
 
+  console.log('val:', formik.values.test.questions);
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
