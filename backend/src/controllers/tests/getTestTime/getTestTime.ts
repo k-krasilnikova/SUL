@@ -18,6 +18,7 @@ const getTestTime = async (
     if (!test.length) {
       throw new NotFoundError('No tests found.');
     }
+
     res.json(aggregateNormolizer<TestDb>(test).test.timeout);
   } catch (err) {
     next(err);

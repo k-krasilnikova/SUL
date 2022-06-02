@@ -17,17 +17,22 @@ const getProfileInformation = async (
 ) => {
   try {
     const { id } = req.params;
+
     const profileInfo: TUserInfoResponse = await getFullUserInformationProvider(id);
+
     const notifications = await getUserNotifications(id);
     profileInfo.notifications = notifications;
+
     if (profileInfo.role === USER_ROLES.MANAGER) {
       profileInfo.pendingRequestsAmount = profileInfo.pendingCourses.length;
+
       const employees = await getEmployeesProvider(id);
       const employeesIds = employees.map((employee) => String(employee._id));
       profileInfo.pendingAssessmentsAmount = (
         await getPendingAssessmentsProvider(employeesIds)
       ).length;
     }
+
     res.json(profileInfo);
   } catch (error) {
     next(error);

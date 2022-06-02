@@ -18,7 +18,6 @@ const generateTestStatusToUpdateDates = (checkRangeHours: number): [Date, Date] 
     .toDate();
 
   const from = moment(startPointDate).add(-checkRangeHours, 'h').toDate();
-
   const to = moment(startPointDate).add(checkRangeHours, 'h').toDate();
 
   return [from, to];
