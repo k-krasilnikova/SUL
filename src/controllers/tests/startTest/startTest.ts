@@ -17,6 +17,7 @@ import { generateStartAndFinishTestDates } from './utils/helpers';
 const startTest = async (req: TStartTestRequest, res: TStartTestResponse, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
+
     const { status: courseStatus, finishTestDate } = await getClientCourseProvider(clientCourseId);
     const [{ currProgress: currentProgress }] = await getCurrentProgress(clientCourseId);
 

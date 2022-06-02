@@ -20,13 +20,11 @@ const getTestResult = async (
     const { id: userId } = res.locals;
 
     const course = await getClientCourseProvider(clientCourseId);
-
     if (String(course.user) !== userId) {
       throw new BadRequestError('Test does not belong to user.');
     }
 
     const { testResult } = course;
-
     if (isEmpty(testResult)) {
       throw new BadRequestError(`Test hasn't been passed yet.`);
     }
