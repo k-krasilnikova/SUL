@@ -5,11 +5,7 @@ import UserModel from '../models/User';
 
 const getPendingCoursesProvider = async (
   managerId: string,
-): Promise<
-  Omit<IUser, 'pendingCourses'> & {
-    pendingCourses: TPendingCourses;
-  }
-> => {
+): Promise<{ pendingCourses: TPendingCourses }> => {
   const dbUser: Omit<IUser, 'pendingCourses'> & { pendingCourses: TPendingCourses } =
     await UserModel.findById(managerId)
       .populate({

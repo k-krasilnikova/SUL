@@ -71,7 +71,7 @@ const applyCourseProvider = async (
   courseId: string,
   userId: string,
   progressDto: IProgress[],
-): Promise<mongoose.Document<Types.ObjectId, IClientCourse, IClientCourse> & IClientCourse> => {
+): Promise<IClientCourse> => {
   const dbUser = await UserModel.findById(userId).lean();
 
   const courseStatus =
@@ -157,7 +157,7 @@ const updateClientCourseField = async (
   courseId: string,
   field: TClientCourseFields,
   value: unknown,
-): Promise<mongoose.Document<Types.ObjectId, IClientCourse, IClientCourse> & IClientCourse> => {
+): Promise<IClientCourse> => {
   const updatedCourse = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { [field]: value } },
@@ -207,7 +207,7 @@ const assignCourseToEmployee = async (
   courseId: string | Types.ObjectId,
   progressDto: IProgress[],
   withAssessment?: boolean,
-): Promise<mongoose.Document<Types.ObjectId, IClientCourse, IClientCourse> & IClientCourse> => {
+): Promise<IClientCourse> => {
   const createdDoc = await ClientCourseModel.create({
     user: assignTo,
     course: courseId,

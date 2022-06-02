@@ -82,7 +82,7 @@ const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
 const getUserSkill = async (
   userId: Types.ObjectId | string,
   skillId: Types.ObjectId | string,
-): Promise<mongoose.Document<Types.ObjectId, IUserSkill, IUserSkill> & IUserSkill> => {
+): Promise<IUserSkill> => {
   const userSkill = await UserSkillModel.findOne({ user: userId, skill: skillId });
 
   if (!userSkill) {

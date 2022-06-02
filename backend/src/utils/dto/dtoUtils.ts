@@ -1,11 +1,9 @@
-import { ITokens, ITokensDto } from 'interfaces/Iauth/authInterfaces';
+import { TInitialDTO } from 'interfaces/dto/initial';
+import { ITokens } from 'interfaces/Iauth/authInterfaces';
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
-import { IUser, TUserDataToClient } from 'interfaces/Ientities/Iusers';
+import { IUser } from 'interfaces/Ientities/Iusers';
 
-const generateInitialDto = (
-  user: IUser,
-  tokens?: ITokens,
-): TUserDataToClient & (ITokensDto | undefined) => {
+const generateInitialDto = (user: IUser, tokens?: ITokens): TInitialDTO => {
   const { passwordHash, refreshToken, accessToken, ...userDataToClient } = user;
   return { ...tokens, ...userDataToClient };
 };
