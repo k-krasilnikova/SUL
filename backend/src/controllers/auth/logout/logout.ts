@@ -7,6 +7,7 @@ import { extractAccessTokenValue } from 'utils/auth/authUtils';
 const logout = async (req: TLogoutRequest, res: TLogoutResponse, next: NextFunction) => {
   try {
     const { id: userId } = res.locals;
+
     await clearTokenProvider(userId);
     res.clearCookie('refreshToken');
 

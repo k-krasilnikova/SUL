@@ -18,9 +18,7 @@ const getPendingAssessments = async (
     const { id: userId } = res.locals;
 
     const employees = await getEmployeesProvider(userId);
-
     const employeesIds = employees.map((employee) => String(employee._id));
-
     const clientCourses = await getPendingAssessmentsProvider(employeesIds);
 
     const assessments = convertToAssessmentsRequests(clientCourses);
