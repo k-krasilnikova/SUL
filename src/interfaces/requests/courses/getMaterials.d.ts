@@ -10,4 +10,4 @@ type TResponsePayload = Pick<ICourse, '_id' | 'materials'>; // actually should r
 type TGetMaterialsRequest = TBaseRequest<TRequestParams>;
 type TGetMaterialsResponse = TBaseResponse<TResponsePayload>;
 
-export { TGetMaterialsRequest, TGetMaterialsResponse };
+export { TGetMaterialsRequest, TGetMaterialsResponse, TResponsePayload };
