@@ -45,7 +45,7 @@ const declinePendingCourse = async (
 
     next();
 
-    res.json({ updateStatus: 'Course was declined.' });
+    res.json('Course was declined.');
   } catch (error) {
     next(error);
   }
