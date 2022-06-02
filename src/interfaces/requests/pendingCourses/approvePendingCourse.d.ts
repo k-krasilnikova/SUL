@@ -6,7 +6,7 @@ import { IWithAssessmentPayload } from '../common/payloads';
 type TRequestParams = IIdParams;
 type TRequestBody = { clientCourseId: string } & IWithAssessmentPayload;
 
-type TResponsePayload = { updateStatus: string };
+type TResponsePayload = string;
 type TResponseLocals = IAuthLocals;
 
 type TApprovePendingCourseRequest = TBaseRequest<TRequestParams, TRequestBody>;

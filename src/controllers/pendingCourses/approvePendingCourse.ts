@@ -49,9 +49,7 @@ const approvePendingCourse = async (
 
     next();
 
-    res.json({
-      updateStatus: `Course was approved ${withAssessment ? 'with' : 'without'} assessment.`,
-    });
+    res.json(`Course was approved ${withAssessment ? 'with' : 'without'} assessment.`);
   } catch (error) {
     next(error);
   }
