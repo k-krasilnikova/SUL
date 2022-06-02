@@ -17,14 +17,14 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading }
   ) : (
     <FormWrapper>
       <SectionName>{EditorTitles.lessonStepTitle}</SectionName>
-      {courseData &&
-        Object.values(formik.values.materials).length &&
-        formik.values?.materials.map((material, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <LessonsStepWrapper key={index}>
-            <FieldArray name="materials">
-              {({ remove, push }) => (
-                <>
+      <FieldArray name="materials">
+        {({ remove, push }) => (
+          <>
+            {courseData &&
+              Object.values(formik.values.materials).length &&
+              formik.values?.materials.map((material, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <LessonsStepWrapper key={index}>
                   <LessonItem material={material} index={index} formik={formik} />
                   {isLastElem(formik.values.materials, index) ? (
                     <LessonButton variant="mediumOutlined" onClick={() => push({})}>
@@ -35,11 +35,11 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading }
                       {ButtonLabels.removeLesson}
                     </LessonButton>
                   )}
-                </>
-              )}
-            </FieldArray>
-          </LessonsStepWrapper>
-        ))}
+                </LessonsStepWrapper>
+              ))}
+          </>
+        )}
+      </FieldArray>
     </FormWrapper>
   );
 
