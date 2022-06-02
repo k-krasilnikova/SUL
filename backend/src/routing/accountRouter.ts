@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { SubRoutes } from 'enums/routesEnum';
+import { SubRoutes } from 'enums/routes';
 import withAuth from 'middlewares/authMiddleware';
 import { USER_ROLES } from 'config/constants';
 import { login, refresh, logout } from 'controllers/auth';

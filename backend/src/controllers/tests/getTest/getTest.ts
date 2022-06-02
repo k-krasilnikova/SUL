@@ -9,7 +9,7 @@ import {
   getClientCourseProvider,
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { isTestAvailableByDate } from 'utils/validation/tests';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
 

@@ -5,7 +5,7 @@ import {
   TApprovePendingCourseResponse,
 } from 'interfaces/requests/pendingCourses/approvePendingCourse';
 import { IUser } from 'interfaces/entities/users';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import {
   arrangeAssessment,
   getClientCourseProvider,

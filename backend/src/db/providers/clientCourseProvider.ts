@@ -7,7 +7,7 @@ import {
   TClientCourseFields,
 } from 'interfaces/entities/clientCourses';
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
