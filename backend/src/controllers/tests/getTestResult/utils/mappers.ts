@@ -1,6 +1,6 @@
 import { PERCENTS, TWO_DIGITS } from 'config/constants';
-import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
-import { ITestResultResponse } from 'interfaces/IResponse/IResponse';
+import { IClientCourse } from 'interfaces/entities/clientCourses';
+import { ITestResultResponse } from 'interfaces/response/response';
 
 const mapTestResult = (testResult: IClientCourse['testResult']): ITestResultResponse => {
   const answers = testResult.map((question) => ({ qN: question.qN, isCorrect: question.aN }));

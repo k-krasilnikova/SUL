@@ -1,10 +1,10 @@
 import { Types } from 'mongoose';
 
 import CourseStatus from 'enums/coursesEnums';
-import { ICourseInfo } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseInfo } from 'interfaces/courses/queryCourses';
 import { CLIENT_COURSE_FIELDS, COURSE_FIELDS } from 'config/constants';
 
-import { ICourse } from './Icourses';
+import { ICourse } from './courses';
 
 export type TCourseFields = typeof COURSE_FIELDS[`${keyof typeof COURSE_FIELDS}`];
 export type TClientCourseFields =

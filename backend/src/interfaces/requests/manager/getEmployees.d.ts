@@ -1,4 +1,4 @@
-import { IEmployeeShortInfo } from 'interfaces/IResponse/IResponse';
+import { IEmployeeShortInfo } from 'interfaces/response/response';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';

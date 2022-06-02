@@ -1,4 +1,4 @@
-import { ICourseWithStatus, TAvailableCourse } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseWithStatus, TAvailableCourse } from 'interfaces/courses/queryCourses';
 
 const filterOnlyAvailableCourses = (courses: ICourseWithStatus[]): ICourseWithStatus[] =>
   courses.filter((course) => !course.status);

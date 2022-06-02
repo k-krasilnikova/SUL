@@ -4,7 +4,7 @@ import {
   TApplyCourseRequest,
   TApplyCourseResponse,
 } from 'interfaces/requests/clientCourses/applyCourse';
-import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
+import { IClientCourse } from 'interfaces/entities/clientCourses';
 import {
   applyCourseProvider,
   getAllClientCoursesProvider,

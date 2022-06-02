@@ -1,5 +1,5 @@
-import { ITokens } from 'interfaces/Iauth/authInterfaces';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { ITokens } from 'interfaces/auth/authInterfaces';
+import { IUser } from 'interfaces/entities/users';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { ILoginPayload } from '../common/payloads';

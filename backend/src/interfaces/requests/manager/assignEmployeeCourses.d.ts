@@ -1,4 +1,4 @@
-import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseToAssign } from 'interfaces/courses/queryCourses';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';

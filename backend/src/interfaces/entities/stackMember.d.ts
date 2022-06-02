@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 
-import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseWithStatus } from 'interfaces/courses/queryCourses';
 
 interface IStackMember {
   _id?: Types.ObjectId;

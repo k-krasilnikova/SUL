@@ -1,6 +1,6 @@
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { IUser } from 'interfaces/entities/users';
 import AccessTokenBlacklistModel from 'db/models/AccessTokens';
 
 const authProvider = async (login: string): Promise<IUser> => {

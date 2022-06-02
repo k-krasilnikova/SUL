@@ -4,7 +4,7 @@ import {
   TGetPendingCoursesRequest,
   TGetPendingCoursesResponse,
 } from 'interfaces/requests/pendingCourses/getPendingCourses';
-import { TPendingCourses, IUser } from 'interfaces/Ientities/Iusers';
+import { TPendingCourses, IUser } from 'interfaces/entities/users';
 import { getPendingCoursesProvider } from 'db/providers/pendingCoursesProvider';
 
 import { mapPendingCourses } from './utils/mappers';

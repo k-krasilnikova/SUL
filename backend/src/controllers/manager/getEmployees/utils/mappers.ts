@@ -1,6 +1,6 @@
-import { TUserStackMember } from 'interfaces/Ientities/IStackMember';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import { IEmployeeShortInfo } from 'interfaces/IResponse/IResponse';
+import { TUserStackMember } from 'interfaces/entities/stackMember';
+import { IUser } from 'interfaces/entities/users';
+import { IEmployeeShortInfo } from 'interfaces/response/response';
 import { mapEmployeeStack } from 'utils/normaliser/employees';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 

@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 import { mockedCourses } from '__mock__/mockedCourses';
-import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
-import { ICourseShortInfo } from 'interfaces/IResponse/IResponse';
+import { ICourseWithStatus } from 'interfaces/courses/queryCourses';
+import { ICourseShortInfo } from 'interfaces/response/response';
 import CourseStatus from 'enums/coursesEnums';
 import {
   filterOnlyAvailableCourses,

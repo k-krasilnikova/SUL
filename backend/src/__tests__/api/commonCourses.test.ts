@@ -6,9 +6,9 @@ import supertest from 'supertest';
 
 import { app } from 'app';
 import { INITIAL_INDX, JEST_TIMEOUT, NOTHING, STATUS_CODES } from 'config/constants';
-import { ICourse } from 'interfaces/Ientities/Icourses';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import { ICoursesMapResponse } from 'interfaces/IResponse/IResponse';
+import { ICourse } from 'interfaces/entities/courses';
+import { IUser } from 'interfaces/entities/users';
+import { ICoursesMapResponse } from 'interfaces/response/response';
 import { Routes, SubRoutes } from 'enums/routesEnum';
 
 jest.setTimeout(JEST_TIMEOUT);

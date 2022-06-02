@@ -1,4 +1,4 @@
-import { TNotification } from 'interfaces/IResponse/IResponse';
+import { TNotification } from 'interfaces/response/response';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 

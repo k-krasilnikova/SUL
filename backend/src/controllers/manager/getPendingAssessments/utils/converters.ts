@@ -1,5 +1,5 @@
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
-import { TAssessmentRequest } from 'interfaces/IResponse/IResponse';
+import { IClientCoursePopulated } from 'interfaces/entities/clientCourses';
+import { TAssessmentRequest } from 'interfaces/response/response';
 import { calculateTimeElapsed } from 'utils/typeConversion/datetime/datetimeTypeConversions';
 
 const convertToAssessmentsRequests = (courses: IClientCoursePopulated[]): TAssessmentRequest[] =>

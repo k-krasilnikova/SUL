@@ -1,4 +1,4 @@
-import { TLocalsManager } from 'interfaces/IResponse/IResponse';
+import { TLocalsManager } from 'interfaces/response/response';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IIdParams } from '../common/params';

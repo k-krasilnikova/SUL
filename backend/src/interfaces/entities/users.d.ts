@@ -2,10 +2,10 @@ import { Types } from 'mongoose';
 
 import { UserRank } from 'enums/users';
 
-import { ICourse } from './Icourses';
-import { IClientCourse } from './IclientCourses';
-import { IUserSkillPopulated } from './IUserSkill';
-import { IUserStackMemberDatabase } from './IStackMember';
+import { ICourse } from './courses';
+import { IClientCourse } from './clientCourses';
+import { IUserSkillPopulated } from './userSkill';
+import { IUserStackMemberDatabase } from './stackMember';
 import { ITimePeriod } from '../common/datetime';
 import { TUserPosition, TUserRole } from '../common/users';
 

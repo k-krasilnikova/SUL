@@ -8,9 +8,9 @@ import {
   ICoursesMapElement,
   ICoursesMapResponse,
   IStackMapElement,
-} from 'interfaces/IResponse/IResponse';
-import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
-import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+} from 'interfaces/response/response';
+import { TUserStackMemberPopulated } from 'interfaces/entities/stackMember';
+import { ICourseWithStatus } from 'interfaces/courses/queryCourses';
 import { getCourseStatusProvider } from 'db/providers/courseProvider';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import { getClientCourseByCourseId } from 'db/providers/clientCourseProvider';

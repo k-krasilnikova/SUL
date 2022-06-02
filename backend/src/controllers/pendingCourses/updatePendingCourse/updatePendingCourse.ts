@@ -4,7 +4,7 @@ import {
   TApprovePendingCourseRequest,
   TApprovePendingCourseResponse,
 } from 'interfaces/requests/pendingCourses/approvePendingCourse';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { IUser } from 'interfaces/entities/users';
 import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { USER_ROLES } from 'config/constants';

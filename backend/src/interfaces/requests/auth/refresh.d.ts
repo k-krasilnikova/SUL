@@ -1,4 +1,4 @@
-import { ITokens } from 'interfaces/Iauth/authInterfaces';
+import { ITokens } from 'interfaces/auth/authInterfaces';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 
