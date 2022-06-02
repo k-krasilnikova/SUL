@@ -67,7 +67,11 @@ const getClientCourseProvider = async (clientCourseId: string): Promise<IClientC
   return clientCourse;
 };
 
-const applyCourseProvider = async (courseId: string, userId: string, progressDto: IProgress[]) => {
+const applyCourseProvider = async (
+  courseId: string,
+  userId: string,
+  progressDto: IProgress[],
+): Promise<IClientCourse> => {
   const dbUser = await UserModel.findById(userId).lean();
 
   const courseStatus =
@@ -83,7 +87,7 @@ const applyCourseProvider = async (courseId: string, userId: string, progressDto
   return applyedCourse;
 };
 
-const updateCourseProgress = async (courseId: string, stage: string) => {
+const updateCourseProgress = async (courseId: string, stage: string): Promise<IClientCourse> => {
   const updatedProgress = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { 'progress.$[elem].isCompleted': true } },
@@ -97,7 +101,7 @@ const updateCourseProgress = async (courseId: string, stage: string) => {
   return updatedProgress;
 };
 
-const getStatusProvider = async (courseId: string) => {
+const getStatusProvider = async (courseId: string): Promise<IClientCourse> => {
   const currStatus = await ClientCourseModel.findOne(
     { _id: courseId },
     { status: 1, _id: 0 },
@@ -108,7 +112,7 @@ const getStatusProvider = async (courseId: string) => {
   return currStatus;
 };
 
-const getAssessmentProvider = async (courseId: string) => {
+const getAssessmentProvider = async (courseId: string): Promise<boolean> => {
   const course = await ClientCourseModel.findById(courseId).select('withAssessment -_id');
   if (!course) {
     throw new NotFoundError('Course not found.');
@@ -117,7 +121,13 @@ const getAssessmentProvider = async (courseId: string) => {
   return withAssessment;
 };
 
-const getCurrentProgress = async (clientCourseId: string) => {
+const getCurrentProgress = async (
+  clientCourseId: string,
+): Promise<
+  {
+    currProgress: number;
+  }[]
+> => {
   const progress: Array<{ currProgress: number }> = await ClientCourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(clientCourseId) } },
     {
@@ -147,7 +157,7 @@ const updateClientCourseField = async (
   courseId: string,
   field: TClientCourseFields,
   value: unknown,
-) => {
+): Promise<IClientCourse> => {
   const updatedCourse = await ClientCourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { [field]: value } },
@@ -158,7 +168,7 @@ const updateClientCourseField = async (
   throw new BadRequestError('Bad request. Check the data being sent');
 };
 
-const arrangeAssessment = async (courseId: string) => {
+const arrangeAssessment = async (courseId: string): Promise<void> => {
   const updatedCourse = await ClientCourseModel.findByIdAndUpdate(courseId, {
     $set: { withAssessment: true },
   });
@@ -168,7 +178,7 @@ const arrangeAssessment = async (courseId: string) => {
   }
 };
 
-const getClientCoursesByCourseId = async (courseId: string) => {
+const getClientCoursesByCourseId = async (courseId: string): Promise<IClientCourse | null> => {
   const allClientCoursesByCourseId = await ClientCourseModel.findOne({ course: courseId }).lean();
 
   return allClientCoursesByCourseId;
@@ -197,7 +207,7 @@ const assignCourseToEmployee = async (
   courseId: string | Types.ObjectId,
   progressDto: IProgress[],
   withAssessment?: boolean,
-) => {
+): Promise<IClientCourse> => {
   const createdDoc = await ClientCourseModel.create({
     user: assignTo,
     course: courseId,

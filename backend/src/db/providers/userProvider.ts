@@ -9,11 +9,11 @@ import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
 import StackMemberModel from 'db/models/StackMember';
 import CourseModel from 'db/models/Course';
-import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
+import { ITechnologyGroup, IUser } from 'interfaces/Ientities/Iusers';
 import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
-const getUserProvider = async (userId: string | Types.ObjectId) => {
+const getUserProvider = async (userId: string | Types.ObjectId): Promise<IUser> => {
   const dbUser = await UserModel.findById(userId).lean();
 
   if (!dbUser) {
@@ -22,7 +22,7 @@ const getUserProvider = async (userId: string | Types.ObjectId) => {
   return dbUser;
 };
 
-const getFullUserInformationProvider = async (userId: string) => {
+const getFullUserInformationProvider = async (userId: string): Promise<IUser> => {
   const dbUserFullInfo = await UserModel.findById(userId)
     .populate([
       {
@@ -80,7 +80,7 @@ const getUserStackProvider = async (
   return convertToTypeUnsafe<TUserStackMemberPopulated[]>(stack);
 };
 
-const getEmployeesProvider = async (managerId: string) => {
+const getEmployeesProvider = async (managerId: string): Promise<IUser[]> => {
   const employess = await UserModel.find({ managerId }).lean();
   return employess;
 };
@@ -88,7 +88,7 @@ const getEmployeesProvider = async (managerId: string) => {
 const updatePendingFieldCourses = async (
   managerId: Types.ObjectId,
   applyedCourseId: string | undefined,
-) => {
+): Promise<void> => {
   if (!applyedCourseId) {
     throw new BadRequestError('Applied course is missing.');
   }
@@ -98,7 +98,7 @@ const updatePendingFieldCourses = async (
 const updateUserTechnologies = async (
   userId: Types.ObjectId | string,
   techs: ITechnologyGroup[],
-) => {
+): Promise<void> => {
   await UserModel.updateOne(
     { _id: userId },
     {
@@ -112,7 +112,7 @@ const updateUserTechnologies = async (
 const removeFromPendingFieldCourses = async (
   managerId: Types.ObjectId | string,
   approvedCourseId?: Types.ObjectId | string,
-) => {
+): Promise<void> => {
   if (!approvedCourseId) {
     throw new BadRequestError('Approved course is missing');
   }
