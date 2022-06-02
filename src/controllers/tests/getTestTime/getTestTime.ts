@@ -16,7 +16,7 @@ const getTestTime = async (
 
     const test = await getTestProvider(clientCourseId);
     if (!test.length) {
-      throw new NotFoundError('No tests found.');
+      throw new NotFoundError('Test not found.');
     }
 
     res.json(aggregateNormolizer<TestDb>(test).test.timeout);

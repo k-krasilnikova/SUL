@@ -18,7 +18,7 @@ const passCourse = async (
     const { id: clientCourseId } = req.params;
 
     if (typeof stage !== 'string') {
-      throw new BadRequestError('Invalid query parameters.');
+      throw new BadRequestError('Invalid query parameters. Stage must be a string value.');
     }
 
     const courseStatus = await getStatusProvider(clientCourseId);

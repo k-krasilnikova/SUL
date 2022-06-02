@@ -24,7 +24,7 @@ const declinePendingCourse = async (
     const { managerId, clientCourseId, results } = res.locals;
 
     if (!clientCourseId || !managerId) {
-      throw new BadRequestError('Invalid query.');
+      throw new BadRequestError('Invalid query. Client course id or manager id is missing.');
     }
 
     const { status } = await getStatusProvider(clientCourseId);

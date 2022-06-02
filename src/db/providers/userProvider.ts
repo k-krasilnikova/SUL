@@ -114,7 +114,7 @@ const removeFromPendingFieldCourses = async (
   approvedCourseId?: Types.ObjectId | string,
 ) => {
   if (!approvedCourseId) {
-    throw new BadRequestError('Approved course is missing');
+    throw new BadRequestError('Approved course is missing.');
   }
 
   await UserModel.updateOne({ _id: managerId }, { $pull: { pendingCourses: approvedCourseId } });
