@@ -8,7 +8,7 @@ import supertest from 'supertest';
 import { app } from 'app';
 import { STATUS_CODES } from 'config/constants';
 import { IUser } from 'interfaces/entities/users';
-import { Routes, SubRoutes } from 'enums/routesEnum';
+import { Routes, SubRoutes } from 'enums/routes';
 import { login } from 'controllers/auth';
 
 jest.mock('controllers/auth/login/login', () => {

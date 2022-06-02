@@ -8,7 +8,7 @@ import {
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getTrueAnswersProvider } from 'db/providers/testProvider';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { TestStatus } from 'enums/common';
 import { isTestAvailableByDate } from 'utils/validation/tests';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';

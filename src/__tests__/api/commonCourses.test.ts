@@ -9,7 +9,7 @@ import { INITIAL_INDX, JEST_TIMEOUT, NOTHING, STATUS_CODES } from 'config/consta
 import { ICourse } from 'interfaces/entities/courses';
 import { IUser } from 'interfaces/entities/users';
 import { ICoursesMapResponse } from 'interfaces/response/response';
-import { Routes, SubRoutes } from 'enums/routesEnum';
+import { Routes, SubRoutes } from 'enums/routes';
 
 jest.setTimeout(JEST_TIMEOUT);
 

@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { ICourseInfo } from 'interfaces/courses/queryCourses';
 import { CLIENT_COURSE_FIELDS, COURSE_FIELDS } from 'config/constants';
 

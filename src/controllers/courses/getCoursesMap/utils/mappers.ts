@@ -2,7 +2,7 @@ import { Types } from 'mongoose';
 import { Dictionary, groupBy, pullAll, sortBy } from 'lodash';
 
 import { UserRank } from 'enums/users';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import {
   ICourseShortInfo,
   ICoursesMapElement,

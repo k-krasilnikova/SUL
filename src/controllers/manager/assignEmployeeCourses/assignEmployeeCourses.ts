@@ -20,7 +20,7 @@ import {
   NotificationStatuses,
   NotificationTitles,
   NotificationType,
-} from 'enums/notificationEnums';
+} from 'enums/notification';
 
 import { isCoursesToAssignHaveDuplicates } from './utils/validations';
 import { removeCoursesToAssignDuplicates } from './utils/mappers';
