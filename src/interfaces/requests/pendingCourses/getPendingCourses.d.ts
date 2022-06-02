@@ -1,4 +1,4 @@
-import { TPendingCourses } from 'interfaces/Ientities/Iusers';
+import { TPendingCourses } from 'interfaces/entities/users';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';

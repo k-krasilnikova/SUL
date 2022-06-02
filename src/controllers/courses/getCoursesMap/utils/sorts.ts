@@ -4,7 +4,7 @@ import {
   ICoursesMapElement,
   ICoursesMapResponse,
   IStackMapElement,
-} from 'interfaces/IResponse/IResponse';
+} from 'interfaces/response/response';
 
 const sortCoursesMapElement = (mapElement: ICoursesMapElement): ICoursesMapElement => ({
   ...mapElement,

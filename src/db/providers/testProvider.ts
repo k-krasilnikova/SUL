@@ -4,7 +4,7 @@ import ClientCourseModel from 'db/models/ClientCourses';
 import TestModel from 'db/models/Tests';
 import CourseModel from 'db/models/Course';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import { ITest, TestDb } from 'interfaces/Ientities/Itest';
+import { ITest, TestDb } from 'interfaces/entities/test';
 import { IUpdateTestDto } from 'interfaces/dto/courses';
 
 const getTestProvider = async (courseId: string) => {

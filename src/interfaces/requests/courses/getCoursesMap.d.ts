@@ -1,4 +1,4 @@
-import { ICoursesMapResponse } from 'interfaces/IResponse/IResponse';
+import { ICoursesMapResponse } from 'interfaces/response/response';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';

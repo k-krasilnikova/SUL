@@ -11,9 +11,9 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
-import { ICourse } from 'interfaces/Ientities/Icourses';
-import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
-import { ICoursePopulated, ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+import { ICourse } from 'interfaces/entities/courses';
+import { TCourseFields } from 'interfaces/entities/clientCourses';
+import { ICoursePopulated, ICourseWithStatus } from 'interfaces/courses/queryCourses';
 import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';

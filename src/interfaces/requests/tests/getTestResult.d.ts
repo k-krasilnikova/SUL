@@ -1,4 +1,4 @@
-import { ITestResultResponse } from 'interfaces/IResponse/IResponse';
+import { ITestResultResponse } from 'interfaces/response/response';
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
 import { IIdParams } from '../common/params';

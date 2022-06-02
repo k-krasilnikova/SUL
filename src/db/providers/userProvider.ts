@@ -9,8 +9,8 @@ import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
 import StackMemberModel from 'db/models/StackMember';
 import CourseModel from 'db/models/Course';
-import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
-import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
+import { ITechnologyGroup } from 'interfaces/entities/users';
+import { TUserStackMemberPopulated } from 'interfaces/entities/stackMember';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const getUserProvider = async (userId: string | Types.ObjectId) => {

@@ -7,7 +7,7 @@ import supertest from 'supertest';
 
 import { app } from 'app';
 import { STATUS_CODES } from 'config/constants';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { IUser } from 'interfaces/entities/users';
 import { Routes, SubRoutes } from 'enums/routesEnum';
 import { login } from 'controllers/auth';
 

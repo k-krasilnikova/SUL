@@ -1,7 +1,7 @@
 import { NextFunction } from 'express';
 
 import { TGetTestTimeRequest, TGetTestTimeResponse } from 'interfaces/requests/tests/getTestTime';
-import { TestDb } from 'interfaces/Ientities/Itest';
+import { TestDb } from 'interfaces/entities/test';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { getTestProvider } from 'db/providers/testProvider';
 import { aggregateNormolizer } from 'utils/normaliser/aggregateNormalizer';

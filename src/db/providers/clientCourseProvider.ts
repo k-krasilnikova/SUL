@@ -1,11 +1,11 @@
 import mongoose, { Types } from 'mongoose';
 
-import { IProgress } from 'interfaces/ICourses/IQueryCourses';
+import { IProgress } from 'interfaces/courses/queryCourses';
 import {
   IClientCourse,
   IClientCoursePopulated,
   TClientCourseFields,
-} from 'interfaces/Ientities/IclientCourses';
+} from 'interfaces/entities/clientCourses';
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';

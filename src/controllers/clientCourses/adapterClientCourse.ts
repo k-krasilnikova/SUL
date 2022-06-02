@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { TNotification } from 'interfaces/IResponse/IResponse';
+import { TNotification } from 'interfaces/response/response';
 
 const adapterClientCourse = async (
   req: Request,

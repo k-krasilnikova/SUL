@@ -1,5 +1,5 @@
 import { MaterialContentType } from 'enums/materials';
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { ICourse } from 'interfaces/entities/courses';
 
 export interface IMockedCourses extends Omit<ICourse, 'technologies' | 'requiredSkills' | 'test'> {
   technologies: {

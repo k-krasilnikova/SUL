@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose';
 
-import { ITest } from 'interfaces/Ientities/Itest';
+import { ITest } from 'interfaces/entities/test';
 
 interface IUpdateTestDto {
   testId: string | ObjectId;

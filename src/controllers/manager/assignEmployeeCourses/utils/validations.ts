@@ -1,7 +1,7 @@
 import { intersectionWith, isEmpty } from 'lodash';
 
-import { ICourseToAssign } from 'interfaces/ICourses/IQueryCourses';
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
+import { ICourseToAssign } from 'interfaces/courses/queryCourses';
+import { IClientCoursePopulated } from 'interfaces/entities/clientCourses';
 
 const courseToCourseToAssignComparator = (a: IClientCoursePopulated, b: ICourseToAssign): boolean =>
   String(a.course._id) === String(b.courseId);

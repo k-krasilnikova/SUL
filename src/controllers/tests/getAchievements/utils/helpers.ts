@@ -7,9 +7,9 @@ import {
   getUserSkill,
   updateUserSkill,
 } from 'db/providers/skillProvider';
-import { ICourse } from 'interfaces/Ientities/Icourses';
-import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
-import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
+import { ICourse } from 'interfaces/entities/courses';
+import { ITechnologyGroup } from 'interfaces/entities/users';
+import { IUserSkill } from 'interfaces/entities/userSkill';
 import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
 import { containsObjectId } from 'utils/comparator/ObjectId/containsObjectId';
 

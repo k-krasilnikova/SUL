@@ -1,10 +1,10 @@
 import mongoose, { Types } from 'mongoose';
 import { isNull } from 'lodash';
 
-import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
+import { IUserSkill, IUserSkillPopulated } from 'interfaces/entities/userSkill';
 import { ICourseTechnologyPayload, IEditCoursePayload } from 'interfaces/requests/common/payloads';
-import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { ISkillGroup } from 'interfaces/entities/skillGroup';
+import { IUser } from 'interfaces/entities/users';
 import { ISearchQuery } from 'interfaces/requests/common/queries';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
@@ -13,7 +13,7 @@ import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import { NO_FILTER } from 'config/constants';
-import ISkill from 'interfaces/Ientities/ISkill';
+import ISkill from 'interfaces/entities/skill';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })

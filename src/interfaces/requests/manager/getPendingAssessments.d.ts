@@ -1,4 +1,4 @@
-import { TAssessmentRequest } from 'interfaces/IResponse/IResponse';
+import { TAssessmentRequest } from 'interfaces/response/response';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';

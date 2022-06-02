@@ -4,7 +4,7 @@ import {
   TDeclinePendingCourseRequest,
   TDeclinePendingCourseResponse,
 } from 'interfaces/requests/pendingCourses/declinePendingCourse';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { IUser } from 'interfaces/entities/users';
 import {
   getClientCourseProvider,
   getStatusProvider,
