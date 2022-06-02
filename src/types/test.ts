@@ -11,6 +11,7 @@ export interface IQuestionObject {
   qN: number;
   question: string;
   answers: IAnswer[];
+  correctAnswer: number;
 }
 
 export interface ITestItem {

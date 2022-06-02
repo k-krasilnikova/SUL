@@ -16,3 +16,4 @@ export const TestResult = lazy(() => import('./PassingTest/TestResult'));
 export const SkillsMap = lazy(() => import('./SkillsMap'));
 export const EmployeeProfile = lazy(() => import('./EmployeeProfile'));
 export const PendingAssessments = lazy(() => import('./PendingAssessments'));
+export const CourseEditor = lazy(() => import('./CourseEditor'));

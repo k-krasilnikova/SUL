@@ -3,13 +3,11 @@ import { styled, Box } from '@mui/material';
 import theme from 'themeSettings';
 
 export const DetailedCourseWrapper = styled(Box)({
-  [theme.breakpoints.up('md')]: {
+  margin: '40px 0 40px 40px',
+  width: 'calc(100% - 40px)',
+  [theme.breakpoints.down('md')]: {
     margin: '25px 0 25px 21px',
     width: 'calc(100% - 21px)',
-  },
-  [theme.breakpoints.up('xl')]: {
-    margin: '40px 0 40px 40px',
-    width: 'calc(100% - 40px)',
   },
 });
 
@@ -44,5 +42,20 @@ export const MobileSearchWrapper = styled('div')({
   },
   [theme.breakpoints.up(950)]: {
     display: 'none',
+  },
+});
+
+export const ButtonsWrapper = styled(Box)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginRight: '2%',
+  [theme.breakpoints.down('xl')]: {
+    marginRight: '40px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    marginRight: '30px',
+  },
+  [theme.breakpoints.down('md')]: {
+    marginRight: '8px',
   },
 });

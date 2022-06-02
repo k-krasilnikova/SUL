@@ -91,12 +91,10 @@ export const DialogBodyWrapper = styled('div')({
   '& .MuiButton-root': {
     height: '100%',
     [theme.breakpoints.up('xs')]: {
-      width: '64px',
       fontSize: '12px',
       padding: '8px 21px',
     },
     [theme.breakpoints.up('xl')]: {
-      width: '100px',
       fontSize: '18px',
       padding: '14px 23px',
     },
