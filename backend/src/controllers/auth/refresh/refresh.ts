@@ -38,7 +38,7 @@ const refresh = async (req: TRefreshRequest, res: TRefreshResponse, next: NextFu
     if (isExpectedHttpError(error)) {
       next(error);
     } else {
-      const forbiddenError = new ForbiddenError('ERROR: Invalid refresh token.');
+      const forbiddenError = new ForbiddenError('Invalid refresh token.');
       next(forbiddenError);
     }
   }

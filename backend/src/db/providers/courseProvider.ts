@@ -125,7 +125,7 @@ const getCoursesProvider = async (
 
     return populated;
   } catch (error) {
-    throw new BadRequestError('Invalid query.');
+    throw new BadRequestError('Invalid query. Check the data being sent.');
   }
 };
 
@@ -260,7 +260,7 @@ const getAllCoursesProvider = async (
 
     return courses;
   } catch (error) {
-    throw new BadRequestError('Invalid query.');
+    throw new BadRequestError('Invalid query. Check the data being sent.');
   }
 };
 

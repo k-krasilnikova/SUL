@@ -19,7 +19,7 @@ const sendMail = async (
   try {
     const { clientCourseId } = res.locals;
     if (!clientCourseId) {
-      throw new BadRequestError('Invalid query.');
+      throw new BadRequestError('Invalid query. Client course id is missing.');
     }
     const {
       status,
@@ -32,7 +32,7 @@ const sendMail = async (
     const { email } = await getUserProvider(userId);
     const { title } = await getCourseProvider(courseId, userId);
     if (![CourseStatus.approved, CourseStatus.rejected].includes(status)) {
-      throw new BadRequestError(`Can't send mail for course in status: ${status}`);
+      throw new BadRequestError(`Can't send mail for course in status: ${status}.`);
     }
     await new Mail().sendMail({
       to: email,
