@@ -23,6 +23,7 @@ import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
 import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
+import { TResponsePayload as TMaterialsPayload } from 'interfaces/requests/courses/getMaterials';
 import { getTestById } from './testProvider';
 
 const generateCourseStatusLookup = (userId: Types.ObjectId | string) => ({
@@ -169,9 +170,7 @@ const getCourseByIdProvider = async (
   return convertToTypeUnsafe<ICoursePopulated>(course);
 };
 
-const getMaterialsProvider = async (
-  courseId: string,
-): Promise<Pick<ICourse, '_id' | 'materials'>> => {
+const getMaterialsProvider = async (courseId: string): Promise<TMaterialsPayload> => {
   const material = await CourseModel.findById(courseId).select('materials').lean();
   if (!material) {
     throw new NotFoundError('Materials not found.');
@@ -289,9 +288,7 @@ const getCourseStatusProvider = async (
   return relateClientCourse?.status;
 };
 
-const addCourseProvider = async (
-  newCourse: IPreparedCourseDataPayload,
-): Promise<mongoose.Document<Types.ObjectId, ICourse, ICourse> & ICourse> =>
+const addCourseProvider = async (newCourse: IPreparedCourseDataPayload): Promise<ICourse> =>
   CourseModel.create(newCourse);
 
 const addSimilarCoursesProvider = async (course: ICourse): Promise<void> => {
