@@ -6,15 +6,14 @@ import { useAddCourseToEmployee } from 'api/manager';
 import { useDebounce } from 'hooks';
 import { IShortCourseInfo } from 'types/course';
 import { formatInputValue } from 'utils/helpers/searchHelpers';
+import { IAddCourseDialogContainerProps } from 'pages/EmployeeProfile/types';
 
 import AddCourseDialog from './AddCourseDialog';
 
-export interface IProps {
-  isOpened: boolean;
-  handleClose: () => void;
-}
-
-const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) => {
+const AddCourseDialogContainer: FC<IAddCourseDialogContainerProps> = ({
+  handleClose,
+  ...props
+}) => {
   const { employeeId } = useParams();
 
   const [searchInputValue, setSearchInputValue] = useState('');
@@ -34,7 +33,7 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
     handleClose();
   };
 
-  const { mutate: addCourseToEmployee, isLoading: isAddCourseToEmployeeLoading } =
+  const { mutate: addCoursesToEmployeeMutate, isLoading: isAddCoursesToEmployeeLoading } =
     useAddCourseToEmployee({
       courseIdsList: selectedCoursesList.map(({ _id }) => ({
         courseId: _id,
@@ -65,23 +64,19 @@ const AddCourseDialogContainer: FC<IProps> = ({ handleClose, ...otherProps }) =>
     }
   };
 
-  const handleAddCourse = () => {
-    addCourseToEmployee(employeeId);
-  };
-
   return (
     <AddCourseDialog
       selectedCoursesList={selectedCoursesList}
       foundedCoursesList={coursesListResponse}
-      isAddCourseToEmployeeLoading={isAddCourseToEmployeeLoading}
+      isAddCourseToEmployeeLoading={isAddCoursesToEmployeeLoading}
       isCoursesLoading={isCoursesLoading || isCoursesFetching}
       isNoSearchResult={isNoSearchResult}
       searchInputValue={searchInputValue}
-      handleAddCourse={handleAddCourse}
+      addCoursesToEmployeeMutate={addCoursesToEmployeeMutate}
       handleClose={handleDialogClose}
       handleCheckboxChange={handleCheckboxChange}
       handleSearchInputChange={handleSearchInputChange}
-      {...otherProps}
+      {...props}
     />
   );
 };

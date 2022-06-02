@@ -17,6 +17,12 @@ export const ConfirmMessage = styled(DialogTitle)({
 });
 
 export const StyledDialogActions = styled(DialogActions)({
+  '& .MuiButton-root': {
+    width: '100px',
+    [theme.breakpoints.down('xl')]: {
+      width: '64px',
+    },
+  },
   '& .MuiButton-root + .MuiButton-root': {
     marginLeft: '50px',
     [theme.breakpoints.down('md')]: {

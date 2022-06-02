@@ -9,7 +9,8 @@ import { IAuthorizedLayoutProps } from 'components/Layout/types';
 import Header from './Header';
 import Menu from './Menu';
 import MobileMenu from './MobileMenu';
-import { GridHeader, PageWrapper, GridMenu } from '../styled';
+import PageWrapper from './PageWrapper';
+import { GridHeader, GridMenu } from '../styled';
 
 const AuthorizedLayout: FC<IAuthorizedLayoutProps> = ({
   userInfo,

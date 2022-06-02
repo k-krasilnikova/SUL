@@ -1,29 +1,16 @@
-import { FC, BaseSyntheticEvent } from 'react';
+import { FC } from 'react';
 
 import { Dialog } from 'components/Dialogs';
 import { Size } from 'enums/sizes';
-import { IShortCourseInfo, CoursesListType } from 'types/course';
+import { CoursesListType } from 'types/course';
+import { IAddCourseDialogProps } from 'pages/EmployeeProfile/types';
 
-import { CoursesList } from './CoursesList';
-import { SearchInput } from './SearchInput';
-import { ActionButton } from './ActionButton';
+import CoursesList from './CoursesList';
+import SearchInput from './SearchInput';
+import ActionButtons from './ActionButtons';
 import { ContentWrapper } from './styled';
 
-interface IProps {
-  selectedCoursesList: IShortCourseInfo[];
-  isOpened: boolean;
-  isNoSearchResult: boolean;
-  isCoursesLoading: boolean;
-  isAddCourseToEmployeeLoading: boolean;
-  searchInputValue: string;
-  handleAddCourse: () => void;
-  handleClose: () => void;
-  handleSearchInputChange: (event: BaseSyntheticEvent) => void;
-  handleCheckboxChange: (event: BaseSyntheticEvent) => void;
-  foundedCoursesList?: IShortCourseInfo[];
-}
-
-const AddCourseDialog: FC<IProps> = ({
+const AddCourseDialog: FC<IAddCourseDialogProps> = ({
   selectedCoursesList,
   foundedCoursesList,
   isNoSearchResult,
@@ -31,7 +18,7 @@ const AddCourseDialog: FC<IProps> = ({
   isAddCourseToEmployeeLoading,
   isOpened,
   searchInputValue,
-  handleAddCourse,
+  addCoursesToEmployeeMutate,
   handleClose,
   handleSearchInputChange,
   handleCheckboxChange,
@@ -58,10 +45,10 @@ const AddCourseDialog: FC<IProps> = ({
         handleCheckboxChange={handleCheckboxChange}
       />
     </ContentWrapper>
-    <ActionButton
+    <ActionButtons
       isDisabled={!selectedCoursesList.length || isAddCourseToEmployeeLoading}
       isLoading={isAddCourseToEmployeeLoading}
-      handleClick={handleAddCourse}
+      addCoursesToEmployeeMutate={addCoursesToEmployeeMutate}
     />
   </Dialog>
 );
