@@ -14,10 +14,11 @@ const getPendingCourses = async (
   res: TGetPendingCoursesResponse,
   next: NextFunction,
 ) => {
-  const { id: userId } = res.locals;
   try {
+    const { id: userId } = res.locals;
+    
     const { pendingCourses } = await getPendingCoursesProvider(userId);
-
+    
     const mappedPendingCourses: TPendingCourses = mapPendingCourses(pendingCourses);
 
     res.json(mappedPendingCourses);

@@ -21,10 +21,10 @@ const passTest = async (req: TPassTestRequest, res: TPassTestResponse, next: Nex
     const { id: courseId } = req.params;
 
     const { status, finishTestDate } = await getClientCourseProvider(courseId);
-
     if (!status || status !== CourseStatus.testing) {
       throw new BadRequestError('Testing was not started yet.');
     }
+
     const isTestAvailable = isTestAvailableByDate(finishTestDate);
     if (!isTestAvailable) {
       await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
@@ -32,7 +32,6 @@ const passTest = async (req: TPassTestRequest, res: TPassTestResponse, next: Nex
     }
 
     const correctAnswers = await getTrueAnswersProvider(testId);
-
     const userWrongAnswers = checkTestResults(answers, correctAnswers.questions);
 
     const testResultWithAnswers = correctAnswers.questions.map((correctAnswer) => {
