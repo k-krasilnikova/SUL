@@ -24,8 +24,11 @@ const applyCourse = async (
   try {
     const { courseId, userId } = res.locals;
 
-    if (!courseId || !userId) {
-      throw new BadRequestError('Course id or user id is missing.');
+    if (!courseId) {
+      throw new BadRequestError('Course id is missing.');
+    }
+    if (!userId) {
+      throw new BadRequestError('User id is missing.');
     }
 
     const applyedCourses = await getAllClientCoursesProvider(userId);
