@@ -17,8 +17,11 @@ const updatePendingCourse = async (
   try {
     const { clientCourseId, userId } = res.locals;
 
-    if (!clientCourseId || !userId) {
+    if (!clientCourseId) {
       throw new BadRequestError('Invalid query. Client course id or user id is missing.');
+    }
+    if (!userId) {
+      throw new BadRequestError('Invalid query. User id is missing.');
     }
 
     const { managerId, role }: IUser = await getUserProvider(userId);
