@@ -23,9 +23,11 @@ const approvePendingCourse = async (
 ) => {
   try {
     const { managerId, clientCourseId, results, withAssessment } = res.locals;
+
     if (!clientCourseId || !managerId) {
       throw new BadRequestError('Invalid query.');
     }
+
     const { status } = await getStatusProvider(clientCourseId);
     if (status !== CourseStatus.pending) {
       throw new BadRequestError(`Can't approve course in status: ${status}.`);

@@ -11,14 +11,19 @@ import { mapLoginPayload } from './utils/mappers';
 const login = async (req: TLoginRequest, res: TLoginResponse, next: NextFunction) => {
   try {
     const { login: username, password } = req.body;
+
     const user = await authProvider(username);
+
     const isValidPass = await compare(password, user.passwordHash);
     if (!isValidPass) {
       throw new UnauthorizedError('Password is incorrect.');
     }
+
     const tokens = generateJWT(user);
     await saveTokenProvider(tokens.refreshToken, user);
+
     const responsePayload = mapLoginPayload(tokens, user._id);
+
     res.json(responsePayload);
   } catch (error) {
     next(error);

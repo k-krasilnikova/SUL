@@ -13,7 +13,9 @@ const getMaterials = async (
 ) => {
   try {
     const { id: courseId } = req.params;
+
     const material = await getMaterialsProvider(courseId);
+
     res.json(material);
   } catch (error) {
     next(error);

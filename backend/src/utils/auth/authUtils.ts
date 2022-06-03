@@ -27,6 +27,7 @@ const generateJWT = (userData: IUser): ITokens => {
         expiresIn: refreshTimeout,
       },
     );
+
     return { accessToken, refreshToken };
   } catch (error) {
     throw new InternalServerError('Could not generate token.');
@@ -37,6 +38,7 @@ const verifyAccessToken = (accessToken: string): IAccessJwtPayload => {
   const secret = process.env.JWT_SECRET || DEFAULT_NO_SECRET;
 
   const payload = jwt.verify(accessToken, secret) as IAccessJwtPayload;
+
   return payload;
 };
 
@@ -44,10 +46,12 @@ const verifyRefreshToken = (refreshToken: string): IRefreshJwtPayload => {
   const secret = process.env.JWT_REFRESH_SECRET || DEFAULT_NO_SECRET;
 
   const payload = jwt.verify(refreshToken, secret) as IRefreshJwtPayload;
+
   return payload;
 };
 
-const extractAccessTokenValue = (req: TBaseRequest) => {
+
+const extractAccessTokenValue = (req: TBaseRequest): string | undefined => {
   return req.headers.authorization?.split(' ')[1];
 };
 

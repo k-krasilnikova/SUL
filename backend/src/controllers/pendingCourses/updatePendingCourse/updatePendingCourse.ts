@@ -16,13 +16,16 @@ const updatePendingCourse = async (
 ) => {
   try {
     const { clientCourseId, userId } = res.locals;
+
     if (!clientCourseId || !userId) {
       throw new BadRequestError('Invalid query');
     }
+
     const { managerId, role }: IUser = await getUserProvider(userId);
     if (role === USER_ROLES.EMPLOYEE) {
       await updatePendingFieldCourses(managerId, clientCourseId);
     }
+
     next();
   } catch (err) {
     next(err);
