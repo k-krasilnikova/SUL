@@ -7,7 +7,7 @@ import { UserRank } from 'enums/users';
 import { MaterialContentType } from 'enums/materials';
 import { TIME_1M_SEC } from 'config/constants';
 import { ITest } from 'interfaces/entities/test';
-import { ICourseTechsFromWeb } from 'interfaces/courses/queryCourses';
+import { ICourseTechsFromWeb } from 'interfaces/courses/query';
 import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/courseTest';
 
 import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';

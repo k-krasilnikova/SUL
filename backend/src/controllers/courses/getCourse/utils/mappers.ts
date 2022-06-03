@@ -1,4 +1,4 @@
-import { ICourseWithStatus } from 'interfaces/courses/queryCourses';
+import { ICourseWithStatus } from 'interfaces/courses/query';
 
 const mapCourse = (course: ICourseWithStatus, similarCourses: never[]): ICourseWithStatus => ({
   ...course,

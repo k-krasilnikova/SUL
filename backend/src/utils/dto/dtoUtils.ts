@@ -1,5 +1,5 @@
-import { ITokens } from 'interfaces/auth/authInterfaces';
-import { IProgress } from 'interfaces/courses/queryCourses';
+import { ITokens } from 'interfaces/auth/auth';
+import { IProgress } from 'interfaces/courses/query';
 import { IUser } from 'interfaces/entities/users';
 
 const generateInitialDto = (user: IUser, tokens?: ITokens) => {
