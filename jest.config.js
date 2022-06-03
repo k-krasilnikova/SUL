@@ -1,9 +1,9 @@
 /*
- * For a detailed explanation regarding each configuration property, visit:
+ * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
 
-module.exports = {
+module.exports =  {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -11,10 +11,10 @@ module.exports = {
   // bail: 0,
 
   // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "C:\\Users\\Aliaksandr.Shatsilau\\AppData\\Local\\Temp\\jest",
+  // cacheDirectory: "C:\\Users\\user\\AppData\\Local\\Temp\\jest",
 
   // Automatically clear mock calls, instances and results before every test
-  // clearMocks: false,
+  clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
@@ -31,7 +31,7 @@ module.exports = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: 'v8',
+  // coverageProvider: "babel",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -66,9 +66,7 @@ module.exports = {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  // moduleDirectories: [
-  //   "node_modules"
-  // ],
+   moduleDirectories: ['node_modules', '<rootDir>/src'],
 
   // An array of file extensions your modules use
   // moduleFileExtensions: [
@@ -93,7 +91,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+   preset: "@shelf/jest-mongodb",
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -172,13 +170,12 @@ module.exports = {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+   //transform:{ "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest" },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "\\\\node_modules\\\\",
-  //   "\\.pnp\\.[^\\\\]+$"
-  // ],
+   transformIgnorePatterns: [
+    "node_modules/(?!variables/.*)"
+   ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,

@@ -19,7 +19,7 @@
   "moduleResolution": "node",
   "allowSyntheticDefaultImports": true, 
   "esModuleInterop": true,
-  "include": ["src", "./*config*.js", "migrations", "migrations-backdev"],
+  "include": ["src", "./*config*.js", "migrations", "migrations-backdev", "babel.config.js", "jest.config.js"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
