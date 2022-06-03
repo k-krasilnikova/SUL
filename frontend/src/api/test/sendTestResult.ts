@@ -34,7 +34,7 @@ const useSendTestResult = ({
   return useMutation(
     async (data) => {
       const apiClient = apiClientWrapper();
-      const url = `${API.getMyCourses}/test/pass`;
+      const url = `${API.getMyCourses}/${clientCourseId}/test/pass`;
       const response = await apiClient.put(url, data);
       return response.data;
     },
