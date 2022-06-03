@@ -45,6 +45,8 @@ const declinePendingCourse = async (
 
     await updateClientCourseField(clientCourseId, CLIENT_COURSE_FIELDS.applyDate, Date.now());
 
+    res.locals.clientCourseId = clientCourseId;
+
     next();
 
     res.json('Course was declined.');
