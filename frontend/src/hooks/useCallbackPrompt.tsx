@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import type { Action } from 'history';
 
+import { PATHS } from 'constants/routes';
 import { useBlocker } from 'hooks';
 
 const useCallbackPrompt = (
@@ -25,6 +26,12 @@ const useCallbackPrompt = (
   // handle blocking when user click on another route prompt will be shown
   const handleBlockedNavigation = useCallback(
     (nextLocation) => {
+      if (!confirmedNavigation && nextLocation.location.pathname === PATHS.signIn) {
+        setShowPrompt(false);
+        setConfirmedNavigation(true);
+        setLastLocation(nextLocation);
+        return false;
+      }
       // in if condition we are checking next location and current location are equals or not
       if (!confirmedNavigation && nextLocation.location.pathname !== location.pathname) {
         setShowPrompt(true);
