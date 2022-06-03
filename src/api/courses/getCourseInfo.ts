@@ -8,7 +8,7 @@ import { ICourse } from 'types/course';
 import { errorSnackbar } from 'constants/snackbarVariant';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
-const useGetCourseInfo = (courseId: string | undefined): UseQueryResult<ICourse, AxiosError> => {
+const useGetCourseInfo = (courseId: string): UseQueryResult<ICourse, AxiosError> => {
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
@@ -18,7 +18,7 @@ const useGetCourseInfo = (courseId: string | undefined): UseQueryResult<ICourse,
     async () => {
       const apiClient = apiClientWrapper();
       const response = await apiClient.get(`${API.courses}/${courseId}`);
-      const courseResponse: Array<ICourse> = response.data;
+      const courseResponse: ICourse[] = response.data;
       return courseResponse;
     },
     {

@@ -30,7 +30,7 @@ export const RankTitle = styled('h4')({
 export const CoursesWrapper = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  maxHeight: '440px',
+  maxHeight: '442px',
   overflowY: 'scroll',
   [theme.breakpoints.down('lg')]: {
     maxHeight: '100%',

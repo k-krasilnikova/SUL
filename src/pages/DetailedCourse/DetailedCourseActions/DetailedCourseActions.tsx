@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { buttonSpinner } from 'animations';
 import { ButtonsWrapper, CustomButton } from 'components/Button/ButtonVariants/styled';
@@ -9,14 +9,14 @@ import { ButtonLabels } from 'constants/ButtonLabels';
 import { COURSE_DISABLE_DAYS } from 'constants/time';
 import { PAGES } from 'constants/pages';
 import { COURSE_LABELS } from 'constants/statuses';
-import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 import { Info } from 'enums/info';
+import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import DeleteCourseButton from './DeleteCourseButton';
 import { CourseInfoBox, DetailedCourseActionsBox } from './styled';
 import { IDetailedCourseActions } from '../types';
 
-const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
+const DetailedCourseActions: FC<IDetailedCourseActions> = ({
   commonCourseData,
   isAdmin,
   isLoading,
@@ -35,29 +35,28 @@ const DetailedCourseActions: React.FC<IDetailedCourseActions> = ({
         type={Info.detailedCourse}
       />
     </CourseInfoBox>
-    {isAdmin && <DeleteCourseButton />}
-    {!isAdmin && (
+    {isAdmin ? (
+      <DeleteCourseButton />
+    ) : page === PAGES.coursesList ? (
+      <CustomButton
+        color="primary"
+        variant={isLoading ? 'mediumOutlined' : 'mediumContained'}
+        disabled={isLoading}
+        onClick={handleApplyCourse}
+      >
+        {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.applyCourse}
+      </CustomButton>
+    ) : (
       <ButtonsWrapper>
-        {page === PAGES.coursesList ? (
-          <CustomButton
-            color="primary"
-            variant={isLoading ? 'mediumOutlined' : 'mediumContained'}
-            disabled={isLoading}
-            onClick={handleApplyCourse}
-          >
-            {isLoading ? <ButtonLoader buttonSpinner={buttonSpinner} /> : ButtonLabels.applyCourse}
-          </CustomButton>
-        ) : (
-          !isCourseCompleted && (
-            <ActionButton
-              label={COURSE_LABELS[status]}
-              status={status}
-              progress={clientCourseData?.progress}
-              timeout={COURSE_DISABLE_DAYS}
-              courseId={id}
-              applyDate={clientCourseData?.applyDate}
-            />
-          )
+        {!isCourseCompleted && (
+          <ActionButton
+            label={COURSE_LABELS[status]}
+            status={status}
+            progress={clientCourseData?.progress}
+            timeout={COURSE_DISABLE_DAYS}
+            courseId={id}
+            applyDate={clientCourseData?.applyDate}
+          />
         )}
       </ButtonsWrapper>
     )}

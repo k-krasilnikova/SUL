@@ -33,4 +33,5 @@ export const Title = styled('h2')({
 export const Description = styled('p')({
   fontSize: '14px',
   margin: '5px 0',
+  wordBreak: 'break-word',
 });

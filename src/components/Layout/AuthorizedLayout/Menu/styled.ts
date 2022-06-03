@@ -16,6 +16,7 @@ export const MenuTabs = styled('div')<IStyledProps>(({ isMobileVersion }) => ({
     borderRight: '1px solid rgba(0, 0, 0, 0.4)',
     boxShadow: '0 4px 4px rgba(0, 0, 0, 0.1)',
     overflowY: 'auto',
+    overflowX: 'hidden',
     [theme.breakpoints.down('xl')]: {
       height: `calc(100vh - ${HEADER_HEIGHT_IPAD})`,
     },

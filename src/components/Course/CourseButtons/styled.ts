@@ -26,6 +26,10 @@ export const CourseInfoBox = styled(Box)<InfoContainerTypes>(({ type }) => ({
   display: 'flex',
   flexDirection: 'row',
   padding: '20px 0 0 15px',
+  ...(type === Info.similarCourses && {
+    alignItems: 'center',
+    paddingTop: 0,
+  }),
   ...(type === Info.searchCourses && {
     height: 'auto',
   }),
