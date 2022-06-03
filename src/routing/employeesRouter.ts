@@ -2,12 +2,14 @@ import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
 import withAuth from 'middlewares/authMiddleware';
-import getEmployees from 'controllers/manager/getEmployees';
 import adapterSender from 'controllers/pendingCourses/adapterSender';
-import getEmployeeInfo from 'controllers/manager/getEmployeeInfo';
 import { SubRoutes } from 'enums/routesEnum';
-import assignEmployeeCourses from 'controllers/manager/assignEmployeeCourses';
-import getEmployeeAvailableCourses from 'controllers/manager/getEmployeeAvailableCourses';
+import {
+  assignEmployeeCourses,
+  getEmployeeAvailableCourses,
+  getEmployeeInfo,
+  getEmployees,
+} from 'controllers/manager';
 
 const employeesRouter = Router();
 

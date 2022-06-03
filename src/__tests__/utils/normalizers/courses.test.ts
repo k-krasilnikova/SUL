@@ -1,15 +1,18 @@
 import mongoose from 'mongoose';
 
 import { mockedCourses } from '__mock__/mockedCourses';
-import {
-  filterOnlyAvailableCourses,
-  normalizeAvailableCoursesInfo,
-  shortifyCourseInfo,
-  shortifyCourses,
-} from 'utils/normaliser/courses';
 import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 import { ICourseShortInfo } from 'interfaces/IResponse/IResponse';
 import CourseStatus from 'enums/coursesEnums';
+import {
+  filterOnlyAvailableCourses,
+  mapAvailableCoursesInfo,
+} from 'controllers/manager/getEmployeeAvailableCourses/utils/mappers';
+import { mapCourse } from 'controllers/courses/getCourse/utils/mappers';
+import {
+  shortifyCourseInfo,
+  shortifyCourses,
+} from 'controllers/courses/getCoursesMap/utils/mappers';
 
 describe('Normalize courses tests', () => {
   const createObjectId = () => new mongoose.Types.ObjectId();
@@ -31,9 +34,7 @@ describe('Normalize courses tests', () => {
   });
 
   it('Normalize available course info', () => {
-    const normalizedCourseInfo = normalizeAvailableCoursesInfo(
-      courses as unknown as ICourseWithStatus[],
-    );
+    const normalizedCourseInfo = mapAvailableCoursesInfo(courses as unknown as ICourseWithStatus[]);
 
     normalizedCourseInfo.forEach((course, index) => {
       expect(course).toEqual({ _id: courses[index]._id, title: courses[index].title });
@@ -67,5 +68,14 @@ describe('Normalize courses tests', () => {
         isCompleted: coursesForCurrentTest[index].status === CourseStatus.completed,
       });
     });
+  });
+
+  it('Map course', () => {
+    const course = { ...mockedCourses[0] } as unknown as ICourseWithStatus;
+    const similarCourses = ['a', 'b', 'c'] as unknown as never[];
+
+    const mappedCourse = mapCourse(course, similarCourses);
+
+    expect(mappedCourse).toEqual({ ...course, similarCourses });
   });
 });

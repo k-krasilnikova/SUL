@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { Db, MongoClient } from 'mongodb';
 
 import { JEST_TIMEOUT } from 'config/constants';
-import AccessTokenBlacklistModel from 'db/models/AccessTokens';
+import { AccessTokenBlacklistModel } from 'db/models/AccessTokens';
 import ClientCourseModel from 'db/models/ClientCourses';
 import CourseModel from 'db/models/Course';
 import NotificationModel from 'db/models/Notification';

@@ -1,17 +1,15 @@
 import mongoose, { Types } from 'mongoose';
 import { isNull } from 'lodash';
 
-import { IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
+import { ISkillTech, IUserSkill, IUserSkillPopulated } from 'interfaces/Ientities/IUserSkill';
 import { ICourseTechnologyPayload, IEditCoursePayload } from 'interfaces/requests/common/payloads';
 import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
 import { IUser } from 'interfaces/Ientities/Iusers';
-import { ISearchQuery } from 'interfaces/requests/common/queries';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import UserSkillModel from 'db/models/UserSkill';
 import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
-import SkillGroupModel from 'db/models/SkillGroup';
 import { NO_FILTER } from 'config/constants';
 import ISkill from 'interfaces/Ientities/ISkill';
 
@@ -22,35 +20,29 @@ const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   return skills;
 };
 
-const getAllGroupsWithSkills = async ({ search }: ISearchQuery): Promise<ISkillGroup[]> => {
-  const groups: ISkillGroup[] = await SkillGroupModel.aggregate([
-    {
-      $match: search ? { name: { $regex: new RegExp(search), $options: 'i' } } : NO_FILTER,
-    },
-    {
-      $lookup: {
-        from: 'skills',
-        localField: 'skills',
-        foreignField: '_id',
-        as: 'skills',
-      },
-    },
-    {
-      $project: { _id: 0 },
-    },
-  ]);
-
-  if (!groups) {
-    throw new BadRequestError('Unknown params.');
-  }
-
-  return groups;
-};
-
 const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
   const skillsByGroup: ISkillGroup[] = await SkillModel.aggregate([
     {
-      $match: search ? { name: { $regex: new RegExp(search), $options: 'i' } } : NO_FILTER,
+      $lookup: {
+        from: 'skillGroups',
+        localField: 'group',
+        foreignField: '_id',
+        pipeline: [{ $project: { name: 1 } }],
+        as: 'groupName',
+      },
+    },
+    {
+      $unwind: '$groupName',
+    },
+    {
+      $match: search
+        ? {
+            $or: [
+              { name: { $regex: new RegExp(search), $options: 'i' } },
+              { 'groupName.name': { $regex: new RegExp(search), $options: 'i' } },
+            ],
+          }
+        : NO_FILTER,
     },
     {
       $group: { _id: '$group', skills: { $push: '$$ROOT' } },
@@ -68,10 +60,13 @@ const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
       $unwind: '$group',
     },
     {
-      $project: { name: '$group.name', skills: 1, _id: 0 },
+      $project: {
+        name: '$group.name',
+        skills: { _id: 1, name: 1, image: 1, maxScore: 1, group: 1 },
+        _id: 0,
+      },
     },
   ]);
-
   if (!skillsByGroup) {
     throw new BadRequestError('Unknown params.');
   }
@@ -79,7 +74,10 @@ const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
   return skillsByGroup;
 };
 
-const getUserSkill = async (userId: Types.ObjectId | string, skillId: Types.ObjectId | string) => {
+const getUserSkill = async (
+  userId: Types.ObjectId | string,
+  skillId: Types.ObjectId | string,
+): Promise<IUserSkill> => {
   const userSkill = await UserSkillModel.findOne({ user: userId, skill: skillId });
 
   if (!userSkill) {
@@ -107,7 +105,7 @@ const addUserSkill = async (
   return insertedUserSkill;
 };
 
-const getCommonSkill = async (skillId: Types.ObjectId | string) => {
+const getCommonSkill = async (skillId: Types.ObjectId | string): Promise<ISkill> => {
   const skillInfo = await SkillModel.findById(skillId).lean();
 
   if (!skillInfo) {
@@ -205,7 +203,9 @@ const isProperTechnologies = async (
   return checksPassed;
 };
 
-const getSkillsToCourseTechs = async (technologies: ICourseTechnologyPayload[]) => {
+const getSkillsToCourseTechs = async (
+  technologies: ICourseTechnologyPayload[],
+): Promise<ISkillTech[]> => {
   const techs = await Promise.all(
     technologies.map(({ skill }) => {
       return SkillModel.findById(skill);
@@ -238,7 +238,6 @@ export {
   populateUserStack,
   getCommonSkill,
   getUserSkill,
-  getAllGroupsWithSkills,
   getAllSkillsByGroup,
   skillsExist,
   isProperTechnologies,
