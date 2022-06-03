@@ -13,7 +13,7 @@ import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { ICourse } from 'interfaces/entities/courses';
 import { TCourseFields } from 'interfaces/entities/clientCourses';
-import { ICoursePopulated, ICourseWithStatus } from 'interfaces/courses/queryCourses';
+import { ICoursePopulated, ICourseWithStatus } from 'interfaces/courses/query';
 import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';

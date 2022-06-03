@@ -1,6 +1,6 @@
 import mongoose, { Types } from 'mongoose';
 
-import { IProgress } from 'interfaces/courses/queryCourses';
+import { IProgress } from 'interfaces/courses/query';
 import {
   IClientCourse,
   IClientCoursePopulated,

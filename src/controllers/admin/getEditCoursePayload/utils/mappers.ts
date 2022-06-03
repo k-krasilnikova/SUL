@@ -1,4 +1,4 @@
-import { ICoursePopulated } from 'interfaces/courses/queryCourses';
+import { ICoursePopulated } from 'interfaces/courses/query';
 import ISkill from 'interfaces/entities/skill';
 import { IGetEditCoursePayloadResponse } from 'interfaces/requests/admin/getEditCoursePayload';
 

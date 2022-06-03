@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { mockedCourses } from '__mock__/mockedCourses';
-import { ICourseWithStatus } from 'interfaces/courses/queryCourses';
+import { ICourseWithStatus } from 'interfaces/courses/query';
 import { ICourseShortInfo } from 'interfaces/response/response';
 import CourseStatus from 'enums/courses';
 import {

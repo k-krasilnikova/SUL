@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { mapLoginPayload } from 'controllers/auth/login/utils/mappers';
-import { ITokens } from 'interfaces/auth/authInterfaces';
+import { ITokens } from 'interfaces/auth/auth';
 
 describe('Login mappers tests', () => {
   const createObjectId = () => new mongoose.Types.ObjectId();
