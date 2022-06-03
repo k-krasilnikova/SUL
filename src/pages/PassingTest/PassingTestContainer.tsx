@@ -12,7 +12,7 @@ import {
   MIN_TEST_DURATION,
 } from 'constants/test';
 import { PATHS } from 'constants/routes';
-import { useToggle } from 'hooks';
+import { useToggle, useCallbackPrompt } from 'hooks';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
 import { CourseStatus } from 'enums/course';
@@ -24,19 +24,28 @@ import ConfirmTimeIsOver from './ConfirmTimeIsOver';
 import { getDurationBetweenDates } from './utils';
 
 const PassingTestContainer: React.FC = () => {
-  const params = useParams();
+  const { courseId } = useParams();
   const naviagteTo = useNavigate();
 
+  const [isTestTimeoutDialogOpen, setTestTimeoutDialogOpen] = useToggle();
+  const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
+  const [isLeavePageDialogOpen, setLeavePageDialogOpen] = useState(false);
+  const [stage, setStage] = useState(1);
+  const [values, setValues] = useState({});
+
   const { data: courseTestResponse, isLoading: courseTestResponseIsLoading } = useGetCourseTest({
-    courseId: params.courseId,
+    courseId,
   });
   const { data: clientCourseResponse, isLoading: clientCourseResponseIsLoading } =
-    useGetClientCourseInfo(params.courseId);
+    useGetClientCourseInfo(courseId);
 
-  const courseTest = courseTestResponse?.length ? courseTestResponse[0].test : undefined;
-  const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
-
-  const [isTestTimeoutDialogOpen, setTestTimeoutDialogOpen] = useToggle();
+  const {
+    mutate: sendTestResult,
+    data: responseData,
+    isLoading: sendTestResultIsLoading,
+  } = useSendTestResult({
+    clientCourseId: courseId,
+  });
 
   const testDuration = useMemo(
     () => getDurationBetweenDates(clientCourseResponse?.finishTestDate),
@@ -54,25 +63,48 @@ const PassingTestContainer: React.FC = () => {
     }
   }, [testDuration, setTestTimeoutDialogOpen]);
 
-  const [stage, setStage] = useState(1);
-  const [values, setValues] = React.useState({});
+  const isTestTimeOver =
+    getDurationBetweenDates(clientCourseResponse?.finishTestDate) < MIN_TEST_DURATION;
+
+  const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(
+    !isTestTimeOver && !isTestResultPageEnabled,
+  );
+
+  const courseTest = courseTestResponse?.length ? courseTestResponse[0].test : undefined;
+  const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
+  const testStatus = responseData ? responseData.result.testStatus : undefined;
+  const resultEnabled = stage === maxStage;
+  const questionStageItem = courseTest?.questions[stage - 1];
+  const assessmentRequired = testStatus === TEST_STATUS.assessment;
+  const percentageValue = responseData ? responseData?.result?.result * PERCENTAGE : undefined;
+  const courseStatus = clientCourseResponse?.status;
+  const isTestEnded = useMemo(
+    () =>
+      courseStatus === CourseStatus.testing &&
+      getDurationBetweenDates(clientCourseResponse?.finishTestDate) < MIN_TEST_DURATION,
+    [clientCourseResponse?.finishTestDate, courseStatus],
+  );
+  const isNotTestingCourseStatus =
+    !clientCourseResponseIsLoading && courseStatus !== CourseStatus.testing;
+  const isShouldRedirect = isNotTestingCourseStatus || isTestEnded;
+  const isFailed = testStatus === TEST_STATUS.notPassed;
+  const progressBarData = isFailed
+    ? convertTestStatusToProgress(TEST_STATUS.failed, percentageValue)
+    : convertTestStatusToProgress(TEST_STATUS.successful, percentageValue);
 
   const handleChange = (qN: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues((state) => ({ ...state, [qN]: event.target.value }));
   };
 
+  const stageBack = () => {
+    if (stage > MIN_STAGE) {
+      setStage(stage - STAGE_CHANGE);
+    }
+  };
+
   const stageNext = () => {
     setStage(stage + STAGE_CHANGE);
   };
-
-  const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
-  const {
-    mutate: sendTestResult,
-    data: responseData,
-    isLoading: sendTestResultIsLoading,
-  } = useSendTestResult({
-    clientCourseId: params.courseId,
-  });
 
   const submitResult = (isResultPageEnabled = true) => {
     const resultData = {
@@ -81,7 +113,7 @@ const PassingTestContainer: React.FC = () => {
         qN: Number(key),
         aN: Number(value),
       })),
-      clientCourseId: params.courseId,
+      clientCourseId: courseId,
     };
     sendTestResult(resultData);
     setTestResultPageEnabled(isResultPageEnabled);
@@ -94,52 +126,26 @@ const PassingTestContainer: React.FC = () => {
   const handleCloseTimeIsOverDialog = () => {
     setTestTimeoutDialogOpen();
     submitResult(false);
-    naviagteTo(transformRoute(PATHS.myCourseDetails, params.courseId));
+    naviagteTo(transformRoute(PATHS.myCourseDetails, courseId));
   };
-
-  const stageBack = () => {
-    if (stage > MIN_STAGE) {
-      setStage(stage - STAGE_CHANGE);
-    }
-  };
-  const resultEnabled = stage === maxStage;
-  const questionStageItem = courseTest?.questions[stage - 1];
-  const courseStatus = clientCourseResponse?.status;
-
-  const isTestTimeOver = useMemo(
-    () =>
-      courseStatus === CourseStatus.testing &&
-      getDurationBetweenDates(clientCourseResponse?.finishTestDate) < MIN_TEST_DURATION,
-    [clientCourseResponse?.finishTestDate, courseStatus],
-  );
-
-  const isNotTestingCourseStatus =
-    !clientCourseResponseIsLoading && courseStatus !== CourseStatus.testing;
-
-  const isShouldRedirect = isNotTestingCourseStatus || isTestTimeOver;
-
-  const [isLeavePageDialogOpen, setLeavePageDialogOpen] = useToggle();
 
   const handleConfirmLeavePageOpen = (): void => {
-    setLeavePageDialogOpen();
+    setLeavePageDialogOpen(true);
+    naviagteTo(transformRoute(PATHS.myCourseDetails, courseId));
+  };
+
+  const handleCancelLeavePage = (): void => {
+    setLeavePageDialogOpen(false);
+    cancelNavigation();
   };
 
   const handleNavigateBack = (): void => {
-    handleConfirmLeavePageOpen();
-    naviagteTo(transformRoute(PATHS.myCourseDetails, params.courseId));
+    setLeavePageDialogOpen(false);
+    confirmNavigation();
   };
 
-  const testStatus = responseData ? responseData.result.testStatus : undefined;
-  const isFailed = testStatus === TEST_STATUS.notPassed;
-  const assessmentRequired = testStatus === TEST_STATUS.assessment;
-  const percentageValue = responseData ? responseData?.result?.result * PERCENTAGE : undefined;
-
-  const progressBarData = isFailed
-    ? convertTestStatusToProgress(TEST_STATUS.failed, percentageValue)
-    : convertTestStatusToProgress(TEST_STATUS.successful, percentageValue);
-
   if (isShouldRedirect && !isTestResultPageEnabled) {
-    return <Navigate replace to={transformRoute(PATHS.myCourseDetails, params.courseId)} />;
+    return <Navigate replace to={transformRoute(PATHS.myCourseDetails, courseId)} />;
   }
 
   return (
@@ -151,7 +157,6 @@ const PassingTestContainer: React.FC = () => {
             maxStage={maxStage}
             handleChange={handleChange}
             value={values}
-            params={params}
             resultEnabled={resultEnabled}
             stageNext={stageNext}
             stageBack={stageBack}
@@ -163,9 +168,9 @@ const PassingTestContainer: React.FC = () => {
             handleBackButtonClick={handleConfirmLeavePageOpen}
           />
           <ConfirmLeavePage
-            isOpened={isLeavePageDialogOpen}
+            isOpened={isLeavePageDialogOpen || (showPrompt && !isNotTestingCourseStatus)}
             isLoading={courseTestResponseIsLoading}
-            handleCancelLeavePage={handleConfirmLeavePageOpen}
+            handleCancelLeavePage={handleCancelLeavePage}
             handleLeavePage={handleNavigateBack}
           />
           <ConfirmTimeIsOver
