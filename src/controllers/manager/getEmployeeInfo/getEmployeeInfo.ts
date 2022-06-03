@@ -22,6 +22,7 @@ const getEmployeeInfo = async (
 
     const employee: IUser = await getUserProvider(userId);
     const courses: IClientCoursePopulated[] = await getAllClientCoursesProvider(userId);
+
     const employeeTechs = await populateUserTechnologies(employee);
     const employeePopulated = await populateUserStack(employeeTechs);
 

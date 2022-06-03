@@ -13,6 +13,7 @@ const readNotifications = async (
 ) => {
   try {
     const { id: userId } = res.locals;
+
     await readNotificationProvider(userId);
 
     res.json('Notifications statuses were changed.');

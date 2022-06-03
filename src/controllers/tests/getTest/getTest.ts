@@ -15,6 +15,7 @@ import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 const getTest = async (req: TGetTestRequest, res: TGetTestResponse, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
+
     const { status: courseStatus, finishTestDate } = await getClientCourseProvider(clientCourseId);
 
     if (courseStatus !== CourseStatus.testing) {

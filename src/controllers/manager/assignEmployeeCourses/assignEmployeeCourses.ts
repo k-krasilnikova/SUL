@@ -54,7 +54,6 @@ const assignEmployeeCourses = async (
       employeeClientCourses,
       reducedCoursesToAssign,
     );
-
     if (hasDuplicates) {
       throw new BadRequestError(`Attempt to assign duplicated courses.`);
     }

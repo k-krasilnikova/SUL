@@ -7,7 +7,7 @@ import { ITest, TestDb } from 'interfaces/Ientities/Itest';
 import { IUpdateTestDto } from 'interfaces/dto/courses';
 import { NotFoundError } from 'classes/errors/clientErrors';
 
-const getTestProvider = async (courseId: string) => {
+const getTestProvider = async (courseId: string): Promise<TestDb[]> => {
   const test: TestDb[] = await ClientCourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
@@ -52,7 +52,7 @@ const getTestById = async (testId: string | Types.ObjectId): Promise<ITest> => {
   return test;
 };
 
-const getTrueAnswersProvider = async (testId: string) => {
+const getTrueAnswersProvider = async (testId: string): Promise<ITest> => {
   const trueAnswers = await TestModel.findOne(
     { _id: testId },
     {
@@ -97,7 +97,7 @@ const getCourseTest = async (courseId: string | Types.ObjectId): Promise<ITest> 
   return test as unknown as ITest;
 };
 
-const addCourseTest = async (testData: ITest) => TestModel.create(testData);
+const addCourseTest = async (testData: ITest): Promise<ITest> => TestModel.create(testData);
 
 export {
   getTestProvider,

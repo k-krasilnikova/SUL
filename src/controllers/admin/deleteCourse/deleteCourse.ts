@@ -21,8 +21,8 @@ const deleteCourse = async (
     }
 
     await checkNotDeleteCoursesProvider(courseId);
-
     await deleteCourseProvider(courseId);
+
     res.json('Course deleted.');
   } catch (err) {
     next(err);

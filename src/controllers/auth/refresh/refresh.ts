@@ -20,19 +20,16 @@ const refresh = async (req: TRefreshRequest, res: TRefreshResponse, next: NextFu
     }
 
     const refreshTokenStr = JSON.parse(refreshToken) as string;
-
     const decodeRefreshToken = verifyRefreshToken(refreshTokenStr);
 
     const dbUser = await getUserProvider(decodeRefreshToken.id);
 
     const isValidToken = verifyRefreshToken(refreshTokenStr);
-
     if (!isValidToken) {
       throw new ForbiddenError('Invalid refresh token.');
     }
 
     const refreshedTokens = generateJWT(dbUser);
-
     await saveTokenProvider(refreshedTokens.refreshToken, dbUser);
 
     res.json(refreshedTokens);
