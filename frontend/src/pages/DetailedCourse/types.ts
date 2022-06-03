@@ -77,3 +77,6 @@ export interface IDetailedCourseContainerProps {
 export interface ICourseInfoBlockProps {
   title: string;
 }
+export interface IEditCourseButtonProps {
+  id: string;
+}

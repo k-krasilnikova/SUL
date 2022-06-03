@@ -14,4 +14,9 @@ interface ITokens {
   refreshToken: string;
 }
 
-export { IAccessJwtPayload, IRefreshJwtPayload, ITokens };
+interface ITokensDto {
+  accessToken?: string;
+  refreshToken?: string;
+}
+
+export { IAccessJwtPayload, IRefreshJwtPayload, ITokens, ITokensDto };

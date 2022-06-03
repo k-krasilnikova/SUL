@@ -14,7 +14,7 @@ export const SearchWrapper = styled('div')({
 export const SearchSkill = styled(Input)({
   [theme.breakpoints.up('xs')]: {
     fontSize: '16px',
-    lineHeight: '33.61px',
+    lineHeight: 2,
   },
   [theme.breakpoints.up('sm')]: {
     fontSize: '18px',

@@ -4,26 +4,41 @@ import { MobileSearch } from 'components/Layout';
 import PageTitle from 'components/PageTitle';
 
 import { IDetailedCourse } from './types';
-import { DetailedCourseWrapper, InnerWrapper, MobileSearchWrapper } from './styled';
+import { ButtonsWrapper, DetailedCourseWrapper, InnerWrapper, MobileSearchWrapper } from './styled';
 import BackButton from './components/BackButton';
-import SimilarCourses from './SimilarCourses';
 import CourseTechnologies from './AcquiredSkills';
-import DetailedCourseActions from './DetailedCourseActions';
+import SimilarCourses from './SimilarCourses';
 import DetailedCourseInfo from './DetailedCourseInfo';
+import DetailedCourseActions from './DetailedCourseActions';
+import EditCourseButton from './EditCourseButton';
 
-const DetailedCourse: FC<IDetailedCourse> = ({ page, commonCourseData, windowWidth, ...props }) => {
+const DetailedCourse: FC<IDetailedCourse> = ({
+  page,
+  commonCourseData,
+  windowWidth,
+  isAdmin,
+  ...props
+}) => {
   const { similarCourses, technologies } = commonCourseData;
 
   return (
     <PageTitle title="Course">
       <DetailedCourseWrapper>
-        <BackButton page={page} />
+        <ButtonsWrapper>
+          <BackButton page={page} />
+          {isAdmin && <EditCourseButton {...props} />}
+        </ButtonsWrapper>
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
         <InnerWrapper>
           <DetailedCourseInfo commonCourseData={commonCourseData} {...props} />
-          <DetailedCourseActions commonCourseData={commonCourseData} page={page} {...props} />
+          <DetailedCourseActions
+            commonCourseData={commonCourseData}
+            page={page}
+            isAdmin={isAdmin}
+            {...props}
+          />
           {Boolean(technologies.length) && <CourseTechnologies technologies={technologies} />}
           {Boolean(similarCourses.length) && (
             <SimilarCourses similarCourses={similarCourses} windowWidth={windowWidth} />

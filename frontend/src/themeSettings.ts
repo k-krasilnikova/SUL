@@ -1,10 +1,10 @@
 import { createTheme } from '@mui/material';
 
 export const COLORS = {
-  primaryColor: '#d43e41',
+  primaryColor: '#D43E41',
   secondaryColor: '#FFF',
-  darkColor: '#942b2d',
-  disabledTextColor: '#9b9b9b',
+  darkColor: '#942B2D',
+  disabledTextColor: '#9B9B9B',
   primaryTextColor: '#000',
   secondaryTextColor: '#FFF',
 };
