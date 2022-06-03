@@ -5,9 +5,6 @@ import { ISkillTech, IUserSkill, IUserSkillPopulated } from 'interfaces/Ientitie
 import { ICourseTechnologyPayload, IEditCoursePayload } from 'interfaces/requests/common/payloads';
 import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
 import { IUser } from 'interfaces/Ientities/Iusers';
-import { ISearchQuery } from 'interfaces/requests/common/queries';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import UserSkillModel from 'db/models/UserSkill';
 import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
