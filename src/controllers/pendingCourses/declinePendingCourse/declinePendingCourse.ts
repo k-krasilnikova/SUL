@@ -21,7 +21,7 @@ const declinePendingCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { id: clientCourseId } = req.body;
+    const { clientCourseId } = req.body;
     const { id: managerId } = res.locals;
 
     if (!clientCourseId || !managerId) {

@@ -5,7 +5,7 @@ import { IAuthLocals } from '../common/locals';
 import { IIdParams } from '../common/params';
 
 type TRequestParams = IIdParams;
-type TRequestBody = { id: string };
+type TRequestBody = { courseId: string };
 
 type TResponsePayload = IClientCourse;
 type TResponseLocals = IAuthLocals;
