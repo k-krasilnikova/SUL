@@ -27,10 +27,7 @@ const useCallbackPrompt = (
   const handleBlockedNavigation = useCallback(
     (nextLocation) => {
       if (!confirmedNavigation && nextLocation.location.pathname === PATHS.signIn) {
-        setShowPrompt(false);
-        setConfirmedNavigation(true);
-        setLastLocation(nextLocation);
-        return false;
+        nextLocation.retry();
       }
       // in if condition we are checking next location and current location are equals or not
       if (!confirmedNavigation && nextLocation.location.pathname !== location.pathname) {
