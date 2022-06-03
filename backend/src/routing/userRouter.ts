@@ -2,9 +2,9 @@ import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
 import withAuth from 'middlewares/authMiddleware';
-import getProfileInformation from 'controllers/user/getProfileInfo';
-import readNotifications from 'controllers/notifications/readNotifications';
+import { readNotifications } from 'controllers/notifications';
 import { SubRoutes } from 'enums/routesEnum';
+import { getProfileInformation } from 'controllers/user';
 
 const userRouter = Router();
 

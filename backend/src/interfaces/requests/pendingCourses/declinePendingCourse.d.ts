@@ -4,7 +4,7 @@ import { IIdParams } from '../common/params';
 import { IWithAssessmentPayload } from '../common/payloads';
 
 type TRequestParams = IIdParams;
-type TRequestBody = { clientCourseId: string } & IWithAssessmentPayload;
+type TRequestBody = { id: string } & IWithAssessmentPayload;
 
 type TResponsePayload = string;
 type TResponseLocals = IAuthLocals;

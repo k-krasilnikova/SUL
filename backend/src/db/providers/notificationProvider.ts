@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import NotificationModel from 'db/models/Notification';
 import {
@@ -10,8 +10,9 @@ import {
 import { SortOrder } from 'enums/common';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { DEFAULT_ORDER_FIELD, NOTIFICATIONS_COUNT } from 'config/constants';
+import { INotification } from 'interfaces/Ientities/Iusers';
 
-export const getUserNotifications = async (userId: string) => {
+export const getUserNotifications = async (userId: string): Promise<INotification[]> => {
   const dbNotifications = await NotificationModel.find({ userId })
     .sort({ [DEFAULT_ORDER_FIELD]: SortOrder.desc })
     .limit(NOTIFICATIONS_COUNT)
@@ -21,14 +22,14 @@ export const getUserNotifications = async (userId: string) => {
 };
 
 export const addUserNotification = async (
-  userId: ObjectId | string,
+  userId: Types.ObjectId | string,
   courseName: string,
   userName: string,
   status: NotificationStatuses,
   title: NotificationTitles,
   description: NotificationDescription,
   type: NotificationType,
-) => {
+): Promise<void> => {
   if (userId) {
     await NotificationModel.create({
       userId,
@@ -44,7 +45,7 @@ export const addUserNotification = async (
   }
 };
 
-export const readNotificationProvider = async (userId: string) => {
+export const readNotificationProvider = async (userId: string): Promise<void> => {
   if (userId) {
     await NotificationModel.updateMany({ userId }, { status: NotificationStatuses.old });
   } else {

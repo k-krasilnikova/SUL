@@ -1,7 +1,7 @@
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
 import { IUser } from 'interfaces/Ientities/Iusers';
-import AccessTokenBlacklistModel from 'db/models/AccessTokens';
+import { AccessTokenBlacklistModel, IAccessToken } from 'db/models/AccessTokens';
 
 const authProvider = async (login: string): Promise<IUser> => {
   const dbUser = await UserModel.findOne({ username: login }).lean();
@@ -11,7 +11,7 @@ const authProvider = async (login: string): Promise<IUser> => {
   return dbUser;
 };
 
-const saveTokenProvider = async (token: string, user: IUser) => {
+const saveTokenProvider = async (token: string, user: IUser): Promise<void> => {
   await UserModel.updateOne(
     { _id: user._id },
     {
@@ -37,7 +37,7 @@ const addTokenToBlackList = async (accessToken: string): Promise<void> => {
   await AccessTokenBlacklistModel.create({ accessToken });
 };
 
-const checkTokenInBlacklist = async (accessToken: string) => {
+const checkTokenInBlacklist = async (accessToken: string): Promise<IAccessToken | null> => {
   const notValidToken = await AccessTokenBlacklistModel.findOne({ accessToken }).lean();
   return notValidToken;
 };
