@@ -1,5 +1,5 @@
 export enum ContentElementType {
-  video = 'video',
-  plain = 'plain',
-  presentation = 'presentation',
+  video = 'Video',
+  plain = 'Text',
+  presentation = 'Presentation',
 }
