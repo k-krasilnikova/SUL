@@ -48,6 +48,8 @@ const approvePendingCourse = async (
       await arrangeAssessment(clientCourseId);
     }
 
+    res.locals.clientCourseId = clientCourseId;
+
     next();
 
     res.json(`Course was approved ${withAssessment ? 'with' : 'without'} assessment.`);
