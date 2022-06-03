@@ -12,4 +12,4 @@ type TResponsePayload = ISkillGroup[];
 type TGetAllSkillsRequest = TBaseRequest<TRequestParams, TRequestBody, TRequestQuery>;
 type TGetAllSkillsResponse = TBaseResponse<TResponsePayload>;
 
-export { TGetAllSkillsRequest, TGetAllSkillsResponse };
+export { TGetAllSkillsRequest, TGetAllSkillsResponse, TResponsePayload };

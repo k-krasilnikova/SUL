@@ -6,11 +6,12 @@ import mongoose from 'mongoose';
 import supertest from 'supertest';
 
 import { app } from 'app';
-import { STATUS_CODES } from 'config/constants';
+import { JEST_TIMEOUT, STATUS_CODES } from 'config/constants';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { Routes, SubRoutes } from 'enums/routesEnum';
 import { login } from 'controllers/auth';
 
+jest.setTimeout(JEST_TIMEOUT);
 jest.mock('controllers/auth/login/login', () => {
   const originalModule = jest.requireActual('controllers/auth/login/login');
 

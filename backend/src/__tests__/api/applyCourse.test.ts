@@ -11,10 +11,16 @@ import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TResponsePayload as TUserInfoPayload } from 'interfaces/requests/user/getProfileInfo';
 import { TResponsePayload as TLoginPayload } from 'interfaces/requests/auth/login';
+import { TResponsePayload as TSkillsPayload } from 'interfaces/requests/skills/getAllSkills';
+import mockedCourse from '__mock__/mockedCourse';
+import CourseModel from 'db/models/Course';
+
+import { ICreateCourseData } from '../../interfaces/typesForTests/testTypes';
 
 jest.setTimeout(JEST_TIMEOUT);
 
 describe('Testing user apply course', () => {
+  const numberOfPoits = 5;
   const applyCourseRoute = `${Routes.namespace}${Routes.courses}`;
   const noToken = 'no token';
   let userCreds: Record<'login' | 'password', string | undefined>;
@@ -22,9 +28,13 @@ describe('Testing user apply course', () => {
   let clientCourseId: string;
   let managerId: string;
   let userId: string;
-  let request: supertest.SuperTest<supertest.Test>;
   let userToken: string;
+  let request: supertest.SuperTest<supertest.Test>;
   let dbConnection: typeof mongoose;
+  let adminCreds: Record<'login' | 'password', string | undefined>;
+  let adminToken: string;
+  let skillId: string;
+  let newCourseData: ICreateCourseData;
 
   beforeAll(async () => {
     dotenv.config();
@@ -35,6 +45,7 @@ describe('Testing user apply course', () => {
     const url = process.env.DATABASE_BACKDEV_URL;
     dbConnection = await mongoose.connect(url);
     request = supertest(app);
+
     const responseUser = await request
       .post(`${Routes.namespace}${Routes.account}${SubRoutes.login}`)
       .send(userCreds);
@@ -46,11 +57,32 @@ describe('Testing user apply course', () => {
       .set('Authorization', `bearer ${userToken}`);
     const userInfo = userRes.body as TUserInfoPayload;
     managerId = String(userInfo.managerId);
+    adminCreds = { login: process.env.ADMIN_LOGIN, password: process.env.ADMIN_PASSWORD };
+    const responseAdmin = await request
+      .post(`${Routes.namespace}${Routes.account}${SubRoutes.login}`)
+      .send(adminCreds);
+    const adminBody = responseAdmin.body as TLoginPayload;
+    adminToken = adminBody.accessToken;
+    const allSkillsRes = await request
+      .get(`${Routes.namespace}${Routes.skills}`)
+      .set('Authorization', `bearer ${adminToken}`);
+    const allSkills = allSkillsRes.body as TSkillsPayload;
+    skillId = String(allSkills[INITIAL_INDX].skills[INITIAL_INDX]._id);
+    newCourseData = { ...mockedCourse };
+    newCourseData.technologies.push({ skill: skillId, points: numberOfPoits });
+
+    const newCourseRes = await request
+      .post(`${Routes.namespace}${Routes.courses}${SubRoutes.createCourse}`)
+      .set('Authorization', `bearer ${adminToken}`)
+      .send({ ...newCourseData });
+    const newCourse = newCourseRes.body as ICourse;
+    courseId = String(newCourse._id);
   });
 
   afterAll(async () => {
     await ClientCourseModel.findOneAndDelete({ _id: clientCourseId });
     await removeFromPendingFieldCourses(managerId, clientCourseId);
+    await CourseModel.findOneAndDelete({ _id: courseId });
     await dbConnection.disconnect();
   });
 
@@ -80,11 +112,6 @@ describe('Testing user apply course', () => {
   });
 
   it('User can apply specific course by id', async () => {
-    const allCoursesRes = await request
-      .get(`${Routes.namespace}${Routes.courses}`)
-      .set('Authorization', `bearer ${userToken}`);
-    const allCourses = allCoursesRes.body as ICourse[];
-    courseId = String(allCourses[INITIAL_INDX]._id);
     const applyCourse = await request
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${userToken}`)
