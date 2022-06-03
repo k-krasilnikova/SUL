@@ -16,6 +16,7 @@ import { useToggle, useCallbackPrompt } from 'hooks';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
 import { CourseStatus } from 'enums/course';
+import { Numbers } from 'enums/numbers';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
@@ -74,7 +75,7 @@ const PassingTestContainer: React.FC = () => {
   const maxStage = courseTest ? courseTest.questions.length : MAX_STAGE_INITIAL;
   const testStatus = responseData ? responseData.result.testStatus : undefined;
   const resultEnabled = stage === maxStage;
-  const questionStageItem = courseTest?.questions[stage - 1];
+  const questionStageItem = courseTest?.questions[stage - Numbers.one];
   const assessmentRequired = testStatus === TEST_STATUS.assessment;
   const percentageValue = responseData ? responseData?.result?.result * PERCENTAGE : undefined;
   const courseStatus = clientCourseResponse?.status;
