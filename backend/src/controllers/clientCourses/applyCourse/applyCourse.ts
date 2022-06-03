@@ -23,7 +23,7 @@ const applyCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { id: courseId } = req.body;
+    const { courseId } = req.body;
     const { id: userId } = res.locals;
 
     if (!courseId || !userId) {
