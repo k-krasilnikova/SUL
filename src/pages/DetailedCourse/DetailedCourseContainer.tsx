@@ -25,7 +25,7 @@ const DetailedCourseContainer: FC<IDetailedCourseContainerProps> = ({ page }) =>
 
   const useGetInfo = page === PAGES.coursesList ? useGetCourseInfo : useGetClientCourseInfo;
 
-  const { data: courseData } = useGetInfo(params.courseId);
+  const { data: courseData } = useGetInfo(params.courseId as string);
   const { mutate, isLoading } = useApplyCourse();
 
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
