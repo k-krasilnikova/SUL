@@ -19,7 +19,16 @@ const getEditCoursePayload = async (
     const { id: courseId } = req.params;
 
     const course = await getCourseByIdProvider(courseId);
-    const { title, description, complexity, test, avatar, technologies, materials } = course;
+    const {
+      _id: id,
+      title,
+      description,
+      complexity,
+      test,
+      avatar,
+      technologies,
+      materials,
+    } = course;
 
     const availableSkills = await getSkills();
 
@@ -28,6 +37,7 @@ const getEditCoursePayload = async (
     const mappedMaterials = mapCourseMaterials(materials);
 
     const payload: IGetEditCoursePayloadResponse = {
+      _id: id,
       title,
       description,
       complexity,

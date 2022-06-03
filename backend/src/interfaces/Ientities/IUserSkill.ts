@@ -1,12 +1,17 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 import ISkill from './ISkill';
 
 interface IUserSkill {
-  _id?: ObjectId;
-  user: ObjectId;
-  skill: ObjectId;
+  _id?: Types.ObjectId;
+  user: Types.ObjectId;
+  skill: Types.ObjectId;
   score: number;
+}
+
+interface ISkillTech {
+  skill: Types.ObjectId;
+  points: number;
 }
 
 interface IUserSkillPopulated {
@@ -14,4 +19,4 @@ interface IUserSkillPopulated {
   score: number;
 }
 
-export { IUserSkill, IUserSkillPopulated };
+export { IUserSkill, IUserSkillPopulated, ISkillTech };

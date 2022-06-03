@@ -1,3 +1,5 @@
+import { Types } from 'mongoose';
+
 import { AssessmentAction } from 'enums/common';
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { IAnswer, ITest, TAchievements, TestRuslt } from 'interfaces/Ientities/Itest';
@@ -20,7 +22,7 @@ interface IIdPayload {
 }
 
 interface ICourseTechnologyPayload {
-  skill: string;
+  skill: string | Types.ObjectId;
   points: number;
 }
 

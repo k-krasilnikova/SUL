@@ -3,20 +3,24 @@ import { Router } from 'express';
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
-import getClientCourses from 'controllers/clientCourses/getAllClientCourses';
-import passCourse from 'controllers/clientCourses/passCourse';
-import startCourse from 'controllers/clientCourses/startCourse';
-import getClientCourseById from 'controllers/clientCourses/getClientCourse';
-import getTest from 'controllers/tests/getTest';
-import getAchievements from 'controllers/tests/getAchievements';
-import startTest from 'controllers/tests/startTest';
-import passTest from 'controllers/tests/passTest';
-import unitTestResults from 'controllers/tests/sendTestResults';
-import manageAssessment from 'controllers/clientCourses/manageAssessment';
-import getTestTime from 'controllers/tests/getTestTime';
-import getTestResult from 'controllers/tests/getTestResult';
-import getPendingAssessments from 'controllers/manager/getPendingAssessments';
-import addNotification from 'controllers/notifications/addNotification';
+import {
+  getAllClientCourses,
+  getClientCourseById,
+  manageAssessment,
+  passCourse,
+  startCourse,
+} from 'controllers/clientCourses';
+import { getPendingAssessments } from 'controllers/manager';
+import { addNotification } from 'controllers/notifications';
+import {
+  getAchievements,
+  getTest,
+  getTestResult,
+  getTestTime,
+  passTest,
+  unitTestResults,
+  startTest,
+} from 'controllers/tests';
 
 const clientCoursesRouter = Router();
 
@@ -71,7 +75,7 @@ clientCoursesRouter.put(
 clientCoursesRouter.get(
   SubRoutes.getClientCourses,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
-  getClientCourses,
+  getAllClientCourses,
 );
 clientCoursesRouter.put(
   SubRoutes.manageCourseAssessment,

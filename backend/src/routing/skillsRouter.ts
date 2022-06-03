@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
-import getAllSkills from 'controllers/skills/getAllSkills';
 import { SubRoutes } from 'enums/routesEnum';
 import withAuth from 'middlewares/authMiddleware';
+import { getAllSkills } from 'controllers/skills';
 
 const skillsRouter = Router();
 

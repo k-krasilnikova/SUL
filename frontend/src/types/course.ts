@@ -3,7 +3,7 @@ import { CourseStatus } from 'enums/course';
 import { EmployeeRank } from 'enums/employee';
 
 import { TMaterialVariants } from './materials';
-import { ISkill } from './skill';
+import { ITechnology } from './skill';
 import { TimeProps } from './time';
 
 export type TContentElement = {
@@ -24,21 +24,23 @@ export interface IMaterial {
   exercise?: IExercise;
 }
 
-export type CourseTechnology = { skill: ISkill; points: number };
+export type TCourseTechnology = { skill: string; points: number };
 export type TCourseStatus = `${CourseStatus}`;
 
 export interface ICourse {
-  _id: string;
-  title: string;
+  complexity: number;
   description: string;
-  technologies: CourseTechnology[];
-  requiredSkills: string[];
   duration: TimeProps;
-  testLink: string;
   lessons: number;
+  requiredSkills: { image: string; maxScore: number; name: string }[];
+  similarCourses: ICourse[];
+  technologies: ITechnology[];
+  test: string;
+  title: string;
+  _id: string;
   status: CourseStatus;
   avatar?: string;
-  similarCourses: ICourse[];
+  materials?: IMaterial[];
 }
 
 export interface IShortCourseInfo {
