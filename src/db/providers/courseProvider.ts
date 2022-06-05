@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import mongoose, { Types } from 'mongoose';
 import { isEmpty, isNull } from 'lodash';
 
@@ -15,7 +16,7 @@ import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
 import { ICoursePopulated, ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
-import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
+import { IGetCoursesParams, IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
@@ -91,19 +92,41 @@ const getCoursesProvider = async (
   {
     pageN,
     title,
+    skills,
+    complexity,
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
     nPerPage = DEFAULT_N_PER_PAGE,
-  }: IGetCoursesRequestQuery,
+  }: IGetCoursesParams,
   userId: string,
 ): Promise<ICourseWithStatus[]> => {
   try {
     const sortingField = { [orderField]: order };
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
       {
-        $match: title
-          ? { title: { $regex: new RegExp(decodeAndFormatSearchParams(title)), $options: 'i' } }
-          : NO_FILTER,
+        $lookup: {
+          from: 'skills',
+          localField: 'technologies.skill',
+          foreignField: '_id',
+          pipeline: [{ $project: { name: 1 } }],
+          as: 'techsMapSkills',
+        },
+      },
+      {
+        $match: {
+          $and: [
+            title
+              ? {
+                  title: {
+                    $regex: new RegExp(decodeAndFormatSearchParams(title)),
+                    $options: 'i',
+                  },
+                }
+              : NO_FILTER,
+            complexity ? { complexity: { $in: complexity } } : NO_FILTER,
+            skills ? { 'techsMapSkills.name': { $in: skills } } : NO_FILTER,
+          ],
+        },
       },
       generateCourseStatusLookup(userId),
       {
@@ -117,6 +140,11 @@ const getCoursesProvider = async (
       },
       {
         $limit: Number(nPerPage),
+      },
+      {
+        $project: {
+          techsMapSkills: 0,
+        },
       },
     ]);
 
