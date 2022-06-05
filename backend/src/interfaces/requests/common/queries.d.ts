@@ -6,6 +6,13 @@ interface IGetCoursesRequestQuery {
   orderField?: string;
   order?: SortOrder;
   nPerPage?: number;
+  skills?: string[];
+  complexity?: string[];
+  status?: string[];
+}
+
+interface IGetCoursesParams extends Omit<IGetCoursesRequestQuery, 'complexity'> {
+  complexity?: number[];
 }
 
 interface IStageQuery {
@@ -20,4 +27,4 @@ interface ISearchQuery {
   search: string;
 }
 
-export { IGetCoursesRequestQuery, IStageQuery, ITitleQuery, ISearchQuery };
+export { IGetCoursesRequestQuery, IStageQuery, ITitleQuery, ISearchQuery, IGetCoursesParams };

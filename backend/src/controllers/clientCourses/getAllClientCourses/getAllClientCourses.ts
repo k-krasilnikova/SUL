@@ -12,10 +12,14 @@ const getClientCourses = async (
   next: NextFunction,
 ) => {
   try {
-    const params = req.query;
+    const { complexity, ...params } = req.query;
     const { id: userId } = res.locals;
-
-    const clientCourses = await getClientCoursesProvider(userId, { ...params });
+    const complexityNumber = complexity && complexity.map((param) => +param);
+    console.log(params, userId);
+    const clientCourses = await getClientCoursesProvider(userId, {
+      complexity: complexityNumber,
+      ...params,
+    });
 
     res.json(clientCourses);
   } catch (err) {

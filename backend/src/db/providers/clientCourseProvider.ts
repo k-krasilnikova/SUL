@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import mongoose, { Types } from 'mongoose';
 
 import { IProgress } from 'interfaces/ICourses/IQueryCourses';
@@ -6,7 +7,7 @@ import {
   IClientCoursePopulated,
   TClientCourseFields,
 } from 'interfaces/Ientities/IclientCourses';
-import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
+import { IGetCoursesParams } from 'interfaces/requests/common/queries';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -28,21 +29,70 @@ const getClientCoursesProvider = async (
   {
     pageN,
     title,
+    status,
+    complexity,
+    skills,
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
     nPerPage = DEFAULT_N_PER_PAGE,
-  }: IGetCoursesRequestQuery,
+  }: IGetCoursesParams,
 ): Promise<IClientCoursePopulated[]> => {
   const sortingField = { [orderField]: order };
-  const clientCourses: IClientCoursePopulated[] = await ClientCourseModel.find({
-    user: userId,
-    title: title ? { title: { $regex: new RegExp(title), $options: 'i' } } : NO_FILTER,
-  })
-    .sort(sortingField)
-    .skip(pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING)
-    .limit(nPerPage)
-    .populate({ path: 'course', select: '-materials' })
-    .lean();
+  const clientCourses: IClientCoursePopulated[] = await ClientCourseModel.aggregate([
+    {
+      $lookup: {
+        from: 'courses',
+        localField: 'course',
+        foreignField: '_id',
+        pipeline: [{ $project: { materials: 0 } }],
+        as: 'course',
+      },
+    },
+    {
+      $lookup: {
+        from: 'skills',
+        localField: 'course.technologies.skill',
+        foreignField: '_id',
+        pipeline: [{ $project: { name: 1 } }],
+        as: 'techsMapSkills',
+      },
+    },
+    {
+      $match: {
+        $and: [
+          { user: new mongoose.Types.ObjectId(userId) },
+          status ? { status: { $in: status } } : NO_FILTER,
+          title
+            ? {
+                'course.title': {
+                  $regex: new RegExp(title),
+                  $options: 'i',
+                },
+              }
+            : NO_FILTER,
+          complexity ? { 'course.complexity': { $in: complexity } } : NO_FILTER,
+          skills ? { 'techsMapSkills.name': { $in: skills } } : NO_FILTER,
+        ],
+      },
+    },
+    {
+      $sort: {
+        ...sortingField,
+      },
+    },
+    {
+      $skip: pageN ? (pageN - FIRST_PAGE) * nPerPage : NOTHING,
+    },
+    {
+      $limit: Number(nPerPage),
+    },
+    {
+      $project: {
+        techsMapSkills: 0,
+        testResult: 0,
+      },
+    },
+  ]);
   return clientCourses;
 };
 
