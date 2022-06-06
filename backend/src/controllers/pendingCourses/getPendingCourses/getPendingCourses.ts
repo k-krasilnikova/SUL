@@ -16,9 +16,9 @@ const getPendingCourses = async (
 ) => {
   try {
     const { id: userId } = res.locals;
-    
+
     const { pendingCourses } = await getPendingCoursesProvider(userId);
-    
+
     const mappedPendingCourses: TPendingCourses = mapPendingCourses(pendingCourses);
 
     res.json(mappedPendingCourses);

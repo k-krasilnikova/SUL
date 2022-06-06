@@ -1,5 +1,3 @@
-import { ContentElementType } from 'enums/materials';
-
 export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
   {
     value: 1,
@@ -15,25 +13,31 @@ export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
   },
 ];
 
+export enum EditorContentElementType {
+  video = 'Video',
+  plain = 'Text',
+  presentation = 'Presentation',
+}
+
 export const LESSONS_TYPE: { [key: string]: string | number }[] = [
   {
     value: 'plain',
-    label: ContentElementType.plain,
+    label: EditorContentElementType.plain,
   },
   {
     value: 'video',
-    label: ContentElementType.video,
+    label: EditorContentElementType.video,
   },
   {
     value: 'presentation',
-    label: ContentElementType.presentation,
+    label: EditorContentElementType.presentation,
   },
 ];
 
 export const LESSONS_TYPE_TITLE_MAP: { [key: string]: string } = {
-  plain: ContentElementType.plain,
-  video: ContentElementType.video,
-  presentation: ContentElementType.presentation,
+  plain: EditorContentElementType.plain,
+  video: EditorContentElementType.video,
+  presentation: EditorContentElementType.presentation,
 };
 
 export const INITIAL_VALUES = {

@@ -11,7 +11,6 @@ type TRequestBody = IAssessmentActionPayload;
 type TResponsePayload = string;
 type TResponseLocals = IAuthLocals & {
   achievments: TAchievements;
-  results: TResponsePayload; // remove results in "V1-247 Remove adapters"
 };
 
 type TManageAssessmentRequest = TBaseRequest<TRequestParams, TRequestBody>;

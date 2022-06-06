@@ -13,6 +13,8 @@ const sendTestResults = async (
       achievements: { newSkills, updatedSkills, techsToAchieve },
     } = res.locals;
 
+    next();
+
     res.json({ result, newSkills, updatedSkills, techsToAchieve });
   } catch (error) {
     next(error);

@@ -2,8 +2,6 @@ import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routesEnum';
-import adapterSender from 'controllers/pendingCourses/adapterSender';
-import adapterClientCourse from 'controllers/clientCourses/adapterClientCourse';
 import {
   getAllClientCourses,
   getClientCourseById,
@@ -34,11 +32,10 @@ clientCoursesRouter.get(
 clientCoursesRouter.put(
   SubRoutes.passTest,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
-  adapterClientCourse,
   passTest,
   getAchievements,
-  addNotification,
   sendTestResults,
+  addNotification,
 );
 clientCoursesRouter.get(
   SubRoutes.startTest,
@@ -54,7 +51,6 @@ clientCoursesRouter.get(
   SubRoutes.getTestResult,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getTestResult,
-  adapterSender,
 );
 clientCoursesRouter.get(
   SubRoutes.startCourse,
@@ -65,7 +61,6 @@ clientCoursesRouter.get(
   SubRoutes.getAssessments,
   withAuth([USER_ROLES.MANAGER]),
   getPendingAssessments,
-  adapterSender,
 );
 clientCoursesRouter.get(
   SubRoutes.getClientCourse,
@@ -87,7 +82,6 @@ clientCoursesRouter.put(
   withAuth([USER_ROLES.MANAGER]),
   manageAssessment,
   getAchievements,
-  adapterSender,
 );
 
 export default clientCoursesRouter;
