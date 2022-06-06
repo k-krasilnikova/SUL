@@ -1,6 +1,6 @@
 import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
 import { TAssessmentRequest } from 'interfaces/IResponse/IResponse';
-import { calculateTimeElapsed } from 'utils/typeConversion/datetime/datetimeTypeConversions';
+import { calculateTimeElapsed } from 'utils/typeConversion/datetimeTypeConversions';
 
 const convertToAssessmentsRequests = (courses: IClientCoursePopulated[]): TAssessmentRequest[] =>
   courses.map((clCourse) => ({

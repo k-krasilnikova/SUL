@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { finished } from 'stream';
 
-import logger from 'utils/log/logger';
-import { isLogsDisplayed } from 'utils/log/loggerHelper';
+import { isLogsDisplayed, logger } from 'utils/log/logger';
 
 const loggerMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const { ip, method, url } = req;

@@ -1,7 +1,7 @@
 import { TUserStackMember } from 'interfaces/Ientities/IStackMember';
 import { IUser } from 'interfaces/Ientities/Iusers';
 import { IEmployeeShortInfo } from 'interfaces/IResponse/IResponse';
-import { mapEmployeeStack } from 'utils/normaliser/employees';
+import { mapEmployeeStack } from 'utils/normalizer/employees';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const mapEmployeeShortInfo = (employee: IUser): IEmployeeShortInfo => ({

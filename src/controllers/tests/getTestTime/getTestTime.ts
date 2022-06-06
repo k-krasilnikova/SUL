@@ -4,7 +4,7 @@ import { TGetTestTimeRequest, TGetTestTimeResponse } from 'interfaces/requests/t
 import { TestDb } from 'interfaces/Ientities/Itest';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { getTestProvider } from 'db/providers/testProvider';
-import { aggregateNormolizer } from 'utils/normaliser/aggregateNormalizer';
+import { aggregateNormalizer } from 'utils/normalizer/aggregate';
 
 const getTestTime = async (
   req: TGetTestTimeRequest,
@@ -19,7 +19,7 @@ const getTestTime = async (
       throw new NotFoundError('No tests found.');
     }
 
-    res.json(aggregateNormolizer<TestDb>(test).test.timeout);
+    res.json(aggregateNormalizer<TestDb>(test).test.timeout);
   } catch (err) {
     next(err);
   }

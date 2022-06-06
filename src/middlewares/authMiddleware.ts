@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 
 import isExpectedHttpError from 'utils/typeGuards/isExpectedHttpError';
-import { extractAccessTokenValue, verifyAccessToken } from 'utils/auth/authUtils';
+import { extractAccessTokenValue, verifyAccessToken } from 'utils/auth/auth';
 import UnauthorizedError from 'classes/errors/clientErrors/UnauthorizedError';
 import ForbiddenError from 'classes/errors/clientErrors/ForbiddenError';
 import { checkTokenInBlacklist } from 'db/providers/authProvider';
