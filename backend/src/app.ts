@@ -9,7 +9,7 @@ import routers from 'routing/routes';
 import connectionMiddleware from 'middlewares/connectionMiddleware';
 import loggerMiddleware from 'middlewares/loggerMiddleware';
 import { handleError, handleInternalError } from 'middlewares/errorHandlingMiddleware';
-import { registerScheduler } from 'utils/schedule';
+import { registerScheduler } from 'utils/schedule/registerScheduler';
 
 dotenv.config();
 

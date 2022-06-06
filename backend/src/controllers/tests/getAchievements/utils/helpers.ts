@@ -10,8 +10,8 @@ import {
 import { ICourse } from 'interfaces/Ientities/Icourses';
 import { ITechnologyGroup } from 'interfaces/Ientities/Iusers';
 import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
-import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
-import { containsObjectId } from 'utils/comparator/ObjectId/containsObjectId';
+import { isEqualObjectId } from 'utils/comparator/compareObjectIds';
+import { containsObjectId } from 'utils/comparator/containsObjectId';
 
 const specifyUserTechnologies = async (
   techs: ITechnologyGroup[],

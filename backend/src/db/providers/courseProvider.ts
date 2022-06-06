@@ -20,7 +20,7 @@ import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
-import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
+import { convertToCourseDuration } from 'utils/typeConversion/datetimeTypeConversions';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 import { TResponsePayload as TMaterialsPayload } from 'interfaces/requests/courses/getMaterials';

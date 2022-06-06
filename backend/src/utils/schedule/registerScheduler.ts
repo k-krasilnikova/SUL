@@ -2,7 +2,7 @@ import cron from 'node-cron';
 
 import { createSchedulePattern } from './common';
 import { SCHEDULER_OPTIONS } from './constants';
-import updateTestStatuses from './schedulers/updateTestStatuses';
+import updateTestStatuses from './updateTestStatuses';
 
 const registerScheduler = (): void => {
   cron.schedule(createSchedulePattern(SCHEDULER_OPTIONS.UPDATE_TEST_STATUSES), updateTestStatuses, {
@@ -10,4 +10,4 @@ const registerScheduler = (): void => {
   });
 };
 
-export default registerScheduler;
+export { registerScheduler };

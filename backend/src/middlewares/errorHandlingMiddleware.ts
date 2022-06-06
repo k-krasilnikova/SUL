@@ -3,8 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { TErrorHandler } from 'interfaces/commonErrorHandling';
 import CommonHttpError from 'classes/errors/common/CommonHttpError';
 import InternalServerError from 'classes/errors/serverErrors/InternalServerError';
-import logger from 'utils/log/logger';
-import { isLogsDisplayed } from 'utils/log/loggerHelper';
+import { isLogsDisplayed, logger } from 'utils/log/logger';
 
 const handleError: TErrorHandler = (
   error: CommonHttpError,
