@@ -3,7 +3,6 @@ import { FC } from 'react';
 import ProgressBar from 'components/ProgressBar';
 import { PROGRESS_COLOR } from 'constants/detailedCourse';
 import { ButtonLabels } from 'constants/ButtonLabels';
-import { IDetailedCourseInfo } from 'types/detailedCourse';
 import { shortifyDetailedCourseDescription } from 'utils/helpers/shortifyDetailedCourseDescription';
 
 import {
@@ -13,6 +12,7 @@ import {
   DetailedCourseTitle,
   ImageWrapper,
 } from './styled';
+import { IDetailedCourseInfo } from '../types';
 
 const DetailedCourseInfo: FC<IDetailedCourseInfo> = ({
   commonCourseData,

@@ -21,10 +21,13 @@ const declinePendingCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { managerId, clientCourseId, results } = res.locals;
+    const { clientCourseId } = req.body;
+    const { id: managerId } = res.locals;
+
     if (!clientCourseId || !managerId) {
       throw new BadRequestError('Invalid query.');
     }
+
     const { status } = await getStatusProvider(clientCourseId);
     if (status !== CourseStatus.pending) {
       throw new BadRequestError(`Can't decline course with status: ${status}.`);
@@ -32,6 +35,7 @@ const declinePendingCourse = async (
 
     const { _id: manager }: IUser = await getUserProvider(managerId);
     const clientCourse = await getClientCourseProvider(clientCourseId);
+
     await updateClientCourseField(
       clientCourseId,
       CLIENT_COURSE_FIELDS.status,
@@ -39,10 +43,13 @@ const declinePendingCourse = async (
     );
     await removeFromPendingFieldCourses(manager, clientCourse._id);
 
-    results.updateStatus = 'Course was declined.';
     await updateClientCourseField(clientCourseId, CLIENT_COURSE_FIELDS.applyDate, Date.now());
 
+    res.locals.clientCourseId = clientCourseId;
+
     next();
+
+    res.json('Course was declined.');
   } catch (error) {
     next(error);
   }

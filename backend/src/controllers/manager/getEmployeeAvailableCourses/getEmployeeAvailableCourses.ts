@@ -30,13 +30,10 @@ const getEmployeeAvailableCourses = async (
     }
 
     const courses = await getAllCoursesProvider(employeeId, searchTitle);
-
     const availableCourses = filterOnlyAvailableCourses(courses);
-
     const availableCoursesResponse = mapAvailableCoursesInfo(availableCourses);
 
-    res.locals.results = availableCoursesResponse;
-    next();
+    res.json(availableCoursesResponse);
   } catch (error) {
     next(error);
   }

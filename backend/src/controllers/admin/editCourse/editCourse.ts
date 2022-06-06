@@ -28,7 +28,6 @@ const editCourse = async (
     const dataToUpdate = req.body;
 
     const courseDataValidationResult = validateCourseData(dataToUpdate);
-
     checkCourseValidationResult(courseDataValidationResult);
 
     const updatedData: IEditCoursePayload = {};
@@ -90,14 +89,17 @@ const editCourse = async (
         COURSE_FIELDS.technologies,
         dataToUpdate.technologies,
       );
+
       const course = await getCourseProvider(courseId, userId);
       await addSimilarCoursesProvider(course);
+
       updatedData.technologies =
         convertToTypeUnsafe<IEditCoursePayload['technologies']>(technologies);
     }
 
     if (validatedTest) {
       const test = await getCourseTest(courseId);
+
       if (test._id && dataToUpdate.test) {
         const { questions, timeout, title } = await updateTest({
           testId: test._id,
@@ -105,6 +107,7 @@ const editCourse = async (
           timeout: validatedTest.timeout,
           title: validatedTest.title,
         });
+
         const newTest: IEditCoursePayload['test'] = { timeout, title, questions };
         updatedData.test = newTest;
       }
@@ -112,9 +115,7 @@ const editCourse = async (
 
     await refreshCourseLessonsAndDuration(courseId);
 
-    res.locals.results = updatedData;
-
-    next();
+    res.json(updatedData);
   } catch (error) {
     next(error);
   }

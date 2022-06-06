@@ -10,8 +10,9 @@ import {
   getAllClientCoursesProvider,
 } from 'db/providers/clientCourseProvider';
 import { materialsCounterProvider } from 'db/providers/courseProvider';
+import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
 import { generateProgressDto } from 'utils/dto/dtoUtils';
-import { INITIAL_INDX } from 'config/constants';
+import { INITIAL_INDX, USER_ROLES } from 'config/constants';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 
 import { checkCourseDuplicates } from './utils/validations';
@@ -22,23 +23,31 @@ const applyCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { courseId, userId } = res.locals;
+    const { courseId } = req.body;
+    const { id: userId } = res.locals;
+
     if (!courseId || !userId) {
       throw new BadRequestError('Invalid query');
     }
+
     const applyedCourses = await getAllClientCoursesProvider(userId);
     const isDuplicate = checkCourseDuplicates(applyedCourses, courseId);
     if (isDuplicate) {
       throw new BadRequestError('Course already applied.');
     }
+
     const materialsCount = await materialsCounterProvider(courseId);
     const progressDto = generateProgressDto(materialsCount[INITIAL_INDX].total);
     const course: IClientCourse = await applyCourseProvider(courseId, userId, progressDto);
 
-    res.locals.clientCourseId = String(course._id);
+    const { managerId, role } = await getUserProvider(userId);
+    if (role === USER_ROLES.EMPLOYEE) {
+      await updatePendingFieldCourses(managerId, String(course._id));
+    }
 
-    res.locals.results = { course };
     next();
+
+    res.json(course);
   } catch (err) {
     next(err);
   }

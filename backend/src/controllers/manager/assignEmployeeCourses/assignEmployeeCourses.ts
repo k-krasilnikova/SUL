@@ -54,7 +54,6 @@ const assignEmployeeCourses = async (
       employeeClientCourses,
       reducedCoursesToAssign,
     );
-
     if (hasDuplicates) {
       throw new BadRequestError(`Attempt to assign duplicated courses.`);
     }
@@ -91,9 +90,9 @@ const assignEmployeeCourses = async (
 
     const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
 
-    res.locals.results = `${assignedCoursesAmount}/${assignedCourses.length} courses successfully assigned.`;
+    const payloadMessage = `${assignedCoursesAmount}/${assignedCourses.length} courses successfully assigned.`;
 
-    next();
+    res.json(payloadMessage);
   } catch (error) {
     next(error);
   }

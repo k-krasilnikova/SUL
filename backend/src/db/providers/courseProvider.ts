@@ -23,6 +23,7 @@ import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
 import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
+import { TResponsePayload as TMaterialsPayload } from 'interfaces/requests/courses/getMaterials';
 import { getTestById } from './testProvider';
 
 const generateCourseStatusLookup = (userId: Types.ObjectId | string) => ({
@@ -78,8 +79,10 @@ const populateCourses = async (courses: ICourseWithStatus[]): Promise<ICourseWit
 
 const populateCourse = async (course: ICourseWithStatus): Promise<ICourseWithStatus> => {
   const populated = await CourseModel.populate(course, [
-    { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
-    { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+    {
+      path: 'technologies',
+      populate: { path: 'skill', model: 'Skill', select: 'name image maxScore -_id' },
+    },
     { path: 'similarCourses' },
   ]);
 
@@ -95,7 +98,7 @@ const getCoursesProvider = async (
     nPerPage = DEFAULT_N_PER_PAGE,
   }: IGetCoursesRequestQuery,
   userId: string,
-) => {
+): Promise<ICourseWithStatus[]> => {
   try {
     const sortingField = { [orderField]: order };
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
@@ -132,7 +135,7 @@ const getCoursesProvider = async (
 const getCourseProvider = async (
   courseId: string | Types.ObjectId,
   userId: string | Types.ObjectId,
-) => {
+): Promise<ICourseWithStatus> => {
   const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
     {
       $match: {
@@ -169,7 +172,7 @@ const getCourseByIdProvider = async (
   return convertToTypeUnsafe<ICoursePopulated>(course);
 };
 
-const getMaterialsProvider = async (courseId: string) => {
+const getMaterialsProvider = async (courseId: string): Promise<TMaterialsPayload> => {
   const material = await CourseModel.findById(courseId).select('materials').lean();
   if (!material) {
     throw new NotFoundError('Materials not found.');
@@ -177,7 +180,14 @@ const getMaterialsProvider = async (courseId: string) => {
   return material;
 };
 
-const materialsCounterProvider = async (courseId: string | Types.ObjectId) => {
+const materialsCounterProvider = async (
+  courseId: string | Types.ObjectId,
+): Promise<
+  {
+    _id: string;
+    total: number;
+  }[]
+> => {
   const materialsCount: { _id: string; total: number }[] = await CourseModel.aggregate([
     { $match: { _id: new mongoose.Types.ObjectId(courseId) } },
     {
@@ -192,12 +202,16 @@ const materialsCounterProvider = async (courseId: string | Types.ObjectId) => {
   return materialsCount;
 };
 
-const deleteCourseProvider = async (courseId: string) => {
+const deleteCourseProvider = async (courseId: string): Promise<void> => {
   await CourseModel.findOneAndDelete({ _id: courseId });
   await ClientCourseModel.deleteMany({ course: courseId });
 };
 
-const updateCourseField = async (courseId: string, field: TCourseFields, value: unknown) => {
+const updateCourseField = async (
+  courseId: string,
+  field: TCourseFields,
+  value: unknown,
+): Promise<ICourse> => {
   const updatedCourse = await CourseModel.findOneAndUpdate(
     { _id: courseId },
     { $set: { [field]: value } },
@@ -276,10 +290,10 @@ const getCourseStatusProvider = async (
   return relateClientCourse?.status;
 };
 
-const addCourseProvider = async (newCourse: IPreparedCourseDataPayload) =>
+const addCourseProvider = async (newCourse: IPreparedCourseDataPayload): Promise<ICourse> =>
   CourseModel.create(newCourse);
 
-const addSimilarCoursesProvider = async (course: ICourse) => {
+const addSimilarCoursesProvider = async (course: ICourse): Promise<void> => {
   await CourseModel.findOneAndUpdate({ _id: course._id }, { $set: { similarCourses: [] } });
 
   course.technologies.map(async (currentSkill) => {

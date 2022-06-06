@@ -89,8 +89,8 @@ describe('Testing user apply course', () => {
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${userToken}`)
       .send({ id: courseId });
-    const newClientCourse = applyCourse.body as { course: IClientCourse };
-    clientCourseId = String(newClientCourse.course._id);
+    const newClientCourse = applyCourse.body as IClientCourse;
+    clientCourseId = String(newClientCourse._id);
     expect(applyCourse.status).toBe(STATUS_CODES.success.OK);
   });
 
