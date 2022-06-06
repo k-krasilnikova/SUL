@@ -17,6 +17,6 @@ export const addPointToUserSkill =
     const isSkillIncomplete = score < maxScore;
 
     const newPoints = calculatePoints(points, score);
-    
+
     return isSkillIncomplete && (await updateUserSkill(userId, newPoints, skill));
   };
