@@ -5,6 +5,7 @@ import PageTitle from 'components/PageTitle';
 import Course from 'components/Course';
 import MobileLink from 'components/MobileLink';
 import NoContent from 'components/NoContent';
+import CoursesFilter from 'components/CoursesFilter';
 import { NO_COURSES } from 'constants/messages';
 import Loader from 'components/Loader';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
@@ -29,12 +30,14 @@ const CoursesList: FC<ICourseProps> = ({
   windowWidth,
   lastCourseRef,
   isAdmin,
+  withStatusSelect,
 }) => (
   <PageTitle title="Courses List">
     {isLoading ? (
       <Loader type={Loaders.content} />
     ) : courses?.length ? (
       <PageContainer container>
+        <CoursesFilter withStatusSelect={withStatusSelect} />
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
