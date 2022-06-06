@@ -1,7 +1,8 @@
 import { IUserSkill } from 'types/skill';
 
 export interface ISkillInfoProps {
-  skillItem: IUserSkill;
+  skillScore: IUserSkill['score'];
+  skill: IUserSkill['skill'];
 }
 
 export interface ISkillInfoWrapperProps {
