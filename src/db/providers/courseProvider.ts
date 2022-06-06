@@ -92,7 +92,7 @@ const getCoursesProvider = async (
   {
     pageN,
     title,
-    skills,
+    technologies,
     complexity,
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
@@ -101,7 +101,7 @@ const getCoursesProvider = async (
   userId: string,
 ): Promise<ICourseWithStatus[]> => {
   try {
-    const sortingField = { [orderField]: order };
+    const sortingField = { [orderField]: Number(order) };
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
       {
         $lookup: {
@@ -124,7 +124,7 @@ const getCoursesProvider = async (
                 }
               : NO_FILTER,
             complexity ? { complexity: { $in: complexity } } : NO_FILTER,
-            skills ? { 'techsMapSkills.name': { $in: skills } } : NO_FILTER,
+            technologies ? { 'techsMapSkills.name': { $in: technologies } } : NO_FILTER,
           ],
         },
       },
