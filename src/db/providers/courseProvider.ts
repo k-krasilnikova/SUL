@@ -79,8 +79,10 @@ const populateCourses = async (courses: ICourseWithStatus[]): Promise<ICourseWit
 
 const populateCourse = async (course: ICourseWithStatus): Promise<ICourseWithStatus> => {
   const populated = await CourseModel.populate(course, [
-    { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
-    { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+    {
+      path: 'technologies',
+      populate: { path: 'skill', model: 'Skill', select: 'name image maxScore -_id' },
+    },
     { path: 'similarCourses' },
   ]);
 

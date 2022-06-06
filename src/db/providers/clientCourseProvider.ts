@@ -57,7 +57,19 @@ const getClientCourseProvider = async (clientCourseId: string): Promise<IClientC
   const clientCourse: IClientCoursePopulated = await ClientCourseModel.findOne({
     _id: clientCourseId,
   })
-    .populate({ path: 'course', populate: 'similarCourses' })
+    .populate({
+      path: 'course',
+      populate: [
+        { path: 'similarCourses' },
+        {
+          path: 'technologies',
+          populate: {
+            path: 'skill',
+            select: 'name image maxScore -_id',
+          },
+        },
+      ],
+    })
     .lean();
 
   if (!clientCourse) {
