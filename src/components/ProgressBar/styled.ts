@@ -68,4 +68,13 @@ export const ProgressBarBox = styled(Box)<IProps>(({ size }) => ({
       height: '24px',
     },
   }),
+  ...(size === Size.xsmall && {
+    width: '38px',
+    height: '38px',
+    margin: 0,
+    [theme.breakpoints.down('md')]: {
+      width: '28px',
+      height: '28px',
+    },
+  }),
 }));

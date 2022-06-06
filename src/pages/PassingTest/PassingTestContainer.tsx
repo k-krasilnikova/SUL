@@ -71,7 +71,7 @@ const PassingTestContainer: React.FC = () => {
     data: responseData,
     isLoading: sendTestResultIsLoading,
   } = useSendTestResult({
-    courseId: params.courseId,
+    clientCourseId: params.courseId,
   });
 
   const submitResult = (isResultPageEnabled = true) => {
@@ -81,6 +81,7 @@ const PassingTestContainer: React.FC = () => {
         qN: Number(key),
         aN: Number(value),
       })),
+      clientCourseId: params.courseId,
     };
     sendTestResult(resultData);
     setTestResultPageEnabled(isResultPageEnabled);
