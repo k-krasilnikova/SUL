@@ -9,7 +9,7 @@ import { ISkillItemProps } from 'components/SkillGroup/types';
 import { SkillContainer, ImageWrapper, SkillNameWrapper, SkillName } from './styled';
 
 const SkillItem: FC<ISkillItemProps> = ({ name, skillImage }) => {
-  const NAME_MAX_LENGTH = 30;
+  const NAME_MAX_LENGTH = 25;
   const shortSkillName =
     name.length > NAME_MAX_LENGTH ? `${name.slice(Numbers.zero, NAME_MAX_LENGTH)}...` : name;
 
