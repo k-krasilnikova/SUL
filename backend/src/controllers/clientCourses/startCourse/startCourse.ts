@@ -28,7 +28,7 @@ const startCourse = async (
       CourseStatus.started,
     );
 
-    res.json({ start: true });
+    res.json('Course has been started.');
   } catch (err) {
     next(err);
   }
