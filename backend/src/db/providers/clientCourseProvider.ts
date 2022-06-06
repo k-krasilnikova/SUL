@@ -31,7 +31,7 @@ const getClientCoursesProvider = async (
     title,
     status,
     complexity,
-    skills,
+    technologies,
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
     nPerPage = DEFAULT_N_PER_PAGE,
@@ -71,7 +71,7 @@ const getClientCoursesProvider = async (
               }
             : NO_FILTER,
           complexity ? { 'course.complexity': { $in: complexity } } : NO_FILTER,
-          skills ? { 'techsMapSkills.name': { $in: skills } } : NO_FILTER,
+          technologies ? { 'techsMapSkills.name': { $in: technologies } } : NO_FILTER,
         ],
       },
     },

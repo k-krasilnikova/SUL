@@ -6,7 +6,7 @@ interface IGetCoursesRequestQuery {
   orderField?: string;
   order?: SortOrder;
   nPerPage?: number;
-  skills?: string[];
+  technologies?: string[];
   complexity?: string[];
   status?: string[];
 }
