@@ -22,7 +22,8 @@ const approvePendingCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { managerId, clientCourseId, results, withAssessment } = res.locals;
+    const { clientCourseId, assessment: withAssessment } = req.body;
+    const { id: managerId } = res.locals;
 
     if (!clientCourseId || !managerId) {
       throw new BadRequestError('Invalid query.');
@@ -47,8 +48,11 @@ const approvePendingCourse = async (
       await arrangeAssessment(clientCourseId);
     }
 
-    results.updateStatus = `Course was approved ${withAssessment ? 'with' : 'without'} assessment.`;
+    res.locals.clientCourseId = clientCourseId;
+
     next();
+
+    res.json(`Course was approved ${withAssessment ? 'with' : 'without'} assessment.`);
   } catch (error) {
     next(error);
   }

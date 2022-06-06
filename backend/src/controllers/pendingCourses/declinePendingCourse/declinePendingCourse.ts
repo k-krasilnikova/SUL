@@ -21,7 +21,8 @@ const declinePendingCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { managerId, clientCourseId, results } = res.locals;
+    const { clientCourseId } = req.body;
+    const { id: managerId } = res.locals;
 
     if (!clientCourseId || !managerId) {
       throw new BadRequestError('Invalid query.');
@@ -44,9 +45,11 @@ const declinePendingCourse = async (
 
     await updateClientCourseField(clientCourseId, CLIENT_COURSE_FIELDS.applyDate, Date.now());
 
-    results.updateStatus = 'Course was declined.';
+    res.locals.clientCourseId = clientCourseId;
 
     next();
+
+    res.json('Course was declined.');
   } catch (error) {
     next(error);
   }

@@ -31,9 +31,7 @@ const getTestResult = async (
 
     const testResultResponse = mapTestResult(testResult);
 
-    res.locals.results = testResultResponse;
-
-    next();
+    res.json(testResultResponse);
   } catch (error) {
     next(error);
   }

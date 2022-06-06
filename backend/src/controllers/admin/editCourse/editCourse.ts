@@ -115,9 +115,7 @@ const editCourse = async (
 
     await refreshCourseLessonsAndDuration(courseId);
 
-    res.locals.results = updatedData;
-
-    next();
+    res.json(updatedData);
   } catch (error) {
     next(error);
   }
