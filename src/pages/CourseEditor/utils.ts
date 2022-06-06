@@ -16,7 +16,8 @@ export const getPointsArr = (maxPoints: number): number[] => {
 export const formatFieldValue = (value: string): string => {
   let formattedValue = value.replace(TRAILING_SPACES_REGEX, ' ').trim();
   if (formattedValue.length > EMPTY_LENGTH) {
-    formattedValue = formattedValue[FIRST_LETTER_INDEX].toUpperCase() + formattedValue.slice(SECOND_LETTER_INDEX);
+    formattedValue =
+      formattedValue[FIRST_LETTER_INDEX].toUpperCase() + formattedValue.slice(SECOND_LETTER_INDEX);
   }
   return formattedValue;
 };
