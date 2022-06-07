@@ -8,7 +8,6 @@ import { MaterialContentType } from 'enums/materials';
 import { TIME_1M_SEC } from 'config/constants';
 import { ITest } from 'interfaces/entities/test';
 import { ICourseTechsFromWeb } from 'interfaces/courses/query';
-import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/courseTest';
 
 import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
 import fullTrim from '../../string/fullTrim';
@@ -30,6 +29,7 @@ import {
 } from '../courses/constants';
 import { isNotNumbersOnly } from '../strings/isNotNumberOnly';
 import { isNotSpecialsOnly } from '../strings/isNotSpecialsOnly';
+import { setAnswerProperNumbersToQuestions } from '../../normalizer/courseTest';
 
 const CORRECT_ANSWERS_AMOUNT = 1;
 const MIN_MATERIALS_AMOUNT = 1;

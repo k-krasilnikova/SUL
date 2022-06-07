@@ -2,7 +2,7 @@ import { IClientCoursePopulated } from 'interfaces/entities/clientCourses';
 import { TUserStackMember } from 'interfaces/entities/stackMember';
 import { IUser } from 'interfaces/entities/users';
 import { IEmployeeInfo } from 'interfaces/response/response';
-import { mapEmployeeClientCourse, mapEmployeeStack } from 'utils/normaliser/employees';
+import { mapEmployeeClientCourse, mapEmployeeStack } from 'utils/normalizer/employees';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const mapEmployeeInfo = (employee: IUser, courses: IClientCoursePopulated[]): IEmployeeInfo => ({
