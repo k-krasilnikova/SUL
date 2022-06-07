@@ -3,10 +3,10 @@ import { FC } from 'react';
 import { NO_SKILLS } from 'constants/messages';
 import Loader from 'components/Loader';
 import PageTitle from 'components/PageTitle';
-import SkillGroup from 'components/SkillGroup';
 import NoContent from 'components/NoContent';
 import { Loaders } from 'enums/loader';
 
+import SkillGroup from './SkillGroup';
 import { ISkillsPageProps } from './types';
 import {
   SkillsPageContainer,

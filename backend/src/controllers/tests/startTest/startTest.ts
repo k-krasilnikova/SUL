@@ -8,15 +8,16 @@ import {
 } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { CLIENT_COURSE_FIELDS, REQUIRED_PCT } from 'config/constants';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { checkTestDate } from 'utils/validation/checkTestDate';
 import { getTestProvider } from 'db/providers/testProvider';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { generateStartAndFinishTestDates } from './utils/helpers';
 
 const startTest = async (req: TStartTestRequest, res: TStartTestResponse, next: NextFunction) => {
   try {
     const { id: clientCourseId } = req.params;
+
     const { status: courseStatus, finishTestDate } = await getClientCourseProvider(clientCourseId);
     const [{ currProgress: currentProgress }] = await getCurrentProgress(clientCourseId);
 

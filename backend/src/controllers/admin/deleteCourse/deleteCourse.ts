@@ -6,7 +6,7 @@ import {
 } from 'interfaces/requests/admin/deleteCourse';
 import { checkNotDeleteCoursesProvider } from 'db/providers/clientCourseProvider';
 import { deleteCourseProvider } from 'db/providers/courseProvider';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const deleteCourse = async (
   req: TDeleteCourseRequest,
@@ -21,8 +21,8 @@ const deleteCourse = async (
     }
 
     await checkNotDeleteCoursesProvider(courseId);
-
     await deleteCourseProvider(courseId);
+
     res.json('Course deleted.');
   } catch (err) {
     next(err);

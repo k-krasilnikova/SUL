@@ -30,7 +30,7 @@ const RequestButtons: FC<IRequestProps> = ({
     <ButtonsContainer item xs={12} lg={4} rowSpacing={1}>
       <ActionButton
         variant="mediumContained"
-        onClick={() => approveRequest({ id })}
+        onClick={() => approveRequest({ clientCourseId: id })}
         disabled={isLoading}
       >
         {isLoading && isTargetRequest ? (
@@ -41,7 +41,7 @@ const RequestButtons: FC<IRequestProps> = ({
       </ActionButton>
       <InterviewActionButton
         variant="mediumContained"
-        onClick={() => approveRequest({ id, assessment: true })}
+        onClick={() => approveRequest({ clientCourseId: id, assessment: true })}
         disabled={isLoading}
       >
         {isLoading && isTargetRequest ? (
