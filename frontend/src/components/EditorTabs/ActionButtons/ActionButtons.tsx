@@ -12,23 +12,37 @@ const ActionButtons: FC<IActionButtons> = ({
   handleNextStep,
   step,
   isSubmitEnabled,
-}) => (
-  <ButtonWrapper>
-    <Box>
-      {step > MIN_STEP && (
-        <StyledButton variant="mediumOutlined" onClick={handlePreviousStep}>
-          {ButtonLabels.previous}
+  formik,
+}) => {
+  console.log(formik?.errors);
+  return (
+    <ButtonWrapper>
+      <Box>
+        {step > MIN_STEP && (
+          <StyledButton
+            variant="mediumOutlined"
+            onClick={handlePreviousStep}
+            // disabled={!formik?.isValid}
+          >
+            {ButtonLabels.previous}
+          </StyledButton>
+        )}
+      </Box>
+      {isSubmitEnabled ? (
+        <StyledButton variant="medium" disabled={!formik?.isValid} onClick={formik?.submitForm}>
+          {ButtonLabels.submit}
+        </StyledButton>
+      ) : (
+        <StyledButton
+          variant="medium"
+          onClick={handleNextStep}
+          // disabled={!formik?.isValid}
+        >
+          {ButtonLabels.next}
         </StyledButton>
       )}
-    </Box>
-    {isSubmitEnabled ? (
-      <StyledButton variant="medium">{ButtonLabels.submit}</StyledButton>
-    ) : (
-      <StyledButton variant="medium" onClick={handleNextStep}>
-        {ButtonLabels.next}
-      </StyledButton>
-    )}
-  </ButtonWrapper>
-);
+    </ButtonWrapper>
+  );
+};
 
 export default ActionButtons;

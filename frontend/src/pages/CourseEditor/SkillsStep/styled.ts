@@ -30,6 +30,11 @@ export const SkillButton = styled(Button)({
   width: '136px',
   height: '50px',
   fontWeight: 500,
+  '&.MuiButton-root.Mui-disabled': {
+    backgroundColor: '#E19697',
+    color: '#FFF',
+    border: 'none',
+  },
 });
 
 export const InnerWrapper = styled(Box)({

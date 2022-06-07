@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { IFormik } from 'pages/CourseEditor/types';
+import { MouseEventHandler, ReactNode } from 'react';
 
 export interface IEditorTabsContainerProps {
   currentChild?: ReactNode;
@@ -16,4 +17,6 @@ export interface IActionButtons {
   handleNextStep?: () => void;
   step: number;
   isSubmitEnabled: boolean;
+  formik?: IFormik;
+  editCourseDataMutate?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
