@@ -27,7 +27,7 @@ const useGetClientPaginatedCourses = (
     const apiClient = apiClientWrapper();
     const response = await apiClient.get(`${API.getMyCourses}`, {
       params: {
-        filters: filters,
+        ...filters,
         pageN: pageParam,
       },
     });

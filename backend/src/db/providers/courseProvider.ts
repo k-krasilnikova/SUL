@@ -16,7 +16,7 @@ import { ICourse } from 'interfaces/Ientities/Icourses';
 import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
 import { ICoursePopulated, ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
-import { IGetCoursesParams, IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
+import { TGetCoursesParams } from 'interfaces/requests/common/queries';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
@@ -97,11 +97,11 @@ const getCoursesProvider = async (
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
     nPerPage = DEFAULT_N_PER_PAGE,
-  }: IGetCoursesParams,
+  }: TGetCoursesParams,
   userId: string,
 ): Promise<ICourseWithStatus[]> => {
   try {
-    const sortingField = { [orderField]: Number(order) };
+    const sortingField = { [orderField]: order };
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
       {
         $lookup: {
@@ -123,8 +123,10 @@ const getCoursesProvider = async (
                   },
                 }
               : NO_FILTER,
-            complexity ? { complexity: { $in: complexity } } : NO_FILTER,
-            technologies ? { 'techsMapSkills.name': { $in: technologies } } : NO_FILTER,
+            complexity && complexity.length ? { complexity: { $in: complexity } } : NO_FILTER,
+            technologies && technologies.length
+              ? { 'techsMapSkills.name': { $in: technologies } }
+              : NO_FILTER,
           ],
         },
       },

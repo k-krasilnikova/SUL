@@ -1,19 +1,26 @@
 import { SortOrder } from 'enums/common';
+import { UserRank } from 'enums/users';
 
 interface IGetCoursesRequestQuery {
-  pageN?: number;
   title?: string;
   orderField?: string;
-  order?: SortOrder;
+  order?: string;
   nPerPage?: number;
   technologies?: string[];
-  complexity?: string[];
+  complexity?: Array<keyof typeof UserRank>;
   status?: string[];
+  pageN?: string;
 }
 
-interface IGetCoursesParams extends Omit<IGetCoursesRequestQuery, 'complexity'> {
+type TGetCoursesParams = Omit<
+  IGetCoursesRequestQuery,
+  'complexity' | 'order' | 'pageN' | 'nPerPage'
+> & {
+  pageN?: number;
+  nPerPage?: number;
   complexity?: number[];
-}
+  order?: SortOrder;
+};
 
 interface IStageQuery {
   stage: string;
@@ -27,4 +34,11 @@ interface ISearchQuery {
   search: string;
 }
 
-export { IGetCoursesRequestQuery, IStageQuery, ITitleQuery, ISearchQuery, IGetCoursesParams };
+export {
+  IGetCoursesRequestQuery,
+  IStageQuery,
+  ITitleQuery,
+  ISearchQuery,
+  TGetCoursesParams,
+  ICourseFilters,
+};
