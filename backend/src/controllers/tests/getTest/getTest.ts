@@ -33,7 +33,7 @@ const getTest = async (req: TGetTestRequest, res: TGetTestResponse, next: NextFu
 
     const test = await getTestProvider(clientCourseId);
     if (isEmpty(test)) {
-      throw new NotFoundError('No tests found.');
+      throw new NotFoundError('Tests not found.');
     }
 
     res.json(test);

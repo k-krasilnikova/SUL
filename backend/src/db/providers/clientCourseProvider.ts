@@ -176,7 +176,7 @@ const updateClientCourseField = async (
   if (updatedCourse) {
     return updatedCourse;
   }
-  throw new BadRequestError('Bad request. Check the data being sent');
+  throw new BadRequestError('Bad request. Check the data being sent.');
 };
 
 const arrangeAssessment = async (courseId: string): Promise<void> => {

@@ -17,7 +17,7 @@ const deleteCourse = async (
     const { id: courseId } = req.params;
 
     if (!courseId) {
-      throw new BadRequestError('Invalidate queries.');
+      throw new BadRequestError('Course id is missing.');
     }
 
     await checkNotDeleteCoursesProvider(courseId);
