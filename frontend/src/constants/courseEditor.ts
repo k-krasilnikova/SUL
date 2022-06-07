@@ -85,3 +85,22 @@ export const BUTTON_VARIANT = {
 };
 
 export const RADIX_PARAMETER = 10;
+
+export const MIN_TITLE_LENGTH = 2;
+export const MAX_TITLE_LENGTH = 100;
+
+export const MIN_DESCRIPTION_LENGTH = 50;
+export const MAX_DESCRIPTION_LENGTH = 3000;
+
+export const MIN_MATERIAL_LENGTH = 10;
+export const MAX_MATERIAL_LENGTH = 5000;
+
+export const MIN_TEST_QUESTIONS_AMOUNT = 5;
+export const MIN_SKILLS_AMOUNT = 1;
+
+export const MIN_QUESTION_LENGTH = 10;
+export const MAX_QUESTION_LENGTH = 1000;
+
+export const EXERCISE_TITLE_LENGTH_REGEX = /.{2,400}/;
+export const EXERCISE_IS_NOT_NUMBERS_REGEX = /(?!^\d+$)^.+$/;
+export const EXERCISE_DESCRIPTION_LENGTH_REGEX = /.{100,}/;
