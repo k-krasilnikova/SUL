@@ -13,7 +13,7 @@ const FIRST_PAGE = 1;
 const EMPTY_LENGTH = 0;
 
 const useGetPaginatedCourses = (
-  filters: any,
+  filters,
 ): UseInfiniteQueryResult<{ page: number; courses: ICourse[] }> => {
   console.log(filters);
   const { enqueueSnackbar } = useSnackbar();
@@ -25,12 +25,12 @@ const useGetPaginatedCourses = (
     const response = await apiClient.get(`${API.courses}`, {
       params: {
         pageN: pageParam,
-        ...filters,
+        filters,
       },
     });
     return { page: pageParam, courses: response.data };
   };
-  return useInfiniteQuery([QUERY_KEYS.paginatedCoursesList, filters], getCourses, {
+  return useInfiniteQuery([QUERY_KEYS.paginatedCoursesList], getCourses, {
     getPreviousPageParam: (firstPage) =>
       firstPage.page === FIRST_PAGE ? false : firstPage.page - PAGE_CHANGE,
     getNextPageParam: (lastPage) =>

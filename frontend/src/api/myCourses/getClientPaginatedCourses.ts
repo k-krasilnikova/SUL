@@ -1,4 +1,5 @@
 import { InfiniteData, useInfiniteQuery, UseInfiniteQueryResult } from 'react-query';
+
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
@@ -29,11 +30,12 @@ const useGetClientPaginatedCourses = (
       params: {
         ...filters,
         pageN: pageParam,
+        filters,
       },
     });
     return { page: pageParam, clientCourses: response.data };
   };
-  return useInfiniteQuery([QUERY_KEYS.paginatedClientCoursesList, filters], getClientCourses, {
+  return useInfiniteQuery([QUERY_KEYS.paginatedClientCoursesList], getClientCourses, {
     getPreviousPageParam: (firstPage) =>
       firstPage.page === FIRST_PAGE ? false : firstPage.page - PAGE_CHANGE,
     getNextPageParam: (lastPage) =>
