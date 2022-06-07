@@ -1,4 +1,4 @@
-import { IProgress } from 'interfaces/ICourses/IQueryCourses';
+import { IProgress } from 'interfaces/courses/query';
 
 const generateProgressDto = (numberOfStages: number): IProgress[] => {
   const progress = [];
