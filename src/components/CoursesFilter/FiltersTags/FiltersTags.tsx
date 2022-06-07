@@ -1,4 +1,4 @@
-import { FieldArray, useFormikContext } from 'formik';
+import { FieldArray } from 'formik';
 
 import { getFilterSelectsConfig } from 'utils/helpers/coursesFilter';
 
