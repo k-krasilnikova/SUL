@@ -1,6 +1,8 @@
 import { FC } from 'react';
+import { Box } from '@mui/material';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
+import { MIN_STEP } from 'constants/courseEditor';
 
 import { StyledButton, ButtonWrapper } from './styled';
 import { IActionButtons } from '../types';
@@ -8,17 +10,24 @@ import { IActionButtons } from '../types';
 const ActionButtons: FC<IActionButtons> = ({
   handlePreviousStep,
   handleNextStep,
-  isFirstStep,
-  isLastStep,
+  step,
+  isSubmitEnabled,
 }) => (
   <ButtonWrapper>
-    <StyledButton variant="mediumOutlined" onClick={handlePreviousStep} disabled={isFirstStep}>
-      {ButtonLabels.previous}
-    </StyledButton>
-    <StyledButton variant="mediumContained" onClick={handleNextStep} disabled={isLastStep}>
-      {ButtonLabels.next}
-    </StyledButton>
-    {isLastStep && <StyledButton variant="mediumContained">{ButtonLabels.submit}</StyledButton>}
+    <Box>
+      {step > MIN_STEP && (
+        <StyledButton variant="mediumOutlined" onClick={handlePreviousStep}>
+          {ButtonLabels.previous}
+        </StyledButton>
+      )}
+    </Box>
+    {isSubmitEnabled ? (
+      <StyledButton variant="medium">{ButtonLabels.submit}</StyledButton>
+    ) : (
+      <StyledButton variant="medium" onClick={handleNextStep}>
+        {ButtonLabels.next}
+      </StyledButton>
+    )}
   </ButtonWrapper>
 );
 

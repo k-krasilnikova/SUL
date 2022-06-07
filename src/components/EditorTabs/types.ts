@@ -1,16 +1,19 @@
 import { ReactNode } from 'react';
 
-export interface IEditorTabsProps {
+export interface IEditorTabsContainerProps {
   currentChild?: ReactNode;
   handleNextStep?: () => void;
   handlePreviousStep?: () => void;
-  isFirstStep?: boolean;
-  isLastStep?: boolean;
+}
+
+export interface IEditorTabsProps extends IEditorTabsContainerProps {
+  step: number;
+  isSubmitEnabled: boolean;
 }
 
 export interface IActionButtons {
   handlePreviousStep?: () => void;
   handleNextStep?: () => void;
-  isFirstStep?: boolean;
-  isLastStep?: boolean;
+  step: number;
+  isSubmitEnabled: boolean;
 }
