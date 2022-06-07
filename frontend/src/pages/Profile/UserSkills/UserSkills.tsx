@@ -9,7 +9,7 @@ import { Size } from 'enums/sizes';
 import { starContained } from 'icons';
 import { Technologies } from 'types/skill';
 
-import SkillInfo from './SkillInfo';
+import SkillInfo from 'components/SkillInfo';
 
 import {
   SearchWrapper,
@@ -78,9 +78,9 @@ const UserSkills: React.FC<Props> = ({
                   <Title>{techGroup.group.name || 'No group'}</Title>
                 </SkillTitle>
                 <SkillsInfoList>
-                  {techGroup.achievedSkills.map((skillInfo) => (
-                    <React.Fragment key={`${skillInfo.skill.name}_id`}>
-                      <SkillInfo skillItem={skillInfo} />
+                  {techGroup.achievedSkills.map(({ skill, score }) => (
+                    <React.Fragment key={`${skill.name}_id`}>
+                      <SkillInfo skillScore={score} skill={skill} />
                     </React.Fragment>
                   ))}
                 </SkillsInfoList>

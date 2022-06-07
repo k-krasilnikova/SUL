@@ -12,8 +12,8 @@ import {
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import CourseStatus from 'enums/coursesEnums';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const declinePendingCourse = async (
   req: TDeclinePendingCourseRequest,
@@ -21,7 +21,8 @@ const declinePendingCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { managerId, clientCourseId, results } = res.locals;
+    const { clientCourseId } = req.body;
+    const { id: managerId } = res.locals;
 
     if (!clientCourseId) {
       throw new BadRequestError('Invalid query. Client course id is missing.');
@@ -47,9 +48,11 @@ const declinePendingCourse = async (
 
     await updateClientCourseField(clientCourseId, CLIENT_COURSE_FIELDS.applyDate, Date.now());
 
-    results.updateStatus = 'Course was declined.';
+    res.locals.clientCourseId = clientCourseId;
 
     next();
+
+    res.json('Course was declined.');
   } catch (error) {
     next(error);
   }

@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
 import { SubRoutes } from 'enums/routesEnum';
-import withAuth from 'middlewares/authMiddleware';
+import { login, logout, refresh } from 'controllers/auth';
 import { USER_ROLES } from 'config/constants';
-import { login, refresh, logout } from 'controllers/auth';
+import { withAuth } from 'middlewares';
 
 const accountRouter = Router();
 
