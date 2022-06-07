@@ -11,8 +11,10 @@ const mapEmployeeStack = (stack: TUserStackMember[]): TUserStackMemberShort[] =>
 const mapEmployeeClientCourse = (clientCourse: IClientCoursePopulated): IEmployeeClientCourse => {
   const { status, progress, date } = clientCourse;
   const { title, avatar } = clientCourse.course;
+
   const course: TEmployeeCourse = { title, avatar };
   const emplooyeeClientCourse: IEmployeeClientCourse = { status, progress, date, course };
+
   return emplooyeeClientCourse;
 };
 

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { SubRoutes } from 'enums/routes';
-import withAuth from 'middlewares/authMiddleware';
+import { withAuth } from 'middlewares';
 import { USER_ROLES } from 'config/constants';
 import { login, refresh, logout } from 'controllers/auth';
 

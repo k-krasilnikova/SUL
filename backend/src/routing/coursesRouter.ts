@@ -15,7 +15,7 @@ import {
 import { applyCourse } from 'controllers/clientCourses';
 import { getAllCourses, getCourseById, getCoursesMap, getMaterials } from 'controllers/courses';
 import { addNotification } from 'controllers/notifications';
-import { updatePendingCourse } from 'controllers/pendingCourses';
+import { withAuth } from 'middlewares';
 
 const coursesRouter = Router();
 coursesRouter.get(
@@ -27,7 +27,6 @@ coursesRouter.get(
   SubRoutes.getCoursesMap,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getCoursesMap,
-  adapterSender,
 );
 coursesRouter.get(
   SubRoutes.getCourse,
@@ -37,11 +36,8 @@ coursesRouter.get(
 coursesRouter.post(
   SubRoutes.applyCourse,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
-  adapterUser,
   applyCourse,
-  updatePendingCourse,
   addNotification,
-  adapterSender,
 );
 coursesRouter.get(
   SubRoutes.getCourses,
@@ -53,13 +49,12 @@ coursesRouter.get(
   withAuth([USER_ROLES.ADMIN]),
   getEditCoursePayload,
 );
-coursesRouter.put(SubRoutes.updateCourse, withAuth([USER_ROLES.ADMIN]), editCourse, adapterSender);
+coursesRouter.put(SubRoutes.updateCourse, withAuth([USER_ROLES.ADMIN]), editCourse);
 coursesRouter.post(
   SubRoutes.createCourse,
   withAuth([USER_ROLES.ADMIN]),
   preparingCourseData,
   addCourse,
-  adapterSender,
 );
 coursesRouter.delete(`${SubRoutes.deleteCourse}`, withAuth([USER_ROLES.ADMIN]), deleteCourse);
 

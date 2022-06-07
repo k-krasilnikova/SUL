@@ -9,9 +9,14 @@ interface IUserSkill {
   score: number;
 }
 
+interface ISkillTech {
+  skill: Types.ObjectId;
+  points: number;
+}
+
 interface IUserSkillPopulated {
   skill: ISkill;
   score: number;
 }
 
-export { IUserSkill, IUserSkillPopulated };
+export { IUserSkill, IUserSkillPopulated, ISkillTech };

@@ -14,4 +14,4 @@ const AccessTokenBlacklistModel = model<IAccessToken>(
   'accessTokenBlacklist',
 );
 
-export default AccessTokenBlacklistModel;
+export { AccessTokenBlacklistModel, IAccessToken };

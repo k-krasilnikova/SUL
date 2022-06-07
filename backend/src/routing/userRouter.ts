@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
-import withAuth from 'middlewares/authMiddleware';
 import { readNotifications } from 'controllers/notifications';
 import { SubRoutes } from 'enums/routes';
 import { getProfileInformation } from 'controllers/user';
+import { withAuth } from 'middlewares';
 
 const userRouter = Router();
 

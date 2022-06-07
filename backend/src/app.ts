@@ -6,10 +6,14 @@ import cookieParser from 'cookie-parser';
 
 import { Routes } from 'enums/routes';
 import routers from 'routing/routes';
-import connectionMiddleware from 'middlewares/connectionMiddleware';
-import loggerMiddleware from 'middlewares/loggerMiddleware';
-import { handleError, handleInternalError } from 'middlewares/errorHandlingMiddleware';
+
 import { registerScheduler } from 'utils/schedule';
+import {
+  connectionMiddleware,
+  errorHandlingMiddleware,
+  handleInternalErrorMiddleware,
+  loggerMiddleware,
+} from 'middlewares';
 
 dotenv.config();
 
@@ -31,6 +35,6 @@ app.use(connectionMiddleware);
 app.use(loggerMiddleware);
 app.use(`${Routes.namespace}`, routers);
 
-app.use(handleError, handleInternalError);
+app.use(errorHandlingMiddleware, handleInternalErrorMiddleware);
 
 export { app };

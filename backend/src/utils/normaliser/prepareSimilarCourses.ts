@@ -1,7 +1,7 @@
 import { ICourse } from 'interfaces/entities/courses';
 import { getClientCoursesByCourseId } from 'db/providers/clientCourseProvider';
 
-const prepareSimilarCourses = async (similarCourses: ICourse[]) => {
+const prepareSimilarCourses = async (similarCourses: ICourse[]): Promise<ICourse[]> => {
   const clientCoursesInSimilar = await Promise.all(
     similarCourses.map(
       async (similarCourse) =>
@@ -9,7 +9,7 @@ const prepareSimilarCourses = async (similarCourses: ICourse[]) => {
     ),
   );
 
-  const preparedSimilarCourses = similarCourses.reduce((acc, similarCourse) => {
+  const preparedSimilarCourses = similarCourses.reduce((acc, similarCourse): ICourse[] => {
     if (
       !clientCoursesInSimilar?.find(
         (clientCourse) =>
@@ -18,10 +18,10 @@ const prepareSimilarCourses = async (similarCourses: ICourse[]) => {
           similarCourse._id.toString() === clientCourse?.course.toString(),
       )
     ) {
-      acc.push(similarCourse as never);
+      acc.push(similarCourse);
     }
     return acc;
-  }, []);
+  }, [] as ICourse[]);
   return preparedSimilarCourses;
 };
 

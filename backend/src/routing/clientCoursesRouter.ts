@@ -20,9 +20,10 @@ import {
   getTestResult,
   getTestTime,
   passTest,
-  unitTestResults,
   startTest,
+  sendTestResults,
 } from 'controllers/tests';
+import { withAuth } from 'middlewares';
 
 const clientCoursesRouter = Router();
 
@@ -34,11 +35,10 @@ clientCoursesRouter.get(
 clientCoursesRouter.put(
   SubRoutes.passTest,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
-  adapterClientCourse,
   passTest,
   getAchievements,
+  sendTestResults,
   addNotification,
-  unitTestResults,
 );
 clientCoursesRouter.get(
   SubRoutes.startTest,
@@ -54,7 +54,6 @@ clientCoursesRouter.get(
   SubRoutes.getTestResult,
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   getTestResult,
-  adapterSender,
 );
 clientCoursesRouter.get(
   SubRoutes.startCourse,
@@ -65,7 +64,6 @@ clientCoursesRouter.get(
   SubRoutes.getAssessments,
   withAuth([USER_ROLES.MANAGER]),
   getPendingAssessments,
-  adapterSender,
 );
 clientCoursesRouter.get(
   SubRoutes.getClientCourse,
@@ -87,7 +85,6 @@ clientCoursesRouter.put(
   withAuth([USER_ROLES.MANAGER]),
   manageAssessment,
   getAchievements,
-  adapterSender,
 );
 
 export default clientCoursesRouter;

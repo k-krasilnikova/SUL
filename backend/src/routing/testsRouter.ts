@@ -2,8 +2,8 @@ import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routes';
-import withAuth from 'middlewares/authMiddleware';
 import { getTest } from 'controllers/admin';
+import { withAuth } from 'middlewares';
 
 const testsRouter = Router();
 

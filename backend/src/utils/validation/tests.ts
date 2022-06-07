@@ -1,5 +1,3 @@
-import { checkTestDate } from './checkTestDate';
-
 const isTestAvailableByDate = (estimatedFinishDate?: Date): boolean => {
   if (!estimatedFinishDate) {
     return true;
@@ -7,7 +5,7 @@ const isTestAvailableByDate = (estimatedFinishDate?: Date): boolean => {
 
   const currentDate = new Date();
 
-  const isAvailable = currentDate < estimatedFinishDate ? true : checkTestDate(estimatedFinishDate);
+  const isAvailable = currentDate < estimatedFinishDate;
 
   return isAvailable;
 };
