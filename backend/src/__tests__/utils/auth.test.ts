@@ -8,7 +8,7 @@ import {
   generateJWT,
   verifyAccessToken,
   verifyRefreshToken,
-} from 'utils/auth/authUtils';
+} from 'utils/auth/auth';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import { USER_ROLES } from 'config/constants';
 

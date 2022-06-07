@@ -2,7 +2,7 @@ import { NextFunction } from 'express';
 
 import { TLogoutRequest, TLogoutResponse } from 'interfaces/requests/auth/logout';
 import { addTokenToBlackList, clearTokenProvider } from 'db/providers/authProvider';
-import { extractAccessTokenValue } from 'utils/auth/authUtils';
+import { extractAccessTokenValue } from 'utils/auth/auth';
 
 const logout = async (req: TLogoutRequest, res: TLogoutResponse, next: NextFunction) => {
   try {

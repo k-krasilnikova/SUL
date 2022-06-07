@@ -10,10 +10,10 @@ import {
   getAllClientCoursesProvider,
 } from 'db/providers/clientCourseProvider';
 import { materialsCounterProvider } from 'db/providers/courseProvider';
-import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
-import { generateProgressDto } from 'utils/dto/dtoUtils';
-import { BadRequestError } from 'classes/errors/clientErrors';
+import { generateProgressDto } from 'utils/dto/dto';
 import { INITIAL_INDX, USER_ROLES } from 'config/constants';
+import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { getUserProvider, updatePendingFieldCourses } from 'db/providers/userProvider';
 
 import { checkCourseDuplicates } from './utils/validations';
 

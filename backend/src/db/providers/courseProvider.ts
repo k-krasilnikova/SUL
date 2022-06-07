@@ -18,7 +18,7 @@ import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads'
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
-import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
+import { convertToCourseDuration } from 'utils/typeConversion/datetimeTypeConversions';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 

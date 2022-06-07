@@ -3,7 +3,7 @@ import { NextFunction } from 'express';
 import { TRefreshRequest, TRefreshResponse } from 'interfaces/requests/auth/refresh';
 import { saveTokenProvider } from 'db/providers/authProvider';
 import { getUserProvider } from 'db/providers/userProvider';
-import { generateJWT, verifyRefreshToken } from 'utils/auth/authUtils';
+import { generateJWT, verifyRefreshToken } from 'utils/auth/auth';
 import isExpectedHttpError from 'utils/typeGuards/isExpectedHttpError';
 import { BadRequestError, ForbiddenError } from 'classes/errors/clientErrors';
 

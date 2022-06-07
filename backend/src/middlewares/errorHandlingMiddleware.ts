@@ -2,8 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { CommonHttpError } from 'classes/errors/common';
 import { TErrorHandler } from 'interfaces/commonErrorHandling';
-import logger from 'utils/log/logger';
-import { isLogsDisplayed } from 'utils/log/loggerHelper';
+import { isLogsDisplayed, logger } from 'utils/log/logger';
 
 const errorHandlingMiddleware: TErrorHandler = (
   error: CommonHttpError,

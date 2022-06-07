@@ -3,7 +3,7 @@ import { NextFunction } from 'express';
 import { TGetTestTimeRequest, TGetTestTimeResponse } from 'interfaces/requests/tests/getTestTime';
 import { TestDb } from 'interfaces/entities/test';
 import { getTestProvider } from 'db/providers/testProvider';
-import { aggregateNormolizer } from 'utils/normaliser/aggregateNormalizer';
+import { aggregateNormalizer } from 'utils/normalizer/aggregate';
 import { NotFoundError } from 'classes/errors/clientErrors';
 
 const getTestTime = async (
@@ -19,7 +19,7 @@ const getTestTime = async (
       throw new NotFoundError('Test not found.');
     }
 
-    res.json(aggregateNormolizer<TestDb>(test).test.timeout);
+    res.json(aggregateNormalizer<TestDb>(test).test.timeout);
   } catch (err) {
     next(err);
   }
