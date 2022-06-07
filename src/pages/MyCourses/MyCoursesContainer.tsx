@@ -10,12 +10,8 @@ import CoursesList from 'pages/CoursesList/CoursesList';
 const MyCoursesContainer: React.FC = () => {
   const coursesFilters = useGetCoursesFilters(true);
 
-  const {
-    data,
-    hasNextPage,
-    fetchNextPage,
-    isLoading: isClientCoursesLoading,
-  } = useGetClientPaginatedCourses(coursesFilters);
+  const { data, hasNextPage, isLoading, isFetchingNextPage, isFetching, refetch, fetchNextPage } =
+    useGetClientPaginatedCourses(coursesFilters);
 
   const windowWidth = getWindowLabelByWidth();
 
@@ -42,8 +38,11 @@ const MyCoursesContainer: React.FC = () => {
       withStatusSelect
       courses={commonCourses}
       clientCourses={formattedClientCourses}
-      isLoading={isClientCoursesLoading}
+      isLoading={isLoading}
+      isFetching={isFetching}
+      isFetchingNextPage={isFetchingNextPage}
       windowWidth={windowWidth}
+      refetch={refetch}
       lastCourseRef={clientCourseRef}
     />
   );

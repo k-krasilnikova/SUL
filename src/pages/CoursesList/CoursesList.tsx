@@ -24,6 +24,8 @@ const CoursesList: FC<ICourseProps> = ({
   courses,
   clientCourses,
   isLoading,
+  isFetching,
+  isFetchingNextPage,
   handleApplyCourse,
   targetLoading,
   targetId,
@@ -31,45 +33,56 @@ const CoursesList: FC<ICourseProps> = ({
   lastCourseRef,
   isAdmin,
   withStatusSelect,
+  refetch,
 }) => (
   <PageTitle title="Courses List">
     {isLoading ? (
       <Loader type={Loaders.content} />
     ) : courses?.length ? (
-      <PageContainer container>
-        <CoursesFilter withStatusSelect={withStatusSelect} />
-        <MobileSearchWrapper>
-          <MobileSearch />
-        </MobileSearchWrapper>
-        {isAdmin && <AddCourseButton />}
-        {courses.map((course, index) => (
-          <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
-            <MobileLink to={chooseListPath(course, index, clientCourses)}>
-              <Course
-                title={course?.title}
-                description={course?.description}
-                duration={convertDurationToString(course?.duration)}
-                lessons={course?.lessons}
-                windowWidth={windowWidth}
-                pageName={getCurrentPageName()}
-                imageUrl={course?.avatar}
-                status={clientCourses && clientCourses[index].status}
-                courseRef={isLastElem<ICourse>(courses, index) ? lastCourseRef : undefined}
-              >
-                <CourseActions
-                  course={course}
-                  clientCourses={clientCourses}
-                  isAdmin={isAdmin}
-                  index={index}
-                  targetLoading={targetLoading}
-                  targetId={targetId}
-                  handleApplyCourse={handleApplyCourse}
-                />
-              </Course>
-            </MobileLink>
-          </GridItem>
-        ))}
-      </PageContainer>
+      <>
+        <CoursesFilter withStatusSelect={withStatusSelect} refetch={refetch} />
+        <PageContainer container>
+          <MobileSearchWrapper>
+            <MobileSearch />
+          </MobileSearchWrapper>
+          {isAdmin && <AddCourseButton />}
+          {isFetching && !isFetchingNextPage ? (
+            <Loader type={Loaders.component} />
+          ) : courses?.length ? (
+            <>
+              {courses.map((course, index) => (
+                <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
+                  <MobileLink to={chooseListPath(course, index, clientCourses)}>
+                    <Course
+                      title={course?.title}
+                      description={course?.description}
+                      duration={convertDurationToString(course?.duration)}
+                      lessons={course?.lessons}
+                      windowWidth={windowWidth}
+                      pageName={getCurrentPageName()}
+                      imageUrl={course?.avatar}
+                      status={clientCourses && clientCourses[index].status}
+                      courseRef={isLastElem<ICourse>(courses, index) ? lastCourseRef : undefined}
+                    >
+                      <CourseActions
+                        course={course}
+                        clientCourses={clientCourses}
+                        isAdmin={isAdmin}
+                        index={index}
+                        targetLoading={targetLoading}
+                        targetId={targetId}
+                        handleApplyCourse={handleApplyCourse}
+                      />
+                    </Course>
+                  </MobileLink>
+                </GridItem>
+              ))}
+            </>
+          ) : (
+            <NoContent message={NO_COURSES} />
+          )}
+        </PageContainer>
+      </>
     ) : (
       <NoContent message={NO_COURSES} />
     )}

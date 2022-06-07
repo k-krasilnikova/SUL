@@ -3,6 +3,9 @@ import { styled, Grid } from '@mui/material';
 import theme from 'themeSettings';
 
 export const PageContainer = styled(Grid)({
+  flexGrow: 1,
+  maxWidth: '1482px',
+  paddingTop: '16px',
   [theme.breakpoints.down('xl')]: {
     padding: '16px 24px 16px 14px',
   },
@@ -13,8 +16,6 @@ export const PageContainer = styled(Grid)({
     padding: '16px 30px 24px 0',
     margin: '0 0 0 -6px',
   },
-  maxWidth: '1482px',
-  paddingTop: '16px',
 });
 
 export const GridItem = styled(Grid)({

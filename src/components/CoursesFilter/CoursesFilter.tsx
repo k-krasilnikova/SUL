@@ -7,24 +7,28 @@ import CustomSelect from './CustomSelect';
 import CustomCheckbox from './CustomCheckbox';
 import FiltersTags from './FiltersTags';
 import AutoSetURLQueries from './AutoSetURLQueries';
+import { FormWrapper, FieldsContainer } from './styled';
 
-const CoursesFilter = ({ initialValues, withStatusSelect }) => {
+const CoursesFilter = ({ initialValues, withStatusSelect, refetch }) => {
   const selectsConfig = getFilterSelectsConfig(withStatusSelect);
 
   return (
-    <Formik initialValues={initialValues}>
-      {({ values }) => (
-        <Form>
-          {selectsConfig.map((configName) => (
-            <Field as={CustomSelect} name={configName} options={SELECTS_OPTIONS[configName]} />
-          ))}
-
-          <Field as={CustomCheckbox} name="order" checked={values.order} />
-          <FiltersTags withStatusSelect={withStatusSelect} />
-          <AutoSetURLQueries />
-        </Form>
-      )}
-    </Formik>
+    <FormWrapper>
+      <Formik initialValues={initialValues} onSubmit={refetch}>
+        {({ values }) => (
+          <Form>
+            <FieldsContainer>
+              {selectsConfig.map((configName) => (
+                <Field as={CustomSelect} name={configName} options={SELECTS_OPTIONS[configName]} />
+              ))}
+              <Field as={CustomCheckbox} name="order" checked={values.order} />
+            </FieldsContainer>
+            <FiltersTags withStatusSelect={withStatusSelect} values={values} />
+            <AutoSetURLQueries />
+          </Form>
+        )}
+      </Formik>
+    </FormWrapper>
   );
 };
 
