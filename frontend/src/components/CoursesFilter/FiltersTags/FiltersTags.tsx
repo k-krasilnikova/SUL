@@ -1,29 +1,29 @@
-import { FieldArray, useFormikContext } from 'formik';
+import { FieldArray } from 'formik';
 
 import { getFilterSelectsConfig } from 'utils/helpers/coursesFilter';
 
-const FiltersTags = ({ withStatusSelect }) => {
-  const { values } = useFormikContext();
+import { TagsListContainer, TagContainer, TagText, Cross } from './styled';
 
+const FiltersTags = ({ withStatusSelect, values }) => {
   const selectsConfig = getFilterSelectsConfig(withStatusSelect);
 
   return (
-    <>
+    <TagsListContainer>
       {selectsConfig.map((configName) => (
         <FieldArray name={configName}>
           {({ remove }) => (
             <>
               {values[configName].map((value, index) => (
-                <div key={value}>
-                  <p>{value}</p>
-                  <button onClick={() => remove(index)}>delete</button>
-                </div>
+                <TagContainer key={value} onClick={() => remove(index)}>
+                  <TagText>{value}</TagText>
+                  <Cross />
+                </TagContainer>
               ))}
             </>
           )}
         </FieldArray>
       ))}
-    </>
+    </TagsListContainer>
   );
 };
 

@@ -12,15 +12,18 @@ import CoursesList from './CoursesList';
 const CoursesContainer: React.FC = () => {
   const [targetId, setTargetId] = useState<string | undefined>();
 
-  const { mutate, isLoading } = useApplyCourse();
+  const { mutate, isLoading: isApplyCourseLoading } = useApplyCourse();
 
   const coursesFilters = useGetCoursesFilters(false);
 
   const {
     data,
     hasNextPage,
-    fetchNextPage,
     isLoading: isCoursesLoading,
+    isFetchingNextPage,
+    isFetching,
+    refetch,
+    fetchNextPage,
   } = useGetPaginatedCourses(coursesFilters);
 
   const { data: profileResponse } = useGetProfile();
@@ -41,15 +44,17 @@ const CoursesContainer: React.FC = () => {
 
   return (
     <CoursesList
-      withStatusSelect={false}
-      isAdmin={isAdmin}
       courses={formattedCoursesList}
-      isLoading={isCoursesLoading}
-      handleApplyCourse={handleApplyCourse}
-      targetId={targetId}
-      targetLoading={isLoading}
       windowWidth={windowWidth}
+      targetId={targetId}
+      isLoading={isCoursesLoading}
+      isAdmin={isAdmin}
+      isFetching={isFetching}
+      isFetchingNextPage={isFetchingNextPage}
+      targetLoading={isApplyCourseLoading}
+      handleApplyCourse={handleApplyCourse}
       lastCourseRef={courseRef}
+      refetch={refetch}
     />
   );
 };

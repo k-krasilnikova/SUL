@@ -6,7 +6,7 @@ import { useDebounce } from 'hooks';
 
 const AutoSetURLQueries = () => {
   const [_, setSearchParams] = useSearchParams();
-  const { values } = useFormikContext();
+  const { values, submitForm } = useFormikContext();
   const debouncedValues = useDebounce(values, 1000);
 
   useEffect(() => {
@@ -15,6 +15,8 @@ const AutoSetURLQueries = () => {
     if (!copyDebouncedValues.order) {
       delete copyDebouncedValues.order;
     }
+
+    submitForm();
     setSearchParams(copyDebouncedValues);
   }, [debouncedValues]);
 
