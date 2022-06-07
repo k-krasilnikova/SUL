@@ -1,4 +1,4 @@
-import { ITest } from 'interfaces/Ientities/Itest';
+import { ITest } from 'interfaces/entities/test';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IIdParams } from '../common/params';

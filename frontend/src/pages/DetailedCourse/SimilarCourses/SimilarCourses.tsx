@@ -1,31 +1,26 @@
 import { FC } from 'react';
-import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { Grid } from '@mui/material';
 
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
-import { DEFAULT_DISPLAYING_COURSES, SIMILAR_COURSES_TITLE } from 'constants/detailedCourse';
+import { DEFAULT_DISPLAYING_COURSES } from 'constants/detailedCourse';
 import { PAGES } from 'constants/pages';
 import { Info } from 'enums/info';
 import { CustomButton } from 'components/Button/ButtonVariants/styled';
 import Course from 'components/Course';
 import MobileLink from 'components/MobileLink';
 import { CourseActionsWrapper } from 'pages/CoursesList/CourseActions/styled';
-import { ISimilarCourses } from 'types/detailedCourse';
+import CourseInfoBlock from 'pages/DetailedCourse/components/CourseInfoBlock';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
-import {
-  CourseActionsBox,
-  SimilarCoursesItemWrapper,
-  SimilarCoursesTitle,
-  SimilarCoursesWrapper,
-} from './styled';
+import { SimilarCoursesItemWrapper, CourseActionsBox } from './styled';
+import { ISimilarCourses } from '../types';
 
 const SimilarCourses: FC<ISimilarCourses> = ({ similarCourses, windowWidth }) => (
-  <SimilarCoursesWrapper container xs={12}>
+  <CourseInfoBlock title="Similar Courses">
     <Grid item xs={12}>
-      <SimilarCoursesTitle>{SIMILAR_COURSES_TITLE}</SimilarCoursesTitle>
       {similarCourses.map((course, index) => {
         const isCourseDisplaying = index < DEFAULT_DISPLAYING_COURSES;
         return (
@@ -61,7 +56,7 @@ const SimilarCourses: FC<ISimilarCourses> = ({ similarCourses, windowWidth }) =>
         );
       })}
     </Grid>
-  </SimilarCoursesWrapper>
+  </CourseInfoBlock>
 );
 
 export default SimilarCourses;

@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
+import { IClientCourse } from 'interfaces/entities/clientCourses';
 import { DESTRUCTION_TIMEOUT } from 'config/constants';
 
 const clientCourseSchema = new Schema<IClientCourse>({

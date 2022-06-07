@@ -1,12 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
+import { CommonHttpError } from 'classes/errors/common';
 import { TErrorHandler } from 'interfaces/commonErrorHandling';
-import CommonHttpError from 'classes/errors/common/CommonHttpError';
-import InternalServerError from 'classes/errors/serverErrors/InternalServerError';
-import logger from 'utils/log/logger';
-import { isLogsDisplayed } from 'utils/log/loggerHelper';
+import { isLogsDisplayed, logger } from 'utils/log/logger';
 
-const handleError: TErrorHandler = (
+const errorHandlingMiddleware: TErrorHandler = (
   error: CommonHttpError,
   req: Request,
   res: Response,
@@ -26,14 +24,4 @@ const handleError: TErrorHandler = (
   }
 };
 
-const handleInternalError = (req: Request, res: Response, next: NextFunction) => {
-  const { statusCode, message } = new InternalServerError();
-
-  res.status(statusCode).json(message);
-
-  if (next) {
-    next();
-  }
-};
-
-export { handleError, handleInternalError };
+export default errorHandlingMiddleware;

@@ -27,6 +27,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
   question,
   formik,
   handleChangeCorrectAnswer,
+  onFieldBlur,
 }) => (
   <QuestionWrapper>
     <QuestionTitle>
@@ -39,6 +40,9 @@ const QuestionItem: FC<IQuestionItemProps> = ({
         id={`questions[${index}].question`}
         name={`test.questions[${index}].question`}
         onChange={formik.handleChange}
+        onBlur={onFieldBlur}
+        error={Boolean(formik.errors?.test?.questions[index]?.question)}
+        helperText={formik.errors?.test?.questions[index]?.question}
       />
       <Field select disabled value="radio" onChange={formik.handleChange}>
         <MenuItem value="input">{BUTTON_VARIANT.input}</MenuItem>
@@ -65,6 +69,9 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                     id={`test.questions[${index}].answers[${key}].variant`}
                     name={`test.questions[${index}].answers[${key}].variant`}
                     onChange={formik.handleChange}
+                    onBlur={onFieldBlur}
+                    error={formik.errors?.test?.questions[index]?.answers?.[key]?.variant}
+                    helperText={formik.errors?.test?.questions[index]?.answers?.[key]?.variant}
                   />
                 }
               />

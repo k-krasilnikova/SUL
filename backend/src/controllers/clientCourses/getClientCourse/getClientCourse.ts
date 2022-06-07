@@ -5,7 +5,7 @@ import {
   TGetClientCourseResponse,
 } from 'interfaces/requests/clientCourses/getClientCourse';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
-import prepareSimilarCourses from 'utils/normaliser/prepareSimilarCourses';
+import prepareSimilarCourses from 'utils/normalizer/prepareSimilarCourses';
 
 import { mapClientCourse } from './utils/mappers';
 

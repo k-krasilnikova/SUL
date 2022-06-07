@@ -4,8 +4,8 @@ import {
   TGetEmployeeInfoRequest,
   TGetEmployeeInfoResponse,
 } from 'interfaces/requests/manager/getEmployeeInfo';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
+import { IUser } from 'interfaces/entities/users';
+import { IClientCoursePopulated } from 'interfaces/entities/clientCourses';
 import { getAllClientCoursesProvider } from 'db/providers/clientCourseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { populateUserStack, populateUserTechnologies } from 'db/providers/skillProvider';

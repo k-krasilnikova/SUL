@@ -1,4 +1,4 @@
-import { combineFullName } from 'utils/combineFullName';
+import { combineFullName } from 'utils/combine/combineFullName';
 import capitalizeFirstLetter from 'utils/string/capitalizeFirstLetter';
 import fullTrim from 'utils/string/fullTrim';
 

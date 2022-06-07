@@ -17,7 +17,7 @@ import {
 } from './styled';
 import { IStepProps } from '../types';
 
-const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
+const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBlur }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
@@ -31,6 +31,9 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
             name="title"
             value={formik.values.title}
             onChange={formik.handleChange}
+            onBlur={onFieldBlur}
+            error={Boolean(formik.errors?.title)}
+            helperText={formik.errors?.title}
           />
           <Field
             select
@@ -40,9 +43,9 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
             id="complexity"
             name="complexity"
           >
-            {COURSE_COMPLEXITY.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
+            {COURSE_COMPLEXITY.map((complexity) => (
+              <MenuItem key={complexity.value} value={complexity.value}>
+                {complexity.label}
               </MenuItem>
             ))}
           </Field>
@@ -62,7 +65,10 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading }) =>
           id="description"
           name="description"
           value={formik.values.description}
+          onBlur={onFieldBlur}
           onChange={formik.handleChange}
+          error={Boolean(formik.errors?.description)}
+          helperText={formik.errors?.description}
         />
       </FormWrapper>
     </>

@@ -9,15 +9,17 @@ import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { ITestResult } from 'types/test';
 
 interface ITestResultParams {
-  courseId: string | undefined;
+  clientCourseId: string | undefined;
 }
 
-const useSendTestResult = ({ courseId }: ITestResultParams): UseMutationResult<ITestResult> => {
+const useSendTestResult = ({
+  clientCourseId,
+}: ITestResultParams): UseMutationResult<ITestResult> => {
   const { enqueueSnackbar } = useSnackbar();
 
   const updateQueries = () => {
     queryClient.invalidateQueries(QUERY_KEYS.profile);
-    queryClient.refetchQueries([QUERY_KEYS.clientCourseInfo, courseId]);
+    queryClient.refetchQueries([QUERY_KEYS.clientCourseInfo, clientCourseId]);
   };
 
   const handleSubmitError = (error: AxiosError) => {
@@ -32,7 +34,7 @@ const useSendTestResult = ({ courseId }: ITestResultParams): UseMutationResult<I
   return useMutation(
     async (data) => {
       const apiClient = apiClientWrapper();
-      const url = `${API.getMyCourses}/${courseId}/test/pass`;
+      const url = `${API.getMyCourses}/${clientCourseId}/test/pass`;
       const response = await apiClient.put(url, data);
       return response.data;
     },

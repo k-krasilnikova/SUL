@@ -1,8 +1,8 @@
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
-import { TUserStackMember } from 'interfaces/Ientities/IStackMember';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import { IEmployeeInfo } from 'interfaces/IResponse/IResponse';
-import { mapEmployeeClientCourse, mapEmployeeStack } from 'utils/normaliser/employees';
+import { IClientCoursePopulated } from 'interfaces/entities/clientCourses';
+import { TUserStackMember } from 'interfaces/entities/stackMember';
+import { IUser } from 'interfaces/entities/users';
+import { IEmployeeInfo } from 'interfaces/response/response';
+import { mapEmployeeClientCourse, mapEmployeeStack } from 'utils/normalizer/employees';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const mapEmployeeInfo = (employee: IUser, courses: IClientCoursePopulated[]): IEmployeeInfo => ({

@@ -19,8 +19,8 @@ const useDeclineRequest = (): UseMutationResult => {
   };
 
   return useMutation(
-    async (id?: string | unknown) => {
-      const data = { id };
+    async (clientCourseId?: string | unknown) => {
+      const data = { id: clientCourseId };
       const apiClient = apiClientWrapper();
       const response = await apiClient.put(API.declineRequest, data);
       return response.data;

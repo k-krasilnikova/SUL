@@ -4,7 +4,6 @@ import {
   TAssignEmployeeCoursesRequest,
   TAssignEmployeeCoursesResponse,
 } from 'interfaces/requests/manager/assignEmployeeCourses';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { INITIAL_INDX } from 'config/constants';
 import {
   assignCourseToEmployee,
@@ -13,14 +12,15 @@ import {
 import { getCourseProvider, materialsCounterProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { addUserNotification } from 'db/providers/notificationProvider';
-import { generateProgressDto } from 'utils/dto/dtoUtils';
-import { combineFullName } from 'utils/combineFullName';
+import { generateProgressDto } from 'utils/dto/dto';
+import { combineFullName } from 'utils/combine/combineFullName';
 import {
   NotificationDescription,
   NotificationStatuses,
   NotificationTitles,
   NotificationType,
-} from 'enums/notificationEnums';
+} from 'enums/notification';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { isCoursesToAssignHaveDuplicates } from './utils/validations';
 import { removeCoursesToAssignDuplicates } from './utils/mappers';
@@ -90,9 +90,9 @@ const assignEmployeeCourses = async (
 
     const assignedCoursesAmount = assignedCourses.filter((doc) => !!doc).length;
 
-    res.locals.results = `${assignedCoursesAmount}/${assignedCourses.length} courses successfully assigned.`;
+    const payloadMessage = `${assignedCoursesAmount}/${assignedCourses.length} courses successfully assigned.`;
 
-    next();
+    res.json(payloadMessage);
   } catch (error) {
     next(error);
   }

@@ -6,11 +6,11 @@ import {
   NotificationStatuses,
   NotificationTitles,
   NotificationType,
-} from 'enums/notificationEnums';
+} from 'enums/notification';
 import { SortOrder } from 'enums/common';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { DEFAULT_ORDER_FIELD, NOTIFICATIONS_COUNT } from 'config/constants';
-import { INotification } from 'interfaces/Ientities/Iusers';
+import { BadRequestError } from 'classes/errors/clientErrors';
+import { INotification } from 'interfaces/entities/users';
 
 export const getUserNotifications = async (userId: string): Promise<INotification[]> => {
   const dbNotifications = await NotificationModel.find({ userId })

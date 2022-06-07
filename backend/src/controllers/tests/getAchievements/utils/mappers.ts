@@ -1,4 +1,4 @@
-import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
+import { IUserSkill } from 'interfaces/entities/userSkill';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const extractCommonUserSkillInfo = (skills: IUserSkill[]): IUserSkill[] =>
