@@ -1,7 +1,7 @@
 import mongoose, { Types } from 'mongoose';
 import { isNull } from 'lodash';
 
-import { IUserSkill, IUserSkillPopulated } from 'interfaces/entities/userSkill';
+import { ISkillTech, IUserSkill, IUserSkillPopulated } from 'interfaces/entities/userSkill';
 import { ICourseTechnologyPayload, IEditCoursePayload } from 'interfaces/requests/common/payloads';
 import { ISkillGroup } from 'interfaces/entities/skillGroup';
 import { IUser } from 'interfaces/entities/users';

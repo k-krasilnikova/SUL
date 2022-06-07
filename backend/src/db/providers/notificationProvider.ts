@@ -10,7 +10,7 @@ import {
 import { SortOrder } from 'enums/common';
 import { DEFAULT_ORDER_FIELD, NOTIFICATIONS_COUNT } from 'config/constants';
 import { BadRequestError } from 'classes/errors/clientErrors';
-import { INotification } from 'interfaces/Ientities/Iusers';
+import { INotification } from 'interfaces/entities/users';
 
 export const getUserNotifications = async (userId: string): Promise<INotification[]> => {
   const dbNotifications = await NotificationModel.find({ userId })
