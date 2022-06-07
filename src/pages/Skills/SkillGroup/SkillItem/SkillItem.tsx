@@ -4,6 +4,7 @@ import Avatar from 'components/Avatar';
 import Tooltip from 'components/Tooltip';
 import { Size } from 'enums/sizes';
 import { ISkillItemProps } from 'pages/Skills/types';
+import { getShortedSkillName } from 'pages/Skills/utils';
 
 import { SkillContainer, ImageWrapper, SkillNameWrapper, SkillName } from './styled';
 
@@ -14,7 +15,7 @@ const SkillItem: FC<ISkillItemProps> = ({ name, skillImage }) => (
     </ImageWrapper>
     <SkillNameWrapper>
       <Tooltip title={name}>
-        <SkillName>{name}</SkillName>
+        <SkillName>{getShortedSkillName(name)}</SkillName>
       </Tooltip>
     </SkillNameWrapper>
   </SkillContainer>
