@@ -2,9 +2,6 @@ import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routes';
-import withAuth from 'middlewares/authMiddleware';
-import adapterSender from 'controllers/pendingCourses/adapterSender';
-import adapterClientCourse from 'controllers/clientCourses/adapterClientCourse';
 import {
   getAllClientCourses,
   getClientCourseById,

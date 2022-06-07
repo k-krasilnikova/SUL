@@ -2,9 +2,6 @@ import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routes';
-import withAuth from 'middlewares/authMiddleware';
-import adapterUser from 'controllers/user/adapterUser';
-import adapterSender from 'controllers/pendingCourses/adapterSender';
 import {
   getEditCoursePayload,
   preparingCourseData,
