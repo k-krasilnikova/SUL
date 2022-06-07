@@ -7,7 +7,7 @@ import {
   IClientCoursePopulated,
   TClientCourseFields,
 } from 'interfaces/Ientities/IclientCourses';
-import { IGetCoursesParams } from 'interfaces/requests/common/queries';
+import { TGetCoursesParams } from 'interfaces/requests/common/queries';
 import CourseStatus from 'enums/coursesEnums';
 import { SortOrder } from 'enums/common';
 import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
@@ -32,10 +32,10 @@ const getClientCoursesProvider = async (
     status,
     complexity,
     technologies,
-    orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
+    orderField = DEFAULT_ORDER_FIELD,
     nPerPage = DEFAULT_N_PER_PAGE,
-  }: IGetCoursesParams,
+  }: TGetCoursesParams,
 ): Promise<IClientCoursePopulated[]> => {
   const sortingField = { [orderField]: order };
   const clientCourses: IClientCoursePopulated[] = await ClientCourseModel.aggregate([
@@ -61,7 +61,7 @@ const getClientCoursesProvider = async (
       $match: {
         $and: [
           { user: new mongoose.Types.ObjectId(userId) },
-          status ? { status: { $in: status } } : NO_FILTER,
+          status && status.length ? { status: { $in: status } } : NO_FILTER,
           title
             ? {
                 'course.title': {
@@ -70,8 +70,12 @@ const getClientCoursesProvider = async (
                 },
               }
             : NO_FILTER,
-          complexity ? { 'course.complexity': { $in: complexity } } : NO_FILTER,
-          technologies ? { 'techsMapSkills.name': { $in: technologies } } : NO_FILTER,
+          complexity && complexity.length
+            ? { 'course.complexity': { $in: complexity } }
+            : NO_FILTER,
+          technologies && technologies.length
+            ? { 'techsMapSkills.name': { $in: technologies } }
+            : NO_FILTER,
         ],
       },
     },

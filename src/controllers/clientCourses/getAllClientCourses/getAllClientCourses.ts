@@ -5,7 +5,7 @@ import {
   TGetClientCoursesResponse,
 } from 'interfaces/requests/clientCourses/getAllClientCourses';
 import { getClientCoursesProvider } from 'db/providers/clientCourseProvider';
-import { arrayValueToNumber } from 'utils/array/arrayValueToNumber';
+import { parseCourseQuery } from 'utils/parseQuery/parseCoursesFilters';
 
 const getClientCourses = async (
   req: TGetClientCoursesRequest,
@@ -13,11 +13,11 @@ const getClientCourses = async (
   next: NextFunction,
 ) => {
   try {
-    const { complexity, ...params } = req.query;
+    const { complexity, order, pageN, ...params } = req.query;
     const { id: userId } = res.locals;
-    const complexityParsed = complexity && arrayValueToNumber(complexity);
+    const parsedFilters = parseCourseQuery({ complexity, order, pageN });
     const clientCourses = await getClientCoursesProvider(userId, {
-      complexity: complexityParsed,
+      ...parsedFilters,
       ...params,
     });
 
