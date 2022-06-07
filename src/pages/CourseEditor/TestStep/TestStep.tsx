@@ -48,7 +48,11 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
                 <TestStepWrapper key={index}>
                   <QuestionItem formik={formik} question={question} index={index} {...props} />
                   {isLastElem(formik.values.test.questions, index) ? (
-                    <SkillButton variant="mediumOutlined" onClick={() => push({})}>
+                    <SkillButton
+                      variant="mediumOutlined"
+                      onClick={() => push({})}
+                      disabled={Boolean(formik?.errors.test)}
+                    >
                       {ButtonLabels.addMoreQuestions}
                     </SkillButton>
                   ) : (

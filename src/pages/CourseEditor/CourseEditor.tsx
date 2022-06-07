@@ -25,7 +25,7 @@ const CourseEditor: FC<ICourseEditorProps> = ({ courseData, ...props }) => (
       >
         {ButtonLabels.back}
       </BackButton>
-      <EditorTabs {...props}>
+      <EditorTabs>
         <DefinitionStep courseData={courseData} {...props} />
         <SkillsStep courseData={courseData} {...props} />
         <LessonsStep courseData={courseData} {...props} />

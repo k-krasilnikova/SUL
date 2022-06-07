@@ -13,5 +13,6 @@ export const StyledButton = styled(BackButton)({
   '&.MuiButton-root.Mui-disabled': {
     backgroundColor: '#E19697',
     color: '#FFF',
+    border: 'none',
   },
 });

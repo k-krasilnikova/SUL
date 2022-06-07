@@ -50,6 +50,7 @@ export interface IFormik {
     description: string;
     skillsById: ISkillsById;
   };
+  isValid: boolean;
   setFieldValue: (field: string, value: string | number) => void;
   handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   touched: {
@@ -66,7 +67,8 @@ export interface IFormik {
     technologies?: any;
     test?: any;
   };
-  onSubmit?: () => void;
+  handleSubmit: () => void;
+  submitForm: () => void;
 }
 
 export interface IStepProps {
@@ -82,6 +84,7 @@ export interface ISkillsStepProps extends IStepProps {
 
 export interface ICourseEditorProps extends ISkillsStepProps {
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
+  editCourseDataMutate?: (courseId: string) => void;
 }
 
 export interface ILessonItemProps {

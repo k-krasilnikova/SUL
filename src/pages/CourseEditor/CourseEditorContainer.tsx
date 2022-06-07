@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-restricted-syntax */
-import { BaseSyntheticEvent, ChangeEvent, FC, useState } from 'react';
+import { BaseSyntheticEvent, ChangeEvent, FC, useState, useEffect } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
 import useGetCourseEditorData from 'api/admin';
+import useEditCourseData from 'api/admin/editCourseData';
 import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
 
@@ -16,21 +17,35 @@ const CourseEditorContainer: FC = () => {
   const params = useParams();
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
 
+  const { mutate: editCourseDataMutate } = useEditCourseData(params.courseId);
+
+  const handleSubmit = (values: any) => {
+    console.log('submit');
+    editCourseDataMutate(values);
+  };
+
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
-    onSubmit: (): void => {},
+    onSubmit: handleSubmit,
     validationSchema: courseEditorValidationSchema,
     validateOnBlur: true,
     validateOnChange: true,
   });
 
+  useEffect(() => {
+    if (!formik.isValid && !formik.isValidating && formik.isSubmitting) {
+      alert('Fix your form errors!');
+    }
+  }, [formik.isSubmitting, formik.isValid, formik.isValidating]);
+
   const onSuccessLoadCourseData = (data: any): void => {
     const skills: ISkillsById = {};
-    for (const item of data.allSkills) {
+    const { allSkills, ...courseData } = data;
+    for (const item of allSkills) {
       skills[item._id] = item;
     }
     setSkillsById(skills);
-    formik.setValues(data, false);
+    formik.setValues(courseData, false);
   };
 
   const { data: courseEditorData, isLoading: isCourseEditorDataLoading } = useGetCourseEditorData(
@@ -64,6 +79,7 @@ const CourseEditorContainer: FC = () => {
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         onFieldBlur={onFieldBlur}
+        editCourseDataMutate={editCourseDataMutate}
       />
     </FormikProvider>
   );
