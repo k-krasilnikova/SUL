@@ -1,9 +1,11 @@
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { IUser, TPendingCourses } from 'interfaces/entities/users';
+import { NotFoundError } from 'classes/errors/clientErrors';
 
 import UserModel from '../models/User';
 
-const getPendingCoursesProvider = async (managerId: string) => {
+const getPendingCoursesProvider = async (
+  managerId: string,
+): Promise<{ pendingCourses: TPendingCourses }> => {
   const dbUser: Omit<IUser, 'pendingCourses'> & { pendingCourses: TPendingCourses } =
     await UserModel.findById(managerId)
       .populate({

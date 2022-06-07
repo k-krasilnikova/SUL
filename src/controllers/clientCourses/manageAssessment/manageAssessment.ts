@@ -6,9 +6,9 @@ import {
 } from 'interfaces/requests/clientCourses/manageAssessment';
 import { AssessmentAction } from 'enums/common';
 import CourseStatus from 'enums/courses';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { getStatusProvider, updateClientCourseField } from 'db/providers/clientCourseProvider';
 import { ASSESSMENT_RESULTS, CLIENT_COURSE_FIELDS } from 'config/constants';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const manageAssessment = async (
   req: TManageAssessmentRequest,
@@ -40,13 +40,15 @@ const manageAssessment = async (
 
     await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, statusToSet);
 
-    res.locals.results = `Assessment has been successfully ${
-      statusToSet === CourseStatus.completed
-        ? ASSESSMENT_RESULTS.approved
-        : ASSESSMENT_RESULTS.declined
-    }.`;
-
     next();
+
+    res.json(
+      `Assessment has been successfully ${
+        statusToSet === CourseStatus.completed
+          ? ASSESSMENT_RESULTS.approved
+          : ASSESSMENT_RESULTS.declined
+      }.`,
+    );
   } catch (err) {
     next(err);
   }

@@ -6,7 +6,7 @@ import { IIdParams } from '../common/params';
 type TRequestParams = IIdParams;
 
 type TResponsePayload = ITestResultResponse;
-type TResponseLocals = IAuthLocals & { results: TResponsePayload }; // remove after removing adapters
+type TResponseLocals = IAuthLocals;
 
 type TGetTestResultRequest = TBaseRequest<TRequestParams>;
 type TGetTestResultResponse = TBaseResponse<TResponsePayload, TResponseLocals>;

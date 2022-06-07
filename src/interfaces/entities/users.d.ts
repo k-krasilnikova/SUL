@@ -71,8 +71,18 @@ interface ITechnologyGroupPopuldated {
   isPrimary: boolean;
 }
 
+type TUserDataToClient = Omit<IUser, 'passwordHash' | 'refreshToken' | 'accessToken'>;
+
 type TUserPopulated = IUser & {
   technologies: ITechnologyGroupPopuldated[];
 };
 
-export { IUser, TUserPopulated, IPendingCourse, TPendingCourses, INotification, ITechnologyGroup };
+export {
+  IUser,
+  TUserDataToClient,
+  TUserPopulated,
+  IPendingCourse,
+  TPendingCourses,
+  INotification,
+  ITechnologyGroup,
+};

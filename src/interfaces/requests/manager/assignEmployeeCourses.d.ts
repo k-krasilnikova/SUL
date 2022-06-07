@@ -9,9 +9,7 @@ type TRequestParams = IIdParams;
 type TRequestBody = { courses: ICourseToAssign[] } & IWithAssessmentPayload;
 
 type TResponsePayload = string;
-type TResponseLocals = IAuthLocals & {
-  results: TResponsePayload; // remove results in "V1-247 Remove adapters"
-};
+type TResponseLocals = IAuthLocals;
 
 type TAssignEmployeeCoursesRequest = TBaseRequest<TRequestParams, TRequestBody>;
 type TAssignEmployeeCoursesResponse = TBaseResponse<TResponsePayload, TResponseLocals>;

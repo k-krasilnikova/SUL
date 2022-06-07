@@ -7,8 +7,8 @@ import {
 } from 'config/constants';
 import { IAccessJwtPayload, IRefreshJwtPayload, ITokens } from 'interfaces/auth/auth';
 import { IUser } from 'interfaces/entities/users';
-import InternalServerError from 'classes/errors/serverErrors/InternalServerError';
 import { TBaseRequest } from 'interfaces/requests/base';
+import { InternalServerError } from 'classes/errors/serverErrors';
 
 const generateJWT = (userData: IUser): ITokens => {
   try {
@@ -27,6 +27,7 @@ const generateJWT = (userData: IUser): ITokens => {
         expiresIn: refreshTimeout,
       },
     );
+
     return { accessToken, refreshToken };
   } catch (error) {
     throw new InternalServerError('Could not generate token.');
@@ -37,6 +38,7 @@ const verifyAccessToken = (accessToken: string): IAccessJwtPayload => {
   const secret = process.env.JWT_SECRET || DEFAULT_NO_SECRET;
 
   const payload = jwt.verify(accessToken, secret) as IAccessJwtPayload;
+
   return payload;
 };
 
@@ -44,11 +46,13 @@ const verifyRefreshToken = (refreshToken: string): IRefreshJwtPayload => {
   const secret = process.env.JWT_REFRESH_SECRET || DEFAULT_NO_SECRET;
 
   const payload = jwt.verify(refreshToken, secret) as IRefreshJwtPayload;
+
   return payload;
 };
 
-export const extractAccessTokenValue = (req: TBaseRequest) => {
+
+const extractAccessTokenValue = (req: TBaseRequest): string | undefined => {
   return req.headers.authorization?.split(' ')[1];
 };
 
-export { generateJWT, verifyAccessToken, verifyRefreshToken };
+export { generateJWT, verifyAccessToken, verifyRefreshToken, extractAccessTokenValue };

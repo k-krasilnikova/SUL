@@ -6,7 +6,10 @@ type NotificationInfo = {
   description: NotificationDescription;
 };
 
-const convertCourseStatusToNotificationInfo = (status: CourseStatus, withAssessment?: boolean) => {
+const convertCourseStatusToNotificationInfo = (
+  status: CourseStatus,
+  withAssessment?: boolean,
+): NotificationInfo => {
   const convertedNotification: {
     [key: string]: NotificationInfo;
   } = {

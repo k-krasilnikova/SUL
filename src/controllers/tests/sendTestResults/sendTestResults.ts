@@ -2,7 +2,7 @@ import { NextFunction } from 'express';
 
 import { TPassTestRequest, TPassTestResponse } from 'interfaces/requests/tests/passTest';
 
-const unitTestResults = async (
+const sendTestResults = async (
   req: TPassTestRequest,
   res: TPassTestResponse,
   next: NextFunction,
@@ -12,10 +12,13 @@ const unitTestResults = async (
       result,
       achievements: { newSkills, updatedSkills, techsToAchieve },
     } = res.locals;
+
+    next();
+
     res.json({ result, newSkills, updatedSkills, techsToAchieve });
   } catch (error) {
     next(error);
   }
 };
 
-export default unitTestResults;
+export default sendTestResults;

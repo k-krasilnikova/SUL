@@ -58,7 +58,7 @@ describe('Testing user apply course', () => {
     const applyCourse = await request
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${userToken}`)
-      .send({ id: WRONG_ID });
+      .send({ courseId: WRONG_ID });
     expect(applyCourse.status).toBe(STATUS_CODES.clientErrors.NOT_FOUND);
   });
 
@@ -67,7 +67,7 @@ describe('Testing user apply course', () => {
     const applyCourse = await request
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${userToken}`)
-      .send({ id: inappropriateId });
+      .send({ courseId: inappropriateId });
     expect(applyCourse.status).toBe(STATUS_CODES.serverErrors.INTERNAL_SERVER_ERROR);
   });
 
@@ -75,7 +75,7 @@ describe('Testing user apply course', () => {
     const applyCourse = await request
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${noToken}`)
-      .send({ id: courseId });
+      .send({ courseId });
     expect(applyCourse.status).toBe(STATUS_CODES.clientErrors.FORBIDDEN);
   });
 
@@ -88,9 +88,9 @@ describe('Testing user apply course', () => {
     const applyCourse = await request
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${userToken}`)
-      .send({ id: courseId });
-    const newClientCourse = applyCourse.body as { course: IClientCourse };
-    clientCourseId = String(newClientCourse.course._id);
+      .send({ courseId });
+    const newClientCourse = applyCourse.body as IClientCourse;
+    clientCourseId = String(newClientCourse._id);
     expect(applyCourse.status).toBe(STATUS_CODES.success.OK);
   });
 
@@ -98,7 +98,7 @@ describe('Testing user apply course', () => {
     const applyCourse = await request
       .post(applyCourseRoute)
       .set('Authorization', `bearer ${userToken}`)
-      .send({ id: courseId });
+      .send({ courseId });
     expect(applyCourse.status).toBe(STATUS_CODES.clientErrors.BAD_REQUEST);
     expect(applyCourse.body).toBe('Course already applied.');
   });

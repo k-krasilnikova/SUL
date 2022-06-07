@@ -6,7 +6,7 @@ import {
   TGetTestResultResponse,
 } from 'interfaces/requests/tests/getTestResult';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { mapTestResult } from './utils/mappers';
 
@@ -20,22 +20,18 @@ const getTestResult = async (
     const { id: userId } = res.locals;
 
     const course = await getClientCourseProvider(clientCourseId);
-
     if (String(course.user) !== userId) {
       throw new BadRequestError('Test does not belong to user.');
     }
 
     const { testResult } = course;
-
     if (isEmpty(testResult)) {
       throw new BadRequestError(`Test hasn't been passed yet.`);
     }
 
     const testResultResponse = mapTestResult(testResult);
 
-    res.locals.results = testResultResponse;
-
-    next();
+    res.json(testResultResponse);
   } catch (error) {
     next(error);
   }
