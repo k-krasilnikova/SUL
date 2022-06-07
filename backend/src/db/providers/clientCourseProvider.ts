@@ -48,6 +48,7 @@ const getClientCoursesProvider = async (
         as: 'course',
       },
     },
+    { $unwind: '$course' },
     {
       $lookup: {
         from: 'skills',
