@@ -1,5 +1,3 @@
-import { Params } from 'react-router';
-
 import { IQuestionObject } from 'types/test';
 
 export interface IPassingTestProps {
@@ -17,6 +15,5 @@ export interface IPassingTestProps {
   stageBack: () => void;
   isLoading: boolean;
   questionStageItem: IQuestionObject;
-  params: Params<string>;
   testTitle?: string;
 }

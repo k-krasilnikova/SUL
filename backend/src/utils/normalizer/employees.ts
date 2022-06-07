@@ -1,6 +1,6 @@
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
-import { TUserStackMember, TUserStackMemberShort } from 'interfaces/Ientities/IStackMember';
-import { IEmployeeClientCourse, TEmployeeCourse } from 'interfaces/IResponse/IResponse';
+import { IClientCoursePopulated } from 'interfaces/entities/clientCourses';
+import { TUserStackMember, TUserStackMemberShort } from 'interfaces/entities/stackMember';
+import { IEmployeeClientCourse, TEmployeeCourse } from 'interfaces/response/response';
 
 const mapEmployeeStack = (stack: TUserStackMember[]): TUserStackMemberShort[] =>
   stack.map((stackMember) => ({

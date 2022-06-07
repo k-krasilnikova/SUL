@@ -5,8 +5,8 @@ import {
   TPassCourseResponse,
 } from 'interfaces/requests/clientCourses/passCourse';
 import { getStatusProvider, updateCourseProgress } from 'db/providers/clientCourseProvider';
-import CourseStatus from 'enums/coursesEnums';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import CourseStatus from 'enums/courses';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const passCourse = async (
   req: TPassCourseRequest,
@@ -18,7 +18,7 @@ const passCourse = async (
     const { id: clientCourseId } = req.params;
 
     if (typeof stage !== 'string') {
-      throw new BadRequestError('Invalid query parameters.');
+      throw new BadRequestError('Invalid query parameters. Stage must be a string value.');
     }
 
     const courseStatus = await getStatusProvider(clientCourseId);

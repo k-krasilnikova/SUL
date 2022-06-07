@@ -1,5 +1,6 @@
 import ClientCourseModel from 'db/models/ClientCourses';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
+import { connectToDatabase } from 'utils/connection';
 import { generateTestStatusToUpdateDates } from 'utils/date/testDate';
 import { connectToDatabase } from 'utils/connection/connectToDatabase';
 import { logger } from 'utils/log/logger';

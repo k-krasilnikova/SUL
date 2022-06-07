@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { IStackMember } from 'interfaces/Ientities/IStackMember';
+import { IStackMember } from 'interfaces/entities/stackMember';
 
 const schema = new Schema<IStackMember>({
   name: { type: String, unique: true, required: true },

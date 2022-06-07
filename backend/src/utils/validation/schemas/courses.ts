@@ -6,9 +6,9 @@ import { uniqBy, uniqWith } from 'lodash';
 import { UserRank } from 'enums/users';
 import { MaterialContentType } from 'enums/materials';
 import { TIME_1M_SEC } from 'config/constants';
-import { ITest } from 'interfaces/Ientities/Itest';
-import { ICourseTechsFromWeb } from 'interfaces/ICourses/IQueryCourses';
-import { setAnswerProperNumbersToQuestions } from 'utils/normalizer/courseTest';
+import { ITest } from 'interfaces/entities/test';
+import { ICourseTechsFromWeb } from 'interfaces/courses/query';
+import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/courseTest';
 
 import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
 import fullTrim from '../../string/fullTrim';

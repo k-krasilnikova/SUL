@@ -3,7 +3,7 @@ import { FC } from 'react';
 import ProgressBar from 'components/ProgressBar';
 import Tooltip from 'components/Tooltip';
 import { Size } from 'enums/sizes';
-import { setFirstLetterUppercase } from 'utils/helpers/setFirstLetterUppercase';
+import capitalizeFirstLetter from 'utils/helpers/strings';
 
 import { ICourseItemProps } from './types';
 import {
@@ -22,7 +22,7 @@ const CourseItem: FC<ICourseItemProps> = ({ title, status, progressValue, progre
         <Tooltip title={title}>
           <CourseTitle>{title}</CourseTitle>
         </Tooltip>
-        <CourseStatus>{setFirstLetterUppercase(status)}</CourseStatus>
+        <CourseStatus>{capitalizeFirstLetter(status)}</CourseStatus>
       </CourseItemText>
     </CoursesListItem>
     <CoursesDivider />

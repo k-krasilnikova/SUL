@@ -8,7 +8,7 @@ import { addUserNotification } from 'db/providers/notificationProvider';
 import { getCourseProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { combineFullName } from 'utils/combine/combineFullName';
-import { NotificationStatuses, NotificationType } from 'enums/notificationEnums';
+import { NotificationStatuses, NotificationType } from 'enums/notification';
 import { USER_ROLES } from 'config/constants';
 import {
   getClientCourseByCourseId,
@@ -23,7 +23,8 @@ const addNotification = async (
   next: NextFunction,
 ) => {
   try {
-    const { userId, courseId, clientCourseId, withAssessment } = res.locals;
+    const { id: userId } = res.locals;
+    const { courseId, clientCourseId, assessment: withAssessment } = req.body;
 
     if (userId) {
       let course;
@@ -67,8 +68,6 @@ const addNotification = async (
         );
       }
     }
-
-    next();
   } catch (error) {
     next(error);
   }

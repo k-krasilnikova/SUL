@@ -1,5 +1,5 @@
 import { TWO_DIGITS } from 'config/constants';
-import { IAnswer, TCorrectAnswers } from 'interfaces/Ientities/Itest';
+import { IAnswer, TCorrectAnswers } from 'interfaces/entities/test';
 
 const checkTestResults = (
   userAnswers: IAnswer[],

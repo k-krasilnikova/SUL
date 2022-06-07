@@ -12,9 +12,12 @@ const RequestsContainer: React.FC = () => {
   const { mutateAsync: approveCourse, isLoading: approveLoading } = useApproveRequest();
   const { mutateAsync: declineCourse, isLoading: declineLoading } = useDeclineRequest();
 
-  const approveRequest = ({ id: requestId, assessment: withAssessment }: IApproveCourseDto) => {
+  const approveRequest = ({
+    clientCourseId: requestId,
+    assessment: withAssessment,
+  }: IApproveCourseDto) => {
     setTargetId(requestId);
-    approveCourse({ id: requestId, assessment: withAssessment });
+    approveCourse({ clientCourseId: requestId, assessment: withAssessment });
   };
 
   const declineRequest = (requestId: string) => {

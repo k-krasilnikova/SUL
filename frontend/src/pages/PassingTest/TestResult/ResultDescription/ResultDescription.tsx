@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TEST_RESULT_TEXT } from 'constants/test';
-import SkillInfo from 'pages/Profile/UserSkills/SkillInfo';
+import SkillInfo from 'components/SkillInfo';
 import { IResultDescription } from 'types/test';
 
 import {
@@ -40,14 +40,16 @@ const ResultDescription: React.FC<IResultDescription> = ({
           ) : (
             <SkillsInfoList>
               {assessment ? (
-                techsToAchieve?.map((tech) => <SkillInfo key={tech.skill.name} skillItem={tech} />)
+                techsToAchieve?.map(({ skill, score }) => (
+                  <SkillInfo key={skill.name} skillScore={score} skill={skill} />
+                ))
               ) : (
                 <>
-                  {newSkills?.map((newSkillItem) => (
-                    <SkillInfo key={newSkillItem.skill.name} skillItem={newSkillItem} />
+                  {newSkills?.map(({ skill, score }) => (
+                    <SkillInfo key={skill.name} skillScore={score} skill={skill} />
                   ))}
-                  {updatedSkills?.map((updatedSkillItem) => (
-                    <SkillInfo key={updatedSkillItem.skill.name} skillItem={updatedSkillItem} />
+                  {updatedSkills?.map(({ skill, score }) => (
+                    <SkillInfo key={skill.name} skillScore={score} skill={skill} />
                   ))}
                 </>
               )}
