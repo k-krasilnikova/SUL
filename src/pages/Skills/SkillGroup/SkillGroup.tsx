@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
 import SkillItem from './SkillItem';
-import { ISkillGroupProps } from './types';
+import { TSkillGroupProps } from '../types';
 import { SkillsGroupWrapper, SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
-const SkillGroup: FC<ISkillGroupProps> = ({ skillFounded, skills }) => {
+const SkillGroup: FC<TSkillGroupProps> = ({ skillFounded, skills }) => {
   const skillsData = skillFounded.length ? skillFounded : skills;
   return (
     <>

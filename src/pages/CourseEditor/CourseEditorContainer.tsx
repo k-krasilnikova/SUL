@@ -6,10 +6,11 @@ import { useParams } from 'react-router';
 
 import useGetCourseEditorData from 'api/admin';
 import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
-import courseEditorValidationSchema from 'validations/courseEditorValidationSchema';
+import { courseEditorValidationSchema } from 'validations/schemas';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
+import { formatFieldValue } from './utils';
 
 const CourseEditorContainer: FC = () => {
   const params = useParams();
@@ -20,11 +21,11 @@ const CourseEditorContainer: FC = () => {
     onSubmit: (): void => {},
     validationSchema: courseEditorValidationSchema,
     validateOnBlur: true,
-    validateOnChange: false,
+    validateOnChange: true,
   });
 
   const onSuccessLoadCourseData = (data: any): void => {
-    const skills: { [key: string]: { _id: string; name: string; maxScore: number } } = {};
+    const skills: ISkillsById = {};
     for (const item of data.allSkills) {
       skills[item._id] = item;
     }
@@ -47,6 +48,13 @@ const CourseEditorContainer: FC = () => {
     formik.setFieldValue(event.target.name, Number.parseInt(event.target.value, RADIX_PARAMETER));
   };
 
+  const onFieldBlur = (event: BaseSyntheticEvent) => {
+    const value = event.target.value || '';
+    const formattedValue = formatFieldValue(value);
+    formik.setFieldValue(event.target.name, formattedValue);
+    formik.handleBlur(event);
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -55,6 +63,7 @@ const CourseEditorContainer: FC = () => {
         formik={formik}
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
+        onFieldBlur={onFieldBlur}
       />
     </FormikProvider>
   );
