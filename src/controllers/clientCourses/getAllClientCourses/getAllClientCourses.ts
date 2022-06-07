@@ -13,9 +13,9 @@ const getClientCourses = async (
   next: NextFunction,
 ) => {
   try {
-    const { complexity, order, pageN, ...params } = req.query;
+    const { complexity, order, pageN, status, ...params } = req.query;
     const { id: userId } = res.locals;
-    const parsedFilters = parseCourseQuery({ complexity, order, pageN });
+    const parsedFilters = parseCourseQuery({ complexity, order, pageN, status });
     const clientCourses = await getClientCoursesProvider(userId, {
       ...parsedFilters,
       ...params,
