@@ -1,8 +1,8 @@
-import { styled } from '@mui/material';
+import { styled, Box } from '@mui/material';
 
 import theme, { COLORS } from 'themeSettings';
 
-export const SkillContainer = styled('div')({
+export const SkillContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -25,30 +25,31 @@ export const SkillContainer = styled('div')({
   },
 });
 
-export const SkillNameWrapper = styled('div')({
+export const SkillNameWrapper = styled(Box)({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
 });
 
-export const SkillName = styled('p')({
+export const SkillName = styled(Box)({
   maxWidth: '140px',
   margin: '17px 0 16px',
   fontFamily: theme.typography.fontFamily,
   fontWeight: '400',
   fontSize: '18px',
-  lineHeight: 1.2,
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
+  lineHeight: '1.2em',
+  textAlign: 'center',
+  wordBreak: 'break-all',
   color: COLORS.primaryTextColor,
+  [theme.breakpoints.down('lg')]: {
+    lineHeight: '1em',
+  },
   [theme.breakpoints.down('md')]: {
     fontSize: '16px',
-    lineHeight: '18px',
   },
 });
 
-export const ImageWrapper = styled('div')({
+export const ImageWrapper = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
   height: '80px',
