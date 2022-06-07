@@ -8,7 +8,7 @@ import {
 import { getUserProvider } from 'db/providers/userProvider';
 import { getAllCoursesProvider } from 'db/providers/courseProvider';
 import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { filterOnlyAvailableCourses, mapAvailableCoursesInfo } from './utils/mappers';
 
@@ -33,8 +33,7 @@ const getEmployeeAvailableCourses = async (
     const availableCourses = filterOnlyAvailableCourses(courses);
     const availableCoursesResponse = mapAvailableCoursesInfo(availableCourses);
 
-    res.locals.results = availableCoursesResponse;
-    next();
+    res.json(availableCoursesResponse);
   } catch (error) {
     next(error);
   }

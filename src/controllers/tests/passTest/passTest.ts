@@ -11,23 +11,27 @@ import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { TestStatus } from 'enums/common';
 import { isTestAvailableByDate } from 'utils/validation/tests';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { checkTestResults, countTestResult } from './utils/helpers';
 
 const passTest = async (req: TPassTestRequest, res: TPassTestResponse, next: NextFunction) => {
   try {
-    const { testId, answers } = req.body;
-    const { id: courseId } = req.params;
+    const { testId, answers, clientCourseId } = req.body;
 
-    const { status, finishTestDate } = await getClientCourseProvider(courseId);
+    const { status, finishTestDate } = await getClientCourseProvider(clientCourseId);
+
     if (!status || status !== CourseStatus.testing) {
       throw new BadRequestError('Testing was not started yet.');
     }
 
     const isTestAvailable = isTestAvailableByDate(finishTestDate);
     if (!isTestAvailable) {
-      await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
+      await updateClientCourseField(
+        clientCourseId,
+        CLIENT_COURSE_FIELDS.status,
+        CourseStatus.failed,
+      );
       throw new BadRequestError('Time for test has already expired.');
     }
 
@@ -46,22 +50,30 @@ const passTest = async (req: TPassTestRequest, res: TPassTestResponse, next: Nex
       return resultObject;
     });
 
-    await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.testResult, testResultWithAnswers);
+    await updateClientCourseField(
+      clientCourseId,
+      CLIENT_COURSE_FIELDS.testResult,
+      testResultWithAnswers,
+    );
 
     const result = countTestResult(userWrongAnswers, correctAnswers.questions);
     if (result < PASS_THRESHOLD) {
       res.locals.result = { result, testStatus: TestStatus.notPassed };
-      await updateClientCourseField(courseId, CLIENT_COURSE_FIELDS.status, CourseStatus.failed);
+      await updateClientCourseField(
+        clientCourseId,
+        CLIENT_COURSE_FIELDS.status,
+        CourseStatus.failed,
+      );
 
       next();
     } else {
-      const assessmentRequired = await getAssessmentProvider(courseId);
+      const assessmentRequired = await getAssessmentProvider(clientCourseId);
       res.locals.result = {
         result,
         testStatus: assessmentRequired ? TestStatus.assessment : TestStatus.successful,
       };
       await updateClientCourseField(
-        courseId,
+        clientCourseId,
         CLIENT_COURSE_FIELDS.status,
         assessmentRequired ? CourseStatus.assessment : CourseStatus.completed,
       );
