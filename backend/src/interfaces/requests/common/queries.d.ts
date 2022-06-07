@@ -1,4 +1,5 @@
 import { SortOrder } from 'enums/common';
+import CourseStatus from 'enums/coursesEnums';
 import { UserRank } from 'enums/users';
 
 interface IGetCoursesRequestQuery {
@@ -8,7 +9,7 @@ interface IGetCoursesRequestQuery {
   nPerPage?: number;
   technologies?: string[];
   complexity?: Array<keyof typeof UserRank>;
-  status?: string[];
+  status?: Array<keyof typeof CourseStatus>;
   pageN?: string;
 }
 
