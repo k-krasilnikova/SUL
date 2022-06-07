@@ -16,12 +16,11 @@ import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
 import { ICoursePopulated, ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
 import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
 import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 import { TResponsePayload as TMaterialsPayload } from 'interfaces/requests/courses/getMaterials';
 import { getTestById } from './testProvider';

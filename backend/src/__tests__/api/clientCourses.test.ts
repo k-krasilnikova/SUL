@@ -72,7 +72,7 @@ describe('Testing clientCourses', () => {
     const applyCourse = await request
       .post(`${Routes.namespace}${Routes.courses}`)
       .set('Authorization', `bearer ${userToken}`)
-      .send({ id: courseId });
+      .send({ courseId });
 
     const course = applyCourse.body as IClientCourse;
 

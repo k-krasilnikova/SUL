@@ -8,8 +8,8 @@ import {
   NotificationType,
 } from 'enums/notificationEnums';
 import { SortOrder } from 'enums/common';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { DEFAULT_ORDER_FIELD, NOTIFICATIONS_COUNT } from 'config/constants';
+import { BadRequestError } from 'classes/errors/clientErrors';
 import { INotification } from 'interfaces/Ientities/Iusers';
 
 export const getUserNotifications = async (userId: string): Promise<INotification[]> => {

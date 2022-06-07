@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import { SubRoutes } from 'enums/routesEnum';
-import withAuth from 'middlewares/authMiddleware';
 import { USER_ROLES } from 'config/constants';
 import { addNotification } from 'controllers/notifications';
 import {
@@ -9,7 +8,8 @@ import {
   declinePendingCourse,
   getPendingCourses,
 } from 'controllers/pendingCourses';
-// import sendMail from 'middlewares/mailSender';
+import { withAuth } from 'middlewares';
+// import { sendMail } from 'middlewares';
 
 const pendingCoursesRouter = Router();
 

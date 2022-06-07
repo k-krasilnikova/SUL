@@ -11,7 +11,7 @@ import { getTrueAnswersProvider } from 'db/providers/testProvider';
 import CourseStatus from 'enums/coursesEnums';
 import { TestStatus } from 'enums/common';
 import { isTestAvailableByDate } from 'utils/validation/tests';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { checkTestResults, countTestResult } from './utils/helpers';
 

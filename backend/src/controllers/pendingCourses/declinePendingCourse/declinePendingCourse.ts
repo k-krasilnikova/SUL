@@ -12,8 +12,8 @@ import {
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
 import CourseStatus from 'enums/coursesEnums';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const declinePendingCourse = async (
   req: TDeclinePendingCourseRequest,

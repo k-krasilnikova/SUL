@@ -2,7 +2,6 @@ import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routesEnum';
-import withAuth from 'middlewares/authMiddleware';
 import {
   getAllClientCourses,
   getClientCourseById,
@@ -18,9 +17,10 @@ import {
   getTestResult,
   getTestTime,
   passTest,
-  unitTestResults,
   startTest,
+  sendTestResults,
 } from 'controllers/tests';
+import { withAuth } from 'middlewares';
 
 const clientCoursesRouter = Router();
 
@@ -34,7 +34,7 @@ clientCoursesRouter.put(
   withAuth([USER_ROLES.EMPLOYEE, USER_ROLES.MANAGER]),
   passTest,
   getAchievements,
-  unitTestResults,
+  sendTestResults,
   addNotification,
 );
 clientCoursesRouter.get(

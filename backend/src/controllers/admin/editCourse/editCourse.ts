@@ -14,8 +14,8 @@ import { getCourseTest, updateTest } from 'db/providers/testProvider';
 import { validateCourseData } from 'utils/validation/courses';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import checkCourseValidationResult from 'utils/validation/courses/checkCourseValidationResult';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { COURSE_VALIDATION_ERRORS } from 'utils/validation/courses/constants';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const editCourse = async (
   req: TEditCourseRequest,

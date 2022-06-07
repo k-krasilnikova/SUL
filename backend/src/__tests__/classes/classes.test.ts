@@ -1,10 +1,11 @@
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import ForbiddenError from 'classes/errors/clientErrors/ForbiddenError';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import UnauthorizedError from 'classes/errors/clientErrors/UnauthorizedError';
-import CommonHttpError from 'classes/errors/common/CommonHttpError';
-import InternalServerError from 'classes/errors/serverErrors/InternalServerError';
-import ServiceUnavailableError from 'classes/errors/serverErrors/ServiceUnavailableError';
+import {
+  BadRequestError,
+  ForbiddenError,
+  NotFoundError,
+  UnauthorizedError,
+} from 'classes/errors/clientErrors';
+import { CommonHttpError } from 'classes/errors/common';
+import { InternalServerError, ServiceUnavailableError } from 'classes/errors/serverErrors';
 import Mail from 'classes/Mail/Mail';
 import { STATUS_CODES } from 'config/constants';
 

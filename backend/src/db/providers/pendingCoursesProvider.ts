@@ -1,4 +1,4 @@
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
+import { NotFoundError } from 'classes/errors/clientErrors';
 import { IUser, TPendingCourses } from 'interfaces/Ientities/Iusers';
 
 import UserModel from '../models/User';

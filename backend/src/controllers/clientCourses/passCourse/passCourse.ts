@@ -6,7 +6,7 @@ import {
 } from 'interfaces/requests/clientCourses/passCourse';
 import { getStatusProvider, updateCourseProgress } from 'db/providers/clientCourseProvider';
 import CourseStatus from 'enums/coursesEnums';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const passCourse = async (
   req: TPassCourseRequest,

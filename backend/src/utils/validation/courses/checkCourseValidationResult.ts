@@ -1,7 +1,7 @@
 import { isEmpty, isNull, isUndefined, pickBy } from 'lodash';
 
 import { ICourseDataValidationResult } from 'interfaces/ICourses/IQueryCourses';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { COURSE_VALIDATION_ERRORS } from './constants';
 

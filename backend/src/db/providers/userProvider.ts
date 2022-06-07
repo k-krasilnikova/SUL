@@ -1,8 +1,6 @@
 import { Types } from 'mongoose';
 import { isEmpty } from 'lodash';
 
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
 import UserSkillModel from 'db/models/UserSkill';
 import SkillGroupModel from 'db/models/SkillGroup';
@@ -12,6 +10,7 @@ import CourseModel from 'db/models/Course';
 import { ITechnologyGroup, IUser } from 'interfaces/Ientities/Iusers';
 import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 const getUserProvider = async (userId: string | Types.ObjectId): Promise<IUser> => {
   const dbUser = await UserModel.findById(userId).lean();

@@ -2,7 +2,6 @@ import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
 import { SubRoutes } from 'enums/routesEnum';
-import withAuth from 'middlewares/authMiddleware';
 import {
   getEditCoursePayload,
   preparingCourseData,
@@ -13,6 +12,7 @@ import {
 import { applyCourse } from 'controllers/clientCourses';
 import { getAllCourses, getCourseById, getCoursesMap, getMaterials } from 'controllers/courses';
 import { addNotification } from 'controllers/notifications';
+import { withAuth } from 'middlewares';
 
 const coursesRouter = Router();
 coursesRouter.get(

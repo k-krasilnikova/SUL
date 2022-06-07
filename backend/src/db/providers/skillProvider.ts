@@ -5,13 +5,12 @@ import { ISkillTech, IUserSkill, IUserSkillPopulated } from 'interfaces/Ientitie
 import { ICourseTechnologyPayload, IEditCoursePayload } from 'interfaces/requests/common/payloads';
 import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
 import { IUser } from 'interfaces/Ientities/Iusers';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import UserSkillModel from 'db/models/UserSkill';
 import UserModel from 'db/models/User';
 import SkillModel from 'db/models/Skill';
 import { NO_FILTER } from 'config/constants';
 import ISkill from 'interfaces/Ientities/ISkill';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })
