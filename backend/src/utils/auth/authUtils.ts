@@ -5,8 +5,8 @@ import {
   DEFAULT_NO_SECRET,
   DEFAULT_REFRESH_TIMEOUT,
 } from 'config/constants';
-import { IAccessJwtPayload, IRefreshJwtPayload, ITokens } from 'interfaces/Iauth/authInterfaces';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { IAccessJwtPayload, IRefreshJwtPayload, ITokens } from 'interfaces/auth/auth';
+import { IUser } from 'interfaces/entities/users';
 import { TBaseRequest } from 'interfaces/requests/base';
 import { InternalServerError } from 'classes/errors/serverErrors';
 

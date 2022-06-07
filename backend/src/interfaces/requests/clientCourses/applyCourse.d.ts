@@ -1,4 +1,4 @@
-import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
+import { IClientCourse } from 'interfaces/entities/clientCourses';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';

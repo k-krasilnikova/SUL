@@ -19,7 +19,7 @@ import {
   NotificationStatuses,
   NotificationTitles,
   NotificationType,
-} from 'enums/notificationEnums';
+} from 'enums/notification';
 import { BadRequestError } from 'classes/errors/clientErrors';
 
 import { isCoursesToAssignHaveDuplicates } from './utils/validations';

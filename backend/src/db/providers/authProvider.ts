@@ -1,7 +1,8 @@
 import UserModel from 'db/models/User';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { IUser } from 'interfaces/entities/users';
+
 import { NotFoundError } from 'classes/errors/clientErrors';
-import { AccessTokenBlacklistModel, IAccessToken } from 'db/models/AccessTokens';
+import { AccessTokenBlacklistModel, IAccessToken } from '../models/AccessTokens';
 
 const authProvider = async (login: string): Promise<IUser> => {
   const dbUser = await UserModel.findOne({ username: login }).lean();

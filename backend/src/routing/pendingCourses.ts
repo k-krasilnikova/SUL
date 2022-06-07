@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { SubRoutes } from 'enums/routesEnum';
+import { SubRoutes } from 'enums/routes';
 import { USER_ROLES } from 'config/constants';
 import { addNotification } from 'controllers/notifications';
 import {

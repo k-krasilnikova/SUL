@@ -1,4 +1,4 @@
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { ICourse } from 'interfaces/entities/courses';
 import { IEditCoursePayload } from 'interfaces/requests/common/payloads';
 
 import { convertToTypeUnsafe } from '../../typeConversion/common';

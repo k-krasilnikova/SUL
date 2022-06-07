@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 
-import { IUserSkill } from './IUserSkill';
+import { IUserSkill } from './userSkill';
 
 interface ISkillGroup {
   _id?: Types.ObjectId;

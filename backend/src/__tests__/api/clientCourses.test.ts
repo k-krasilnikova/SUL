@@ -5,10 +5,10 @@ import dotenv from 'dotenv';
 import { app } from 'app';
 import ClientCourseModel from 'db/models/ClientCourses';
 import { removeFromPendingFieldCourses } from 'db/providers/userProvider';
-import { Routes, SubRoutes } from 'enums/routesEnum';
+import { Routes, SubRoutes } from 'enums/routes';
 import { INITIAL_INDX, JEST_TIMEOUT, STATUS_CODES, WRONG_ID } from 'config/constants';
-import { IClientCourse } from 'interfaces/Ientities/IclientCourses';
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { IClientCourse } from 'interfaces/entities/clientCourses';
+import { ICourse } from 'interfaces/entities/courses';
 import { TResponsePayload as TLoginPayload } from 'interfaces/requests/auth/login';
 import { TResponsePayload as TUserInfoPayload } from 'interfaces/requests/user/getProfileInfo';
 

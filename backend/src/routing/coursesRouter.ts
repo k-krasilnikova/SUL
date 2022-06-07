@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { USER_ROLES } from 'config/constants';
-import { SubRoutes } from 'enums/routesEnum';
+import { SubRoutes } from 'enums/routes';
 import {
   getEditCoursePayload,
   preparingCourseData,

@@ -3,7 +3,7 @@ import mongoose, { Types } from 'mongoose';
 import ClientCourseModel from 'db/models/ClientCourses';
 import TestModel from 'db/models/Tests';
 import CourseModel from 'db/models/Course';
-import { ITest, TestDb } from 'interfaces/Ientities/Itest';
+import { ITest, TestDb } from 'interfaces/entities/test';
 import { IUpdateTestDto } from 'interfaces/dto/courses';
 import { NotFoundError } from 'classes/errors/clientErrors';
 

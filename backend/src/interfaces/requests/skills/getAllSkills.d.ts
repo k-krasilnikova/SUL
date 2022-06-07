@@ -1,4 +1,4 @@
-import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
+import { ISkillGroup } from 'interfaces/entities/skillGroup';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { ISearchQuery } from '../common/queries';

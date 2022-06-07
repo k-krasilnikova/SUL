@@ -5,7 +5,7 @@ import {
   TManageAssessmentResponse,
 } from 'interfaces/requests/clientCourses/manageAssessment';
 import { AssessmentAction } from 'enums/common';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { getStatusProvider, updateClientCourseField } from 'db/providers/clientCourseProvider';
 import { ASSESSMENT_RESULTS, CLIENT_COURSE_FIELDS } from 'config/constants';
 import { BadRequestError } from 'classes/errors/clientErrors';

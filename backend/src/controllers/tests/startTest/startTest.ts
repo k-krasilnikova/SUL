@@ -6,7 +6,7 @@ import {
   getCurrentProgress,
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { CLIENT_COURSE_FIELDS, REQUIRED_PCT } from 'config/constants';
 import { checkTestDate } from 'utils/validation/checkTestDate';
 import { getTestProvider } from 'db/providers/testProvider';

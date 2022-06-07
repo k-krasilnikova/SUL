@@ -7,8 +7,8 @@ import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
 import StackMemberModel from 'db/models/StackMember';
 import CourseModel from 'db/models/Course';
-import { ITechnologyGroup, IUser } from 'interfaces/Ientities/Iusers';
-import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
+import { ITechnologyGroup, IUser } from 'interfaces/entities/users';
+import { TUserStackMemberPopulated } from 'interfaces/entities/stackMember';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 

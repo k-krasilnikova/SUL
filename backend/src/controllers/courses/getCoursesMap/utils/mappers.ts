@@ -2,15 +2,15 @@ import { Types } from 'mongoose';
 import { Dictionary, groupBy, pullAll, sortBy } from 'lodash';
 
 import { UserRank } from 'enums/users';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import {
   ICourseShortInfo,
   ICoursesMapElement,
   ICoursesMapResponse,
   IStackMapElement,
-} from 'interfaces/IResponse/IResponse';
-import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
-import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+} from 'interfaces/response/response';
+import { TUserStackMemberPopulated } from 'interfaces/entities/stackMember';
+import { ICourseWithStatus } from 'interfaces/courses/query';
 import { getCourseStatusProvider } from 'db/providers/courseProvider';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import { getClientCourseByCourseId } from 'db/providers/clientCourseProvider';

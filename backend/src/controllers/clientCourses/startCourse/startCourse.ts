@@ -5,7 +5,7 @@ import {
   TStartCourseResponse,
 } from 'interfaces/requests/clientCourses/startCourse';
 import { getStatusProvider, updateClientCourseField } from 'db/providers/clientCourseProvider';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
 import { BadRequestError } from 'classes/errors/clientErrors';
 

@@ -4,7 +4,7 @@ import { json } from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-import { Routes } from 'enums/routesEnum';
+import { Routes } from 'enums/routes';
 import routers from 'routing/routes';
 
 import { registerScheduler } from 'utils/schedule';

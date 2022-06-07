@@ -1,10 +1,10 @@
 import { NextFunction } from 'express';
 
 import { TPassTestRequest, TPassTestResponse } from 'interfaces/requests/tests/passTest';
-import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
+import { IUserSkill } from 'interfaces/entities/userSkill';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import { addUserSkill, getUserSkills, populateUserSkills } from 'db/providers/skillProvider';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
 
 import { extractCommonUserSkillInfo } from './utils/mappers';

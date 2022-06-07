@@ -8,7 +8,7 @@ import { addUserNotification } from 'db/providers/notificationProvider';
 import { getCourseProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { combineFullName } from 'utils/combineFullName';
-import { NotificationStatuses, NotificationType } from 'enums/notificationEnums';
+import { NotificationStatuses, NotificationType } from 'enums/notification';
 import { USER_ROLES } from 'config/constants';
 import {
   getClientCourseByCourseId,

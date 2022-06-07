@@ -4,14 +4,14 @@ import {
   TDeclinePendingCourseRequest,
   TDeclinePendingCourseResponse,
 } from 'interfaces/requests/pendingCourses/declinePendingCourse';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { IUser } from 'interfaces/entities/users';
 import {
   getClientCourseProvider,
   getStatusProvider,
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
 import { BadRequestError } from 'classes/errors/clientErrors';
 

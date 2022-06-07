@@ -1,8 +1,8 @@
 import { Types } from 'mongoose';
 
 import { AssessmentAction } from 'enums/common';
-import { ICourse } from 'interfaces/Ientities/Icourses';
-import { IAnswer, ITest, TAchievements, TestRuslt } from 'interfaces/Ientities/Itest';
+import { ICourse } from 'interfaces/entities/courses';
+import { IAnswer, ITest, TAchievements, TestRuslt } from 'interfaces/entities/test';
 
 interface ILoginPayload {
   login: string;

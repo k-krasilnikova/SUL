@@ -1,4 +1,4 @@
-import { TAvailableCourse } from 'interfaces/ICourses/IQueryCourses';
+import { TAvailableCourse } from 'interfaces/courses/query';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';

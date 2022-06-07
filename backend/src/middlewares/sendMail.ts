@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { getUserProvider } from 'db/providers/userProvider';
 import Mail from 'classes/Mail/Mail';
 import { getCourseProvider } from 'db/providers/courseProvider';
