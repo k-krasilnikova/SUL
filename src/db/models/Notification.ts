@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { INotification } from 'interfaces/Ientities/Iusers';
+import { INotification } from 'interfaces/entities/users';
 
 const schema = new Schema<INotification>({
   title: { type: String, required: true },

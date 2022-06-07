@@ -1,5 +1,5 @@
-import { IClientCoursePopulated } from 'interfaces/Ientities/IclientCourses';
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { IClientCoursePopulated } from 'interfaces/entities/clientCourses';
+import { ICourse } from 'interfaces/entities/courses';
 
 const mapClientCourse = (
   clientCourse: IClientCoursePopulated,

@@ -1,4 +1,4 @@
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { ICourse } from 'interfaces/entities/courses';
 
 const addMaterialStages = (materials: ICourse['materials']): ICourse['materials'] =>
   materials.map((material, index) => ({

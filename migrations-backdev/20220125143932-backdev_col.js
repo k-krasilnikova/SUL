@@ -1459,5 +1459,6 @@ module.exports = {
     await db.collection('users').drop();
     await db.collection('userSkills').drop();
     await db.collection('stackMembers').drop();
+    await db.collection('accessTokenBlacklist').drop();
   },
 };

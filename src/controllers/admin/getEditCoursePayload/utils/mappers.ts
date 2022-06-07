@@ -1,5 +1,5 @@
-import { ICoursePopulated } from 'interfaces/ICourses/IQueryCourses';
-import ISkill from 'interfaces/Ientities/ISkill';
+import { ICoursePopulated } from 'interfaces/courses/query';
+import ISkill from 'interfaces/entities/skill';
 import { IGetEditCoursePayloadResponse } from 'interfaces/requests/admin/getEditCoursePayload';
 
 const mapCourseTechnologies = (

@@ -11,8 +11,7 @@ const addCourse = async (req: TAddCourseRequest, res: TAddCourseResponse, next: 
 
     await addSimilarCoursesProvider(newCourse);
 
-    res.locals.results = newCourse;
-    next();
+    res.json(newCourse);
   } catch (error) {
     next(error);
   }

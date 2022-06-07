@@ -1,4 +1,4 @@
-import { TAchievements } from 'interfaces/Ientities/Itest';
+import { TAchievements } from 'interfaces/entities/test';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
@@ -11,7 +11,6 @@ type TRequestBody = IAssessmentActionPayload;
 type TResponsePayload = string;
 type TResponseLocals = IAuthLocals & {
   achievments: TAchievements;
-  results: TResponsePayload; // remove results in "V1-247 Remove adapters"
 };
 
 type TManageAssessmentRequest = TBaseRequest<TRequestParams, TRequestBody>;

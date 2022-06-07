@@ -1,4 +1,4 @@
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { ICourse } from 'interfaces/entities/courses';
 import { getClientCoursesByCourseId } from 'db/providers/clientCourseProvider';
 
 const prepareSimilarCourses = async (similarCourses: ICourse[]): Promise<ICourse[]> => {

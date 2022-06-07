@@ -1,14 +1,15 @@
-import { TLocalsManager } from 'interfaces/IResponse/IResponse';
+import { TLocalsManager } from 'interfaces/response/response';
 
 import { TBaseRequest, TBaseResponse } from '../base';
+import { IAuthLocals, IMailLocals } from '../common/locals';
 import { IIdParams } from '../common/params';
-import { IIdPayload, IWithAssessmentPayload } from '../common/payloads';
+import { IWithAssessmentPayload } from '../common/payloads';
 
 type TRequestParams = IIdParams;
-type TRequestBody = IIdPayload & IWithAssessmentPayload;
+type TRequestBody = { clientCourseId: string } & IWithAssessmentPayload;
 
-type TResponsePayload = { updateStatus: string };
-type TResponseLocals = TLocalsManager; // remove after removing adapters
+type TResponsePayload = string;
+type TResponseLocals = IAuthLocals & IMailLocals;
 
 type TDeclinePendingCourseRequest = TBaseRequest<TRequestParams, TRequestBody>;
 type TDeclinePendingCourseResponse = TBaseResponse<TResponsePayload, TResponseLocals>;

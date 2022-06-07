@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import ISkill from 'interfaces/Ientities/ISkill';
+import ISkill from 'interfaces/entities/skill';
 
 const skillSchema = new Schema<ISkill>({
   name: {

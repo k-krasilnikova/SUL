@@ -1,4 +1,4 @@
-import { ICourseDataValidationResult } from 'interfaces/ICourses/IQueryCourses';
+import { ICourseDataValidationResult } from 'interfaces/courses/query';
 import { IEditCoursePayload, TCreateCoursePayload } from 'interfaces/requests/common/payloads';
 import { ESTIMATE_TIME_PER_LESSON } from 'config/constants';
 import { convertToCourseDuration } from 'utils/typeConversion/datetimeTypeConversions';

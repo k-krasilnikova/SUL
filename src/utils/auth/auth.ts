@@ -5,10 +5,10 @@ import {
   DEFAULT_NO_SECRET,
   DEFAULT_REFRESH_TIMEOUT,
 } from 'config/constants';
-import { IAccessJwtPayload, IRefreshJwtPayload, ITokens } from 'interfaces/Iauth/authInterfaces';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import InternalServerError from 'classes/errors/serverErrors/InternalServerError';
+import { IAccessJwtPayload, IRefreshJwtPayload, ITokens } from 'interfaces/auth/auth';
+import { IUser } from 'interfaces/entities/users';
 import { TBaseRequest } from 'interfaces/requests/base';
+import { InternalServerError } from 'classes/errors/serverErrors';
 
 const generateJWT = (userData: IUser): ITokens => {
   try {
@@ -50,8 +50,9 @@ const verifyRefreshToken = (refreshToken: string): IRefreshJwtPayload => {
   return payload;
 };
 
-export const extractAccessTokenValue = (req: TBaseRequest): string | undefined => {
+
+const extractAccessTokenValue = (req: TBaseRequest): string | undefined => {
   return req.headers.authorization?.split(' ')[1];
 };
 
-export { generateJWT, verifyAccessToken, verifyRefreshToken };
+export { generateJWT, verifyAccessToken, verifyRefreshToken, extractAccessTokenValue };
