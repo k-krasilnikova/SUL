@@ -25,8 +25,11 @@ const approvePendingCourse = async (
     const { clientCourseId, assessment: withAssessment } = req.body;
     const { id: managerId } = res.locals;
 
-    if (!clientCourseId || !managerId) {
-      throw new BadRequestError('Invalid query.');
+    if (!clientCourseId) {
+      throw new BadRequestError('Invalid query. Client course id is missing.');
+    }
+    if (!managerId) {
+      throw new BadRequestError('Invalid query. Manager id is missing.');
     }
 
     const { status } = await getStatusProvider(clientCourseId);
