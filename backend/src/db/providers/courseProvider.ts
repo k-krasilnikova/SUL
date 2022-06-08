@@ -294,23 +294,24 @@ const addCourseProvider = async (newCourse: IPreparedCourseDataPayload): Promise
 
 const addSimilarCoursesProvider = async (course: ICourse): Promise<void> => {
   await CourseModel.findOneAndUpdate({ _id: course._id }, { $set: { similarCourses: [] } });
+  await Promise.all(
+    course.technologies.map(async (currentSkill) => {
+      const similarCourses = await CourseModel.find({
+        'technologies.skill': currentSkill.skill,
+      }).lean();
 
-  course.technologies.map(async (currentSkill) => {
-    const similarCourses = await CourseModel.find({
-      'technologies.skill': currentSkill.skill,
-    }).lean();
-
-    similarCourses.map(async (similarCourse) => {
-      await CourseModel.updateMany(
-        {
-          'technologies.skill': currentSkill.skill,
-          similarCourses: { $nin: [similarCourse._id] },
-          _id: { $ne: similarCourse._id },
-        },
-        { $push: { similarCourses: similarCourse._id } },
-      );
-    });
-  });
+      similarCourses.map(async (similarCourse) => {
+        await CourseModel.updateMany(
+          {
+            'technologies.skill': currentSkill.skill,
+            similarCourses: { $nin: [similarCourse._id] },
+            _id: { $ne: similarCourse._id },
+          },
+          { $push: { similarCourses: similarCourse._id } },
+        );
+      });
+    }),
+  );
 };
 
 const refreshCourseLessonsAndDuration = async (courseId: string): Promise<void> => {
