@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
 
-import { ITokens } from 'interfaces/Iauth/authInterfaces';
-import { IUser } from 'interfaces/Ientities/Iusers';
+import { ITokens } from 'interfaces/auth/auth';
+import { IUser } from 'interfaces/entities/users';
 import { TBaseRequest } from 'interfaces/requests/base';
 import {
   extractAccessTokenValue,
