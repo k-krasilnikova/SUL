@@ -8,9 +8,9 @@ import { IClientCourse } from 'types/clientCourse';
 import CoursesList from 'pages/CoursesList/CoursesList';
 
 const MyCoursesContainer: React.FC = () => {
-  const coursesFilters = useGetCoursesFilters(true);
+  const { coursesFilters, isEmptyFilters } = useGetCoursesFilters(true);
 
-  const { data, hasNextPage, isLoading, isFetchingNextPage, isFetching, refetch, fetchNextPage } =
+  const { data, hasNextPage, isLoading, isFetchingNextPage, isFetching, fetchNextPage } =
     useGetClientPaginatedCourses(coursesFilters);
 
   const windowWidth = getWindowLabelByWidth();
@@ -38,11 +38,11 @@ const MyCoursesContainer: React.FC = () => {
       withStatusSelect
       courses={commonCourses}
       clientCourses={formattedClientCourses}
+      windowWidth={windowWidth}
+      isEmptyFilters={isEmptyFilters}
       isLoading={isLoading}
       isFetching={isFetching}
       isFetchingNextPage={isFetchingNextPage}
-      windowWidth={windowWidth}
-      refetch={refetch}
       lastCourseRef={clientCourseRef}
     />
   );

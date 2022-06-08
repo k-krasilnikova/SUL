@@ -1,4 +1,7 @@
+import { FC } from 'react';
+
 import { checkbox, checkboxChecked } from 'icons';
+import { ICustomSelectProps } from 'components/CoursesFilter/types';
 
 import {
   useStyles,
@@ -9,7 +12,7 @@ import {
   StyledCheckbox,
 } from './styled';
 
-const CustomSelect = ({ options, name, value, ...props }) => {
+const CustomSelect: FC<ICustomSelectProps> = ({ options, name, value, ...props }) => {
   const { paper, list } = useStyles();
 
   return (
@@ -27,7 +30,7 @@ const CustomSelect = ({ options, name, value, ...props }) => {
         <StyledMenuItem key={option} value={option}>
           <StyledCheckbox
             icon={<img src={checkbox} alt="checkbox" />}
-            checkedIcon={<img src={checkboxChecked} alt="checkboxChecked" />}
+            checkedIcon={<img src={checkboxChecked} alt="checkbox checked" />}
             checked={value.includes(`${option}`)}
           />
           {option}

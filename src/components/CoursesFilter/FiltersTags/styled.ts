@@ -4,6 +4,7 @@ import theme from 'themeSettings';
 
 export const TagsListContainer = styled(Grid)({
   display: 'flex',
+  flexWrap: 'wrap',
   gap: '16px',
   marginTop: '30px',
 });
@@ -13,7 +14,7 @@ export const TagContainer = styled('button')({
   alignItems: 'center',
   padding: '8px 12px',
   backgroundColor: '#7676801F',
-  border: '1px solid #CBBEBE',
+  border: '2px solid #CBBEBE',
   borderRadius: '10px',
   transition: 'all 0.1s ease-in-out',
   '&:hover': {

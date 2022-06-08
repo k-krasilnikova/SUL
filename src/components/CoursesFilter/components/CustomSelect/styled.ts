@@ -10,7 +10,7 @@ export const StyledSelect = styled(Select)({
     backgroundColor: '#7676801F',
   },
   '& .MuiOutlinedInput-notchedOutline': {
-    border: '1px solid #CBBEBE',
+    border: '2px solid #CBBEBE',
 
     '&:hover': {
       borderColor: '#131313',

@@ -14,7 +14,7 @@ const CoursesContainer: React.FC = () => {
 
   const { mutate, isLoading: isApplyCourseLoading } = useApplyCourse();
 
-  const coursesFilters = useGetCoursesFilters(false);
+  const { isEmptyFilters, coursesFilters } = useGetCoursesFilters(false);
 
   const {
     data,
@@ -22,7 +22,6 @@ const CoursesContainer: React.FC = () => {
     isLoading: isCoursesLoading,
     isFetchingNextPage,
     isFetching,
-    refetch,
     fetchNextPage,
   } = useGetPaginatedCourses(coursesFilters);
 
@@ -51,10 +50,10 @@ const CoursesContainer: React.FC = () => {
       isAdmin={isAdmin}
       isFetching={isFetching}
       isFetchingNextPage={isFetchingNextPage}
+      isEmptyFilters={isEmptyFilters}
       targetLoading={isApplyCourseLoading}
       handleApplyCourse={handleApplyCourse}
       lastCourseRef={courseRef}
-      refetch={refetch}
     />
   );
 };
