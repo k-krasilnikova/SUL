@@ -3,12 +3,20 @@ on: [push, pull_request]
 jobs:
   backend_tests:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: 15.x  
+
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:  
-        node-version: '15.x'
+        node-version: ${{matrix.node-version}}
         cache: 'npm'
-    - run: cd backend
-    - run: npm install
-    - run: npm test
+    - name: change folder to backend
+      run: cd backend
+    - name: install all dependencies
+      run: npm install
+    - name: start tests
+      run: npm test
