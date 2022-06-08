@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-restricted-syntax */
-import { BaseSyntheticEvent, ChangeEvent, FC, useState, useEffect } from 'react';
+import { BaseSyntheticEvent, ChangeEvent, FC, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
+// import { useSnackbar } from 'notistack';
 
 import useGetCourseEditorData from 'api/admin';
 import useEditCourseData from 'api/admin/editCourseData';
 import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
+// import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { courseEditorValidationSchema } from 'validations/schemas';
 
 import CourseEditor from './CourseEditor';
@@ -15,13 +17,61 @@ import { formatFieldValue } from './utils';
 
 const CourseEditorContainer: FC = () => {
   const params = useParams();
+  // const { enqueueSnackbar } = useSnackbar();
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
 
   const { mutate: editCourseDataMutate } = useEditCourseData(params.courseId);
 
   const handleSubmit = (values: any) => {
-    console.log('submit');
-    editCourseDataMutate(values);
+    // const formattedValues = {
+    //   ...values,
+    //   materials: [
+    //     {
+    //       content: values.materials,
+    //     },
+    //   ],
+    //   technologies: values.technologies.map((technology: any) => ({
+    //     skill: technology._id,
+    //     points: technology.points,
+    //   })),
+    //   test: {
+    //     title: values.test.title,
+    //     timeout: values.test.timeout,
+    //     questions: values.test.questions.map((question: any) => ({
+    //       question: question.question,
+    //       correctAnswer: question.correctAnswer,
+    //       answers: question.answers,
+    //     })),
+    //   },
+    // };
+
+    const formattedValues = {
+      avatar: values.avatar,
+      title: values.title,
+      description: values.description,
+      materials: [
+        {
+          content: values.materials,
+        },
+      ],
+      technologies: values.technologies.map((technology: any) => ({
+        skill: technology._id,
+        points: technology.points,
+      })),
+      test: {
+        title: values.test.title,
+        timeout: values.test.timeout,
+        questions: values.test.questions.map((question: any) => ({
+          question: question.question,
+          correctAnswer: question.correctAnswer,
+          answers: question.answers,
+        })),
+      },
+    };
+
+    console.log('values', values);
+    console.log('formattedValues', formattedValues);
+    editCourseDataMutate(formattedValues);
   };
 
   const formik = useFormik({
@@ -32,11 +82,11 @@ const CourseEditorContainer: FC = () => {
     validateOnChange: true,
   });
 
-  useEffect(() => {
-    if (!formik.isValid && !formik.isValidating && formik.isSubmitting) {
-      alert('Fix your form errors!');
-    }
-  }, [formik.isSubmitting, formik.isValid, formik.isValidating]);
+  // useEffect(() => {
+  //   if (!formik.isValid && !formik.isValidating && formik.isSubmitting) {
+  //     enqueueSnackbar(errorSnackbarMessage.validationError, errorSnackbar);
+  //   }
+  // }, [formik.isSubmitting, formik.isValid, formik.isValidating, enqueueSnackbar]);
 
   const onSuccessLoadCourseData = (data: any): void => {
     const skills: ISkillsById = {};
