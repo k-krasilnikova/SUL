@@ -64,8 +64,7 @@
     "build": "react-scripts build",
     "test": "jest",
     "clear_jest": "jest --clearCache",
-    "eject": "react-scripts eject",
-    "prepare": "cd .. && husky install ./frontend/.husky"
+    "eject": "react-scripts eject"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
