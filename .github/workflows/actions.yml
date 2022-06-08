@@ -14,9 +14,9 @@ jobs:
       with:  
         node-version: ${{matrix.node-version}}
         cache: 'npm'
-    - name: change folder to backend
+    - name: change folder to var/backend
       run: cd backend
     - name: install all dependencies
       run: npm install
     - name: start tests
-      run: npm run
+      run: npm test
