@@ -16,6 +16,7 @@ import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 import checkCourseValidationResult from 'utils/validation/courses/checkCourseValidationResult';
 import { COURSE_VALIDATION_ERRORS } from 'utils/validation/courses/constants';
 import { BadRequestError } from 'classes/errors/clientErrors';
+import { ICourse } from 'interfaces/Ientities/Icourses';
 
 const editCourse = async (
   req: TEditCourseRequest,
@@ -91,7 +92,10 @@ const editCourse = async (
       );
 
       const course = await getCourseProvider(courseId, userId);
-      await addSimilarCoursesProvider(course);
+      await addSimilarCoursesProvider({
+        ...course,
+        technologies: convertToTypeUnsafe<ICourse['technologies']>(validatedTechnologies),
+      });
 
       updatedData.technologies =
         convertToTypeUnsafe<IEditCoursePayload['technologies']>(technologies);
