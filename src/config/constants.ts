@@ -43,7 +43,7 @@ const FIRST_PAGE = 1;
 const NOTHING = 0;
 const INITIAL_INDX = 0;
 const NO_FILTER = {};
-const DEFAULT_ORDER_FIELD = '_id';
+const DEFAULT_ORDER_FIELD = 'title';
 const NOTIFICATIONS_COUNT = 10;
 
 const ASSESSMENT_RESULTS = {
