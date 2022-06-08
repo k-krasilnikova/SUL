@@ -11,4 +11,4 @@ jobs:
         cache: 'npm'
     - run: cd backend
     - run: npm install
-    - run: npm tests
+    - run: npm test
