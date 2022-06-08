@@ -29,5 +29,5 @@ export const successSnackbarMessage = {
   authorized: 'Authorization is successful.',
   finished: 'Test was successfully passed.',
   testStarted: 'Test was successfully started.',
-  courseDataEdited: 'Course was successfully edited.',
+  courseDataUpdated: 'Course was successfully updated.',
 };

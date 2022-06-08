@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { Box } from '@mui/material';
 
+import { buttonSpinner } from 'animations';
+import ButtonLoader from 'components/ButtonLoader';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { MIN_STEP } from 'constants/courseEditor';
 
@@ -13,6 +15,7 @@ const ActionButtons: FC<IActionButtons> = ({
   step,
   isSubmitEnabled,
   formik,
+  isEditCourseDataMutateLoading,
 }) => (
   <ButtonWrapper>
     <Box>
@@ -23,11 +26,19 @@ const ActionButtons: FC<IActionButtons> = ({
       )}
     </Box>
     {isSubmitEnabled ? (
-      <StyledButton variant="medium" disabled={!formik?.isValid} onClick={formik?.submitForm}>
-        {ButtonLabels.submit}
+      <StyledButton
+        variant="mediumContained"
+        disabled={!formik?.isValid || isEditCourseDataMutateLoading}
+        onClick={formik?.submitForm}
+      >
+        {isEditCourseDataMutateLoading ? (
+          <ButtonLoader buttonSpinner={buttonSpinner} />
+        ) : (
+          ButtonLabels.submit
+        )}
       </StyledButton>
     ) : (
-      <StyledButton variant="medium" onClick={handleNextStep}>
+      <StyledButton variant="mediumContained" onClick={handleNextStep}>
         {ButtonLabels.next}
       </StyledButton>
     )}
