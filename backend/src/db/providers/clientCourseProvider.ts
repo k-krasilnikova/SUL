@@ -14,6 +14,7 @@ import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import {
   DEFAULT_N_PER_PAGE,
+  DEFAULT_ORDER_CLIENT_COURSES_FIELD,
   DEFAULT_ORDER_FIELD,
   FIRST_PAGE,
   NOTHING,
@@ -33,7 +34,7 @@ const getClientCoursesProvider = async (
     complexity,
     technologies,
     order = SortOrder.asc,
-    orderField = DEFAULT_ORDER_FIELD,
+    orderField = DEFAULT_ORDER_CLIENT_COURSES_FIELD,
     nPerPage = DEFAULT_N_PER_PAGE,
   }: TGetCoursesParams,
 ): Promise<IClientCoursePopulated[]> => {
