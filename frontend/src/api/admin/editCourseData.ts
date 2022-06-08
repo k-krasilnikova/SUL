@@ -16,7 +16,7 @@ const useEditCourseData = (courseId?: string): UseMutationResult => {
   };
 
   const handleSubmitSuccess = () => {
-    enqueueSnackbar(successSnackbarMessage.courseDataEdited, successSnackbar);
+    enqueueSnackbar(successSnackbarMessage.courseDataUpdated, successSnackbar);
     navigateTo(PATHS.coursesList, { replace: true });
   };
 

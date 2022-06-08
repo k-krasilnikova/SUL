@@ -27,6 +27,22 @@ export interface ICourseEditorResponse {
   allSkills: { _id: string; name: string; maxScore: number }[];
 }
 
+export interface IFormTechnology {
+  _id: string;
+  name: string;
+  points: number;
+  maxScore: number;
+}
+
+export interface IFormQuestion {
+  question: string;
+  correctAnswer: number;
+  answers: {
+    variant: string;
+    aN: number;
+  }[];
+}
+
 export interface IFormik {
   initialValues: {
     technologies: { _id: string; name: string; points: string; maxScore: number }[];
@@ -85,6 +101,7 @@ export interface ISkillsStepProps extends IStepProps {
 export interface ICourseEditorProps extends ISkillsStepProps {
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
   editCourseDataMutate?: (courseId: string) => void;
+  isEditCourseDataMutateLoading?: boolean;
 }
 
 export interface ILessonItemProps {
@@ -104,4 +121,34 @@ export interface IQuestionItemProps {
   question: IQuestionObject;
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
+}
+
+export interface IFormValues {
+  avatar: string;
+  title: string;
+  description: string;
+  materials: {
+    type: string;
+    material: string;
+  }[];
+  technologies: IFormTechnology[];
+  test: { title: string; timeout: number; questions: IFormQuestion[] };
+}
+
+export interface IFormattedValues {
+  avatar: string;
+  title: string;
+  description: string;
+  materials: {
+    content: {
+      type: string;
+      material: string;
+    }[];
+  }[];
+  technologies: { skill: string; points: number }[];
+  test: {
+    title: string;
+    timeout: number;
+    questions: IFormQuestion[];
+  };
 }
