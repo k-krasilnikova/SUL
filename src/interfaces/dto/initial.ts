@@ -1,4 +1,4 @@
-import { ITokensDto } from 'interfaces/Iauth/authInterfaces';
-import { TUserDataToClient } from 'interfaces/Ientities/Iusers';
+import { ITokensDto } from 'interfaces/auth/auth';
+import { TUserDataToClient } from 'interfaces/entities/users';
 
 export type TInitialDTO = TUserDataToClient & (ITokensDto | undefined);
