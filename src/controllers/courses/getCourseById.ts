@@ -2,9 +2,8 @@ import { NextFunction } from 'express';
 
 import { TGetCourseRequest, TGetCourseResponse } from 'interfaces/requests/courses/getCourse';
 import { getCourseProvider } from 'db/providers/courseProvider';
-import prepareSimilarCourses from 'utils/normaliser/prepareSimilarCourses';
-
-import { mapCourse } from './utils/mappers';
+import prepareSimilarCourses from 'utils/normalizer/prepareSimilarCourses';
+import { mapCourse } from 'controllers/courses/getCourse/utils/mappers';
 
 const getCourseById = async (
   req: TGetCourseRequest,
