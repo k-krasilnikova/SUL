@@ -26,7 +26,4 @@ export const CustomButton = styled(Button)({
 
 export const ButtonsWrapper = styled('div')({
   display: 'flex',
-  [theme.breakpoints.down('sm')]: {
-    marginTop: '20px',
-  },
 });
