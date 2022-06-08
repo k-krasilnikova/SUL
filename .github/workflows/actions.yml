@@ -2,20 +2,22 @@ name: SUL_Checking
 on: [push, pull_request]
 jobs:
   backend_tests:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [15.x]  
 
+    defaults:
+      run:
+        working-directory: ./backend  
+    
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:  
         node-version: ${{matrix.node-version}}
         cache: 'npm'
-    - name: change folder to backend
-      run: cd backend
     - name: install all dependencies
       run: npm install
     - name: start tests
