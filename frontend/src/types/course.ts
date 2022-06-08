@@ -6,6 +6,13 @@ import { TMaterialVariants } from './materials';
 import { ITechnology } from './skill';
 import { TimeProps } from './time';
 
+export interface ICoursesFilterValues {
+  technologies: string[];
+  status: string[];
+  complexity: string[];
+  order: boolean;
+}
+
 export type TContentElement = {
   type: TMaterialVariants;
   material: string;

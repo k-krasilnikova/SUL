@@ -2,21 +2,29 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { getFilterSelectsConfig } from 'utils/helpers/coursesFilter';
+import { ICoursesFilterValues } from 'types/course';
 
-const useGetCoursesFilters = (withStatus?: boolean) => {
+const useGetCoursesFilters = (withStatusSelect?: boolean) => {
   const [searchParams] = useSearchParams();
 
   const coursesFilters = {
     order: searchParams.get('order') === 'true',
-  };
+  } as ICoursesFilterValues;
 
-  const selectsConfig = getFilterSelectsConfig(withStatus);
+  const selectsConfig = getFilterSelectsConfig(withStatusSelect);
+
+  let isEmptyFilters = true;
 
   selectsConfig.map((configName) => {
-    coursesFilters[configName] = searchParams.getAll(`${configName}`);
-  });
+    const filterValue = searchParams.getAll(`${configName}`);
 
-  return coursesFilters;
+    if (filterValue.length) {
+      isEmptyFilters = false;
+    }
+
+    coursesFilters[configName] = filterValue;
+  });
+  return { coursesFilters, isEmptyFilters };
 };
 
 export default useGetCoursesFilters;

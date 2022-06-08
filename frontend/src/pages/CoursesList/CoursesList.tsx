@@ -15,7 +15,7 @@ import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { ICourse } from 'types/course';
 import { Loaders } from 'enums/loader';
 
-import { PageContainer, GridItem, MobileSearchWrapper } from './styled';
+import { GridItem, MobileSearchWrapper, CoursesContainer } from './styled';
 import AddCourseButton from './AddCourseButton';
 import CourseActions from './CourseActions';
 import { ICourseProps } from './types';
@@ -23,33 +23,33 @@ import { ICourseProps } from './types';
 const CoursesList: FC<ICourseProps> = ({
   courses,
   clientCourses,
+  targetId,
+  isAdmin,
+  windowWidth,
+  isEmptyFilters,
   isLoading,
   isFetching,
   isFetchingNextPage,
-  handleApplyCourse,
   targetLoading,
-  targetId,
-  windowWidth,
-  lastCourseRef,
-  isAdmin,
   withStatusSelect,
-  refetch,
+  lastCourseRef,
+  handleApplyCourse,
 }) => (
   <PageTitle title="Courses List">
     {isLoading ? (
       <Loader type={Loaders.content} />
-    ) : courses?.length ? (
+    ) : courses?.length || !isEmptyFilters ? (
       <>
-        <CoursesFilter withStatusSelect={withStatusSelect} refetch={refetch} />
-        <PageContainer container>
-          <MobileSearchWrapper>
-            <MobileSearch />
-          </MobileSearchWrapper>
-          {isAdmin && <AddCourseButton />}
-          {isFetching && !isFetchingNextPage ? (
-            <Loader type={Loaders.component} />
-          ) : courses?.length ? (
-            <>
+        {isAdmin && <AddCourseButton />}
+        <CoursesFilter withStatusSelect={withStatusSelect} haveCourses={Boolean(courses?.length)} />
+        <MobileSearchWrapper>
+          <MobileSearch />
+        </MobileSearchWrapper>
+        {isFetching && !isFetchingNextPage ? (
+          <Loader type={Loaders.component} />
+        ) : courses?.length ? (
+          <>
+            <CoursesContainer container>
               {courses.map((course, index) => (
                 <GridItem key={course._id} item xl={6} lg={6} md={12} sm={12}>
                   <MobileLink to={chooseListPath(course, index, clientCourses)}>
@@ -77,11 +77,11 @@ const CoursesList: FC<ICourseProps> = ({
                   </MobileLink>
                 </GridItem>
               ))}
-            </>
-          ) : (
-            <NoContent message={NO_COURSES} />
-          )}
-        </PageContainer>
+            </CoursesContainer>
+          </>
+        ) : (
+          <NoContent message={NO_COURSES} />
+        )}
       </>
     ) : (
       <NoContent message={NO_COURSES} />
