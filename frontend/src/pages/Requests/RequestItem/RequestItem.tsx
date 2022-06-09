@@ -6,9 +6,8 @@ import Tooltip from 'components/Tooltip';
 import { REQUEST_STATUS } from 'constants/requests';
 import { Size } from 'enums/sizes';
 import { convertRequestTime } from 'utils/helpers/convertTime';
-import { IApproveCourseDto } from 'types/api.dto';
-import { IRequest } from 'types/request';
 
+import RequestButtons from './RequestButtons';
 import {
   CourseImageWrapper,
   CourseTitle,
@@ -23,50 +22,45 @@ import {
   TimeContainer,
   DisabledText,
 } from './styled';
-import RequestButtons from './RequestButtons';
 
-interface IReuestItemProps {
-  request: IRequest;
-  approveRequest: (variables: IApproveCourseDto) => void;
-  declineRequest: (requestId: string) => void;
-  approveLoading: boolean;
-  declineLoading: boolean;
-  isTargetRequest?: boolean;
-}
+import { IRequestItemProps } from '../types';
 
-const RequestItem: FC<IReuestItemProps> = ({
-  request: { _id, status, course, user, elapsed },
-  ...props
-}) => (
-  <RequestContainer item container spacing={2}>
-    <CustomGrid item xs={12} md={6} lg={4}>
-      <ImageWrapper>
-        <Avatar size={Size.subsmall} avatar={user.avatar} />
-      </ImageWrapper>
-      <UserContainer>
-        <UserName status={status}>{`${user.firstName} ${user.lastName}`}</UserName>
-        <Position status={status}>{user.position}</Position>
-      </UserContainer>
-    </CustomGrid>
-    <CourseContainer item xs={10} md={4} lg={3}>
-      <CourseImageWrapper>
-        <Image imageUrl={course.avatar} />
-      </CourseImageWrapper>
-      <Tooltip title={course.title}>
-        <CourseTitle status={status}>{course.title}</CourseTitle>
-      </Tooltip>
-    </CourseContainer>
-    <TimeContainer item xs={2} md={2} lg={1}>
-      <SecondaryText status={status}>{convertRequestTime(elapsed)}</SecondaryText>
-    </TimeContainer>
-    {status === REQUEST_STATUS.pending ? (
-      <RequestButtons id={_id} {...props} />
-    ) : (
-      <CustomGrid item xs={12} lg={4}>
-        <DisabledText>{status !== REQUEST_STATUS.pending && status}</DisabledText>
+const RequestItem: FC<IRequestItemProps> = ({ request, ...props }) => {
+  const { _id: requestId, status, course, user, elapsed } = request;
+  const { firstName, lastName, avatar: userAvatar, position: userPosition } = user;
+  const { title: courseTitle, avatar: courseAvatar } = course;
+
+  return (
+    <RequestContainer item container spacing={2}>
+      <CustomGrid item xs={12} md={6} lg={4}>
+        <ImageWrapper>
+          <Avatar size={Size.subsmall} avatar={userAvatar} />
+        </ImageWrapper>
+        <UserContainer>
+          <UserName status={status}>{`${firstName} ${lastName}`}</UserName>
+          <Position status={status}>{userPosition}</Position>
+        </UserContainer>
       </CustomGrid>
-    )}
-  </RequestContainer>
-);
+      <CourseContainer item xs={10} md={4} lg={3}>
+        <CourseImageWrapper>
+          <Image imageUrl={courseAvatar} />
+        </CourseImageWrapper>
+        <Tooltip title={courseTitle}>
+          <CourseTitle status={status}>{courseTitle}</CourseTitle>
+        </Tooltip>
+      </CourseContainer>
+      <TimeContainer item xs={2} md={2} lg={1}>
+        <SecondaryText status={status}>{convertRequestTime(elapsed)}</SecondaryText>
+      </TimeContainer>
+      {status === REQUEST_STATUS.pending ? (
+        <RequestButtons requestId={requestId} {...props} />
+      ) : (
+        <CustomGrid item xs={12} lg={4}>
+          <DisabledText>{status !== REQUEST_STATUS.pending && status}</DisabledText>
+        </CustomGrid>
+      )}
+    </RequestContainer>
+  );
+};
 
 export default RequestItem;

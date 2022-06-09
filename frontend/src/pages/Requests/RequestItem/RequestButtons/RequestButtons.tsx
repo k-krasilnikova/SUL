@@ -3,37 +3,31 @@ import { FC } from 'react';
 import { buttonSpinner } from 'animations';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import ButtonLoader from 'components/ButtonLoader';
-import { IApproveCourseDto } from 'types/api.dto';
+import { IRequestButtonsProps } from 'pages/Requests/types';
 
 import { ActionButton, ButtonsContainer, InterviewActionButton } from './styled';
 
-interface IRequestProps {
-  approveRequest: (variables: IApproveCourseDto) => void;
-  approveLoading: boolean;
-  declineRequest: (requestId: string) => void;
-  declineLoading: boolean;
-  id: string;
-  isTargetRequest?: boolean;
-}
-
-const RequestButtons: FC<IRequestProps> = ({
-  id,
+const RequestButtons: FC<IRequestButtonsProps> = ({
+  requestId,
+  actionTarget,
+  isApproveLoading,
+  isDeclineLoading,
   approveRequest,
   declineRequest,
-  approveLoading,
-  declineLoading,
-  isTargetRequest,
 }) => {
-  const isLoading = approveLoading || declineLoading;
+  const { requestId: actionTargetRequestId, withAssessment } = actionTarget;
+  const isCurrentRequest = actionTargetRequestId === requestId;
+  const isCurrentApproveRequest = isApproveLoading && isCurrentRequest;
+  const isLoading = isApproveLoading || isDeclineLoading;
+
+  const handleApprove = () => approveRequest({ requestId, withAssessment: false });
+  const handleApproveWithAssessment = () => approveRequest({ requestId, withAssessment: true });
+  const handleDeclineRequest = () => declineRequest(requestId);
 
   return (
     <ButtonsContainer item xs={12} lg={4} rowSpacing={1}>
-      <ActionButton
-        variant="mediumContained"
-        onClick={() => approveRequest({ clientCourseId: id })}
-        disabled={isLoading}
-      >
-        {isLoading && isTargetRequest ? (
+      <ActionButton variant="mediumContained" onClick={handleApprove} disabled={isLoading}>
+        {isCurrentApproveRequest && !withAssessment ? (
           <ButtonLoader buttonSpinner={buttonSpinner} />
         ) : (
           ButtonLabels.accept
@@ -41,21 +35,17 @@ const RequestButtons: FC<IRequestProps> = ({
       </ActionButton>
       <InterviewActionButton
         variant="mediumContained"
-        onClick={() => approveRequest({ clientCourseId: id, assessment: true })}
+        onClick={handleApproveWithAssessment}
         disabled={isLoading}
       >
-        {isLoading && isTargetRequest ? (
+        {isCurrentApproveRequest && withAssessment ? (
           <ButtonLoader buttonSpinner={buttonSpinner} />
         ) : (
           ButtonLabels.acceptWithInterview
         )}
       </InterviewActionButton>
-      <ActionButton
-        variant="mediumOutlined"
-        onClick={() => declineRequest(id)}
-        disabled={isLoading}
-      >
-        {isLoading && isTargetRequest ? (
+      <ActionButton variant="mediumOutlined" onClick={handleDeclineRequest} disabled={isLoading}>
+        {isDeclineLoading && isCurrentRequest ? (
           <ButtonLoader buttonSpinner={buttonSpinner} />
         ) : (
           ButtonLabels.reject
