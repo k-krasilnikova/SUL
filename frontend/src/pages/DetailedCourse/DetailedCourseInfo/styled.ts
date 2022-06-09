@@ -71,7 +71,7 @@ export const TitleWrapper = styled('div')({
   alignItems: 'center',
   flexWrap: 'wrap',
   marginBottom: '13px',
-  color: '#2c2525',
+  color: '#2C2525',
   [theme.breakpoints.down('xl')]: {
     marginBottom: '24px',
   },
