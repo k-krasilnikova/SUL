@@ -1,8 +1,6 @@
 import { IApproveCourseDto } from 'types/api.dto';
 import { IRequest } from 'types/request';
 
-
-
 export interface IRequestsProps {
   actionTarget: IApproveCourseDto;
   isRequestsLoading: boolean;
