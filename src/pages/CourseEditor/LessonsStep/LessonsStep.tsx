@@ -27,7 +27,11 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
                 <LessonsStepWrapper key={index}>
                   <LessonItem material={material} index={index} formik={formik} {...props} />
                   {isLastElem(formik.values.materials, index) ? (
-                    <LessonButton variant="mediumOutlined" onClick={() => push({})}>
+                    <LessonButton
+                      variant="mediumOutlined"
+                      onClick={() => push({})}
+                      disabled={Boolean(formik.errors.materials)}
+                    >
                       {ButtonLabels.addMoreLessons}
                     </LessonButton>
                   ) : (

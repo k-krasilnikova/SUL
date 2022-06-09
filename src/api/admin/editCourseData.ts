@@ -7,30 +7,31 @@ import { apiClientWrapper } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
-const useApplyCourse = (): UseMutationResult => {
+const useEditCourseData = (courseId?: string): UseMutationResult => {
+  const navigateTo = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
+
   const handleSubmitSuccess = () => {
-    enqueueSnackbar(successSnackbarMessage.applied, successSnackbar);
+    enqueueSnackbar(successSnackbarMessage.courseDataUpdated, successSnackbar);
+    navigateTo(PATHS.coursesList, { replace: true });
   };
-  const navigateTo = useNavigate();
+
   return useMutation(
-    async (courseId: string | undefined | unknown) => {
-      const data = { courseId };
+    async (data) => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.post(API.courses, data);
+      const url = `${API.courses}/${courseId}/edit`;
+      const response = await apiClient.put(url, data);
       return response.data;
     },
     {
-      onSuccess: () => {
-        navigateTo(PATHS.myCourses);
-        handleSubmitSuccess();
-      },
       onError: handleSubmitError,
+      onSuccess: handleSubmitSuccess,
     },
   );
 };
 
-export default useApplyCourse;
+export default useEditCourseData;
