@@ -5,11 +5,6 @@ import { IQuestionObject, ITestItem } from 'types/test';
 export interface ISkillsById {
   [key: string]: { _id: string; name: string; maxScore: number };
 }
-export interface ICourseEditorMaterials {
-  type: string;
-  material: string;
-  exercise?: { eN: number; title?: string; task: string; code: string };
-}
 
 export interface ICourseEditorResponse {
   _id: string;
@@ -17,7 +12,7 @@ export interface ICourseEditorResponse {
   description: string;
   complexity: number;
   avatar: string;
-  technologies: { _id: string; name: string; points: string; maxScore: number }[];
+  technologies: { _id: string; name: string; points: number; maxScore: number }[];
   materials: {
     type: string;
     material: string;
@@ -29,9 +24,17 @@ export interface ICourseEditorResponse {
 
 export interface IFormik {
   initialValues: {
-    technologies: { _id: string; name: string; points: string; maxScore: number }[];
-    materials: ICourseEditorMaterials[];
-    test: ITestItem;
+    technologies: { _id: string; name: string; points: number; maxScore: number }[];
+    materials: { type: string; material: string }[];
+    test: {
+      _id: string;
+      questions: {
+        correctAnswer: number;
+        qN: number;
+        question: string;
+        answers: { aN: number; variant: string; _id: string }[];
+      }[];
+    };
     title: string;
     complexity: number;
     avatar: string;
@@ -74,14 +77,18 @@ export interface IStepProps {
   isCourseDataLoading?: boolean;
   courseData?: ICourseEditorResponse;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
+  isCreateCourseMode?: boolean;
+  handleAddCourseAvatar?: (event: BaseSyntheticEvent) => void;
 }
 
 export interface ISkillsStepProps extends IStepProps {
   handleChangeTechnology?: (event: ChangeEvent<HTMLInputElement>) => void;
+  unGroupedSkills: { [p: string]: { _id: string; maxScore: number; name: string; points: number } };
 }
 
 export interface ICourseEditorProps extends ISkillsStepProps {
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
+  unGroupedSkills: { [p: string]: { _id: string; maxScore: number; name: string; points: number } };
 }
 
 export interface ILessonItemProps {

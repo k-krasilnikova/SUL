@@ -25,6 +25,7 @@ import {
   EmployeeProfile,
   PendingAssessments,
   CourseEditor,
+  CreateCourse,
 } from 'pages';
 
 const App: FC = () => (
@@ -56,6 +57,9 @@ const App: FC = () => (
           </Route>
           <Route element={<RoleRoute roles={[Role.admin]} />}>
             <Route path={PATHS.courseEditor} element={<CourseEditor />} />
+          </Route>
+          <Route element={<RoleRoute roles={[Role.admin]} />}>
+            <Route path={PATHS.createCourse} element={<CreateCourse />} />
           </Route>
           <Route element={<RoleRoute roles={[Role.employee]} />}>
             <Route path={PATHS.skillsMap} element={<SkillsMap />} />

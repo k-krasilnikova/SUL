@@ -14,10 +14,18 @@ import {
   ImageWrapper,
   SecondaryText,
   SectionWrapper,
+  NewAvatarImageWrapper,
+  AddImageInput,
 } from './styled';
 import { IStepProps } from '../types';
 
-const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBlur }) =>
+const DefinitionStep: FC<IStepProps> = ({
+  formik,
+  isCourseDataLoading,
+  onFieldBlur,
+  handleAddCourseAvatar,
+  isCreateCourseMode,
+}) =>
   isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
@@ -55,7 +63,21 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBl
           <SecondaryText>{EditorTitles.avatarDescription}</SecondaryText>
         </AvatarWrapper>
         <ImageWrapper>
-          <Image imageUrl={formik.values.avatar} />
+          {isCreateCourseMode ? (
+            <NewAvatarImageWrapper>
+              <AddImageInput
+                type="file"
+                accept="image/*"
+                id="avatar"
+                name="avatar"
+                multiple
+                onChange={handleAddCourseAvatar}
+              />
+              <Image imageUrl={formik.values.avatar} />
+            </NewAvatarImageWrapper>
+          ) : (
+            <Image imageUrl={formik.values.avatar} />
+          )}
         </ImageWrapper>
         <DescriptionWrapper>
           <SectionName>{EditorTitles.definitionStepDescription}</SectionName>

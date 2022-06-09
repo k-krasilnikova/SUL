@@ -5,6 +5,7 @@ import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
 import useGetCourseEditorData from 'api/admin';
+import { useGetSkills } from 'api/skills';
 import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
 
@@ -55,6 +56,19 @@ const CourseEditorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
+  const { data: courseDateCreateCourse } = useGetSkills();
+
+  let unGroupedSkills = {};
+  if (courseDateCreateCourse) {
+    unGroupedSkills = courseDateCreateCourse.reduce(
+      (acc, group) => ({
+        ...acc,
+        ...group.skills.reduce((j, o) => ({ [o._id]: o, ...j }), {}),
+      }),
+      {},
+    );
+  }
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -64,6 +78,7 @@ const CourseEditorContainer: FC = () => {
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         onFieldBlur={onFieldBlur}
+        unGroupedSkills={unGroupedSkills}
       />
     </FormikProvider>
   );
