@@ -22,7 +22,6 @@ import {
   TimeContainer,
   DisabledText,
 } from './styled';
-
 import { IRequestItemProps } from '../types';
 
 const RequestItem: FC<IRequestItemProps> = ({ request, ...props }) => {
