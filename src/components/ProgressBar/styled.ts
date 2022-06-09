@@ -5,15 +5,21 @@ import theme from 'themeSettings';
 import { TSizeVariants } from 'types/size';
 
 interface IProps {
+  hideOnTablets?: boolean;
   size?: TSizeVariants;
 }
 
-export const ProgressBarBox = styled(Box)<IProps>(({ size }) => ({
+export const ProgressBarBox = styled(Box)<IProps>(({ size, hideOnTablets }) => ({
   float: 'right',
   width: '180px',
   height: '180px',
   margin: '5%',
   fontFamily: theme.typography.fontFamily,
+  [theme.breakpoints.down('lg')]: {
+    ...(hideOnTablets && {
+      display: 'none',
+    }),
+  },
   ...(size === Size.xlarge && {
     width: '304px',
     height: '304px',

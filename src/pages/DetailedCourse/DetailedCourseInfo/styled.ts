@@ -1,5 +1,6 @@
 import { styled, Typography, Button as TextButton } from '@mui/material';
 
+import { COLORS_SELECTOR } from 'constants/progressText';
 import theme from 'themeSettings';
 
 interface Image {
@@ -65,28 +66,53 @@ export const DetailedCourseText = styled(Typography)({
   },
 });
 
-export const DetailedCourseTitle = styled(Typography)({
-  fontWeight: 700,
+export const TitleWrapper = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  flexWrap: 'wrap',
+  marginBottom: '13px',
   color: '#2c2525',
-  wordBreak: 'break-word',
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '16px',
-    lineHeight: '28px',
-    paddingTop: '10px',
-    marginBottom: '10px',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '28px',
-    lineHeight: '28px',
+  [theme.breakpoints.down('xl')]: {
     marginBottom: '24px',
-    paddingTop: 0,
   },
-  [theme.breakpoints.up('xl')]: {
-    fontSize: '28px',
-    lineHeight: '28px',
-    marginBottom: '13px',
+  [theme.breakpoints.down('md')]: {
+    marginBottom: '14px',
+    paddingTop: '14px',
   },
 });
+
+export const DetailedCourseTitle = styled(Typography)({
+  paddingTop: '8px',
+  fontWeight: 700,
+  fontSize: '28px',
+  lineHeight: 1,
+  wordBreak: 'break-word',
+  [theme.breakpoints.down('lg')]: {
+    marginRight: '12px',
+  },
+  [theme.breakpoints.down('md')]: {
+    marginRight: '8px',
+    paddingTop: 0,
+    fontSize: '16px',
+  },
+});
+
+export const ProgressText = styled('p')<{ variant?: string }>(({ variant }) => ({
+  display: 'none',
+  margin: 0,
+  fontWeight: 700,
+  fontSize: '28px',
+  lineHeight: 1,
+  color: `${COLORS_SELECTOR[variant as keyof typeof COLORS_SELECTOR]}`,
+  [theme.breakpoints.down('lg')]: {
+    display: 'inline-block',
+    paddingTop: '8px',
+  },
+  [theme.breakpoints.down('md')]: {
+    paddingTop: 0,
+    fontSize: '16px',
+  },
+}));
 
 export const DetailedCourseTextMobile = styled(Typography)({
   fontWeight: 'normal',

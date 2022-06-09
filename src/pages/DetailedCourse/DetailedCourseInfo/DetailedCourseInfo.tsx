@@ -7,7 +7,9 @@ import { shortifyDetailedCourseDescription } from 'utils/helpers/shortifyDetaile
 
 import {
   ButtonFullText,
+  TitleWrapper,
   DetailedCourseText,
+  ProgressText,
   DetailedCourseTextMobile,
   DetailedCourseTitle,
   ImageWrapper,
@@ -28,6 +30,7 @@ const DetailedCourseInfo: FC<IDetailedCourseInfo> = ({
     <ImageWrapper imageUrl={commonCourseData.avatar} />
     {isProgressBarDisplayed && (
       <ProgressBar
+        hideOnTablets
         size="large"
         text={progressText}
         textColor={PROGRESS_COLOR}
@@ -35,7 +38,12 @@ const DetailedCourseInfo: FC<IDetailedCourseInfo> = ({
         value={progressValue}
       />
     )}
-    <DetailedCourseTitle>{commonCourseData.title}</DetailedCourseTitle>
+    <TitleWrapper>
+      <DetailedCourseTitle>{commonCourseData.title}</DetailedCourseTitle>
+      {isProgressBarDisplayed && (
+        <ProgressText variant={progressVariant}>{progressText}</ProgressText>
+      )}
+    </TitleWrapper>
     {isFullTextOpen ? (
       <DetailedCourseTextMobile>{commonCourseData.description}</DetailedCourseTextMobile>
     ) : (
