@@ -43,7 +43,7 @@ export const DropDownArrowIcon = styled('div')({
 });
 
 export const SelectLabel = styled('p')({
-  margin: '0',
+  margin: 0,
   fontSize: '16px',
   fontWeight: 500,
   color: '#131313',
@@ -73,7 +73,7 @@ export const useStyles = makeStyles({
       '&.Mui-selected': {
         backgroundColor: 'transparent',
         '&:hover': {
-          backgroundColor: '#0000000a',
+          backgroundColor: '#0000000A',
         },
       },
     },
