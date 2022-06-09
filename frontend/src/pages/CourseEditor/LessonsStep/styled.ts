@@ -14,4 +14,9 @@ export const LessonButton = styled(Button)({
   width: '136px',
   height: '50px',
   fontWeight: 500,
+  '&.MuiButton-root.Mui-disabled': {
+    backgroundColor: '#E19697',
+    color: '#FFF',
+    border: 'none',
+  },
 });
