@@ -3,7 +3,7 @@ import { styled, Backdrop } from '@mui/material';
 
 import theme from 'themeSettings';
 
-import { HEADER_HEIGHT_IPAD, HEADER_HEIGHT_MOBILE } from '../Header/styled';
+import { HEADER_HEIGHT_MOBILE } from '../Header/styled';
 
 const MOBILE_MENU_WIDTH = '190px';
 
@@ -22,12 +22,10 @@ export const MobileMenuSlide = styled('div')({
 
 export const MobileMenuBackdrop = styled(Backdrop)({
   position: 'absolute',
-  top: HEADER_HEIGHT_IPAD,
+  top: HEADER_HEIGHT_MOBILE,
+  height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
   zIndex: '5',
   background: '#1B1B1C91',
-  [theme.breakpoints.down('md')]: {
-    top: HEADER_HEIGHT_MOBILE,
-  },
 });
 
 export const SpaceHolder = styled('div')({
