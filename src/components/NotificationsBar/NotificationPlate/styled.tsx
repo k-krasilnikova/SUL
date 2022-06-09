@@ -28,6 +28,7 @@ export const Title = styled('h2')({
   fontSize: '16px',
   fontWeight: 700,
   margin: '5px 0',
+  wordBreak: 'break-word',
 });
 
 export const Description = styled('p')({

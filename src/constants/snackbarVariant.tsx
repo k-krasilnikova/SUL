@@ -18,6 +18,7 @@ export const successSnackbar: OptionsObject = {
 
 export const errorSnackbarMessage = {
   requestFailed: 'Something went wrong',
+  validationError: 'Validation error. Please check the fields before sumbitting form',
 };
 
 export const successSnackbarMessage = {
@@ -28,4 +29,5 @@ export const successSnackbarMessage = {
   authorized: 'Authorization is successful.',
   finished: 'Test was successfully passed.',
   testStarted: 'Test was successfully started.',
+  courseDataUpdated: 'Course was successfully updated.',
 };
