@@ -1,10 +1,14 @@
-// import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { getFilterSelectsConfig } from 'utils/helpers/coursesFilter';
-import { ICoursesFilterValues } from 'types/course';
+import { ICoursesFilterValues, TCoursesFilterWithoutOrder } from 'types/course';
 
-const useGetCoursesFilters = (withStatusSelect?: boolean) => {
+const useGetCoursesFilters = (
+  withStatusSelect?: boolean,
+): {
+  coursesFilters: ICoursesFilterValues;
+  isEmptyFilters: boolean;
+} => {
   const [searchParams] = useSearchParams();
 
   const coursesFilters = {
@@ -22,7 +26,9 @@ const useGetCoursesFilters = (withStatusSelect?: boolean) => {
       isEmptyFilters = false;
     }
 
-    coursesFilters[configName] = filterValue;
+    coursesFilters[configName as keyof TCoursesFilterWithoutOrder] = filterValue;
+
+    return null;
   });
   return { coursesFilters, isEmptyFilters };
 };

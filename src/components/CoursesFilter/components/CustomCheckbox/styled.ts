@@ -1,6 +1,14 @@
-import { styled, Checkbox } from '@mui/material';
+import { styled, Checkbox, FormControlLabel } from '@mui/material';
 
-import theme from 'themeSettings';
+export const StyledFormControlLabel = styled(FormControlLabel)({
+  margin: 0,
+  '& .MuiTypography-root': {
+    marginRight: '12px',
+    fontSize: '16px',
+    fontWeight: '500',
+    color: '#131313',
+  },
+});
 
 export const StyledCheckbox = styled(Checkbox)({
   width: '40px',
@@ -9,15 +17,7 @@ export const StyledCheckbox = styled(Checkbox)({
   backgroundColor: '#7676801f',
   borderRadius: '4px',
   border: '2px solid #CBBEBE',
-  '&:hover': {
-    borderColor: '#131313',
-  },
   '&.Mui-checked': {
-    borderColor: '#D43E41',
+    borderColor: '#2C2525',
   },
 });
-
-// [theme.breakpoints.down('md')]: {
-//  height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
-//  width: '100%',
-// },

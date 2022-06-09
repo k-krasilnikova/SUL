@@ -1,7 +1,5 @@
 import { styled, Grid } from '@mui/material';
 
-import theme from 'themeSettings';
-
 export const TagsListContainer = styled(Grid)({
   display: 'flex',
   flexWrap: 'wrap',
@@ -16,11 +14,10 @@ export const TagContainer = styled('button')({
   backgroundColor: '#7676801F',
   border: '2px solid #CBBEBE',
   borderRadius: '10px',
-  transition: 'all 0.1s ease-in-out',
   '&:hover': {
+    cursor: 'pointer',
     textDecoration: 'line-through',
-    borderColor: '#131313',
-    opacity: '0.8',
+    opacity: 0.7,
   },
 });
 
@@ -50,8 +47,3 @@ export const Cross = styled('p')({
     transform: 'rotate(-45deg)',
   },
 });
-
-// [theme.breakpoints.down('md')]: {
-//  height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
-//  width: '100%',
-// },

@@ -1,4 +1,4 @@
-const getFilterSelectsConfig = (withStatusSelect?: boolean) => {
+const getFilterSelectsConfig = (withStatusSelect?: boolean): string[] => {
   const defaultSelectsFilters = ['technologies', 'complexity'];
 
   if (withStatusSelect) {

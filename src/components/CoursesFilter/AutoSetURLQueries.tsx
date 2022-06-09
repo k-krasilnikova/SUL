@@ -3,10 +3,10 @@ import { useFormikContext } from 'formik';
 import { useSearchParams } from 'react-router-dom';
 
 import { useDebounce } from 'hooks';
-import { ICoursesFilterValues } from 'types/course';
+import { ICoursesFilterValues, TCoursesFilterWithoutOrder } from 'types/course';
 
-const AutoSetURLQueries = () => {
-  const [_, setSearchParams] = useSearchParams();
+const AutoSetURLQueries = (): null => {
+  const setSearchParams = useSearchParams()[1];
   const { values } = useFormikContext<ICoursesFilterValues>();
   const debouncedValues = useDebounce(values, 1000);
 
@@ -17,8 +17,8 @@ const AutoSetURLQueries = () => {
       delete copyDebouncedValues.order;
     }
 
-    setSearchParams(copyDebouncedValues);
-  }, [debouncedValues]);
+    setSearchParams(copyDebouncedValues as TCoursesFilterWithoutOrder);
+  }, [debouncedValues, setSearchParams]);
 
   return null;
 };

@@ -1,14 +1,20 @@
 import { FC } from 'react';
 
-import { sort, checkedSort } from 'icons';
+import { sort } from 'icons';
 
-import { StyledCheckbox } from './styled';
+import { StyledFormControlLabel, StyledCheckbox } from './styled';
 
 const CustomCheckbox: FC = (props) => (
-  <StyledCheckbox
-    disableRipple
-    icon={<img src={sort} alt="sort checkbox" />}
-    checkedIcon={<img src={checkedSort} alt="checked sort checkbox" />}
+  <StyledFormControlLabel
+    label="Sort By Name"
+    labelPlacement="start"
+    control={
+      <StyledCheckbox
+        disableRipple
+        icon={<img src={sort} alt="sort checkbox" />}
+        checkedIcon={<img src={sort} alt="sort checkbox" />}
+      />
+    }
     {...props}
   />
 );

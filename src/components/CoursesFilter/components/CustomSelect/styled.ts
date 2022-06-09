@@ -4,26 +4,35 @@ import { makeStyles } from '@mui/styles';
 import theme from 'themeSettings';
 
 export const StyledSelect = styled(Select)({
-  width: '330px',
+  maxWidth: '330px',
+  width: '100%',
+  '&:hover': {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#CBBEBE',
+    },
+  },
+  '&.Mui-focused': {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#2C2525',
+    },
+  },
   '& .MuiSelect-select': {
     padding: '8px 14px',
     backgroundColor: '#7676801F',
   },
   '& .MuiOutlinedInput-notchedOutline': {
     border: '2px solid #CBBEBE',
-
-    '&:hover': {
-      borderColor: '#131313',
-    },
   },
   '& .MuiSelect-icon': {
     top: '50%',
     right: '12px',
     transform: 'rotate(45deg) translate(-50%, -50%)',
   },
-
   '& .MuiSelect-iconOpen': {
     transform: 'rotate(225deg) translate(0%)',
+  },
+  [theme.breakpoints.down('lg')]: {
+    maxWidth: '100%',
   },
 });
 
@@ -56,11 +65,20 @@ export const useStyles = makeStyles({
   list: {
     padding: 0,
     maxHeight: '250px',
+    maxWidth: '330px',
     overflowY: 'auto',
+    '& li': {
+      whiteSpace: 'normal',
+      wordBreak: 'break-word',
+      '&.Mui-selected': {
+        backgroundColor: 'transparent',
+        '&:hover': {
+          backgroundColor: '#0000000a',
+        },
+      },
+    },
+    [theme.breakpoints.down('lg')]: {
+      maxWidth: '100%',
+    },
   },
 });
-
-// [theme.breakpoints.down('md')]: {
-//  height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
-//  width: '100%',
-// },
