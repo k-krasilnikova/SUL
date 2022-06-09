@@ -10,8 +10,10 @@ export interface ICoursesFilterValues {
   technologies: string[];
   status: string[];
   complexity: string[];
-  order: boolean;
+  order?: boolean;
 }
+
+export type TCoursesFilterWithoutOrder = Omit<ICoursesFilterValues, 'order'>;
 
 export type TContentElement = {
   type: TMaterialVariants;

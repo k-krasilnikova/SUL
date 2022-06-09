@@ -22,8 +22,8 @@ const CustomSelect: FC<ICustomSelectProps> = ({ options, name, value, ...props }
       name={name}
       value={value}
       renderValue={() => <SelectLabel>{name}</SelectLabel>}
-      IconComponent={(props) => <DropDownArrowIcon {...props} />}
-      MenuProps={{ classes: { paper, list } }}
+      IconComponent={(componentProps) => <DropDownArrowIcon {...componentProps} />}
+      MenuProps={{ disableAutoFocusItem: true, classes: { paper, list } }}
       {...props}
     >
       {options.map((option) => (
