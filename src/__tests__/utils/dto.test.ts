@@ -1,4 +1,4 @@
-import { generateProgressDto } from 'utils/dto/dtoUtils';
+import { generateProgressDto } from 'utils/dto/dto';
 
 describe('Dto utils', () => {
   it('Generate progress dto', () => {

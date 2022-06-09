@@ -8,4 +8,8 @@ interface IPreparedCourseDataLocals {
   preparedCourseData: IPreparedCourseDataPayload;
 }
 
-export { IAuthLocals, IPreparedCourseDataLocals, INotificationLocals };
+interface IMailLocals {
+  clientCourseId: string;
+}
+
+export { IAuthLocals, IPreparedCourseDataLocals, IMailLocals };

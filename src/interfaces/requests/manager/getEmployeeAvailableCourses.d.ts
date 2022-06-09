@@ -1,4 +1,4 @@
-import { TAvailableCourse } from 'interfaces/ICourses/IQueryCourses';
+import { TAvailableCourse } from 'interfaces/courses/query';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
@@ -10,9 +10,7 @@ type TRequestBody = never;
 type TRequestQuery = ITitleQuery;
 
 type TResponsePayload = TAvailableCourse[];
-type TResponseLocals = IAuthLocals & {
-  results: TResponsePayload; // remove results in "V1-247 Remove adapters"
-};
+type TResponseLocals = IAuthLocals;
 
 type TGetEmployeeAvailableCoursesRequest = TBaseRequest<
   TRequestParams,

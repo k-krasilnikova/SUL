@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import mongoose, { Types } from 'mongoose';
 import { isEmpty, isNull } from 'lodash';
 
@@ -12,17 +11,16 @@ import {
 } from 'config/constants';
 import CourseModel from 'db/models/Course';
 import ClientCourseModel from 'db/models/ClientCourses';
-import { ICourse } from 'interfaces/Ientities/Icourses';
-import { TCourseFields } from 'interfaces/Ientities/IclientCourses';
-import { ICoursePopulated, ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
+import { ICourse } from 'interfaces/entities/courses';
+import { TCourseFields } from 'interfaces/entities/clientCourses';
+import { ICoursePopulated, ICourseWithStatus } from 'interfaces/courses/query';
 import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
 import { TGetCoursesParams } from 'interfaces/requests/common/queries';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
-import { convertToCourseDuration } from 'utils/typeConversion/datetime/datetimeTypeConversions';
+import { convertToCourseDuration } from 'utils/typeConversion/datetimeTypeConversions';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 import { TResponsePayload as TMaterialsPayload } from 'interfaces/requests/courses/getMaterials';
 import { getTestById } from './testProvider';
@@ -80,8 +78,10 @@ const populateCourses = async (courses: ICourseWithStatus[]): Promise<ICourseWit
 
 const populateCourse = async (course: ICourseWithStatus): Promise<ICourseWithStatus> => {
   const populated = await CourseModel.populate(course, [
-    { path: 'technologies', model: 'Skill', select: 'name image maxScore -_id' },
-    { path: 'requiredSkills', model: 'Skill', select: 'name image maxScore -_id' },
+    {
+      path: 'technologies',
+      populate: { path: 'skill', model: 'Skill', select: 'name image maxScore -_id' },
+    },
     { path: 'similarCourses' },
   ]);
 
@@ -156,7 +156,7 @@ const getCoursesProvider = async (
 
     return populated;
   } catch (error) {
-    throw new BadRequestError('Invalid query.');
+    throw new BadRequestError('Invalid query. Check the data being sent.');
   }
 };
 
@@ -302,7 +302,7 @@ const getAllCoursesProvider = async (
 
     return courses;
   } catch (error) {
-    throw new BadRequestError('Invalid query.');
+    throw new BadRequestError('Invalid query. Check the data being sent.');
   }
 };
 
@@ -323,23 +323,24 @@ const addCourseProvider = async (newCourse: IPreparedCourseDataPayload): Promise
 
 const addSimilarCoursesProvider = async (course: ICourse): Promise<void> => {
   await CourseModel.findOneAndUpdate({ _id: course._id }, { $set: { similarCourses: [] } });
+  await Promise.all(
+    course.technologies.map(async (currentSkill) => {
+      const similarCourses = await CourseModel.find({
+        'technologies.skill': currentSkill.skill,
+      }).lean();
 
-  course.technologies.map(async (currentSkill) => {
-    const similarCourses = await CourseModel.find({
-      'technologies.skill': currentSkill.skill,
-    }).lean();
-
-    similarCourses.map(async (similarCourse) => {
-      await CourseModel.updateMany(
-        {
-          'technologies.skill': currentSkill.skill,
-          similarCourses: { $nin: [similarCourse._id] },
-          _id: { $ne: similarCourse._id },
-        },
-        { $push: { similarCourses: similarCourse._id } },
-      );
-    });
-  });
+      similarCourses.map(async (similarCourse) => {
+        await CourseModel.updateMany(
+          {
+            'technologies.skill': currentSkill.skill,
+            similarCourses: { $nin: [similarCourse._id] },
+            _id: { $ne: similarCourse._id },
+          },
+          { $push: { similarCourses: similarCourse._id } },
+        );
+      });
+    }),
+  );
 };
 
 const refreshCourseLessonsAndDuration = async (courseId: string): Promise<void> => {

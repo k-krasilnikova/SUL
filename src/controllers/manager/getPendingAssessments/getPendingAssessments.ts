@@ -23,8 +23,7 @@ const getPendingAssessments = async (
 
     const assessments = convertToAssessmentsRequests(clientCourses);
 
-    res.locals.results = assessments;
-    next();
+    res.json(assessments);
   } catch (error) {
     next(error);
   }

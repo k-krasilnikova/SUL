@@ -1,5 +1,5 @@
 import { MaterialContentType } from 'enums/materials';
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { ICourse } from 'interfaces/entities/courses';
 
 export interface IMockedCourses extends Omit<ICourse, 'technologies' | 'requiredSkills' | 'test'> {
   technologies: {
@@ -12,7 +12,7 @@ export interface IMockedCourses extends Omit<ICourse, 'technologies' | 'required
 
 export const mockedCourses: IMockedCourses[] = [
   {
-    title: 'JS for beginners',
+    title: 'Js for beginners',
     description: 'Go from zero to ninjas in this JavaScript for Beginners complete course',
     technologies: [
       { skill: 'JavaScript', points: 3 },

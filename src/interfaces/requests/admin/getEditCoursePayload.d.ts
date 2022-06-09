@@ -1,7 +1,7 @@
 import { MaterialContentType } from 'enums/materials';
-import { ICourse, ICourseExercise } from 'interfaces/Ientities/Icourses';
-import ISkill from 'interfaces/Ientities/ISkill';
-import { ITest } from 'interfaces/Ientities/Itest';
+import { ICourse, ICourseExercise } from 'interfaces/entities/courses';
+import ISkill from 'interfaces/entities/skill';
+import { ITest } from 'interfaces/entities/test';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IIdParams } from '../common/params';
