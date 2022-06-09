@@ -32,7 +32,7 @@ export const Cross = styled('p')({
   position: 'relative',
   width: '14px',
   height: '14px',
-  margin: '0',
+  margin: 0,
   '&:before, &:after': {
     position: 'absolute',
     content: '""',

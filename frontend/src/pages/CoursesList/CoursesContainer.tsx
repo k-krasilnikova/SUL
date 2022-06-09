@@ -12,7 +12,7 @@ import CoursesList from './CoursesList';
 const CoursesContainer: React.FC = () => {
   const [targetId, setTargetId] = useState<string | undefined>();
 
-  const { mutate, isLoading: isApplyCourseLoading } = useApplyCourse();
+  const { mutate: applyCourse, isLoading: isApplyCourseLoading } = useApplyCourse();
 
   const { isEmptyFilters, coursesFilters } = useGetCoursesFilters(false);
 
@@ -38,7 +38,7 @@ const CoursesContainer: React.FC = () => {
 
   const handleApplyCourse = (event: React.MouseEvent<Element, MouseEvent>) => {
     setTargetId((event.target as HTMLElement).id);
-    mutate((event.target as HTMLElement).id);
+    applyCourse((event.target as HTMLElement).id);
   };
 
   return (

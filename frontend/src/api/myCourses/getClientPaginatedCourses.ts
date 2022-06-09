@@ -1,4 +1,4 @@
-import { InfiniteData, useInfiniteQuery, UseInfiniteQueryResult } from 'react-query';
+import { useInfiniteQuery, UseInfiniteQueryResult } from 'react-query';
 
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
@@ -12,13 +12,6 @@ import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const PAGE_CHANGE = 1;
 const EMPTY_LENGTH = 0;
-
-interface HookResult {
-  fetchNextPage: () => void;
-  isLoading: boolean;
-  data: InfiniteData<{ page: number; clientCourses: IClientCourse[] }> | undefined;
-  hasNextPage?: boolean;
-}
 
 const useGetClientPaginatedCourses = (
   filters: ICoursesFilterValues,

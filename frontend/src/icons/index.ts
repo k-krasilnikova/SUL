@@ -17,4 +17,3 @@ export { default as backIconMobile } from './backIconMobile.svg';
 export { default as warningIcon } from './warning.svg';
 export { default as redWarningIcon } from './redWarning.svg';
 export { default as sort } from './sort.svg';
-export { default as checkedSort } from './checkedSort.svg';
