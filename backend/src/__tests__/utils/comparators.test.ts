@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-import { containsObjectId } from 'utils/comparator/ObjectId/containsObjectId';
-import { isEqualObjectId } from 'utils/comparator/ObjectId/compareObjectIds';
+import { containsObjectId } from 'utils/comparator/containsObjectId';
+import { isEqualObjectId } from 'utils/comparator/compareObjectIds';
 
 describe('Comparators tests', () => {
   const createObjectId = () => new mongoose.Types.ObjectId();

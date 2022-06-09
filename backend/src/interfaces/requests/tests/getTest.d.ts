@@ -1,4 +1,4 @@
-import { TestDb } from 'interfaces/Ientities/Itest';
+import { TestDb } from 'interfaces/entities/test';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IIdParams } from '../common/params';

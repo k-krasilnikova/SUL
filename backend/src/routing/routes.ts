@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { Routes } from 'enums/routesEnum';
+import { Routes } from 'enums/routes';
 
 import accountRouter from './accountRouter';
 import userRouter from './userRouter';

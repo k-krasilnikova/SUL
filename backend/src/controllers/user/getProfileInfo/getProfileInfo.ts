@@ -4,7 +4,7 @@ import {
   TGetProfileInfoRequest,
   TGetProfileInfoResponse,
 } from 'interfaces/requests/user/getProfileInfo';
-import { TUserInfoResponse } from 'interfaces/IResponse/IResponse';
+import { TUserInfoResponse } from 'interfaces/response/response';
 import { getEmployeesProvider, getFullUserInformationProvider } from 'db/providers/userProvider';
 import { getUserNotifications } from 'db/providers/notificationProvider';
 import { getPendingAssessmentsProvider } from 'db/providers/clientCourseProvider';

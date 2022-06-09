@@ -6,13 +6,12 @@ import { uniqBy, uniqWith } from 'lodash';
 import { UserRank } from 'enums/users';
 import { MaterialContentType } from 'enums/materials';
 import { TIME_1M_SEC } from 'config/constants';
-import { ITest } from 'interfaces/Ientities/Itest';
-import { ICourseTechsFromWeb } from 'interfaces/ICourses/IQueryCourses';
-import { setAnswerProperNumbersToQuestions } from 'utils/normaliser/courseTest';
+import { ITest } from 'interfaces/entities/test';
+import { ICourseTechsFromWeb } from 'interfaces/courses/query';
 
 import capitalizeFirstLetter from '../../string/capitalizeFirstLetter';
 import fullTrim from '../../string/fullTrim';
-import { addMaterialStages } from '../../normaliser/materials';
+import { addMaterialStages } from '../../normalizer/materials';
 import { convertToTypeUnsafe } from '../../typeConversion/common';
 import {
   MAX_DESCRIPTION_LENGTH,
@@ -28,7 +27,9 @@ import {
   MIN_QUESTION_LENGTH,
   MIN_TITLE_LENGTH,
 } from '../courses/constants';
-import { isNotNumbersOnly, isNotSpecialsOnly } from '../strings';
+import { isNotNumbersOnly } from '../strings/isNotNumberOnly';
+import { isNotSpecialsOnly } from '../strings/isNotSpecialsOnly';
+import { setAnswerProperNumbersToQuestions } from '../../normalizer/courseTest';
 
 const CORRECT_ANSWERS_AMOUNT = 1;
 const MIN_MATERIALS_AMOUNT = 1;

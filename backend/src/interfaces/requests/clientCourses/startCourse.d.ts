@@ -3,9 +3,7 @@ import { IIdParams } from '../common/params';
 
 type TRequestParams = IIdParams;
 
-type TResponsePayload = {
-  start: boolean; // refactor in "V1-248 Common response style"
-};
+type TResponsePayload = string;
 
 type TStartCourseRequest = TBaseRequest<TRequestParams>;
 type TStartCourseResponse = TBaseResponse<TResponsePayload>;

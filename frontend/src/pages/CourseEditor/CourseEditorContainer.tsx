@@ -1,35 +1,49 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-restricted-syntax */
-import { BaseSyntheticEvent, ChangeEvent, FC, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
-import useGetCourseEditorData from 'api/admin';
+import { useGetCourseEditorData, useEditCourseData } from 'api/admin';
 import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
-import courseEditorValidationSchema from 'validations/courseEditorValidationSchema';
+import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { useSnackbar } from 'notistack';
+import { courseEditorValidationSchema } from 'validations/schemas';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
+import { formatFieldValue, formatValuesForSubmit } from './utils';
 
 const CourseEditorContainer: FC = () => {
   const params = useParams();
+  const { enqueueSnackbar } = useSnackbar();
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
+
+  const { mutate: editCourseDataMutate, isLoading: isEditCourseDataMutateLoading } =
+    useEditCourseData(params.courseId);
+
+  const handleSubmit = (values: any) => {
+    const formattedValues = formatValuesForSubmit(values);
+    editCourseDataMutate(formattedValues);
+  };
 
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
-    onSubmit: (): void => {},
+    onSubmit: handleSubmit,
     validationSchema: courseEditorValidationSchema,
     validateOnBlur: true,
-    validateOnChange: false,
+    validateOnChange: true,
   });
 
   const onSuccessLoadCourseData = (data: any): void => {
-    const skills: { [key: string]: { _id: string; name: string; maxScore: number } } = {};
-    for (const item of data.allSkills) {
+    const skills: ISkillsById = {};
+    const { allSkills, ...courseData } = data;
+    for (const item of allSkills) {
       skills[item._id] = item;
     }
     setSkillsById(skills);
-    formik.setValues(data, false);
+    formik.setValues(courseData, false);
   };
 
   const { data: courseEditorData, isLoading: isCourseEditorDataLoading } = useGetCourseEditorData(
@@ -43,8 +57,21 @@ const CourseEditorContainer: FC = () => {
     formik.setFieldValue(name, { ...skill, points: INITIAL_NUMBER_POINT });
   };
 
+  useEffect(() => {
+    if (!formik.isValid && formik.isSubmitting && !formik.isValidating) {
+      enqueueSnackbar(errorSnackbarMessage.validationError, errorSnackbar);
+    }
+  }, [formik.isSubmitting, formik.isValid, formik.isValidating]);
+
   const handleChangeCorrectAnswer = (event: BaseSyntheticEvent) => {
     formik.setFieldValue(event.target.name, Number.parseInt(event.target.value, RADIX_PARAMETER));
+  };
+
+  const onFieldBlur = (event: BaseSyntheticEvent) => {
+    const value = event.target.value || '';
+    const formattedValue = formatFieldValue(value);
+    formik.setFieldValue(event.target.name, formattedValue);
+    formik.handleBlur(event);
   };
 
   return (
@@ -55,6 +82,9 @@ const CourseEditorContainer: FC = () => {
         formik={formik}
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
+        onFieldBlur={onFieldBlur}
+        editCourseDataMutate={editCourseDataMutate}
+        isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}
       />
     </FormikProvider>
   );

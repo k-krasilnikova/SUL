@@ -1,26 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import mongoose, { Types } from 'mongoose';
 
-import { IProgress } from 'interfaces/ICourses/IQueryCourses';
+import { IProgress } from 'interfaces/courses/query';
 import {
   IClientCourse,
   IClientCoursePopulated,
   TClientCourseFields,
-} from 'interfaces/Ientities/IclientCourses';
+} from 'interfaces/entities/clientCourses';
 import { TGetCoursesParams } from 'interfaces/requests/common/queries';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { SortOrder } from 'enums/common';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import {
   DEFAULT_N_PER_PAGE,
   DEFAULT_ORDER_CLIENT_COURSES_FIELD,
-  DEFAULT_ORDER_FIELD,
   FIRST_PAGE,
   NOTHING,
   NO_FILTER,
   USER_ROLES,
 } from 'config/constants';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 import ClientCourseModel from '../models/ClientCourses';
 import UserModel from '../models/User';
@@ -113,7 +110,19 @@ const getClientCourseProvider = async (clientCourseId: string): Promise<IClientC
   const clientCourse: IClientCoursePopulated = await ClientCourseModel.findOne({
     _id: clientCourseId,
   })
-    .populate({ path: 'course', populate: 'similarCourses' })
+    .populate({
+      path: 'course',
+      populate: [
+        { path: 'similarCourses' },
+        {
+          path: 'technologies',
+          populate: {
+            path: 'skill',
+            select: 'name image maxScore -_id',
+          },
+        },
+      ],
+    })
     .lean();
 
   if (!clientCourse) {
@@ -221,7 +230,7 @@ const updateClientCourseField = async (
   if (updatedCourse) {
     return updatedCourse;
   }
-  throw new BadRequestError('Bad request. Check the data being sent');
+  throw new BadRequestError('Bad request. Check the data being sent.');
 };
 
 const arrangeAssessment = async (courseId: string): Promise<void> => {

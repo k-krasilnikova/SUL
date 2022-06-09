@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
-import ServiceUnavailableError from 'classes/errors/serverErrors/ServiceUnavailableError';
-import { connectToDatabase } from 'utils/connection';
+import { ServiceUnavailableError } from 'classes/errors/serverErrors';
+import { connectToDatabase } from 'utils/connection/connectToDatabase';
 
 const connectionMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {

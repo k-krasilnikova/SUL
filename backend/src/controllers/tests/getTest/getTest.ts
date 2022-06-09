@@ -2,16 +2,15 @@ import { NextFunction } from 'express';
 import { isEmpty } from 'lodash';
 
 import { TGetTestRequest, TGetTestResponse } from 'interfaces/requests/tests/getTest';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { getTestProvider } from 'db/providers/testProvider';
 import {
   getClientCourseProvider,
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { isTestAvailableByDate } from 'utils/validation/tests';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 const getTest = async (req: TGetTestRequest, res: TGetTestResponse, next: NextFunction) => {
   try {
@@ -34,7 +33,7 @@ const getTest = async (req: TGetTestRequest, res: TGetTestResponse, next: NextFu
 
     const test = await getTestProvider(clientCourseId);
     if (isEmpty(test)) {
-      throw new NotFoundError('No tests found.');
+      throw new NotFoundError('Tests not found.');
     }
 
     res.json(test);

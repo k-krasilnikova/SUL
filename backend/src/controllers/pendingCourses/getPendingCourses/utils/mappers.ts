@@ -1,7 +1,7 @@
 import { NOTHING } from 'config/constants';
 import { ITimePeriod } from 'interfaces/common/datetime';
-import { IPendingCourse, TPendingCourses } from 'interfaces/Ientities/Iusers';
-import { convertToTimePeriod } from 'utils/typeConversion/datetime/datetimeTypeConversions';
+import { IPendingCourse, TPendingCourses } from 'interfaces/entities/users';
+import { convertToTimePeriod } from 'utils/typeConversion/datetimeTypeConversions';
 
 const mapPendingCourse = (course: IPendingCourse): IPendingCourse => {
   const { date: applicationDate } = course;

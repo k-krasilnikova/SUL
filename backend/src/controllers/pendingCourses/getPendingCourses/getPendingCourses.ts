@@ -4,7 +4,7 @@ import {
   TGetPendingCoursesRequest,
   TGetPendingCoursesResponse,
 } from 'interfaces/requests/pendingCourses/getPendingCourses';
-import { TPendingCourses } from 'interfaces/Ientities/Iusers';
+import { TPendingCourses } from 'interfaces/entities/users';
 import { getPendingCoursesProvider } from 'db/providers/pendingCoursesProvider';
 
 import { mapPendingCourses } from './utils/mappers';
@@ -16,9 +16,9 @@ const getPendingCourses = async (
 ) => {
   try {
     const { id: userId } = res.locals;
-    
+
     const { pendingCourses } = await getPendingCoursesProvider(userId);
-    
+
     const mappedPendingCourses: TPendingCourses = mapPendingCourses(pendingCourses);
 
     res.json(mappedPendingCourses);

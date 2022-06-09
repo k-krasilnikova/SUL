@@ -10,7 +10,7 @@ export const Field = styled(TextField)({
   },
   fontSize: '18px',
   [theme.breakpoints.down('xl')]: {
-    marginBottom: '15px',
+    marginBottom: '30px',
   },
 });
 

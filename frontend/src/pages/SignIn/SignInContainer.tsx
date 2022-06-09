@@ -4,7 +4,7 @@ import { useFormik, FormikProvider } from 'formik';
 
 import { useGetAuth } from 'api/auth';
 import { FIELD_TOUCHED, FIELD_VALIDATE, INITIAL_VALUES } from 'constants/signIn';
-import signInValidationSchema from 'validations';
+import { signInValidationSchema } from 'validations/schemas';
 
 import SignIn from './SignIn';
 

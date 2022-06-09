@@ -1,5 +1,5 @@
-import { TTechToAchieve } from 'interfaces/Ientities/Itest';
-import { IUserSkill } from 'interfaces/Ientities/IUserSkill';
+import { TTechToAchieve } from 'interfaces/entities/test';
+import { IUserSkill } from 'interfaces/entities/userSkill';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
 
 const convertTechnologiesToUserSkills = (techs: TTechToAchieve[]): IUserSkill[] =>

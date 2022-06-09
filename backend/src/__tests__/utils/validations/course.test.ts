@@ -1,7 +1,7 @@
 import { randomBytes } from 'crypto';
 
 import { UserRank } from 'enums/users';
-import { ITest } from 'interfaces/Ientities/Itest';
+import { ITest } from 'interfaces/entities/test';
 import { IEditCoursePayload } from 'interfaces/requests/common/payloads';
 import {
   validateAvatar,

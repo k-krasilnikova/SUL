@@ -1,19 +1,20 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { FieldArray } from 'formik';
+import { Alert } from '@mui/material';
 
 import Loader from 'components/Loader';
+import { EditorTitles } from 'constants/courseEditor';
+import { IStepProps } from 'pages/CourseEditor/types';
+import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { convertTestTimeout } from 'utils/helpers/convertTime';
 import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
-import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
-import { EditorTitles } from 'constants/courseEditor';
 import { ButtonLabels } from 'constants/ButtonLabels';
-import { IStepProps } from 'pages/CourseEditor/types';
 
 import QuestionItem from './QuestionItem';
 import { ItemTitle, TestBasicField, TestItemWrapper, TestTitleBox } from './QuestionItem/styled';
-import { TestStepWrapper } from './styled';
+import { AlertWrapper, TestStepWrapper } from './styled';
 
 const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
   isCourseDataLoading ? (
@@ -47,7 +48,11 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
                 <TestStepWrapper key={index}>
                   <QuestionItem formik={formik} question={question} index={index} {...props} />
                   {isLastElem(formik.values.test.questions, index) ? (
-                    <SkillButton variant="mediumOutlined" onClick={() => push({})}>
+                    <SkillButton
+                      variant="mediumOutlined"
+                      onClick={() => push({})}
+                      disabled={Boolean(formik?.errors.test)}
+                    >
                       {ButtonLabels.addMoreQuestions}
                     </SkillButton>
                   ) : (
@@ -60,6 +65,11 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
             </>
           )}
         </FieldArray>
+        <AlertWrapper>
+          {typeof formik.errors?.test?.questions === 'string' && (
+            <Alert severity="error">{formik.errors?.test?.questions}</Alert>
+          )}
+        </AlertWrapper>
       </TestItemWrapper>
     </FormWrapper>
   );

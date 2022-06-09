@@ -1,4 +1,4 @@
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { ICourse } from 'interfaces/entities/courses';
 import { AvatarValidator } from '../schemas/courses';
 
 const validateAvatar = (avatar?: ICourse['avatar']): ICourse['avatar'] | null | undefined => {
