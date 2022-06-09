@@ -1,35 +1,37 @@
 import { useState, FC, Children } from 'react';
 
-import { INITIAL_STEP, TAB_STEP } from 'constants/courseEditor';
-import { Numbers } from 'enums/numbers';
+import { MIN_STEP, TAB_STEP } from 'constants/courseEditor';
 
-import { IEditorTabsProps } from './types';
+import { IEditorTabsContainerProps } from './types';
 import EditorTabs from './EditorTabs';
 
-const EditorTabsContainer: FC<IEditorTabsProps> = ({ children }) => {
-  const [step, setStep] = useState(INITIAL_STEP);
+const EditorTabsContainer: FC<IEditorTabsContainerProps> = ({ children, ...props }) => {
+  const [step, setStep] = useState(MIN_STEP);
   const childrenArray = Children.toArray(children);
-  const currentChild = childrenArray[step];
+  const currentChild = childrenArray[step - TAB_STEP];
 
-  const totalSteps = childrenArray.length;
-  const isLastStep = step === totalSteps - Numbers.one;
-  const isFirstStep = step === INITIAL_STEP;
+  const maxStep = childrenArray.length;
+
+  const isSubmitEnabled = step === maxStep;
+
+  const handlePreviousStep = () => {
+    if (step > MIN_STEP) {
+      setStep(step - TAB_STEP);
+    }
+  };
 
   const handleNextStep = () => {
     setStep(step + TAB_STEP);
   };
 
-  const handlePreviousStep = () => {
-    setStep(step - TAB_STEP);
-  };
-
   return (
     <EditorTabs
+      step={step}
+      isSubmitEnabled={isSubmitEnabled}
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
-      isFirstStep={isFirstStep}
-      isLastStep={isLastStep}
       currentChild={currentChild}
+      {...props}
     />
   );
 };

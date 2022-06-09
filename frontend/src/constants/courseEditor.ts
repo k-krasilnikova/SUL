@@ -76,7 +76,7 @@ export enum EditorTitles {
 }
 
 export const INITIAL_NUMBER_POINT = 1;
-export const INITIAL_STEP = 0;
+export const MIN_STEP = 1;
 export const TAB_STEP = 1;
 
 export const BUTTON_VARIANT = {

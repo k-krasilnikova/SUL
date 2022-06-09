@@ -81,7 +81,11 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       </SkillField>
                     </InnerWrapper>
                     {isLastElem(formik.values.technologies, index) ? (
-                      <SkillButton variant="mediumOutlined" onClick={() => push({})}>
+                      <SkillButton
+                        variant="mediumOutlined"
+                        disabled={Boolean(formik.errors.technologies)}
+                        onClick={() => push({})}
+                      >
                         {ButtonLabels.addMoreSkills}
                       </SkillButton>
                     ) : (

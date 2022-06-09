@@ -91,7 +91,10 @@ const editCourse = async (
       );
 
       const course = await getCourseProvider(courseId, userId);
-      await addSimilarCoursesProvider(course);
+      await addSimilarCoursesProvider({
+        ...course,
+        technologies,
+      });
 
       updatedData.technologies =
         convertToTypeUnsafe<IEditCoursePayload['technologies']>(technologies);
