@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { ICourse } from 'interfaces/entities/courses';
 import { MaterialContentType } from 'enums/materials';
 
 const courseSchema = new Schema<ICourse>({

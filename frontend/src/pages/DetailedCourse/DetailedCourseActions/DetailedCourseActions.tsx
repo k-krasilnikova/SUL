@@ -10,11 +10,11 @@ import { COURSE_DISABLE_DAYS } from 'constants/time';
 import { PAGES } from 'constants/pages';
 import { COURSE_LABELS } from 'constants/statuses';
 import { Info } from 'enums/info';
-import { IDetailedCourseActions } from 'types/detailedCourse';
 import { convertDurationToString } from 'utils/helpers/convertDurationToString';
 
 import DeleteCourseButton from './DeleteCourseButton';
 import { CourseInfoBox, DetailedCourseActionsBox } from './styled';
+import { IDetailedCourseActions } from '../types';
 
 const DetailedCourseActions: FC<IDetailedCourseActions> = ({
   commonCourseData,

@@ -2,7 +2,7 @@ import { NextFunction } from 'express';
 
 import { TGetCourseRequest, TGetCourseResponse } from 'interfaces/requests/courses/getCourse';
 import { getCourseProvider } from 'db/providers/courseProvider';
-import prepareSimilarCourses from 'utils/normaliser/prepareSimilarCourses';
+import prepareSimilarCourses from 'utils/normalizer/prepareSimilarCourses';
 
 import { mapCourse } from './utils/mappers';
 

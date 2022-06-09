@@ -4,8 +4,8 @@ import {
   TApprovePendingCourseRequest,
   TApprovePendingCourseResponse,
 } from 'interfaces/requests/pendingCourses/approvePendingCourse';
-import { IUser } from 'interfaces/Ientities/Iusers';
-import CourseStatus from 'enums/coursesEnums';
+import { IUser } from 'interfaces/entities/users';
+import CourseStatus from 'enums/courses';
 import {
   arrangeAssessment,
   getClientCourseProvider,
@@ -13,8 +13,8 @@ import {
   updateClientCourseField,
 } from 'db/providers/clientCourseProvider';
 import { getUserProvider, removeFromPendingFieldCourses } from 'db/providers/userProvider';
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
 import { CLIENT_COURSE_FIELDS } from 'config/constants';
+import { BadRequestError } from 'classes/errors/clientErrors';
 
 const approvePendingCourse = async (
   req: TApprovePendingCourseRequest,
@@ -22,10 +22,14 @@ const approvePendingCourse = async (
   next: NextFunction,
 ) => {
   try {
-    const { managerId, clientCourseId, results, withAssessment } = res.locals;
+    const { clientCourseId, assessment: withAssessment } = req.body;
+    const { id: managerId } = res.locals;
 
-    if (!clientCourseId || !managerId) {
-      throw new BadRequestError('Invalid query.');
+    if (!clientCourseId) {
+      throw new BadRequestError('Invalid query. Client course id is missing.');
+    }
+    if (!managerId) {
+      throw new BadRequestError('Invalid query. Manager id is missing.');
     }
 
     const { status } = await getStatusProvider(clientCourseId);
@@ -47,8 +51,11 @@ const approvePendingCourse = async (
       await arrangeAssessment(clientCourseId);
     }
 
-    results.updateStatus = `Course was approved ${withAssessment ? 'with' : 'without'} assessment.`;
+    res.locals.clientCourseId = clientCourseId;
+
     next();
+
+    res.json(`Course was approved ${withAssessment ? 'with' : 'without'} assessment.`);
   } catch (error) {
     next(error);
   }

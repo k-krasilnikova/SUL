@@ -1,5 +1,5 @@
-import CourseStatus from 'enums/coursesEnums';
-import { NotificationDescription, NotificationTitles } from 'enums/notificationEnums';
+import CourseStatus from 'enums/courses';
+import { NotificationDescription, NotificationTitles } from 'enums/notification';
 
 type NotificationInfo = {
   title: NotificationTitles;

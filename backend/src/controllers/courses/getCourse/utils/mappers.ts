@@ -1,5 +1,5 @@
-import { ICourseWithStatus } from 'interfaces/ICourses/IQueryCourses';
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { ICourseWithStatus } from 'interfaces/courses/query';
+import { ICourse } from 'interfaces/entities/courses';
 
 const mapCourse = (course: ICourseWithStatus, similarCourses: ICourse[]): ICourseWithStatus => ({
   ...course,

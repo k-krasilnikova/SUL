@@ -3,8 +3,8 @@ import { compare } from 'bcrypt';
 
 import { TLoginRequest, TLoginResponse } from 'interfaces/requests/auth/login';
 import { authProvider, saveTokenProvider } from 'db/providers/authProvider';
-import { generateJWT } from 'utils/auth/authUtils';
-import UnauthorizedError from 'classes/errors/clientErrors/UnauthorizedError';
+import { generateJWT } from 'utils/auth/auth';
+import { UnauthorizedError } from 'classes/errors/clientErrors';
 
 import { mapLoginPayload } from './utils/mappers';
 

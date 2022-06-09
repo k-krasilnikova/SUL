@@ -1,7 +1,7 @@
 import { NextFunction } from 'express';
 
 import { TAddCourseRequest, TAddCourseResponse } from 'interfaces/requests/admin/addCourse';
-import { ITest } from 'interfaces/Ientities/Itest';
+import { ITest } from 'interfaces/entities/test';
 import checkCourseValidationResult from 'utils/validation/courses/checkCourseValidationResult';
 import { validateCourseData } from 'utils/validation/courses';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';

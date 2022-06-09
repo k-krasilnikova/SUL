@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { ISkillGroup } from 'interfaces/Ientities/ISkillGroup';
+import { ISkillGroup } from 'interfaces/entities/skillGroup';
 
 const skillGroupSchema = new Schema<ISkillGroup>({
   name: {

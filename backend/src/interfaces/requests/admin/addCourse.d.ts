@@ -1,4 +1,4 @@
-import { ICourse } from 'interfaces/Ientities/Icourses';
+import { ICourse } from 'interfaces/entities/courses';
 
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IPreparedCourseDataLocals } from '../common/locals';
@@ -8,7 +8,7 @@ type TRequestParams = never;
 type TRequestBody = TCreateCoursePayload;
 
 type TResponsePayload = ICourse;
-type TResponseLocals = IPreparedCourseDataLocals & { results: TResponsePayload }; // remove results in "V1-247 Remove adapters"
+type TResponseLocals = IPreparedCourseDataLocals;
 
 type TAddCourseRequest = TBaseRequest<TRequestParams, TRequestBody>;
 type TAddCourseResponse = TBaseResponse<TResponsePayload, TResponseLocals>;

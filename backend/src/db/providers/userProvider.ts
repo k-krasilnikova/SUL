@@ -1,17 +1,16 @@
 import { Types } from 'mongoose';
 import { isEmpty } from 'lodash';
 
-import BadRequestError from 'classes/errors/clientErrors/BadRequestError';
-import NotFoundError from 'classes/errors/clientErrors/NotFoundError';
 import UserModel from 'db/models/User';
 import UserSkillModel from 'db/models/UserSkill';
 import SkillGroupModel from 'db/models/SkillGroup';
 import SkillModel from 'db/models/Skill';
 import StackMemberModel from 'db/models/StackMember';
 import CourseModel from 'db/models/Course';
-import { ITechnologyGroup, IUser } from 'interfaces/Ientities/Iusers';
-import { TUserStackMemberPopulated } from 'interfaces/Ientities/IStackMember';
+import { ITechnologyGroup, IUser } from 'interfaces/entities/users';
+import { TUserStackMemberPopulated } from 'interfaces/entities/stackMember';
 import { convertToTypeUnsafe } from 'utils/typeConversion/common';
+import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
 
 const getUserProvider = async (userId: string | Types.ObjectId): Promise<IUser> => {
   const dbUser = await UserModel.findById(userId).lean();
@@ -114,7 +113,7 @@ const removeFromPendingFieldCourses = async (
   approvedCourseId?: Types.ObjectId | string,
 ): Promise<void> => {
   if (!approvedCourseId) {
-    throw new BadRequestError('Approved course is missing');
+    throw new BadRequestError('Approved course is missing.');
   }
 
   await UserModel.updateOne({ _id: managerId }, { $pull: { pendingCourses: approvedCourseId } });

@@ -1,4 +1,4 @@
-import { TUserInfoResponse } from 'interfaces/IResponse/IResponse';
+import { TUserInfoResponse } from 'interfaces/response/response';
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IIdParams } from '../common/params';
 
