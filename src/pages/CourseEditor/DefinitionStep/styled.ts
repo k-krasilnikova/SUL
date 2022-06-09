@@ -45,3 +45,14 @@ export const DescriptionWrapper = styled(Box)({
   marginTop: '40px',
   marginBottom: '30px',
 });
+
+export const NewAvatarImageWrapper = styled(Box)({
+  position: 'relative',
+  display: 'flex',
+  height: 'inherit',
+});
+
+export const AddImageInput = styled('input')({
+  position: 'absolute',
+  top: 0,
+});

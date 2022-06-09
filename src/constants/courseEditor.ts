@@ -45,12 +45,39 @@ export const INITIAL_VALUES = {
   complexity: 0,
   avatar: '',
   description: '',
-  technologies: [],
-  materials: [],
+  technologies: [
+    {
+      _id: '',
+      name: '',
+      maxScore: 0,
+      points: 0,
+    },
+  ],
+  materials: [
+    {
+      type: '',
+      material: '',
+    },
+  ],
   test: {
     _id: '',
-    questions: [],
+    questions: [
+      {
+        answers: [
+          {
+            aN: 0,
+            variant: '',
+            _id: '',
+          },
+        ],
+        correctAnswer: 0,
+        qN: 0,
+        question: '',
+        _id: '',
+      },
+    ],
     timeout: 0,
+    title: '',
   },
   skillsById: {},
 };
@@ -68,11 +95,7 @@ export enum EditorTitles {
   exerciseTitle = 'Exercise Title',
   exerciseDescription = 'Exercise Description',
   testDetails = 'Test details',
-  videoTitle = 'Video',
-  presentationTitle = 'Presentation',
-  textTitle = 'Text',
   questionNumber = 'Question № ',
-  answerTestOption = 'Answer Option',
 }
 
 export const INITIAL_NUMBER_POINT = 1;
