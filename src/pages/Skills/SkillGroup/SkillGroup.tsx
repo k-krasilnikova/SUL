@@ -1,13 +1,15 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
+import NoContent from 'components/NoContent';
+import { NO_SKILLS } from 'constants/messages';
 import SkillItem from './SkillItem';
 import { TSkillGroupProps } from '../types';
 import { SkillsGroupWrapper, SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
-const SkillGroup: FC<TSkillGroupProps> = ({ skillFounded }) => {
-  return (
-    <>
-      {skillFounded?.map(({ name: skillsGroupName, skills: skillsGroup }) => (
+const SkillGroup: FC<TSkillGroupProps> = ({ skillFounded }) => (
+  <>
+    {skillFounded?.length ? (
+      skillFounded.map(({ name: skillsGroupName, skills: skillsGroup }) => (
         <SkillsGroupWrapper key={skillsGroupName}>
           <SkillsTitle>{skillsGroupName}</SkillsTitle>
           <SkillsBox>
@@ -17,9 +19,11 @@ const SkillGroup: FC<TSkillGroupProps> = ({ skillFounded }) => {
           </SkillsBox>
           <SkillsDivider />
         </SkillsGroupWrapper>
-      ))}
-    </>
-  );
-};
+      ))
+    ) : (
+      <NoContent message={NO_SKILLS} />
+    )}
+  </>
+);
 
-export default SkillGroup;
+export default memo(SkillGroup);
