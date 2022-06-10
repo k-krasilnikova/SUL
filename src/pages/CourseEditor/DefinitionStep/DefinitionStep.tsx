@@ -5,6 +5,7 @@ import Image from 'components/Image';
 import Loader from 'components/Loader';
 import { EditorTitles, COURSE_COMPLEXITY } from 'constants/courseEditor';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
+import { addAvatarIcon } from 'icons';
 
 import {
   AvatarWrapper,
@@ -16,6 +17,8 @@ import {
   SectionWrapper,
   NewAvatarImageWrapper,
   AddImageInput,
+  NewImageLabel,
+  AddImageIcon,
 } from './styled';
 import { IStepProps } from '../types';
 
@@ -65,6 +68,7 @@ const DefinitionStep: FC<IStepProps> = ({
         <ImageWrapper>
           {isCreateCourseMode ? (
             <NewAvatarImageWrapper>
+              <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
               <AddImageInput
                 type="file"
                 accept="image/*"
@@ -73,7 +77,9 @@ const DefinitionStep: FC<IStepProps> = ({
                 multiple
                 onChange={handleAddCourseAvatar}
               />
-              <Image imageUrl={formik.values.avatar} />
+              <NewImageLabel htmlFor="avatar">
+                <Image imageUrl={formik.values.avatar} newImage />
+              </NewImageLabel>
             </NewAvatarImageWrapper>
           ) : (
             <Image imageUrl={formik.values.avatar} />
