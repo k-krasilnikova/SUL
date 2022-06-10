@@ -13,10 +13,8 @@ const SkillsContainer: FC = () => {
   const debouncedSearchValue = useDebounce(searchInputValue);
   const { data: skillsResponse, isLoading: isLoadingSkills } = useGetSkills(debouncedSearchValue);
   useEffect(() => {
-    if (!isLoadingSkills) {
-      setSkillFounded(skillsResponse);
-    }
-  }, [isLoadingSkills, skillsResponse]);
+    setSkillFounded(skillsResponse);
+  }, [skillsResponse]);
 
   const handleSearchInputChange = ({ target }: BaseSyntheticEvent) => {
     setSearchInputValue(() => formatInputValue(target.value));
