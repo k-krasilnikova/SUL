@@ -88,7 +88,6 @@ export interface ISkillsStepProps extends IStepProps {
 
 export interface ICourseEditorProps extends ISkillsStepProps {
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
-  unGroupedSkills: { [p: string]: { _id: string; maxScore: number; name: string; points: number } };
 }
 
 export interface ILessonItemProps {
