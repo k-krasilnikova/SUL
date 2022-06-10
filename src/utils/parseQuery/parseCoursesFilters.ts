@@ -1,5 +1,5 @@
 import { SortOrder } from 'enums/common';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { UserRank } from 'enums/users';
 import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
 
