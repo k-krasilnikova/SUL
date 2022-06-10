@@ -3,8 +3,8 @@ import { BaseSyntheticEvent } from 'react';
 import { ISkillsListProps } from 'types/skill';
 
 export interface ISkillsPageProps {
-  searchInputValue: string;
   handleSearchInputChange: (event: BaseSyntheticEvent) => void;
+  isSkillsLoading: boolean;
   skillFounded?: ISkillsListProps[];
 }
 
