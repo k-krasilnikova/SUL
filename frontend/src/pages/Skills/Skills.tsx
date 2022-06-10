@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { NO_SKILLS } from 'constants/messages';
 import PageTitle from 'components/PageTitle';
-import NoContent from 'components/NoContent';
+import Loader from 'components/Loader';
+import { Loaders } from 'enums/loader';
 
 import SkillGroup from './SkillGroup';
 import { ISkillsPageProps } from './types';
@@ -16,20 +16,20 @@ import {
 
 const Skills: FC<ISkillsPageProps> = ({
   skillFounded,
-  searchInputValue,
   handleSearchInputChange,
+  isSkillsLoading,
 }) => (
   <PageTitle title="Skills">
     <SkillsPageContainer container>
       <SkillsWrapper>
         <SearchWrapper>
-          <SearchSkill onChange={handleSearchInputChange} value={searchInputValue} />
+          <SearchSkill onChange={handleSearchInputChange} />
           <StyledDivider />
         </SearchWrapper>
-        {skillFounded?.length ? (
-          <SkillGroup skillFounded={skillFounded} />
+        {isSkillsLoading ? (
+          <Loader type={Loaders.content} />
         ) : (
-          <NoContent message={NO_SKILLS} />
+          <SkillGroup skillFounded={skillFounded} />
         )}
       </SkillsWrapper>
     </SkillsPageContainer>
