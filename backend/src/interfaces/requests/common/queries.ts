@@ -1,5 +1,5 @@
 import { SortOrder } from 'enums/common';
-import CourseStatus from 'enums/coursesEnums';
+import CourseStatus from 'enums/courses';
 import { UserRank } from 'enums/users';
 
 interface IGetCoursesRequestQuery {
@@ -35,11 +35,4 @@ interface ISearchQuery {
   search: string;
 }
 
-export {
-  IGetCoursesRequestQuery,
-  IStageQuery,
-  ITitleQuery,
-  ISearchQuery,
-  TGetCoursesParams,
-  ICourseFilters,
-};
+export { IGetCoursesRequestQuery, IStageQuery, ITitleQuery, ISearchQuery, TGetCoursesParams };
