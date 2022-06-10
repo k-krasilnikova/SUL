@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, BaseSyntheticEvent } from 'react';
 
 import { useDebounce } from 'hooks';
-import { useGetSkills, useSearchSkills } from 'api/skills';
+import { useGetSkills } from 'api/skills';
 import { formatInputValue } from 'utils/helpers/searchHelpers';
 import { ISkillsListProps } from 'types/skill';
 
@@ -9,27 +9,19 @@ import Skills from './Skills';
 
 const SkillsContainer: FC = () => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
-  const [skillFounded, setSkillFounded] = useState<ISkillsListProps[]>([]);
+  const [skillFounded, setSkillFounded] = useState<ISkillsListProps[] | undefined>([]);
 
   const debouncedSearchValue = useDebounce(searchInputValue);
-  const { data: skillSearchResponse } = useSearchSkills(debouncedSearchValue);
-  const { data: skillsResponse } = useGetSkills();
+  const { data: skillsResponse, isLoading: isLoadingSkills } = useGetSkills(debouncedSearchValue);
 
   useEffect(() => {
-    if (debouncedSearchValue) {
-      if (
-        skillSearchResponse?.filter((skillList) => {
-          return skillList.skills.filter((skill) =>
-            skill.name.toLowerCase().includes(searchInputValue.toLowerCase()),
-          );
-        })
-      ) {
-        setSkillFounded(skillSearchResponse);
+    setSkillFounded((prevSkills) => {
+      if (isLoadingSkills) {
+        return prevSkills;
       }
-    } else {
-      setSkillFounded([]);
-    }
-  }, [debouncedSearchValue, searchInputValue, skillSearchResponse]);
+      return skillsResponse;
+    });
+  }, [isLoadingSkills, skillsResponse]);
 
   const handleSearchInputChange = ({ target }: BaseSyntheticEvent) => {
     setSearchInputValue(formatInputValue(target.value));
@@ -37,7 +29,6 @@ const SkillsContainer: FC = () => {
 
   return (
     <Skills
-      skills={skillsResponse}
       skillFounded={skillFounded}
       searchInputValue={searchInputValue}
       handleSearchInputChange={handleSearchInputChange}
