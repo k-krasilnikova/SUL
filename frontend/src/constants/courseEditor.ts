@@ -65,7 +65,7 @@ export const INITIAL_VALUES = {
       {
         answers: [
           {
-            aN: 0,
+            aN: 1,
             variant: '',
             _id: '',
           },
@@ -84,7 +84,7 @@ export const INITIAL_VALUES = {
 
 export enum EditorTitles {
   lessonStepTitle = 'Add course files and description',
-  skillStepTitile = 'Edit course skills',
+  skillStepTitle = 'Edit course skills',
   definitionStepTitle = 'Course details',
   definitionStepDescription = 'Description',
   skillDescription = 'Achieved skill',
