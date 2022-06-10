@@ -17,12 +17,12 @@ const useGetAllSkills = (skillName: string): UseQueryResult<ISkillsListProps[], 
     [QUERY_KEYS.skills, skillName],
     async () => {
       const apiClient = apiClientWrapper();
-      const skillNameEncoded = encodeURIComponent(skillName);
-      const response = await apiClient.get(`${API.skills}?search=${skillNameEncoded}`);
+      const response = await apiClient.get(API.skills, { params: { search: skillName } });
       const skillsResponse: ISkillsListProps = response.data;
       return skillsResponse;
     },
     {
+      refetchOnWindowFocus: false,
       onError: handleSubmitError,
     },
   );
