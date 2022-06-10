@@ -2,9 +2,10 @@ import { FC, memo } from 'react';
 
 import NoContent from 'components/NoContent';
 import { NO_SKILLS } from 'constants/messages';
+
+import { SkillsGroupWrapper, SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 import SkillItem from './SkillItem';
 import { TSkillGroupProps } from '../types';
-import { SkillsGroupWrapper, SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
 const SkillGroup: FC<TSkillGroupProps> = ({ skillFounded }) => (
   <>

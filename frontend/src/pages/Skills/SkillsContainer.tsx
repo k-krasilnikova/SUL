@@ -17,7 +17,7 @@ const SkillsContainer: FC = () => {
   }, [skillsResponse]);
 
   const handleSearchInputChange = ({ target }: BaseSyntheticEvent) => {
-    setSearchInputValue(() => formatInputValue(target.value));
+    setSearchInputValue(formatInputValue(target.value));
   };
 
   return (
