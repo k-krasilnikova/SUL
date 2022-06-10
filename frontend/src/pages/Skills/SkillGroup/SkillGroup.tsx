@@ -4,11 +4,10 @@ import SkillItem from './SkillItem';
 import { TSkillGroupProps } from '../types';
 import { SkillsGroupWrapper, SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
-const SkillGroup: FC<TSkillGroupProps> = ({ skillFounded, skills }) => {
-  const skillsData = skillFounded.length ? skillFounded : skills;
+const SkillGroup: FC<TSkillGroupProps> = ({ skillFounded }) => {
   return (
     <>
-      {skillsData?.map(({ name: skillsGroupName, skills: skillsGroup }) => (
+      {skillFounded?.map(({ name: skillsGroupName, skills: skillsGroup }) => (
         <SkillsGroupWrapper key={skillsGroupName}>
           <SkillsTitle>{skillsGroupName}</SkillsTitle>
           <SkillsBox>
