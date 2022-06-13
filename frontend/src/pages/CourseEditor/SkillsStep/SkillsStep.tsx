@@ -24,7 +24,7 @@ import {
 const SkillsStep: FC<ISkillsStepProps> = ({
   formik,
   handleChangeTechnology,
-  unGroupedSkills,
+  ungroupedSkills,
   isCreateCourseMode,
   isCourseDataLoading,
 }) =>
@@ -62,7 +62,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       error={Boolean(formik.errors?.technologies?.[index]?.name)}
                       helperText={formik.errors?.technologies?.[index]?.name}
                     >
-                      {Object.values(unGroupedSkills).map((skill) => (
+                      {Object.values(ungroupedSkills).map((skill) => (
                         <MenuItem key={skill._id} value={skill._id}>
                           {skill.name}
                         </MenuItem>
@@ -80,10 +80,10 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       helperText={formik.errors?.technologies?.[index]?.points}
                     >
                       {isCreateCourseMode
-                        ? getPointsArr(unGroupedSkills?.[technology.name]?.maxScore || 0).map(
+                        ? getPointsArr(ungroupedSkills?.[technology.name]?.maxScore || 0).map(
                             (option) => (
                               <MenuItem key={option} value={option}>
-                                {`${option}/${unGroupedSkills?.[technology.name]?.maxScore || 0}`}
+                                {`${option}/${ungroupedSkills?.[technology.name]?.maxScore || 0}`}
                               </MenuItem>
                             ),
                           )

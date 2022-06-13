@@ -83,7 +83,7 @@ export interface IStepProps {
 
 export interface ISkillsStepProps extends IStepProps {
   handleChangeTechnology?: (event: ChangeEvent<HTMLInputElement>) => void;
-  unGroupedSkills: { [p: string]: { _id: string; maxScore: number; name: string; points: number } };
+  ungroupedSkills: { [p: string]: { _id: string; maxScore: number; name: string; points: number } };
 }
 
 export interface ICourseEditorProps extends ISkillsStepProps {
