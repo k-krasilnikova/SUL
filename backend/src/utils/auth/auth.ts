@@ -50,7 +50,6 @@ const verifyRefreshToken = (refreshToken: string): IRefreshJwtPayload => {
   return payload;
 };
 
-
 const extractAccessTokenValue = (req: TBaseRequest): string | undefined => {
   return req.headers.authorization?.split(' ')[1];
 };
