@@ -41,6 +41,7 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     display: 'flex',
     ...(type === Info.detailedCourse && {
       marginLeft: '8px',
+      marginBottom: '20px',
       flexDirection: 'row',
     }),
   },

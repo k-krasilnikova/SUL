@@ -1,8 +1,8 @@
 import { AssessmentManagmentAction } from 'enums/api';
 
 export interface IApproveCourseDto {
-  clientCourseId: string;
-  assessment?: boolean;
+  requestId: string;
+  withAssessment?: boolean;
 }
 
 export interface IManageAssessmentDto {

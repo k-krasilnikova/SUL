@@ -9,6 +9,11 @@ import { IShortCourseInfo } from 'types/course';
 import { IClientCourse } from 'types/clientCourse';
 import { IEmployee } from 'types/employee';
 
+export enum ApplyCourseButtonType {
+  withAssessment = 'withAssessment',
+  withoutAssessment = 'withoutAssessment',
+}
+
 export interface IEmployeeProfileProps {
   employeeInfo: EmployeeInfo;
   toggleEmployeeInfo: (infoToOpen: EmployeeInfo) => void;
@@ -52,6 +57,7 @@ type TButtonProps = Pick<IActionButtonsContainerProps, 'isDisabled' | 'isLoading
 export interface IActionButtonsProps extends TButtonProps {
   handleAddCoursesWithAssessment: () => void;
   handleAddCourses: () => void;
+  clickedButtonType?: ApplyCourseButtonType;
 }
 
 export interface IActionButtonProps extends TButtonProps, IMuiButtonProps {
