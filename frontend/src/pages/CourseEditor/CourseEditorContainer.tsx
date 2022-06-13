@@ -74,6 +74,16 @@ const CourseEditorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
+  const onSkillBlur = (event: BaseSyntheticEvent) => {
+    formik.setFieldTouched(`${event.target.name}.name`);
+    formik.validateField(event.target.name);
+  };
+
+  const onSkillPointsBlur = (event: BaseSyntheticEvent) => {
+    formik.setFieldTouched(`${event.target.name}.points`);
+    formik.validateField(event.target.name);
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -83,6 +93,8 @@ const CourseEditorContainer: FC = () => {
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         onFieldBlur={onFieldBlur}
+        onSkillBlur={onSkillBlur}
+        onSkillPointsBlur={onSkillPointsBlur}
         editCourseDataMutate={editCourseDataMutate}
         isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}
       />

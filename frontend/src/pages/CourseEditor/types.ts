@@ -68,6 +68,7 @@ export interface IFormik {
   };
   isValid: boolean;
   setFieldValue: (field: string, value: string | number) => void;
+  handleBlur: (event: BaseSyntheticEvent) => void;
   handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   touched: {
     title?: boolean;
@@ -92,6 +93,8 @@ export interface IStepProps {
   isCourseDataLoading?: boolean;
   courseData?: ICourseEditorResponse;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
+  onSkillBlur?: (event: BaseSyntheticEvent) => void;
+  onSkillPointsBlur?: (event: BaseSyntheticEvent) => void;
 }
 
 export interface ISkillsStepProps extends IStepProps {
