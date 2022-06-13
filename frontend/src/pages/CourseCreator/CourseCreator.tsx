@@ -5,8 +5,6 @@ import EditorTabs from 'components/EditorTabs';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { PATHS } from 'constants/routes';
 import PageTitle from 'components/PageTitle';
-import transformRoute from 'utils/helpers/paths/transformRoute';
-
 import DefinitionStep from 'pages/CourseEditor/DefinitionStep';
 import SkillsStep from 'pages/CourseEditor/SkillsStep';
 import LessonsStep from 'pages/CourseEditor/LessonsStep';
@@ -18,12 +16,7 @@ import { ICourseCreatorProps } from './types';
 const CourseCreator: FC<ICourseCreatorProps> = ({ ...props }) => (
   <PageTitle title="Create Course">
     <InnerWrapper>
-      <BackButton
-        variant="medium"
-        color="primary"
-        component={Link}
-        to={transformRoute(PATHS.coursesList)}
-      >
+      <BackButton variant="medium" color="primary" component={Link} to={PATHS.coursesList}>
         {ButtonLabels.back}
       </BackButton>
       <EditorTabs {...props}>

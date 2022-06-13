@@ -1,5 +1,6 @@
 import { BaseSyntheticEvent } from 'react';
-import { IStepProps } from '../CourseEditor/types';
+
+import { IStepProps } from 'pages/CourseEditor/types';
 
 export interface ICourseCreatorProps extends IStepProps {
   ungroupedSkills: {

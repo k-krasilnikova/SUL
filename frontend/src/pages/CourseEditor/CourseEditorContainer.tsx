@@ -56,11 +56,11 @@ const CourseEditorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
-  const { data: createCourseData } = useGetSkills();
+  const { data: courseCreatorSkillsData } = useGetSkills();
 
   let ungroupedSkills = {};
-  if (createCourseData) {
-    ungroupedSkills = createCourseData.reduce(
+  if (courseCreatorSkillsData) {
+    ungroupedSkills = courseCreatorSkillsData.reduce(
       (acc, group) => ({
         ...acc,
         ...group.skills.reduce((j, o) => ({ [o._id]: o, ...j }), {}),
