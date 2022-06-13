@@ -13,7 +13,8 @@ const MobileSearchContainer: FC = () => {
   const [coursesFound, setCoursesFound] = useState<ICourse[]>([]);
 
   const debouncedSearchValue = useDebounce(searchInputValue);
-  const { data: courseResponse } = useSearchAllCourses(debouncedSearchValue);
+  const { data: courseResponse, isLoading: isSearchLoading } =
+    useSearchAllCourses(debouncedSearchValue);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -57,6 +58,7 @@ const MobileSearchContainer: FC = () => {
       handleSearchClose={handleSearchClose}
       coursesFound={coursesFound}
       checkSpace={checkSpace}
+      isSearchLoading={isSearchLoading}
     />
   );
 };
