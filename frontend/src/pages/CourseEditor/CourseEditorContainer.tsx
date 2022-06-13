@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useState } from 'react';
+import { BaseSyntheticEvent, ChangeEvent, FC, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
 import { useGetCourseEditorData, useEditCourseData } from 'api/admin';
 import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
-import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
-import { useSnackbar } from 'notistack';
+// import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+// import { useSnackbar } from 'notistack';
 import { courseEditorValidationSchema } from 'validations/schemas';
 
 import CourseEditor from './CourseEditor';
@@ -17,7 +17,7 @@ import { formatFieldValue, formatValuesForSubmit } from './utils';
 
 const CourseEditorContainer: FC = () => {
   const params = useParams();
-  const { enqueueSnackbar } = useSnackbar();
+  // const { enqueueSnackbar } = useSnackbar();
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
 
   const { mutate: editCourseDataMutate, isLoading: isEditCourseDataMutateLoading } =
@@ -57,11 +57,11 @@ const CourseEditorContainer: FC = () => {
     formik.setFieldValue(name, { ...skill, points: INITIAL_NUMBER_POINT });
   };
 
-  useEffect(() => {
-    if (!formik.isValid && formik.isSubmitting && !formik.isValidating) {
-      enqueueSnackbar(errorSnackbarMessage.validationError, errorSnackbar);
-    }
-  }, [formik.isSubmitting, formik.isValid, formik.isValidating]);
+  // useEffect(() => {
+  //   if (!formik.isValid && formik.isSubmitting && !formik.isValidating) {
+  //     enqueueSnackbar(errorSnackbarMessage.validationError, errorSnackbar);
+  //   }
+  // }, [formik.isSubmitting, formik.isValid, formik.isValidating]);
 
   const handleChangeCorrectAnswer = (event: BaseSyntheticEvent) => {
     formik.setFieldValue(event.target.name, Number.parseInt(event.target.value, RADIX_PARAMETER));
@@ -73,6 +73,8 @@ const CourseEditorContainer: FC = () => {
     formik.setFieldValue(event.target.name, formattedValue);
     formik.handleBlur(event);
   };
+
+  console.log(formik.values.materials);
 
   return (
     <FormikProvider value={formik}>

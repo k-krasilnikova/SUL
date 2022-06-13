@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
-import { apiClientWrapper } from 'api/base';
+import { apiClientWrapper, queryClient } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
+import { QUERY_KEYS } from 'constants/queryKeyConstants';
 
 const useEditCourseData = (courseId?: string): UseMutationResult => {
   const navigateTo = useNavigate();

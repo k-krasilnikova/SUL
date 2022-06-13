@@ -25,7 +25,7 @@ const useGetCourseEditorData = (
       return response.data;
     },
     {
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: true,
       onError: handleSubmitError,
       onSuccess: onSuccessLoadCourseData,
     },

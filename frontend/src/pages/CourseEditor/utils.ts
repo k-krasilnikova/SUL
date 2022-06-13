@@ -28,11 +28,15 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
     avatar: values.avatar,
     title: values.title,
     description: values.description,
-    materials: [
-      {
-        content: values.materials,
-      },
-    ],
+    // materials: [
+    //   {
+    //     content: values.materials.map((material: { type: string; material: string }) => ({
+    //       type: material.type,
+    //       material: material.material,
+    //     })),
+    //   },
+    // ],
+    materials: values.materials,
     technologies: values.technologies.map((technology: IFormTechnology) => ({
       skill: technology._id,
       points: technology.points,
@@ -47,5 +51,6 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
       })),
     },
   };
+  console.log('valuesForSubmit', formattedValues);
   return formattedValues;
 };
