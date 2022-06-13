@@ -2,17 +2,16 @@ import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { useGetClientPaginatedCourses } from 'api/myCourses';
+import { useGetCoursesFilters } from 'hooks';
 import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 import { IClientCourse } from 'types/clientCourse';
 import CoursesList from 'pages/CoursesList/CoursesList';
 
 const MyCoursesContainer: React.FC = () => {
-  const {
-    data,
-    hasNextPage,
-    fetchNextPage,
-    isLoading: isClientCoursesLoading,
-  } = useGetClientPaginatedCourses();
+  const { coursesFilters, isEmptyFilters } = useGetCoursesFilters(true);
+
+  const { data, hasNextPage, isLoading, isFetchingNextPage, isFetching, fetchNextPage } =
+    useGetClientPaginatedCourses(coursesFilters);
 
   const windowWidth = getWindowLabelByWidth();
 
@@ -36,10 +35,14 @@ const MyCoursesContainer: React.FC = () => {
 
   return (
     <CoursesList
+      withStatusSelect
       courses={commonCourses}
       clientCourses={formattedClientCourses}
-      isLoading={isClientCoursesLoading}
       windowWidth={windowWidth}
+      isEmptyFilters={isEmptyFilters}
+      isLoading={isLoading}
+      isFetching={isFetching}
+      isFetchingNextPage={isFetchingNextPage}
       lastCourseRef={clientCourseRef}
     />
   );

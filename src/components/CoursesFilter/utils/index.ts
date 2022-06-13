@@ -1,0 +1,1 @@
+export { getFilterTagsLength } from './getFilterTagsLength';
