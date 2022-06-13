@@ -1,5 +1,3 @@
-import { TLocalsManager } from 'interfaces/response/response';
-
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals, IMailLocals } from '../common/locals';
 import { IIdParams } from '../common/params';

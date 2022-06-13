@@ -1,5 +1,3 @@
-import { TNotification } from 'interfaces/response/response';
-
 import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
 import { IAddNotificationPayload } from '../common/payloads';
