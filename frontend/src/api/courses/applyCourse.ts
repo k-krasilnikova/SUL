@@ -18,7 +18,7 @@ const useApplyCourse = (): UseMutationResult => {
   const navigateTo = useNavigate();
   return useMutation(
     async (courseId: string | undefined | unknown) => {
-      const data = { id: courseId };
+      const data = { courseId };
       const apiClient = apiClientWrapper();
       const response = await apiClient.post(API.courses, data);
       return response.data;

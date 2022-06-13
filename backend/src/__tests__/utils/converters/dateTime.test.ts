@@ -2,7 +2,7 @@ import { ITimePeriod } from 'interfaces/common/datetime';
 import {
   convertToCourseDuration,
   convertToTimePeriod,
-} from 'utils/typeConversion/datetime/datetimeTypeConversions';
+} from 'utils/typeConversion/datetimeTypeConversions';
 
 describe('Date&time converters tests', () => {
   it('Convert to course duration util', () => {

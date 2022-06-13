@@ -16,4 +16,4 @@ const connectToDatabase = async (): Promise<void> => {
   }
 };
 
-export default connectToDatabase;
+export { connectToDatabase };

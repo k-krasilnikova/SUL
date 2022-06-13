@@ -12,8 +12,8 @@ import {
 import { getCourseProvider, materialsCounterProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
 import { addUserNotification } from 'db/providers/notificationProvider';
-import { generateProgressDto } from 'utils/dto/dtoUtils';
-import { combineFullName } from 'utils/combineFullName';
+import { generateProgressDto } from 'utils/dto/dto';
+import { combineFullName } from 'utils/combine/combineFullName';
 import {
   NotificationDescription,
   NotificationStatuses,

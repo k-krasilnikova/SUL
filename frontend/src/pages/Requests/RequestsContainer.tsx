@@ -1,39 +1,36 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 
 import { useApproveRequest, useDeclineRequest, useGetCoursesRequests } from 'api/manager';
 import { IApproveCourseDto } from 'types/api.dto';
 
 import Requests from './Requests';
 
-const RequestsContainer: React.FC = () => {
-  const [targetId, setTargetId] = useState<string>('');
+const RequestsContainer: FC = () => {
+  const [actionTarget, setActionTarget] = useState<IApproveCourseDto>({ requestId: '' });
 
-  const { data: requests, isLoading } = useGetCoursesRequests();
-  const { mutateAsync: approveCourse, isLoading: approveLoading } = useApproveRequest();
-  const { mutateAsync: declineCourse, isLoading: declineLoading } = useDeclineRequest();
+  const { data: requestsData, isLoading: isRequestsLoading } = useGetCoursesRequests();
+  const { mutate: approveCourse, isLoading: isApproveLoading } = useApproveRequest();
+  const { mutate: declineCourse, isLoading: isDeclineLoading } = useDeclineRequest();
 
-  const approveRequest = ({
-    clientCourseId: requestId,
-    assessment: withAssessment,
-  }: IApproveCourseDto) => {
-    setTargetId(requestId);
-    approveCourse({ clientCourseId: requestId, assessment: withAssessment });
+  const approveRequest = (params: IApproveCourseDto) => {
+    setActionTarget(params);
+    approveCourse(params);
   };
 
   const declineRequest = (requestId: string) => {
-    setTargetId(requestId);
+    setActionTarget({ requestId });
     declineCourse(requestId);
   };
 
   return (
     <Requests
-      requests={requests}
-      isLoading={isLoading}
-      targetId={targetId}
+      requests={requestsData}
+      actionTarget={actionTarget}
+      isRequestsLoading={isRequestsLoading}
+      isApproveLoading={isApproveLoading}
+      isDeclineLoading={isDeclineLoading}
       approveRequest={approveRequest}
-      approveLoading={approveLoading}
       declineRequest={declineRequest}
-      declineLoading={declineLoading}
     />
   );
 };

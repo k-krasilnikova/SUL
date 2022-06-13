@@ -7,7 +7,7 @@ import {
 import { addUserNotification } from 'db/providers/notificationProvider';
 import { getCourseProvider } from 'db/providers/courseProvider';
 import { getUserProvider } from 'db/providers/userProvider';
-import { combineFullName } from 'utils/combineFullName';
+import { combineFullName } from 'utils/combine/combineFullName';
 import { NotificationStatuses, NotificationType } from 'enums/notification';
 import { USER_ROLES } from 'config/constants';
 import {

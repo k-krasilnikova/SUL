@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router';
 import type { Action } from 'history';
 
 import { PATHS } from 'constants/routes';
-import { useBlocker } from 'hooks';
+import useBlocker from './useBlocker';
 
 const useCallbackPrompt = (
   when: boolean,

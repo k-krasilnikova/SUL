@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import { Routes } from 'enums/routes';
 import routers from 'routing/routes';
 
-import { registerScheduler } from 'utils/schedule';
+import { registerScheduler } from 'utils/schedule/registerScheduler';
 import {
   connectionMiddleware,
   errorHandlingMiddleware,
