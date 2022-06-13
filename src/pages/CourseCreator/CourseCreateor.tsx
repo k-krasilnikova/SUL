@@ -15,7 +15,7 @@ import { BackButton, InnerWrapper } from 'pages/CourseEditor/styled';
 
 import { ICourseCreatorProps } from './types';
 
-const CourseCreator: FC<ICourseCreatorProps> = ({ isCreateCourseMode, ...props }) => (
+const CourseCreator: FC<ICourseCreatorProps> = ({ ...props }) => (
   <PageTitle title="Create Course">
     <InnerWrapper>
       <BackButton
@@ -27,8 +27,8 @@ const CourseCreator: FC<ICourseCreatorProps> = ({ isCreateCourseMode, ...props }
         {ButtonLabels.back}
       </BackButton>
       <EditorTabs {...props}>
-        <DefinitionStep isCreateCourseMode={isCreateCourseMode} {...props} />
-        <SkillsStep isCreateCourseMode={isCreateCourseMode} {...props} />
+        <DefinitionStep {...props} />
+        <SkillsStep {...props} />
         <LessonsStep {...props} />
         <TestStep {...props} />
       </EditorTabs>

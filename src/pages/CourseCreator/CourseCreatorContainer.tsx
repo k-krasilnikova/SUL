@@ -24,9 +24,9 @@ const CourseCreatorContainer: FC = () => {
   const isCreateCourseMode = pathname === PATHS.createCourse;
   const { data: createCourseData } = useGetSkills();
 
-  let unGroupedSkills = {};
+  let ungroupedSkills = {};
   if (createCourseData) {
-    unGroupedSkills = createCourseData.reduce(
+    ungroupedSkills = createCourseData.reduce(
       (acc, group) => ({
         ...acc,
         ...group.skills.reduce((j, o) => ({ [o._id]: o, ...j }), {}),
@@ -61,7 +61,7 @@ const CourseCreatorContainer: FC = () => {
         onFieldBlur={onFieldBlur}
         handleAddCourseAvatar={handleAddCourseAvatar}
         isCreateCourseMode={isCreateCourseMode}
-        unGroupedSkills={unGroupedSkills}
+        ungroupedSkills={ungroupedSkills}
       />
     </FormikProvider>
   );

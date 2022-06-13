@@ -56,11 +56,11 @@ const CourseEditorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
-  const { data: courseDateCreateCourse } = useGetSkills();
+  const { data: createCourseData } = useGetSkills();
 
-  let unGroupedSkills = {};
-  if (courseDateCreateCourse) {
-    unGroupedSkills = courseDateCreateCourse.reduce(
+  let ungroupedSkills = {};
+  if (createCourseData) {
+    ungroupedSkills = createCourseData.reduce(
       (acc, group) => ({
         ...acc,
         ...group.skills.reduce((j, o) => ({ [o._id]: o, ...j }), {}),
@@ -78,7 +78,7 @@ const CourseEditorContainer: FC = () => {
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         onFieldBlur={onFieldBlur}
-        unGroupedSkills={unGroupedSkills}
+        ungroupedSkills={ungroupedSkills}
       />
     </FormikProvider>
   );
