@@ -132,6 +132,36 @@ const getClientCourseProvider = async (clientCourseId: string): Promise<IClientC
   return clientCourse;
 };
 
+const getClientCourseByCourseAndUser = async (
+  commonCourseId: string,
+  userId: string,
+): Promise<IClientCoursePopulated> => {
+  const clientCourse: IClientCoursePopulated = await ClientCourseModel.findOne({
+    course: commonCourseId,
+    user: userId,
+  })
+    .populate({
+      path: 'course',
+      populate: [
+        { path: 'similarCourses' },
+        {
+          path: 'technologies',
+          populate: {
+            path: 'skill',
+            select: 'name image maxScore -_id',
+          },
+        },
+      ],
+    })
+    .lean();
+
+  if (!clientCourse) {
+    throw new NotFoundError('Course not found.');
+  }
+
+  return clientCourse;
+};
+
 const applyCourseProvider = async (
   courseId: string,
   userId: string,
@@ -323,4 +353,5 @@ export {
   assignCourseToEmployee,
   checkNotDeleteCoursesProvider,
   getPendingAssessmentsProvider,
+  getClientCourseByCourseAndUser,
 };

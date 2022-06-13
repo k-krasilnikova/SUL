@@ -1,37 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { useSnackbar } from 'notistack';
+import React, { useEffect, useState } from 'react';
 
 import { useSearchAllCourses } from 'api/courses';
-import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
-import { SEARCH_DEBOUNCE_TIME } from 'constants/time';
 import { useDebounce } from 'hooks';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
-import { ICourse } from 'types/course';
 
 import SearchCourses from './SearchCourses';
 
 const SearchCoursesContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
   const [searchInputValue, setSearchInputValue] = useState<string>('');
-  const [coursesFound, setCoursesFound] = useState<Array<ICourse>>([]);
 
-  const { enqueueSnackbar } = useSnackbar();
+  const debouncedSearchValue = useDebounce(searchInputValue);
 
-  const debouncedSearchValue = useDebounce(searchInputValue, SEARCH_DEBOUNCE_TIME);
+  const {
+    data: foundedCourses,
+    isLoading: isSearchLoading,
+    isFetching,
+  } = useSearchAllCourses(debouncedSearchValue);
 
-  const { data: foundedCourses, isLoading: isSearchingCourses } =
-    useSearchAllCourses(debouncedSearchValue);
+  // useEffect(() => {
+  //   if (debouncedSearchValue && !isSearchingCourses) {
+  //     if (foundedCourses) {
+  //       setCoursesFound(foundedCourses);
+  //       setSearchOpen(true);
+  //     } else {
+  //       enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar);
+  //     }
+  //   }
+  // }, [debouncedSearchValue, enqueueSnackbar, foundedCourses, isSearchingCourses]);
 
   useEffect(() => {
-    if (debouncedSearchValue && !isSearchingCourses) {
-      if (foundedCourses) {
-        setCoursesFound(foundedCourses);
-        setSearchOpen(true);
-      } else {
-        enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar);
-      }
+    if (isFetching) {
+      setSearchOpen(true);
     }
-  }, [debouncedSearchValue, enqueueSnackbar, foundedCourses, isSearchingCourses]);
+  }, [isFetching]);
 
   const handleSearchClose = () => {
     setSearchInputValue('');
@@ -41,11 +43,11 @@ const SearchCoursesContainer: React.FC = () => {
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const formattedValue = formatInputValue(event.target.value);
     setSearchInputValue(formattedValue);
-    if (!formattedValue.length) {
-      setSearchOpen(false);
-    }
+    // if (!formattedValue.length) {
+    //   setSearchOpen(false);
+    // }
   };
-
+  console.log(isFetching);
   const checkSpace = (event: React.KeyboardEvent) => {
     checkWhitespace(event, searchInputValue);
   };
@@ -56,16 +58,17 @@ const SearchCoursesContainer: React.FC = () => {
     const formattedValue = inputValue.split(/\s+/).join(' ').trimStart().trimEnd();
     setSearchInputValue(formattedValue);
   };
-
+  console.log(isSearchLoading);
   return (
     <SearchCourses
       isSearchOpen={isSearchOpen}
       searchCourses={searchCourses}
       handleSearchClose={handleSearchClose}
-      coursesFound={coursesFound}
+      coursesFound={foundedCourses}
       checkSpace={checkSpace}
       checkPastedValue={checkPastedValue}
       searchInputValue={searchInputValue}
+      isSearchLoading={isSearchLoading}
     />
   );
 };

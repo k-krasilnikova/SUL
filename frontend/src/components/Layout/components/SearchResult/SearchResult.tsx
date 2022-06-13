@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { NO_RESULTS } from 'constants/messages';
+import Loader from 'components/Loader';
 
 import { NoSearchResults, SearchResultWrapper } from './styled';
 import SearchResultItem from './SearchResultItem';
@@ -10,25 +11,28 @@ const LAST_ARRAY_ITEM = -1;
 
 const SearchResult: React.FC<ISearchResultProps> = ({
   coursesFound,
-  foundInMyCourses,
   handleSearchClose,
+  isSearchLoading,
 }) => (
   <SearchResultWrapper>
-    {coursesFound.length ? (
-      coursesFound.map((course, index, array) => {
-        const isDividerVisible = index < array.length + LAST_ARRAY_ITEM;
-        return (
-          <SearchResultItem
-            key={course._id}
-            course={course}
-            addDivider={isDividerVisible}
-            foundInMyCoursesId={foundInMyCourses}
-            handleSearchClose={handleSearchClose}
-          />
-        );
-      })
+    {!isSearchLoading ? (
+      coursesFound?.length ? (
+        coursesFound.map((course, index, array) => {
+          const isDividerVisible = index < array.length + LAST_ARRAY_ITEM;
+          return (
+            <SearchResultItem
+              key={course._id}
+              course={course}
+              addDivider={isDividerVisible}
+              handleSearchClose={handleSearchClose}
+            />
+          );
+        })
+      ) : (
+        <NoSearchResults>{NO_RESULTS}</NoSearchResults>
+      )
     ) : (
-      <NoSearchResults>{NO_RESULTS}</NoSearchResults>
+      <Loader type="component" />
     )}
   </SearchResultWrapper>
 );

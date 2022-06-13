@@ -1,43 +1,32 @@
-import React, { useEffect, useState } from 'react';
-
-import useSearchClientCourses from 'api/myCourses/searchClientCourses';
+import React from 'react';
 
 import SearchResult from './SearchResult';
-import { IClientCourseIds, ISearchResultContainerProps } from '../types';
+import { ISearchResultContainerProps } from '../types';
 
-const SearchResultContainer: React.FC<ISearchResultContainerProps> = ({
-  coursesFound,
-  handleSearchClose,
-}) => {
-  const [foundInMyCoursesIds, setFoundInMyCoursesIds] = useState<IClientCourseIds[]>([]);
+const SearchResultContainer: React.FC<ISearchResultContainerProps> = ({ ...props }) => {
+  // const [foundInMyCoursesIds, setFoundInMyCoursesIds] = useState<IClientCourseIds[]>([]);
 
-  const { data: clientCoursesData } = useSearchClientCourses();
+  // const { data: clientCoursesData } = useSearchClientCourses();
 
-  useEffect(() => {
-    if (clientCoursesData) {
-      coursesFound.forEach(({ title }) => {
-        const foundedCourse = clientCoursesData.find(({ course }) => course.title === title);
+  // useEffect(() => {
+  //   if (clientCoursesData) {
+  //     coursesFound.forEach(({ title }) => {
+  //       const foundedCourse = clientCoursesData.find(({ course }) => course.title === title);
 
-        if (foundedCourse) {
-          setFoundInMyCoursesIds((prevState) => [
-            ...prevState,
-            {
-              courseId: foundedCourse.course._id,
-              clientCourseId: foundedCourse._id,
-            },
-          ]);
-        }
-      });
-    }
-  }, [clientCoursesData, coursesFound]);
+  //       if (foundedCourse) {
+  //         setFoundInMyCoursesIds((prevState) => [
+  //           ...prevState,
+  //           {
+  //             courseId: foundedCourse.course._id,
+  //             clientCourseId: foundedCourse._id,
+  //           },
+  //         ]);
+  //       }
+  //     });
+  //   }
+  // }, [clientCoursesData, coursesFound]);
 
-  return (
-    <SearchResult
-      coursesFound={coursesFound}
-      foundInMyCourses={foundInMyCoursesIds}
-      handleSearchClose={handleSearchClose}
-    />
-  );
+  return <SearchResult {...props} />;
 };
 
 export default SearchResultContainer;

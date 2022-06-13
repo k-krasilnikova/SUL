@@ -12,6 +12,7 @@ interface Props {
   handleSearchClose: () => void;
   checkSpace: (event: React.KeyboardEvent) => void;
   checkPastedValue: (event: React.ClipboardEvent) => void;
+  isSearchLoading: boolean;
   searchInputValue: string;
   coursesFound?: ICourse[];
 }
@@ -24,6 +25,7 @@ const SearchCourses: React.FC<Props> = ({
   checkSpace,
   checkPastedValue,
   searchInputValue,
+  isSearchLoading,
 }) => (
   <ClickAwayListener onClickAway={handleSearchClose}>
     <RelativeWrapper>
@@ -35,8 +37,12 @@ const SearchCourses: React.FC<Props> = ({
         onPaste={checkPastedValue}
         value={searchInputValue}
       />
-      {isSearchOpen && coursesFound && (
-        <SearchResult coursesFound={coursesFound} handleSearchClose={handleSearchClose} />
+      {isSearchOpen && !!searchInputValue.length && (
+        <SearchResult
+          coursesFound={coursesFound}
+          handleSearchClose={handleSearchClose}
+          isSearchLoading={isSearchLoading}
+        />
       )}
     </RelativeWrapper>
   </ClickAwayListener>
