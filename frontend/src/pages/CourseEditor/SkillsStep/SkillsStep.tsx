@@ -95,41 +95,24 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                               {`${point}/${technology.maxScore}`}
                             </MenuItem>
                           ))}
-                      </SkillField>
-                      <SkillField
-                        select
-                        variant="outlined"
-                        label="Level"
-                        value={technology.points || ''}
-                        id={`technologies[${index}].points`}
-                        name={`technologies[${index}].points`}
-                        onChange={formik.handleChange}
-                        error={Boolean(formik.errors?.technologies?.[index]?.points)}
-                        helperText={formik.errors?.technologies?.[index]?.points}
-                      >
-                        {getPointsArr(technology.maxScore).map((point) => (
-                          <MenuItem key={point} value={point}>
-                            {`${point}/${technology.maxScore}`}
-                          </MenuItem>
-                        ))}
-                      </SkillField>
-                    </InnerWrapper>
-                    {isLastElem(formik.values.technologies, index) ? (
-                      <SkillButton
-                        variant="mediumOutlined"
-                        disabled={Boolean(formik.errors.technologies)}
-                        onClick={() => push({})}
-                      >
-                        {ButtonLabels.addMoreSkills}
-                      </SkillButton>
-                    ) : (
-                      <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
-                        {ButtonLabels.removeSkill}
-                      </SkillButton>
-                    )}
-                  </>
-                </SkillWrapper>
-              ))}
+                    </SkillField>
+                  </InnerWrapper>
+                  {isLastElem(formik.values.technologies, index) ? (
+                    <SkillButton
+                      variant="mediumOutlined"
+                      disabled={Boolean(formik.errors.technologies)}
+                      onClick={() => push({})}
+                    >
+                      {ButtonLabels.addMoreSkills}
+                    </SkillButton>
+                  ) : (
+                    <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
+                      {ButtonLabels.removeSkill}
+                    </SkillButton>
+                  )}
+                </>
+              </SkillWrapper>
+            ))}
           </>
         )}
       </FieldArray>
