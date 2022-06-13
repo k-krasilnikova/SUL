@@ -6,6 +6,7 @@ import { FieldArray } from 'formik';
 
 import Loader from 'components/Loader';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
+import { Numbers } from 'enums/numbers';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { EditorTitles } from 'constants/courseEditor';
 import { ISkillsStepProps } from 'pages/CourseEditor/types';
@@ -80,13 +81,15 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       helperText={formik.errors?.technologies?.[index]?.points}
                     >
                       {isCreateCourseMode
-                        ? getPointsArr(ungroupedSkills?.[technology.name]?.maxScore || 0).map(
-                            (option) => (
-                              <MenuItem key={option} value={option}>
-                                {`${option}/${ungroupedSkills?.[technology.name]?.maxScore || 0}`}
-                              </MenuItem>
-                            ),
-                          )
+                        ? getPointsArr(
+                            ungroupedSkills?.[technology.name]?.maxScore || Numbers.zero,
+                          ).map((option) => (
+                            <MenuItem key={option} value={option}>
+                              {`${option}/${
+                                ungroupedSkills?.[technology.name]?.maxScore || Numbers.zero
+                              }`}
+                            </MenuItem>
+                          ))
                         : getPointsArr(technology.maxScore).map((point) => (
                             <MenuItem key={point} value={point}>
                               {`${point}/${technology.maxScore}`}

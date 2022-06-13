@@ -21,7 +21,7 @@ export const PATHS: {
   skillsMap: string;
   pendingAssessments: string;
   courseEditor: string;
-  createCourse: string;
+  courseCreator: string;
 } = {
   home: '/',
   profile: '/profile',
@@ -45,7 +45,7 @@ export const PATHS: {
   skillsMap: '/skills-map',
   pendingAssessments: '/pending-assessments',
   courseEditor: '/:courseId/editor',
-  createCourse: '/create',
+  courseCreator: '/create',
 };
 
 export const API: {

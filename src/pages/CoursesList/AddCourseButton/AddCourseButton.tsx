@@ -8,7 +8,7 @@ import { AddButton, AddButtonWrapper } from './styled';
 
 const AddCourseButton: FC = () => (
   <AddButtonWrapper>
-    <AddButton color="primary" variant="mediumContained" component={Link} to={PATHS.createCourse}>
+    <AddButton color="primary" variant="mediumContained" component={Link} to={PATHS.courseCreator}>
       {ButtonLabels.addWithPlus}
     </AddButton>
   </AddButtonWrapper>
