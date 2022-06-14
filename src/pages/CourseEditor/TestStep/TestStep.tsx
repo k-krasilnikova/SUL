@@ -8,13 +8,18 @@ import { EditorTitles } from 'constants/courseEditor';
 import { IStepProps } from 'pages/CourseEditor/types';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
-import { convertTestTimeout } from 'utils/helpers/convertTime';
 import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
 import { ButtonLabels } from 'constants/ButtonLabels';
+import { Numbers } from 'enums/numbers';
 
 import QuestionItem from './QuestionItem';
 import { ItemTitle, TestBasicField, TestItemWrapper, TestTitleBox } from './QuestionItem/styled';
 import { AlertWrapper, TestStepWrapper } from './styled';
+
+const convertSecondsToString = (duration: number): string =>
+  new Date(duration * 1000).toISOString().substr(11, 8);
+
+// const handleChangeDuration = (duration: number): string => {};
 
 const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
   isCourseDataLoading ? (
@@ -34,7 +39,8 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
           />
           <TestBasicField
             label="Duration"
-            value={convertTestTimeout(formik.values.test.timeout)}
+            type="time"
+            value={convertSecondsToString(formik.values.test.timeout)}
             id="test.timeout"
             variant="outlined"
             name="test.timeout"
@@ -50,8 +56,25 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
                   {isLastElem(formik.values.test.questions, index) ? (
                     <SkillButton
                       variant="mediumOutlined"
-                      onClick={() => push({})}
-                      disabled={Boolean(formik?.errors.test)}
+                      onClick={() =>
+                        push({
+                          question: '',
+                          answers: [
+                            {
+                              variant: '',
+                              aN: Numbers.one,
+                            },
+                            {
+                              variant: '',
+                              aN: Numbers.two,
+                            },
+                          ],
+                        })
+                      }
+                      disabled={
+                        Boolean(formik.errors?.test?.questions[index]?.question) ||
+                        formik.errors?.test?.questions[index]?.answers
+                      }
                     >
                       {ButtonLabels.addMoreQuestions}
                     </SkillButton>

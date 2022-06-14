@@ -27,7 +27,7 @@ export const FormWrapper = styled(Box)({
 });
 
 export const SectionName = styled(Typography)({
-  fontSize: '30px',
+  fontSize: '26px',
   lineHeight: '130%',
   letterSpacing: '-0.4px',
   color: '#2C2525',
