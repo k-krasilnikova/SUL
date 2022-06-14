@@ -44,6 +44,7 @@ export const SkillProgressWrapper = styled('div')({
 export const SkillInfoText = styled('div')({
   maxWidth: '80px',
   width: '80px',
+  color: '#2C2525',
 });
 
 export const SkillInfoTitle = styled('h5')({

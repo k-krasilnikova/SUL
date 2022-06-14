@@ -11,6 +11,7 @@ import SkillModel from 'db/models/Skill';
 import { NO_FILTER } from 'config/constants';
 import ISkill from 'interfaces/entities/skill';
 import { BadRequestError, NotFoundError } from 'classes/errors/clientErrors';
+import { SortOrder } from 'enums/common';
 
 const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   const skills: IUserSkill[] = await UserSkillModel.find({ user: userId })
@@ -19,7 +20,13 @@ const getUserSkills = async (userId: string): Promise<IUserSkill[]> => {
   return skills;
 };
 
-const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
+const getAllSkillsByGroup = async ({
+  search,
+  order = SortOrder.asc,
+}: {
+  search?: string;
+  order?: SortOrder;
+}) => {
   const skillsByGroup: ISkillGroup[] = await SkillModel.aggregate([
     {
       $lookup: {
@@ -44,6 +51,11 @@ const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
         : NO_FILTER,
     },
     {
+      $sort: {
+        name: SortOrder.asc,
+      },
+    },
+    {
       $group: { _id: '$group', skills: { $push: '$$ROOT' } },
     },
     {
@@ -57,6 +69,11 @@ const getAllSkillsByGroup = async ({ search }: { search?: string }) => {
     },
     {
       $unwind: '$group',
+    },
+    {
+      $sort: {
+        'group.name': order,
+      },
     },
     {
       $project: {

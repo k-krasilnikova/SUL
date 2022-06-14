@@ -1,6 +1,6 @@
-import { INotification } from 'types/notification';
 import { TGroupedSkills, Technologies } from './skill';
 import { IClientCourse } from './clientCourse';
+import { INotification } from './notifications';
 
 export interface IUser {
   _id?: string;

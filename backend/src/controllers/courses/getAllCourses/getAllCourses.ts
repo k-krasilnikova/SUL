@@ -5,6 +5,7 @@ import {
   TGetAllCoursesRequest,
   TGetAllCoursesResponse,
 } from 'interfaces/requests/courses/getAllCourses';
+import { parseCourseQuery } from 'utils/parseQuery/parseCoursesFilters';
 
 const getAllCourses = async (
   req: TGetAllCoursesRequest,
@@ -12,11 +13,16 @@ const getAllCourses = async (
   next: NextFunction,
 ) => {
   try {
-    const params = req.query;
+    const { complexity, order, pageN, ...params } = req.query;
     const { id: userId } = res.locals;
-
-    const allCourses = await getCoursesProvider({ ...params }, userId);
-
+    const parsedFilters = parseCourseQuery({ complexity, order, pageN });
+    const allCourses = await getCoursesProvider(
+      {
+        ...parsedFilters,
+        ...params,
+      },
+      userId,
+    );
     res.json(allCourses);
   } catch (error) {
     next(error);

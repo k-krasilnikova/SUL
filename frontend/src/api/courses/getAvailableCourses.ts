@@ -29,7 +29,7 @@ const useGetAvailableCourses = (
       return availableCoursesResponse;
     },
     {
-      enabled: Boolean(title),
+      refetchOnWindowFocus: false,
       onError: handleSubmitError,
     },
   );

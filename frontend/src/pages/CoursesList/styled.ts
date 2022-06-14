@@ -2,19 +2,16 @@ import { styled, Grid } from '@mui/material';
 
 import theme from 'themeSettings';
 
-export const PageContainer = styled(Grid)({
+export const CoursesContainer = styled(Grid)({
+  maxWidth: '1482px',
+  padding: '16px 30px 24px 0',
+  margin: '0 0 0 -6px',
   [theme.breakpoints.down('xl')]: {
     padding: '16px 24px 16px 14px',
   },
   [theme.breakpoints.down(950)]: {
     padding: '0 8px',
   },
-  [theme.breakpoints.up('xl')]: {
-    padding: '16px 30px 24px 0',
-    margin: '0 0 0 -6px',
-  },
-  maxWidth: '1482px',
-  paddingTop: '16px',
 });
 
 export const GridItem = styled(Grid)({
