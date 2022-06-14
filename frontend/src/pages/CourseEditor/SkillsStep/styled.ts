@@ -47,3 +47,9 @@ export const SkillsTitleWrapper = styled(Box)({
   marginTop: '50px',
   marginBottom: '25px',
 });
+
+export const ButtonsBox = styled(Box)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+});
