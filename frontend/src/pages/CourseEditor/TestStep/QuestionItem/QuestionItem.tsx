@@ -42,6 +42,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
         name={`test.questions[${index}].question`}
         onChange={formik.handleChange}
         onBlur={onFieldBlur}
+        autoComplete="off"
         error={
           formik.touched.test?.questions[index]?.question &&
           Boolean(formik.errors?.test?.questions[index]?.question)
@@ -86,6 +87,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                         formik.touched.test?.questions[index]?.answers?.[key]?.variant &&
                         formik.errors?.test?.questions[index]?.answers?.[key]?.variant
                       }
+                      autoComplete="off"
                     />
                   }
                 />
