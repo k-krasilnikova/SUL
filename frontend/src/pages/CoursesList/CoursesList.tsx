@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { MobileSearch } from 'components/Layout';
+// import { MobileSearch } from 'components/Layout';
 import PageTitle from 'components/PageTitle';
 import Course from 'components/Course';
 import MobileLink from 'components/MobileLink';
@@ -15,7 +15,7 @@ import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { ICourse } from 'types/course';
 import { Loaders } from 'enums/loader';
 
-import { GridItem, MobileSearchWrapper, CoursesContainer } from './styled';
+import { GridItem, CoursesContainer } from './styled';
 import AddCourseButton from './AddCourseButton';
 import CourseActions from './CourseActions';
 import { ICourseProps } from './types';
@@ -42,9 +42,6 @@ const CoursesList: FC<ICourseProps> = ({
       <>
         {isAdmin && <AddCourseButton />}
         <CoursesFilter withStatusSelect={withStatusSelect} haveCourses={Boolean(courses?.length)} />
-        <MobileSearchWrapper>
-          <MobileSearch />
-        </MobileSearchWrapper>
         {isFetching && !isFetchingNextPage ? (
           <Loader type={Loaders.component} />
         ) : courses?.length ? (

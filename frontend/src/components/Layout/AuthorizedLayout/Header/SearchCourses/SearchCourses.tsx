@@ -1,10 +1,11 @@
 import React from 'react';
 import { ClickAwayListener } from '@material-ui/core';
 
-import { SearchResult } from 'components/Layout/components';
 import { ICourse } from 'types/course';
+import { SearchResult } from 'components/Layout/components';
+import { Search as SearchIcon } from '@mui/icons-material';
 
-import { Search, RelativeWrapper } from './styled';
+import { Search, RelativeWrapper, SearchButton } from './styled';
 
 interface Props {
   isSearchOpen: boolean;
@@ -14,6 +15,8 @@ interface Props {
   checkPastedValue: (event: React.ClipboardEvent) => void;
   isSearchLoading: boolean;
   searchInputValue: string;
+  handleMobileSearch: () => void;
+  isMobileSearchOpen: boolean;
   coursesFound?: ICourse[];
 }
 
@@ -26,6 +29,8 @@ const SearchCourses: React.FC<Props> = ({
   checkPastedValue,
   searchInputValue,
   isSearchLoading,
+  handleMobileSearch,
+  isMobileSearchOpen,
 }) => (
   <ClickAwayListener onClickAway={handleSearchClose}>
     <RelativeWrapper>
@@ -36,8 +41,12 @@ const SearchCourses: React.FC<Props> = ({
         onKeyDown={checkSpace}
         onPaste={checkPastedValue}
         value={searchInputValue}
+        isOpen={isMobileSearchOpen}
       />
-      {isSearchOpen && !!searchInputValue.length && (
+      <SearchButton>
+        <SearchIcon fontSize="large" color="disabled" onClick={handleMobileSearch} />
+      </SearchButton>
+      {isSearchOpen && (
         <SearchResult
           coursesFound={coursesFound}
           handleSearchClose={handleSearchClose}

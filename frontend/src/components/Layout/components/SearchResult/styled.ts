@@ -1,6 +1,10 @@
 import { styled, Typography } from '@mui/material';
 
-import { HEADER_HEIGHT_IPAD } from 'components/Layout/AuthorizedLayout/Header/styled';
+import {
+  HEADER_HEIGHT_IPAD,
+  HEADER_HEIGHT_MOBILE,
+  INPUT_HEIGHT_WITH_PADDING,
+} from 'components/Layout/AuthorizedLayout/Header/styled';
 import theme from 'themeSettings';
 
 export const SearchResultWrapper = styled('div')({
@@ -20,10 +24,13 @@ export const SearchResultWrapper = styled('div')({
   [theme.breakpoints.down('xl')]: {
     top: HEADER_HEIGHT_IPAD,
   },
-  [theme.breakpoints.down(950)]: {
-    top: '30px',
+  [theme.breakpoints.down('md')]: {
+    top: `calc(${HEADER_HEIGHT_IPAD} + ${INPUT_HEIGHT_WITH_PADDING})`,
+    // width: '400px',
+    padding: '5px',
   },
   [theme.breakpoints.down('sm')]: {
+    top: `calc(${HEADER_HEIGHT_MOBILE} + ${INPUT_HEIGHT_WITH_PADDING})`,
     maxWidth: '270px',
     padding: '3px',
   },

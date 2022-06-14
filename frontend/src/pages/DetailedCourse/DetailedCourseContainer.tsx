@@ -16,6 +16,8 @@ import {
 } from 'utils/helpers/convertCourseStatusToProgress';
 import { MAX_LENGTH } from 'utils/helpers/shortifyDetailedCourseDescription';
 
+import Loader from 'components/Loader';
+import { Loaders } from 'enums/loader';
 import DetailedCourse from './DetailedCourse';
 import { IDetailedCourseContainerProps } from './types';
 
@@ -25,7 +27,7 @@ const DetailedCourseContainer: FC<IDetailedCourseContainerProps> = ({ page }) =>
 
   const useGetInfo = page === PAGES.coursesList ? useGetCourseInfo : useGetClientCourseInfo;
 
-  const { data: courseData } = useGetInfo(params.courseId as string);
+  const { data: courseData, isLoading: isDataLoading } = useGetInfo(params.courseId as string);
   const { mutate, isLoading } = useApplyCourse();
 
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
@@ -83,7 +85,7 @@ const DetailedCourseContainer: FC<IDetailedCourseContainerProps> = ({ page }) =>
 
   return (
     <>
-      {commonCourseInfo && courseData && (
+      {!isDataLoading && commonCourseInfo && courseData ? (
         <DetailedCourse
           isAdmin={isAdmin}
           navigate={navigate}
@@ -104,6 +106,8 @@ const DetailedCourseContainer: FC<IDetailedCourseContainerProps> = ({ page }) =>
           isProgressBarDisplayed={isProgressBarDisplayed}
           isCourseCompleted={isCourseCompleted}
         />
+      ) : (
+        <Loader type={Loaders.component} />
       )}
     </>
   );

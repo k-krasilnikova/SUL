@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import { MobileSearch } from 'components/Layout';
+// import { MobileSearch } from 'components/Layout';
 import PageTitle from 'components/PageTitle';
 
 import { IDetailedCourse } from './types';
-import { ButtonsWrapper, DetailedCourseWrapper, InnerWrapper, MobileSearchWrapper } from './styled';
+import { ButtonsWrapper, DetailedCourseWrapper, InnerWrapper } from './styled';
 import BackButton from './components/BackButton';
 import CourseTechnologies from './AcquiredSkills';
 import SimilarCourses from './SimilarCourses';
@@ -28,9 +28,9 @@ const DetailedCourse: FC<IDetailedCourse> = ({
           <BackButton page={page} />
           {isAdmin && <EditCourseButton {...props} />}
         </ButtonsWrapper>
-        <MobileSearchWrapper>
+        {/* <MobileSearchWrapper>
           <MobileSearch />
-        </MobileSearchWrapper>
+        </MobileSearchWrapper> */}
         <InnerWrapper>
           <DetailedCourseInfo commonCourseData={commonCourseData} {...props} />
           <DetailedCourseActions

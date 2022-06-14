@@ -27,13 +27,3 @@ export const GridItem = styled(Grid)({
     paddingLeft: 0,
   },
 });
-
-export const MobileSearchWrapper = styled('div')({
-  width: '100%',
-  position: 'relative',
-  margin: '16px 0 8px 0',
-  height: '30px',
-  [theme.breakpoints.up(950)]: {
-    display: 'none',
-  },
-});

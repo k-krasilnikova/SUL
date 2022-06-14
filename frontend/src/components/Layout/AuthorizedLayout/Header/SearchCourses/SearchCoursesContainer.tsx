@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { useSearchAllCourses } from 'api/courses';
-import { useDebounce } from 'hooks';
+import { useDebounce, useToggle } from 'hooks';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
 
 import SearchCourses from './SearchCourses';
 
 const SearchCoursesContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
+  const [isMobileSearchOpen, toggleMobileSearch] = useToggle();
   const [searchInputValue, setSearchInputValue] = useState<string>('');
 
   const debouncedSearchValue = useDebounce(searchInputValue);
@@ -17,17 +18,6 @@ const SearchCoursesContainer: React.FC = () => {
     isLoading: isSearchLoading,
     isFetching,
   } = useSearchAllCourses(debouncedSearchValue);
-
-  // useEffect(() => {
-  //   if (debouncedSearchValue && !isSearchingCourses) {
-  //     if (foundedCourses) {
-  //       setCoursesFound(foundedCourses);
-  //       setSearchOpen(true);
-  //     } else {
-  //       enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar);
-  //     }
-  //   }
-  // }, [debouncedSearchValue, enqueueSnackbar, foundedCourses, isSearchingCourses]);
 
   useEffect(() => {
     if (isFetching) {
@@ -40,14 +30,18 @@ const SearchCoursesContainer: React.FC = () => {
     setSearchOpen(false);
   };
 
+  const handleMobileSearch = () => {
+    handleSearchClose();
+    toggleMobileSearch();
+  };
+
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const formattedValue = formatInputValue(event.target.value);
     setSearchInputValue(formattedValue);
-    // if (!formattedValue.length) {
-    //   setSearchOpen(false);
-    // }
+    if (!formattedValue.length) {
+      setSearchOpen(false);
+    }
   };
-  console.log(isFetching);
   const checkSpace = (event: React.KeyboardEvent) => {
     checkWhitespace(event, searchInputValue);
   };
@@ -58,7 +52,6 @@ const SearchCoursesContainer: React.FC = () => {
     const formattedValue = inputValue.split(/\s+/).join(' ').trimStart().trimEnd();
     setSearchInputValue(formattedValue);
   };
-  console.log(isSearchLoading);
   return (
     <SearchCourses
       isSearchOpen={isSearchOpen}
@@ -69,6 +62,8 @@ const SearchCoursesContainer: React.FC = () => {
       checkPastedValue={checkPastedValue}
       searchInputValue={searchInputValue}
       isSearchLoading={isSearchLoading}
+      handleMobileSearch={handleMobileSearch}
+      isMobileSearchOpen={isMobileSearchOpen}
     />
   );
 };
