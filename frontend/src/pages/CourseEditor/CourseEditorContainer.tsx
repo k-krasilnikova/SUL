@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useState } from 'react';
+import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
@@ -13,6 +13,7 @@ import {
   SECONDS_PARAMETER,
 } from 'constants/courseEditor';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { Numbers } from 'enums/numbers';
 import { useSnackbar } from 'notistack';
 import { courseEditorValidationSchema } from 'validations/schemas';
 
@@ -23,6 +24,7 @@ import { formatFieldValue, formatValuesForSubmit } from './utils';
 const CourseEditorContainer: FC = () => {
   const params = useParams();
   const { enqueueSnackbar } = useSnackbar();
+  const courseEditorRef = useRef<HTMLElement>(null);
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
 
   const { mutate: editCourseDataMutate, isLoading: isEditCourseDataMutateLoading } =
@@ -87,6 +89,12 @@ const CourseEditorContainer: FC = () => {
     formik.setFieldValue(event.target.name, totalSeconds);
   };
 
+  const scrollToTop = () => {
+    if (courseEditorRef.current) {
+      courseEditorRef.current.scrollTo({ top: Numbers.zero });
+    }
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -99,6 +107,8 @@ const CourseEditorContainer: FC = () => {
         onFieldBlur={onFieldBlur}
         editCourseDataMutate={editCourseDataMutate}
         isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}
+        scrollToTop={scrollToTop}
+        courseEditorRef={courseEditorRef}
       />
     </FormikProvider>
   );
