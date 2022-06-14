@@ -10,8 +10,9 @@ type TSkillShortened = Pick<ISkill, '_id' | 'name' | 'maxScore'>;
 type TCourseTechnology = Pick<ISkill, '_id' | 'name'> &
   Pick<ISkill, 'maxScore'> & { points: number };
 type TCourseMaterialShortened = {
-  type: MaterialContentType;
-  material: string;
+  content: { type: MaterialContentType; material: string }[];
+  // type: MaterialContentType;
+  // material: string;
   exercise?: ICourseExercise;
 };
 

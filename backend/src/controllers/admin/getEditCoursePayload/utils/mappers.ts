@@ -21,8 +21,7 @@ const mapCourseMaterials = (
   materials.map((courseMaterial) => {
     const [{ type, material }] = courseMaterial.content;
     return {
-      type,
-      material,
+      content: [{ type, material }],
       exercise: courseMaterial.exercise,
     };
   });
