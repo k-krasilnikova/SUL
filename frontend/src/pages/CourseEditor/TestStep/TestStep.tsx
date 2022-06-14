@@ -5,6 +5,7 @@ import { Alert } from '@mui/material';
 
 import Loader from 'components/Loader';
 import { EditorTitles } from 'constants/courseEditor';
+import { Numbers } from 'enums/numbers';
 import { IStepProps } from 'pages/CourseEditor/types';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
@@ -50,7 +51,22 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
                   {isLastElem(formik.values.test.questions, index) ? (
                     <SkillButton
                       variant="mediumOutlined"
-                      onClick={() => push({})}
+                      onClick={() =>
+                        push({
+                          question: '',
+                          correctAnswer: Numbers.one,
+                          answers: [
+                            {
+                              variant: '',
+                              aN: Numbers.one,
+                            },
+                            {
+                              variant: '',
+                              aN: Numbers.two,
+                            },
+                          ],
+                        })
+                      }
                       disabled={Boolean(formik?.errors.test)}
                     >
                       {ButtonLabels.addMoreQuestions}

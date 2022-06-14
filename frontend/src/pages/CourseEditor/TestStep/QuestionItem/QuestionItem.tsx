@@ -43,6 +43,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
         onBlur={onFieldBlur}
         error={Boolean(formik.errors?.test?.questions[index]?.question)}
         helperText={formik.errors?.test?.questions[index]?.question}
+        autoComplete="off"
       />
       <Field select disabled value="radio" onChange={formik.handleChange}>
         <MenuItem value="input">{BUTTON_VARIANT.input}</MenuItem>
@@ -72,6 +73,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                     onBlur={onFieldBlur}
                     error={formik.errors?.test?.questions[index]?.answers?.[key]?.variant}
                     helperText={formik.errors?.test?.questions[index]?.answers?.[key]?.variant}
+                    autoComplete="off"
                   />
                 }
               />
