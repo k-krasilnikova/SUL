@@ -12,6 +12,7 @@ import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { convertTestTimeout } from 'utils/helpers/convertTime';
 import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
 import { ButtonLabels } from 'constants/ButtonLabels';
+import { Numbers } from 'enums/numbers';
 
 import QuestionItem from './QuestionItem';
 import { ItemTitle, TestBasicField, TestItemWrapper, TestTitleBox } from './QuestionItem/styled';
@@ -67,7 +68,10 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
                           ],
                         })
                       }
-                      disabled={Boolean(formik?.errors.test)}
+                      disabled={
+                        Boolean(formik.errors?.test?.questions[index]?.question) ||
+                        formik.errors?.test?.questions[index]?.answers
+                      }
                     >
                       {ButtonLabels.addMoreQuestions}
                     </SkillButton>
