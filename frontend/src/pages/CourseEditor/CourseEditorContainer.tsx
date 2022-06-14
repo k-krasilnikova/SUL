@@ -5,6 +5,7 @@ import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useState } from 'react'
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
+import { useGetSkills } from 'api/skills';
 import { useGetCourseEditorData, useEditCourseData } from 'api/admin';
 import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
@@ -74,6 +75,19 @@ const CourseEditorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
+  const { data: courseCreatorSkillsData } = useGetSkills();
+
+  let ungroupedSkills = {};
+  if (courseCreatorSkillsData) {
+    ungroupedSkills = courseCreatorSkillsData.reduce(
+      (acc, group) => ({
+        ...acc,
+        ...group.skills.reduce((j, o) => ({ [o._id]: o, ...j }), {}),
+      }),
+      {},
+    );
+  }
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -83,6 +97,7 @@ const CourseEditorContainer: FC = () => {
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         onFieldBlur={onFieldBlur}
+        ungroupedSkills={ungroupedSkills}
         editCourseDataMutate={editCourseDataMutate}
         isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}
       />

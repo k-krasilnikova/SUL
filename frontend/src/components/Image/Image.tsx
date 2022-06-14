@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { imageDefault } from 'icons';
 
@@ -6,11 +6,12 @@ import { ImageContainer, CurrentImage } from './styled';
 
 interface Props {
   imageUrl?: string;
+  newImage?: boolean;
 }
 
-const Image: React.FC<Props> = ({ imageUrl }) => (
+const Image: FC<Props> = ({ imageUrl, newImage }) => (
   <ImageContainer>
-    <CurrentImage src={imageUrl || imageDefault} />
+    <CurrentImage src={imageUrl || newImage ? imageUrl : imageDefault} />
   </ImageContainer>
 );
 

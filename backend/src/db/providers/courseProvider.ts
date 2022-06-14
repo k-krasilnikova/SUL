@@ -15,7 +15,7 @@ import { ICourse } from 'interfaces/entities/courses';
 import { TCourseFields } from 'interfaces/entities/clientCourses';
 import { ICoursePopulated, ICourseWithStatus } from 'interfaces/courses/query';
 import { IPreparedCourseDataPayload } from 'interfaces/requests/common/payloads';
-import { IGetCoursesRequestQuery } from 'interfaces/requests/common/queries';
+import { TGetCoursesParams } from 'interfaces/requests/common/queries';
 import { SortOrder } from 'enums/common';
 import decodeAndFormatSearchParams from 'utils/decode/decodeSearchParams';
 import { convertToCourseDuration } from 'utils/typeConversion/datetimeTypeConversions';
@@ -92,19 +92,43 @@ const getCoursesProvider = async (
   {
     pageN,
     title,
+    technologies,
+    complexity,
     orderField = DEFAULT_ORDER_FIELD,
     order = SortOrder.asc,
     nPerPage = DEFAULT_N_PER_PAGE,
-  }: IGetCoursesRequestQuery,
+  }: TGetCoursesParams,
   userId: string,
 ): Promise<ICourseWithStatus[]> => {
   try {
     const sortingField = { [orderField]: order };
     const aggregation: ICourseWithStatusDb[] = await CourseModel.aggregate([
       {
-        $match: title
-          ? { title: { $regex: new RegExp(decodeAndFormatSearchParams(title)), $options: 'i' } }
-          : NO_FILTER,
+        $lookup: {
+          from: 'skills',
+          localField: 'technologies.skill',
+          foreignField: '_id',
+          pipeline: [{ $project: { name: 1 } }],
+          as: 'techsMapSkills',
+        },
+      },
+      {
+        $match: {
+          $and: [
+            title
+              ? {
+                  title: {
+                    $regex: new RegExp(decodeAndFormatSearchParams(title)),
+                    $options: 'i',
+                  },
+                }
+              : NO_FILTER,
+            complexity && complexity.length ? { complexity: { $in: complexity } } : NO_FILTER,
+            technologies && technologies.length
+              ? { 'techsMapSkills.name': { $in: technologies } }
+              : NO_FILTER,
+          ],
+        },
       },
       generateCourseStatusLookup(userId),
       {
@@ -118,6 +142,11 @@ const getCoursesProvider = async (
       },
       {
         $limit: Number(nPerPage),
+      },
+      {
+        $project: {
+          techsMapSkills: 0,
+        },
       },
     ]);
 

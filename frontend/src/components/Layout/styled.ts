@@ -26,6 +26,8 @@ export const GridMenu = styled(Grid)<{ isSqueeze?: boolean }>(({ isSqueeze }) =>
 }));
 
 export const PageWrapper = styled(Grid)<{ isSqueeze?: boolean }>(({ isSqueeze }) => ({
+  display: 'flex',
+  flexDirection: 'column',
   height: `calc(100vh - ${HEADER_HEIGHT})`,
   width: `calc(100% - ${MENU_WIDTH})`,
   overflowY: 'auto',

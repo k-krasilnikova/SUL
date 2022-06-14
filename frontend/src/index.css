@@ -5,7 +5,6 @@
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
-  text-transform: none !important;
 }
 
 ::-webkit-scrollbar {

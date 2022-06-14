@@ -5,6 +5,7 @@ import { TSizeVariants } from './size';
 export type TVariantProgressBar = typeof VARIANTS[keyof typeof VARIANTS];
 
 export interface IProgressProps {
+  hideOnTablets?: boolean;
   value?: number;
   color?: string;
   textColor?: string;

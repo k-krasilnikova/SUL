@@ -15,8 +15,9 @@ const ProgressBar: React.FC<IProgressProps> = ({
   size,
   trailColor,
   variant,
+  hideOnTablets,
 }) => (
-  <ProgressBarBox size={size}>
+  <ProgressBarBox hideOnTablets={hideOnTablets} size={size}>
     <CircularProgressbar
       value={value || 0}
       text={text}
