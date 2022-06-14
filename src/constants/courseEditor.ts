@@ -119,10 +119,14 @@ export const MIN_MATERIAL_LENGTH = 10;
 export const MAX_MATERIAL_LENGTH = 5000;
 
 export const MIN_TEST_QUESTIONS_AMOUNT = 5;
+export const MIN_TEST_ANSWERS_AMOUNT = 1;
 export const MIN_SKILLS_AMOUNT = 1;
 
 export const MIN_QUESTION_LENGTH = 10;
 export const MAX_QUESTION_LENGTH = 1000;
+
+export const MIN_EXERCISE_TITLE_LENGTH = 2;
+export const MAX_EXERCISE_TITLE_LENGTH = 400;
 
 export const EXERCISE_TITLE_LENGTH_REGEX = /.{2,400}/;
 export const EXERCISE_IS_NOT_NUMBERS_REGEX = /(?!^\d+$)^.+$/;
