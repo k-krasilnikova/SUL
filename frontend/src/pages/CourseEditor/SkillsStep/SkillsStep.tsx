@@ -37,7 +37,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
       <SkillsTitleWrapper>
         <SkillsText>{EditorTitles.skillDescription}</SkillsText>
       </SkillsTitleWrapper>
-      <FieldArray name="technologies">
+      <FieldArray name="technologies" validateOnChange={false}>
         {({ remove, push }) => (
           <>
             {formik.values.technologies.map((technology, index) => (
@@ -59,7 +59,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                           ? `technologies[${index}].name`
                           : `technologies[${index}]`
                       }
-                      onChange={isCreateCourseMode ? formik.handleChange : handleChangeTechnology}
+                      onChange={handleChangeTechnology}
                       error={Boolean(formik.errors?.technologies?.[index]?.name)}
                       helperText={formik.errors?.technologies?.[index]?.name}
                     >
@@ -77,8 +77,14 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       id={`technologies[${index}].points`}
                       name={`technologies[${index}].points`}
                       onChange={formik.handleChange}
-                      error={Boolean(formik.errors?.technologies?.[index]?.points)}
-                      helperText={formik.errors?.technologies?.[index]?.points}
+                      error={
+                        formik.touched.technologies?.[index]?.points &&
+                        Boolean(formik.errors?.technologies?.[index]?.points)
+                      }
+                      helperText={
+                        formik.touched.technologies?.[index]?.points &&
+                        formik.errors?.technologies?.[index]?.points
+                      }
                     >
                       {isCreateCourseMode
                         ? getPointsArr(
@@ -101,7 +107,12 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                     <SkillButton
                       variant="mediumOutlined"
                       disabled={Boolean(formik.errors.technologies)}
-                      onClick={() => push({})}
+                      onClick={() =>
+                        push({
+                          name: '',
+                          points: '',
+                        })
+                      }
                     >
                       {ButtonLabels.addMoreSkills}
                     </SkillButton>

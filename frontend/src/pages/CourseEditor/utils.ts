@@ -27,6 +27,7 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
   const formattedValues = {
     avatar: values.avatar,
     title: values.title,
+    complexity: values.complexity,
     description: values.description,
     materials: [
       {

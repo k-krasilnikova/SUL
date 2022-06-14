@@ -43,12 +43,13 @@ export interface IFormik {
     technologies: { _id: string; name: string; points: number; maxScore: number }[];
     materials: { type: string; material: string }[];
     test: {
+      title: string;
       _id: string;
       questions: {
         correctAnswer: number;
         qN: number;
         question: string;
-        answers: { aN: number; variant: string; _id: string }[];
+        answers: { aN: number; variant: string }[];
       }[];
     };
     title: string;
@@ -75,12 +76,14 @@ export interface IFormik {
   touched: {
     title?: boolean;
     description?: boolean;
+    complexity?: boolean;
     materials?: any;
     technologies?: any;
     test?: any;
   };
   errors: {
     title?: string;
+    complexity?: string;
     description?: string;
     materials?: any;
     technologies?: any;
@@ -133,6 +136,7 @@ export interface IFormValues {
   avatar: string;
   title: string;
   description: string;
+  complexity: number;
   materials: {
     type: string;
     material: string;
@@ -145,6 +149,7 @@ export interface IFormattedValues {
   avatar: string;
   title: string;
   description: string;
+  complexity: number;
   materials: {
     content: {
       type: string;

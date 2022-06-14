@@ -28,8 +28,13 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
         id={`materials[${index}].type`}
         name={`materials[${index}].type`}
         onChange={formik.handleChange}
-        error={Boolean(formik.errors?.materials?.[index]?.type)}
-        helperText={formik.errors?.materials?.[index]?.type}
+        error={
+          formik.touched.materials?.[index]?.type &&
+          Boolean(formik.errors?.materials?.[index]?.type)
+        }
+        helperText={
+          formik.touched.materials?.[index]?.type && formik.errors?.materials?.[index]?.type
+        }
       >
         {LESSONS_TYPE.map((type) => (
           <MenuItem key={type.value} value={type.value}>
@@ -47,8 +52,14 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
             placeholder={material.material}
             value={material.material}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors?.materials?.[index]?.material)}
-            helperText={formik.errors?.materials?.[index]?.material}
+            error={
+              formik.touched.materials?.[index]?.material &&
+              Boolean(formik.errors?.materials?.[index]?.material)
+            }
+            helperText={
+              formik.touched.materials?.[index]?.material &&
+              formik.errors?.materials?.[index]?.material
+            }
           />
         ) : (
           <InputTextArea
@@ -58,8 +69,14 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
             value={material.material}
             onChange={formik.handleChange}
             onBlur={onFieldBlur}
-            error={Boolean(formik.errors?.materials?.[index]?.material)}
-            helperText={formik.errors?.materials?.[index]?.material}
+            error={
+              formik.touched.materials?.[index]?.material &&
+              Boolean(formik.errors?.materials?.[index]?.material)
+            }
+            helperText={
+              formik.touched.materials?.[index]?.material &&
+              formik.errors?.materials?.[index]?.material
+            }
           />
         )}
         <InputTitle>{EditorTitles.exerciseTitle}</InputTitle>

@@ -42,15 +42,15 @@ export const LESSONS_TYPE_TITLE_MAP: { [key: string]: string } = {
 
 export const INITIAL_VALUES = {
   title: '',
-  complexity: 0,
-  avatar: '',
+  complexity: 1,
+  avatar: 'https://cdn.pixabay.com/photo/2015/03/10/17/23/youtube-667451_960_720.png',
   description: '',
   technologies: [
     {
-      _id: '',
-      name: '',
-      maxScore: 0,
-      points: 0,
+      _id: '6299da7d50945a674b87bedf',
+      name: '6299da7d50945a674b87bedf',
+      maxScore: 3,
+      points: 3,
     },
   ],
   materials: [
@@ -67,16 +67,15 @@ export const INITIAL_VALUES = {
           {
             aN: 1,
             variant: '',
-            _id: '',
           },
         ],
-        correctAnswer: 0,
-        qN: 0,
+        correctAnswer: 1,
+        qN: 1,
         question: '',
         _id: '',
       },
     ],
-    timeout: 0,
+    timeout: 900,
     title: '',
   },
   skillsById: {},

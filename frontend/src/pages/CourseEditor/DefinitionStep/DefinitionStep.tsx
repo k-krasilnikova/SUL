@@ -48,11 +48,12 @@ const DefinitionStep: FC<IStepProps> = ({
           />
           <Field
             select
-            value={formik.values.complexity || ''}
+            value={formik.values.complexity}
             onChange={formik.handleChange}
             variant="outlined"
             id="complexity"
             name="complexity"
+            error={Boolean(formik.errors?.complexity)}
           >
             {COURSE_COMPLEXITY.map((complexity) => (
               <MenuItem key={complexity.value} value={complexity.value}>
