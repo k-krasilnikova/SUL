@@ -10,6 +10,7 @@ import { IStepProps } from 'pages/CourseEditor/types';
 
 import LessonItem from './LessonItem';
 import { LessonsStepWrapper, LessonButton } from './styled';
+import { ButtonsBox } from '../SkillsStep/styled';
 
 const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, ...props }) =>
   isCourseDataLoading ? (
@@ -26,19 +27,20 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
                 // eslint-disable-next-line react/no-array-index-key
                 <LessonsStepWrapper key={index}>
                   <LessonItem material={material} index={index} formik={formik} {...props} />
-                  {isLastElem(formik.values.materials, index) ? (
-                    <LessonButton
-                      variant="mediumOutlined"
-                      onClick={() => push({})}
-                      disabled={Boolean(formik.errors.materials)}
-                    >
-                      {ButtonLabels.addMoreLessons}
-                    </LessonButton>
-                  ) : (
+                  <ButtonsBox>
                     <LessonButton variant="mediumOutlined" onClick={() => remove(index)}>
                       {ButtonLabels.removeLesson}
                     </LessonButton>
-                  )}
+                    {isLastElem(formik.values.materials, index) && (
+                      <LessonButton
+                        variant="mediumOutlined"
+                        onClick={() => push({})}
+                        disabled={Boolean(formik.errors.materials)}
+                      >
+                        {ButtonLabels.addMoreLessons}
+                      </LessonButton>
+                    )}
+                  </ButtonsBox>
                 </LessonsStepWrapper>
               ))}
           </>

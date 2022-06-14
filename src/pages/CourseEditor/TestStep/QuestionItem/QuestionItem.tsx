@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { FieldArray } from 'formik';
 import { MenuItem } from '@mui/material';
-import { Add, Remove } from '@mui/icons-material';
+import { Add } from '@mui/icons-material';
 
 import { BUTTON_VARIANT, EditorTitles } from 'constants/courseEditor';
 import { Numbers } from 'enums/numbers';
@@ -10,8 +10,7 @@ import { IQuestionItemProps } from 'pages/CourseEditor/types';
 import { Field } from 'pages/CourseEditor/DefinitionStep/styled';
 
 import {
-  AddRemoveAnswerButton,
-  ButtonsWrapper,
+  AddAnswerButton,
   QuestionWrapper,
   QuestionTitle,
   QuestionInputBox,
@@ -20,6 +19,7 @@ import {
   RadioControlLabel,
   InputAnswer,
   InputText,
+  ButtonsWrapper,
 } from './styled';
 
 const QuestionItem: FC<IQuestionItemProps> = ({
@@ -55,7 +55,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
       onChange={handleChangeCorrectAnswer}
     >
       <FieldArray name={`test.questions[${index}].answers`}>
-        {({ remove, push }) => (
+        {({ push }) => (
           <>
             {question?.answers?.map((answer, key) => (
               <RadioControlLabel
@@ -77,8 +77,9 @@ const QuestionItem: FC<IQuestionItemProps> = ({
               />
             ))}
             <ButtonsWrapper>
-              <AddRemoveAnswerButton
+              <AddAnswerButton
                 variant="mediumOutlined"
+                disabled={formik.errors.test?.questions[index]?.answers}
                 onClick={() =>
                   push({
                     variant: '',
@@ -87,13 +88,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                 }
               >
                 <Add color="primary" fontSize="medium" />
-              </AddRemoveAnswerButton>
-              <AddRemoveAnswerButton
-                variant="mediumOutlined"
-                onClick={() => remove(question?.answers.length - Numbers.one)}
-              >
-                <Remove color="primary" fontSize="medium" />
-              </AddRemoveAnswerButton>
+              </AddAnswerButton>
             </ButtonsWrapper>
           </>
         )}

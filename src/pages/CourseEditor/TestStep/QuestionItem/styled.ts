@@ -22,7 +22,7 @@ export const TestTitleBox = styled(Box)({
 export const QuestionWrapper = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
-  margin: '40px 0',
+  margin: '30px 0 0 0',
 });
 
 export const QuestionTitle = styled(Box)({
@@ -84,14 +84,21 @@ export const TestBasicField = styled(TextField)({
   },
 });
 
-export const AddRemoveAnswerButton = styled(SkillButton)({
+export const AddAnswerButton = styled(SkillButton)({
   width: '50px',
   height: '50px',
   border: 'none',
+  '&.MuiButton-root.Mui-disabled': {
+    backgroundColor: '#FFF',
+    border: 'none',
+    '.MuiSvgIcon-root': {
+      color: '#131313',
+    },
+  },
 });
 
 export const ButtonsWrapper = styled(Box)({
   display: 'flex',
   alignSelf: 'start',
-  marginTop: '10px',
+  marginLeft: '-23px',
 });

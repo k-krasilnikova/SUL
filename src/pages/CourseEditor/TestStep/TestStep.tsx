@@ -8,7 +8,7 @@ import { EditorTitles } from 'constants/courseEditor';
 import { IStepProps } from 'pages/CourseEditor/types';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
-import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
+import { ButtonsBox, SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { Numbers } from 'enums/numbers';
 
@@ -54,36 +54,37 @@ const TestStep: FC<IStepProps> = ({
               {formik.values.test?.questions?.map((question, index) => (
                 <TestStepWrapper key={index}>
                   <QuestionItem formik={formik} question={question} index={index} {...props} />
-                  {isLastElem(formik.values.test.questions, index) ? (
-                    <SkillButton
-                      variant="mediumOutlined"
-                      onClick={() =>
-                        push({
-                          question: '',
-                          answers: [
-                            {
-                              variant: '',
-                              aN: Numbers.one,
-                            },
-                            {
-                              variant: '',
-                              aN: Numbers.two,
-                            },
-                          ],
-                        })
-                      }
-                      disabled={
-                        Boolean(formik.errors?.test?.questions[index]?.question) ||
-                        formik.errors?.test?.questions[index]?.answers
-                      }
-                    >
-                      {ButtonLabels.addMoreQuestions}
-                    </SkillButton>
-                  ) : (
+                  <ButtonsBox>
                     <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
                       {ButtonLabels.removeQuestion}
                     </SkillButton>
-                  )}
+                    {isLastElem(formik.values.test.questions, index) && (
+                      <SkillButton
+                        variant="mediumOutlined"
+                        onClick={() =>
+                          push({
+                            question: '',
+                            answers: [
+                              {
+                                variant: '',
+                                aN: Numbers.one,
+                              },
+                              {
+                                variant: '',
+                                aN: Numbers.two,
+                              },
+                            ],
+                          })
+                        }
+                        disabled={
+                          Boolean(formik.errors?.test?.questions[index]?.question) ||
+                          formik.errors?.test?.questions[index]?.answers
+                        }
+                      >
+                        {ButtonLabels.addMoreQuestions}
+                      </SkillButton>
+                    )}
+                  </ButtonsBox>
                 </TestStepWrapper>
               ))}
             </>

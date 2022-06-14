@@ -11,6 +11,7 @@ import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 
 import {
+  ButtonsBox,
   InnerWrapper,
   SkillButton,
   SkillField,
@@ -80,19 +81,20 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                         ))}
                       </SkillField>
                     </InnerWrapper>
-                    {isLastElem(formik.values.technologies, index) ? (
-                      <SkillButton
-                        variant="mediumOutlined"
-                        disabled={Boolean(formik.errors.technologies)}
-                        onClick={() => push({})}
-                      >
-                        {ButtonLabels.addMoreSkills}
-                      </SkillButton>
-                    ) : (
+                    <ButtonsBox>
                       <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
                         {ButtonLabels.removeSkill}
                       </SkillButton>
-                    )}
+                      {isLastElem(formik.values.technologies, index) && (
+                        <SkillButton
+                          variant="mediumOutlined"
+                          disabled={Boolean(formik.errors.technologies)}
+                          onClick={() => push({})}
+                        >
+                          {ButtonLabels.addMoreSkills}
+                        </SkillButton>
+                      )}
+                    </ButtonsBox>
                   </>
                 </SkillWrapper>
               ))}
