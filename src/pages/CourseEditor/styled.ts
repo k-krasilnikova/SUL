@@ -32,3 +32,8 @@ export const SectionName = styled(Typography)({
   letterSpacing: '-0.4px',
   color: '#2C2525',
 });
+
+export const PageWrapper = styled(Box)({
+  maxHeight: '100%',
+  overflowY: 'scroll',
+});

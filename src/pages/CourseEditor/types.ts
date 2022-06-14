@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent } from 'react';
+import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent, RefObject } from 'react';
 
 import { IQuestionObject, ITestItem } from 'types/test';
 
@@ -100,9 +100,11 @@ export interface ISkillsStepProps extends IStepProps {
 }
 
 export interface ICourseEditorProps extends ISkillsStepProps {
+  scrollToTop: () => void;
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
   editCourseDataMutate?: (courseId: string) => void;
   isEditCourseDataMutateLoading?: boolean;
+  courseEditorRef?: RefObject<HTMLElement>;
 }
 
 export interface ILessonItemProps {

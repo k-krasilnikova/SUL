@@ -12,26 +12,28 @@ import SkillsStep from './SkillsStep';
 import LessonsStep from './LessonsStep';
 import TestStep from './TestStep';
 import { ICourseEditorProps } from './types';
-import { BackButton, InnerWrapper } from './styled';
+import { BackButton, InnerWrapper, PageWrapper } from './styled';
 
-const CourseEditor: FC<ICourseEditorProps> = ({ courseData, ...props }) => (
+const CourseEditor: FC<ICourseEditorProps> = ({ courseData, courseEditorRef, ...props }) => (
   <PageTitle title="Course Editor">
-    <InnerWrapper>
-      <BackButton
-        variant="medium"
-        color="primary"
-        component={Link}
-        to={transformRoute(PATHS.courseDetails, courseData?._id)}
-      >
-        {ButtonLabels.back}
-      </BackButton>
-      <EditorTabs {...props}>
-        <DefinitionStep courseData={courseData} {...props} />
-        <SkillsStep courseData={courseData} {...props} />
-        <LessonsStep courseData={courseData} {...props} />
-        <TestStep courseData={courseData} {...props} />
-      </EditorTabs>
-    </InnerWrapper>
+    <PageWrapper ref={courseEditorRef}>
+      <InnerWrapper>
+        <BackButton
+          variant="medium"
+          color="primary"
+          component={Link}
+          to={transformRoute(PATHS.courseDetails, courseData?._id)}
+        >
+          {ButtonLabels.back}
+        </BackButton>
+        <EditorTabs {...props}>
+          <DefinitionStep courseData={courseData} {...props} />
+          <SkillsStep courseData={courseData} {...props} />
+          <LessonsStep courseData={courseData} {...props} />
+          <TestStep courseData={courseData} {...props} />
+        </EditorTabs>
+      </InnerWrapper>
+    </PageWrapper>
   </PageTitle>
 );
 
