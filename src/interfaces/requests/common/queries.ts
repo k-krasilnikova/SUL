@@ -33,6 +33,7 @@ interface ITitleQuery {
 
 interface ISearchQuery {
   search: string;
+  order?: SortOrder;
 }
 
 export { IGetCoursesRequestQuery, IStageQuery, ITitleQuery, ISearchQuery, TGetCoursesParams };
