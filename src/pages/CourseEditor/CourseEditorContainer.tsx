@@ -6,7 +6,12 @@ import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
 import { useGetCourseEditorData, useEditCourseData } from 'api/admin';
-import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
+import {
+  INITIAL_NUMBER_POINT,
+  INITIAL_VALUES,
+  RADIX_PARAMETER,
+  SECONDS_PARAMETER,
+} from 'constants/courseEditor';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { useSnackbar } from 'notistack';
 import { courseEditorValidationSchema } from 'validations/schemas';
@@ -74,6 +79,14 @@ const CourseEditorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
+  const handleChangeDuration = (event: BaseSyntheticEvent) => {
+    const durationString = event.target.value;
+    const [hours, minutes] = durationString.split(':');
+    const totalSeconds =
+      Number(hours) * SECONDS_PARAMETER * SECONDS_PARAMETER + Number(minutes) * SECONDS_PARAMETER;
+    formik.setFieldValue(event.target.name, totalSeconds);
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -82,6 +95,7 @@ const CourseEditorContainer: FC = () => {
         formik={formik}
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
+        handleChangeDuration={handleChangeDuration}
         onFieldBlur={onFieldBlur}
         editCourseDataMutate={editCourseDataMutate}
         isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}

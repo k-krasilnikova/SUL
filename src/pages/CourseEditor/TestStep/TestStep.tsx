@@ -15,13 +15,14 @@ import { Numbers } from 'enums/numbers';
 import QuestionItem from './QuestionItem';
 import { ItemTitle, TestBasicField, TestItemWrapper, TestTitleBox } from './QuestionItem/styled';
 import { AlertWrapper, TestStepWrapper } from './styled';
+import { convertSecondsToString } from '../utils';
 
-const convertSecondsToString = (duration: number): string =>
-  new Date(duration * 1000).toISOString().substr(11, 8);
-
-// const handleChangeDuration = (duration: number): string => {};
-
-const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
+const TestStep: FC<IStepProps> = ({
+  formik,
+  isCourseDataLoading,
+  handleChangeDuration,
+  ...props
+}) =>
   isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
@@ -44,7 +45,7 @@ const TestStep: FC<IStepProps> = ({ formik, isCourseDataLoading, ...props }) =>
             id="test.timeout"
             variant="outlined"
             name="test.timeout"
-            onChange={formik.handleChange}
+            onChange={handleChangeDuration}
           />
         </TestTitleBox>
         <FieldArray name="test.questions">

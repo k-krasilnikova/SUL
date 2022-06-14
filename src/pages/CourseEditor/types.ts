@@ -92,6 +92,7 @@ export interface IStepProps {
   isCourseDataLoading?: boolean;
   courseData?: ICourseEditorResponse;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
+  handleChangeDuration?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ISkillsStepProps extends IStepProps {
