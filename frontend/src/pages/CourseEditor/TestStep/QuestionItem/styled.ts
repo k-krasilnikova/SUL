@@ -37,6 +37,10 @@ export const QuestionTitle = styled(Box)({
 export const QuestionInputBox = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
+  marginBottom: '10px',
+  '& .MuiFormHelperText-root': {
+    marginRight: 0,
+  },
 });
 
 export const RadioButtonBox = styled(RadioGroup)({
