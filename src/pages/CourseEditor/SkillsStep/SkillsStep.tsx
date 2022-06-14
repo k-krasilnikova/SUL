@@ -63,14 +63,14 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       }
                       onChange={isCreateCourseMode ? formik.handleChange : handleChangeTechnology}
                       onBlur={onSkillBlur}
-                       error={
-                          formik.touched.technologies?.[index]?.name &&
-                          Boolean(formik.errors?.technologies?.[index]?.name)
-                        }
-                        helperText={
-                          formik.touched.technologies?.[index]?.name &&
-                          formik.errors?.technologies?.[index]?.name
-                        }
+                      error={
+                        formik.touched.technologies?.[index]?.name &&
+                        Boolean(formik.errors?.technologies?.[index]?.name)
+                      }
+                      helperText={
+                        formik.touched.technologies?.[index]?.name &&
+                        formik.errors?.technologies?.[index]?.name
+                      }
                     >
                       {Object.values(ungroupedSkills).map((skill) => (
                         <MenuItem key={skill._id} value={skill._id}>
@@ -88,13 +88,13 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       onChange={formik.handleChange}
                       onBlur={onSkillPointsBlur}
                       error={
-                          formik.touched.technologies?.[index]?.points &&
-                          Boolean(formik.errors?.technologies?.[index]?.points)
-                        }
-                        helperText={
-                          formik.touched.technologies?.[index]?.points &&
-                          formik.errors?.technologies?.[index]?.points
-                        }
+                        formik.touched.technologies?.[index]?.points &&
+                        Boolean(formik.errors?.technologies?.[index]?.points)
+                      }
+                      helperText={
+                        formik.touched.technologies?.[index]?.points &&
+                        formik.errors?.technologies?.[index]?.points
+                      }
                     >
                       {isCreateCourseMode
                         ? getPointsArr(
@@ -117,12 +117,12 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                     <SkillButton
                       variant="mediumOutlined"
                       disabled={Boolean(formik.errors.technologies)}
-                       onClick={() =>
-                          push({
-                            name: '',
-                            points: '',
-                          })
-                        }
+                      onClick={() =>
+                        push({
+                          name: '',
+                          points: '',
+                        })
+                      }
                     >
                       {ButtonLabels.addMoreSkills}
                     </SkillButton>
