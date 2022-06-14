@@ -15,21 +15,23 @@ const SearchResultItemContainer: React.FC<ISearchResultItemContainer> = ({
 }) => {
   const [courseId, setCourseId] = useState<string>('');
   const navigate = useNavigate();
-  const { data: foundInMyCourse } = useGetClientCourseInfo(courseId, true);
+  const { data: foundInMyCourse, isFetched } = useGetClientCourseInfo(courseId, true);
 
-  console.log(foundInMyCourse);
   const handleSelectFoundCourse = (event: React.MouseEvent<HTMLElement>) => {
+    if (!course.status) {
+      navigate(transformRoute(PATHS.courseDetails, event.currentTarget.id));
+      handleSearchClose();
+      return;
+    }
     setCourseId(event.currentTarget.id);
-    handleSearchClose();
   };
 
   useEffect(() => {
-    const navigatePath = foundInMyCourse?._id
-      ? transformRoute(PATHS.myCourseDetails, foundInMyCourse._id)
-      : transformRoute(PATHS.courseDetails, courseId);
-
-    navigate(navigatePath);
-  }, [courseId, foundInMyCourse, navigate]);
+    if (isFetched && foundInMyCourse?._id) {
+      navigate(transformRoute(PATHS.myCourseDetails, foundInMyCourse._id));
+      handleSearchClose();
+    }
+  }, [courseId, foundInMyCourse, handleSearchClose, isFetched, navigate]);
 
   return (
     <SearchResultItem
