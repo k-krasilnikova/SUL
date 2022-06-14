@@ -39,7 +39,10 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
       questions: values.test.questions.map((question: IFormQuestion) => ({
         question: question.question,
         correctAnswer: question.correctAnswer,
-        answers: question.answers,
+        answers: question.answers.map((answer) => ({
+          aN: answer.aN,
+          variant: answer.variant,
+        })),
       })),
     },
   };
