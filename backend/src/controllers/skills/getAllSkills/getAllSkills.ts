@@ -12,8 +12,8 @@ const getAllSkills = async (
   next: NextFunction,
 ) => {
   try {
-    const searchStr = req.query;
-    const skills = await getAllSkillsByGroup(searchStr);
+    const { search, order } = req.query;
+    const skills = await getAllSkillsByGroup({ search, order });
     res.json(skills);
   } catch (error) {
     next(error);
