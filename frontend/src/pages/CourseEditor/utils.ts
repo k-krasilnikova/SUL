@@ -28,11 +28,7 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
     avatar: values.avatar,
     title: values.title,
     description: values.description,
-    materials: [
-      {
-        content: values.materials,
-      },
-    ],
+    materials: values.materials.map((material) => ({ content: [material] })),
     technologies: values.technologies.map((technology: IFormTechnology) => ({
       skill: technology._id,
       points: technology.points,
