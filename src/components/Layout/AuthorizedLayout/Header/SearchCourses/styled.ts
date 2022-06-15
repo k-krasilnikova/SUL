@@ -2,12 +2,9 @@ import { styled } from '@mui/material';
 
 import SearchInput from 'components/SearchInput';
 import theme from 'themeSettings';
-import {
-  // HEADER_HEIGHT,
-  // HEADER_HEIGHT_IPAD,
-  // HEADER_HEIGHT_MOBILE,
-  INPUT_HEIGHT_WITH_PADDING,
-} from '../styled';
+import { Search as SearchIcon } from '@mui/icons-material';
+
+import { INPUT_HEIGHT_WITH_PADDING } from '../styled';
 
 interface IProps {
   isOpen?: boolean;
@@ -39,8 +36,8 @@ export const Search = styled(SearchInput)<IProps>(({ isOpen }) => ({
     zIndex: -1,
     transition: 'all 0.2s ease',
     borderRadius: '8px',
-    border: '2px solid #D43E41',
     ...(isOpen && {
+      border: '2px solid #D43E41',
       backgroundColor: '#fff',
       transform: `translateY(${INPUT_HEIGHT_WITH_PADDING})`,
       transition: 'all 0.2s ease',
@@ -51,6 +48,10 @@ export const Search = styled(SearchInput)<IProps>(({ isOpen }) => ({
   },
 }));
 export const SearchButton = styled('div')({
+  '&:hover': {
+    cursor: 'pointer',
+    opacity: '0.8',
+  },
   [theme.breakpoints.up(950)]: {
     display: 'none',
   },
@@ -64,11 +65,15 @@ export const SearchButton = styled('div')({
     marginRight: '5px',
     borderRadius: '3px',
     backgroundColor: '#7676801f',
-    '&:hover': {
-      cursor: 'pointer',
-    },
   },
 });
+
+export const SearchIconStyled = styled(SearchIcon)<IProps>(({ isOpen }) => ({
+  color: '#6C6C6C',
+  ...(isOpen && {
+    color: '#D43E41',
+  }),
+}));
 
 export const RelativeWrapper = styled('div')({
   position: 'relative',

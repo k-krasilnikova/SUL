@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { useSearchAllCourses } from 'api/courses';
-import { useDebounce, useToggle } from 'hooks';
+import { useDebounce } from 'hooks';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
 
 import SearchCourses from './SearchCourses';
 
 const SearchCoursesContainer: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
-  const [isMobileSearchOpen, toggleMobileSearch] = useToggle();
+  const [isMobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState<string>('');
 
   const debouncedSearchValue = useDebounce(searchInputValue);
@@ -22,6 +22,7 @@ const SearchCoursesContainer: React.FC = () => {
   useEffect(() => {
     if (isFetching) {
       setSearchOpen(true);
+      setMobileSearchOpen(true);
     }
   }, [isFetching]);
 
@@ -29,10 +30,9 @@ const SearchCoursesContainer: React.FC = () => {
     setSearchInputValue('');
     setSearchOpen(false);
   };
-
   const handleMobileSearch = () => {
     handleSearchClose();
-    toggleMobileSearch();
+    setMobileSearchOpen((prev) => !prev);
   };
 
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {

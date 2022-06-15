@@ -1,6 +1,5 @@
 import { FC } from 'react';
 
-// import { MobileSearch } from 'components/Layout';
 import PageTitle from 'components/PageTitle';
 import Course from 'components/Course';
 import MobileLink from 'components/MobileLink';
