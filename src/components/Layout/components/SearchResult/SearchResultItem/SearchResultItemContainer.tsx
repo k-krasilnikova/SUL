@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState, MouseEvent } from 'react';
 import { useNavigate } from 'react-router';
 
 import { PATHS } from 'constants/routes';
+import { useGetClientCourseInfo } from 'api/myCourses';
 import { ISearchResultItemContainer } from 'components/Layout/components/types';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 
-import { useGetClientCourseInfo } from 'api/myCourses';
 import SearchResultItem from './SearchResultItem';
 
-const SearchResultItemContainer: React.FC<ISearchResultItemContainer> = ({
+const SearchResultItemContainer: FC<ISearchResultItemContainer> = ({
   course,
   addDivider,
   handleSearchClose,
@@ -17,7 +17,7 @@ const SearchResultItemContainer: React.FC<ISearchResultItemContainer> = ({
   const navigate = useNavigate();
   const { data: foundInMyCourse, isFetched } = useGetClientCourseInfo(courseId, true);
 
-  const handleSelectFoundCourse = (event: React.MouseEvent<HTMLElement>) => {
+  const handleSelectFoundCourse = (event: MouseEvent<HTMLElement>) => {
     if (!course.status) {
       navigate(transformRoute(PATHS.courseDetails, event.currentTarget.id));
       handleSearchClose();

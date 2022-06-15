@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { useSearchAllCourses } from 'api/courses';
 import { useDebounce } from 'hooks';
@@ -6,7 +6,7 @@ import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
 
 import SearchCourses from './SearchCourses';
 
-const SearchCoursesContainer: React.FC = () => {
+const SearchCoursesContainer: FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
   const [isMobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState<string>('');
@@ -14,8 +14,8 @@ const SearchCoursesContainer: React.FC = () => {
   const debouncedSearchValue = useDebounce(searchInputValue);
 
   const {
-    data: foundedCourses,
-    isLoading: isSearchLoading,
+    data: foundedCoursesData,
+    isLoading: isSearchCoursesLoading,
     isFetching,
   } = useSearchAllCourses(debouncedSearchValue);
 
@@ -57,11 +57,11 @@ const SearchCoursesContainer: React.FC = () => {
       isSearchOpen={isSearchOpen}
       searchCourses={searchCourses}
       handleSearchClose={handleSearchClose}
-      coursesFound={foundedCourses}
+      coursesFound={foundedCoursesData}
       checkSpace={checkSpace}
       checkPastedValue={checkPastedValue}
       searchInputValue={searchInputValue}
-      isSearchLoading={isSearchLoading}
+      isSearchCoursesLoading={isSearchCoursesLoading}
       handleMobileSearch={handleMobileSearch}
       isMobileSearchOpen={isMobileSearchOpen}
     />
