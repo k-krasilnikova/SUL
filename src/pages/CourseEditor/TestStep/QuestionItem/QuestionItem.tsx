@@ -42,6 +42,10 @@ const QuestionItem: FC<IQuestionItemProps> = ({
           name={`test.questions[${index}].question`}
           onChange={formik.handleChange}
           onBlur={onFieldBlur}
+          inputProps={{
+            maxLength: 1000,
+          }}
+          autoComplete="off"
           error={Boolean(formik.errors?.test?.questions[index]?.question)}
           helperText={formik.errors?.test?.questions[index]?.question}
         />
@@ -73,6 +77,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                     name={`test.questions[${index}].answers[${key}].variant`}
                     onChange={formik.handleChange}
                     onBlur={onFieldBlur}
+                    autoComplete="off"
                     error={formik.errors?.test?.questions[index]?.answers?.[key]?.variant}
                     helperText={formik.errors?.test?.questions[index]?.answers?.[key]?.variant}
                   />

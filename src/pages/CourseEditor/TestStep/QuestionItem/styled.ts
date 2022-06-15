@@ -48,7 +48,6 @@ export const RadioControlLabel = styled(FormControlLabel)({
     width: '80%',
   },
 });
-// .css-ny8efq-MuiInputBase-root-MuiInput-root:after
 
 export const InputAnswer = styled(TextField)({
   width: '80%',

@@ -41,6 +41,9 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBl
               value={formik.values.title}
               onChange={formik.handleChange}
               onBlur={onFieldBlur}
+              inputProps={{
+                maxLength: 100,
+              }}
               error={Boolean(formik.errors?.title)}
               helperText={formik.errors?.title}
             />
@@ -78,6 +81,9 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBl
             name="description"
             value={formik.values.description}
             onBlur={onFieldBlur}
+            inputProps={{
+              maxLength: 3000,
+            }}
             onChange={formik.handleChange}
             error={Boolean(formik.errors?.description)}
             helperText={formik.errors?.description}

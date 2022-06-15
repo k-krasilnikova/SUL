@@ -1,4 +1,4 @@
-import { styled, Box, Typography, TextField } from '@mui/material';
+import { styled, Box, Typography } from '@mui/material';
 
 import theme from 'themeSettings';
 import { SectionName } from 'pages/CourseEditor/styled';
@@ -30,13 +30,14 @@ export const InputTitle = styled(Typography)({
   color: '#000',
 });
 
-export const InputTextArea = styled(TextField)({
+export const MaterialFieldWrapper = styled(FieldWrapper)({
+  marginBottom: 0,
+});
+
+export const MaterialTextFieldWrapper = styled(MaterialFieldWrapper)({
+  marginBottom: 0,
   width: '667px',
   [theme.breakpoints.down('lg')]: {
     width: '100%',
   },
-});
-
-export const MaterialFieldWrapper = styled(FieldWrapper)({
-  marginBottom: 0,
 });
