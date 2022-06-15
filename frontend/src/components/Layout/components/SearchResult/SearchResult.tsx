@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { NO_RESULTS } from 'constants/messages';
 import Loader from 'components/Loader';
@@ -9,7 +9,7 @@ import { ISearchResultProps } from '../types';
 
 const LAST_ARRAY_ITEM = -1;
 
-const SearchResult: React.FC<ISearchResultProps> = ({
+const SearchResult: FC<ISearchResultProps> = ({
   coursesFound,
   handleSearchClose,
   isSearchLoading,

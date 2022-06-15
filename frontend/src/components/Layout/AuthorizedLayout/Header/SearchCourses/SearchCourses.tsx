@@ -12,7 +12,7 @@ interface Props {
   handleSearchClose: () => void;
   checkSpace: (event: React.KeyboardEvent) => void;
   checkPastedValue: (event: React.ClipboardEvent) => void;
-  isSearchLoading: boolean;
+  isSearchCoursesLoading: boolean;
   searchInputValue: string;
   handleMobileSearch: () => void;
   isMobileSearchOpen: boolean;
@@ -27,7 +27,7 @@ const SearchCourses: React.FC<Props> = ({
   checkSpace,
   checkPastedValue,
   searchInputValue,
-  isSearchLoading,
+  isSearchCoursesLoading,
   handleMobileSearch,
   isMobileSearchOpen,
 }) => (
@@ -49,7 +49,7 @@ const SearchCourses: React.FC<Props> = ({
         <SearchResult
           coursesFound={coursesFound}
           handleSearchClose={handleSearchClose}
-          isSearchLoading={isSearchLoading}
+          isSearchLoading={isSearchCoursesLoading}
         />
       )}
     </RelativeWrapper>

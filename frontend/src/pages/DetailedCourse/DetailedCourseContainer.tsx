@@ -6,7 +6,9 @@ import { useGetClientCourseInfo } from 'api/myCourses';
 import { useGetProfile } from 'api/profile';
 import { Role } from 'constants/menuRoles';
 import { PAGES } from 'constants/pages';
+import Loader from 'components/Loader';
 import { CourseStatus } from 'enums/course';
+import { Loaders } from 'enums/loader';
 import { useToggle } from 'hooks';
 import { ICourse } from 'types/course';
 import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
@@ -16,8 +18,6 @@ import {
 } from 'utils/helpers/convertCourseStatusToProgress';
 import { MAX_LENGTH } from 'utils/helpers/shortifyDetailedCourseDescription';
 
-import Loader from 'components/Loader';
-import { Loaders } from 'enums/loader';
 import DetailedCourse from './DetailedCourse';
 import { IDetailedCourseContainerProps } from './types';
 
@@ -27,7 +27,9 @@ const DetailedCourseContainer: FC<IDetailedCourseContainerProps> = ({ page }) =>
 
   const useGetInfo = page === PAGES.coursesList ? useGetCourseInfo : useGetClientCourseInfo;
 
-  const { data: courseData, isLoading: isDataLoading } = useGetInfo(params.courseId as string);
+  const { data: courseData, isLoading: isCourseDataLoading } = useGetInfo(
+    params.courseId as string,
+  );
   const { mutate, isLoading } = useApplyCourse();
 
   const isCourseApplicationSubmitted = courseData ? Boolean(courseData.status) : false;
@@ -85,7 +87,7 @@ const DetailedCourseContainer: FC<IDetailedCourseContainerProps> = ({ page }) =>
 
   return (
     <>
-      {!isDataLoading && commonCourseInfo && courseData ? (
+      {!isCourseDataLoading && commonCourseInfo && courseData ? (
         <DetailedCourse
           isAdmin={isAdmin}
           navigate={navigate}
