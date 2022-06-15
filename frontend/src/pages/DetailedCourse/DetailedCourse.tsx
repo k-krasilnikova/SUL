@@ -1,6 +1,5 @@
 import { FC } from 'react';
 
-// import { MobileSearch } from 'components/Layout';
 import PageTitle from 'components/PageTitle';
 
 import { IDetailedCourse } from './types';
@@ -28,9 +27,6 @@ const DetailedCourse: FC<IDetailedCourse> = ({
           <BackButton page={page} />
           {isAdmin && <EditCourseButton {...props} />}
         </ButtonsWrapper>
-        {/* <MobileSearchWrapper>
-          <MobileSearch />
-        </MobileSearchWrapper> */}
         <InnerWrapper>
           <DetailedCourseInfo commonCourseData={commonCourseData} {...props} />
           <DetailedCourseActions

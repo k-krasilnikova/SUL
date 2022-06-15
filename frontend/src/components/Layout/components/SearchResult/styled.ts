@@ -24,12 +24,11 @@ export const SearchResultWrapper = styled('div')({
   [theme.breakpoints.down('xl')]: {
     top: HEADER_HEIGHT_IPAD,
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down(950)]: {
     top: `calc(${HEADER_HEIGHT_IPAD} + ${INPUT_HEIGHT_WITH_PADDING})`,
-    // width: '400px',
     padding: '5px',
   },
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down(770)]: {
     top: `calc(${HEADER_HEIGHT_MOBILE} + ${INPUT_HEIGHT_WITH_PADDING})`,
     maxWidth: '270px',
     padding: '3px',
