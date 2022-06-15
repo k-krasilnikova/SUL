@@ -1,29 +1,23 @@
 import { FC, memo } from 'react';
 
-import NoContent from 'components/NoContent';
-import { NO_SKILLS } from 'constants/messages';
+import { TSkillGroupProps } from 'pages/Skills/types';
 
-import { SkillsGroupWrapper, SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 import SkillItem from './SkillItem';
-import { TSkillGroupProps } from '../types';
+import { SkillsGroupWrapper, SkillsTitle, SkillsBox, SkillsDivider } from './styled';
 
 const SkillGroup: FC<TSkillGroupProps> = ({ skillFounded }) => (
   <>
-    {skillFounded?.length ? (
-      skillFounded.map(({ name: skillsGroupName, skills: skillsGroup }) => (
-        <SkillsGroupWrapper key={skillsGroupName}>
-          <SkillsTitle>{skillsGroupName}</SkillsTitle>
-          <SkillsBox>
-            {skillsGroup.map(({ name: skillName, image: skillImage }) => (
-              <SkillItem key={skillName} name={skillName} skillImage={skillImage} />
-            ))}
-          </SkillsBox>
-          <SkillsDivider />
-        </SkillsGroupWrapper>
-      ))
-    ) : (
-      <NoContent message={NO_SKILLS} />
-    )}
+    {skillFounded?.map(({ name: skillsGroupName, skills: skillsGroup }) => (
+      <SkillsGroupWrapper key={skillsGroupName}>
+        <SkillsTitle>{skillsGroupName}</SkillsTitle>
+        <SkillsBox>
+          {skillsGroup.map(({ name: skillName, image: skillImage }) => (
+            <SkillItem key={skillName} name={skillName} skillImage={skillImage} />
+          ))}
+        </SkillsBox>
+        <SkillsDivider />
+      </SkillsGroupWrapper>
+    ))}
   </>
 );
 
