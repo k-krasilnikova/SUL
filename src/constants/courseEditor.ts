@@ -47,8 +47,8 @@ export const INITIAL_VALUES = {
   description: '',
   technologies: [
     {
-      _id: '6299da7d50945a674b87bedf',
-      name: '6299da7d50945a674b87bedf',
+      _id: '',
+      name: '',
       maxScore: 0,
       points: 0,
     },
@@ -72,10 +72,9 @@ export const INITIAL_VALUES = {
         correctAnswer: 1,
         qN: 1,
         question: '',
-        _id: '',
       },
     ],
-    timeout: 0,
+    timeout: 500,
     title: '',
   },
   skillsById: {},
