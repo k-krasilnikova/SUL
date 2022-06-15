@@ -30,9 +30,8 @@ export const Search = styled(SearchInput)<IProps>(({ isOpen }) => ({
   [theme.breakpoints.down(950)]: {
     position: 'absolute',
     top: 0,
-    left: 0,
-    right: 0,
-    width: '100vw',
+    left: 10,
+    width: 'calc(99% - 10px)',
     zIndex: -1,
     transition: 'all 0.2s ease',
     borderRadius: '8px',
@@ -47,6 +46,7 @@ export const Search = styled(SearchInput)<IProps>(({ isOpen }) => ({
     top: '-15px',
   },
 }));
+
 export const SearchButton = styled('div')({
   '&:hover': {
     cursor: 'pointer',
