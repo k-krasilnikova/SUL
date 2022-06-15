@@ -19,6 +19,14 @@ export const InnerWrapper = styled(Box)({
   [theme.breakpoints.down('lg')]: {
     padding: '16px 30px 46px 14px',
   },
+  '& .MuiOutlinedInput-root': {
+    '&:hover fieldset': {
+      border: '1px solid rgba(0, 0, 0, 0.23)',
+    },
+    '&.Mui-focused fieldset': {
+      border: '1px solid #2C2525',
+    },
+  },
 });
 
 export const FormWrapper = styled(Box)({

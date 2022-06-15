@@ -37,6 +37,7 @@ const TestStep: FC<IStepProps> = ({
             id="test.title"
             variant="outlined"
             onChange={formik.handleChange}
+            autoComplete="off"
           />
           <TestBasicField
             label="Duration"

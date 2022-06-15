@@ -1,20 +1,20 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { FieldArray } from 'formik';
-import { MenuItem } from '@mui/material';
+import { MenuItem, RadioGroup } from '@mui/material';
 import { Add } from '@mui/icons-material';
 
-import { BUTTON_VARIANT, EditorTitles } from 'constants/courseEditor';
+import { BUTTON_VARIANT, EditorTitles, MAX_QUESTION_LENGTH } from 'constants/courseEditor';
 import { Numbers } from 'enums/numbers';
 import { IQuestionItemProps } from 'pages/CourseEditor/types';
-import { Field } from 'pages/CourseEditor/DefinitionStep/styled';
+import { Field, InputLengthCounter } from 'pages/CourseEditor/DefinitionStep/styled';
+import { MaterialFieldWrapper as FieldWrapper } from 'pages/CourseEditor/LessonsStep/LessonItem/styled';
 
 import {
   AddAnswerButton,
   QuestionWrapper,
   QuestionTitle,
   QuestionInputBox,
-  RadioButtonBox,
   RadioSelectAnswer,
   RadioControlLabel,
   InputAnswer,
@@ -35,21 +35,24 @@ const QuestionItem: FC<IQuestionItemProps> = ({
       {index + Numbers.one}
     </QuestionTitle>
     <QuestionInputBox>
-      <InputText
-        value={question?.question}
-        id={`questions[${index}].question`}
-        name={`test.questions[${index}].question`}
-        onChange={formik.handleChange}
-        onBlur={onFieldBlur}
-        error={Boolean(formik.errors?.test?.questions[index]?.question)}
-        helperText={formik.errors?.test?.questions[index]?.question}
-      />
+      <FieldWrapper>
+        <InputText
+          value={question?.question}
+          id={`questions[${index}].question`}
+          name={`test.questions[${index}].question`}
+          onChange={formik.handleChange}
+          onBlur={onFieldBlur}
+          error={Boolean(formik.errors?.test?.questions[index]?.question)}
+          helperText={formik.errors?.test?.questions[index]?.question}
+        />
+        <InputLengthCounter>{`${question?.question.length}/${MAX_QUESTION_LENGTH}`}</InputLengthCounter>
+      </FieldWrapper>
       <Field select disabled value="radio" onChange={formik.handleChange}>
         <MenuItem value="input">{BUTTON_VARIANT.input}</MenuItem>
         <MenuItem value="radio">{BUTTON_VARIANT.radio}</MenuItem>
       </Field>
     </QuestionInputBox>
-    <RadioButtonBox
+    <RadioGroup
       name={`test.questions[${index}].correctAnswer`}
       value={question.correctAnswer}
       onChange={handleChangeCorrectAnswer}
@@ -93,7 +96,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
           </>
         )}
       </FieldArray>
-    </RadioButtonBox>
+    </RadioGroup>
   </QuestionWrapper>
 );
 

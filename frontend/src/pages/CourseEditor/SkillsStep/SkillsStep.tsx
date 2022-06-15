@@ -15,6 +15,7 @@ import {
   InnerWrapper,
   SkillButton,
   SkillField,
+  SkillsBox,
   SkillsText,
   SkillsTitleWrapper,
   SkillWrapper,
@@ -36,71 +37,73 @@ const SkillsStep: FC<ISkillsStepProps> = ({
       <SkillsTitleWrapper>
         <SkillsText>{EditorTitles.skillDescription}</SkillsText>
       </SkillsTitleWrapper>
-      <FieldArray name="technologies">
-        {({ remove, push }) => (
-          <>
-            {courseData &&
-              courseData.allSkills.length &&
-              formik.values.technologies.map((technology, index) => (
-                <SkillWrapper key={index}>
-                  <>
-                    <InnerWrapper>
-                      <SkillField
-                        select
-                        variant="outlined"
-                        label="Technology"
-                        value={technology._id || ''}
-                        id={`technologies[${index}]._id`}
-                        name={`technologies[${index}]`}
-                        onChange={handleChangeTechnology}
-                        error={Boolean(formik.errors?.technologies?.[index]?.name)}
-                        helperText={formik.errors?.technologies?.[index]?.name}
-                      >
-                        {courseData &&
-                          courseData.allSkills.map((skill) => (
-                            <MenuItem key={skill._id} value={skill._id}>
-                              {skill.name}
+      <SkillsBox>
+        <FieldArray name="technologies">
+          {({ remove, push }) => (
+            <>
+              {courseData &&
+                courseData.allSkills.length &&
+                formik.values.technologies.map((technology, index) => (
+                  <SkillWrapper key={index}>
+                    <>
+                      <InnerWrapper>
+                        <SkillField
+                          select
+                          variant="outlined"
+                          label="Technology"
+                          value={technology._id || ''}
+                          id={`technologies[${index}]._id`}
+                          name={`technologies[${index}]`}
+                          onChange={handleChangeTechnology}
+                          error={Boolean(formik.errors?.technologies?.[index]?.name)}
+                          helperText={formik.errors?.technologies?.[index]?.name}
+                        >
+                          {courseData &&
+                            courseData.allSkills.map((skill) => (
+                              <MenuItem key={skill._id} value={skill._id}>
+                                {skill.name}
+                              </MenuItem>
+                            ))}
+                        </SkillField>
+                        <SkillField
+                          select
+                          variant="outlined"
+                          label="Level"
+                          value={technology.points || ''}
+                          id={`technologies[${index}].points`}
+                          name={`technologies[${index}].points`}
+                          onChange={formik.handleChange}
+                          error={Boolean(formik.errors?.technologies?.[index]?.points)}
+                          helperText={formik.errors?.technologies?.[index]?.points}
+                        >
+                          {getPointsArr(technology.maxScore).map((point) => (
+                            <MenuItem key={point} value={point}>
+                              {`${point}/${technology.maxScore}`}
                             </MenuItem>
                           ))}
-                      </SkillField>
-                      <SkillField
-                        select
-                        variant="outlined"
-                        label="Level"
-                        value={technology.points || ''}
-                        id={`technologies[${index}].points`}
-                        name={`technologies[${index}].points`}
-                        onChange={formik.handleChange}
-                        error={Boolean(formik.errors?.technologies?.[index]?.points)}
-                        helperText={formik.errors?.technologies?.[index]?.points}
-                      >
-                        {getPointsArr(technology.maxScore).map((point) => (
-                          <MenuItem key={point} value={point}>
-                            {`${point}/${technology.maxScore}`}
-                          </MenuItem>
-                        ))}
-                      </SkillField>
-                    </InnerWrapper>
-                    <ButtonsBox>
-                      <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
-                        {ButtonLabels.removeSkill}
-                      </SkillButton>
-                      {isLastElem(formik.values.technologies, index) && (
-                        <SkillButton
-                          variant="mediumOutlined"
-                          disabled={Boolean(formik.errors.technologies)}
-                          onClick={() => push({})}
-                        >
-                          {ButtonLabels.addMoreSkills}
+                        </SkillField>
+                      </InnerWrapper>
+                      <ButtonsBox>
+                        <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
+                          {ButtonLabels.removeSkill}
                         </SkillButton>
-                      )}
-                    </ButtonsBox>
-                  </>
-                </SkillWrapper>
-              ))}
-          </>
-        )}
-      </FieldArray>
+                        {isLastElem(formik.values.technologies, index) && (
+                          <SkillButton
+                            variant="mediumOutlined"
+                            disabled={Boolean(formik.errors.technologies)}
+                            onClick={() => push({})}
+                          >
+                            {ButtonLabels.addMoreSkills}
+                          </SkillButton>
+                        )}
+                      </ButtonsBox>
+                    </>
+                  </SkillWrapper>
+                ))}
+            </>
+          )}
+        </FieldArray>
+      </SkillsBox>
     </FormWrapper>
   );
 
