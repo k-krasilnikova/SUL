@@ -9,7 +9,7 @@ import {
   LESSONS_TYPE_TITLE_MAP,
   EditorTitles,
   MAX_MATERIAL_LENGTH,
-  EXERCISE_MAX_TITLE_LENGTH,
+  MAX_EXERCISE_TITLE_LENGTH,
 } from 'constants/courseEditor';
 import { Field, InputLengthCounter } from 'pages/CourseEditor/DefinitionStep/styled';
 
@@ -103,7 +103,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
           />
           <InputLengthCounter>{`${
             material?.exercise?.title?.length ? material?.exercise?.title?.length : Numbers.zero
-          }/${EXERCISE_MAX_TITLE_LENGTH}`}</InputLengthCounter>
+          }/${MAX_EXERCISE_TITLE_LENGTH}`}</InputLengthCounter>
         </MaterialFieldWrapper>
         <InputTitle>{EditorTitles.exerciseDescription}</InputTitle>
         <TextField

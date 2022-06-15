@@ -9,6 +9,7 @@ import { ButtonLabels } from 'constants/ButtonLabels';
 import { EditorTitles } from 'constants/courseEditor';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
+import { Numbers } from 'enums/numbers';
 
 import {
   ButtonsBox,
@@ -84,7 +85,20 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                         </SkillField>
                       </InnerWrapper>
                       <ButtonsBox>
-                        <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
+                        <SkillButton
+                          variant="mediumOutlined"
+                          onClick={() => {
+                            remove(index);
+                            if (formik.values.technologies.length === Numbers.one) {
+                              push({
+                                _id: '',
+                                name: 'Technology',
+                                points: Numbers.one,
+                                maxScore: Numbers.five,
+                              });
+                            }
+                          }}
+                        >
                           {ButtonLabels.removeSkill}
                         </SkillButton>
                         {isLastElem(formik.values.technologies, index) && (
@@ -95,8 +109,8 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                               push({
                                 _id: '',
                                 name: 'Technology',
-                                points: 1,
-                                maxScore: 5,
+                                points: Numbers.one,
+                                maxScore: Numbers.five,
                               })
                             }
                           >

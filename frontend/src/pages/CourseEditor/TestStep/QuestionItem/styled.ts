@@ -37,6 +37,7 @@ export const QuestionTitle = styled(Box)({
 export const QuestionInputBox = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
+  marginBottom: '15px',
 });
 
 export const RadioSelectAnswer = styled(Radio)({
@@ -106,7 +107,7 @@ export const AddAnswerButton = styled(SkillButton)({
     backgroundColor: '#FFF',
     border: 'none',
     '.MuiSvgIcon-root': {
-      color: '#131313',
+      color: '#2C2525',
     },
   },
 });

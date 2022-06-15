@@ -7,6 +7,7 @@ import { EditorTitles } from 'constants/courseEditor';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import { IStepProps } from 'pages/CourseEditor/types';
+import { Numbers } from 'enums/numbers';
 
 import LessonItem from './LessonItem';
 import { LessonsStepWrapper, LessonButton } from './styled';
@@ -28,7 +29,19 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
                 <LessonsStepWrapper key={index}>
                   <LessonItem material={material} index={index} formik={formik} {...props} />
                   <ButtonsBox>
-                    <LessonButton variant="mediumOutlined" onClick={() => remove(index)}>
+                    <LessonButton
+                      variant="mediumOutlined"
+                      onClick={() => {
+                        remove(index);
+                        if (formik.values.materials.length === Numbers.one) {
+                          push({
+                            type: 'video',
+                            material: 'Material video link',
+                            exercise: {},
+                          });
+                        }
+                      }}
+                    >
                       {ButtonLabels.removeLesson}
                     </LessonButton>
                     {isLastElem(formik.values.materials, index) && (
