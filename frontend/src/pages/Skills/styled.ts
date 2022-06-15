@@ -59,7 +59,3 @@ export const SkillsWrapper = styled(Box)({
     padding: 0,
   },
 });
-
-export const NoSkills = styled(Box)({
-  marginTop: '300px',
-});
