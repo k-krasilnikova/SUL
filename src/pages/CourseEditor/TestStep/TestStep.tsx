@@ -56,7 +56,27 @@ const TestStep: FC<IStepProps> = ({
                 <TestStepWrapper key={index}>
                   <QuestionItem formik={formik} question={question} index={index} {...props} />
                   <ButtonsBox>
-                    <SkillButton variant="mediumOutlined" onClick={() => remove(index)}>
+                    <SkillButton
+                      variant="mediumOutlined"
+                      onClick={() => {
+                        remove(index);
+                        if (formik.values.test.questions.length === Numbers.one) {
+                          push({
+                            question: 'Test question',
+                            answers: [
+                              {
+                                variant: 'Answer',
+                                aN: Numbers.one,
+                              },
+                              {
+                                variant: 'Answer',
+                                aN: Numbers.two,
+                              },
+                            ],
+                          });
+                        }
+                      }}
+                    >
                       {ButtonLabels.removeQuestion}
                     </SkillButton>
                     {isLastElem(formik.values.test.questions, index) && (
@@ -67,11 +87,11 @@ const TestStep: FC<IStepProps> = ({
                             question: 'Test question',
                             answers: [
                               {
-                                variant: 'First test answer',
+                                variant: 'Answer',
                                 aN: Numbers.one,
                               },
                               {
-                                variant: 'Second test answer',
+                                variant: 'Answer',
                                 aN: Numbers.two,
                               },
                             ],

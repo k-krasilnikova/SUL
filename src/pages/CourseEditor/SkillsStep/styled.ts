@@ -1,7 +1,6 @@
 import { Box, styled, TextField } from '@mui/material';
 
 import Button from 'components/Button';
-
 import { SectionName } from 'pages/CourseEditor/styled';
 import theme from 'themeSettings';
 
