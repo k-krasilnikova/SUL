@@ -31,7 +31,8 @@ export const Search = styled(SearchInput)<IProps>(({ isOpen }) => ({
     position: 'absolute',
     top: 0,
     left: 10,
-    width: 'calc(99% - 10px)',
+    width: 'calc( 99% - 10px)',
+    margin: '15px 0',
     zIndex: -1,
     transition: 'all 0.2s ease',
     borderRadius: '8px',
@@ -66,6 +67,10 @@ export const SearchButton = styled('div')({
     borderRadius: '3px',
     backgroundColor: '#7676801f',
   },
+  [theme.breakpoints.down('md')]: {
+    width: '35px',
+    height: '35px',
+  },
 });
 
 export const SearchIconStyled = styled(SearchIcon)<IProps>(({ isOpen }) => ({
@@ -73,6 +78,10 @@ export const SearchIconStyled = styled(SearchIcon)<IProps>(({ isOpen }) => ({
   ...(isOpen && {
     color: '#D43E41',
   }),
+  [theme.breakpoints.down('md')]: {
+    width: '30px',
+    height: '30px',
+  },
 }));
 
 export const RelativeWrapper = styled('div')({
