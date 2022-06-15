@@ -91,7 +91,14 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                           <SkillButton
                             variant="mediumOutlined"
                             disabled={Boolean(formik.errors.technologies)}
-                            onClick={() => push({})}
+                            onClick={() =>
+                              push({
+                                _id: '',
+                                name: 'Technology',
+                                points: 1,
+                                maxScore: 5,
+                              })
+                            }
                           >
                             {ButtonLabels.addMoreSkills}
                           </SkillButton>

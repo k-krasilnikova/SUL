@@ -80,7 +80,9 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               error={Boolean(formik.errors?.materials?.[index]?.material)}
               helperText={formik.errors?.materials?.[index]?.material}
             />
-            <InputLengthCounter>{`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
+            <InputLengthCounter>
+              {`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}
+            </InputLengthCounter>
           </MaterialTextFieldWrapper>
         )}
         <InputTitle>{EditorTitles.exerciseTitle}</InputTitle>
