@@ -25,6 +25,7 @@ import {
 const SkillsStep: FC<ISkillsStepProps> = ({
   formik,
   handleChangeTechnology,
+  handleChangeTechnologyCreateCourse,
   onSkillBlur,
   onSkillPointsBlur,
   ungroupedSkills,
@@ -50,18 +51,16 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       select
                       variant="outlined"
                       label="Technology"
-                      value={isCreateCourseMode ? technology.name : technology._id}
-                      id={
-                        isCreateCourseMode
-                          ? `technologies[${index}].name`
-                          : `technologies[${index}]._id`
-                      }
+                      value={technology._id}
+                      id={`technologies[${index}]._id`}
                       name={
-                        isCreateCourseMode
-                          ? `technologies[${index}].name`
-                          : `technologies[${index}]`
+                        isCreateCourseMode ? `technologies[${index}]._id` : `technologies[${index}]`
                       }
-                      onChange={isCreateCourseMode ? formik.handleChange : handleChangeTechnology}
+                      onChange={
+                        isCreateCourseMode
+                          ? handleChangeTechnologyCreateCourse
+                          : handleChangeTechnology
+                      }
                       onBlur={onSkillBlur}
                       error={
                         formik.touched.technologies?.[index]?.name &&
@@ -82,7 +81,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       select
                       variant="outlined"
                       label="Level"
-                      value={technology.points || ''}
+                      value={technology.points}
                       id={`technologies[${index}].points`}
                       name={`technologies[${index}].points`}
                       onChange={formik.handleChange}
@@ -98,11 +97,11 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                     >
                       {isCreateCourseMode
                         ? getPointsArr(
-                            ungroupedSkills?.[technology.name]?.maxScore || Numbers.zero,
+                            ungroupedSkills?.[technology._id]?.maxScore || Numbers.zero,
                           ).map((option) => (
                             <MenuItem key={option} value={option}>
                               {`${option}/${
-                                ungroupedSkills?.[technology.name]?.maxScore || Numbers.zero
+                                ungroupedSkills?.[technology._id]?.maxScore || Numbers.zero
                               }`}
                             </MenuItem>
                           ))

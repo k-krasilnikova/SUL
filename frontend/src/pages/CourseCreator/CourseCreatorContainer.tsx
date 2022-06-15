@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BaseSyntheticEvent, FC, useEffect } from 'react';
+import { BaseSyntheticEvent, ChangeEvent, FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
 import { useSnackbar } from 'notistack';
@@ -74,11 +74,16 @@ const CourseCreatorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
+  const handleChangeTechnologyCreateCourse = (event: ChangeEvent<HTMLInputElement>) => {
+    formik.setFieldValue(event.target.name, event.target.value);
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseCreator
         formik={formik}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
+        handleChangeTechnologyCreateCourse={handleChangeTechnologyCreateCourse}
         onFieldBlur={onFieldBlur}
         handleAddCourseAvatar={handleAddCourseAvatar}
         isCreateCourseMode={isCreateCourseMode}
