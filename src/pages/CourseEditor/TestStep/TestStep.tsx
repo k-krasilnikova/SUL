@@ -64,14 +64,14 @@ const TestStep: FC<IStepProps> = ({
                         variant="mediumOutlined"
                         onClick={() =>
                           push({
-                            question: '',
+                            question: 'Test question',
                             answers: [
                               {
-                                variant: '',
+                                variant: 'First test answer',
                                 aN: Numbers.one,
                               },
                               {
-                                variant: '',
+                                variant: 'Second test answer',
                                 aN: Numbers.two,
                               },
                             ],
