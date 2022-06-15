@@ -2,6 +2,7 @@ import { styled, Box, Typography, TextField } from '@mui/material';
 
 import theme from 'themeSettings';
 import { SectionName } from 'pages/CourseEditor/styled';
+import { FieldWrapper } from 'pages/CourseEditor/DefinitionStep/styled';
 
 export const LessonItemWrapper = styled(Box)({
   margin: '32px 0 28px',
@@ -34,4 +35,8 @@ export const InputTextArea = styled(TextField)({
   [theme.breakpoints.down('lg')]: {
     width: '100%',
   },
+});
+
+export const MaterialFieldWrapper = styled(FieldWrapper)({
+  marginBottom: 0,
 });

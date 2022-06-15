@@ -1,4 +1,4 @@
-import { styled, Box, Radio, TextField, RadioGroup, FormControlLabel } from '@mui/material';
+import { styled, Box, Radio, TextField, FormControlLabel } from '@mui/material';
 
 import { SectionName } from 'pages/CourseEditor/styled';
 import { SkillButton } from 'pages/CourseEditor/SkillsStep/styled';
@@ -39,10 +39,6 @@ export const QuestionInputBox = styled(Box)({
   justifyContent: 'space-between',
 });
 
-export const RadioButtonBox = styled(RadioGroup)({
-  margin: '16px 0 16px',
-});
-
 export const RadioSelectAnswer = styled(Radio)({
   color: '#131313',
 });
@@ -52,13 +48,25 @@ export const RadioControlLabel = styled(FormControlLabel)({
     width: '80%',
   },
 });
+// .css-ny8efq-MuiInputBase-root-MuiInput-root:after
 
 export const InputAnswer = styled(TextField)({
   width: '80%',
   fontWight: 400,
   fontSize: '16px',
   lineHeight: '18px',
-  color: '#000000',
+  color: '#000',
+  '& .MuiInput-root': {
+    '&::before': {
+      borderBottom: '1px solid rgba(0, 0, 0, 0.23)',
+    },
+    '&::after': {
+      borderBottom: '1px solid #2C2525',
+    },
+    '&:hover:not(.Mui-disabled):before': {
+      borderBottom: '1px solid rgba(0, 0, 0, 0.23)',
+    },
+  },
 });
 
 export const InputText = styled(TextField)({
@@ -70,6 +78,10 @@ export const InputText = styled(TextField)({
   color: '#000',
   backgroundColor: '#FFF',
   borderRadius: '5px',
+  '& .MuiFormHelperText-root': {
+    marginRight: '29px',
+    marginBottom: '5px',
+  },
 });
 
 export const TestBasicField = styled(TextField)({
@@ -81,6 +93,9 @@ export const TestBasicField = styled(TextField)({
   color: '#A2A2A2',
   '& label': {
     color: '#A2A2A2',
+  },
+  '&.MuiTextField-root > .MuiFormLabel-root.Mui-focused': {
+    color: '#2C2525',
   },
 });
 

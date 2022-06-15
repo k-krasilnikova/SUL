@@ -102,6 +102,7 @@ export const MIN_SKILLS_AMOUNT = 1;
 export const MIN_QUESTION_LENGTH = 10;
 export const MAX_QUESTION_LENGTH = 1000;
 
+export const EXERCISE_MAX_TITLE_LENGTH = 400;
 export const EXERCISE_TITLE_LENGTH_REGEX = /.{2,400}/;
 export const EXERCISE_IS_NOT_NUMBERS_REGEX = /(?!^\d+$)^.+$/;
 export const EXERCISE_DESCRIPTION_LENGTH_REGEX = /.{100,}/;

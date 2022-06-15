@@ -3,6 +3,7 @@ import { Box, styled, TextField } from '@mui/material';
 import Button from 'components/Button';
 
 import { SectionName } from 'pages/CourseEditor/styled';
+import theme from 'themeSettings';
 
 export const SkillsText = styled(SectionName)({
   fontSize: '24px',
@@ -20,6 +21,20 @@ export const SkillField = styled(TextField)({
   height: '53px',
   '& label': {
     color: '#A2A2A2',
+  },
+  '&.MuiTextField-root > .MuiFormLabel-root.Mui-focused': {
+    color: '#2C2525',
+  },
+});
+
+export const SkillsBox = styled(Box)({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  flexWrap: 'wrap',
+  maxWidth: '100%',
+  [theme.breakpoints.down('xl')]: {
+    flexDirection: 'column',
   },
 });
 

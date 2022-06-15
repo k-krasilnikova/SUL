@@ -95,6 +95,15 @@ const CourseEditorContainer: FC = () => {
     }
   };
 
+  // const getCurrentInputLength = (event: BaseSyntheticEvent) => {
+  //   return event.target.value.length;
+  // };
+
+  // const [inputLength, setInputLength] = useState();
+  // const recalculateLength = (event: BaseSyntheticEvent) => {
+  //   setInputLength(event.target.value.length);
+  // };
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
