@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { MenuItem } from '@mui/material';
+import { MenuItem, TextField } from '@mui/material';
 
 import { ContentElementType } from 'enums/materials';
 import { ILessonItemProps } from 'pages/CourseEditor/types';
@@ -16,11 +16,11 @@ import { Field, InputLengthCounter } from 'pages/CourseEditor/DefinitionStep/sty
 import {
   InputBox,
   InputTitle,
-  InputTextArea,
   ItemTitle,
   LessonInnerBox,
   LessonItemWrapper,
   MaterialFieldWrapper,
+  MaterialTextFieldWrapper,
 } from './styled';
 
 const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur }) => (
@@ -46,32 +46,43 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
       </Field>
       <InputBox>
         <InputTitle>{LESSONS_TYPE_TITLE_MAP[material.type]}</InputTitle>
-        <MaterialFieldWrapper>
-          {material.type === ContentElementType.video ||
-          material.type === ContentElementType.presentation ? (
+        {material.type === ContentElementType.presentation ||
+        material.type === ContentElementType.video ? (
+          <MaterialFieldWrapper>
             <Field
               id={`materials[${index}].material`}
               name={`materials[${index}.material`}
               placeholder={material.material}
               value={material.material}
               onChange={formik.handleChange}
+              inputProps={{
+                maxLength: 5000,
+              }}
+              autoComplete="off"
               error={Boolean(formik.errors?.materials?.[index]?.material)}
               helperText={formik.errors?.materials?.[index]?.material}
             />
-          ) : (
-            <InputTextArea
+            <InputLengthCounter>{`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
+          </MaterialFieldWrapper>
+        ) : (
+          <MaterialTextFieldWrapper>
+            <TextField
               multiline
               id={`materials[${index}].material`}
               name={`materials[${index}.material`}
               value={material.material}
               onChange={formik.handleChange}
               onBlur={onFieldBlur}
+              autoComplete="off"
+              inputProps={{
+                maxLength: 5000,
+              }}
               error={Boolean(formik.errors?.materials?.[index]?.material)}
               helperText={formik.errors?.materials?.[index]?.material}
             />
-          )}
-          <InputLengthCounter>{`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
-        </MaterialFieldWrapper>
+            <InputLengthCounter>{`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
+          </MaterialTextFieldWrapper>
+        )}
         <InputTitle>{EditorTitles.exerciseTitle}</InputTitle>
         <MaterialFieldWrapper>
           <Field
@@ -81,6 +92,10 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
             value={material?.exercise?.title}
             onChange={formik.handleChange}
             onBlur={onFieldBlur}
+            inputProps={{
+              maxLength: 400,
+            }}
+            autoComplete="off"
             error={Boolean(formik.errors?.materials?.[index]?.exercise?.title)}
             helperText={formik.errors?.materials?.[index]?.exercise?.title}
           />
@@ -89,7 +104,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
           }/${EXERCISE_MAX_TITLE_LENGTH}`}</InputLengthCounter>
         </MaterialFieldWrapper>
         <InputTitle>{EditorTitles.exerciseDescription}</InputTitle>
-        <InputTextArea
+        <TextField
           multiline
           id={`materials[${index}].exercise.task`}
           name={`materials[${index}].exercise.task`}

@@ -20,6 +20,10 @@ export const Field = styled(TextField)({
   '&.MuiTextField-root > .MuiFormLabel-root.Mui-focused': {
     color: '#2C2525',
   },
+  '& .MuiFormHelperText-root': {
+    marginRight: '29px',
+    marginBottom: '5px',
+  },
 });
 
 export const SectionWrapper = styled(Box)({
