@@ -42,13 +42,13 @@ export const LESSONS_TYPE_TITLE_MAP: { [key: string]: string } = {
 
 export const INITIAL_VALUES = {
   title: '',
-  complexity: 0,
-  avatar: '',
+  complexity: 1,
+  avatar: 'https://cdn.pixabay.com/photo/2022/06/09/12/38/animal-7252490_960_720.jpg',
   description: '',
   technologies: [
     {
-      _id: '',
-      name: '',
+      _id: '6299da7d50945a674b87bedf',
+      name: '6299da7d50945a674b87bedf',
       maxScore: 0,
       points: 0,
     },
@@ -67,11 +67,10 @@ export const INITIAL_VALUES = {
           {
             aN: 1,
             variant: '',
-            _id: '',
           },
         ],
-        correctAnswer: 0,
-        qN: 0,
+        correctAnswer: 1,
+        qN: 1,
         question: '',
         _id: '',
       },
