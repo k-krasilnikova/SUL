@@ -10,15 +10,14 @@ const updateTestStatuses = async (): Promise<void> => {
   try {
     await connectToDatabase();
 
-    const [from, to] = generateTestStatusToUpdateDates(UPDATE_TEST_STATUSES_TIME_RANGE);
+    const [, to] = generateTestStatusToUpdateDates(UPDATE_TEST_STATUSES_TIME_RANGE);
 
     const { modifiedCount: statusesUpdatedAmount } = await ClientCourseModel.updateMany(
       {
-        status: CourseStatus.failed,
+        status: { $in: [CourseStatus.failed, CourseStatus.testing] },
         $or: [
           {
             finishTestDate: {
-              $gte: from,
               $lte: to,
             },
           },
