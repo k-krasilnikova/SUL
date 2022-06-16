@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseSyntheticEvent, FC, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
