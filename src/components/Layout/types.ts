@@ -1,7 +1,7 @@
 import { BaseSyntheticEvent, ReactNode } from 'react';
 
 import { TUserInfo } from 'types/user';
-import { INotification } from 'types/notification';
+import { INotification } from 'types/notifications';
 import { IMenuItemProps } from 'types/menu';
 
 export interface IAuthorizedLayoutProps {

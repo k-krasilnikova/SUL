@@ -20,11 +20,9 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     }),
   },
   [theme.breakpoints.down('lg')]: {
-    display: 'block',
     height: 'fit-content',
   },
   [theme.breakpoints.down('md')]: {
-    display: 'flex',
     margin: 0,
     padding: 0,
     flexDirection: 'row',
@@ -38,7 +36,6 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     }),
   },
   [theme.breakpoints.down('sm')]: {
-    display: 'flex',
     ...(type === Info.detailedCourse && {
       marginLeft: '8px',
       marginBottom: '20px',
@@ -46,13 +43,11 @@ export const InfoContainer = styled(Box)<InfoContainerTypes>(({ type }) => ({
     }),
   },
   [theme.breakpoints.up('xl')]: {
-    display: 'block',
     ...(type !== Info.searchCourses && {
       marginLeft: '15px',
     }),
   },
   [theme.breakpoints.up(1680)]: {
-    display: 'flex',
     marginLeft: 0,
   },
 }));

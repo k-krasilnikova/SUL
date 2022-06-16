@@ -10,6 +10,7 @@ import {
   MAX_DESCRIPTION_LENGTH,
 } from 'constants/courseEditor';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
+import { addAvatarIcon } from 'icons';
 
 import {
   AvatarWrapper,
@@ -21,10 +22,20 @@ import {
   InputLengthCounter,
   SecondaryText,
   SectionWrapper,
+  NewAvatarImageWrapper,
+  AddImageInput,
+  NewImageLabel,
+  AddImageIcon,
 } from './styled';
 import { IStepProps } from '../types';
 
-const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBlur }) =>
+const DefinitionStep: FC<IStepProps> = ({
+  formik,
+  isCourseDataLoading,
+  onFieldBlur,
+  handleAddCourseAvatar,
+  isCreateCourseMode,
+}) =>
   isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
@@ -69,7 +80,24 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBl
           <SecondaryText>{EditorTitles.avatarDescription}</SecondaryText>
         </AvatarWrapper>
         <ImageWrapper>
-          <Image imageUrl={formik.values.avatar} />
+          {isCreateCourseMode ? (
+            <NewAvatarImageWrapper>
+              <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
+              <AddImageInput
+                type="file"
+                accept="image/*"
+                id="avatar"
+                name="avatar"
+                multiple
+                onChange={handleAddCourseAvatar}
+              />
+              <NewImageLabel htmlFor="avatar">
+                <Image imageUrl={formik.values.avatar} newImage />
+              </NewImageLabel>
+            </NewAvatarImageWrapper>
+          ) : (
+            <Image imageUrl={formik.values.avatar} />
+          )}
         </ImageWrapper>
         <DescriptionWrapper>
           <SectionName>{EditorTitles.definitionStepDescription}</SectionName>

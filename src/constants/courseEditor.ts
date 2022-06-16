@@ -45,19 +45,46 @@ export const INITIAL_VALUES = {
   complexity: 0,
   avatar: '',
   description: '',
-  technologies: [],
-  materials: [],
+  technologies: [
+    {
+      _id: '',
+      name: '',
+      maxScore: 0,
+      points: 0,
+    },
+  ],
+  materials: [
+    {
+      type: '',
+      material: '',
+    },
+  ],
   test: {
     _id: '',
-    questions: [],
+    questions: [
+      {
+        answers: [
+          {
+            aN: 1,
+            variant: '',
+            _id: '',
+          },
+        ],
+        correctAnswer: 0,
+        qN: 0,
+        question: '',
+        _id: '',
+      },
+    ],
     timeout: 0,
+    title: '',
   },
   skillsById: {},
 };
 
 export enum EditorTitles {
   lessonStepTitle = 'Add course files and description',
-  skillStepTitile = 'Edit course skills',
+  skillStepTitle = 'Edit course skills',
   definitionStepTitle = 'Course details',
   definitionStepDescription = 'Description',
   skillDescription = 'Achieved skill',
@@ -68,11 +95,7 @@ export enum EditorTitles {
   exerciseTitle = 'Exercise Title',
   exerciseDescription = 'Exercise Description',
   testDetails = 'Test details',
-  videoTitle = 'Video',
-  presentationTitle = 'Presentation',
-  textTitle = 'Text',
   questionNumber = 'Question № ',
-  answerTestOption = 'Answer Option',
 }
 
 export const INITIAL_NUMBER_POINT = 1;
@@ -97,12 +120,16 @@ export const MIN_MATERIAL_LENGTH = 10;
 export const MAX_MATERIAL_LENGTH = 5000;
 
 export const MIN_TEST_QUESTIONS_AMOUNT = 5;
+export const MIN_TEST_ANSWERS_AMOUNT = 1;
 export const MIN_SKILLS_AMOUNT = 1;
 
 export const MIN_QUESTION_LENGTH = 10;
 export const MAX_QUESTION_LENGTH = 1000;
 
 export const EXERCISE_MAX_TITLE_LENGTH = 400;
+export const MIN_EXERCISE_TITLE_LENGTH = 2;
+export const MAX_EXERCISE_TITLE_LENGTH = 400;
+
 export const EXERCISE_TITLE_LENGTH_REGEX = /.{2,400}/;
 export const EXERCISE_IS_NOT_NUMBERS_REGEX = /(?!^\d+$)^.+$/;
 export const EXERCISE_DESCRIPTION_LENGTH_REGEX = /.{100,}/;

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { FieldArray } from 'formik';
-import { MenuItem, RadioGroup } from '@mui/material';
+import { MenuItem, RadioGroup, Alert } from '@mui/material';
 import { Add } from '@mui/icons-material';
 
 import { BUTTON_VARIANT, EditorTitles, MAX_QUESTION_LENGTH } from 'constants/courseEditor';
@@ -21,6 +21,7 @@ import {
   InputText,
   ButtonsWrapper,
 } from './styled';
+import { AlertWrapper } from '../styled';
 
 const QuestionItem: FC<IQuestionItemProps> = ({
   index,
@@ -46,8 +47,14 @@ const QuestionItem: FC<IQuestionItemProps> = ({
             maxLength: 1000,
           }}
           autoComplete="off"
-          error={Boolean(formik.errors?.test?.questions[index]?.question)}
-          helperText={formik.errors?.test?.questions[index]?.question}
+          error={
+          formik.touched.test?.questions[index]?.question &&
+          Boolean(formik.errors?.test?.questions[index]?.question)
+        }
+        helperText={
+          formik.touched.test?.questions[index]?.question &&
+          formik.errors?.test?.questions[index]?.question
+        }
         />
         <InputLengthCounter>{`${question?.question.length}/${MAX_QUESTION_LENGTH}`}</InputLengthCounter>
       </FieldWrapper>
@@ -78,8 +85,14 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                     onChange={formik.handleChange}
                     onBlur={onFieldBlur}
                     autoComplete="off"
-                    error={formik.errors?.test?.questions[index]?.answers?.[key]?.variant}
-                    helperText={formik.errors?.test?.questions[index]?.answers?.[key]?.variant}
+                    error={
+                        formik.touched.test?.questions[index]?.answers?.[key]?.variant &&
+                        Boolean(formik.errors?.test?.questions[index]?.answers?.[key]?.variant)
+                      }
+                      helperText={
+                        formik.touched.test?.questions[index]?.answers?.[key]?.variant &&
+                        formik.errors?.test?.questions[index]?.answers?.[key]?.variant
+                      }
                   />
                 }
               />
@@ -101,6 +114,11 @@ const QuestionItem: FC<IQuestionItemProps> = ({
           </>
         )}
       </FieldArray>
+      <AlertWrapper>
+        {typeof formik.errors?.test?.questions[index]?.answers === 'string' && (
+          <Alert severity="error">{formik.errors?.test?.questions[index]?.answers}</Alert>
+        )}
+      </AlertWrapper>
     </RadioGroup>
   </QuestionWrapper>
 );

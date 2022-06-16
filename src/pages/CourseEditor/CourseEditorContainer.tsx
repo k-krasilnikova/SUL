@@ -5,6 +5,7 @@ import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useRef, useState } from
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
+import { useGetSkills } from 'api/skills';
 import { useGetCourseEditorData, useEditCourseData } from 'api/admin';
 import {
   INITIAL_NUMBER_POINT,
@@ -95,6 +96,29 @@ const CourseEditorContainer: FC = () => {
     }
   };
 
+  const onSkillBlur = (event: BaseSyntheticEvent) => {
+    formik.setFieldTouched(`${event.target.name}.name`);
+    formik.validateField(event.target.name);
+  };
+
+  const onSkillPointsBlur = (event: BaseSyntheticEvent) => {
+    formik.setFieldTouched(`${event.target.name}.points`);
+    formik.validateField(event.target.name);
+  };
+
+  const { data: courseCreatorSkillsData } = useGetSkills();
+
+  let ungroupedSkills = {};
+  if (courseCreatorSkillsData) {
+    ungroupedSkills = courseCreatorSkillsData.reduce(
+      (acc, group) => ({
+        ...acc,
+        ...group.skills.reduce((j, o) => ({ [o._id]: o, ...j }), {}),
+      }),
+      {},
+    );
+  }
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -105,6 +129,9 @@ const CourseEditorContainer: FC = () => {
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         handleChangeDuration={handleChangeDuration}
         onFieldBlur={onFieldBlur}
+        onSkillBlur={onSkillBlur}
+        onSkillPointsBlur={onSkillPointsBlur}
+        ungroupedSkills={ungroupedSkills}
         editCourseDataMutate={editCourseDataMutate}
         isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}
         scrollToTop={scrollToTop}

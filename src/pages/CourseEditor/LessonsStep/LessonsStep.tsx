@@ -22,8 +22,7 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
       <FieldArray name="materials">
         {({ remove, push }) => (
           <>
-            {courseData &&
-              Object.values(formik.values.materials).length &&
+            {Object.values(formik.values.materials).length &&
               formik.values?.materials.map((material, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <LessonsStepWrapper key={index}>

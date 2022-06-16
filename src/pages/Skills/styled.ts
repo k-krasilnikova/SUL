@@ -47,6 +47,7 @@ export const StyledDivider = styled(Divider)({
 });
 
 export const SkillsWrapper = styled(Box)({
+  width: '100%',
   padding: '40px',
   [theme.breakpoints.down('lg')]: {
     padding: '0 0 0 28px',
