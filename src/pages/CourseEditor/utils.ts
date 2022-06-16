@@ -5,6 +5,9 @@ const EMPTY_LENGTH = 0;
 const FIRST_LETTER_INDEX = 0;
 const SECOND_LETTER_INDEX = 1;
 const TRAILING_SPACES_REGEX = /[\s]{2,}/g;
+const MS_PARAMETER = 1000;
+const START_DATE_PARAMETER = 11;
+const END_DATE_PARAMETER = 16;
 
 export const getPointsArr = (maxPoints: number): number[] => {
   const pointsArr = [];
@@ -47,4 +50,10 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
     },
   };
   return formattedValues;
+};
+
+export const convertSecondsToString = (duration: number): string => {
+  return new Date(duration * MS_PARAMETER)
+    .toISOString()
+    .substring(START_DATE_PARAMETER, END_DATE_PARAMETER);
 };

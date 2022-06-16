@@ -108,6 +108,7 @@ export const BUTTON_VARIANT = {
 };
 
 export const RADIX_PARAMETER = 10;
+export const SECONDS_PARAMETER = 60;
 
 export const MIN_TITLE_LENGTH = 2;
 export const MAX_TITLE_LENGTH = 100;
