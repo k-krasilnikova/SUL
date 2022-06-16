@@ -91,7 +91,7 @@ const courseEditorValidationSchema = object().shape({
     .min(MIN_SKILLS_AMOUNT)
     .of(
       object().shape({
-        // name: string().required('Technology name is required'),
+        name: string().required('Technology name is required'),
         points: number().required('Level is required'),
       }),
     ),
