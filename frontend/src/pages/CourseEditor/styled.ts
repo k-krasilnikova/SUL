@@ -19,6 +19,14 @@ export const InnerWrapper = styled(Box)({
   [theme.breakpoints.down('lg')]: {
     padding: '16px 30px 46px 14px',
   },
+  '& .MuiOutlinedInput-root': {
+    '&:hover fieldset': {
+      border: '1px solid rgba(0, 0, 0, 0.23)',
+    },
+    '&.Mui-focused fieldset': {
+      border: '1px solid #2C2525',
+    },
+  },
 });
 
 export const FormWrapper = styled(Box)({
@@ -27,8 +35,13 @@ export const FormWrapper = styled(Box)({
 });
 
 export const SectionName = styled(Typography)({
-  fontSize: '30px',
+  fontSize: '26px',
   lineHeight: '130%',
   letterSpacing: '-0.4px',
   color: '#2C2525',
+});
+
+export const PageWrapper = styled(Box)({
+  maxHeight: '100%',
+  overflowY: 'scroll',
 });
