@@ -5,7 +5,11 @@ import { MIN_STEP, TAB_STEP } from 'constants/courseEditor';
 import { IEditorTabsContainerProps } from './types';
 import EditorTabs from './EditorTabs';
 
-const EditorTabsContainer: FC<IEditorTabsContainerProps> = ({ children, ...props }) => {
+const EditorTabsContainer: FC<IEditorTabsContainerProps> = ({
+  children,
+  scrollToTop,
+  ...props
+}) => {
   const [step, setStep] = useState(MIN_STEP);
   const childrenArray = Children.toArray(children);
   const currentChild = childrenArray[step - TAB_STEP];
@@ -16,11 +20,13 @@ const EditorTabsContainer: FC<IEditorTabsContainerProps> = ({ children, ...props
 
   const handlePreviousStep = () => {
     if (step > MIN_STEP) {
+      scrollToTop();
       setStep(step - TAB_STEP);
     }
   };
 
   const handleNextStep = () => {
+    scrollToTop();
     setStep(step + TAB_STEP);
   };
 

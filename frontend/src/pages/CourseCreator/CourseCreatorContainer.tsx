@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { BaseSyntheticEvent, FC, useEffect } from 'react';
+import { BaseSyntheticEvent, FC, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
 import { useSnackbar } from 'notistack';
@@ -73,6 +71,14 @@ const CourseCreatorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
+  const courseCreatorRef = useRef<HTMLElement>(null);
+
+  const scrollToTop = () => {
+    if (courseCreatorRef.current) {
+      courseCreatorRef.current.scrollTo({ top: Numbers.zero });
+    }
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseCreator
@@ -82,6 +88,8 @@ const CourseCreatorContainer: FC = () => {
         handleAddCourseAvatar={handleAddCourseAvatar}
         isCreateCourseMode={isCreateCourseMode}
         ungroupedSkills={ungroupedSkills}
+        scrollToTop={scrollToTop}
+        courseCreatorRef={courseCreatorRef}
       />
     </FormikProvider>
   );
