@@ -38,7 +38,7 @@ const CourseCreatorContainer: FC = () => {
   }
 
   const handleAddCourseAvatar = async (event: BaseSyntheticEvent) => {
-    const fileLink = uploadFile(event.target.files[Numbers.zero]);
+    const fileLink = await uploadFile(event.target.files[Numbers.zero]);
     formik.setFieldValue('avatar', fileLink);
   };
 
