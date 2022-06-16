@@ -53,7 +53,7 @@ const DefinitionStep: FC<IStepProps> = ({
               onChange={formik.handleChange}
               onBlur={onFieldBlur}
               inputProps={{
-                maxLength: 100,
+                maxLength: MAX_TITLE_LENGTH,
               }}
               error={Boolean(formik.errors?.title)}
               helperText={formik.errors?.title}
@@ -110,7 +110,7 @@ const DefinitionStep: FC<IStepProps> = ({
             value={formik.values.description}
             onBlur={onFieldBlur}
             inputProps={{
-              maxLength: 3000,
+              maxLength: MAX_DESCRIPTION_LENGTH,
             }}
             onChange={formik.handleChange}
             error={Boolean(formik.errors?.description)}

@@ -45,7 +45,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
           onBlur={onFieldBlur}
           autoComplete="off"
           inputProps={{
-            maxLength: 1000,
+            maxLength: MAX_QUESTION_LENGTH,
           }}
           error={
             formik.touched.test?.questions[index]?.question &&

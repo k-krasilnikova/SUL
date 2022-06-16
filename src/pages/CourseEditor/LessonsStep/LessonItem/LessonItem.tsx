@@ -62,7 +62,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               value={material.material}
               onChange={formik.handleChange}
               inputProps={{
-                maxLength: 5000,
+                maxLength: MAX_MATERIAL_LENGTH,
               }}
               autoComplete="off"
               error={
@@ -87,7 +87,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               onBlur={onFieldBlur}
               autoComplete="off"
               inputProps={{
-                maxLength: 5000,
+                maxLength: MAX_MATERIAL_LENGTH,
               }}
               error={Boolean(formik.errors?.materials?.[index]?.material)}
               helperText={formik.errors?.materials?.[index]?.material}
@@ -107,7 +107,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
             onChange={formik.handleChange}
             onBlur={onFieldBlur}
             inputProps={{
-              maxLength: 400,
+              maxLength: MAX_EXERCISE_TITLE_LENGTH,
             }}
             autoComplete="off"
             error={
