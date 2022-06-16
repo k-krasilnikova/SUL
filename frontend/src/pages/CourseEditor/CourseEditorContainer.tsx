@@ -1,14 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useState } from 'react';
+import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
 
 import { useGetSkills } from 'api/skills';
 import { useGetCourseEditorData, useEditCourseData } from 'api/admin';
-import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
+import {
+  INITIAL_NUMBER_POINT,
+  INITIAL_VALUES,
+  RADIX_PARAMETER,
+  SECONDS_PARAMETER,
+} from 'constants/courseEditor';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { Numbers } from 'enums/numbers';
 import { useSnackbar } from 'notistack';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { uploadFile } from 'utils/helpers/uploader';
@@ -21,6 +27,7 @@ import { formatFieldValue, formatValuesForSubmit } from './utils';
 const CourseEditorContainer: FC = () => {
   const params = useParams();
   const { enqueueSnackbar } = useSnackbar();
+  const courseEditorRef = useRef<HTMLElement>(null);
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
 
   const { mutate: editCourseDataMutate, isLoading: isEditCourseDataMutateLoading } =
@@ -82,6 +89,20 @@ const CourseEditorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
+  const handleChangeDuration = (event: BaseSyntheticEvent) => {
+    const durationString = event.target.value;
+    const [hours, minutes] = durationString.split(':');
+    const totalSeconds =
+      Number(hours) * SECONDS_PARAMETER * SECONDS_PARAMETER + Number(minutes) * SECONDS_PARAMETER;
+    formik.setFieldValue(event.target.name, totalSeconds);
+  };
+
+  const scrollToTop = () => {
+    if (courseEditorRef.current) {
+      courseEditorRef.current.scrollTo({ top: Numbers.zero });
+    }
+  };
+
   const onSkillBlur = (event: BaseSyntheticEvent) => {
     formik.setFieldTouched(`${event.target.name}.name`);
     formik.validateField(event.target.name);
@@ -113,6 +134,7 @@ const CourseEditorContainer: FC = () => {
         formik={formik}
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
+        handleChangeDuration={handleChangeDuration}
         handleAddCourseAvatar={handleAddCourseAvatar}
         onFieldBlur={onFieldBlur}
         onSkillBlur={onSkillBlur}
@@ -120,6 +142,8 @@ const CourseEditorContainer: FC = () => {
         ungroupedSkills={ungroupedSkills}
         editCourseDataMutate={editCourseDataMutate}
         isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}
+        scrollToTop={scrollToTop}
+        courseEditorRef={courseEditorRef}
       />
     </FormikProvider>
   );

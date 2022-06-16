@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent } from 'react';
+import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent, RefObject } from 'react';
 
 import { IQuestionObject, ITestItem } from 'types/test';
 
@@ -94,11 +94,12 @@ export interface IFormik {
 export interface IStepProps {
   formik: IFormik;
   isCourseDataLoading?: boolean;
+  isCreateCourseMode?: boolean;
   courseData?: ICourseEditorResponse;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
+  handleChangeDuration?: (event: ChangeEvent<HTMLInputElement>) => void;
   onSkillBlur?: (event: BaseSyntheticEvent) => void;
   onSkillPointsBlur?: (event: BaseSyntheticEvent) => void;
-  isCreateCourseMode?: boolean;
   handleAddCourseAvatar?: (event: BaseSyntheticEvent) => void;
 }
 
@@ -108,9 +109,11 @@ export interface ISkillsStepProps extends IStepProps {
 }
 
 export interface ICourseEditorProps extends ISkillsStepProps {
+  scrollToTop: () => void;
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
   editCourseDataMutate?: (courseId: string) => void;
   isEditCourseDataMutateLoading?: boolean;
+  courseEditorRef?: RefObject<HTMLElement>;
 }
 
 export interface ILessonItemProps {

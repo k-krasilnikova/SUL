@@ -7,11 +7,10 @@ export const StyledButton = styled(Button)({
   height: '40px',
   width: '85px',
   fontSize: '18px',
-  boxShadow: '0 4px 4px 0 #00000040',
+  boxShadow: 'none',
   [theme.breakpoints.down('lg')]: {
     height: '32px',
     width: '69px',
     fontSize: '14px',
-    boxShadow: 'none',
   },
 });
