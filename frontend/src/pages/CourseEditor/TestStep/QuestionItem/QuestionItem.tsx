@@ -43,18 +43,18 @@ const QuestionItem: FC<IQuestionItemProps> = ({
           name={`test.questions[${index}].question`}
           onChange={formik.handleChange}
           onBlur={onFieldBlur}
+          autoComplete="off"
           inputProps={{
             maxLength: 1000,
           }}
-          autoComplete="off"
           error={
-          formik.touched.test?.questions[index]?.question &&
-          Boolean(formik.errors?.test?.questions[index]?.question)
-        }
-        helperText={
-          formik.touched.test?.questions[index]?.question &&
-          formik.errors?.test?.questions[index]?.question
-        }
+            formik.touched.test?.questions[index]?.question &&
+            Boolean(formik.errors?.test?.questions[index]?.question)
+          }
+          helperText={
+            formik.touched.test?.questions[index]?.question &&
+            formik.errors?.test?.questions[index]?.question
+          }
         />
         <InputLengthCounter>{`${question?.question.length}/${MAX_QUESTION_LENGTH}`}</InputLengthCounter>
       </FieldWrapper>
@@ -86,13 +86,13 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                     onBlur={onFieldBlur}
                     autoComplete="off"
                     error={
-                        formik.touched.test?.questions[index]?.answers?.[key]?.variant &&
-                        Boolean(formik.errors?.test?.questions[index]?.answers?.[key]?.variant)
-                      }
-                      helperText={
-                        formik.touched.test?.questions[index]?.answers?.[key]?.variant &&
-                        formik.errors?.test?.questions[index]?.answers?.[key]?.variant
-                      }
+                      formik.touched.test?.questions[index]?.answers?.[key]?.variant &&
+                      Boolean(formik.errors?.test?.questions[index]?.answers?.[key]?.variant)
+                    }
+                    helperText={
+                      formik.touched.test?.questions[index]?.answers?.[key]?.variant &&
+                      formik.errors?.test?.questions[index]?.answers?.[key]?.variant
+                    }
                   />
                 }
               />
