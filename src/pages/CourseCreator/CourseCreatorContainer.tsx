@@ -8,6 +8,7 @@ import { PATHS } from 'constants/routes';
 import { INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { formatFieldValue } from 'pages/CourseEditor/utils';
+import { uploadFile } from 'utils/helpers/uploader';
 
 import CourseCreator from './CourseCreator';
 
@@ -36,11 +37,9 @@ const CourseCreatorContainer: FC = () => {
     );
   }
 
-  const handleAddCourseAvatar = (event: BaseSyntheticEvent) => {
-    formik.setFieldValue(
-      'avatar',
-      URL.createObjectURL(event.target.files[Numbers.zero] as Blob | MediaSource),
-    );
+  const handleAddCourseAvatar = async (event: BaseSyntheticEvent) => {
+    const fileLink = await uploadFile(event.target.files[Numbers.zero]);
+    formik.setFieldValue('avatar', fileLink);
   };
 
   const handleChangeCorrectAnswer = (event: BaseSyntheticEvent) => {
