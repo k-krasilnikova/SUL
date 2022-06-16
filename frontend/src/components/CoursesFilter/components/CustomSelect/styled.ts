@@ -1,5 +1,4 @@
 import { styled, Select, Checkbox, MenuItem } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 
 import theme from 'themeSettings';
 
@@ -13,7 +12,7 @@ export const StyledSelect = styled(Select)({
   },
   '&.Mui-focused': {
     '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#2C2525',
+      border: '1px solid #2C2525',
     },
   },
   '& .MuiSelect-select': {
@@ -21,7 +20,8 @@ export const StyledSelect = styled(Select)({
     backgroundColor: '#7676801F',
   },
   '& .MuiOutlinedInput-notchedOutline': {
-    border: '2px solid #CBBEBE',
+    border: '1px solid #CBBEBE',
+    borderWidth: '1px',
   },
   '& .MuiSelect-icon': {
     top: '50%',
@@ -48,6 +48,9 @@ export const SelectLabel = styled('p')({
   fontWeight: 500,
   color: '#131313',
   textTransform: 'capitalize',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '14px',
+  },
 });
 
 export const StyledMenuItem = styled(MenuItem)({
@@ -58,27 +61,25 @@ export const StyledCheckbox = styled(Checkbox)({
   marginRight: '10px',
 });
 
-export const useStyles = makeStyles({
-  paper: {
+export const PaperProps = {
+  sx: {
     marginTop: '10px',
-  },
-  list: {
-    padding: 0,
-    maxHeight: '250px',
-    maxWidth: '330px',
-    overflowY: 'auto',
-    '& li': {
-      whiteSpace: 'normal',
-      wordBreak: 'break-word',
-      '&.Mui-selected': {
-        backgroundColor: 'transparent',
-        '&:hover': {
-          backgroundColor: '#0000000A',
+    '& .MuiList-root': {
+      padding: 0,
+      maxHeight: '250px',
+      maxWidth: { xs: '100%', lg: '330px' },
+      overflowY: 'auto',
+      '& li': {
+        fontSize: { xs: '14px', md: '16px' },
+        whiteSpace: 'normal',
+        wordBreak: 'break-word',
+        '&.Mui-selected': {
+          backgroundColor: 'transparent',
+          '&:hover': {
+            backgroundColor: '#0000000A',
+          },
         },
       },
     },
-    [theme.breakpoints.down('lg')]: {
-      maxWidth: '100%',
-    },
   },
-});
+};

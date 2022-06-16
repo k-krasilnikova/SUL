@@ -4,6 +4,7 @@ import { useFormik, FormikProvider } from 'formik';
 
 import { Numbers } from 'enums/numbers';
 import { useGetSkills } from 'api/skills';
+import { useGetCoursesPaths } from 'hooks';
 import { PATHS } from 'constants/routes';
 import { INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
@@ -21,6 +22,7 @@ const CourseCreatorContainer: FC = () => {
     enableReinitialize: true,
   });
 
+  const { coursesPath } = useGetCoursesPaths();
   const { pathname } = useLocation();
   const isCreateCourseMode = pathname === PATHS.courseCreator;
   const { data: courseCreatorSkillsData } = useGetSkills();
@@ -58,11 +60,12 @@ const CourseCreatorContainer: FC = () => {
     <FormikProvider value={formik}>
       <CourseCreator
         formik={formik}
-        handleChangeCorrectAnswer={handleChangeCorrectAnswer}
-        onFieldBlur={onFieldBlur}
-        handleAddCourseAvatar={handleAddCourseAvatar}
-        isCreateCourseMode={isCreateCourseMode}
         ungroupedSkills={ungroupedSkills}
+        coursesPath={coursesPath}
+        isCreateCourseMode={isCreateCourseMode}
+        onFieldBlur={onFieldBlur}
+        handleChangeCorrectAnswer={handleChangeCorrectAnswer}
+        handleAddCourseAvatar={handleAddCourseAvatar}
       />
     </FormikProvider>
   );

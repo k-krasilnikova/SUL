@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import { PATHS } from 'constants/routes';
 import { AuthorizedLayout } from 'components/Layout';
@@ -11,9 +11,7 @@ const AuthRoute: FC = () => {
   const accessToken = getAuthResponseData();
 
   return accessToken ? (
-    <AuthorizedLayout>
-      <Outlet />
-    </AuthorizedLayout>
+    <AuthorizedLayout />
   ) : (
     <Navigate to={PATHS.signIn} state={{ from: pathname }} />
   );

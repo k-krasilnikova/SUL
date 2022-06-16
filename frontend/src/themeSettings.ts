@@ -45,6 +45,11 @@ const theme = createTheme(
   {
     components: {
       MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'initial',
+          },
+        },
         variants: [
           {
             props: { variant: 'medium' },

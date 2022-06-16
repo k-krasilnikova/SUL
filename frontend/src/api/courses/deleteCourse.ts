@@ -4,11 +4,13 @@ import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
 import { apiClientWrapper, queryClient } from 'api/base';
-import { API, PATHS } from 'constants/routes';
+import { useGetCoursesPaths } from 'hooks';
+import { API } from 'constants/routes';
 import { QUERY_KEYS } from 'constants/queryKeyConstants';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
 const useDeleteCourse = (): UseMutationResult => {
+  const { coursesPath } = useGetCoursesPaths();
   const { enqueueSnackbar } = useSnackbar();
   const navigateTo = useNavigate();
 
@@ -19,7 +21,7 @@ const useDeleteCourse = (): UseMutationResult => {
   const handleSubmitSuccess = () => {
     queryClient.refetchQueries([QUERY_KEYS.paginatedCoursesList]);
     enqueueSnackbar(successSnackbarMessage.courseDeleted, successSnackbar);
-    navigateTo(PATHS.coursesList);
+    navigateTo(coursesPath);
   };
 
   return useMutation(

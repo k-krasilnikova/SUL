@@ -13,6 +13,7 @@ export interface ILearningProps {
   courseInfo: TCourseInfo;
   courseMaterial: IMaterial;
   courseContent: TContentElement;
+  myCoursesPath: string;
   handleStageBack: () => void;
   handleStageForward: () => void;
   toggleCourseInfoOpen: () => void;
