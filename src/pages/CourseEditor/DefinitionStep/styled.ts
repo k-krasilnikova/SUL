@@ -1,16 +1,28 @@
 import { styled, Box, Typography, TextField, InputLabel } from '@mui/material';
 
-import theme from 'themeSettings';
+export const FieldWrapper = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '350px',
+  marginBottom: '30px',
+  '&:not(:last-child)': {
+    marginRight: '100px',
+  },
+});
 
 export const Field = styled(TextField)({
   width: '350px',
   height: '53px',
-  '&:not(:last-child)': {
-    marginRight: '100px',
-  },
   fontSize: '18px',
-  [theme.breakpoints.down('xl')]: {
-    marginBottom: '30px',
+  '& label': {
+    color: '#A2A2A2',
+  },
+  '&.MuiTextField-root > .MuiFormLabel-root.Mui-focused': {
+    color: '#2C2525',
+  },
+  '& .MuiFormHelperText-root': {
+    marginRight: '29px',
+    marginBottom: '5px',
   },
 });
 
@@ -36,14 +48,22 @@ export const ImageWrapper = styled(SectionWrapper)({
   height: '268px',
 });
 
-export const DescriptionField = styled(TextField)({
-  width: '100%',
-  maxWidth: '1075px',
-});
-
 export const DescriptionWrapper = styled(Box)({
   marginTop: '40px',
   marginBottom: '30px',
+});
+
+export const InputLengthCounter = styled(Typography)({
+  display: 'flex',
+  alignSelf: 'flex-end',
+  fontSize: '0.75rem',
+  marginTop: '6px',
+  color: 'rgba(0, 0, 0, 0.23)',
+});
+
+export const DescriptionFieldWrapper = styled(FieldWrapper)({
+  maxWidth: '1075px',
+  width: '100%',
 });
 
 export const NewAvatarImageWrapper = styled(Box)({
