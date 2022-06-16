@@ -10,7 +10,7 @@ import { useGetSkills } from 'api/skills';
 import { useCreateCourse } from 'api/admin';
 import { PATHS } from 'constants/routes';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
-import { INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
+import { INITIAL_VALUES, RADIX_PARAMETER, SECONDS_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { formatFieldValue, formatValuesForSubmit } from 'pages/CourseEditor/utils';
 import { uploadFile } from 'utils/helpers/uploader';
@@ -73,6 +73,14 @@ const CourseCreatorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
+  const handleChangeDuration = (event: BaseSyntheticEvent) => {
+    const durationString = event.target.value;
+    const [hours, minutes] = durationString.split(':');
+    const totalSeconds =
+      Number(hours) * SECONDS_PARAMETER * SECONDS_PARAMETER + Number(minutes) * SECONDS_PARAMETER;
+    formik.setFieldValue(event.target.name, totalSeconds);
+  };
+
   const courseCreatorRef = useRef<HTMLElement>(null);
 
   const scrollToTop = () => {
@@ -86,6 +94,7 @@ const CourseCreatorContainer: FC = () => {
       <CourseCreator
         formik={formik}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
+        handleChangeDuration={handleChangeDuration}
         onFieldBlur={onFieldBlur}
         handleAddCourseAvatar={handleAddCourseAvatar}
         isCreateCourseMode={isCreateCourseMode}

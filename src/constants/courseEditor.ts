@@ -48,7 +48,7 @@ export const INITIAL_VALUES = {
   technologies: [
     {
       _id: '',
-      name: '',
+      name: 'Technology',
       maxScore: 0,
       points: 0,
     },

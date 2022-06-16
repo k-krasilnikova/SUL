@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, RefObject } from 'react';
+import { BaseSyntheticEvent, ChangeEvent, RefObject } from 'react';
 
 import { IStepProps } from 'pages/CourseEditor/types';
 
@@ -10,6 +10,7 @@ export interface ICourseCreatorProps extends IStepProps {
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
   handleAddCourseAvatar?: (event: BaseSyntheticEvent) => void;
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
+  handleChangeDuration?: (event: ChangeEvent<HTMLInputElement>) => void;
   isCreateCourseMode?: boolean;
   courseCreatorRef?: RefObject<HTMLElement>;
 }
