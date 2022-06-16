@@ -4,15 +4,17 @@ import { isNotNumbersOnly, isNotSpecialsOnly } from 'validations/utils';
 import {
   EXERCISE_DESCRIPTION_LENGTH_REGEX,
   EXERCISE_IS_NOT_NUMBERS_REGEX,
-  EXERCISE_TITLE_LENGTH_REGEX,
   MAX_DESCRIPTION_LENGTH,
+  MAX_EXERCISE_TITLE_LENGTH,
   MAX_MATERIAL_LENGTH,
   MAX_QUESTION_LENGTH,
   MAX_TITLE_LENGTH,
   MIN_DESCRIPTION_LENGTH,
+  MIN_EXERCISE_TITLE_LENGTH,
   MIN_MATERIAL_LENGTH,
   MIN_QUESTION_LENGTH,
   MIN_SKILLS_AMOUNT,
+  MIN_TEST_ANSWERS_AMOUNT,
   MIN_TEST_QUESTIONS_AMOUNT,
   MIN_TITLE_LENGTH,
 } from 'constants/courseEditor';
@@ -49,11 +51,14 @@ const courseEditorValidationSchema = object().shape({
           exercise: object().shape({
             eN: number(),
             title: string()
-              .matches(EXERCISE_TITLE_LENGTH_REGEX, {
-                excludeEmptyString: true,
-                message:
-                  'Exercise title should be of minimum 2 characters length and of maximum 400 characters length',
-              })
+              .min(
+                MIN_EXERCISE_TITLE_LENGTH,
+                'Exercise title should be of minimum 2 characters length',
+              )
+              .max(
+                MAX_EXERCISE_TITLE_LENGTH,
+                'Exercise title should be of maximum 400 characters length',
+              )
               .matches(EXERCISE_IS_NOT_NUMBERS_REGEX, {
                 excludeEmptyString: true,
                 message: 'Exercise title cannot contain only numbers',
@@ -106,11 +111,14 @@ const courseEditorValidationSchema = object().shape({
             )
             .min(MIN_QUESTION_LENGTH, 'Question should be of minimum 10 characters length')
             .max(MAX_QUESTION_LENGTH, 'Question should be of maximum 1000 characters length'),
-          answers: array().of(
-            object().shape({
-              variant: string().required('Answer is required'),
-            }),
-          ),
+          answers: array()
+            .required('Question answers are required')
+            .min(MIN_TEST_ANSWERS_AMOUNT, 'The question should have at least 1 answer')
+            .of(
+              object().shape({
+                variant: string().required('Answer is required'),
+              }),
+            ),
         }),
       ),
   }),

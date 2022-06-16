@@ -31,11 +31,7 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
     avatar: values.avatar,
     title: values.title,
     description: values.description,
-    materials: [
-      {
-        content: values.materials,
-      },
-    ],
+    materials: values.materials.map((material) => ({ content: [material] })),
     technologies: values.technologies.map((technology: IFormTechnology) => ({
       skill: technology._id,
       points: technology.points,
@@ -46,7 +42,10 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
       questions: values.test.questions.map((question: IFormQuestion) => ({
         question: question.question,
         correctAnswer: question.correctAnswer,
-        answers: question.answers,
+        answers: question.answers.map((answer) => ({
+          aN: answer.aN,
+          variant: answer.variant,
+        })),
       })),
     },
   };

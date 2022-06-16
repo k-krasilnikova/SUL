@@ -4,11 +4,13 @@ import { CourseStatus } from 'enums/course';
 import { ICourse } from 'types/course';
 
 export interface ISearchResultContainerProps {
-  coursesFound: ICourse[];
   handleSearchClose: () => void;
+  isSearchLoading: boolean;
+  coursesFound?: ICourse[];
 }
 
 export interface ISearchResultProps extends ISearchResultContainerProps {
+  isSearchLoading: boolean;
   foundInMyCourses?: IClientCourseIds[];
 }
 

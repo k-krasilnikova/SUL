@@ -5,6 +5,7 @@ import { Alert } from '@mui/material';
 
 import Loader from 'components/Loader';
 import { EditorTitles } from 'constants/courseEditor';
+import { Numbers } from 'enums/numbers';
 import { IStepProps } from 'pages/CourseEditor/types';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import isLastElem from 'utils/helpers/arrays/isLastElem';
@@ -75,7 +76,7 @@ const TestStep: FC<IStepProps> = ({
                             ],
                           });
                         }
-                      }}
+                      }
                     >
                       {ButtonLabels.removeQuestion}
                     </SkillButton>
