@@ -16,6 +16,7 @@ const useSearchAllCourses = (courseName: string): UseQueryResult<ICourse[], Axio
       return response.data;
     },
     {
+      refetchOnWindowFocus: false,
       enabled: !!courseName,
     },
   );
