@@ -25,7 +25,6 @@ import {
 const SkillsStep: FC<ISkillsStepProps> = ({
   formik,
   handleChangeTechnology,
-  handleChangeTechnologyCreateCourse,
   onSkillBlur,
   onSkillPointsBlur,
   ungroupedSkills,
@@ -56,11 +55,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       name={
                         isCreateCourseMode ? `technologies[${index}]._id` : `technologies[${index}]`
                       }
-                      onChange={
-                        isCreateCourseMode
-                          ? handleChangeTechnologyCreateCourse
-                          : handleChangeTechnology
-                      }
+                      onChange={isCreateCourseMode ? formik.handleChange : handleChangeTechnology}
                       onBlur={onSkillBlur}
                       error={
                         formik.touched.technologies?.[index]?.name &&
