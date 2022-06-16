@@ -21,7 +21,6 @@ export const StyledSelect = styled(Select)({
   },
   '& .MuiOutlinedInput-notchedOutline': {
     border: '1px solid #CBBEBE',
-    borderWidth: '1px',
   },
   '& .MuiSelect-icon': {
     top: '50%',
