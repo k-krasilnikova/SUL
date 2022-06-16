@@ -1,32 +1,37 @@
-import React from 'react';
+import { FC, useEffect, useState, MouseEvent } from 'react';
 import { useNavigate } from 'react-router';
 
 import { PATHS } from 'constants/routes';
-import { IClientCourseIds, ISearchResultItemContainer } from 'components/Layout/components/types';
+import { useGetClientCourseInfo } from 'api/myCourses';
+import { ISearchResultItemContainer } from 'components/Layout/components/types';
 import transformRoute from 'utils/helpers/paths/transformRoute';
 
 import SearchResultItem from './SearchResultItem';
 
-const SearchResultItemContainer: React.FC<ISearchResultItemContainer> = ({
+const SearchResultItemContainer: FC<ISearchResultItemContainer> = ({
   course,
   addDivider,
-  foundInMyCoursesId,
   handleSearchClose,
 }) => {
+  const [courseId, setCourseId] = useState<string>('');
   const navigate = useNavigate();
+  const { data: foundInMyCourse, isFetched } = useGetClientCourseInfo(courseId, true);
 
-  const handleSelectFoundCourse = (event: React.MouseEvent<HTMLElement>) => {
-    const courseIds: IClientCourseIds | undefined = foundInMyCoursesId?.find(
-      ({ courseId }) => courseId === event.currentTarget.id,
-    );
-
-    const navigatePath = courseIds
-      ? transformRoute(PATHS.myCourseDetails, courseIds.clientCourseId)
-      : transformRoute(PATHS.courseDetails, event.currentTarget.id);
-
-    navigate(navigatePath);
-    handleSearchClose();
+  const handleSelectFoundCourse = (event: MouseEvent<HTMLElement>) => {
+    if (!course.status) {
+      navigate(transformRoute(PATHS.courseDetails, event.currentTarget.id));
+      handleSearchClose();
+      return;
+    }
+    setCourseId(event.currentTarget.id);
   };
+
+  useEffect(() => {
+    if (isFetched && foundInMyCourse?._id) {
+      navigate(transformRoute(PATHS.myCourseDetails, foundInMyCourse._id));
+      handleSearchClose();
+    }
+  }, [courseId, foundInMyCourse, handleSearchClose, isFetched, navigate]);
 
   return (
     <SearchResultItem

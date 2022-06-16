@@ -40,3 +40,7 @@ export const SkillsDivider = styled(Divider)({
   maxWidth: '1300px',
   width: '100%',
 });
+
+export const NoSkills = styled(Box)({
+  marginTop: '300px',
+});

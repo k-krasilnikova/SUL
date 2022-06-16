@@ -1,41 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { useSnackbar } from 'notistack';
+import { FC, useEffect, useState } from 'react';
 
 import { useSearchAllCourses } from 'api/courses';
-import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
-import { SEARCH_DEBOUNCE_TIME } from 'constants/time';
 import { useDebounce } from 'hooks';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
-import { ICourse } from 'types/course';
 
 import SearchCourses from './SearchCourses';
 
-const SearchCoursesContainer: React.FC = () => {
+const SearchCoursesContainer: FC = () => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
+  const [isMobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState<string>('');
-  const [coursesFound, setCoursesFound] = useState<Array<ICourse>>([]);
 
-  const { enqueueSnackbar } = useSnackbar();
+  const debouncedSearchValue = useDebounce(searchInputValue);
 
-  const debouncedSearchValue = useDebounce(searchInputValue, SEARCH_DEBOUNCE_TIME);
-
-  const { data: foundedCourses, isLoading: isSearchingCourses } =
-    useSearchAllCourses(debouncedSearchValue);
+  const {
+    data: foundedCoursesData,
+    isLoading: isSearchCoursesLoading,
+    isFetching,
+  } = useSearchAllCourses(debouncedSearchValue);
 
   useEffect(() => {
-    if (debouncedSearchValue && !isSearchingCourses) {
-      if (foundedCourses) {
-        setCoursesFound(foundedCourses);
-        setSearchOpen(true);
-      } else {
-        enqueueSnackbar(errorSnackbarMessage.requestFailed, errorSnackbar);
-      }
+    if (isFetching) {
+      setSearchOpen(true);
+      setMobileSearchOpen(true);
     }
-  }, [debouncedSearchValue, enqueueSnackbar, foundedCourses, isSearchingCourses]);
+  }, [isFetching]);
 
   const handleSearchClose = () => {
     setSearchInputValue('');
     setSearchOpen(false);
+  };
+  const handleMobileSearch = () => {
+    handleSearchClose();
+    setMobileSearchOpen((prev) => !prev);
   };
 
   const searchCourses = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -45,7 +42,6 @@ const SearchCoursesContainer: React.FC = () => {
       setSearchOpen(false);
     }
   };
-
   const checkSpace = (event: React.KeyboardEvent) => {
     checkWhitespace(event, searchInputValue);
   };
@@ -56,16 +52,18 @@ const SearchCoursesContainer: React.FC = () => {
     const formattedValue = inputValue.split(/\s+/).join(' ').trimStart().trimEnd();
     setSearchInputValue(formattedValue);
   };
-
   return (
     <SearchCourses
       isSearchOpen={isSearchOpen}
       searchCourses={searchCourses}
       handleSearchClose={handleSearchClose}
-      coursesFound={coursesFound}
+      coursesFound={foundedCoursesData}
       checkSpace={checkSpace}
       checkPastedValue={checkPastedValue}
       searchInputValue={searchInputValue}
+      isSearchCoursesLoading={isSearchCoursesLoading}
+      handleMobileSearch={handleMobileSearch}
+      isMobileSearchOpen={isMobileSearchOpen}
     />
   );
 };

@@ -27,7 +27,6 @@ const DefinitionStep: FC<IStepProps> = ({
   isCourseDataLoading,
   onFieldBlur,
   handleAddCourseAvatar,
-  isCreateCourseMode,
 }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
@@ -66,24 +65,20 @@ const DefinitionStep: FC<IStepProps> = ({
           <SecondaryText>{EditorTitles.avatarDescription}</SecondaryText>
         </AvatarWrapper>
         <ImageWrapper>
-          {isCreateCourseMode ? (
-            <NewAvatarImageWrapper>
-              <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
-              <AddImageInput
-                type="file"
-                accept="image/*"
-                id="avatar"
-                name="avatar"
-                multiple
-                onChange={handleAddCourseAvatar}
-              />
-              <NewImageLabel htmlFor="avatar">
-                <Image imageUrl={formik.values.avatar} newImage />
-              </NewImageLabel>
-            </NewAvatarImageWrapper>
-          ) : (
-            <Image imageUrl={formik.values.avatar} />
-          )}
+          <NewAvatarImageWrapper>
+            <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
+            <AddImageInput
+              type="file"
+              accept="image/*"
+              id="avatar"
+              name="avatar"
+              multiple
+              onChange={handleAddCourseAvatar}
+            />
+            <NewImageLabel htmlFor="avatar">
+              <Image imageUrl={formik.values.avatar} newImage />
+            </NewImageLabel>
+          </NewAvatarImageWrapper>
         </ImageWrapper>
         <DescriptionWrapper>
           <SectionName>{EditorTitles.definitionStepDescription}</SectionName>

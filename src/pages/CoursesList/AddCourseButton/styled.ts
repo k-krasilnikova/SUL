@@ -6,10 +6,10 @@ import theme from 'themeSettings';
 export const AddButtonWrapper = styled('div')({
   width: '100%',
   display: 'flex',
-  justifyContent: 'end',
-  margin: '16px 0 0',
+  justifyContent: 'start',
+  margin: '16px 0 0 30px',
   [theme.breakpoints.down('xl')]: {
-    margin: '16px 0',
+    margin: '16px 0 0 25px',
   },
   [theme.breakpoints.down(950)]: {
     display: 'none',
