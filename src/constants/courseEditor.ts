@@ -43,7 +43,7 @@ export const LESSONS_TYPE_TITLE_MAP: { [key: string]: string } = {
 export const INITIAL_VALUES = {
   title: '',
   complexity: 1,
-  avatar: 'https://cdn.pixabay.com/photo/2022/06/09/12/38/animal-7252490_960_720.jpg',
+  avatar: '',
   description: '',
   technologies: [
     {
