@@ -66,13 +66,13 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               }}
               autoComplete="off"
               error={
-              formik.touched.materials?.[index]?.material &&
-              Boolean(formik.errors?.materials?.[index]?.material)
-            }
-            helperText={
-              formik.touched.materials?.[index]?.material &&
-              formik.errors?.materials?.[index]?.material
-            }
+                formik.touched.materials?.[index]?.material &&
+                Boolean(formik.errors?.materials?.[index]?.material)
+              }
+              helperText={
+                formik.touched.materials?.[index]?.material &&
+                formik.errors?.materials?.[index]?.material
+              }
             />
             <InputLengthCounter>{`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
           </MaterialFieldWrapper>
@@ -110,7 +110,11 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               maxLength: 400,
             }}
             autoComplete="off"
-            error={formik.touched.materials?.[index]?.exercise?.title && Boolean(formik.errors?.materials?.[index]?.exercise?.title)}          />
+            error={
+              formik.touched.materials?.[index]?.exercise?.title &&
+              Boolean(formik.errors?.materials?.[index]?.exercise?.title)
+            }
+          />
           <InputLengthCounter>{`${
             material?.exercise?.title?.length ? material?.exercise?.title?.length : Numbers.zero
           }/${MAX_EXERCISE_TITLE_LENGTH}`}</InputLengthCounter>

@@ -94,12 +94,12 @@ export interface IFormik {
 export interface IStepProps {
   formik: IFormik;
   isCourseDataLoading?: boolean;
+  isCreateCourseMode?: boolean;
   courseData?: ICourseEditorResponse;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
   handleChangeDuration?: (event: ChangeEvent<HTMLInputElement>) => void;
   onSkillBlur?: (event: BaseSyntheticEvent) => void;
   onSkillPointsBlur?: (event: BaseSyntheticEvent) => void;
-  isCreateCourseMode?: boolean;
   handleAddCourseAvatar?: (event: BaseSyntheticEvent) => void;
 }
 

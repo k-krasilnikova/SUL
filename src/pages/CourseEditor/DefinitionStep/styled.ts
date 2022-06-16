@@ -64,6 +64,7 @@ export const InputLengthCounter = styled(Typography)({
 export const DescriptionFieldWrapper = styled(FieldWrapper)({
   maxWidth: '1075px',
   width: '100%',
+});
 
 export const NewAvatarImageWrapper = styled(Box)({
   position: 'relative',

@@ -126,7 +126,6 @@ export const MIN_SKILLS_AMOUNT = 1;
 export const MIN_QUESTION_LENGTH = 10;
 export const MAX_QUESTION_LENGTH = 1000;
 
-export const EXERCISE_MAX_TITLE_LENGTH = 400;
 export const MIN_EXERCISE_TITLE_LENGTH = 2;
 export const MAX_EXERCISE_TITLE_LENGTH = 400;
 
