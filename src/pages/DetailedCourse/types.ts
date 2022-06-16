@@ -57,8 +57,13 @@ export interface IDetailedCourseActions {
   isLoading?: boolean;
 }
 
-export interface IBackButton {
+export interface IBackButtonContainer {
   page: string;
+}
+
+export interface IBackButton extends IBackButtonContainer {
+  coursesPath: string;
+  myCoursesPath: string;
 }
 
 export interface ISimilarCourses {

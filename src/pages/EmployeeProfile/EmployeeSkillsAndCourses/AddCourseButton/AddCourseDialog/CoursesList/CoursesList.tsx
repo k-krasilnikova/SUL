@@ -17,39 +17,43 @@ interface IProps {
 }
 
 const CoursesList: FC<IProps> = ({
+  withUpperLine,
+  type,
   courses,
   checkedCourses,
-  type,
-  handleCheckboxChange,
   isCoursesLoading,
-  withUpperLine,
+  handleCheckboxChange,
 }) => (
   <>
-    {withUpperLine && !!checkedCourses.length && <StyledHorizontalLine />}
-    <StyledList type={type}>
-      {isCoursesLoading ? (
-        <Loader color="primary" type={Loaders.component} />
-      ) : (
-        <>
-          {courses?.map(({ _id: courseId, title }) => {
-            const isChecked = Boolean(
-              checkedCourses.find(({ _id: checkedCourseId }) => checkedCourseId === courseId),
-            );
-            const checkboxValue = JSON.stringify({ _id: courseId, title });
+    {Boolean(courses?.length) && (
+      <>
+        {withUpperLine && Boolean(checkedCourses.length) && <StyledHorizontalLine />}
+        <StyledList type={type}>
+          {isCoursesLoading ? (
+            <Loader color="primary" type={Loaders.component} />
+          ) : (
+            <>
+              {courses?.map(({ _id: courseId, title }) => {
+                const isChecked = Boolean(
+                  checkedCourses.find(({ _id: checkedCourseId }) => checkedCourseId === courseId),
+                );
+                const checkboxValue = JSON.stringify({ _id: courseId, title });
 
-            return (
-              <CourseItem
-                key={courseId}
-                checkboxValue={checkboxValue}
-                isChecked={isChecked}
-                title={title}
-                handleCheckboxChange={handleCheckboxChange}
-              />
-            );
-          })}
-        </>
-      )}
-    </StyledList>
+                return (
+                  <CourseItem
+                    key={courseId}
+                    checkboxValue={checkboxValue}
+                    isChecked={isChecked}
+                    title={title}
+                    handleCheckboxChange={handleCheckboxChange}
+                  />
+                );
+              })}
+            </>
+          )}
+        </StyledList>
+      </>
+    )}
   </>
 );
 

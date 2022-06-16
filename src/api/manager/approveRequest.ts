@@ -20,8 +20,8 @@ const useApproveRequest = (): UseMutationResult<unknown, unknown, IApproveCourse
   };
 
   return useMutation(
-    async ({ requestId: id, withAssessment: assessment }) => {
-      const data = { id, assessment };
+    async ({ requestId, withAssessment }) => {
+      const data = { clientCourseId: requestId, assessment: withAssessment };
       const apiClient = apiClientWrapper();
       const response = await apiClient.put(API.approveRequest, data);
       return response.data;

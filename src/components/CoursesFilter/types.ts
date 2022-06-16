@@ -3,7 +3,6 @@ import { FieldProps } from 'formik';
 import { ICoursesFilterValues } from 'types/course';
 
 export interface ICoursesFilterContainerProps {
-  haveCourses: boolean;
   withStatusSelect?: boolean;
 }
 

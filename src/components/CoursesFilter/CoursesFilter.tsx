@@ -11,11 +11,7 @@ import AutoSetURLQueries from './AutoSetURLQueries';
 import { ICoursesFilterProps } from './types';
 import { FormWrapper, FieldsContainer } from './styled';
 
-const CoursesFilter: FC<ICoursesFilterProps> = ({
-  initialValues,
-  withStatusSelect,
-  haveCourses,
-}) => {
+const CoursesFilter: FC<ICoursesFilterProps> = ({ initialValues, withStatusSelect }) => {
   const selectsConfig = getFilterSelectsConfig(withStatusSelect);
 
   return (
@@ -31,12 +27,7 @@ const CoursesFilter: FC<ICoursesFilterProps> = ({
                   options={SELECTS_OPTIONS[configName as keyof typeof SELECTS_OPTIONS]}
                 />
               ))}
-              <Field
-                as={CustomCheckbox}
-                name="order"
-                checked={values.order}
-                disabled={!haveCourses}
-              />
+              <Field as={CustomCheckbox} name="order" checked={values.order} />
             </FieldsContainer>
             <FiltersTags withStatusSelect={withStatusSelect} values={values} />
             <AutoSetURLQueries />

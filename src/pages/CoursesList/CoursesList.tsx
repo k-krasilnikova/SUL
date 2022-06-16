@@ -41,7 +41,7 @@ const CoursesList: FC<ICourseProps> = ({
     ) : courses?.length || !isEmptyFilters ? (
       <>
         {isAdmin && <AddCourseButton />}
-        <CoursesFilter withStatusSelect={withStatusSelect} haveCourses={Boolean(courses?.length)} />
+        <CoursesFilter withStatusSelect={withStatusSelect} />
         <MobileSearchWrapper>
           <MobileSearch />
         </MobileSearchWrapper>
