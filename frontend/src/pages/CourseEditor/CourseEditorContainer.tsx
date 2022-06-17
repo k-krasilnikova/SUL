@@ -18,6 +18,8 @@ import { Numbers } from 'enums/numbers';
 import { useSnackbar } from 'notistack';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { uploadFile } from 'utils/helpers/uploader';
+import { useCallbackPrompt } from 'hooks';
+import ConfirmLeavePage from 'pages/PassingTest/ConfirmLeavePage';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
@@ -28,6 +30,9 @@ const CourseEditorContainer: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
   const courseEditorRef = useRef<HTMLElement>(null);
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
+  const [isSubmitButton, setIsSubmitButton] = useState(false);
+  const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(!isSubmitButton);
+  const [isLeavePageDialogOpen, setLeavePageDialogOpen] = useState(false);
 
   const { mutate: editCourseDataMutate, isLoading: isEditCourseDataMutateLoading } =
     useEditCourseData(params.courseId);
@@ -35,6 +40,7 @@ const CourseEditorContainer: FC = () => {
   const handleSubmit = (values: any) => {
     const formattedValues = formatValuesForSubmit(values);
     editCourseDataMutate(formattedValues);
+    setIsSubmitButton(true);
   };
 
   const formik = useFormik({
@@ -125,6 +131,16 @@ const CourseEditorContainer: FC = () => {
     );
   }
 
+  const handleCancelLeavePage = (): void => {
+    setLeavePageDialogOpen(false);
+    cancelNavigation();
+  };
+
+  const handleNavigateBack = (): void => {
+    setLeavePageDialogOpen(false);
+    confirmNavigation();
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -143,6 +159,13 @@ const CourseEditorContainer: FC = () => {
         isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}
         scrollToTop={scrollToTop}
         courseEditorRef={courseEditorRef}
+      />
+      <ConfirmLeavePage
+        isOpened={isLeavePageDialogOpen || (showPrompt && !isSubmitButton)}
+        isLoading={isEditCourseDataMutateLoading}
+        handleCancelLeavePage={handleCancelLeavePage}
+        handleLeavePage={handleNavigateBack}
+        isCourseEditor
       />
     </FormikProvider>
   );
