@@ -31,13 +31,15 @@ export const formatTimeout = (sec: number, format: string): string => {
     mm: 60,
   };
   let seconds = Math.round(Math.abs(sec));
+
   const prettierTime = (time: number, measure: string) =>
     time < 10 ? `0${time} ${measure}` : `${time} ${measure}`;
-  const isFormatPlacegolderNeeded = (secondsLeft: number) =>
+
+  const isFormatPlaceholderNeeded = (secondsLeft: number) =>
     secondsLeft && result.length < formatArr.length;
 
   for (let i = 0; i <= arrOfShortFormat.length; i += 1) {
-    if (formatArr.includes(arrOfShortFormat[i]) || isFormatPlacegolderNeeded(seconds)) {
+    if (formatArr.includes(arrOfShortFormat[i]) || isFormatPlaceholderNeeded(seconds)) {
       const timeFormat = arrOfShortFormat[i];
       const timeStringFormat = shortTimeStringValue[timeFormat];
       const timevalue = Math.floor(seconds / (secondsIn[timeFormat] ?? Numbers.one));
