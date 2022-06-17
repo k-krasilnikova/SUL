@@ -26,7 +26,7 @@ const withTimeLeft =
           ),
         );
       }
-    }, [applyDate, finishTestDate, timeout]);
+    }, [applyDate, finishTestDate, timeout, isTimeVisible]);
 
     return (
       <div onMouseEnter={setTimeVisible} onMouseLeave={setTimeVisible}>
