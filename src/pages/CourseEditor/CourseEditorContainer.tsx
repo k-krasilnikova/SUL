@@ -15,6 +15,7 @@ import {
   SECONDS_PARAMETER,
 } from 'constants/courseEditor';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { Numbers } from 'enums/numbers';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { uploadFile } from 'utils/helpers/uploader';
 
