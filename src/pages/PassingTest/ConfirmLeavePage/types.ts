@@ -3,4 +3,5 @@ export interface IConfirmLeavePageProps {
   isLoading: boolean;
   handleCancelLeavePage: () => void;
   handleLeavePage: () => void;
+  isCourseEditor?: boolean;
 }

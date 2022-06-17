@@ -9,6 +9,7 @@ export const NO_RESULTS = 'No results';
 export const NO_NOTIFICATIONS = 'No notifications yet';
 export const LABEL_MESSAGE = 'New';
 export const CONFIRM_LEAVE_PAGE = 'Are you sure you want to leave this page?';
+export const CONFIRM_LEAVE_EDITOR_PAGE = 'Want to exit the course editor?';
 export const CONFIRM_DELETE_COURSE = 'Are you sure you want to delete the course?';
 export const CONFIRM_LOGOUT = 'Are you sure you want to log out?';
 export const TIME_FOR_TEST_EXPIRED =
