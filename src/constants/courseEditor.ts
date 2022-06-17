@@ -42,13 +42,13 @@ export const LESSONS_TYPE_TITLE_MAP: { [key: string]: string } = {
 
 export const INITIAL_VALUES = {
   title: '',
-  complexity: 0,
+  complexity: 1,
   avatar: '',
   description: '',
   technologies: [
     {
       _id: '',
-      name: '',
+      name: 'Technology',
       maxScore: 0,
       points: 0,
     },
@@ -67,16 +67,14 @@ export const INITIAL_VALUES = {
           {
             aN: 1,
             variant: '',
-            _id: '',
           },
         ],
-        correctAnswer: 0,
-        qN: 0,
+        correctAnswer: 1,
+        qN: 1,
         question: '',
-        _id: '',
       },
     ],
-    timeout: 0,
+    timeout: 500,
     title: '',
   },
   skillsById: {},

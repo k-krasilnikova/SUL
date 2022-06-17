@@ -61,7 +61,7 @@ const DefinitionStep: FC<IStepProps> = ({
           </FieldWrapper>
           <Field
             select
-            value={formik.values.complexity || ''}
+            value={formik.values.complexity || 0}
             onChange={formik.handleChange}
             variant="outlined"
             id="complexity"

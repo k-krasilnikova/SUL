@@ -17,7 +17,6 @@ import {
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { uploadFile } from 'utils/helpers/uploader';
-import { Numbers } from 'enums/numbers';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
