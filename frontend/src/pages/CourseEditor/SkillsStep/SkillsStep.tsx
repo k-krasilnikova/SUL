@@ -53,15 +53,11 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                         select
                         variant="outlined"
                         label="Technology"
-                        value={isCreateCourseMode ? technology.name : technology._id}
-                        id={
-                          isCreateCourseMode
-                            ? `technologies[${index}].name`
-                            : `technologies[${index}]._id`
-                        }
+                        value={technology._id}
+                        id={`technologies[${index}]._id`}
                         name={
                           isCreateCourseMode
-                            ? `technologies[${index}].name`
+                            ? `technologies[${index}]._id`
                             : `technologies[${index}]`
                         }
                         onChange={isCreateCourseMode ? formik.handleChange : handleChangeTechnology}
@@ -101,11 +97,11 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                       >
                         {isCreateCourseMode
                           ? getPointsArr(
-                              ungroupedSkills?.[technology.name]?.maxScore || Numbers.zero,
+                              ungroupedSkills?.[technology._id]?.maxScore || Numbers.zero,
                             ).map((option) => (
                               <MenuItem key={option} value={option}>
                                 {`${option}/${
-                                  ungroupedSkills?.[technology.name]?.maxScore || Numbers.zero
+                                  ungroupedSkills?.[technology._id]?.maxScore || Numbers.zero
                                 }`}
                               </MenuItem>
                             ))

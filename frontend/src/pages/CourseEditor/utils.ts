@@ -29,6 +29,7 @@ export const formatFieldValue = (value: string): string => {
 export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => {
   const formattedValues = {
     avatar: values.avatar,
+    complexity: values.complexity,
     title: values.title,
     description: values.description,
     materials: values.materials.map((material) => ({ content: [material] })),
