@@ -6,6 +6,7 @@ import { AxiosError } from 'axios';
 import { apiClientWrapper } from 'api/base';
 import { API, PATHS } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
+import transformRoute from 'utils/helpers/paths/transformRoute';
 
 const useEditCourseData = (courseId?: string): UseMutationResult => {
   const navigateTo = useNavigate();
@@ -23,7 +24,7 @@ const useEditCourseData = (courseId?: string): UseMutationResult => {
   return useMutation(
     async (data) => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.put(`${API.courses}/${courseId}/edit`, data);
+      const response = await apiClient.put(transformRoute(API.editCourse, courseId), data);
       return response.data;
     },
     {
