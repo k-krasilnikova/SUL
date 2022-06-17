@@ -18,7 +18,6 @@ import { Numbers } from 'enums/numbers';
 import { useSnackbar } from 'notistack';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { uploadFile } from 'utils/helpers/uploader';
-import { Numbers } from 'enums/numbers';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
