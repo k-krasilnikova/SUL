@@ -67,6 +67,7 @@ export const API: {
   getPendingAssessments: string;
   tests: string;
   createCourse: string;
+  editCourse: string;
 } = {
   getProfile: '/api/users',
   readNotifications: '/api/users/notifications',
@@ -86,4 +87,5 @@ export const API: {
   getPendingAssessments: 'api/clientCourses/assessments',
   tests: 'api/tests',
   createCourse: '/api/courses/create',
+  editCourse: 'api/courses/:id/edit',
 };
