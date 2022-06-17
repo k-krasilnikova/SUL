@@ -1,21 +1,35 @@
-import { BaseSyntheticEvent, FC, useRef } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { BaseSyntheticEvent, FC, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
+import { useSnackbar } from 'notistack';
 
 import { Numbers } from 'enums/numbers';
 import { useGetSkills } from 'api/skills';
+import { useCreateCourse } from 'api/admin';
 import { PATHS } from 'constants/routes';
-import { INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
+import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { INITIAL_VALUES, RADIX_PARAMETER, SECONDS_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
-import { formatFieldValue } from 'pages/CourseEditor/utils';
+import { formatFieldValue, formatValuesForSubmit } from 'pages/CourseEditor/utils';
 import { uploadFile } from 'utils/helpers/uploader';
 
 import CourseCreator from './CourseCreator';
 
 const CourseCreatorContainer: FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
+  const { mutate: createCourseMutate } = useCreateCourse();
+
+  const handleSubmit = (values: any) => {
+    const formattedValues = formatValuesForSubmit(values);
+    createCourseMutate(formattedValues);
+  };
+
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
-    onSubmit: (): void => {},
+    onSubmit: handleSubmit,
     validationSchema: courseEditorValidationSchema,
     validateOnBlur: true,
     validateOnChange: true,
@@ -37,6 +51,12 @@ const CourseCreatorContainer: FC = () => {
     );
   }
 
+  useEffect(() => {
+    if (!formik.isValid && formik.isSubmitting && !formik.isValidating) {
+      enqueueSnackbar(errorSnackbarMessage.validationError, errorSnackbar);
+    }
+  }, [formik.isSubmitting, formik.isValid, formik.isValidating]);
+
   const handleAddCourseAvatar = async (event: BaseSyntheticEvent) => {
     const fileLink = await uploadFile(event.target.files[Numbers.zero]);
     formik.setFieldValue('avatar', fileLink);
@@ -53,6 +73,14 @@ const CourseCreatorContainer: FC = () => {
     formik.handleBlur(event);
   };
 
+  const handleChangeDuration = (event: BaseSyntheticEvent) => {
+    const durationString = event.target.value;
+    const [hours, minutes] = durationString.split(':');
+    const totalSeconds =
+      Number(hours) * SECONDS_PARAMETER * SECONDS_PARAMETER + Number(minutes) * SECONDS_PARAMETER;
+    formik.setFieldValue(event.target.name, totalSeconds);
+  };
+
   const courseCreatorRef = useRef<HTMLElement>(null);
 
   const scrollToTop = () => {
@@ -66,6 +94,7 @@ const CourseCreatorContainer: FC = () => {
       <CourseCreator
         formik={formik}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
+        handleChangeDuration={handleChangeDuration}
         onFieldBlur={onFieldBlur}
         handleAddCourseAvatar={handleAddCourseAvatar}
         isCreateCourseMode={isCreateCourseMode}
