@@ -23,8 +23,7 @@ const useCreateCourse = (): UseMutationResult => {
   return useMutation(
     async (data) => {
       const apiClient = apiClientWrapper();
-      const url = `${API.courses}/create`;
-      const response = await apiClient.post(url, data);
+      const response = await apiClient.post(API.createCourse, data);
       return response.data;
     },
     {

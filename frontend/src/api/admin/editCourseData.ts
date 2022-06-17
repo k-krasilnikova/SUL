@@ -23,8 +23,7 @@ const useEditCourseData = (courseId?: string): UseMutationResult => {
   return useMutation(
     async (data) => {
       const apiClient = apiClientWrapper();
-      const url = `${API.courses}/${courseId}/edit`;
-      const response = await apiClient.put(url, data);
+      const response = await apiClient.put(`${API.courses}/${courseId}/edit`, data);
       return response.data;
     },
     {
