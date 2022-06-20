@@ -24,4 +24,5 @@ export interface IConfirmLeavePageProps {
   handleCancelLeavePage: () => void;
   handleLeavePage: () => void;
   isCourseEditor?: boolean;
+  isCourseCreator?: boolean;
 }
