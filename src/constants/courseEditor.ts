@@ -55,7 +55,7 @@ export const INITIAL_VALUES = {
   ],
   materials: [
     {
-      type: '',
+      type: 'video',
       material: '',
     },
   ],
