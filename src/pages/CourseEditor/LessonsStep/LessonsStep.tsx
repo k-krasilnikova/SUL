@@ -35,7 +35,7 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
                         if (formik.values.materials.length === Numbers.one) {
                           push({
                             type: 'video',
-                            material: 'Material video link',
+                            material: '',
                             exercise: {},
                           });
                         }
@@ -49,7 +49,7 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
                         onClick={() =>
                           push({
                             type: 'video',
-                            material: 'Material video link',
+                            material: '',
                             exercise: {},
                           })
                         }
