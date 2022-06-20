@@ -4,6 +4,7 @@
 import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
+import { useSnackbar } from 'notistack';
 
 import { useGetSkills } from 'api/skills';
 import { useGetCourseEditorData, useEditCourseData } from 'api/admin';
@@ -15,7 +16,6 @@ import {
 } from 'constants/courseEditor';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { Numbers } from 'enums/numbers';
-import { useSnackbar } from 'notistack';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { uploadFile } from 'utils/helpers/uploader';
 

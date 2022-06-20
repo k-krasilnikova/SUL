@@ -5,3 +5,5 @@ export { default as useCallbackPrompt } from './useCallbackPrompt';
 export { default as useBlocker } from './useBlocker';
 export { default as useGetWindowSizeLabel } from './useGetWindowSizeLabel';
 export { default as useGetCoursesFilters } from './useGetCoursesFilters';
+export { default as useSetCoursesFiltersContext } from './useSetCoursesFiltersContext';
+export { default as useGetCoursesPaths } from './useGetCoursesPaths';

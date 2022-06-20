@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import EditorTabs from 'components/EditorTabs';
 import { ButtonLabels } from 'constants/ButtonLabels';
-import { PATHS } from 'constants/routes';
 import PageTitle from 'components/PageTitle';
 import DefinitionStep from 'pages/CourseEditor/DefinitionStep';
 import SkillsStep from 'pages/CourseEditor/SkillsStep';
@@ -13,11 +12,11 @@ import { BackButton, InnerWrapper, PageWrapper } from 'pages/CourseEditor/styled
 
 import { ICourseCreatorProps } from './types';
 
-const CourseCreator: FC<ICourseCreatorProps> = ({ courseCreatorRef, ...props }) => (
+const CourseCreator: FC<ICourseCreatorProps> = ({ courseCreatorRef, coursesPath, ...props }) => (
   <PageWrapper ref={courseCreatorRef}>
     <PageTitle title="Create Course">
       <InnerWrapper>
-        <BackButton variant="medium" color="primary" component={Link} to={PATHS.coursesList}>
+        <BackButton variant="medium" color="primary" component={Link} to={coursesPath}>
           {ButtonLabels.back}
         </BackButton>
         <EditorTabs {...props}>

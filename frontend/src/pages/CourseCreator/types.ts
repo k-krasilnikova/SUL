@@ -3,6 +3,7 @@ import { BaseSyntheticEvent, ChangeEvent, RefObject } from 'react';
 import { IStepProps } from 'pages/CourseEditor/types';
 
 export interface ICourseCreatorProps extends IStepProps {
+  coursesPath: string;
   ungroupedSkills: {
     [p: string]: { _id: string; maxScore: number; name: string; points: number };
   };

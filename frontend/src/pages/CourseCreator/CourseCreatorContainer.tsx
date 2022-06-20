@@ -8,6 +8,7 @@ import { useSnackbar } from 'notistack';
 import { Numbers } from 'enums/numbers';
 import { useGetSkills } from 'api/skills';
 import { useCreateCourse } from 'api/admin';
+import { useGetCoursesPaths } from 'hooks';
 import { PATHS } from 'constants/routes';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { INITIAL_VALUES, RADIX_PARAMETER, SECONDS_PARAMETER } from 'constants/courseEditor';
@@ -36,6 +37,7 @@ const CourseCreatorContainer: FC = () => {
     enableReinitialize: true,
   });
 
+  const { coursesPath } = useGetCoursesPaths();
   const { pathname } = useLocation();
   const isCreateCourseMode = pathname === PATHS.courseCreator;
   const { data: courseCreatorSkillsData } = useGetSkills();
@@ -99,6 +101,7 @@ const CourseCreatorContainer: FC = () => {
         handleAddCourseAvatar={handleAddCourseAvatar}
         isCreateCourseMode={isCreateCourseMode}
         ungroupedSkills={ungroupedSkills}
+        coursesPath={coursesPath}
         scrollToTop={scrollToTop}
         courseCreatorRef={courseCreatorRef}
       />

@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { ICourse } from 'types/course';
 import { useApplyCourse, useGetPaginatedCourses } from 'api/courses';
 import { useGetProfile } from 'api/profile';
-import { useFetchNextPage, useGetCoursesFilters } from 'hooks';
+import { useFetchNextPage, useGetCoursesFilters, useSetCoursesFiltersContext } from 'hooks';
+import { CoursesFilters } from 'enums/coursesFilters';
 import { Role } from 'constants/menuRoles';
 import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 
@@ -11,6 +12,7 @@ import CoursesList from './CoursesList';
 
 const CoursesContainer: React.FC = () => {
   const [targetId, setTargetId] = useState<string | undefined>();
+  useSetCoursesFiltersContext(CoursesFilters.coursesFilters);
 
   const { mutate: applyCourse, isLoading: isApplyCourseLoading } = useApplyCourse();
 
