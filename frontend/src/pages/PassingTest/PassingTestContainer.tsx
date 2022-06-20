@@ -17,16 +17,16 @@ import transformRoute from 'utils/helpers/paths/transformRoute';
 import { convertTestStatusToProgress } from 'utils/helpers/convertCourseStatusToProgress';
 import { CourseStatus } from 'enums/course';
 import { Numbers } from 'enums/numbers';
+import { ConfirmLeavePage } from 'components/Dialogs';
 
 import PassingTest from './PassingTest';
 import TestResult from './TestResult';
-import ConfirmLeavePage from './ConfirmLeavePage';
 import ConfirmTimeIsOver from './ConfirmTimeIsOver';
 import { getDurationBetweenDates } from './utils';
 
 const PassingTestContainer: React.FC = () => {
   const { courseId } = useParams();
-  const naviagteTo = useNavigate();
+  const navigateTo = useNavigate();
 
   const [isTestTimeoutDialogOpen, setTestTimeoutDialogOpen] = useToggle();
   const [isTestResultPageEnabled, setTestResultPageEnabled] = useState(false);
@@ -127,12 +127,12 @@ const PassingTestContainer: React.FC = () => {
   const handleCloseTimeIsOverDialog = () => {
     setTestTimeoutDialogOpen();
     submitResult(false);
-    naviagteTo(transformRoute(PATHS.myCourseDetails, courseId));
+    navigateTo(transformRoute(PATHS.myCourseDetails, courseId));
   };
 
   const handleConfirmLeavePageOpen = (): void => {
     setLeavePageDialogOpen(true);
-    naviagteTo(transformRoute(PATHS.myCourseDetails, courseId));
+    navigateTo(transformRoute(PATHS.myCourseDetails, courseId));
   };
 
   const handleCancelLeavePage = (): void => {

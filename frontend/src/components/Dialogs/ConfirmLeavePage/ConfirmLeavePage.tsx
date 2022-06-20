@@ -3,8 +3,7 @@ import { FC } from 'react';
 import { CONFIRM_LEAVE_EDITOR_PAGE, CONFIRM_LEAVE_PAGE } from 'constants/messages';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { ConfirmDialog } from 'components/Dialogs';
-
-import { IConfirmLeavePageProps } from './types';
+import { IConfirmLeavePageProps } from 'components/Dialogs/types';
 
 const ConfirmLeavePage: FC<IConfirmLeavePageProps> = ({
   isOpened,
