@@ -17,3 +17,11 @@ export interface IConfirmDialogProps extends Omit<IDialogProps, 'children'> {
   isLoading?: boolean;
   handleDecline?: () => void;
 }
+
+export interface IConfirmLeavePageProps {
+  isOpened: boolean;
+  isLoading: boolean;
+  handleCancelLeavePage: () => void;
+  handleLeavePage: () => void;
+  isCourseEditor?: boolean;
+}

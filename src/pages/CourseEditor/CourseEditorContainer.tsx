@@ -19,7 +19,7 @@ import { useSnackbar } from 'notistack';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { uploadFile } from 'utils/helpers/uploader';
 import { useCallbackPrompt } from 'hooks';
-import ConfirmLeavePage from 'pages/PassingTest/ConfirmLeavePage';
+import { ConfirmLeavePage } from 'components/Dialogs';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
@@ -30,7 +30,7 @@ const CourseEditorContainer: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
   const courseEditorRef = useRef<HTMLElement>(null);
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
-  const [isSubmitButton, setIsSubmitButton] = useState(false);
+  const [isSubmitButton, setSubmitButton] = useState(false);
   const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(!isSubmitButton);
   const [isLeavePageDialogOpen, setLeavePageDialogOpen] = useState(false);
 
@@ -40,7 +40,7 @@ const CourseEditorContainer: FC = () => {
   const handleSubmit = (values: any) => {
     const formattedValues = formatValuesForSubmit(values);
     editCourseDataMutate(formattedValues);
-    setIsSubmitButton(true);
+    setSubmitButton(true);
   };
 
   const formik = useFormik({
