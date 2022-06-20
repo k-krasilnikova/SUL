@@ -32,6 +32,7 @@ const TestStep: FC<IStepProps> = ({
         <ItemTitle>{EditorTitles.testDetails}</ItemTitle>
         <TestTitleBox>
           <TestBasicField
+            placeholder="Test title"
             label="Title"
             value={formik.values.test.title}
             id="test.title"
@@ -65,11 +66,11 @@ const TestStep: FC<IStepProps> = ({
                             question: 'Test question',
                             answers: [
                               {
-                                variant: 'Answer',
+                                variant: '',
                                 aN: Numbers.one,
                               },
                               {
-                                variant: 'Answer',
+                                variant: '',
                                 aN: Numbers.two,
                               },
                             ],
@@ -88,14 +89,14 @@ const TestStep: FC<IStepProps> = ({
                         }
                         onClick={() =>
                           push({
-                            question: 'Test question',
+                            question: '',
                             answers: [
                               {
-                                variant: 'Answer',
+                                variant: '',
                                 aN: Numbers.one,
                               },
                               {
-                                variant: 'Answer',
+                                variant: '',
                                 aN: Numbers.two,
                               },
                             ],
