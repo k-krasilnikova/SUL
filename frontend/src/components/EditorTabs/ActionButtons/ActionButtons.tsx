@@ -16,6 +16,7 @@ const ActionButtons: FC<IActionButtons> = ({
   isSubmitEnabled,
   formik,
   isEditCourseDataMutateLoading,
+  isCreateCourseMode,
 }) => (
   <ButtonWrapper>
     <Box>
@@ -38,7 +39,11 @@ const ActionButtons: FC<IActionButtons> = ({
         )}
       </StyledButton>
     ) : (
-      <StyledButton variant="mediumContained" onClick={handleNextStep}>
+      <StyledButton
+        variant="mediumContained"
+        disabled={!isCreateCourseMode && !formik?.isValid}
+        onClick={handleNextStep}
+      >
         {ButtonLabels.next}
       </StyledButton>
     )}

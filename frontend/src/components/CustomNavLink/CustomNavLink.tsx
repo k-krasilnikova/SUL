@@ -4,16 +4,10 @@ import { NavLink } from 'react-router-dom';
 import { ICustomNavLinkProps } from './types';
 
 const CustomNavLink = (
-  { children, activeClassName, inactiveClassName, defaultClassName, ...props }: ICustomNavLinkProps,
+  { children, ...props }: ICustomNavLinkProps,
   ref: ForwardedRef<HTMLAnchorElement>,
 ) => (
-  <NavLink
-    ref={ref}
-    className={({ isActive }) =>
-      ` ${defaultClassName} ${isActive ? activeClassName : inactiveClassName}`
-    }
-    {...props}
-  >
+  <NavLink ref={ref} {...props}>
     {children}
   </NavLink>
 );

@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent } from 'react';
+import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent, RefObject } from 'react';
 
 import { IQuestionObject, ITestItem } from 'types/test';
 
@@ -43,12 +43,13 @@ export interface IFormik {
     technologies: { _id: string; name: string; points: number; maxScore: number }[];
     materials: { type: string; material: string }[];
     test: {
+      title: string;
       _id: string;
       questions: {
         correctAnswer: number;
         qN: number;
         question: string;
-        answers: { aN: number; variant: string; _id: string }[];
+        answers: { aN: number; variant: string }[];
       }[];
     };
     title: string;
@@ -71,6 +72,7 @@ export interface IFormik {
   };
   isValid: boolean;
   setFieldValue: (field: string, value: string | number) => void;
+  handleBlur: (event: BaseSyntheticEvent) => void;
   handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   touched: {
     title?: boolean;
@@ -93,9 +95,12 @@ export interface IFormik {
 export interface IStepProps {
   formik: IFormik;
   isCourseDataLoading?: boolean;
+  isCreateCourseMode?: boolean;
   courseData?: ICourseEditorResponse;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
-  isCreateCourseMode?: boolean;
+  handleChangeDuration?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onSkillBlur?: (event: BaseSyntheticEvent) => void;
+  onSkillPointsBlur?: (event: BaseSyntheticEvent) => void;
   handleAddCourseAvatar?: (event: BaseSyntheticEvent) => void;
 }
 
@@ -105,9 +110,11 @@ export interface ISkillsStepProps extends IStepProps {
 }
 
 export interface ICourseEditorProps extends ISkillsStepProps {
+  scrollToTop: () => void;
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
   editCourseDataMutate?: (courseId: string) => void;
   isEditCourseDataMutateLoading?: boolean;
+  courseEditorRef?: RefObject<HTMLElement>;
 }
 
 export interface ILessonItemProps {
@@ -131,6 +138,7 @@ export interface IQuestionItemProps {
 
 export interface IFormValues {
   avatar: string;
+  complexity: number;
   title: string;
   description: string;
   materials: {

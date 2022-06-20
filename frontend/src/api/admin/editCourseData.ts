@@ -4,10 +4,13 @@ import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
 import { apiClientWrapper } from 'api/base';
-import { API, PATHS } from 'constants/routes';
+import { useGetCoursesPaths } from 'hooks';
+import { API } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
+import transformRoute from 'utils/helpers/paths/transformRoute';
 
 const useEditCourseData = (courseId?: string): UseMutationResult => {
+  const { coursesPath } = useGetCoursesPaths();
   const navigateTo = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -17,14 +20,13 @@ const useEditCourseData = (courseId?: string): UseMutationResult => {
 
   const handleSubmitSuccess = () => {
     enqueueSnackbar(successSnackbarMessage.courseDataUpdated, successSnackbar);
-    navigateTo(PATHS.coursesList, { replace: true });
+    navigateTo(coursesPath, { replace: true });
   };
 
   return useMutation(
     async (data) => {
       const apiClient = apiClientWrapper();
-      const url = `${API.courses}/${courseId}/edit`;
-      const response = await apiClient.put(url, data);
+      const response = await apiClient.put(transformRoute(API.editCourse, courseId), data);
       return response.data;
     },
     {

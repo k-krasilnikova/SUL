@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { useGetClientCourseAndMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import Loader from 'components/Loader';
-import { useToggle } from 'hooks';
+import { useToggle, useGetCoursesPaths } from 'hooks';
 import { CourseStatus } from 'enums/course';
 import { Loaders } from 'enums/loader';
 import { Numbers } from 'enums/numbers';
@@ -21,6 +21,7 @@ const NULL_VARIABLE = null;
 
 const LearningCourseContainer: React.FC = () => {
   const { courseId } = useParams();
+  const { myCoursesPath } = useGetCoursesPaths();
 
   const [stage, setStage] = useState(1);
 
@@ -112,6 +113,7 @@ const LearningCourseContainer: React.FC = () => {
       clientCourse={clientCourseResponse}
       courseMaterial={courseMaterials[stage - Numbers.one]}
       courseContent={courseContent}
+      myCoursesPath={myCoursesPath}
       isBackDisabled={isBackDisabled}
       isCourseInfoOpen={isCourseInfoOpen}
       isLoading={isLoading}

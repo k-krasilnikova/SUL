@@ -9,6 +9,7 @@ interface MobileMenuProps {
 export const HEADER_HEIGHT = '80px';
 export const HEADER_HEIGHT_IPAD = '60px';
 export const HEADER_HEIGHT_MOBILE = '44px';
+export const INPUT_HEIGHT_WITH_PADDING = '50px';
 
 const SCREEN_WIDTH = 1130;
 

@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { useGetClientPaginatedCourses } from 'api/myCourses';
-import { useGetCoursesFilters } from 'hooks';
+import { useGetCoursesFilters, useSetCoursesFiltersContext } from 'hooks';
+import CoursesList from 'pages/CoursesList/CoursesList';
+import { CoursesFilters } from 'enums/coursesFilters';
 import { getWindowLabelByWidth } from 'utils/helpers/getWindowLabelByWidth';
 import { IClientCourse } from 'types/clientCourse';
-import CoursesList from 'pages/CoursesList/CoursesList';
 
 const MyCoursesContainer: React.FC = () => {
   const { coursesFilters, isEmptyFilters } = useGetCoursesFilters(true);
+
+  useSetCoursesFiltersContext(CoursesFilters.myCoursesFilters);
 
   const { data, hasNextPage, isLoading, isFetchingNextPage, isFetching, fetchNextPage } =
     useGetClientPaginatedCourses(coursesFilters);

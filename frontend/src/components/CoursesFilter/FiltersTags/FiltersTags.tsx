@@ -19,7 +19,7 @@ const FiltersTags: FC<IFiltersTagsProps> = ({ withStatusSelect, values }) => {
   return (
     <TagsListContainer>
       {selectsConfig.map((configName) => (
-        <FieldArray name={configName}>
+        <FieldArray key={configName} name={configName}>
           {({ remove }) => (
             <>
               {values[configName as keyof TCoursesFilterWithoutOrder].map((value, index) => (

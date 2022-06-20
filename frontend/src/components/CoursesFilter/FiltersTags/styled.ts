@@ -1,10 +1,15 @@
 import { styled, Grid } from '@mui/material';
 
+import theme from 'themeSettings';
+
 export const TagsListContainer = styled(Grid)({
   display: 'flex',
   flexWrap: 'wrap',
   gap: '16px',
   marginTop: '30px',
+  [theme.breakpoints.down('md')]: {
+    marginTop: '20px',
+  },
 });
 
 export const TagContainer = styled('button')({
@@ -12,7 +17,7 @@ export const TagContainer = styled('button')({
   alignItems: 'center',
   padding: '8px 12px',
   backgroundColor: '#7676801F',
-  border: '2px solid #CBBEBE',
+  border: '1px solid #CBBEBE',
   borderRadius: '10px',
   '&:hover': {
     cursor: 'pointer',
@@ -25,6 +30,7 @@ export const TagText = styled('p')({
   margin: 0,
   paddingRight: '16px',
   fontSize: '14px',
+  fontFamily: "'Ubuntu', sans-serif",
   color: '#131313',
 });
 
