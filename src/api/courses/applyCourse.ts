@@ -4,11 +4,14 @@ import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
 
 import { apiClientWrapper } from 'api/base';
-import { API, PATHS } from 'constants/routes';
+import { useGetCoursesPaths } from 'hooks';
+import { API } from 'constants/routes';
 import { errorSnackbar, successSnackbar, successSnackbarMessage } from 'constants/snackbarVariant';
 
 const useApplyCourse = (): UseMutationResult => {
   const { enqueueSnackbar } = useSnackbar();
+  const { myCoursesPath } = useGetCoursesPaths();
+
   const handleSubmitError = (error: AxiosError) => {
     enqueueSnackbar(error?.response?.data, errorSnackbar);
   };
@@ -25,7 +28,7 @@ const useApplyCourse = (): UseMutationResult => {
     },
     {
       onSuccess: () => {
-        navigateTo(PATHS.myCourses);
+        navigateTo(myCoursesPath);
         handleSubmitSuccess();
       },
       onError: handleSubmitError,

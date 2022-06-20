@@ -2,14 +2,18 @@ import { IFormik } from 'pages/CourseEditor/types';
 import { ReactNode } from 'react';
 
 export interface IEditorTabsContainerProps {
+  scrollToTop: () => void;
   currentChild?: ReactNode;
   handleNextStep?: () => void;
   handlePreviousStep?: () => void;
 }
 
-export interface IEditorTabsProps extends IEditorTabsContainerProps {
+export interface IEditorTabsProps {
   step: number;
   isSubmitEnabled: boolean;
+  currentChild?: ReactNode;
+  handleNextStep?: () => void;
+  handlePreviousStep?: () => void;
 }
 
 export interface IActionButtons {
@@ -19,4 +23,5 @@ export interface IActionButtons {
   handleNextStep?: () => void;
   formik?: IFormik;
   isEditCourseDataMutateLoading?: boolean;
+  isCreateCourseMode?: boolean;
 }

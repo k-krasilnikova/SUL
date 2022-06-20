@@ -17,7 +17,7 @@ const useGetAllSkills = (skillName = ''): UseQueryResult<ISkillsListProps[], Axi
     [QUERY_KEYS.skills, skillName],
     async () => {
       const apiClient = apiClientWrapper();
-      const response = await apiClient.get(API.skills, { params: { search: skillName } });
+      const response = await apiClient.get(API.skills, { params: { search: skillName ?? '' } });
       const skillsResponse: ISkillsListProps = response.data;
       return skillsResponse;
     },

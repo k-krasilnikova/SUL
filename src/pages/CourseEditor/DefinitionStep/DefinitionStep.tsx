@@ -1,18 +1,25 @@
 import { FC } from 'react';
-import { MenuItem } from '@mui/material';
+import { MenuItem, TextField } from '@mui/material';
 
 import Image from 'components/Image';
 import Loader from 'components/Loader';
-import { EditorTitles, COURSE_COMPLEXITY } from 'constants/courseEditor';
+import {
+  EditorTitles,
+  COURSE_COMPLEXITY,
+  MAX_TITLE_LENGTH,
+  MAX_DESCRIPTION_LENGTH,
+} from 'constants/courseEditor';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 import { addAvatarIcon } from 'icons';
 
 import {
   AvatarWrapper,
-  DescriptionField,
+  DescriptionFieldWrapper,
   DescriptionWrapper,
   Field,
+  FieldWrapper,
   ImageWrapper,
+  InputLengthCounter,
   SecondaryText,
   SectionWrapper,
   NewAvatarImageWrapper,
@@ -27,7 +34,6 @@ const DefinitionStep: FC<IStepProps> = ({
   isCourseDataLoading,
   onFieldBlur,
   handleAddCourseAvatar,
-  isCreateCourseMode,
 }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
@@ -36,19 +42,26 @@ const DefinitionStep: FC<IStepProps> = ({
       <FormWrapper>
         <SectionName>{EditorTitles.definitionStepTitle}</SectionName>
         <SectionWrapper>
-          <Field
-            variant="outlined"
-            id="title"
-            name="title"
-            value={formik.values.title}
-            onChange={formik.handleChange}
-            onBlur={onFieldBlur}
-            error={Boolean(formik.errors?.title)}
-            helperText={formik.errors?.title}
-          />
+          <FieldWrapper>
+            <Field
+              variant="outlined"
+              id="title"
+              name="title"
+              label="Title"
+              value={formik.values.title}
+              onChange={formik.handleChange}
+              onBlur={onFieldBlur}
+              inputProps={{
+                maxLength: MAX_TITLE_LENGTH,
+              }}
+              error={Boolean(formik.errors?.title)}
+              helperText={formik.errors?.title}
+            />
+            <InputLengthCounter>{`${formik.values.title.length}/${MAX_TITLE_LENGTH}`}</InputLengthCounter>
+          </FieldWrapper>
           <Field
             select
-            value={formik.values.complexity || ''}
+            value={formik.values.complexity || 0}
             onChange={formik.handleChange}
             variant="outlined"
             id="complexity"
@@ -66,38 +79,40 @@ const DefinitionStep: FC<IStepProps> = ({
           <SecondaryText>{EditorTitles.avatarDescription}</SecondaryText>
         </AvatarWrapper>
         <ImageWrapper>
-          {isCreateCourseMode ? (
-            <NewAvatarImageWrapper>
-              <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
-              <AddImageInput
-                type="file"
-                accept="image/*"
-                id="avatar"
-                name="avatar"
-                multiple
-                onChange={handleAddCourseAvatar}
-              />
-              <NewImageLabel htmlFor="avatar">
-                <Image imageUrl={formik.values.avatar} newImage />
-              </NewImageLabel>
-            </NewAvatarImageWrapper>
-          ) : (
-            <Image imageUrl={formik.values.avatar} />
-          )}
+          <NewAvatarImageWrapper>
+            <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
+            <AddImageInput
+              type="file"
+              accept="image/*"
+              id="avatar"
+              name="avatar"
+              multiple
+              onChange={handleAddCourseAvatar}
+            />
+            <NewImageLabel htmlFor="avatar">
+              <Image imageUrl={formik.values.avatar} newImage />
+            </NewImageLabel>
+          </NewAvatarImageWrapper>
         </ImageWrapper>
         <DescriptionWrapper>
           <SectionName>{EditorTitles.definitionStepDescription}</SectionName>
         </DescriptionWrapper>
-        <DescriptionField
-          multiline
-          id="description"
-          name="description"
-          value={formik.values.description}
-          onBlur={onFieldBlur}
-          onChange={formik.handleChange}
-          error={Boolean(formik.errors?.description)}
-          helperText={formik.errors?.description}
-        />
+        <DescriptionFieldWrapper>
+          <TextField
+            multiline
+            id="description"
+            name="description"
+            value={formik.values.description}
+            onBlur={onFieldBlur}
+            inputProps={{
+              maxLength: MAX_DESCRIPTION_LENGTH,
+            }}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors?.description)}
+            helperText={formik.errors?.description}
+          />
+          <InputLengthCounter>{`${formik.values.description.length}/${MAX_DESCRIPTION_LENGTH}`}</InputLengthCounter>
+        </DescriptionFieldWrapper>
       </FormWrapper>
     </>
   );

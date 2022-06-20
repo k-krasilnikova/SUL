@@ -5,6 +5,9 @@ const EMPTY_LENGTH = 0;
 const FIRST_LETTER_INDEX = 0;
 const SECOND_LETTER_INDEX = 1;
 const TRAILING_SPACES_REGEX = /[\s]{2,}/g;
+const MS_PARAMETER = 1000;
+const START_DATE_PARAMETER = 11;
+const END_DATE_PARAMETER = 16;
 
 export const getPointsArr = (maxPoints: number): number[] => {
   const pointsArr = [];
@@ -26,13 +29,10 @@ export const formatFieldValue = (value: string): string => {
 export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => {
   const formattedValues = {
     avatar: values.avatar,
+    complexity: values.complexity,
     title: values.title,
     description: values.description,
-    materials: [
-      {
-        content: values.materials,
-      },
-    ],
+    materials: values.materials.map((material) => ({ content: [material] })),
     technologies: values.technologies.map((technology: IFormTechnology) => ({
       skill: technology._id,
       points: technology.points,
@@ -43,9 +43,18 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
       questions: values.test.questions.map((question: IFormQuestion) => ({
         question: question.question,
         correctAnswer: question.correctAnswer,
-        answers: question.answers,
+        answers: question.answers.map((answer) => ({
+          aN: answer.aN,
+          variant: answer.variant,
+        })),
       })),
     },
   };
   return formattedValues;
+};
+
+export const convertSecondsToString = (duration: number): string => {
+  return new Date(duration * MS_PARAMETER)
+    .toISOString()
+    .substring(START_DATE_PARAMETER, END_DATE_PARAMETER);
 };

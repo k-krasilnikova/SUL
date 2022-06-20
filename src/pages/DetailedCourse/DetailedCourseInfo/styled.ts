@@ -69,15 +69,14 @@ export const DetailedCourseText = styled(Typography)({
 export const TitleWrapper = styled('div')({
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'space-between',
   flexWrap: 'wrap',
-  marginBottom: '13px',
+  marginBottom: '24px',
   color: '#2C2525',
-  [theme.breakpoints.down('xl')]: {
-    marginBottom: '24px',
-  },
   [theme.breakpoints.down('md')]: {
-    marginBottom: '14px',
-    paddingTop: '14px',
+    flexWrap: 'nowrap',
+    minHeight: '46px',
+    margin: '0 14px 14px 0',
   },
 });
 

@@ -48,7 +48,7 @@ export const MobileSearchWrapper = styled('div')({
 export const ButtonsWrapper = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
-  marginRight: '2%',
+  marginRight: '13%',
   [theme.breakpoints.down('xl')]: {
     marginRight: '40px',
   },

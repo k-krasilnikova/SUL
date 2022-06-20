@@ -42,13 +42,13 @@ export const LESSONS_TYPE_TITLE_MAP: { [key: string]: string } = {
 
 export const INITIAL_VALUES = {
   title: '',
-  complexity: 0,
+  complexity: 1,
   avatar: '',
   description: '',
   technologies: [
     {
       _id: '',
-      name: '',
+      name: 'Technology',
       maxScore: 0,
       points: 0,
     },
@@ -67,16 +67,14 @@ export const INITIAL_VALUES = {
           {
             aN: 1,
             variant: '',
-            _id: '',
           },
         ],
-        correctAnswer: 0,
-        qN: 0,
+        correctAnswer: 1,
+        qN: 1,
         question: '',
-        _id: '',
       },
     ],
-    timeout: 0,
+    timeout: 500,
     title: '',
   },
   skillsById: {},
@@ -108,6 +106,7 @@ export const BUTTON_VARIANT = {
 };
 
 export const RADIX_PARAMETER = 10;
+export const SECONDS_PARAMETER = 60;
 
 export const MIN_TITLE_LENGTH = 2;
 export const MAX_TITLE_LENGTH = 100;
@@ -119,10 +118,14 @@ export const MIN_MATERIAL_LENGTH = 10;
 export const MAX_MATERIAL_LENGTH = 5000;
 
 export const MIN_TEST_QUESTIONS_AMOUNT = 5;
+export const MIN_TEST_ANSWERS_AMOUNT = 1;
 export const MIN_SKILLS_AMOUNT = 1;
 
 export const MIN_QUESTION_LENGTH = 10;
 export const MAX_QUESTION_LENGTH = 1000;
+
+export const MIN_EXERCISE_TITLE_LENGTH = 2;
+export const MAX_EXERCISE_TITLE_LENGTH = 400;
 
 export const EXERCISE_TITLE_LENGTH_REGEX = /.{2,400}/;
 export const EXERCISE_IS_NOT_NUMBERS_REGEX = /(?!^\d+$)^.+$/;
