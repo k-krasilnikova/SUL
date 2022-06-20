@@ -23,5 +23,4 @@ export interface IActionButtons {
   handleNextStep?: () => void;
   formik?: IFormik;
   isEditCourseDataMutateLoading?: boolean;
-  isCreateCourseMode?: boolean;
 }
