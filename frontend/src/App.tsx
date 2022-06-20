@@ -79,7 +79,6 @@ const App: FC = () => (
         </Routes>
       </BrowserRouter>
     </CoursesFiltersContextProvider>
-
     <ReactQueryDevtools />
   </QueryClientProvider>
 );
