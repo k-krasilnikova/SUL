@@ -1,4 +1,5 @@
 import { NO_TIME, TO_MILLISECONDS_RATIO } from 'constants/time';
+import { Numbers } from 'enums/numbers';
 import { TimeProps } from 'types/time';
 
 export const convertTestTimeout = (sec: number): string => {
@@ -17,33 +18,38 @@ export const convertTestTimeout = (sec: number): string => {
 export const formatTimeout = (sec: number, format: string): string => {
   const formatArr = format.split(':');
   const result = [];
-  const [SEC_IN_HOUR, SEC_IN_MIN, SEC_IN_DAY] = [3600, 60, 86400];
-  let days;
-  let hours;
-  let minutes;
+  const shortTimeStringValue: { [key: string]: string } = {
+    dd: 'days',
+    hh: 'h',
+    mm: 'min',
+    ss: 'sec',
+  };
+  const arrOfShortFormat = Object.keys(shortTimeStringValue);
+  const secondsIn: { [key: string]: number } = {
+    dd: 86400,
+    hh: 3600,
+    mm: 60,
+  };
   let seconds = Math.round(Math.abs(sec));
 
   const prettierTime = (time: number, measure: string) =>
     time < 10 ? `0${time} ${measure}` : `${time} ${measure}`;
 
-  if (formatArr.includes('dd')) {
-    days = Math.floor(seconds / SEC_IN_DAY);
-    result.push(prettierTime(days, 'days'));
-    seconds = Math.floor(seconds % SEC_IN_DAY);
+  const isFormatPlaceholderNeeded = (secondsLeft: number) =>
+    secondsLeft && result.length < formatArr.length;
+
+  for (let i = 0; i <= arrOfShortFormat.length; i += 1) {
+    if (formatArr.includes(arrOfShortFormat[i]) || isFormatPlaceholderNeeded(seconds)) {
+      const timeFormat = arrOfShortFormat[i];
+      const timeStringFormat = shortTimeStringValue[timeFormat];
+      const timevalue = Math.floor(seconds / (secondsIn[timeFormat] ?? Numbers.one));
+      seconds = Math.floor(seconds % secondsIn[timeFormat]);
+      if (timevalue >= Numbers.one || timeStringFormat === shortTimeStringValue.ss) {
+        result.push(prettierTime(timevalue, timeStringFormat));
+      }
+    }
   }
-  if (formatArr.includes('hh')) {
-    hours = Math.floor(seconds / SEC_IN_HOUR);
-    result.push(prettierTime(hours, 'h'));
-    seconds = Math.floor(seconds % SEC_IN_HOUR);
-  }
-  if (formatArr.includes('mm')) {
-    minutes = Math.floor(seconds / SEC_IN_MIN);
-    result.push(prettierTime(minutes, 'min'));
-    seconds = Math.floor(seconds % SEC_IN_MIN);
-  }
-  if (formatArr.includes('ss')) {
-    result.push(prettierTime(seconds, 'sec'));
-  }
+
   return result.join(' ');
 };
 
