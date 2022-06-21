@@ -56,7 +56,7 @@ export const INITIAL_VALUES = {
   materials: [
     {
       type: 'video',
-      material: 'Material video link',
+      material: '',
     },
   ],
   test: {
@@ -66,59 +66,59 @@ export const INITIAL_VALUES = {
         answers: [
           {
             aN: 1,
-            variant: 'Answer',
+            variant: '',
           },
         ],
         correctAnswer: 1,
         qN: 1,
-        question: 'Test question',
+        question: '',
       },
       {
         answers: [
           {
             aN: 1,
-            variant: 'Answer',
+            variant: '',
           },
         ],
         correctAnswer: 1,
         qN: 1,
-        question: 'Test question',
+        question: '',
       },
       {
         answers: [
           {
             aN: 1,
-            variant: 'Answer',
+            variant: '',
           },
         ],
         correctAnswer: 1,
         qN: 1,
-        question: 'Test question',
+        question: '',
       },
       {
         answers: [
           {
             aN: 1,
-            variant: 'Answer',
+            variant: '',
           },
         ],
         correctAnswer: 1,
         qN: 1,
-        question: 'Test question',
+        question: '',
       },
       {
         answers: [
           {
             aN: 1,
-            variant: 'Answer',
+            variant: '',
           },
         ],
         correctAnswer: 1,
         qN: 1,
-        question: 'Test question',
+        question: '',
       },
     ],
-    timeout: 500,
+    timeout: 0,
     title: '',
   },
   skillsById: {},
