@@ -115,7 +115,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
               <AddAnswerButton
                 variant="mediumOutlined"
                 disabled={formik.errors.test?.questions[index]?.answers}
-                onClick={() => remove(index)}
+                onClick={() => remove(question?.answers.length - Numbers.one)}
               >
                 <Remove color="primary" fontSize="medium" />
               </AddAnswerButton>
