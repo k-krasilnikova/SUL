@@ -94,8 +94,14 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               inputProps={{
                 maxLength: MAX_MATERIAL_LENGTH,
               }}
-              error={Boolean(formik.errors?.materials?.[index]?.material)}
-              helperText={formik.errors?.materials?.[index]?.material}
+              error={
+                formik.touched.materials?.[index]?.material &&
+                Boolean(formik.errors?.materials?.[index]?.material)
+              }
+              helperText={
+                formik.touched.materials?.[index]?.material &&
+                formik.errors?.materials?.[index]?.material
+              }
             />
             <InputLengthCounter>
               {`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}
