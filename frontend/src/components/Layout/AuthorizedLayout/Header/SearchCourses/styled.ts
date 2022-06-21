@@ -1,5 +1,4 @@
 import { styled } from '@mui/material';
-import { Search as SearchIcon } from '@mui/icons-material';
 
 import SearchInput from 'components/SearchInput';
 import theme from 'themeSettings';
@@ -37,7 +36,7 @@ export const Search = styled(SearchInput)<IProps>(({ isOpen }) => ({
     transition: 'all 0.2s ease',
     borderRadius: '8px',
     ...(isOpen && {
-      border: '2px solid #D43E41',
+      border: '1px solid #D43E41',
       backgroundColor: '#FFF',
       transform: `translateY(${INPUT_HEIGHT_WITH_PADDING})`,
       transition: 'all 0.2s ease',
@@ -73,15 +72,13 @@ export const SearchButton = styled('div')({
   },
 });
 
-export const SearchIconStyled = styled(SearchIcon)<IProps>(({ isOpen }) => ({
+export const SearchIconStyled = styled('img')<IProps>(({ isOpen }) => ({
+  height: '20px',
   color: '#6C6C6C',
+  marginTop: '2px',
   ...(isOpen && {
     color: '#D43E41',
   }),
-  [theme.breakpoints.down('md')]: {
-    width: '30px',
-    height: '30px',
-  },
 }));
 
 export const RelativeWrapper = styled('div')({
