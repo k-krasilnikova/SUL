@@ -34,11 +34,14 @@ const TestStep: FC<IStepProps> = ({
           <TestBasicField
             placeholder="Test title"
             label="Title"
-            value={formik.values.test.title}
+            value={formik.values?.test?.title}
             id="test.title"
             variant="outlined"
             onChange={formik.handleChange}
             autoComplete="off"
+            name="test.title"
+            error={Boolean(formik.errors?.test?.title)}
+            helperText={formik.errors?.test?.title}
           />
           <TestBasicField
             label="Duration"
