@@ -12,9 +12,6 @@ export const StageControllerWrapper = styled(Box)({
     marginBottom: '9px',
     height: '27px',
   },
-  [theme.breakpoints.down('md')]: {
-    display: 'none',
-  },
 });
 
 export const StyledButton = styled(Button)({
@@ -28,6 +25,10 @@ export const StyledButton = styled(Button)({
     minWidth: '40px',
     minHeight: '27px',
   },
+  [theme.breakpoints.down('md')]: {
+    minWidth: '30px',
+    minHeight: '18px',
+  },
 });
 
 export const Step = styled('p')({
@@ -35,5 +36,7 @@ export const Step = styled('p')({
   fontSize: '18px',
   fontFamily: '"Ubuntu", sans-serif',
   fontWeight: 400,
-  lineHeight: '22px',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '16px',
+  },
 });

@@ -7,10 +7,10 @@ import { ButtonLabels } from 'constants/ButtonLabels';
 import ActionButton from './ActionButton';
 import CourseInfoToggle from './CourseInfoToggle';
 import Material from './Material';
-import StageController from './StageController';
-import { LearningPageContainer, BackButton, LearningWrapper } from './styled';
 import Exercise from './Exercise';
+import StageController from './StageController';
 import { ILearningProps } from './types';
+import { LearningPageContainer, BackButton, LearningWrapper } from './styled';
 
 const LearningCourse: FC<ILearningProps> = ({
   courseContent,
@@ -26,7 +26,7 @@ const LearningCourse: FC<ILearningProps> = ({
       <LearningWrapper>
         <StageController {...props} />
         <Material courseMaterial={courseContent} />
-        <CourseInfoToggle {...props} />
+        {courseMaterial.exercise && <CourseInfoToggle {...props} />}
         <ActionButton {...props} />
         {courseMaterial.exercise && (
           <Exercise courseExercise={courseMaterial.exercise} {...props} />

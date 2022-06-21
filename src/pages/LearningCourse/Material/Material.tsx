@@ -4,7 +4,7 @@ import PPViewer from 'components/PPViewer';
 import { playVideo } from 'icons';
 import { ContentElementType } from 'enums/materials';
 
-import { MaterialWrapper, MaterialText, MaterialVideo } from './styled';
+import { MaterialWrapper, MaterialText, MaterialVideo, PlayVideoIcon } from './styled';
 import { IMaterialProps } from '../types';
 
 const Material: FC<IMaterialProps> = ({ material, materialType, videoPreview }) => (
@@ -12,12 +12,12 @@ const Material: FC<IMaterialProps> = ({ material, materialType, videoPreview }) 
     {materialType === ContentElementType.video ? (
       <MaterialVideo
         url={material}
-        playIcon={<img src={playVideo} alt="play" />}
+        playIcon={<PlayVideoIcon src={playVideo} alt="play" />}
         light={videoPreview}
         playing
         controls
         width="100%"
-        height="680px"
+        height="100%"
         frameBorder="0"
       />
     ) : materialType === ContentElementType.presentation ? (
