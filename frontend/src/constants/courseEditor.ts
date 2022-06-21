@@ -55,7 +55,7 @@ export const INITIAL_VALUES = {
   ],
   materials: [
     {
-      type: '',
+      type: 'video',
       material: '',
     },
   ],
@@ -73,8 +73,52 @@ export const INITIAL_VALUES = {
         qN: 1,
         question: '',
       },
+      {
+        answers: [
+          {
+            aN: 1,
+            variant: '',
+          },
+        ],
+        correctAnswer: 1,
+        qN: 1,
+        question: '',
+      },
+      {
+        answers: [
+          {
+            aN: 1,
+            variant: '',
+          },
+        ],
+        correctAnswer: 1,
+        qN: 1,
+        question: '',
+      },
+      {
+        answers: [
+          {
+            aN: 1,
+            variant: '',
+          },
+        ],
+        correctAnswer: 1,
+        qN: 1,
+        question: '',
+      },
+      {
+        answers: [
+          {
+            aN: 1,
+            variant: '',
+          },
+        ],
+        correctAnswer: 1,
+        qN: 1,
+        question: '',
+      },
     ],
-    timeout: 500,
+    timeout: 0,
     title: '',
   },
   skillsById: {},

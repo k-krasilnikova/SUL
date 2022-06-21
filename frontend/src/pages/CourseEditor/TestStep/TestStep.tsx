@@ -32,12 +32,16 @@ const TestStep: FC<IStepProps> = ({
         <ItemTitle>{EditorTitles.testDetails}</ItemTitle>
         <TestTitleBox>
           <TestBasicField
+            placeholder="Test title"
             label="Title"
-            value={formik.values.test.title}
+            value={formik.values?.test?.title}
             id="test.title"
             variant="outlined"
             onChange={formik.handleChange}
             autoComplete="off"
+            name="test.title"
+            error={Boolean(formik.errors?.test?.title)}
+            helperText={formik.errors?.test?.title}
           />
           <TestBasicField
             label="Duration"
@@ -65,11 +69,11 @@ const TestStep: FC<IStepProps> = ({
                             question: 'Test question',
                             answers: [
                               {
-                                variant: 'Answer',
+                                variant: '',
                                 aN: Numbers.one,
                               },
                               {
-                                variant: 'Answer',
+                                variant: '',
                                 aN: Numbers.two,
                               },
                             ],
@@ -88,14 +92,14 @@ const TestStep: FC<IStepProps> = ({
                         }
                         onClick={() =>
                           push({
-                            question: 'Test question',
+                            question: '',
                             answers: [
                               {
-                                variant: 'Answer',
+                                variant: '',
                                 aN: Numbers.one,
                               },
                               {
-                                variant: 'Answer',
+                                variant: '',
                                 aN: Numbers.two,
                               },
                             ],

@@ -96,6 +96,10 @@ const courseEditorValidationSchema = object().shape({
       }),
     ),
   test: object().shape({
+    title: string()
+      .required('Title is required')
+      .test('isNotNumbers', 'Title cannot contain only numbers', isNotNumbersOnly)
+      .test('isNotSpecial', 'Title cannot contain only special characters', isNotSpecialsOnly),
     questions: array()
       .required('Questions are required')
       .min(MIN_TEST_QUESTIONS_AMOUNT, 'The minimum amount of the questions in the test should be 5')

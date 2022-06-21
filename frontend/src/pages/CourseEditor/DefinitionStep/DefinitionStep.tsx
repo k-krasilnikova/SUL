@@ -54,8 +54,8 @@ const DefinitionStep: FC<IStepProps> = ({
               inputProps={{
                 maxLength: MAX_TITLE_LENGTH,
               }}
-              error={Boolean(formik.errors?.title)}
-              helperText={formik.errors?.title}
+              error={formik.touched.title && Boolean(formik.errors?.title)}
+              helperText={formik.touched.title && formik.errors?.title}
             />
             <InputLengthCounter>{`${formik.values.title.length}/${MAX_TITLE_LENGTH}`}</InputLengthCounter>
           </FieldWrapper>
@@ -108,8 +108,8 @@ const DefinitionStep: FC<IStepProps> = ({
               maxLength: MAX_DESCRIPTION_LENGTH,
             }}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors?.description)}
-            helperText={formik.errors?.description}
+            error={formik.touched.description && Boolean(formik.errors?.description)}
+            helperText={formik.touched.description && formik.errors?.description}
           />
           <InputLengthCounter>{`${formik.values.description.length}/${MAX_DESCRIPTION_LENGTH}`}</InputLengthCounter>
         </DescriptionFieldWrapper>
