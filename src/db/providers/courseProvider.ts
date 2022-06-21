@@ -359,6 +359,20 @@ const refreshCourseLessonsAndDuration = async (courseId: string): Promise<void> 
   });
 };
 
+const getPlainCourseAchievements = async (
+  courseId?: string | Types.ObjectId,
+): Promise<ICourse['technologies']> => {
+  const course = await CourseModel.findById(courseId).lean();
+
+  if (!course) {
+    throw new NotFoundError('Course was not found.');
+  }
+
+  const { technologies } = course;
+
+  return technologies;
+};
+
 export {
   getCoursesProvider,
   getCourseProvider,
@@ -372,4 +386,5 @@ export {
   addSimilarCoursesProvider,
   refreshCourseLessonsAndDuration,
   getCourseByIdProvider,
+  getPlainCourseAchievements,
 };
