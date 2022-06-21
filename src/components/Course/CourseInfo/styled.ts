@@ -115,22 +115,28 @@ export const InfoItemTextBox = styled(Box)({
   },
 });
 
-export const DurationIcon = styled('img')({
+export const DurationIcon = styled('img')<InfoContainerTypes>(({ type }) => ({
   imageRendering: 'pixelated',
   [theme.breakpoints.up('xs')]: {
     height: '14px',
   },
   [theme.breakpoints.up('md')]: {
     height: '20px',
+    ...(type === Info.searchCourses && {
+      height: '16px',
+    }),
   },
-});
+}));
 
-export const LessonsIcon = styled('img')({
+export const LessonsIcon = styled('img')<InfoContainerTypes>(({ type }) => ({
   imageRendering: 'pixelated',
   [theme.breakpoints.up('xs')]: {
     height: '14px',
   },
   [theme.breakpoints.up('md')]: {
     height: '20px',
+    ...(type === Info.searchCourses && {
+      height: '16px',
+    }),
   },
-});
+}));

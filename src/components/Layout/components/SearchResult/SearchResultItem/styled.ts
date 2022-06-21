@@ -26,11 +26,10 @@ export const Image = styled('div')<CourseAvatar>(({ avatar }) => ({
 }));
 
 export const CourseTitle = styled(Typography)({
-  fontSize: '20px',
+  fontSize: '18px',
   fontWeight: 700,
   lineHeight: '26px',
   letterSpacing: '-0.4px',
-  marginLeft: '8px',
   [theme.breakpoints.down('sm')]: {
     fontSize: '16px',
   },

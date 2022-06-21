@@ -3,6 +3,7 @@ import { ClickAwayListener } from '@material-ui/core';
 
 import { ICourse } from 'types/course';
 import { SearchResult } from 'components/Layout/components';
+import { search } from 'icons';
 
 import { Search, RelativeWrapper, SearchButton, SearchIconStyled } from './styled';
 
@@ -43,7 +44,7 @@ const SearchCourses: React.FC<Props> = ({
         isOpen={isMobileSearchOpen}
       />
       <SearchButton onClick={handleMobileSearch}>
-        <SearchIconStyled fontSize="large" isOpen={isMobileSearchOpen} />
+        <SearchIconStyled src={search} alt="search" isOpen={isMobileSearchOpen} />
       </SearchButton>
       {isSearchOpen && (
         <SearchResult
