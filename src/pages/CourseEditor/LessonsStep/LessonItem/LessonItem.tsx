@@ -58,7 +58,11 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
             <Field
               id={`materials[${index}].material`}
               name={`materials[${index}.material`}
-              placeholder={material.material}
+              placeholder={
+                material.type === ContentElementType.presentation
+                  ? 'Material presentation link'
+                  : 'Material video link'
+              }
               value={material.material}
               onChange={formik.handleChange}
               inputProps={{
@@ -82,6 +86,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               multiline
               id={`materials[${index}].material`}
               name={`materials[${index}.material`}
+              placeholder="Text material"
               value={material.material}
               onChange={formik.handleChange}
               onBlur={onFieldBlur}
@@ -89,8 +94,14 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               inputProps={{
                 maxLength: MAX_MATERIAL_LENGTH,
               }}
-              error={Boolean(formik.errors?.materials?.[index]?.material)}
-              helperText={formik.errors?.materials?.[index]?.material}
+              error={
+                formik.touched.materials?.[index]?.material &&
+                Boolean(formik.errors?.materials?.[index]?.material)
+              }
+              helperText={
+                formik.touched.materials?.[index]?.material &&
+                formik.errors?.materials?.[index]?.material
+              }
             />
             <InputLengthCounter>
               {`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}
@@ -102,7 +113,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
           <Field
             id={`materials[${index}].exercise.title`}
             name={`materials[${index}].exercise.title`}
-            placeholder={material?.exercise?.title}
+            placeholder="Exercise title"
             value={material?.exercise?.title}
             onChange={formik.handleChange}
             onBlur={onFieldBlur}
@@ -122,6 +133,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
         <InputTitle>{EditorTitles.exerciseDescription}</InputTitle>
         <TextField
           multiline
+          placeholder="Exercise description"
           id={`materials[${index}].exercise.task`}
           name={`materials[${index}].exercise.task`}
           value={material?.exercise?.task}

@@ -57,5 +57,7 @@ export const ButtonsWrapper = styled(Box)({
   },
   [theme.breakpoints.down('md')]: {
     marginRight: '8px',
+    marginLeft: '-25px',
+    marginTop: '-10px',
   },
 });
