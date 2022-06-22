@@ -41,7 +41,7 @@ const ActionButtons: FC<IActionButtons> = ({
     ) : (
       <StyledButton
         variant="mediumContained"
-        disabled={!isCreateCourseMode && !formik?.isValid}
+        disabled={!formik?.isValid && !isCreateCourseMode}
         onClick={handleNextStep}
       >
         {ButtonLabels.next}

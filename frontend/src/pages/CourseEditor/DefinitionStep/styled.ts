@@ -58,7 +58,7 @@ export const InputLengthCounter = styled(Typography)({
   alignSelf: 'flex-end',
   fontSize: '0.75rem',
   marginTop: '6px',
-  color: 'rgba(0, 0, 0, 0.23)',
+  color: '#A2A2A2',
 });
 
 export const DescriptionFieldWrapper = styled(FieldWrapper)({

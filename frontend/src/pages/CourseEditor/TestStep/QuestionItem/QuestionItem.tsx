@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { FieldArray } from 'formik';
 import { MenuItem, RadioGroup, Alert } from '@mui/material';
-import { Add } from '@mui/icons-material';
+import { Add, Remove } from '@mui/icons-material';
 
 import { BUTTON_VARIANT, EditorTitles, MAX_QUESTION_LENGTH } from 'constants/courseEditor';
 import { Numbers } from 'enums/numbers';
@@ -38,6 +38,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
     <QuestionInputBox>
       <FieldWrapper>
         <InputText
+          placeholder="Question title"
           value={question?.question}
           id={`questions[${index}].question`}
           name={`test.questions[${index}].question`}
@@ -69,7 +70,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
       onChange={handleChangeCorrectAnswer}
     >
       <FieldArray name={`test.questions[${index}].answers`}>
-        {({ push }) => (
+        {({ push, remove }) => (
           <>
             {question?.answers?.map((answer, key) => (
               <RadioControlLabel
@@ -78,6 +79,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                 control={<RadioSelectAnswer color="primary" />}
                 label={
                   <InputAnswer
+                    placeholder="Answer"
                     variant="standard"
                     value={answer.variant}
                     id={`test.questions[${index}].answers[${key}].variant`}
@@ -109,6 +111,13 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                 }
               >
                 <Add color="primary" fontSize="medium" />
+              </AddAnswerButton>
+              <AddAnswerButton
+                variant="mediumOutlined"
+                disabled={formik.errors.test?.questions[index]?.answers}
+                onClick={() => remove(question?.answers.length - Numbers.one)}
+              >
+                <Remove color="primary" fontSize="medium" />
               </AddAnswerButton>
             </ButtonsWrapper>
           </>

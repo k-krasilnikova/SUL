@@ -29,6 +29,7 @@ const SearchCoursesContainer: FC = () => {
   const handleSearchClose = () => {
     setSearchInputValue('');
     setSearchOpen(false);
+    setMobileSearchOpen(false);
   };
   const handleMobileSearch = () => {
     handleSearchClose();

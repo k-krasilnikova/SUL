@@ -22,7 +22,7 @@ const CourseInfo: FC<ICourseInfoProps> = ({ duration, lessons, type }) => (
   <InfoContainer type={type}>
     {duration && (
       <InfoItem>
-        <DurationIcon alt="lessons" src={clock} />
+        <DurationIcon alt="lessons" src={clock} type={type} />
         <InfoItemTextBox>
           <InfoItemText>{duration}</InfoItemText>
         </InfoItemTextBox>
@@ -30,7 +30,7 @@ const CourseInfo: FC<ICourseInfoProps> = ({ duration, lessons, type }) => (
     )}
     {lessons && (
       <InfoItem>
-        <LessonsIcon alt="lessons" src={videoPlayer} />
+        <LessonsIcon alt="lessons" src={videoPlayer} type={type} />
         <InfoItemTextBox>
           <InfoItemText>{`${lessons} lessons`}</InfoItemText>
         </InfoItemTextBox>
