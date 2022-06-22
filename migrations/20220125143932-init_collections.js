@@ -240,6 +240,16 @@ const TESTS = [
         ],
         correctAnswer: 1,
       },
+      {
+        qN: 5,
+        question: "a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']/b print(a[4::-2])",
+        answers: [
+          { variant: "['quux']", aN: 1 },
+          { variant: "['quux', 'qux', 'baz', 'foo']", aN: 2 },
+          { variant: "['quux', 'baz', 'foo']", aN: 3 },
+        ],
+        correctAnswer: 1,
+      },
     ],
     timeout: 600,
   },
@@ -308,6 +318,15 @@ const TESTS = [
         ],
         correctAnswer: 2,
       },
+      {
+        qN: 5,
+        question: 'Is the variable written correctly? var number: Float = 45',
+        answers: [
+          { variant: "Yes, that's right", aN: 1 },
+          { variant: 'Not true, because after 45 it is necessary to add the character "f"', aN: 2 },
+        ],
+        correctAnswer: 2,
+      },
     ],
     timeout: 600,
   },
@@ -349,6 +368,16 @@ const TESTS = [
       },
       {
         qN: 4,
+        question: 'Scala can interact with code written in:',
+        answers: [
+          { variant: 'Java', aN: 1 },
+          { variant: 'Ruby', aN: 2 },
+          { variant: 'Haskell', aN: 3 },
+        ],
+        correctAnswer: 1,
+      },
+      {
+        qN: 5,
         question: 'Scala can interact with code written in:',
         answers: [
           { variant: 'Java', aN: 1 },
@@ -405,6 +434,15 @@ const TESTS = [
       },
       {
         qN: 4,
+        question: 'The Go language is...',
+        answers: [
+          { variant: 'interpreted', aN: 1 },
+          { variant: 'compiled', aN: 2 },
+        ],
+        correctAnswer: 2,
+      },
+      {
+        qN: 5,
         question: 'The Go language is...',
         answers: [
           { variant: 'interpreted', aN: 1 },
@@ -479,6 +517,16 @@ const TESTS = [
         ],
         correctAnswer: 3,
       },
+      {
+        qN: 5,
+        question: 'What is called a destructor?',
+        answers: [
+          { variant: 'The method that destroys the object', aN: 1 },
+          { variant: 'The method that deletes the object', aN: 2 },
+          { variant: 'A method that frees up the memory occupied by an object', aN: 3 },
+        ],
+        correctAnswer: 3,
+      },
     ],
     timeout: 600,
   },
@@ -531,6 +579,16 @@ const TESTS = [
         ],
         correctAnswer: 1,
       },
+      {
+        qN: 5,
+        question: 'What will c be equal to if int a = 10; int b = 4; int c = a %b;',
+        answers: [
+          { variant: '2', aN: 1 },
+          { variant: '3', aN: 2 },
+          { variant: '1', aN: 3 },
+        ],
+        correctAnswer: 1,
+      },
     ],
     timeout: 600,
   },
@@ -550,6 +608,45 @@ const TESTS = [
       {
         qN: 2,
         question: 'What is an alternative question in English?',
+        answers: [
+          { variant: 'A question that requires a yes or No answer.', aN: 1 },
+          { variant: 'A special question to any member of the proposal.', aN: 2 },
+          {
+            variant: 'A question involving a choice between two qualities, objects or actions.',
+            aN: 3,
+          },
+        ],
+        correctAnswer: 3,
+      },
+      {
+        qN: 3,
+        question: '2What is an alternative question in English?',
+        answers: [
+          { variant: 'A question that requires a yes or No answer.', aN: 1 },
+          { variant: 'A special question to any member of the proposal.', aN: 2 },
+          {
+            variant: 'A question involving a choice between two qualities, objects or actions.',
+            aN: 3,
+          },
+        ],
+        correctAnswer: 3,
+      },
+      {
+        qN: 4,
+        question: '3What is an alternative question in English?',
+        answers: [
+          { variant: 'A question that requires a yes or No answer.', aN: 1 },
+          { variant: 'A special question to any member of the proposal.', aN: 2 },
+          {
+            variant: 'A question involving a choice between two qualities, objects or actions.',
+            aN: 3,
+          },
+        ],
+        correctAnswer: 3,
+      },
+      {
+        qN: 5,
+        question: '4What is an alternative question in English?',
         answers: [
           { variant: 'A question that requires a yes or No answer.', aN: 1 },
           { variant: 'A special question to any member of the proposal.', aN: 2 },
@@ -593,6 +690,45 @@ const TESTS = [
         ],
         correctAnswer: 3,
       },
+      {
+        qN: 3,
+        question: '2The main feature of the tester is',
+        answers: [
+          { variant: 'beauty', aN: 1 },
+          { variant: 'speed', aN: 2 },
+          {
+            variant: 'attentiveness',
+            aN: 3,
+          },
+        ],
+        correctAnswer: 3,
+      },
+      {
+        qN: 4,
+        question: '3The main feature of the tester is',
+        answers: [
+          { variant: 'beauty', aN: 1 },
+          { variant: 'speed', aN: 2 },
+          {
+            variant: 'attentiveness',
+            aN: 3,
+          },
+        ],
+        correctAnswer: 3,
+      },
+      {
+        qN: 5,
+        question: '4The main feature of the tester is',
+        answers: [
+          { variant: 'beauty', aN: 1 },
+          { variant: 'speed', aN: 2 },
+          {
+            variant: 'attentiveness',
+            aN: 3,
+          },
+        ],
+        correctAnswer: 3,
+      },
     ],
     timeout: 300,
   },
@@ -604,8 +740,8 @@ const DEFAULT_STACK_MEMBERS = [
     relatedCourses: ['JS for beginners'],
   },
   {
-    name: 'Front-end developer',
-    relatedCourses: ['JS for beginners'],
+    name: 'Manager',
+    relatedCourses: [],
   },
   {
     name: 'Back-end JS developer',
@@ -698,8 +834,8 @@ const DEFAULT_EMPLOYEES = [
     passwordHash: 'user',
     email: 'k.krasilnikova@itechart-group.com',
     role: 'employee',
-    rank: 3,
-    stack: ['Full-stack JS developer', 'Front-end developer'],
+    rank: 2,
+    stack: ['Full-stack JS developer', 'Manager'],
     firstName: 'Katsiaryna',
     lastName: 'Krasilnikova',
     position: 'Team Manager / Software Engineer',

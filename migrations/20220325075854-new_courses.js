@@ -49,6 +49,60 @@ const TESTS = [
         ],
         correctAnswer: 2,
       },
+      {
+        qN: 3,
+        question:
+          '2Cloudy Computing is experiencing a large number of support tickets from Salesforce users. What feature could you, as the Administrator, leverage to enable easier troubleshooting?',
+        answers: [
+          { variant: 'Delegated Administration', aN: 1 },
+          { variant: 'Administrators Can Log In As Any User', aN: 2 },
+          {
+            variant: 'Modify All Data',
+            aN: 3,
+          },
+          {
+            variant: 'Remote Access',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 2,
+      },
+      {
+        qN: 4,
+        question:
+          '3Cloudy Computing is experiencing a large number of support tickets from Salesforce users. What feature could you, as the Administrator, leverage to enable easier troubleshooting?',
+        answers: [
+          { variant: 'Delegated Administration', aN: 1 },
+          { variant: 'Administrators Can Log In As Any User', aN: 2 },
+          {
+            variant: 'Modify All Data',
+            aN: 3,
+          },
+          {
+            variant: 'Remote Access',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 2,
+      },
+      {
+        qN: 5,
+        question:
+          '4Cloudy Computing is experiencing a large number of support tickets from Salesforce users. What feature could you, as the Administrator, leverage to enable easier troubleshooting?',
+        answers: [
+          { variant: 'Delegated Administration', aN: 1 },
+          { variant: 'Administrators Can Log In As Any User', aN: 2 },
+          {
+            variant: 'Modify All Data',
+            aN: 3,
+          },
+          {
+            variant: 'Remote Access',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 2,
+      },
     ],
     timeout: 300,
   },
@@ -79,6 +133,69 @@ const TESTS = [
       {
         qN: 2,
         question: 'How can I write data asynchronously to a file?',
+        answers: [
+          { variant: 'fs.writeFileSync()', aN: 1 },
+          { variant: 'fs.write()', aN: 2 },
+          {
+            variant: 'fs.writeSync()',
+            aN: 3,
+          },
+          {
+            variant: 'fs.writeFileAsync()',
+            aN: 4,
+          },
+          {
+            variant: 'fs.writeFile()',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 3,
+        question: '2How can I write data asynchronously to a file?',
+        answers: [
+          { variant: 'fs.writeFileSync()', aN: 1 },
+          { variant: 'fs.write()', aN: 2 },
+          {
+            variant: 'fs.writeSync()',
+            aN: 3,
+          },
+          {
+            variant: 'fs.writeFileAsync()',
+            aN: 4,
+          },
+          {
+            variant: 'fs.writeFile()',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 4,
+        question: '3How can I write data asynchronously to a file?',
+        answers: [
+          { variant: 'fs.writeFileSync()', aN: 1 },
+          { variant: 'fs.write()', aN: 2 },
+          {
+            variant: 'fs.writeSync()',
+            aN: 3,
+          },
+          {
+            variant: 'fs.writeFileAsync()',
+            aN: 4,
+          },
+          {
+            variant: 'fs.writeFile()',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 5,
+        question: '4How can I write data asynchronously to a file?',
         answers: [
           { variant: 'fs.writeFileSync()', aN: 1 },
           { variant: 'fs.write()', aN: 2 },
@@ -141,6 +258,57 @@ const TESTS = [
         ],
         correctAnswer: 4,
       },
+      {
+        qN: 3,
+        question: '2What is the difference between puts and print?',
+        answers: [
+          { variant: 'Nothing, both do the same thing', aN: 1 },
+          { variant: 'puts without skipping a line, and print with a skip', aN: 2 },
+          {
+            variant: 'puts lets you output variables, and print only text.',
+            aN: 3,
+          },
+          {
+            variant: 'print without skipping a line, and puts with a skip',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 4,
+        question: '3What is the difference between puts and print?',
+        answers: [
+          { variant: 'Nothing, both do the same thing', aN: 1 },
+          { variant: 'puts without skipping a line, and print with a skip', aN: 2 },
+          {
+            variant: 'puts lets you output variables, and print only text.',
+            aN: 3,
+          },
+          {
+            variant: 'print without skipping a line, and puts with a skip',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 5,
+        question: '4What is the difference between puts and print?',
+        answers: [
+          { variant: 'Nothing, both do the same thing', aN: 1 },
+          { variant: 'puts without skipping a line, and print with a skip', aN: 2 },
+          {
+            variant: 'puts lets you output variables, and print only text.',
+            aN: 3,
+          },
+          {
+            variant: 'print without skipping a line, and puts with a skip',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
     ],
     timeout: 300,
   },
@@ -167,6 +335,69 @@ const TESTS = [
       {
         qN: 2,
         question: 'How do I access the text variable in an object?',
+        answers: [
+          { variant: 'this>text', aN: 1 },
+          { variant: 'this=>text', aN: 2 },
+          {
+            variant: 'this->text',
+            aN: 3,
+          },
+          {
+            variant: 'that.text',
+            aN: 4,
+          },
+          {
+            variant: 'this.text',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 3,
+        question: '2How do I access the text variable in an object?',
+        answers: [
+          { variant: 'this>text', aN: 1 },
+          { variant: 'this=>text', aN: 2 },
+          {
+            variant: 'this->text',
+            aN: 3,
+          },
+          {
+            variant: 'that.text',
+            aN: 4,
+          },
+          {
+            variant: 'this.text',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 4,
+        question: '3How do I access the text variable in an object?',
+        answers: [
+          { variant: 'this>text', aN: 1 },
+          { variant: 'this=>text', aN: 2 },
+          {
+            variant: 'this->text',
+            aN: 3,
+          },
+          {
+            variant: 'that.text',
+            aN: 4,
+          },
+          {
+            variant: 'this.text',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 5,
+        question: '4How do I access the text variable in an object?',
         answers: [
           { variant: 'this>text', aN: 1 },
           { variant: 'this=>text', aN: 2 },
@@ -215,6 +446,69 @@ const TESTS = [
       {
         qN: 2,
         question: 'Django is a framework for what language?',
+        answers: [
+          { variant: 'Java', aN: 1 },
+          { variant: 'Jinja', aN: 2 },
+          {
+            variant: 'C++',
+            aN: 3,
+          },
+          {
+            variant: "Django is a programming language. He's on his own",
+            aN: 4,
+          },
+          {
+            variant: 'Python',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 3,
+        question: '2Django is a framework for what language?',
+        answers: [
+          { variant: 'Java', aN: 1 },
+          { variant: 'Jinja', aN: 2 },
+          {
+            variant: 'C++',
+            aN: 3,
+          },
+          {
+            variant: "Django is a programming language. He's on his own",
+            aN: 4,
+          },
+          {
+            variant: 'Python',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 4,
+        question: '3Django is a framework for what language?',
+        answers: [
+          { variant: 'Java', aN: 1 },
+          { variant: 'Jinja', aN: 2 },
+          {
+            variant: 'C++',
+            aN: 3,
+          },
+          {
+            variant: "Django is a programming language. He's on his own",
+            aN: 4,
+          },
+          {
+            variant: 'Python',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 5,
+        question: '4Django is a framework for what language?',
         answers: [
           { variant: 'Java', aN: 1 },
           { variant: 'Jinja', aN: 2 },
@@ -282,6 +576,69 @@ const TESTS = [
         ],
         correctAnswer: 5,
       },
+      {
+        qN: 3,
+        question: '2What is the Hierarchy tab responsible for?',
+        answers: [
+          { variant: 'It displays various errors and labels during the game', aN: 1 },
+          { variant: 'It displays the game scene', aN: 2 },
+          {
+            variant: 'It contains all the materials for the project',
+            aN: 3,
+          },
+          {
+            variant: 'It contains properties for objects',
+            aN: 4,
+          },
+          {
+            variant: 'It contains objects on the stage',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 4,
+        question: '3What is the Hierarchy tab responsible for?',
+        answers: [
+          { variant: 'It displays various errors and labels during the game', aN: 1 },
+          { variant: 'It displays the game scene', aN: 2 },
+          {
+            variant: 'It contains all the materials for the project',
+            aN: 3,
+          },
+          {
+            variant: 'It contains properties for objects',
+            aN: 4,
+          },
+          {
+            variant: 'It contains objects on the stage',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 5,
+        question: '4What is the Hierarchy tab responsible for?',
+        answers: [
+          { variant: 'It displays various errors and labels during the game', aN: 1 },
+          { variant: 'It displays the game scene', aN: 2 },
+          {
+            variant: 'It contains all the materials for the project',
+            aN: 3,
+          },
+          {
+            variant: 'It contains properties for objects',
+            aN: 4,
+          },
+          {
+            variant: 'It contains objects on the stage',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
     ],
     timeout: 300,
   },
@@ -326,6 +683,57 @@ const TESTS = [
         ],
         correctAnswer: 4,
       },
+      {
+        qN: 3,
+        question: '2What programs are required to work with Android?',
+        answers: [
+          { variant: 'Android Studio Only', aN: 1 },
+          { variant: 'JDK only', aN: 2 },
+          {
+            variant: 'JDK, Android Studio и Visual Studio',
+            aN: 3,
+          },
+          {
+            variant: 'JDK, Android Studio',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 4,
+        question: '3What programs are required to work with Android?',
+        answers: [
+          { variant: 'Android Studio Only', aN: 1 },
+          { variant: 'JDK only', aN: 2 },
+          {
+            variant: 'JDK, Android Studio и Visual Studio',
+            aN: 3,
+          },
+          {
+            variant: 'JDK, Android Studio',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 5,
+        question: '4What programs are required to work with Android?',
+        answers: [
+          { variant: 'Android Studio Only', aN: 1 },
+          { variant: 'JDK only', aN: 2 },
+          {
+            variant: 'JDK, Android Studio и Visual Studio',
+            aN: 3,
+          },
+          {
+            variant: 'JDK, Android Studio',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
     ],
     timeout: 300,
   },
@@ -352,6 +760,57 @@ const TESTS = [
       {
         qN: 2,
         question: 'Bootstrap allows you to create..',
+        answers: [
+          { variant: 'Responsive websites', aN: 1 },
+          { variant: 'Sites with various JavaScript widgets', aN: 2 },
+          {
+            variant: 'Sites with built-in JavaScript plugins',
+            aN: 3,
+          },
+          {
+            variant: 'All of the above',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 3,
+        question: '2Bootstrap allows you to create..',
+        answers: [
+          { variant: 'Responsive websites', aN: 1 },
+          { variant: 'Sites with various JavaScript widgets', aN: 2 },
+          {
+            variant: 'Sites with built-in JavaScript plugins',
+            aN: 3,
+          },
+          {
+            variant: 'All of the above',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 4,
+        question: '3Bootstrap allows you to create..',
+        answers: [
+          { variant: 'Responsive websites', aN: 1 },
+          { variant: 'Sites with various JavaScript widgets', aN: 2 },
+          {
+            variant: 'Sites with built-in JavaScript plugins',
+            aN: 3,
+          },
+          {
+            variant: 'All of the above',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 5,
+        question: '4Bootstrap allows you to create..',
         answers: [
           { variant: 'Responsive websites', aN: 1 },
           { variant: 'Sites with various JavaScript widgets', aN: 2 },
@@ -414,6 +873,69 @@ const TESTS = [
         ],
         correctAnswer: 5,
       },
+      {
+        qN: 3,
+        question: '2Where is the table created correctly?',
+        answers: [
+          { variant: 'CREATE NEW TABLE table_name', aN: 1 },
+          { variant: 'CREATE NEW table_name', aN: 2 },
+          {
+            variant: 'CREATE table_name',
+            aN: 3,
+          },
+          {
+            variant: 'TABLE table_name',
+            aN: 4,
+          },
+          {
+            variant: 'CREATE TABLE table_name',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 4,
+        question: '3Where is the table created correctly?',
+        answers: [
+          { variant: 'CREATE NEW TABLE table_name', aN: 1 },
+          { variant: 'CREATE NEW table_name', aN: 2 },
+          {
+            variant: 'CREATE table_name',
+            aN: 3,
+          },
+          {
+            variant: 'TABLE table_name',
+            aN: 4,
+          },
+          {
+            variant: 'CREATE TABLE table_name',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
+      {
+        qN: 5,
+        question: '4Where is the table created correctly?',
+        answers: [
+          { variant: 'CREATE NEW TABLE table_name', aN: 1 },
+          { variant: 'CREATE NEW table_name', aN: 2 },
+          {
+            variant: 'CREATE table_name',
+            aN: 3,
+          },
+          {
+            variant: 'TABLE table_name',
+            aN: 4,
+          },
+          {
+            variant: 'CREATE TABLE table_name',
+            aN: 5,
+          },
+        ],
+        correctAnswer: 5,
+      },
     ],
     timeout: 300,
   },
@@ -445,6 +967,57 @@ const TESTS = [
       {
         qN: 2,
         question: 'jQuery is designed for...',
+        answers: [
+          { variant: 'creating markup on a page', aN: 1 },
+          { variant: 'creating page styles', aN: 2 },
+          {
+            variant: 'writing server-side scripts',
+            aN: 3,
+          },
+          {
+            variant: 'writing client scripts',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 3,
+        question: '2jQuery is designed for...',
+        answers: [
+          { variant: 'creating markup on a page', aN: 1 },
+          { variant: 'creating page styles', aN: 2 },
+          {
+            variant: 'writing server-side scripts',
+            aN: 3,
+          },
+          {
+            variant: 'writing client scripts',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 4,
+        question: '3jQuery is designed for...',
+        answers: [
+          { variant: 'creating markup on a page', aN: 1 },
+          { variant: 'creating page styles', aN: 2 },
+          {
+            variant: 'writing server-side scripts',
+            aN: 3,
+          },
+          {
+            variant: 'writing client scripts',
+            aN: 4,
+          },
+        ],
+        correctAnswer: 4,
+      },
+      {
+        qN: 5,
+        question: '4jQuery is designed for...',
         answers: [
           { variant: 'creating markup on a page', aN: 1 },
           { variant: 'creating page styles', aN: 2 },
