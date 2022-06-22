@@ -4,6 +4,7 @@ import { TPassTestRequest, TPassTestResponse } from 'interfaces/requests/tests/p
 import { IUserSkill } from 'interfaces/entities/userSkill';
 import { getClientCourseProvider } from 'db/providers/clientCourseProvider';
 import { addUserSkill, getUserSkills, populateUserSkills } from 'db/providers/skillProvider';
+import { getPlainCourseAchievements } from 'db/providers/courseProvider';
 import CourseStatus from 'enums/courses';
 import { getUserProvider, updateUserTechnologies } from 'db/providers/userProvider';
 
@@ -21,7 +22,7 @@ const getAchievements = async (
 
     const clientCourse = await getClientCourseProvider(clientCourseId);
     const { course } = clientCourse;
-    const { technologies: techsToAchieve } = course;
+    const techsToAchieve = await getPlainCourseAchievements(course._id);
     const userId = clientCourse.user.toString();
 
     if (clientCourse.status === CourseStatus.completed) {
