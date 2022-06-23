@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BaseSyntheticEvent, FC, useEffect, useRef } from 'react';
+import { BaseSyntheticEvent, FC, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
 import { useSnackbar } from 'notistack';
@@ -15,17 +15,23 @@ import { INITIAL_VALUES, RADIX_PARAMETER, SECONDS_PARAMETER } from 'constants/co
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { formatFieldValue, formatValuesForSubmit } from 'pages/CourseEditor/utils';
 import { uploadFile } from 'utils/helpers/uploader';
+import { ConfirmLeavePage } from 'components/Dialogs';
+import { useCallbackPrompt } from 'hooks';
 
 import CourseCreator from './CourseCreator';
 
 const CourseCreatorContainer: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const [isSubmitButton, setSubmitButton] = useState(false);
+  const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(!isSubmitButton);
+  const [isLeavePageDialogOpen, setLeavePageDialogOpen] = useState(false);
 
-  const { mutate: createCourseMutate } = useCreateCourse();
+  const { mutate: createCourseMutate, isLoading: isCreateCourseDataLoading } = useCreateCourse();
 
   const handleSubmit = (values: any) => {
     const formattedValues = formatValuesForSubmit(values);
     createCourseMutate(formattedValues);
+    setSubmitButton(true);
   };
 
   const formik = useFormik({
@@ -91,6 +97,16 @@ const CourseCreatorContainer: FC = () => {
     }
   };
 
+  const handleCancelLeavePage = (): void => {
+    setLeavePageDialogOpen(false);
+    cancelNavigation();
+  };
+
+  const handleNavigateBack = (): void => {
+    setLeavePageDialogOpen(false);
+    confirmNavigation();
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseCreator
@@ -104,6 +120,13 @@ const CourseCreatorContainer: FC = () => {
         coursesPath={coursesPath}
         scrollToTop={scrollToTop}
         courseCreatorRef={courseCreatorRef}
+      />
+      <ConfirmLeavePage
+        isOpened={isLeavePageDialogOpen || (showPrompt && !isSubmitButton)}
+        isLoading={isCreateCourseDataLoading}
+        handleCancelLeavePage={handleCancelLeavePage}
+        handleLeavePage={handleNavigateBack}
+        isCourseCreator
       />
     </FormikProvider>
   );
