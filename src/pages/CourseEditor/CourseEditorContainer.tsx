@@ -17,7 +17,6 @@ import {
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { Numbers } from 'enums/numbers';
 import { courseEditorValidationSchema } from 'validations/schemas';
-import { uploadFile } from 'utils/helpers/uploader';
 import { useCallbackPrompt } from 'hooks';
 import { ConfirmLeavePage } from 'components/Dialogs';
 
@@ -70,11 +69,6 @@ const CourseEditorContainer: FC = () => {
     const { value, name } = event.target;
     const skill = skillsById[value];
     formik.setFieldValue(name, { ...skill, points: INITIAL_NUMBER_POINT });
-  };
-
-  const handleAddCourseAvatar = async (event: BaseSyntheticEvent) => {
-    const fileLink = await uploadFile(event.target.files[Numbers.zero]);
-    formik.setFieldValue('avatar', fileLink);
   };
 
   useEffect(() => {
@@ -150,7 +144,6 @@ const CourseEditorContainer: FC = () => {
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         handleChangeDuration={handleChangeDuration}
-        handleAddCourseAvatar={handleAddCourseAvatar}
         onFieldBlur={onFieldBlur}
         onSkillBlur={onSkillBlur}
         onSkillPointsBlur={onSkillPointsBlur}

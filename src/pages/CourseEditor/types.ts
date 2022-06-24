@@ -166,3 +166,13 @@ export interface IFormattedValues {
     questions: IFormQuestion[];
   };
 }
+
+export interface IImagesUploaderContainer {
+  avatarUrl: string;
+  setFieldValue: IFormik['setFieldValue'];
+}
+
+export interface IImagesUploader extends Pick<IImagesUploaderContainer, 'avatarUrl'> {
+  isUploading: boolean;
+  handleAddCourseAvatar: (event: BaseSyntheticEvent) => void;
+}

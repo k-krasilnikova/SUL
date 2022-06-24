@@ -19,6 +19,7 @@ export const successSnackbar: OptionsObject = {
 export const errorSnackbarMessage = {
   requestFailed: 'Something went wrong',
   validationError: 'Validation error. Please check the fields before submitting form',
+  fileSizeError: 'File size should be less then 10MB',
 };
 
 export const successSnackbarMessage = {
