@@ -2,13 +2,12 @@ import { FC, BaseSyntheticEvent, useState } from 'react';
 import { useSnackbar } from 'notistack';
 
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { IMAGE_MAX_SIZE } from 'constants/courseEditor';
 import { Numbers } from 'enums/numbers';
 import { IImagesUploaderContainer } from 'pages/CourseEditor/types';
 
 import ImagesUploader from './ImagesUploader';
 import { uploadFile } from './utils/uploader';
-
-const MAX_SIZE = 10 * 1024 * 1024;
 
 const ImagesUploaderContainer: FC<IImagesUploaderContainer> = ({ avatarUrl, setFieldValue }) => {
   const [isUploading, setIsUploading] = useState(false);
@@ -16,7 +15,7 @@ const ImagesUploaderContainer: FC<IImagesUploaderContainer> = ({ avatarUrl, setF
 
   const handleAddCourseAvatar = async (event: BaseSyntheticEvent) => {
     const fileToUpload = event.target.files[Numbers.zero];
-    if (fileToUpload.size > MAX_SIZE) {
+    if (fileToUpload.size > IMAGE_MAX_SIZE) {
       return enqueueSnackbar(errorSnackbarMessage.fileSizeError, errorSnackbar);
     }
     setIsUploading(true);
