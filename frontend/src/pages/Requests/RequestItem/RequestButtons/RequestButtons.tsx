@@ -16,6 +16,7 @@ const RequestButtons: FC<IRequestButtonsProps> = ({
   declineRequest,
 }) => {
   const { requestId: actionTargetRequestId, withAssessment } = actionTarget;
+
   const isCurrentRequest = actionTargetRequestId === requestId;
   const isCurrentApproveRequest = isApproveLoading && isCurrentRequest;
   const isLoading = isApproveLoading || isDeclineLoading;
