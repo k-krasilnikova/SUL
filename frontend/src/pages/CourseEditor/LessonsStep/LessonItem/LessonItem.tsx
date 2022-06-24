@@ -66,7 +66,14 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               value={material.material}
               onChange={formik.handleChange}
               inputProps={{
-                maxLength: MAX_MATERIAL_LENGTH,
+                pattern:
+                  material.type === ContentElementType.presentation
+                    ? new RegExp(
+                        `(((https|http)://|)docs.google.com/presentation/d/)(.+?(?=(/.+|/|$)))`,
+                      )
+                    : new RegExp(
+                        /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi,
+                      ),
               }}
               autoComplete="off"
               error={

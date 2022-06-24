@@ -4,7 +4,7 @@ import { TBaseRequest, TBaseResponse } from '../base';
 import { IAuthLocals } from '../common/locals';
 import { IPassTestPayload, IPassTestResultPayload } from '../common/payloads';
 
-type TRequestParams = { clientCourseId: string };
+type TRequestParams = { id: string };
 type TRequestBody = IPassTestPayload;
 
 type TResponsePayload = IPassTestResultPayload;
