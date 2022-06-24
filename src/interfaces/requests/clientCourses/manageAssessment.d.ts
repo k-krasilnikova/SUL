@@ -11,6 +11,7 @@ type TRequestBody = IAssessmentActionPayload;
 type TResponsePayload = string;
 type TResponseLocals = IAuthLocals & {
   achievments: TAchievements;
+  message: string;
 };
 
 type TManageAssessmentRequest = TBaseRequest<TRequestParams, TRequestBody>;
