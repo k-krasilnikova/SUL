@@ -56,33 +56,41 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
         material.type === ContentElementType.video ? (
           <MaterialFieldWrapper>
             <Field
-              id={`materials[${index}].material`}
-              name={`materials[${index}.material`}
+              id={
+                material.type === ContentElementType.presentation
+                  ? `materials[${index}].link`
+                  : `materials[${index}].material`
+              }
+              name={
+                material.type === ContentElementType.presentation
+                  ? `materials[${index}].link`
+                  : `materials[${index}].material`
+              }
               placeholder={
                 material.type === ContentElementType.presentation
                   ? 'Material presentation link'
                   : 'Material video link'
               }
-              value={material.material}
+              value={
+                material.type === ContentElementType.presentation
+                  ? material.link
+                  : material.material
+              }
               onChange={formik.handleChange}
-              inputProps={{
-                pattern:
-                  material.type === ContentElementType.presentation
-                    ? new RegExp(
-                        `(((https|http)://|)docs.google.com/presentation/d/)(.+?(?=(/.+|/|$)))`,
-                      )
-                    : new RegExp(
-                        /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi,
-                      ),
-              }}
               autoComplete="off"
               error={
-                formik.touched.materials?.[index]?.material &&
-                Boolean(formik.errors?.materials?.[index]?.material)
+                material.type === ContentElementType.presentation
+                  ? formik.touched.materials?.[index]?.material &&
+                    Boolean(formik.errors?.materials?.[index]?.material)
+                  : formik.touched.materials?.[index]?.link &&
+                    Boolean(formik.errors?.materials?.[index]?.link)
               }
               helperText={
-                formik.touched.materials?.[index]?.material &&
-                formik.errors?.materials?.[index]?.material
+                material.type === ContentElementType.presentation
+                  ? formik.touched.materials?.[index]?.material &&
+                    formik.errors?.materials?.[index]?.material
+                  : formik.touched.materials?.[index]?.link &&
+                    formik.errors?.materials?.[index]?.link
               }
             />
             <InputLengthCounter>{`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>

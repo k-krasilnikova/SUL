@@ -121,7 +121,8 @@ export interface ILessonItemProps {
   formik: IFormik;
   material: {
     type: string;
-    material: string;
+    material?: string;
+    link?: string;
     exercise?: { eN: number; title?: string; task: string; code: string };
   };
   index: number;

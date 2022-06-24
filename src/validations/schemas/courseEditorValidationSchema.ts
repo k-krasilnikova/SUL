@@ -48,6 +48,12 @@ const courseEditorValidationSchema = object().shape({
             )
             .min(MIN_MATERIAL_LENGTH, 'Material text should be of minimum 10 characters length')
             .max(MAX_MATERIAL_LENGTH, 'Material text should be of maximum 5000 characters length'),
+          link: string()
+            .required('Link is required')
+            .matches(
+              new RegExp(`(((https|http)://|)docs.google.com/presentation/d/)(.+?(?=(/.+|/|$)))`),
+              'Should be link to google slides',
+            ),
           exercise: object().shape({
             eN: number(),
             title: string()

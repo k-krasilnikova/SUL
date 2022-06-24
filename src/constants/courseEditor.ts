@@ -57,6 +57,7 @@ export const INITIAL_VALUES = {
     {
       type: 'video',
       material: '',
+      link: '',
     },
   ],
   test: {
