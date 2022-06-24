@@ -7,25 +7,23 @@ import { IImagesUploader } from 'pages/CourseEditor/types';
 
 import { NewAvatarImageWrapper, AddImageIcon, AddImageInput, NewImageLabel } from './styled';
 
-const ImagesUploader: FC<IImagesUploader> = ({ avatarUrl, isUploading, handleAddCourseAvatar }) => {
-  return (
-    <NewAvatarImageWrapper avatarUrl={avatarUrl}>
-      {isUploading ? (
-        <Loader type={Loaders.component} />
-      ) : (
-        <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
-      )}
-      <AddImageInput
-        type="file"
-        accept="image/*"
-        id="avatar"
-        name="avatar"
-        multiple
-        onChange={handleAddCourseAvatar}
-      />
-      <NewImageLabel htmlFor="avatar" />
-    </NewAvatarImageWrapper>
-  );
-};
+const ImagesUploader: FC<IImagesUploader> = ({ avatarUrl, isUploading, handleAddCourseAvatar }) => (
+  <NewAvatarImageWrapper avatarUrl={avatarUrl}>
+    {isUploading ? (
+      <Loader type={Loaders.component} />
+    ) : (
+      <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
+    )}
+    <AddImageInput
+      type="file"
+      accept="image/*"
+      id="avatar"
+      name="avatar"
+      multiple
+      onChange={handleAddCourseAvatar}
+    />
+    <NewImageLabel htmlFor="avatar" />
+  </NewAvatarImageWrapper>
+);
 
 export default ImagesUploader;

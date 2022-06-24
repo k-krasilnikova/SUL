@@ -149,6 +149,8 @@ export const BUTTON_VARIANT = {
   radio: 'Radiobutton (One answer)',
 };
 
+export const IMAGE_MAX_SIZE = 10 * 1024 * 1024;
+
 export const RADIX_PARAMETER = 10;
 export const SECONDS_PARAMETER = 60;
 
