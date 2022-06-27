@@ -17,7 +17,8 @@ import {
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { Numbers } from 'enums/numbers';
 import { courseEditorValidationSchema } from 'validations/schemas';
-import { uploadFile } from 'utils/helpers/uploader';
+import { useCallbackPrompt } from 'hooks';
+import { ConfirmLeavePage } from 'components/Dialogs';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
@@ -28,6 +29,9 @@ const CourseEditorContainer: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
   const courseEditorRef = useRef<HTMLElement>(null);
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
+  const [isSubmitButton, setSubmitButton] = useState(false);
+  const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(!isSubmitButton);
+  const [isLeavePageDialogOpen, setLeavePageDialogOpen] = useState(false);
 
   const { mutate: editCourseDataMutate, isLoading: isEditCourseDataMutateLoading } =
     useEditCourseData(params.courseId);
@@ -35,6 +39,7 @@ const CourseEditorContainer: FC = () => {
   const handleSubmit = (values: any) => {
     const formattedValues = formatValuesForSubmit(values);
     editCourseDataMutate(formattedValues);
+    setSubmitButton(true);
   };
 
   const formik = useFormik({
@@ -64,11 +69,6 @@ const CourseEditorContainer: FC = () => {
     const { value, name } = event.target;
     const skill = skillsById[value];
     formik.setFieldValue(name, { ...skill, points: INITIAL_NUMBER_POINT });
-  };
-
-  const handleAddCourseAvatar = async (event: BaseSyntheticEvent) => {
-    const fileLink = await uploadFile(event.target.files[Numbers.zero]);
-    formik.setFieldValue('avatar', fileLink);
   };
 
   useEffect(() => {
@@ -125,6 +125,16 @@ const CourseEditorContainer: FC = () => {
     );
   }
 
+  const handleCancelLeavePage = (): void => {
+    setLeavePageDialogOpen(false);
+    cancelNavigation();
+  };
+
+  const handleNavigateBack = (): void => {
+    setLeavePageDialogOpen(false);
+    confirmNavigation();
+  };
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -134,7 +144,6 @@ const CourseEditorContainer: FC = () => {
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         handleChangeDuration={handleChangeDuration}
-        handleAddCourseAvatar={handleAddCourseAvatar}
         onFieldBlur={onFieldBlur}
         onSkillBlur={onSkillBlur}
         onSkillPointsBlur={onSkillPointsBlur}
@@ -143,6 +152,13 @@ const CourseEditorContainer: FC = () => {
         isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}
         scrollToTop={scrollToTop}
         courseEditorRef={courseEditorRef}
+      />
+      <ConfirmLeavePage
+        isOpened={isLeavePageDialogOpen || (showPrompt && !isSubmitButton)}
+        isLoading={isEditCourseDataMutateLoading}
+        handleCancelLeavePage={handleCancelLeavePage}
+        handleLeavePage={handleNavigateBack}
+        isCourseEditor
       />
     </FormikProvider>
   );

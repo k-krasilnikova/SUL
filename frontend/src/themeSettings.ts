@@ -160,6 +160,16 @@ const theme = createTheme(
           },
         ],
       },
+      MuiCircularProgress: {
+        variants: [
+          {
+            props: { color: 'secondary' },
+            style: {
+              color: '#CCC',
+            },
+          },
+        ],
+      },
       MuiAccordion: {
         styleOverrides: {
           root: {

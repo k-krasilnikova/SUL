@@ -1,4 +1,4 @@
-import { styled, Box, Typography, TextField, InputLabel } from '@mui/material';
+import { styled, Box, Typography, TextField } from '@mui/material';
 
 export const FieldWrapper = styled(Box)({
   display: 'flex',
@@ -64,32 +64,4 @@ export const InputLengthCounter = styled(Typography)({
 export const DescriptionFieldWrapper = styled(FieldWrapper)({
   maxWidth: '1075px',
   width: '100%',
-});
-
-export const NewAvatarImageWrapper = styled(Box)({
-  position: 'relative',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#B6B6B6',
-  height: 'inherit',
-  '&:hover': {
-    backgroundColor: 'rgba(27, 27, 28, 0.57)',
-    opacity: 0.5,
-  },
-});
-
-export const AddImageIcon = styled('img')({
-  position: 'absolute',
-});
-
-export const AddImageInput = styled('input')({
-  position: 'absolute',
-  zIndex: -10,
-  opacity: 0,
-});
-
-export const NewImageLabel = styled(InputLabel)({
-  width: '100%',
-  height: '100%',
 });

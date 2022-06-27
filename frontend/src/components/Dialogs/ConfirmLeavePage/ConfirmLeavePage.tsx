@@ -1,20 +1,31 @@
 import { FC } from 'react';
 
-import { CONFIRM_LEAVE_PAGE } from 'constants/messages';
+import {
+  CONFIRM_LEAVE_CREATOR_PAGE,
+  CONFIRM_LEAVE_EDITOR_PAGE,
+  CONFIRM_LEAVE_PAGE,
+} from 'constants/messages';
 import { ButtonLabels } from 'constants/ButtonLabels';
 import { ConfirmDialog } from 'components/Dialogs';
-
-import { IConfirmLeavePageProps } from './types';
+import { IConfirmLeavePageProps } from 'components/Dialogs/types';
 
 const ConfirmLeavePage: FC<IConfirmLeavePageProps> = ({
   isOpened,
   isLoading,
   handleCancelLeavePage,
   handleLeavePage,
+  isCourseEditor,
+  isCourseCreator,
 }) => (
   <ConfirmDialog
     open={isOpened}
-    confirmMessage={CONFIRM_LEAVE_PAGE}
+    confirmMessage={
+      isCourseEditor
+        ? CONFIRM_LEAVE_EDITOR_PAGE
+        : isCourseCreator
+        ? CONFIRM_LEAVE_CREATOR_PAGE
+        : CONFIRM_LEAVE_PAGE
+    }
     declineButtonLabel={ButtonLabels.stay}
     confirmButtonLabel={ButtonLabels.exit}
     isLoading={isLoading}
