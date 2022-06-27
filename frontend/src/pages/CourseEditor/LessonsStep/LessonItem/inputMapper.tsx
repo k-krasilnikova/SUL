@@ -27,7 +27,6 @@ type TinputMapper = {
 
 const INPUT_MAPPER: TinputMapper = {
   [ContentElementType.plain]: ({ formik, material, index, onFieldBlur }: InputProps) => {
-    console.log('TEXT TEXT TEXT TEXT');
     return (
       <MaterialTextFieldWrapper>
         <TextField
@@ -51,14 +50,12 @@ const INPUT_MAPPER: TinputMapper = {
           }
         />
         <InputLengthCounter>
-          {`${formik.values.materials?.[index]?.plain.length}/${MAX_MATERIAL_LENGTH}`}
+          {`${formik.values.materials?.[index]?.plain?.length}/${MAX_MATERIAL_LENGTH}`}
         </InputLengthCounter>
       </MaterialTextFieldWrapper>
     );
   },
   [ContentElementType.presentation]: ({ formik, material, index, onFieldBlur }: InputProps) => {
-    console.log('SLIDES SLIDES SLIDES');
-
     return (
       <MaterialFieldWrapper>
         <Field
@@ -78,12 +75,11 @@ const INPUT_MAPPER: TinputMapper = {
             formik.errors?.materials?.[index]?.presentation
           }
         />
-        <InputLengthCounter>{`${formik.values.materials?.[index]?.presentation.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
+        <InputLengthCounter>{`${formik.values.materials?.[index]?.presentation?.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
       </MaterialFieldWrapper>
     );
   },
   [ContentElementType.video]: ({ formik, material, index, onFieldBlur }: InputProps) => {
-    console.log('video video video video');
     return (
       <MaterialFieldWrapper>
         <Field
@@ -102,7 +98,7 @@ const INPUT_MAPPER: TinputMapper = {
             formik.touched.materials?.[index]?.video && formik.errors?.materials?.[index]?.video
           }
         />
-        <InputLengthCounter>{`${formik.values.materials?.[index]?.video.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
+        <InputLengthCounter>{`${formik.values.materials?.[index]?.video?.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
       </MaterialFieldWrapper>
     );
   },

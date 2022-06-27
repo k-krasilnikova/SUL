@@ -13,8 +13,8 @@ import LessonItem from './LessonItem';
 import { LessonsStepWrapper, LessonButton } from './styled';
 import { ButtonsBox } from '../SkillsStep/styled';
 
-const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, ...props }) =>
-  isCourseDataLoading ? (
+const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, ...props }) => {
+  return isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
     <FormWrapper>
@@ -23,48 +23,55 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
         {({ remove, push }) => (
           <>
             {Object.values(formik.values.materials).length &&
-              formik.values?.materials.map((material, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <LessonsStepWrapper key={index}>
-                  <LessonItem material={material} index={index} formik={formik} {...props} />
-                  <ButtonsBox>
-                    <LessonButton
-                      variant="mediumOutlined"
-                      onClick={() => {
-                        remove(index);
-                        if (formik.values.materials.length === Numbers.one) {
-                          push({
-                            type: 'video',
-                            material: '',
-                            exercise: {},
-                          });
-                        }
-                      }}
-                    >
-                      {ButtonLabels.removeLesson}
-                    </LessonButton>
-                    {isLastElem(formik.values.materials, index) && (
+              formik.values?.materials.map((material, index) => {
+                return (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <LessonsStepWrapper key={index}>
+                    <LessonItem material={material} index={index} formik={formik} {...props} />
+                    <ButtonsBox>
                       <LessonButton
                         variant="mediumOutlined"
-                        onClick={() =>
-                          push({
-                            type: 'video',
-                            material: '',
-                            exercise: {},
-                          })
-                        }
-                        disabled={Boolean(formik.errors.materials)}
+                        onClick={() => {
+                          remove(index);
+                          if (formik.values.materials.length === Numbers.one) {
+                            push({
+                              type: 'video',
+                              video: '',
+                              exercise: {},
+                            });
+                          }
+                        }}
                       >
-                        {ButtonLabels.addMoreLessons}
+                        {ButtonLabels.removeLesson}
                       </LessonButton>
-                    )}
-                  </ButtonsBox>
-                </LessonsStepWrapper>
-              ))}
+                      {isLastElem(formik.values.materials, index) && (
+                        <LessonButton
+                          variant="mediumOutlined"
+                          onClick={() =>
+                            push({
+                              type: 'video',
+                              video: '',
+                              exercise: {},
+                            })
+                          }
+                          disabled={
+                            formik.errors.materials[index] &&
+                            Object.keys(formik.errors.materials[index]).length >=
+                              Object.keys(formik.values.materials[index]).length
+                          }
+                        >
+                          {ButtonLabels.addMoreLessons}
+                        </LessonButton>
+                      )}
+                    </ButtonsBox>
+                  </LessonsStepWrapper>
+                );
+              })}
           </>
         )}
       </FieldArray>
     </FormWrapper>
   );
+};
 
 export default LessonsStep;

@@ -58,9 +58,8 @@ export const INITIAL_VALUES = {
   materials: [
     {
       type: ContentElementType.video,
-      plain: '',
-      presentation: '',
       video: '',
+      exercise: { title: '', task: '' },
     },
   ],
   test: {
