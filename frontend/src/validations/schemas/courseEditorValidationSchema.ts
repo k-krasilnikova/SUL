@@ -38,7 +38,7 @@ const courseEditorValidationSchema = object().shape({
       object()
         .shape({
           type: string().required('Material type is required'),
-          material: string()
+          plain: string()
             .required('Material is required')
             .test('isNotNumbers', 'Material text cannot contain only numbers', isNotNumbersOnly)
             .test(
@@ -48,11 +48,19 @@ const courseEditorValidationSchema = object().shape({
             )
             .min(MIN_MATERIAL_LENGTH, 'Material text should be of minimum 10 characters length')
             .max(MAX_MATERIAL_LENGTH, 'Material text should be of maximum 5000 characters length'),
-          link: string()
+          presentation: string()
             .required('Link is required')
             .matches(
               new RegExp(`(((https|http)://|)docs.google.com/presentation/d/)(.+?(?=(/.+|/|$)))`),
               'Should be link to google slides',
+            ),
+          video: string()
+            .required('Link for video is required')
+            .matches(
+              new RegExp(
+                `https?://(www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)`,
+              ),
+              'Should be url type.',
             ),
           exercise: object().shape({
             eN: number(),

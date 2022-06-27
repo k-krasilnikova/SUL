@@ -1,3 +1,4 @@
+import { ContentElementType } from 'enums/materials';
 import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent, RefObject } from 'react';
 
 import { IQuestionObject, ITestItem } from 'types/test';
@@ -41,7 +42,7 @@ export interface IFormQuestion {
 export interface IFormik {
   initialValues: {
     technologies: { _id: string; name: string; points: number; maxScore: number }[];
-    materials: { type: string; material: string }[];
+    materials: { type: ContentElementType; plain: string; presentation: string; video: string }[];
     test: {
       title: string;
       _id: string;
@@ -60,8 +61,10 @@ export interface IFormik {
   values: {
     technologies: { _id: string; name: string; points: number; maxScore: number }[];
     materials: {
-      type: string;
-      material: string;
+      type: ContentElementType;
+      plain: string;
+      presentation: string;
+      video: string;
     }[];
     test: ITestItem;
     title: string;
@@ -120,9 +123,10 @@ export interface ICourseEditorProps extends ISkillsStepProps {
 export interface ILessonItemProps {
   formik: IFormik;
   material: {
-    type: string;
-    material?: string;
-    link?: string;
+    type: ContentElementType;
+    plain?: string;
+    presentation?: string;
+    video?: string;
     exercise?: { eN: number; title?: string; task: string; code: string };
   };
   index: number;
