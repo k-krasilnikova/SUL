@@ -29,7 +29,7 @@ export const AddImageInput = styled('input')({
   position: 'absolute',
   zIndex: -10,
   opacity: 0,
-  visibility: 'hidden',
+  // visibility: 'hidden',
   pointerEvents: 'none',
 });
 

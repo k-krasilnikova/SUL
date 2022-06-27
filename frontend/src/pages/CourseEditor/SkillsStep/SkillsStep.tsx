@@ -22,6 +22,7 @@ import {
   SkillsText,
   SkillsTitleWrapper,
   SkillWrapper,
+  // SkillFieldSelect,
 } from './styled';
 
 const SkillsStep: FC<ISkillsStepProps> = ({
@@ -121,7 +122,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                             push({
                               _id: '',
                               name: 'Technology',
-                              points: Numbers.one,
+                              points: '',
                               maxScore: Numbers.five,
                             });
                           }
@@ -137,7 +138,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                             push({
                               _id: '',
                               name: 'Technology',
-                              points: Numbers.one,
+                              points: '',
                               maxScore: Numbers.five,
                             })
                           }

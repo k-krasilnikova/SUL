@@ -15,11 +15,11 @@ import { ButtonLabels } from 'constants/ButtonLabels';
 import QuestionItem from './QuestionItem';
 import { ItemTitle, TestBasicField, TestItemWrapper, TestTitleBox } from './QuestionItem/styled';
 import { AlertWrapper, TestStepWrapper } from './styled';
-import { convertSecondsToString } from '../utils';
 
 const TestStep: FC<IStepProps> = ({
   formik,
   isCourseDataLoading,
+  isCreateCourseMode,
   handleChangeDuration,
   ...props
 }) =>
@@ -35,22 +35,22 @@ const TestStep: FC<IStepProps> = ({
             placeholder="Test title"
             label="Title"
             value={formik.values?.test?.title}
-            id="test.title"
             variant="outlined"
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             autoComplete="off"
             name="test.title"
-            error={Boolean(formik.errors?.test?.title)}
-            helperText={formik.errors?.test?.title}
+            error={formik.touched?.test?.title && Boolean(formik.errors?.test?.title)}
+            helperText={formik.touched?.test?.title && formik.errors?.test?.title}
           />
           <TestBasicField
             label="Duration"
             type="time"
-            value={convertSecondsToString(formik.values.test.timeout)}
+            value={formik.values.test.timeout}
             id="test.timeout"
             variant="outlined"
             name="test.timeout"
-            onChange={handleChangeDuration}
+            onChange={formik.handleChange}
           />
         </TestTitleBox>
         <FieldArray name="test.questions">
@@ -66,7 +66,7 @@ const TestStep: FC<IStepProps> = ({
                         remove(index);
                         if (formik.values.test.questions.length === Numbers.one) {
                           push({
-                            question: 'Test question',
+                            question: '',
                             answers: [
                               {
                                 variant: '',
@@ -87,12 +87,13 @@ const TestStep: FC<IStepProps> = ({
                       <SkillButton
                         variant="mediumOutlined"
                         disabled={
-                          Boolean(formik.errors?.test?.questions[index]?.question) ||
-                          formik.errors?.test?.questions[index]?.answers
+                          Boolean(formik.errors?.test?.questions?.[index]?.question) ||
+                          formik.errors?.test?.questions?.[index]?.answers
                         }
                         onClick={() =>
                           push({
                             question: '',
+                            correctAnswer: Numbers.one,
                             answers: [
                               {
                                 variant: '',

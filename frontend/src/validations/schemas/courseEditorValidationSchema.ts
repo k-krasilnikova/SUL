@@ -1,6 +1,12 @@
 import { string, object, array, number } from 'yup';
 
-import { isNotNumbersOnly, isNotSpecialsOnly } from 'validations/utils';
+import {
+  isLink,
+  isNotNumbersOnly,
+  isNotSpecialsOnly,
+  // isSkillNameValid,
+  // isSkillNumberValid,
+} from 'validations/utils';
 import {
   EXERCISE_DESCRIPTION_LENGTH_REGEX,
   EXERCISE_IS_NOT_NUMBERS_REGEX,
@@ -32,6 +38,9 @@ const courseEditorValidationSchema = object().shape({
     .test('isNotSpecial', 'Description cannot contain only special characters', isNotSpecialsOnly)
     .min(MIN_DESCRIPTION_LENGTH, 'Description should be of minimum 50 characters length')
     .max(MAX_DESCRIPTION_LENGTH, 'Description should be of maximum 3000 characters length'),
+  avatar: string()
+    .required('Avatar is required')
+    .test('isLink', 'Avatar should contain a link', isLink),
   materials: array()
     .required()
     .of(
@@ -92,7 +101,9 @@ const courseEditorValidationSchema = object().shape({
     .of(
       object().shape({
         name: string().required('Technology name is required'),
+        // .test('isSkillNameValid', 'Technology name is required', isSkillNameValid),
         points: number().required('Level is required'),
+        // .test('isSkillNumberValid', 'Level is required', isSkillNumberValid),
       }),
     ),
   test: object().shape({

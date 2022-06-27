@@ -50,7 +50,7 @@ export const INITIAL_VALUES = {
       _id: '',
       name: 'Technology',
       maxScore: 0,
-      points: 0,
+      points: '',
     },
   ],
   materials: [
@@ -118,7 +118,7 @@ export const INITIAL_VALUES = {
         question: '',
       },
     ],
-    timeout: 0,
+    timeout: '00:10',
     title: '',
   },
   skillsById: {},
