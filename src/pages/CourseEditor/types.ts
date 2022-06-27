@@ -42,7 +42,12 @@ export interface IFormQuestion {
 export interface IFormik {
   initialValues: {
     technologies: { _id: string; name: string; points: number; maxScore: number }[];
-    materials: { type: ContentElementType; plain: string; presentation: string; video: string }[];
+    materials: {
+      type: ContentElementType;
+      plain?: string;
+      presentation?: string;
+      video?: string;
+    }[];
     test: {
       title: string;
       _id: string;
@@ -62,9 +67,9 @@ export interface IFormik {
     technologies: { _id: string; name: string; points: number; maxScore: number }[];
     materials: {
       type: ContentElementType;
-      plain: string;
-      presentation: string;
-      video: string;
+      plain?: string;
+      presentation?: string;
+      video?: string;
     }[];
     test: ITestItem;
     title: string;

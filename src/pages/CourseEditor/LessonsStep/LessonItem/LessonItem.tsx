@@ -22,21 +22,6 @@ import {
 import INPUT_MAPPER from './inputMapper';
 
 const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur }) => {
-  // console.log(
-  //   'FORMIK',
-  //   formik.initialValues,
-  //   'errors \n',
-  //   formik.errors,
-  //   'touched \n',
-  //   formik.touched,
-  // );
-  // console.log(
-  //   '!!!!!!',
-  //   material.type === ContentElementType.presentation
-  //     ? formik.touched.materials?.[index]?.slidesLink &&
-  //         formik.errors?.materials?.[index]?.slidesLink
-  //     : formik.touched.materials?.[index]?.material && formik.errors?.materials?.[index]?.material,
-  // );
   return (
     <LessonItemWrapper>
       <ItemTitle>
@@ -50,13 +35,6 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
           name={`materials[${index}].type`}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          error={
-            formik.touched.materials?.[index]?.type &&
-            Boolean(formik.errors?.materials?.[index]?.type)
-          }
-          helperText={
-            formik.touched.materials?.[index]?.type && formik.errors?.materials?.[index]?.type
-          }
         >
           {LESSONS_TYPE.map((type) => (
             <MenuItem key={type.value} value={type.value}>

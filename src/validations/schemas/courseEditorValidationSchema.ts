@@ -37,7 +37,6 @@ const courseEditorValidationSchema = object().shape({
     .of(
       object()
         .shape({
-          type: string().required('Material type is required'),
           plain: string()
             .required('Material is required')
             .test('isNotNumbers', 'Material text cannot contain only numbers', isNotNumbersOnly)
@@ -56,12 +55,7 @@ const courseEditorValidationSchema = object().shape({
             ),
           video: string()
             .required('Link for video is required')
-            .matches(
-              new RegExp(
-                `https?://(www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)`,
-              ),
-              'Should be url type.',
-            ),
+            .matches(/\b(https?:\/\/.*?\.[a-z]{2,4}\/[^\s]*\b)/g, 'Should be url type.'),
           exercise: object().shape({
             eN: number(),
             title: string()
