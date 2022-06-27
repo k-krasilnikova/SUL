@@ -8,15 +8,13 @@ import { useSnackbar } from 'notistack';
 import { Numbers } from 'enums/numbers';
 import { useGetSkills } from 'api/skills';
 import { useCreateCourse } from 'api/admin';
-import { useGetCoursesPaths } from 'hooks';
+import { useGetCoursesPaths, useCallbackPrompt } from 'hooks';
 import { PATHS } from 'constants/routes';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { INITIAL_VALUES, RADIX_PARAMETER, SECONDS_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { formatFieldValue, formatValuesForSubmit } from 'pages/CourseEditor/utils';
-import { uploadFile } from 'utils/helpers/uploader';
 import { ConfirmLeavePage } from 'components/Dialogs';
-import { useCallbackPrompt } from 'hooks';
 
 import CourseCreator from './CourseCreator';
 
@@ -65,11 +63,6 @@ const CourseCreatorContainer: FC = () => {
     }
   }, [formik.isSubmitting, formik.isValid, formik.isValidating]);
 
-  const handleAddCourseAvatar = async (event: BaseSyntheticEvent) => {
-    const fileLink = await uploadFile(event.target.files[Numbers.zero]);
-    formik.setFieldValue('avatar', fileLink);
-  };
-
   const handleChangeCorrectAnswer = (event: BaseSyntheticEvent) => {
     formik.setFieldValue(event.target.name, Number.parseInt(event.target.value, RADIX_PARAMETER));
   };
@@ -114,7 +107,6 @@ const CourseCreatorContainer: FC = () => {
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         handleChangeDuration={handleChangeDuration}
         onFieldBlur={onFieldBlur}
-        handleAddCourseAvatar={handleAddCourseAvatar}
         isCreateCourseMode={isCreateCourseMode}
         ungroupedSkills={ungroupedSkills}
         coursesPath={coursesPath}

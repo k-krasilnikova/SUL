@@ -15,6 +15,7 @@ const RequestButtonsContainer: FC<IAssessmentRequestButtonsContainerProps> = ({
 
   return (
     <RequestButtons
+      id={id}
       approveAssessment={approveAssessment}
       declineAssessment={declineAssessment}
       {...props}
