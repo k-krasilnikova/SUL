@@ -20,6 +20,8 @@ export const AddImageIcon = styled('img')({
   position: 'absolute',
   top: '50%',
   left: '50%',
+  width: '100px',
+  height: '100px',
   transform: 'translate(-50%, -50%)',
 });
 
