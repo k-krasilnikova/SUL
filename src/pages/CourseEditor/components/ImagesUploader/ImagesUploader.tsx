@@ -10,7 +10,7 @@ import { NewAvatarImageWrapper, AddImageIcon, AddImageInput, NewImageLabel } fro
 const ImagesUploader: FC<IImagesUploader> = ({ avatarUrl, isUploading, handleAddCourseAvatar }) => (
   <NewAvatarImageWrapper avatarUrl={avatarUrl}>
     {isUploading ? (
-      <Loader type={Loaders.component} />
+      <Loader type={Loaders.component} color="secondary" />
     ) : (
       <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
     )}
@@ -19,7 +19,6 @@ const ImagesUploader: FC<IImagesUploader> = ({ avatarUrl, isUploading, handleAdd
       accept="image/*"
       id="avatar"
       name="avatar"
-      multiple
       onChange={handleAddCourseAvatar}
     />
     <NewImageLabel htmlFor="avatar" />
