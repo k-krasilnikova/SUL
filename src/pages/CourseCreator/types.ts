@@ -7,6 +7,7 @@ export interface ICourseCreatorProps extends IStepProps {
   ungroupedSkills: {
     [p: string]: { _id: string; maxScore: number; name: string; points: number };
   };
+  validateStep: (step: number) => boolean;
   scrollToTop: () => void;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
   handleAddCourseAvatar?: (event: BaseSyntheticEvent) => void;

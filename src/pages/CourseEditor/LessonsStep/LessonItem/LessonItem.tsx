@@ -64,14 +64,15 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
                   : 'Material video link'
               }
               value={material.material}
+              onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               inputProps={{
                 maxLength: MAX_MATERIAL_LENGTH,
               }}
               autoComplete="off"
               error={
-                formik.touched.materials?.[index]?.material &&
-                Boolean(formik.errors?.materials?.[index]?.material)
+                Boolean(formik.errors?.materials?.[index]?.material) &&
+                formik.touched.materials?.[index]?.material
               }
               helperText={
                 formik.touched.materials?.[index]?.material &&
@@ -95,8 +96,8 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
                 maxLength: MAX_MATERIAL_LENGTH,
               }}
               error={
-                formik.touched.materials?.[index]?.material &&
-                Boolean(formik.errors?.materials?.[index]?.material)
+                Boolean(formik.errors?.materials?.[index]?.material) &&
+                formik.touched.materials?.[index]?.material
               }
               helperText={
                 formik.touched.materials?.[index]?.material &&

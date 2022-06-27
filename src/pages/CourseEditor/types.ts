@@ -40,7 +40,7 @@ export interface IFormQuestion {
 
 export interface IFormik {
   initialValues: {
-    technologies: { _id: string; name: string; points: number; maxScore: number }[];
+    technologies: { _id: string; name: string; points: number | string; maxScore: number }[];
     materials: { type: string; material: string }[];
     test: {
       title: string;
@@ -58,7 +58,7 @@ export interface IFormik {
     description: string;
   };
   values: {
-    technologies: { _id: string; name: string; points: number; maxScore: number }[];
+    technologies: { _id: string; name: string; points: number | string; maxScore: number }[];
     materials: {
       type: string;
       material: string;
@@ -77,6 +77,7 @@ export interface IFormik {
   touched: {
     title?: boolean;
     description?: boolean;
+    avatar?: boolean;
     materials?: any;
     technologies?: any;
     test?: any;
@@ -84,6 +85,7 @@ export interface IFormik {
   errors: {
     title?: string;
     description?: string;
+    avatar?: string;
     materials?: any;
     technologies?: any;
     test?: any;
@@ -111,6 +113,7 @@ export interface ISkillsStepProps extends IStepProps {
 
 export interface ICourseEditorProps extends ISkillsStepProps {
   scrollToTop: () => void;
+  validateStep: () => boolean;
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
   editCourseDataMutate?: (courseId: string) => void;
   isEditCourseDataMutateLoading?: boolean;
@@ -136,6 +139,16 @@ export interface IQuestionItemProps {
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
 }
 
+export interface IMaterial {
+  content: { type: string; material: string }[];
+  exercise?: {
+    eN: number;
+    title: string;
+    task: string;
+    code?: string;
+  };
+}
+
 export interface IFormValues {
   avatar: string;
   complexity: number;
@@ -144,9 +157,13 @@ export interface IFormValues {
   materials: {
     type: string;
     material: string;
+    exercise: {
+      title: string;
+      task: string;
+    };
   }[];
   technologies: IFormTechnology[];
-  test: { title: string; timeout: number; questions: IFormQuestion[] };
+  test: { title: string; timeout: string; questions: IFormQuestion[] };
 }
 
 export interface IFormattedValues {
@@ -169,10 +186,12 @@ export interface IFormattedValues {
 
 export interface IImagesUploaderContainer {
   avatarUrl: string;
+  onBlur: (event: BaseSyntheticEvent) => void;
   setFieldValue: IFormik['setFieldValue'];
 }
 
 export interface IImagesUploader extends Pick<IImagesUploaderContainer, 'avatarUrl'> {
   isUploading: boolean;
+  onBlur: (event: BaseSyntheticEvent) => void;
   handleAddCourseAvatar: (event: BaseSyntheticEvent) => void;
 }

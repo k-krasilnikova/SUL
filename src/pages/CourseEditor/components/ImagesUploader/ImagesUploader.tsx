@@ -7,7 +7,12 @@ import { IImagesUploader } from 'pages/CourseEditor/types';
 
 import { NewAvatarImageWrapper, AddImageIcon, AddImageInput, NewImageLabel } from './styled';
 
-const ImagesUploader: FC<IImagesUploader> = ({ avatarUrl, isUploading, handleAddCourseAvatar }) => (
+const ImagesUploader: FC<IImagesUploader> = ({
+  avatarUrl,
+  isUploading,
+  onBlur,
+  handleAddCourseAvatar,
+}) => (
   <NewAvatarImageWrapper avatarUrl={avatarUrl}>
     {isUploading ? (
       <Loader type={Loaders.component} color="secondary" />
@@ -20,6 +25,7 @@ const ImagesUploader: FC<IImagesUploader> = ({ avatarUrl, isUploading, handleAdd
       id="avatar"
       name="avatar"
       onChange={handleAddCourseAvatar}
+      onBlur={onBlur}
     />
     <NewImageLabel htmlFor="avatar" />
   </NewAvatarImageWrapper>
