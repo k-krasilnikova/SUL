@@ -89,11 +89,13 @@ export const StyledDivider = styled(Divider)({
 });
 
 export const SkillsInfoList = styled(Box)({
-  padding: 0,
-  marginTop: '20px',
   display: 'flex',
   flexWrap: 'wrap',
+  gap: '20px',
+  marginTop: '20px',
+  padding: 0,
   [theme.breakpoints.down('lg')]: {
+    gap: '12px',
     marginTop: '12px',
   },
 });

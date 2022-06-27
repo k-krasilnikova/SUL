@@ -5,7 +5,7 @@ import theme from 'themeSettings';
 
 export const MaterialWrapper = styled(Box)({
   width: '100%',
-  height: '680px',
+  height: '610px',
   minHeight: '200px',
   marginBottom: '40px',
   background: 'rgba(30, 30, 30, 0.12)',

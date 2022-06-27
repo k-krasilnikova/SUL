@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { MenuItem, TextField } from '@mui/material';
 
-import Image from 'components/Image';
 import Loader from 'components/Loader';
 import {
   EditorTitles,
@@ -10,8 +9,8 @@ import {
   MAX_DESCRIPTION_LENGTH,
 } from 'constants/courseEditor';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
-import { addAvatarIcon } from 'icons';
 
+import ImagesUploader from '../components/ImagesUploader';
 import {
   AvatarWrapper,
   DescriptionFieldWrapper,
@@ -22,19 +21,10 @@ import {
   InputLengthCounter,
   SecondaryText,
   SectionWrapper,
-  NewAvatarImageWrapper,
-  AddImageInput,
-  NewImageLabel,
-  AddImageIcon,
 } from './styled';
 import { IStepProps } from '../types';
 
-const DefinitionStep: FC<IStepProps> = ({
-  formik,
-  isCourseDataLoading,
-  onFieldBlur,
-  handleAddCourseAvatar,
-}) =>
+const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBlur }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
@@ -79,20 +69,7 @@ const DefinitionStep: FC<IStepProps> = ({
           <SecondaryText>{EditorTitles.avatarDescription}</SecondaryText>
         </AvatarWrapper>
         <ImageWrapper>
-          <NewAvatarImageWrapper>
-            <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
-            <AddImageInput
-              type="file"
-              accept="image/*"
-              id="avatar"
-              name="avatar"
-              multiple
-              onChange={handleAddCourseAvatar}
-            />
-            <NewImageLabel htmlFor="avatar">
-              <Image imageUrl={formik.values.avatar} newImage />
-            </NewImageLabel>
-          </NewAvatarImageWrapper>
+          <ImagesUploader avatarUrl={formik.values.avatar} setFieldValue={formik.setFieldValue} />
         </ImageWrapper>
         <DescriptionWrapper>
           <SectionName>{EditorTitles.definitionStepDescription}</SectionName>
