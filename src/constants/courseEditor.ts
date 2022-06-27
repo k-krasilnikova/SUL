@@ -1,3 +1,5 @@
+import { ContentElementType } from 'enums/materials';
+
 export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
   {
     value: 1,
@@ -55,9 +57,10 @@ export const INITIAL_VALUES = {
   ],
   materials: [
     {
-      type: 'video',
-      material: '',
-      link: '',
+      type: ContentElementType.video,
+      plain: '',
+      presentation: '',
+      video: '',
     },
   ],
   test: {

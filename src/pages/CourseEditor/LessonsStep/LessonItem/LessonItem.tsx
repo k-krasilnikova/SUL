@@ -1,14 +1,12 @@
 import { FC } from 'react';
 import { MenuItem, TextField } from '@mui/material';
 
-import { ContentElementType } from 'enums/materials';
 import { ILessonItemProps } from 'pages/CourseEditor/types';
 import { Numbers } from 'enums/numbers';
 import {
   LESSONS_TYPE,
   LESSONS_TYPE_TITLE_MAP,
   EditorTitles,
-  MAX_MATERIAL_LENGTH,
   MAX_EXERCISE_TITLE_LENGTH,
 } from 'constants/courseEditor';
 import { Field, InputLengthCounter } from 'pages/CourseEditor/DefinitionStep/styled';
@@ -20,24 +18,25 @@ import {
   LessonInnerBox,
   LessonItemWrapper,
   MaterialFieldWrapper,
-  MaterialTextFieldWrapper,
 } from './styled';
+import INPUT_MAPPER from './inputMapper';
 
 const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur }) => {
-  console.log(
-    'FORMIK',
-    formik.initialValues,
-    'errors \n',
-    formik.errors,
-    'touched \n',
-    formik.touched,
-  );
-  console.log(
-    '!!!!!!',
-    material.type === ContentElementType.presentation
-      ? formik.touched.materials?.[index]?.link && formik.errors?.materials?.[index]?.link
-      : formik.touched.materials?.[index]?.material && formik.errors?.materials?.[index]?.material,
-  );
+  // console.log(
+  //   'FORMIK',
+  //   formik.initialValues,
+  //   'errors \n',
+  //   formik.errors,
+  //   'touched \n',
+  //   formik.touched,
+  // );
+  // console.log(
+  //   '!!!!!!',
+  //   material.type === ContentElementType.presentation
+  //     ? formik.touched.materials?.[index]?.slidesLink &&
+  //         formik.errors?.materials?.[index]?.slidesLink
+  //     : formik.touched.materials?.[index]?.material && formik.errors?.materials?.[index]?.material,
+  // );
   return (
     <LessonItemWrapper>
       <ItemTitle>
@@ -67,78 +66,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
         </Field>
         <InputBox>
           <InputTitle>{LESSONS_TYPE_TITLE_MAP[material.type]}</InputTitle>
-          {material.type === ContentElementType.presentation ||
-          material.type === ContentElementType.video ? (
-            <MaterialFieldWrapper>
-              <Field
-                id={
-                  material.type === ContentElementType.presentation
-                    ? `materials[${index}].link`
-                    : `materials[${index}].material`
-                }
-                name={
-                  material.type === ContentElementType.presentation
-                    ? `materials[${index}].link`
-                    : `materials[${index}].material`
-                }
-                placeholder={
-                  material.type === ContentElementType.presentation
-                    ? 'Material presentation link'
-                    : 'Material video link'
-                }
-                value={
-                  material.type === ContentElementType.presentation
-                    ? material.link
-                    : material.material
-                }
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                autoComplete="off"
-                error={
-                  material.type === ContentElementType.presentation
-                    ? formik.touched.materials?.[index]?.link &&
-                      Boolean(formik.errors?.materials?.[index]?.link)
-                    : formik.touched.materials?.[index]?.material &&
-                      Boolean(formik.errors?.materials?.[index]?.material)
-                }
-                helperText={
-                  material.type === ContentElementType.presentation
-                    ? formik.touched.materials?.[index]?.link &&
-                      formik.errors?.materials?.[index]?.link
-                    : formik.touched.materials?.[index]?.material &&
-                      formik.errors?.materials?.[index]?.material
-                }
-              />
-              <InputLengthCounter>{`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
-            </MaterialFieldWrapper>
-          ) : (
-            <MaterialTextFieldWrapper>
-              <TextField
-                multiline
-                id={`materials[${index}].material`}
-                name={`materials[${index}.material`}
-                placeholder="Text material"
-                value={material.material}
-                onChange={formik.handleChange}
-                onBlur={onFieldBlur}
-                autoComplete="off"
-                inputProps={{
-                  maxLength: MAX_MATERIAL_LENGTH,
-                }}
-                error={
-                  formik.touched.materials?.[index]?.material &&
-                  Boolean(formik.errors?.materials?.[index]?.material)
-                }
-                helperText={
-                  formik.touched.materials?.[index]?.material &&
-                  formik.errors?.materials?.[index]?.material
-                }
-              />
-              <InputLengthCounter>
-                {`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}
-              </InputLengthCounter>
-            </MaterialTextFieldWrapper>
-          )}
+          {INPUT_MAPPER[material.type]({ formik, material, index, onFieldBlur })}
           <InputTitle>{EditorTitles.exerciseTitle}</InputTitle>
           <MaterialFieldWrapper>
             <Field
