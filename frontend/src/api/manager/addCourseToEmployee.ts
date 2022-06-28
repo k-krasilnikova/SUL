@@ -25,6 +25,7 @@ const useAddCourseToEmployee = ({
   const handleSubmitSuccess = () => {
     enqueueSnackbar(successSnackbarMessage.courseAdded, successSnackbar);
     queryClient.refetchQueries([QUERY_KEYS.employeeProfile, employeeId]);
+    queryClient.refetchQueries([QUERY_KEYS.availableCourses]);
     onSuccess();
   };
 

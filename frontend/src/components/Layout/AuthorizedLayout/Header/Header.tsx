@@ -37,7 +37,7 @@ const Header: FC<THeaderProps> = ({
         <BrandLogo alt=":iTechArt" src={brandLogo} />
       </BrandLogoLink>
       <HeaderContent>
-        <SearchCourses />
+        <SearchCourses isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
         <Notifications
           notifications={notifications}
           isMobileMenuOpen={isMobileMenuOpen}
