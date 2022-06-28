@@ -126,6 +126,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               formik.touched.materials?.[index]?.exercise?.title &&
               Boolean(formik.errors?.materials?.[index]?.exercise?.title)
             }
+            helperText={formik.errors?.materials?.[index]?.exercise?.title}
           />
           <InputLengthCounter>{`${
             material?.exercise?.title?.length ? material?.exercise?.title?.length : Numbers.zero
