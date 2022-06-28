@@ -13,8 +13,8 @@ import LessonItem from './LessonItem';
 import { LessonsStepWrapper, LessonButton } from './styled';
 import { ButtonsBox } from '../SkillsStep/styled';
 
-const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, ...props }) => {
-  return isCourseDataLoading ? (
+const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, ...props }) =>
+  isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
     <FormWrapper>
@@ -68,6 +68,5 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
       </FieldArray>
     </FormWrapper>
   );
-};
 
 export default LessonsStep;
