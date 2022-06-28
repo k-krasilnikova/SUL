@@ -26,6 +26,7 @@ const useGetCourseMaterials = (
     {
       refetchOnWindowFocus: false,
       onError: handleSubmitError,
+      enabled: !!courseId,
     },
   );
 };
