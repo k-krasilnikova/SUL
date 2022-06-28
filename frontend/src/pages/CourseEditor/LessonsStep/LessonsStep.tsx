@@ -36,7 +36,7 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
                           if (formik.values.materials.length === Numbers.one) {
                             push({
                               type: 'video',
-                              video: '',
+                              material: '',
                               exercise: {},
                             });
                           }
@@ -50,15 +50,11 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
                           onClick={() =>
                             push({
                               type: 'video',
-                              video: '',
+                              material: '',
                               exercise: {},
                             })
                           }
-                          disabled={
-                            formik.errors.materials[index] &&
-                            Object.keys(formik.errors.materials[index]).length >=
-                              Object.keys(formik.values.materials[index]).length
-                          }
+                          disabled={!!formik.errors.materials}
                         >
                           {ButtonLabels.addMoreLessons}
                         </LessonButton>

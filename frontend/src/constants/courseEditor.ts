@@ -42,6 +42,12 @@ export const LESSONS_TYPE_TITLE_MAP: { [key: string]: string } = {
   presentation: EditorContentElementType.presentation,
 };
 
+export const LESSONS_PLACEHOLDER_MAPPER = {
+  [ContentElementType.plain]: 'Write your lesson',
+  [ContentElementType.presentation]: 'Add link to google presentation',
+  [ContentElementType.video]: 'Add link for video lesson',
+};
+
 export const INITIAL_VALUES = {
   title: '',
   complexity: 1,
@@ -58,7 +64,7 @@ export const INITIAL_VALUES = {
   materials: [
     {
       type: ContentElementType.video,
-      video: '',
+      material: '',
       exercise: { title: '', task: '' },
     },
   ],

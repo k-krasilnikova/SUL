@@ -44,9 +44,7 @@ export interface IFormik {
     technologies: { _id: string; name: string; points: number; maxScore: number }[];
     materials: {
       type: ContentElementType;
-      plain?: string;
-      presentation?: string;
-      video?: string;
+      material: string;
     }[];
     test: {
       title: string;
@@ -67,9 +65,7 @@ export interface IFormik {
     technologies: { _id: string; name: string; points: number; maxScore: number }[];
     materials: {
       type: ContentElementType;
-      plain?: string;
-      presentation?: string;
-      video?: string;
+      material: string;
     }[];
     test: ITestItem;
     title: string;
@@ -129,9 +125,7 @@ export interface ILessonItemProps {
   formik: IFormik;
   material: {
     type: ContentElementType;
-    plain?: string;
-    presentation?: string;
-    video?: string;
+    material: string;
     exercise?: { eN: number; title?: string; task: string; code: string };
   };
   index: number;
