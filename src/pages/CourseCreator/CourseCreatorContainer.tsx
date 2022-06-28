@@ -15,6 +15,7 @@ import { formatFieldValue, formatValuesForSubmit } from 'pages/CourseEditor/util
 import { ConfirmLeavePage } from 'components/Dialogs';
 
 import CourseCreator from './CourseCreator';
+import { validators } from './utils';
 
 const CourseCreatorContainer: FC = () => {
   const [isSubmitButton, setSubmitButton] = useState(false);
@@ -90,53 +91,9 @@ const CourseCreatorContainer: FC = () => {
     confirmNavigation();
   };
 
-  const validateIfCourseInfoValid = () => {
-    const fields = ['avatar', 'description', 'title'];
-    let valid = true;
-
-    fields.forEach((field) => {
-      valid =
-        valid &&
-        !(field in formik.errors) &&
-        formik.values[field as keyof typeof formik.values] !== '';
-    });
-    return valid;
-  };
-
-  const validateIfCourseSkillsValid = () => {
-    let valid = true;
-    formik.values.technologies.forEach((skill) => {
-      valid = valid && !!(skill._id !== '' && skill.points !== '');
-    });
-    valid = valid && !('technologies' in formik.errors);
-    return valid;
-  };
-
-  const validateIfCourseLessonsValid = () => {
-    let valid = true;
-    formik.values.materials.forEach((material) => {
-      valid = valid && !!(material.material !== '');
-    });
-    valid = valid && !('materials' in formik.errors);
-    return valid;
-  };
-
-  const validateIfCourseTestValid = () => {
-    let valid = true;
-    valid = valid && !('test' in formik.errors);
-    return valid;
-  };
-
-  const validators: { [key: number]: () => boolean } = {
-    1: validateIfCourseInfoValid,
-    2: validateIfCourseSkillsValid,
-    3: validateIfCourseLessonsValid,
-    4: validateIfCourseTestValid,
-  };
-
   const validateStep = (step: number) => {
     const validator = validators[step];
-    return validator();
+    return validator(formik);
   };
 
   return (

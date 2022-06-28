@@ -29,7 +29,7 @@ const ActionButtons: FC<IActionButtonsProps> = ({
     {isSubmitEnabled ? (
       <StyledButton
         variant="mediumContained"
-        disabled={!formik?.isValid || isEditCourseDataMutateLoading}
+        disabled={!validateStep(step) || isEditCourseDataMutateLoading}
         onClick={formik?.submitForm}
       >
         {isEditCourseDataMutateLoading ? (
