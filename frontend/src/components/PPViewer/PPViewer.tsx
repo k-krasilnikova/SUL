@@ -10,16 +10,14 @@ const viewerContainerStyles = {
 
 const FIRST_SLIDE_POSITION = 1;
 
-const PPViewer: FC<IPPViewerProps> = ({ link }) => {
-  return (
-    <GoogleSlides
-      slidesLink={link}
-      containerStyle={viewerContainerStyles}
-      position={FIRST_SLIDE_POSITION}
-      showControls
-      loop
-    />
-  );
-};
+const PPViewer: FC<IPPViewerProps> = ({ link }) => (
+  <GoogleSlides
+    slidesLink={link}
+    containerStyle={viewerContainerStyles}
+    position={FIRST_SLIDE_POSITION}
+    showControls
+    loop
+  />
+);
 
 export default PPViewer;
