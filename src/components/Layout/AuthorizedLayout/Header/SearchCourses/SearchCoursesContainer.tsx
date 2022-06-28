@@ -31,10 +31,13 @@ const SearchCoursesContainer: FC<TSearchCoursesContainer> = ({
   }, [isFetching]);
 
   const handleSearchClose = () => {
-    setSearchInputValue('');
-    setSearchOpen(false);
-    setMobileSearchOpen(false);
+    if (isMobileSearchOpen || isSearchOpen) {
+      setSearchInputValue('');
+      setSearchOpen(false);
+      setMobileSearchOpen(false);
+    }
   };
+
   const handleMobileSearch = () => {
     if (isMobileMenuOpen) {
       toggleMobileMenu();
