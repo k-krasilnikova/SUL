@@ -41,7 +41,7 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
     const formattedMaterial: IMaterial = {
       content: [{ type: material.type, material: material.material }],
     };
-    if (material.exercise) {
+    if (material.exercise && material.exercise.title !== '' && material.exercise.task !== '') {
       formattedMaterial.exercise = {
         eN: index + Numbers.one,
         title: material.exercise.title,
