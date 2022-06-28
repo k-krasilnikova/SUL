@@ -42,7 +42,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
         <SkillsText>{EditorTitles.skillDescription}</SkillsText>
       </SkillsTitleWrapper>
       <SkillsBox>
-        <FieldArray name="technologies" validateOnChange={false}>
+        <FieldArray name="technologies">
           {({ remove, push }) => (
             <>
               {formik.values.technologies.map((technology, index) => (
@@ -63,12 +63,12 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                         onChange={isCreateCourseMode ? formik.handleChange : handleChangeTechnology}
                         onBlur={onSkillBlur}
                         error={
-                          formik.touched.technologies?.[index]?.name &&
-                          Boolean(formik.errors?.technologies?.[index]?.name)
+                          formik.touched.technologies?.[index]?._id &&
+                          Boolean(formik.errors?.technologies?.[index]?._id)
                         }
                         helperText={
-                          formik.touched.technologies?.[index]?.name &&
-                          formik.errors?.technologies?.[index]?.name
+                          formik.touched.technologies?.[index]?._id &&
+                          formik.errors?.technologies?.[index]?._id
                         }
                       >
                         {Object.values(ungroupedSkills).map((skill) => (
