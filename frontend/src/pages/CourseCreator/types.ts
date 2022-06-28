@@ -4,6 +4,7 @@ import { IStepProps } from 'pages/CourseEditor/types';
 
 export interface ICourseCreatorProps extends IStepProps {
   coursesPath: string;
+  selectedSkills: { [key: string]: boolean };
   ungroupedSkills: {
     [p: string]: { _id: string; maxScore: number; name: string; points: number };
   };

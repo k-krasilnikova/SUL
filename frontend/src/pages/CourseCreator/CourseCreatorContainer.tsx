@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BaseSyntheticEvent, FC, useRef, useState } from 'react';
+import { BaseSyntheticEvent, FC, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
 
@@ -96,6 +96,10 @@ const CourseCreatorContainer: FC = () => {
     return validator(formik);
   };
 
+  const selectedSkills: { [key: string]: boolean } = useMemo(() => {
+    return formik.values.technologies.reduce((acc, skill) => ({ ...acc, [skill._id]: true }), {});
+  }, [formik.values.technologies]);
+
   return (
     <FormikProvider value={formik}>
       <CourseCreator
@@ -109,6 +113,7 @@ const CourseCreatorContainer: FC = () => {
         scrollToTop={scrollToTop}
         courseCreatorRef={courseCreatorRef}
         validateStep={validateStep}
+        selectedSkills={selectedSkills}
       />
       <ConfirmLeavePage
         isOpened={isLeavePageDialogOpen || (showPrompt && !isSubmitButton)}
