@@ -1,6 +1,6 @@
 import { string, object, array, number } from 'yup';
 
-import { isLink, isNotNumbersOnly, isNotSpecialsOnly } from 'validations/utils';
+import { isNotNumbersOnly, isNotSpecialsOnly } from 'validations/utils';
 import {
   EXERCISE_DESCRIPTION_LENGTH_REGEX,
   EXERCISE_IS_NOT_NUMBERS_REGEX,
@@ -32,9 +32,7 @@ const courseEditorValidationSchema = object().shape({
     .test('isNotSpecial', 'Description cannot contain only special characters', isNotSpecialsOnly)
     .min(MIN_DESCRIPTION_LENGTH, 'Description should be of minimum 50 characters length')
     .max(MAX_DESCRIPTION_LENGTH, 'Description should be of maximum 3000 characters length'),
-  avatar: string()
-    .required('Avatar is required')
-    .test('isLink', 'Avatar should contain a link', isLink),
+  avatar: string().required('Avatar is required'),
   materials: array()
     .required()
     .of(

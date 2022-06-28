@@ -25,8 +25,8 @@ import {
 } from './styled';
 import { IStepProps } from '../types';
 
-const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBlur }) => {
-  return isCourseDataLoading ? (
+const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBlur }) =>
+  isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
     <>
@@ -103,6 +103,5 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBl
       </FormWrapper>
     </>
   );
-};
 
 export default DefinitionStep;
