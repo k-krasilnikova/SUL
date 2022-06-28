@@ -36,20 +36,20 @@ const courseEditorValidationSchema = object().shape({
   materials: array()
     .required()
     .of(
-      object()
-        .shape({
-          type: string().required('Material type is required'),
-          material: string()
-            .required('Material is required')
-            .test('isNotNumbers', 'Material text cannot contain only numbers', isNotNumbersOnly)
-            .test(
-              'isNotSpecial',
-              'Material text cannot contain only special characters',
-              isNotSpecialsOnly,
-            )
-            .min(MIN_MATERIAL_LENGTH, 'Material text should be of minimum 10 characters length')
-            .max(MAX_MATERIAL_LENGTH, 'Material text should be of maximum 5000 characters length'),
-          exercise: object().shape({
+      object().shape({
+        type: string().required('Material type is required'),
+        material: string()
+          .required('Material is required')
+          .test('isNotNumbers', 'Material text cannot contain only numbers', isNotNumbersOnly)
+          .test(
+            'isNotSpecial',
+            'Material text cannot contain only special characters',
+            isNotSpecialsOnly,
+          )
+          .min(MIN_MATERIAL_LENGTH, 'Material text should be of minimum 10 characters length')
+          .max(MAX_MATERIAL_LENGTH, 'Material text should be of maximum 5000 characters length'),
+        exercise: object().shape(
+          {
             eN: number(),
             title: string()
               .min(
@@ -68,7 +68,13 @@ const courseEditorValidationSchema = object().shape({
                 'isNotSpecial',
                 'Exercise title cannot contain only special characters',
                 isNotSpecialsOnly,
-              ),
+              )
+              .when('task', {
+                is: (value: string) => value !== '' && value !== undefined && value !== null,
+                then: (scheme) =>
+                  scheme.required('Exercise should contain both title and description'),
+                otherwise: (scheme) => scheme.optional(),
+              }),
             task: string()
               .matches(EXERCISE_DESCRIPTION_LENGTH_REGEX, {
                 excludeEmptyString: true,
@@ -82,10 +88,17 @@ const courseEditorValidationSchema = object().shape({
                 'isNotSpecial',
                 'Exercise title cannot contain only special characters',
                 isNotSpecialsOnly,
-              ),
-          }),
-        })
-        .defined(),
+              )
+              .when('title', {
+                is: (value: string) => value !== '' && value !== undefined && value !== null,
+                then: (scheme) =>
+                  scheme.required('Exercise should contain both title and description'),
+                otherwise: (scheme) => scheme.optional(),
+              }),
+          },
+          [['title', 'task']],
+        ),
+      }),
     ),
   technologies: array()
     .required('The course should have at least 1 skill')

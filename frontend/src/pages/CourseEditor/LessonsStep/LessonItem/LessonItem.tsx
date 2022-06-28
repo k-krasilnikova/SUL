@@ -122,10 +122,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               maxLength: MAX_EXERCISE_TITLE_LENGTH,
             }}
             autoComplete="off"
-            error={
-              formik.touched.materials?.[index]?.exercise?.title &&
-              Boolean(formik.errors?.materials?.[index]?.exercise?.title)
-            }
+            error={Boolean(formik.errors?.materials?.[index]?.exercise?.title)}
             helperText={formik.errors?.materials?.[index]?.exercise?.title}
           />
           <InputLengthCounter>{`${
