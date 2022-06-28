@@ -16,8 +16,8 @@ export const FieldWrapper = styled(Box)({
 
 export const Field = styled(TextField)<ICustomInput>(({ isLinkType }) => ({
   ...(isLinkType && {
-    width: '350px',
-    height: '53px',
+    width: '352px',
+    height: '56px',
     fontSize: '18px',
     '& label': {
       color: '#A2A2A2',
