@@ -51,7 +51,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
           <MaterialFieldWrapper isOnlyTextInput={isTextType}>
             <Field
               multiline={isTextType}
-              isLinkType={!isTextType}
+              isTextType={isTextType}
               id={`materials[${index}].material`}
               name={`materials[${index}].material`}
               placeholder={LESSONS_PLACEHOLDER_MAPPER[material.type]}

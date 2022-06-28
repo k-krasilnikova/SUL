@@ -1,6 +1,9 @@
 import { Numbers } from 'enums/numbers';
 import { IFormattedValues, IFormQuestion, IFormTechnology, IFormValues } from './types';
 
+const EMPTY_LENGTH = 0;
+const FIRST_LETTER_INDEX = 0;
+const SECOND_LETTER_INDEX = 1;
 const TRAILING_SPACES_REGEX = /[\s]{2,}/g;
 const MS_PARAMETER = 1000;
 const START_DATE_PARAMETER = 11;
@@ -20,22 +23,29 @@ export const formatFieldValue = (value: string): string => {
   return formattedValue;
 };
 
+export const formatStringToFirstUppercase = (value: string) => {
+  if (value.length > EMPTY_LENGTH) {
+    return value[FIRST_LETTER_INDEX].toUpperCase() + value.slice(SECOND_LETTER_INDEX);
+  }
+  return value;
+};
+
 export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => {
   const formattedValues = {
     avatar: values.avatar,
     complexity: values.complexity,
-    title: values.title,
-    description: values.description,
+    title: formatStringToFirstUppercase(values.title),
+    description: formatStringToFirstUppercase(values.description),
     materials: values.materials.map((material) => ({ content: [material] })),
     technologies: values.technologies.map((technology: IFormTechnology) => ({
       skill: technology._id,
       points: technology.points,
     })),
     test: {
-      title: values.test.title,
+      title: formatStringToFirstUppercase(values.test.title),
       timeout: values.test.timeout,
       questions: values.test.questions.map((question: IFormQuestion) => ({
-        question: question.question,
+        question: formatStringToFirstUppercase(question.question),
         correctAnswer: question.correctAnswer,
         answers: question.answers.map((answer) => ({
           aN: answer.aN,
