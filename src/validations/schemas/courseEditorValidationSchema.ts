@@ -1,12 +1,6 @@
 import { string, object, array, number } from 'yup';
 
-import {
-  isLink,
-  isNotNumbersOnly,
-  isNotSpecialsOnly,
-  // isSkillNameValid,
-  // isSkillNumberValid,
-} from 'validations/utils';
+import { isLink, isNotNumbersOnly, isNotSpecialsOnly } from 'validations/utils';
 import {
   EXERCISE_DESCRIPTION_LENGTH_REGEX,
   EXERCISE_IS_NOT_NUMBERS_REGEX,
@@ -101,9 +95,7 @@ const courseEditorValidationSchema = object().shape({
     .of(
       object().shape({
         name: string().required('Technology name is required'),
-        // .test('isSkillNameValid', 'Technology name is required', isSkillNameValid),
         points: number().required('Level is required'),
-        // .test('isSkillNumberValid', 'Level is required', isSkillNumberValid),
       }),
     ),
   test: object().shape({
