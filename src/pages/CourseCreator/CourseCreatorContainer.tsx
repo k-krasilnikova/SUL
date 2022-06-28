@@ -13,7 +13,11 @@ import { PATHS } from 'constants/routes';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { INITIAL_VALUES, RADIX_PARAMETER, SECONDS_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
-import { formatFieldValue, formatValuesForSubmit } from 'pages/CourseEditor/utils';
+import {
+  formatValueTrim,
+  formatValuesForSubmit,
+  formatStringToFirstUppercase,
+} from 'pages/CourseEditor/utils';
 import { uploadFile } from 'utils/helpers/uploader';
 import { ConfirmLeavePage } from 'components/Dialogs';
 
@@ -75,7 +79,14 @@ const CourseCreatorContainer: FC = () => {
 
   const onFieldBlur = (event: BaseSyntheticEvent) => {
     const value = event.target.value || '';
-    const formattedValue = formatFieldValue(value);
+    const formattedValue = formatStringToFirstUppercase(formatValueTrim(value));
+    formik.setFieldValue(event.target.name, formattedValue);
+    formik.handleBlur(event);
+  };
+
+  const onLinkFieldBlur = (event: BaseSyntheticEvent) => {
+    const value = event.target.value || '';
+    const formattedValue = formatValueTrim(value);
     formik.setFieldValue(event.target.name, formattedValue);
     formik.handleBlur(event);
   };
@@ -113,6 +124,7 @@ const CourseCreatorContainer: FC = () => {
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         handleChangeDuration={handleChangeDuration}
         onFieldBlur={onFieldBlur}
+        onLinkFieldBlur={onLinkFieldBlur}
         handleAddCourseAvatar={handleAddCourseAvatar}
         isCreateCourseMode={isCreateCourseMode}
         ungroupedSkills={ungroupedSkills}

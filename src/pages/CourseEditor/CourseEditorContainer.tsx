@@ -23,7 +23,7 @@ import { ConfirmLeavePage } from 'components/Dialogs';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
-import { formatFieldValue, formatValuesForSubmit } from './utils';
+import { formatValueTrim, formatValuesForSubmit, formatStringToFirstUppercase } from './utils';
 
 const CourseEditorContainer: FC = () => {
   const params = useParams();
@@ -89,7 +89,14 @@ const CourseEditorContainer: FC = () => {
 
   const onFieldBlur = (event: BaseSyntheticEvent) => {
     const value = event.target.value || '';
-    const formattedValue = formatFieldValue(value);
+    const formattedValue = formatStringToFirstUppercase(formatValueTrim(value));
+    formik.setFieldValue(event.target.name, formattedValue);
+    formik.handleBlur(event);
+  };
+
+  const onLinkFieldBlur = (event: BaseSyntheticEvent) => {
+    const value = event.target.value || '';
+    const formattedValue = formatValueTrim(value);
     formik.setFieldValue(event.target.name, formattedValue);
     formik.handleBlur(event);
   };
@@ -152,6 +159,7 @@ const CourseEditorContainer: FC = () => {
         handleChangeDuration={handleChangeDuration}
         handleAddCourseAvatar={handleAddCourseAvatar}
         onFieldBlur={onFieldBlur}
+        onLinkFieldBlur={onLinkFieldBlur}
         onSkillBlur={onSkillBlur}
         onSkillPointsBlur={onSkillPointsBlur}
         ungroupedSkills={ungroupedSkills}

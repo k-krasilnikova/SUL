@@ -17,13 +17,10 @@ export const getPointsArr = (maxPoints: number): number[] => {
   return pointsArr;
 };
 
-export const formatFieldValue = (value: string): string => {
-  const formattedValue = value.replace(TRAILING_SPACES_REGEX, ' ').trim();
+export const formatValueTrim = (value: string): string =>
+  value.replace(TRAILING_SPACES_REGEX, ' ').trim();
 
-  return formattedValue;
-};
-
-export const formatStringToFirstUppercase = (value: string) => {
+export const formatStringToFirstUppercase = (value: string): string => {
   if (value.length > EMPTY_LENGTH) {
     return value[FIRST_LETTER_INDEX].toUpperCase() + value.slice(SECOND_LETTER_INDEX);
   }
@@ -34,18 +31,18 @@ export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => 
   const formattedValues = {
     avatar: values.avatar,
     complexity: values.complexity,
-    title: formatStringToFirstUppercase(values.title),
-    description: formatStringToFirstUppercase(values.description),
+    title: values.title,
+    description: values.description,
     materials: values.materials.map((material) => ({ content: [material] })),
     technologies: values.technologies.map((technology: IFormTechnology) => ({
       skill: technology._id,
       points: technology.points,
     })),
     test: {
-      title: formatStringToFirstUppercase(values.test.title),
+      title: values.test.title,
       timeout: values.test.timeout,
       questions: values.test.questions.map((question: IFormQuestion) => ({
-        question: formatStringToFirstUppercase(question.question),
+        question: question.question,
         correctAnswer: question.correctAnswer,
         answers: question.answers.map((answer) => ({
           aN: answer.aN,
