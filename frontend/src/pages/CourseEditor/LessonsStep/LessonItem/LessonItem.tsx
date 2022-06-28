@@ -23,7 +23,13 @@ import {
   MaterialFieldWrapper,
 } from './styled';
 
-const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur }) => {
+const LessonItem: FC<ILessonItemProps> = ({
+  formik,
+  material,
+  index,
+  onFieldBlur,
+  onLinkFieldBlur,
+}) => {
   const isTextType = material.type === ContentElementType.plain;
 
   return (
@@ -57,7 +63,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               placeholder={LESSONS_PLACEHOLDER_MAPPER[material.type]}
               value={material.material}
               onChange={formik.handleChange}
-              onBlur={onFieldBlur}
+              onBlur={isTextType ? onFieldBlur : onLinkFieldBlur}
               autoComplete="off"
               error={
                 formik.touched.materials?.[index]?.material &&

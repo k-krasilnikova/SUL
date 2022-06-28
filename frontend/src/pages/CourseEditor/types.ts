@@ -102,6 +102,7 @@ export interface IStepProps {
   isCreateCourseMode?: boolean;
   courseData?: ICourseEditorResponse;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
+  onLinkFieldBlur?: (event: BaseSyntheticEvent) => void;
   handleChangeDuration?: (event: ChangeEvent<HTMLInputElement>) => void;
   onSkillBlur?: (event: BaseSyntheticEvent) => void;
   onSkillPointsBlur?: (event: BaseSyntheticEvent) => void;
@@ -130,6 +131,7 @@ export interface ILessonItemProps {
   };
   index: number;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
+  onLinkFieldBlur?: (event: BaseSyntheticEvent) => void;
 }
 
 export interface IQuestionItemProps {
