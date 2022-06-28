@@ -43,7 +43,9 @@ const CourseCreatorContainer: FC = () => {
   });
 
   const handleChange = (event: BaseSyntheticEvent) => {
-    formik.handleChange(event);
+    if (event) {
+      formik.handleChange(event);
+    }
   };
   const debouncedChange = useDebounce(handleChange, 1500);
 
