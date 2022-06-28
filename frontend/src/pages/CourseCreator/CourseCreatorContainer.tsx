@@ -123,13 +123,11 @@ const CourseCreatorContainer: FC = () => {
 
   const validateIfCourseTestValid = () => {
     let valid = true;
-    if ('test' in formik.errors) {
-      valid = false;
-      return valid;
-    }
+    valid = valid && !('test' in formik.errors);
+    return valid;
   };
 
-  const validators: any = {
+  const validators: { [key: number]: () => boolean } = {
     1: validateIfCourseInfoValid,
     2: validateIfCourseSkillsValid,
     3: validateIfCourseLessonsValid,

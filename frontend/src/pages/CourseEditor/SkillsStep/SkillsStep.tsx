@@ -22,7 +22,6 @@ import {
   SkillsText,
   SkillsTitleWrapper,
   SkillWrapper,
-  // SkillFieldSelect,
 } from './styled';
 
 const SkillsStep: FC<ISkillsStepProps> = ({

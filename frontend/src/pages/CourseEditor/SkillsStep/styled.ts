@@ -1,5 +1,4 @@
 import { Box, styled, TextField } from '@mui/material';
-import Select from '@mui/material/Select';
 
 import Button from 'components/Button';
 import { SectionName } from 'pages/CourseEditor/styled';
@@ -17,17 +16,6 @@ export const SkillWrapper = styled(Box)({
 });
 
 export const SkillField = styled(TextField)({
-  width: '250px',
-  height: '53px',
-  '& label': {
-    color: '#A2A2A2',
-  },
-  '&.MuiTextField-root > .MuiFormLabel-root.Mui-focused': {
-    color: '#2C2525',
-  },
-});
-
-export const SkillFieldSelect = styled(Select)({
   width: '250px',
   height: '53px',
   '& label': {
