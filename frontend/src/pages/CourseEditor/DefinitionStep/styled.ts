@@ -1,7 +1,7 @@
 import { styled, Box, Typography, TextField, InputLabel } from '@mui/material';
 
 interface ICustomInput {
-  isLinkType?: boolean;
+  isTextType?: boolean;
 }
 
 export const FieldWrapper = styled(Box)({
@@ -14,8 +14,8 @@ export const FieldWrapper = styled(Box)({
   },
 });
 
-export const Field = styled(TextField)<ICustomInput>(({ isLinkType }) => ({
-  ...(isLinkType && {
+export const Field = styled(TextField)<ICustomInput>(({ isTextType }) => ({
+  ...(!isTextType && {
     width: '352px',
     height: '56px',
     fontSize: '18px',

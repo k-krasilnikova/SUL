@@ -20,8 +20,8 @@ import {
 } from 'constants/courseEditor';
 import { ContentElementType } from 'enums/materials';
 
-const urlRegexp = /\b(https?:\/\/.*?\.[a-z]{2,4}\/[^\s]*\b)/g;
-const googleSlidesUrlRegExp = new RegExp(
+const URL_REGEXP = /\b(https?:\/\/.*?\.[a-z]{2,4}\/[^\s]*\b)/g;
+const GOOGLE_SLIDES_URL_REGEXP = new RegExp(
   `(((https|http)://|)docs.google.com/presentation/d/)(.+?(?=(/.+|/|$)))`,
 );
 
@@ -74,14 +74,14 @@ const courseEditorValidationSchema = object().shape({
               then: (material) =>
                 material
                   .required('Link is required')
-                  .matches(googleSlidesUrlRegExp, 'Should be link to google slides'),
+                  .matches(GOOGLE_SLIDES_URL_REGEXP, 'Should be link to google slides'),
             })
             .when('type', {
               is: (typeValue: ContentElementType) => typeValue === ContentElementType.video,
               then: (material) =>
                 material
                   .required('Link for video is required')
-                  .matches(urlRegexp, 'Should be url type.'),
+                  .matches(URL_REGEXP, 'Should be url type.'),
             }),
           exercise: object().shape({
             eN: number(),

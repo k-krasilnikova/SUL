@@ -23,46 +23,44 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
         {({ remove, push }) => (
           <>
             {Object.values(formik.values.materials).length &&
-              formik.values?.materials.map((material, index) => {
-                return (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <LessonsStepWrapper key={index}>
-                    <LessonItem material={material} index={index} formik={formik} {...props} />
-                    <ButtonsBox>
+              formik.values?.materials.map((material, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <LessonsStepWrapper key={index}>
+                  <LessonItem material={material} index={index} formik={formik} {...props} />
+                  <ButtonsBox>
+                    <LessonButton
+                      variant="mediumOutlined"
+                      onClick={() => {
+                        remove(index);
+                        if (formik.values.materials.length === Numbers.one) {
+                          push({
+                            type: 'video',
+                            material: '',
+                            exercise: {},
+                          });
+                        }
+                      }}
+                    >
+                      {ButtonLabels.removeLesson}
+                    </LessonButton>
+                    {isLastElem(formik.values.materials, index) && (
                       <LessonButton
                         variant="mediumOutlined"
-                        onClick={() => {
-                          remove(index);
-                          if (formik.values.materials.length === Numbers.one) {
-                            push({
-                              type: 'video',
-                              material: '',
-                              exercise: {},
-                            });
-                          }
-                        }}
+                        onClick={() =>
+                          push({
+                            type: 'video',
+                            material: '',
+                            exercise: {},
+                          })
+                        }
+                        disabled={!!formik.errors.materials}
                       >
-                        {ButtonLabels.removeLesson}
+                        {ButtonLabels.addMoreLessons}
                       </LessonButton>
-                      {isLastElem(formik.values.materials, index) && (
-                        <LessonButton
-                          variant="mediumOutlined"
-                          onClick={() =>
-                            push({
-                              type: 'video',
-                              material: '',
-                              exercise: {},
-                            })
-                          }
-                          disabled={!!formik.errors.materials}
-                        >
-                          {ButtonLabels.addMoreLessons}
-                        </LessonButton>
-                      )}
-                    </ButtonsBox>
-                  </LessonsStepWrapper>
-                );
-              })}
+                    )}
+                  </ButtonsBox>
+                </LessonsStepWrapper>
+              ))}
           </>
         )}
       </FieldArray>

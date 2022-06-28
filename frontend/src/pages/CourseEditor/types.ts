@@ -1,6 +1,6 @@
-import { ContentElementType } from 'enums/materials';
 import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent, RefObject } from 'react';
 
+import { ContentElementType } from 'enums/materials';
 import { IQuestionObject, ITestItem } from 'types/test';
 
 export interface ISkillsById {
