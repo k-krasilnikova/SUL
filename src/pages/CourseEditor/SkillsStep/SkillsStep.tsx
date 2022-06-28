@@ -32,6 +32,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
   ungroupedSkills,
   isCreateCourseMode,
   isCourseDataLoading,
+  selectedSkills,
 }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
@@ -72,7 +73,11 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                         }
                       >
                         {Object.values(ungroupedSkills).map((skill) => (
-                          <MenuItem key={skill._id} value={skill._id}>
+                          <MenuItem
+                            key={skill._id}
+                            value={skill._id}
+                            disabled={!!selectedSkills[skill._id]}
+                          >
                             {skill.name}
                           </MenuItem>
                         ))}
