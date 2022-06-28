@@ -1,5 +1,9 @@
 import { styled, Box, Typography, TextField, InputLabel } from '@mui/material';
 
+interface ICustomInput {
+  isLinkType?: boolean;
+}
+
 export const FieldWrapper = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
@@ -10,21 +14,23 @@ export const FieldWrapper = styled(Box)({
   },
 });
 
-export const Field = styled(TextField)({
-  width: '350px',
-  height: '53px',
-  fontSize: '18px',
-  '& label': {
-    color: '#A2A2A2',
-  },
-  '&.MuiTextField-root > .MuiFormLabel-root.Mui-focused': {
-    color: '#2C2525',
-  },
-  '& .MuiFormHelperText-root': {
-    marginRight: '29px',
-    marginBottom: '5px',
-  },
-});
+export const Field = styled(TextField)<ICustomInput>(({ isLinkType }) => ({
+  ...(isLinkType && {
+    width: '350px',
+    height: '53px',
+    fontSize: '18px',
+    '& label': {
+      color: '#A2A2A2',
+    },
+    '&.MuiTextField-root > .MuiFormLabel-root.Mui-focused': {
+      color: '#2C2525',
+    },
+    '& .MuiFormHelperText-root': {
+      marginRight: '29px',
+      marginBottom: '5px',
+    },
+  }),
+}));
 
 export const SectionWrapper = styled(Box)({
   marginTop: '30px',

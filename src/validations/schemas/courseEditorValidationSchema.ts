@@ -18,6 +18,12 @@ import {
   MIN_TEST_QUESTIONS_AMOUNT,
   MIN_TITLE_LENGTH,
 } from 'constants/courseEditor';
+import { ContentElementType } from 'enums/materials';
+
+const urlRegexp = /\b(https?:\/\/.*?\.[a-z]{2,4}\/[^\s]*\b)/g;
+const googleSlidesUrlRegExp = new RegExp(
+  `(((https|http)://|)docs.google.com/presentation/d/)(.+?(?=(/.+|/|$)))`,
+);
 
 const courseEditorValidationSchema = object().shape({
   title: string()
@@ -37,25 +43,46 @@ const courseEditorValidationSchema = object().shape({
     .of(
       object()
         .shape({
-          plain: string()
-            .required('Material is required')
-            .test('isNotNumbers', 'Material text cannot contain only numbers', isNotNumbersOnly)
-            .test(
-              'isNotSpecial',
-              'Material text cannot contain only special characters',
-              isNotSpecialsOnly,
-            )
-            .min(MIN_MATERIAL_LENGTH, 'Material text should be of minimum 10 characters length')
-            .max(MAX_MATERIAL_LENGTH, 'Material text should be of maximum 5000 characters length'),
-          presentation: string()
-            .required('Link is required')
-            .matches(
-              new RegExp(`(((https|http)://|)docs.google.com/presentation/d/)(.+?(?=(/.+|/|$)))`),
-              'Should be link to google slides',
-            ),
-          video: string()
-            .required('Link for video is required')
-            .matches(/\b(https?:\/\/.*?\.[a-z]{2,4}\/[^\s]*\b)/g, 'Should be url type.'),
+          type: string().required('Material type is required'),
+          material: string()
+            .when('type', {
+              is: (typeValue: ContentElementType) => typeValue === ContentElementType.plain,
+              then: (material) =>
+                material
+                  .required('Material is required')
+                  .test(
+                    'isNotNumbers',
+                    'Material text cannot contain only numbers',
+                    isNotNumbersOnly,
+                  )
+                  .test(
+                    'isNotSpecial',
+                    'Material text cannot contain only special characters',
+                    isNotSpecialsOnly,
+                  )
+                  .min(
+                    MIN_MATERIAL_LENGTH,
+                    'Material text should be of minimum 10 characters length',
+                  )
+                  .max(
+                    MAX_MATERIAL_LENGTH,
+                    'Material text should be of maximum 5000 characters length',
+                  ),
+            })
+            .when('type', {
+              is: (typeValue: ContentElementType) => typeValue === ContentElementType.presentation,
+              then: (material) =>
+                material
+                  .required('Link is required')
+                  .matches(googleSlidesUrlRegExp, 'Should be link to google slides'),
+            })
+            .when('type', {
+              is: (typeValue: ContentElementType) => typeValue === ContentElementType.video,
+              then: (material) =>
+                material
+                  .required('Link for video is required')
+                  .matches(urlRegexp, 'Should be url type.'),
+            }),
           exercise: object().shape({
             eN: number(),
             title: string()

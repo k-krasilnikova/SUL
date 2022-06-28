@@ -8,8 +8,11 @@ import {
   LESSONS_TYPE_TITLE_MAP,
   EditorTitles,
   MAX_EXERCISE_TITLE_LENGTH,
+  MAX_MATERIAL_LENGTH,
+  LESSONS_PLACEHOLDER_MAPPER,
 } from 'constants/courseEditor';
 import { Field, InputLengthCounter } from 'pages/CourseEditor/DefinitionStep/styled';
+import { ContentElementType } from 'enums/materials';
 
 import {
   InputBox,
@@ -19,9 +22,10 @@ import {
   LessonItemWrapper,
   MaterialFieldWrapper,
 } from './styled';
-import INPUT_MAPPER from './inputMapper';
 
 const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur }) => {
+  const isTextType = material.type === ContentElementType.plain;
+
   return (
     <LessonItemWrapper>
       <ItemTitle>
@@ -44,7 +48,28 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
         </Field>
         <InputBox>
           <InputTitle>{LESSONS_TYPE_TITLE_MAP[material.type]}</InputTitle>
-          {INPUT_MAPPER[material.type]({ formik, material, index, onFieldBlur })}
+          <MaterialFieldWrapper isOnlyTextInput={isTextType}>
+            <Field
+              multiline={isTextType}
+              isLinkType={!isTextType}
+              id={`materials[${index}].material`}
+              name={`materials[${index}].material`}
+              placeholder={LESSONS_PLACEHOLDER_MAPPER[material.type]}
+              value={material.material}
+              onChange={formik.handleChange}
+              onBlur={onFieldBlur}
+              autoComplete="off"
+              error={
+                formik.touched.materials?.[index]?.material &&
+                Boolean(formik.errors?.materials?.[index]?.material)
+              }
+              helperText={
+                formik.touched.materials?.[index]?.material &&
+                formik.errors?.materials?.[index]?.material
+              }
+            />
+            <InputLengthCounter>{`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
+          </MaterialFieldWrapper>
           <InputTitle>{EditorTitles.exerciseTitle}</InputTitle>
           <MaterialFieldWrapper>
             <Field
