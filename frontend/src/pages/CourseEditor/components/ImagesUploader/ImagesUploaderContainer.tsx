@@ -1,4 +1,4 @@
-import { FC, BaseSyntheticEvent, useState } from 'react';
+import { FC, BaseSyntheticEvent, useState, useRef } from 'react';
 import { useSnackbar } from 'notistack';
 
 import { errorSnackbar } from 'constants/snackbarVariant';
@@ -11,14 +11,17 @@ import { uploadFile, checkingUploadedFile } from './utils';
 const ImagesUploaderContainer: FC<IImagesUploaderContainer> = ({ avatarUrl, setFieldValue }) => {
   const [isUploading, setIsUploading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
+  const ref = useRef<HTMLInputElement>(null);
 
   const handleAddCourseAvatar = async (event: BaseSyntheticEvent) => {
     const fileToUpload: File = event.target.files[Numbers.zero];
 
     if (fileToUpload) {
       const errorMessage = checkingUploadedFile(fileToUpload);
-
       if (errorMessage) {
+        if (ref.current) {
+          ref.current.value = '';
+        }
         enqueueSnackbar(errorMessage, errorSnackbar);
         return;
       }
@@ -32,6 +35,7 @@ const ImagesUploaderContainer: FC<IImagesUploaderContainer> = ({ avatarUrl, setF
 
   return (
     <ImagesUploader
+      ref={ref}
       avatarUrl={avatarUrl}
       isUploading={isUploading}
       handleAddCourseAvatar={handleAddCourseAvatar}
