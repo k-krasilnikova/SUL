@@ -98,6 +98,7 @@ export interface IFormik {
 
 export interface IStepProps {
   formik: IFormik;
+  handleChange: (event: BaseSyntheticEvent) => void;
   isCourseDataLoading?: boolean;
   isCreateCourseMode?: boolean;
   courseData?: ICourseEditorResponse;
@@ -129,6 +130,7 @@ export interface ILessonItemProps {
     exercise?: { eN: number; title?: string; task: string; code: string };
   };
   index: number;
+  handleChange: (event: BaseSyntheticEvent) => void;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
 }
 
@@ -136,6 +138,7 @@ export interface IQuestionItemProps {
   formik: IFormik;
   index: number;
   question: IQuestionObject;
+  handleChange: (event: BaseSyntheticEvent) => void;
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
 }

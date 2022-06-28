@@ -4,7 +4,7 @@ const DEFAULT_DELAY = 500;
 
 const useDebounce = <T,>(value: T, delay?: number): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
-
+  console.log('debounce invoke', delay);
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedValue(value);

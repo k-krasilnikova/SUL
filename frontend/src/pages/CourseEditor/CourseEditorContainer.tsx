@@ -18,7 +18,7 @@ import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { Numbers } from 'enums/numbers';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { uploadFile } from 'utils/helpers/uploader';
-import { useCallbackPrompt } from 'hooks';
+import { useCallbackPrompt, useDebounce } from 'hooks';
 import { ConfirmLeavePage } from 'components/Dialogs';
 
 import CourseEditor from './CourseEditor';
@@ -50,6 +50,11 @@ const CourseEditorContainer: FC = () => {
     validateOnBlur: true,
     validateOnChange: true,
   });
+
+  const handleChange = (event: BaseSyntheticEvent) => {
+    formik.handleChange(event);
+  };
+  const debouncedChange = useDebounce(handleChange, 1500);
 
   const onSuccessLoadCourseData = (data: any): void => {
     const skills: ISkillsById = {};
@@ -144,6 +149,7 @@ const CourseEditorContainer: FC = () => {
   return (
     <FormikProvider value={formik}>
       <CourseEditor
+        handleChange={debouncedChange}
         courseData={courseEditorData}
         isCourseDataLoading={isCourseEditorDataLoading}
         formik={formik}

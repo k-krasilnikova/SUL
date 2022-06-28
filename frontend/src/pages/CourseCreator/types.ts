@@ -8,6 +8,7 @@ export interface ICourseCreatorProps extends IStepProps {
     [p: string]: { _id: string; maxScore: number; name: string; points: number };
   };
   scrollToTop: () => void;
+  handleChange: (event: BaseSyntheticEvent) => void;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
   handleAddCourseAvatar?: (event: BaseSyntheticEvent) => void;
   handleChangeCorrectAnswer?: (event: BaseSyntheticEvent) => void;

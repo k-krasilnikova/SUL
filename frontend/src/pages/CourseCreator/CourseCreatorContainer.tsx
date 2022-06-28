@@ -8,12 +8,12 @@ import { useSnackbar } from 'notistack';
 import { Numbers } from 'enums/numbers';
 import { useGetSkills } from 'api/skills';
 import { useCreateCourse } from 'api/admin';
-import { useGetCoursesPaths, useCallbackPrompt } from 'hooks';
+import { useGetCoursesPaths, useCallbackPrompt, useDebounce } from 'hooks';
 import { PATHS } from 'constants/routes';
 import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { INITIAL_VALUES, RADIX_PARAMETER, SECONDS_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
-import { formatFieldValue, formatValuesForSubmit } from 'pages/CourseEditor/utils';
+import { formatValuesForSubmit } from 'pages/CourseEditor/utils';
 import { uploadFile } from 'utils/helpers/uploader';
 import { ConfirmLeavePage } from 'components/Dialogs';
 
@@ -41,6 +41,11 @@ const CourseCreatorContainer: FC = () => {
     validateOnChange: true,
     enableReinitialize: true,
   });
+
+  const handleChange = (event: BaseSyntheticEvent) => {
+    formik.handleChange(event);
+  };
+  const debouncedChange = useDebounce(handleChange, 1500);
 
   const { coursesPath } = useGetCoursesPaths();
   const { pathname } = useLocation();
@@ -74,9 +79,9 @@ const CourseCreatorContainer: FC = () => {
   };
 
   const onFieldBlur = (event: BaseSyntheticEvent) => {
-    const value = event.target.value || '';
-    const formattedValue = formatFieldValue(value);
-    formik.setFieldValue(event.target.name, formattedValue);
+    // const value = event.target.value || '';
+    // const formattedValue = formatFieldValue(value);
+    // formik.setFieldValue(event.target.name, formattedValue);
     formik.handleBlur(event);
   };
 
@@ -110,6 +115,7 @@ const CourseCreatorContainer: FC = () => {
     <FormikProvider value={formik}>
       <CourseCreator
         formik={formik}
+        handleChange={debouncedChange}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
         handleChangeDuration={handleChangeDuration}
         onFieldBlur={onFieldBlur}

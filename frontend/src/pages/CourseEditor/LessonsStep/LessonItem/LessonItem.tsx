@@ -23,7 +23,13 @@ import {
   MaterialFieldWrapper,
 } from './styled';
 
-const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur }) => {
+const LessonItem: FC<ILessonItemProps> = ({
+  formik,
+  material,
+  index,
+  onFieldBlur,
+  handleChange,
+}) => {
   const isTextType = material.type === ContentElementType.plain;
 
   return (
@@ -38,7 +44,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
           id={`materials[${index}].type`}
           name={`materials[${index}].type`}
           onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
+          onChange={handleChange}
         >
           {LESSONS_TYPE.map((type) => (
             <MenuItem key={type.value} value={type.value}>
@@ -56,7 +62,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               name={`materials[${index}].material`}
               placeholder={LESSONS_PLACEHOLDER_MAPPER[material.type]}
               value={material.material}
-              onChange={formik.handleChange}
+              onChange={handleChange}
               onBlur={onFieldBlur}
               autoComplete="off"
               error={
@@ -77,7 +83,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
               name={`materials[${index}].exercise.title`}
               placeholder="Exercise title"
               value={material?.exercise?.title}
-              onChange={formik.handleChange}
+              onChange={handleChange}
               onBlur={onFieldBlur}
               inputProps={{
                 maxLength: MAX_EXERCISE_TITLE_LENGTH,
@@ -99,7 +105,7 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
             id={`materials[${index}].exercise.task`}
             name={`materials[${index}].exercise.task`}
             value={material?.exercise?.task}
-            onChange={formik.handleChange}
+            onChange={handleChange}
             onBlur={onFieldBlur}
             error={Boolean(formik.errors?.materials?.[index]?.exercise?.task)}
             helperText={formik.errors?.materials?.[index]?.exercise?.task}

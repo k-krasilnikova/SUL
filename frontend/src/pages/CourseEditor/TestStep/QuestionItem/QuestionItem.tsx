@@ -29,6 +29,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
   formik,
   handleChangeCorrectAnswer,
   onFieldBlur,
+  handleChange,
 }) => (
   <QuestionWrapper>
     <QuestionTitle>
@@ -42,7 +43,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
           value={question?.question}
           id={`questions[${index}].question`}
           name={`test.questions[${index}].question`}
-          onChange={formik.handleChange}
+          onChange={handleChange}
           onBlur={onFieldBlur}
           autoComplete="off"
           inputProps={{
@@ -84,7 +85,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                     value={answer.variant}
                     id={`test.questions[${index}].answers[${key}].variant`}
                     name={`test.questions[${index}].answers[${key}].variant`}
-                    onChange={formik.handleChange}
+                    onChange={handleChange}
                     onBlur={onFieldBlur}
                     autoComplete="off"
                     error={
