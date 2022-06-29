@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { MenuItem, TextField } from '@mui/material';
 
-import { ILessonItemProps } from 'pages/CourseEditor/types';
-import { Numbers } from 'enums/numbers';
 import {
   LESSONS_TYPE,
   LESSONS_TYPE_TITLE_MAP,
@@ -11,8 +9,10 @@ import {
   MAX_MATERIAL_LENGTH,
   LESSONS_PLACEHOLDER_MAPPER,
 } from 'constants/courseEditor';
-import { Field, InputLengthCounter } from 'pages/CourseEditor/DefinitionStep/styled';
 import { ContentElementType } from 'enums/materials';
+import { Numbers } from 'enums/numbers';
+import { ILessonItemProps } from 'pages/CourseEditor/types';
+import { Field, InputLengthCounter } from 'pages/CourseEditor/DefinitionStep/styled';
 
 import {
   InputBox,
@@ -108,7 +108,10 @@ const LessonItem: FC<ILessonItemProps> = ({
             value={material?.exercise?.task}
             onChange={formik.handleChange}
             onBlur={onFieldBlur}
-            error={Boolean(formik.errors?.materials?.[index]?.exercise?.task)}
+            error={
+              formik.touched.materials?.[index]?.exercise?.task &&
+              Boolean(formik.errors?.materials?.[index]?.exercise?.task)
+            }
             helperText={formik.errors?.materials?.[index]?.exercise?.task}
           />
         </InputBox>
@@ -116,4 +119,5 @@ const LessonItem: FC<ILessonItemProps> = ({
     </LessonItemWrapper>
   );
 };
+
 export default LessonItem;

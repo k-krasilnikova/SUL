@@ -99,8 +99,7 @@ const courseEditorValidationSchema = object().shape({
               )
               .when('task', {
                 is: (value: string) => value !== '' && value !== undefined && value !== null,
-                then: (scheme) =>
-                  scheme.required('Exercise should contain both title and description'),
+                then: (scheme) => scheme.required('Exercise title is required'),
                 otherwise: (scheme) => scheme.optional(),
               }),
             task: string()
@@ -119,8 +118,7 @@ const courseEditorValidationSchema = object().shape({
               )
               .when('title', {
                 is: (value: string) => value !== '' && value !== undefined && value !== null,
-                then: (scheme) =>
-                  scheme.required('Exercise should contain both title and description'),
+                then: (scheme) => scheme.required('Exercise description is required'),
                 otherwise: (scheme) => scheme.optional(),
               }),
           },
