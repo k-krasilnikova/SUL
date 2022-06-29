@@ -32,6 +32,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
   ungroupedSkills,
   isCreateCourseMode,
   isCourseDataLoading,
+  selectedSkills,
 }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
@@ -42,7 +43,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
         <SkillsText>{EditorTitles.skillDescription}</SkillsText>
       </SkillsTitleWrapper>
       <SkillsBox>
-        <FieldArray name="technologies" validateOnChange={false}>
+        <FieldArray name="technologies">
           {({ remove, push }) => (
             <>
               {formik.values.technologies.map((technology, index) => (
@@ -63,16 +64,20 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                         onChange={isCreateCourseMode ? formik.handleChange : handleChangeTechnology}
                         onBlur={onSkillBlur}
                         error={
-                          formik.touched.technologies?.[index]?.name &&
-                          Boolean(formik.errors?.technologies?.[index]?.name)
+                          formik.touched.technologies?.[index]?._id &&
+                          Boolean(formik.errors?.technologies?.[index]?._id)
                         }
                         helperText={
-                          formik.touched.technologies?.[index]?.name &&
-                          formik.errors?.technologies?.[index]?.name
+                          formik.touched.technologies?.[index]?._id &&
+                          formik.errors?.technologies?.[index]?._id
                         }
                       >
                         {Object.values(ungroupedSkills).map((skill) => (
-                          <MenuItem key={skill._id} value={skill._id}>
+                          <MenuItem
+                            key={skill._id}
+                            value={skill._id}
+                            disabled={!!selectedSkills[skill._id]}
+                          >
                             {skill.name}
                           </MenuItem>
                         ))}
@@ -121,7 +126,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                             push({
                               _id: '',
                               name: 'Technology',
-                              points: Numbers.one,
+                              points: '',
                               maxScore: Numbers.five,
                             });
                           }
@@ -137,7 +142,7 @@ const SkillsStep: FC<ISkillsStepProps> = ({
                             push({
                               _id: '',
                               name: 'Technology',
-                              points: Numbers.one,
+                              points: '',
                               maxScore: Numbers.five,
                             })
                           }

@@ -4,10 +4,10 @@ import ActionButtons from 'components/EditorTabs/ActionButtons';
 
 import { IEditorTabsProps } from './types';
 
-const EditorTabs: FC<IEditorTabsProps> = ({ currentChild, ...props }) => (
+const EditorTabs: FC<IEditorTabsProps> = ({ currentChild, validateStep, ...props }) => (
   <>
     {currentChild}
-    <ActionButtons {...props} />
+    <ActionButtons validateStep={validateStep} {...props} />
   </>
 );
 

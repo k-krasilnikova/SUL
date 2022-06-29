@@ -17,7 +17,7 @@ export interface IQuestionObject {
 export interface ITestItem {
   _id: string;
   questions: IQuestionObject[];
-  timeout: number;
+  timeout: number | string;
   title?: string;
 }
 
