@@ -1,5 +1,7 @@
 import { styled, Box, Typography, TextField } from '@mui/material';
 
+import { AlertWrapper } from '../TestStep/styled';
+
 export const FieldWrapper = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
@@ -64,4 +66,9 @@ export const InputLengthCounter = styled(Typography)({
 export const DescriptionFieldWrapper = styled(FieldWrapper)({
   maxWidth: '1075px',
   width: '100%',
+});
+
+export const AlertBox = styled(AlertWrapper)({
+  paddingTop: '30px',
+  maxWidth: '479px',
 });
