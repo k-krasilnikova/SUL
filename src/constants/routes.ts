@@ -45,7 +45,7 @@ export const PATHS: {
   skillsMap: '/skills-map',
   pendingAssessments: '/pending-assessments',
   courseEditor: '/:courseId/editor',
-  courseCreator: '/create',
+  courseCreator: '/create-course',
 };
 
 export const API: {

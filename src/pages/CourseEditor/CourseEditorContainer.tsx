@@ -1,20 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { BaseSyntheticEvent, ChangeEvent, FC, useEffect, useRef, useState } from 'react';
+import { BaseSyntheticEvent, ChangeEvent, FC, useMemo, useRef, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useParams } from 'react-router';
-import { useSnackbar } from 'notistack';
 
 import { useGetSkills } from 'api/skills';
 import { useGetCourseEditorData, useEditCourseData } from 'api/admin';
-import {
-  INITIAL_NUMBER_POINT,
-  INITIAL_VALUES,
-  RADIX_PARAMETER,
-  SECONDS_PARAMETER,
-} from 'constants/courseEditor';
-import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
+import { INITIAL_NUMBER_POINT, INITIAL_VALUES, RADIX_PARAMETER } from 'constants/courseEditor';
 import { Numbers } from 'enums/numbers';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import { useCallbackPrompt } from 'hooks';
@@ -22,11 +15,10 @@ import { ConfirmLeavePage } from 'components/Dialogs';
 
 import CourseEditor from './CourseEditor';
 import { ISkillsById } from './types';
-import { formatFieldValue, formatValuesForSubmit } from './utils';
+import { formatFieldValue, formatValuesForSubmit, convertSecondsToString } from './utils';
 
 const CourseEditorContainer: FC = () => {
   const params = useParams();
-  const { enqueueSnackbar } = useSnackbar();
   const courseEditorRef = useRef<HTMLElement>(null);
   const [skillsById, setSkillsById] = useState<ISkillsById>({});
   const [isSubmitButton, setSubmitButton] = useState(false);
@@ -57,7 +49,17 @@ const CourseEditorContainer: FC = () => {
       skills[item._id] = item;
     }
     setSkillsById(skills);
-    formik.setValues(courseData, false);
+    const convertedDuration = convertSecondsToString(courseData.test.timeout);
+    formik.setValues(
+      {
+        ...courseData,
+        test: {
+          ...courseData.test,
+          timeout: convertedDuration,
+        },
+      },
+      false,
+    );
   };
 
   const { data: courseEditorData, isLoading: isCourseEditorDataLoading } = useGetCourseEditorData(
@@ -71,12 +73,6 @@ const CourseEditorContainer: FC = () => {
     formik.setFieldValue(name, { ...skill, points: INITIAL_NUMBER_POINT });
   };
 
-  useEffect(() => {
-    if (!formik.isValid && formik.isSubmitting && !formik.isValidating) {
-      enqueueSnackbar(errorSnackbarMessage.validationError, errorSnackbar);
-    }
-  }, [formik.isSubmitting, formik.isValid, formik.isValidating]);
-
   const handleChangeCorrectAnswer = (event: BaseSyntheticEvent) => {
     formik.setFieldValue(event.target.name, Number.parseInt(event.target.value, RADIX_PARAMETER));
   };
@@ -86,14 +82,6 @@ const CourseEditorContainer: FC = () => {
     const formattedValue = formatFieldValue(value);
     formik.setFieldValue(event.target.name, formattedValue);
     formik.handleBlur(event);
-  };
-
-  const handleChangeDuration = (event: BaseSyntheticEvent) => {
-    const durationString = event.target.value;
-    const [hours, minutes] = durationString.split(':');
-    const totalSeconds =
-      Number(hours) * SECONDS_PARAMETER * SECONDS_PARAMETER + Number(minutes) * SECONDS_PARAMETER;
-    formik.setFieldValue(event.target.name, totalSeconds);
   };
 
   const scrollToTop = () => {
@@ -135,6 +123,14 @@ const CourseEditorContainer: FC = () => {
     confirmNavigation();
   };
 
+  const validateStep = () => {
+    return formik?.isValid;
+  };
+
+  const selectedSkills: { [key: string]: boolean } = useMemo(() => {
+    return formik.values.technologies.reduce((acc, skill) => ({ ...acc, [skill._id]: true }), {});
+  }, [formik.values.technologies]);
+
   return (
     <FormikProvider value={formik}>
       <CourseEditor
@@ -143,7 +139,6 @@ const CourseEditorContainer: FC = () => {
         formik={formik}
         handleChangeTechnology={handleChangeTechnology}
         handleChangeCorrectAnswer={handleChangeCorrectAnswer}
-        handleChangeDuration={handleChangeDuration}
         onFieldBlur={onFieldBlur}
         onSkillBlur={onSkillBlur}
         onSkillPointsBlur={onSkillPointsBlur}
@@ -152,6 +147,8 @@ const CourseEditorContainer: FC = () => {
         isEditCourseDataMutateLoading={isEditCourseDataMutateLoading}
         scrollToTop={scrollToTop}
         courseEditorRef={courseEditorRef}
+        validateStep={validateStep}
+        selectedSkills={selectedSkills}
       />
       <ConfirmLeavePage
         isOpened={isLeavePageDialogOpen || (showPrompt && !isSubmitButton)}
