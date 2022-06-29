@@ -1,4 +1,6 @@
-import { styled, Box, Typography, TextField, InputLabel } from '@mui/material';
+import { styled, Box, Typography, TextField } from '@mui/material';
+
+import { AlertWrapper } from '../TestStep/styled';
 
 interface ICustomInput {
   isTextType?: boolean;
@@ -72,30 +74,7 @@ export const DescriptionFieldWrapper = styled(FieldWrapper)({
   width: '100%',
 });
 
-export const NewAvatarImageWrapper = styled(Box)({
-  position: 'relative',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#B6B6B6',
-  height: 'inherit',
-  '&:hover': {
-    backgroundColor: 'rgba(27, 27, 28, 0.57)',
-    opacity: 0.5,
-  },
-});
-
-export const AddImageIcon = styled('img')({
-  position: 'absolute',
-});
-
-export const AddImageInput = styled('input')({
-  position: 'absolute',
-  zIndex: -10,
-  opacity: 0,
-});
-
-export const NewImageLabel = styled(InputLabel)({
-  width: '100%',
-  height: '100%',
+export const AlertBox = styled(AlertWrapper)({
+  paddingTop: '30px',
+  maxWidth: '479px',
 });

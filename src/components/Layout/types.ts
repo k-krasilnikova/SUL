@@ -52,6 +52,11 @@ export interface IPageWrapperProps extends TPageWrapperContainerProps {
   children: ReactNode;
 }
 
+export type TSearchCoursesContainer = Pick<
+  IAuthorizedLayoutProps,
+  'isMobileMenuOpen' | 'toggleMobileMenu'
+>;
+
 export interface IStyledProps {
   isMobileVersion?: boolean;
   isSqueeze?: boolean;

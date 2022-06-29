@@ -7,16 +7,16 @@ import { ButtonLabels } from 'constants/ButtonLabels';
 import { MIN_STEP } from 'constants/courseEditor';
 
 import { StyledButton, ButtonWrapper } from './styled';
-import { IActionButtons } from '../types';
+import { IActionButtonsProps } from '../types';
 
-const ActionButtons: FC<IActionButtons> = ({
+const ActionButtons: FC<IActionButtonsProps> = ({
   handlePreviousStep,
   handleNextStep,
   step,
   isSubmitEnabled,
   formik,
   isEditCourseDataMutateLoading,
-  isCreateCourseMode,
+  validateStep,
 }) => (
   <ButtonWrapper>
     <Box>
@@ -29,7 +29,7 @@ const ActionButtons: FC<IActionButtons> = ({
     {isSubmitEnabled ? (
       <StyledButton
         variant="mediumContained"
-        disabled={!formik?.isValid || isEditCourseDataMutateLoading}
+        disabled={!validateStep(step) || isEditCourseDataMutateLoading}
         onClick={formik?.submitForm}
       >
         {isEditCourseDataMutateLoading ? (
@@ -41,7 +41,7 @@ const ActionButtons: FC<IActionButtons> = ({
     ) : (
       <StyledButton
         variant="mediumContained"
-        disabled={!formik?.isValid && !isCreateCourseMode}
+        disabled={!validateStep(step)}
         onClick={handleNextStep}
       >
         {ButtonLabels.next}

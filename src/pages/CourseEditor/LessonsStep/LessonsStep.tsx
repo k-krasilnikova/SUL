@@ -36,7 +36,10 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
                           push({
                             type: 'video',
                             material: '',
-                            exercise: {},
+                            exercise: {
+                              title: '',
+                              task: '',
+                            },
                           });
                         }
                       }}

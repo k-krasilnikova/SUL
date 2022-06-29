@@ -1,16 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BaseSyntheticEvent, FC, useEffect, useRef, useState } from 'react';
+import { BaseSyntheticEvent, FC, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFormik, FormikProvider } from 'formik';
-import { useSnackbar } from 'notistack';
 
 import { Numbers } from 'enums/numbers';
 import { useGetSkills } from 'api/skills';
 import { useCreateCourse } from 'api/admin';
 import { useGetCoursesPaths, useCallbackPrompt } from 'hooks';
 import { PATHS } from 'constants/routes';
-import { errorSnackbar, errorSnackbarMessage } from 'constants/snackbarVariant';
 import { INITIAL_VALUES, RADIX_PARAMETER, SECONDS_PARAMETER } from 'constants/courseEditor';
 import { courseEditorValidationSchema } from 'validations/schemas';
 import {
@@ -18,13 +16,12 @@ import {
   formatValuesForSubmit,
   formatStringToFirstUppercase,
 } from 'pages/CourseEditor/utils';
-import { uploadFile } from 'utils/helpers/uploader';
 import { ConfirmLeavePage } from 'components/Dialogs';
 
 import CourseCreator from './CourseCreator';
+import { validators } from './utils';
 
 const CourseCreatorContainer: FC = () => {
-  const { enqueueSnackbar } = useSnackbar();
   const [isSubmitButton, setSubmitButton] = useState(false);
   const [showPrompt, confirmNavigation, cancelNavigation] = useCallbackPrompt(!isSubmitButton);
   const [isLeavePageDialogOpen, setLeavePageDialogOpen] = useState(false);
@@ -41,9 +38,8 @@ const CourseCreatorContainer: FC = () => {
     initialValues: INITIAL_VALUES,
     onSubmit: handleSubmit,
     validationSchema: courseEditorValidationSchema,
-    validateOnBlur: true,
     validateOnChange: true,
-    enableReinitialize: true,
+    validateOnBlur: true,
   });
 
   const { coursesPath } = useGetCoursesPaths();
@@ -61,17 +57,6 @@ const CourseCreatorContainer: FC = () => {
       {},
     );
   }
-
-  useEffect(() => {
-    if (!formik.isValid && formik.isSubmitting && !formik.isValidating) {
-      enqueueSnackbar(errorSnackbarMessage.validationError, errorSnackbar);
-    }
-  }, [formik.isSubmitting, formik.isValid, formik.isValidating]);
-
-  const handleAddCourseAvatar = async (event: BaseSyntheticEvent) => {
-    const fileLink = await uploadFile(event.target.files[Numbers.zero]);
-    formik.setFieldValue('avatar', fileLink);
-  };
 
   const handleChangeCorrectAnswer = (event: BaseSyntheticEvent) => {
     formik.setFieldValue(event.target.name, Number.parseInt(event.target.value, RADIX_PARAMETER));
@@ -117,6 +102,15 @@ const CourseCreatorContainer: FC = () => {
     confirmNavigation();
   };
 
+  const validateStep = (step: number) => {
+    const validator = validators[step];
+    return validator(formik);
+  };
+
+  const selectedSkills: { [key: string]: boolean } = useMemo(() => {
+    return formik.values.technologies.reduce((acc, skill) => ({ ...acc, [skill._id]: true }), {});
+  }, [formik.values.technologies]);
+
   return (
     <FormikProvider value={formik}>
       <CourseCreator
@@ -125,12 +119,13 @@ const CourseCreatorContainer: FC = () => {
         handleChangeDuration={handleChangeDuration}
         onFieldBlur={onFieldBlur}
         onLinkFieldBlur={onLinkFieldBlur}
-        handleAddCourseAvatar={handleAddCourseAvatar}
         isCreateCourseMode={isCreateCourseMode}
         ungroupedSkills={ungroupedSkills}
         coursesPath={coursesPath}
         scrollToTop={scrollToTop}
         courseCreatorRef={courseCreatorRef}
+        validateStep={validateStep}
+        selectedSkills={selectedSkills}
       />
       <ConfirmLeavePage
         isOpened={isLeavePageDialogOpen || (showPrompt && !isSubmitButton)}

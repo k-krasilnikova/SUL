@@ -3,10 +3,14 @@ import { FC, useEffect, useState } from 'react';
 import { useSearchAllCourses } from 'api/courses';
 import { useDebounce } from 'hooks';
 import { formatInputValue, checkWhitespace } from 'utils/helpers/searchHelpers';
+import { TSearchCoursesContainer } from 'components/Layout/types';
 
 import SearchCourses from './SearchCourses';
 
-const SearchCoursesContainer: FC = () => {
+const SearchCoursesContainer: FC<TSearchCoursesContainer> = ({
+  isMobileMenuOpen,
+  toggleMobileMenu,
+}) => {
   const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
   const [isMobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState<string>('');
@@ -27,11 +31,17 @@ const SearchCoursesContainer: FC = () => {
   }, [isFetching]);
 
   const handleSearchClose = () => {
-    setSearchInputValue('');
-    setSearchOpen(false);
-    setMobileSearchOpen(false);
+    if (isMobileSearchOpen || isSearchOpen) {
+      setSearchInputValue('');
+      setSearchOpen(false);
+      setMobileSearchOpen(false);
+    }
   };
+
   const handleMobileSearch = () => {
+    if (isMobileMenuOpen) {
+      toggleMobileMenu();
+    }
     handleSearchClose();
     setMobileSearchOpen((prev) => !prev);
   };

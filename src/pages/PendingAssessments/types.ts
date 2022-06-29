@@ -1,8 +1,14 @@
+import { AssessmentManagmentAction } from 'enums/api';
 import { IAssessment } from 'types/request';
 import { ITechnology } from 'types/skill';
 
+export interface IActionTarget {
+  id: string;
+  action: AssessmentManagmentAction;
+}
+
 export interface IPendingAssessmentsProps {
-  targetId: string;
+  actionTarget: IActionTarget;
   isLoading: boolean;
   isActionLoading: boolean;
   approveAssessmentById: (id: string) => void;
@@ -10,15 +16,12 @@ export interface IPendingAssessmentsProps {
   assessments?: IAssessment[];
 }
 
-export interface IAssessmentRequestItemProps {
+export interface IAssessmentRequestItemProps
+  extends Omit<IPendingAssessmentsProps, 'isLoading' | 'assessments'> {
   user: IAssessment['user'];
   course: IAssessment['course'];
   elapsed: IAssessment['elapsed'];
   clientCourseId: IAssessment['_id'];
-  isActionLoading: boolean;
-  isTargetRequest: boolean;
-  approveAssessmentById: IPendingAssessmentsProps['approveAssessmentById'];
-  declineAssessmentById: IPendingAssessmentsProps['declineAssessmentById'];
 }
 
 export interface IRequestTechnologiesProps {
@@ -33,17 +36,13 @@ export interface ITechnologyItemContainerProps {
   technology: ITechnology;
 }
 
-export interface IAssessmentRequestButtonsContainerProps {
-  id: string;
-  isActionLoading: boolean;
-  isTargetRequest: IAssessmentRequestItemProps['isTargetRequest'];
-  approveAssessmentById: IPendingAssessmentsProps['approveAssessmentById'];
-  declineAssessmentById: IPendingAssessmentsProps['declineAssessmentById'];
+export interface IAssessmentRequestButtonsContainerProps
+  extends Omit<IAssessmentRequestItemProps, 'user' | 'course' | 'elapsed' | 'clientCourseId'> {
+  id: IAssessmentRequestItemProps['clientCourseId'];
 }
 
-export interface IAssessmentRequestButtonsProps {
-  isActionLoading: boolean;
-  isTargetRequest: IAssessmentRequestItemProps['isTargetRequest'];
+export interface IAssessmentRequestButtonsProps
+  extends Pick<IAssessmentRequestButtonsContainerProps, 'id' | 'isActionLoading' | 'actionTarget'> {
   approveAssessment: () => void;
   declineAssessment: () => void;
 }

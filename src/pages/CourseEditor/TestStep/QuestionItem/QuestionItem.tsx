@@ -49,12 +49,12 @@ const QuestionItem: FC<IQuestionItemProps> = ({
             maxLength: MAX_QUESTION_LENGTH,
           }}
           error={
-            formik.touched.test?.questions[index]?.question &&
-            Boolean(formik.errors?.test?.questions[index]?.question)
+            formik.touched.test?.questions?.[index]?.question &&
+            Boolean(formik.errors?.test?.questions?.[index]?.question)
           }
           helperText={
-            formik.touched.test?.questions[index]?.question &&
-            formik.errors?.test?.questions[index]?.question
+            formik.touched.test?.questions?.[index]?.question &&
+            formik.errors?.test?.questions?.[index]?.question
           }
         />
         <InputLengthCounter>{`${question?.question.length}/${MAX_QUESTION_LENGTH}`}</InputLengthCounter>
@@ -88,12 +88,12 @@ const QuestionItem: FC<IQuestionItemProps> = ({
                     onBlur={onFieldBlur}
                     autoComplete="off"
                     error={
-                      formik.touched.test?.questions[index]?.answers?.[key]?.variant &&
-                      Boolean(formik.errors?.test?.questions[index]?.answers?.[key]?.variant)
+                      formik.touched.test?.questions?.[index]?.answers?.[key]?.variant &&
+                      Boolean(formik.errors?.test?.questions?.[index]?.answers?.[key]?.variant)
                     }
                     helperText={
-                      formik.touched.test?.questions[index]?.answers?.[key]?.variant &&
-                      formik.errors?.test?.questions[index]?.answers?.[key]?.variant
+                      formik.touched.test?.questions?.[index]?.answers?.[key]?.variant &&
+                      formik.errors?.test?.questions?.[index]?.answers?.[key]?.variant
                     }
                   />
                 }
@@ -102,7 +102,10 @@ const QuestionItem: FC<IQuestionItemProps> = ({
             <ButtonsWrapper>
               <AddAnswerButton
                 variant="mediumOutlined"
-                disabled={formik.errors.test?.questions[index]?.answers}
+                disabled={
+                  formik.errors.test?.questions?.[index]?.answers &&
+                  question.answers.length !== Numbers.zero
+                }
                 onClick={() =>
                   push({
                     variant: '',
@@ -114,7 +117,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
               </AddAnswerButton>
               <AddAnswerButton
                 variant="mediumOutlined"
-                disabled={formik.errors.test?.questions[index]?.answers}
+                disabled={question.answers.length === Numbers.zero}
                 onClick={() => remove(question?.answers.length - Numbers.one)}
               >
                 <Remove color="primary" fontSize="medium" />
@@ -124,7 +127,7 @@ const QuestionItem: FC<IQuestionItemProps> = ({
         )}
       </FieldArray>
       <AlertWrapper>
-        {typeof formik.errors?.test?.questions[index]?.answers === 'string' && (
+        {typeof formik.errors?.test?.questions?.[index]?.answers === 'string' && (
           <Alert severity="error">{formik.errors?.test?.questions[index]?.answers}</Alert>
         )}
       </AlertWrapper>
