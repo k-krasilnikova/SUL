@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 
 import Loader from 'components/Loader';
 import { Loaders } from 'enums/loader';
@@ -7,7 +7,10 @@ import { IImagesUploader } from 'pages/CourseEditor/types';
 
 import { NewAvatarImageWrapper, AddImageIcon, AddImageInput, NewImageLabel } from './styled';
 
-const ImagesUploader: FC<IImagesUploader> = ({ avatarUrl, isUploading, handleAddCourseAvatar }) => (
+const ImagesUploader = (
+  { avatarUrl, isUploading, onBlur, handleAddCourseAvatar }: IImagesUploader,
+  ref: ForwardedRef<HTMLInputElement>,
+) => (
   <NewAvatarImageWrapper avatarUrl={avatarUrl}>
     {isUploading ? (
       <Loader type={Loaders.component} color="secondary" />
@@ -15,14 +18,16 @@ const ImagesUploader: FC<IImagesUploader> = ({ avatarUrl, isUploading, handleAdd
       <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
     )}
     <AddImageInput
+      ref={ref}
       type="file"
       accept="image/*"
       id="avatar"
       name="avatar"
       onChange={handleAddCourseAvatar}
+      onBlur={onBlur}
     />
     <NewImageLabel htmlFor="avatar" />
   </NewAvatarImageWrapper>
 );
 
-export default ImagesUploader;
+export default forwardRef(ImagesUploader);
