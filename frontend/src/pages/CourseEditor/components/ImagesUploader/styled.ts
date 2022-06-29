@@ -8,7 +8,7 @@ export const NewAvatarImageWrapper = styled(Box)<{ avatarUrl: string }>(({ avata
     backgroundImage: `url("${avatarUrl}")`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
   }),
   '&:hover': {
     backgroundColor: 'rgba(27, 27, 28, 0.57)',
@@ -16,14 +16,17 @@ export const NewAvatarImageWrapper = styled(Box)<{ avatarUrl: string }>(({ avata
   },
 }));
 
-export const AddImageIcon = styled('img')({
+export const AddImageIcon = styled('img')<{ avatarUrl: string }>(({ avatarUrl }) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
   width: '100px',
   height: '100px',
   transform: 'translate(-50%, -50%)',
-});
+  ...(avatarUrl && {
+    display: 'none',
+  }),
+}));
 
 export const AddImageInput = styled('input')({
   position: 'absolute',
