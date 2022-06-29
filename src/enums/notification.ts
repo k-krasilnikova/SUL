@@ -11,6 +11,7 @@ enum NotificationTitles {
   employeePassTestFailed = 'Failed',
   applied = 'Apply',
   approvedWithInterview = 'Approved with interview',
+  assignedWithInterview = 'Assigned with interview',
 }
 
 enum NotificationDescription {
@@ -21,6 +22,7 @@ enum NotificationDescription {
   employeePassTestFailed = 'The employee failed the test',
   applied = 'The employee applied the course',
   approvedWithInterview = 'Request for course was approved with interview',
+  assignedWithInterview = 'Course was assigned with interview',
 }
 
 enum NotificationType {
