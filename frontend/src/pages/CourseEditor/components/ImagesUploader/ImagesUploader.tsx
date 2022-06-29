@@ -15,7 +15,7 @@ const ImagesUploader = (
     {isUploading ? (
       <Loader type={Loaders.component} color="secondary" />
     ) : (
-      <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
+      <AddImageIcon alt="addAvatar" src={addAvatarIcon} avatarUrl={avatarUrl} />
     )}
     <AddImageInput
       ref={ref}
