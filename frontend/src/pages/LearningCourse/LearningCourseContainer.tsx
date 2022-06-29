@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { useGetClientCourseAndMaterials } from 'api/courses';
+import { useGetClientCourse, useGetCourseMaterials } from 'api/courses';
 import { useStartClientCourse, usePassClientCourse } from 'api/myCourses';
 import Loader from 'components/Loader';
 import { useToggle, useGetCoursesPaths } from 'hooks';
@@ -28,39 +28,38 @@ const LearningCourseContainer: React.FC = () => {
   const [isCourseInfoOpen, setCourseInfoOpen] = useToggle();
 
   const {
-    data: clientCourseAndMaterials,
-    isLoading: isClientCourseAndMaterialsLoading,
-    isFetching: isClientCourseAndMaterialsFetching,
-  } = useGetClientCourseAndMaterials(courseId);
+    data: clientCourseData,
+    isLoading: isClientCourseDataLoading,
+    isFetching: isClientCourseDataFetching,
+  } = useGetClientCourse(courseId);
+
+  const { data: courseMaterialsData, isLoading: isCourseMaterialsDataLoading } =
+    useGetCourseMaterials(clientCourseData?.course._id);
 
   const { mutate: passCourseStageMutate, isLoading: isPassMutateLoading } =
     usePassClientCourse(courseId);
 
   const onSuccessStartClient = () => passCourseStageMutate(stage);
 
-  const { mutate: startClienCourseMutate, isLoading: isStartMutateLoading } = useStartClientCourse({
-    courseId,
-    onSuccess: onSuccessStartClient,
-  });
-
-  const [clientCourseResponse, courseMaterialsResponse] = clientCourseAndMaterials || [];
-
-  useEffect(() => {
-    if (clientCourseResponse?.status === CourseStatus.approved) {
-      startClienCourseMutate(NULL_VARIABLE);
-    }
-  }, [clientCourseResponse?.status, startClienCourseMutate]);
-
-  const isTestEnabled = useMemo(
-    () => isProgressCompleted(clientCourseResponse?.progress),
-    [clientCourseResponse?.progress],
+  const { mutate: startClientCourseMutate, isLoading: isStartMutateLoading } = useStartClientCourse(
+    {
+      courseId,
+      onSuccess: onSuccessStartClient,
+    },
   );
 
-  if (isClientCourseAndMaterialsLoading) {
-    return <Loader type={Loaders.content} />;
-  }
+  useEffect(() => {
+    if (clientCourseData?.status === CourseStatus.approved) {
+      startClientCourseMutate(NULL_VARIABLE);
+    }
+  }, [clientCourseData?.status, startClientCourseMutate]);
 
-  const isResponsesDefined = clientCourseResponse && courseMaterialsResponse;
+  const isTestEnabled = useMemo(
+    () => isProgressCompleted(clientCourseData?.progress),
+    [clientCourseData?.progress],
+  );
+
+  const isResponsesDefined = clientCourseData && courseMaterialsData;
 
   if (!isResponsesDefined) {
     return null;
@@ -68,18 +67,17 @@ const LearningCourseContainer: React.FC = () => {
 
   const {
     course: { title: courseTitle, description: courseDescription },
-  } = clientCourseResponse;
+  } = clientCourseData;
 
   const courseInfo = { title: courseTitle, description: courseDescription };
 
-  const { materials: courseMaterials } = courseMaterialsResponse;
+  const { materials: courseMaterials } = courseMaterialsData;
 
   const courseContent = courseMaterials[stage - Numbers.one]?.content[CONTENT_ELEMENT];
 
   const maxStage = courseMaterials?.length || MAX_STAGE_INITIAL;
 
-  const isLoading =
-    isStartMutateLoading || isPassMutateLoading || isClientCourseAndMaterialsFetching;
+  const isLoading = isStartMutateLoading || isPassMutateLoading || isClientCourseDataFetching;
   const isBackDisabled = stage === MIN_STAGE || isLoading;
   const isForwardDisabled = stage === maxStage || isLoading;
 
@@ -87,10 +85,10 @@ const LearningCourseContainer: React.FC = () => {
     const nextStage = stage + STAGE_CHANGE;
     const IsNextStageCompleted = getIsNextStageCompleted({
       nextStage,
-      progress: clientCourseResponse.progress,
+      progress: clientCourseData.progress,
     });
     const isPassStageAvailable =
-      clientCourseResponse?.status === CourseStatus.started &&
+      clientCourseData?.status === CourseStatus.started &&
       !IsNextStageCompleted &&
       nextStage <= maxStage;
 
@@ -104,13 +102,15 @@ const LearningCourseContainer: React.FC = () => {
     setStage(stage - STAGE_CHANGE);
   };
 
-  return (
+  return isClientCourseDataLoading || isCourseMaterialsDataLoading ? (
+    <Loader type={Loaders.content} />
+  ) : (
     <LearningCourse
-      key={courseMaterialsResponse.materials[stage - Numbers.one].stage}
+      key={courseMaterialsData?.materials[stage - Numbers.one].stage}
       stage={stage}
       maxStage={maxStage}
       courseInfo={courseInfo}
-      clientCourse={clientCourseResponse}
+      clientCourse={clientCourseData}
       courseMaterial={courseMaterials[stage - Numbers.one]}
       courseContent={courseContent}
       myCoursesPath={myCoursesPath}

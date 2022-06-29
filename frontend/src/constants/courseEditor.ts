@@ -58,7 +58,7 @@ export const INITIAL_VALUES = {
       _id: '',
       name: 'Technology',
       maxScore: 0,
-      points: 0,
+      points: '',
     },
   ],
   materials: [
@@ -127,7 +127,7 @@ export const INITIAL_VALUES = {
         question: '',
       },
     ],
-    timeout: 0,
+    timeout: '00:10',
     title: '',
   },
   skillsById: {},
@@ -157,6 +157,8 @@ export const BUTTON_VARIANT = {
   input: 'Input',
   radio: 'Radiobutton (One answer)',
 };
+
+export const IMAGE_MAX_SIZE = 10 * 1024 * 1024;
 
 export const RADIX_PARAMETER = 10;
 export const SECONDS_PARAMETER = 60;

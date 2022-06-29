@@ -12,14 +12,19 @@ import { BackButton, InnerWrapper, PageWrapper } from 'pages/CourseEditor/styled
 
 import { ICourseCreatorProps } from './types';
 
-const CourseCreator: FC<ICourseCreatorProps> = ({ courseCreatorRef, coursesPath, ...props }) => (
+const CourseCreator: FC<ICourseCreatorProps> = ({
+  courseCreatorRef,
+  coursesPath,
+  validateStep,
+  ...props
+}) => (
   <PageWrapper ref={courseCreatorRef}>
     <PageTitle title="Create Course">
       <InnerWrapper>
         <BackButton variant="medium" color="primary" component={Link} to={coursesPath}>
           {ButtonLabels.back}
         </BackButton>
-        <EditorTabs {...props}>
+        <EditorTabs validateStep={validateStep} {...props}>
           <DefinitionStep {...props} />
           <SkillsStep {...props} />
           <LessonsStep {...props} />

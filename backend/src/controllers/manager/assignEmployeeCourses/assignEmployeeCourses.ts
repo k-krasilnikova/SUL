@@ -82,8 +82,10 @@ const assignEmployeeCourses = async (
         course.title,
         userFullName,
         NotificationStatuses.new,
-        NotificationTitles.assigned,
-        NotificationDescription.assigned,
+        withAssessment ? NotificationTitles.assignedWithInterview : NotificationTitles.assigned,
+        withAssessment
+          ? NotificationDescription.assignedWithInterview
+          : NotificationDescription.assigned,
         NotificationType.employee,
       );
     });

@@ -38,52 +38,46 @@ const courseEditorValidationSchema = object().shape({
     .test('isNotSpecial', 'Description cannot contain only special characters', isNotSpecialsOnly)
     .min(MIN_DESCRIPTION_LENGTH, 'Description should be of minimum 50 characters length')
     .max(MAX_DESCRIPTION_LENGTH, 'Description should be of maximum 3000 characters length'),
+  avatar: string().required('Avatar is required'),
   materials: array()
     .required()
     .of(
-      object()
-        .shape({
-          type: string().required('Material type is required'),
-          material: string()
-            .when('type', {
-              is: (typeValue: ContentElementType) => typeValue === ContentElementType.plain,
-              then: (material) =>
-                material
-                  .required('Material is required')
-                  .test(
-                    'isNotNumbers',
-                    'Material text cannot contain only numbers',
-                    isNotNumbersOnly,
-                  )
-                  .test(
-                    'isNotSpecial',
-                    'Material text cannot contain only special characters',
-                    isNotSpecialsOnly,
-                  )
-                  .min(
-                    MIN_MATERIAL_LENGTH,
-                    'Material text should be of minimum 10 characters length',
-                  )
-                  .max(
-                    MAX_MATERIAL_LENGTH,
-                    'Material text should be of maximum 5000 characters length',
-                  ),
-            })
-            .when('type', {
-              is: (typeValue: ContentElementType) => typeValue === ContentElementType.presentation,
-              then: (material) =>
-                material
-                  .required('Link is required')
-                  .matches(GOOGLE_SLIDES_URL_REGEXP, 'Should be link to google slides'),
-            })
-            .when('type', {
-              is: (typeValue: ContentElementType) => typeValue === ContentElementType.video,
-              then: (material) =>
-                material
-                  .required('Link for video is required')
-                  .matches(URL_REGEXP, 'Should be url type.'),
-            }),
-          exercise: object().shape({
+      object().shape({
+        type: string().required('Material type is required'),
+        material: string()
+          .when('type', {
+            is: (typeValue: ContentElementType) => typeValue === ContentElementType.plain,
+            then: (material) =>
+              material
+                .required('Material is required')
+                .test('isNotNumbers', 'Material text cannot contain only numbers', isNotNumbersOnly)
+                .test(
+                  'isNotSpecial',
+                  'Material text cannot contain only special characters',
+                  isNotSpecialsOnly,
+                )
+                .min(MIN_MATERIAL_LENGTH, 'Material text should be of minimum 10 characters length')
+                .max(
+                  MAX_MATERIAL_LENGTH,
+                  'Material text should be of maximum 5000 characters length',
+                ),
+          })
+          .when('type', {
+            is: (typeValue: ContentElementType) => typeValue === ContentElementType.presentation,
+            then: (material) =>
+              material
+                .required('Link is required')
+                .matches(GOOGLE_SLIDES_URL_REGEXP, 'Should be link to google slides'),
+          })
+          .when('type', {
+            is: (typeValue: ContentElementType) => typeValue === ContentElementType.video,
+            then: (material) =>
+              material
+                .required('Link for video is required')
+                .matches(URL_REGEXP, 'Should be url type.'),
+          }),
+        exercise: object().shape(
+          {
             eN: number(),
             title: string()
               .min(
@@ -102,7 +96,13 @@ const courseEditorValidationSchema = object().shape({
                 'isNotSpecial',
                 'Exercise title cannot contain only special characters',
                 isNotSpecialsOnly,
-              ),
+              )
+              .when('task', {
+                is: (value: string) => value !== '' && value !== undefined && value !== null,
+                then: (scheme) =>
+                  scheme.required('Exercise should contain both title and description'),
+                otherwise: (scheme) => scheme.optional(),
+              }),
             task: string()
               .matches(EXERCISE_DESCRIPTION_LENGTH_REGEX, {
                 excludeEmptyString: true,
@@ -116,17 +116,24 @@ const courseEditorValidationSchema = object().shape({
                 'isNotSpecial',
                 'Exercise title cannot contain only special characters',
                 isNotSpecialsOnly,
-              ),
-          }),
-        })
-        .defined(),
+              )
+              .when('title', {
+                is: (value: string) => value !== '' && value !== undefined && value !== null,
+                then: (scheme) =>
+                  scheme.required('Exercise should contain both title and description'),
+                otherwise: (scheme) => scheme.optional(),
+              }),
+          },
+          [['title', 'task']],
+        ),
+      }),
     ),
   technologies: array()
     .required('The course should have at least 1 skill')
     .min(MIN_SKILLS_AMOUNT)
     .of(
       object().shape({
-        name: string().required('Technology name is required'),
+        _id: string().required('Technology is required'),
         points: number().required('Level is required'),
       }),
     ),

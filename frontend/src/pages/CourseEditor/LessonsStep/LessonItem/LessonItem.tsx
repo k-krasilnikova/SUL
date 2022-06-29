@@ -66,8 +66,8 @@ const LessonItem: FC<ILessonItemProps> = ({
               onBlur={isTextType ? onFieldBlur : onLinkFieldBlur}
               autoComplete="off"
               error={
-                formik.touched.materials?.[index]?.material &&
-                Boolean(formik.errors?.materials?.[index]?.material)
+                Boolean(formik.errors?.materials?.[index]?.material) &&
+                formik.touched.materials?.[index]?.material
               }
               helperText={
                 formik.touched.materials?.[index]?.material &&
@@ -93,6 +93,7 @@ const LessonItem: FC<ILessonItemProps> = ({
                 formik.touched.materials?.[index]?.exercise?.title &&
                 Boolean(formik.errors?.materials?.[index]?.exercise?.title)
               }
+              helperText={formik.errors?.materials?.[index]?.exercise?.title}
             />
             <InputLengthCounter>{`${
               material?.exercise?.title?.length ? material?.exercise?.title?.length : Numbers.zero

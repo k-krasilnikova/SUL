@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import { MenuItem, TextField } from '@mui/material';
+import { Alert, MenuItem, TextField } from '@mui/material';
 
-import Image from 'components/Image';
 import Loader from 'components/Loader';
 import {
   EditorTitles,
@@ -10,9 +9,10 @@ import {
   MAX_DESCRIPTION_LENGTH,
 } from 'constants/courseEditor';
 import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
-import { addAvatarIcon } from 'icons';
 
+import ImagesUploader from '../components/ImagesUploader';
 import {
+  AlertBox,
   AvatarWrapper,
   DescriptionFieldWrapper,
   DescriptionWrapper,
@@ -22,19 +22,10 @@ import {
   InputLengthCounter,
   SecondaryText,
   SectionWrapper,
-  NewAvatarImageWrapper,
-  AddImageInput,
-  NewImageLabel,
-  AddImageIcon,
 } from './styled';
 import { IStepProps } from '../types';
 
-const DefinitionStep: FC<IStepProps> = ({
-  formik,
-  isCourseDataLoading,
-  onFieldBlur,
-  handleAddCourseAvatar,
-}) =>
+const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBlur }) =>
   isCourseDataLoading ? (
     <Loader type="content" />
   ) : (
@@ -79,21 +70,17 @@ const DefinitionStep: FC<IStepProps> = ({
           <SecondaryText>{EditorTitles.avatarDescription}</SecondaryText>
         </AvatarWrapper>
         <ImageWrapper>
-          <NewAvatarImageWrapper>
-            <AddImageIcon alt="addAvatar" src={addAvatarIcon} />
-            <AddImageInput
-              type="file"
-              accept="image/*"
-              id="avatar"
-              name="avatar"
-              multiple
-              onChange={handleAddCourseAvatar}
-            />
-            <NewImageLabel htmlFor="avatar">
-              <Image imageUrl={formik.values.avatar} newImage />
-            </NewImageLabel>
-          </NewAvatarImageWrapper>
+          <ImagesUploader
+            onBlur={formik.handleBlur}
+            avatarUrl={formik.values.avatar}
+            setFieldValue={formik.setFieldValue}
+          />
         </ImageWrapper>
+        <AlertBox>
+          {formik.touched.avatar && Boolean(formik.errors.avatar) && (
+            <Alert severity="error">{formik.errors?.avatar}</Alert>
+          )}
+        </AlertBox>
         <DescriptionWrapper>
           <SectionName>{EditorTitles.definitionStepDescription}</SectionName>
         </DescriptionWrapper>
