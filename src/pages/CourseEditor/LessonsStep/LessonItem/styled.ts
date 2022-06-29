@@ -26,7 +26,7 @@ export const InputBox = styled(Box)({
 });
 
 export const InputTitle = styled(Typography)({
-  margin: '40px 0 30px',
+  margin: '40px 0 20px',
   fontWeight: 400,
   fontSize: '22px',
   lineHeight: '29px',
@@ -45,3 +45,10 @@ export const MaterialFieldWrapper = styled(FieldWrapper)<IMaterialFieldWrapper>(
     }),
   }),
 );
+
+export const TaskHint = styled(Typography)({
+  margin: '6px 0',
+  verticalAlign: 'bottom',
+  fontSize: '12px',
+  color: '#A2A2A2',
+});

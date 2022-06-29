@@ -144,6 +144,7 @@ export enum EditorTitles {
   lessonCount = 'Lesson № ',
   exerciseTitle = 'Exercise Title',
   exerciseDescription = 'Exercise Description',
+  exerciseHint = 'Exercise should contain both title and description',
   testDetails = 'Test details',
   questionNumber = 'Question № ',
 }
