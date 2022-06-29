@@ -1,5 +1,7 @@
+import { SECONDS_PARAMETER } from 'constants/courseEditor';
 import { Numbers } from 'enums/numbers';
-import { IFormattedValues, IFormQuestion, IFormTechnology, IFormValues } from './types';
+
+import { IFormattedValues, IFormQuestion, IFormTechnology, IFormValues, IMaterial } from './types';
 
 const EMPTY_LENGTH = 0;
 const FIRST_LETTER_INDEX = 0;
@@ -26,20 +28,42 @@ export const formatFieldValue = (value: string): string => {
   return formattedValue;
 };
 
+export const convertTimeoutToSeconds = (timeout: string): number => {
+  const [hours, minutes] = timeout.split(':');
+  const totalSeconds =
+    Number(hours) * SECONDS_PARAMETER * SECONDS_PARAMETER + Number(minutes) * SECONDS_PARAMETER;
+  return totalSeconds;
+};
+
 export const formatValuesForSubmit = (values: IFormValues): IFormattedValues => {
+  const materials: IMaterial[] = [];
+  values.materials.forEach((material, index) => {
+    const formattedMaterial: IMaterial = {
+      content: [{ type: material.type, material: material.material }],
+    };
+    if (material.exercise && material.exercise.title !== '' && material.exercise.task !== '') {
+      formattedMaterial.exercise = {
+        eN: index + Numbers.one,
+        title: material.exercise.title,
+        task: material.exercise.task,
+      };
+    }
+    materials.push(formattedMaterial);
+  });
+
   const formattedValues = {
     avatar: values.avatar,
     complexity: values.complexity,
     title: values.title,
     description: values.description,
-    materials: values.materials.map((material) => ({ content: [material] })),
+    materials,
     technologies: values.technologies.map((technology: IFormTechnology) => ({
       skill: technology._id,
       points: technology.points,
     })),
     test: {
       title: values.test.title,
-      timeout: values.test.timeout,
+      timeout: convertTimeoutToSeconds(values.test.timeout),
       questions: values.test.questions.map((question: IFormQuestion) => ({
         question: question.question,
         correctAnswer: question.correctAnswer,

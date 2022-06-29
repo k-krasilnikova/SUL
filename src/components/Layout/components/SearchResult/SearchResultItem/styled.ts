@@ -29,7 +29,7 @@ export const CourseTitle = styled(Typography)({
   fontSize: '18px',
   fontWeight: 700,
   lineHeight: '26px',
-  letterSpacing: '-0.4px',
+  wordBreak: 'break-all',
   [theme.breakpoints.down('sm')]: {
     fontSize: '16px',
   },

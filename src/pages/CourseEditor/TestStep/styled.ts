@@ -6,5 +6,5 @@ export const TestStepWrapper = styled(Box)({
 });
 
 export const AlertWrapper = styled(Box)({
-  paddingTop: '30px',
+  padding: '20px 0',
 });

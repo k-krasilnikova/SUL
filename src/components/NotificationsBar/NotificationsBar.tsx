@@ -16,10 +16,10 @@ const NotificationsBar: FC<INotificationsProps> = ({
   handleNotificationsClose,
 }) => (
   <>
-    <NotificationsButton onClick={handleNotificationsOpen}>
-      <img alt="notifications" src={alertIcon} />
-      {isNotificationsOpen && (
-        <ClickAwayListener onClickAway={handleNotificationsClose}>
+    <ClickAwayListener onClickAway={handleNotificationsClose}>
+      <NotificationsButton onClick={handleNotificationsOpen}>
+        <img alt="notifications" src={alertIcon} />
+        {isNotificationsOpen && (
           <Notifications>
             {notifications?.length ? (
               notifications.map((note) => <NotificationPlate note={note} key={`${note._id}`} />)
@@ -27,10 +27,10 @@ const NotificationsBar: FC<INotificationsProps> = ({
               <TextWrapper>{NO_NOTIFICATIONS}</TextWrapper>
             )}
           </Notifications>
-        </ClickAwayListener>
-      )}
-      {isContainsUnread && <RedMark />}
-    </NotificationsButton>
+        )}
+        {isContainsUnread && <RedMark />}
+      </NotificationsButton>
+    </ClickAwayListener>
   </>
 );
 

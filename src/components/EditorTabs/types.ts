@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 
 export interface IEditorTabsContainerProps {
   scrollToTop: () => void;
+  validateStep: (step: number) => boolean;
   currentChild?: ReactNode;
   handleNextStep?: () => void;
   handlePreviousStep?: () => void;
@@ -11,14 +12,16 @@ export interface IEditorTabsContainerProps {
 export interface IEditorTabsProps {
   step: number;
   isSubmitEnabled: boolean;
+  validateStep: (step: number) => boolean;
   currentChild?: ReactNode;
   handleNextStep?: () => void;
   handlePreviousStep?: () => void;
 }
 
-export interface IActionButtons {
+export interface IActionButtonsProps {
   step: number;
   isSubmitEnabled: boolean;
+  validateStep: (step: number) => boolean;
   handlePreviousStep?: () => void;
   handleNextStep?: () => void;
   formik?: IFormik;
