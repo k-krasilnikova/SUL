@@ -8,7 +8,11 @@ import { IImagesUploaderContainer } from 'pages/CourseEditor/types';
 import ImagesUploader from './ImagesUploader';
 import { uploadFile, checkingUploadedFile } from './utils';
 
-const ImagesUploaderContainer: FC<IImagesUploaderContainer> = ({ avatarUrl, setFieldValue }) => {
+const ImagesUploaderContainer: FC<IImagesUploaderContainer> = ({
+  avatarUrl,
+  onBlur,
+  setFieldValue,
+}) => {
   const [isUploading, setIsUploading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const ref = useRef<HTMLInputElement>(null);
@@ -36,6 +40,7 @@ const ImagesUploaderContainer: FC<IImagesUploaderContainer> = ({ avatarUrl, setF
   return (
     <ImagesUploader
       ref={ref}
+      onBlur={onBlur}
       avatarUrl={avatarUrl}
       isUploading={isUploading}
       handleAddCourseAvatar={handleAddCourseAvatar}

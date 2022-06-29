@@ -8,6 +8,7 @@ import EditorTabs from './EditorTabs';
 const EditorTabsContainer: FC<IEditorTabsContainerProps> = ({
   children,
   scrollToTop,
+  validateStep,
   ...props
 }) => {
   const [step, setStep] = useState(MIN_STEP);
@@ -33,6 +34,7 @@ const EditorTabsContainer: FC<IEditorTabsContainerProps> = ({
   return (
     <EditorTabs
       step={step}
+      validateStep={validateStep}
       isSubmitEnabled={isSubmitEnabled}
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}

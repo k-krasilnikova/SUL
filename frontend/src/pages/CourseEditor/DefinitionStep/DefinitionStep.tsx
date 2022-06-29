@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { MenuItem, TextField } from '@mui/material';
+import { Alert, MenuItem, TextField } from '@mui/material';
 
 import Loader from 'components/Loader';
 import {
@@ -12,6 +12,7 @@ import { FormWrapper, SectionName } from 'pages/CourseEditor/styled';
 
 import ImagesUploader from '../components/ImagesUploader';
 import {
+  AlertBox,
   AvatarWrapper,
   DescriptionFieldWrapper,
   DescriptionWrapper,
@@ -69,8 +70,17 @@ const DefinitionStep: FC<IStepProps> = ({ formik, isCourseDataLoading, onFieldBl
           <SecondaryText>{EditorTitles.avatarDescription}</SecondaryText>
         </AvatarWrapper>
         <ImageWrapper>
-          <ImagesUploader avatarUrl={formik.values.avatar} setFieldValue={formik.setFieldValue} />
+          <ImagesUploader
+            onBlur={formik.handleBlur}
+            avatarUrl={formik.values.avatar}
+            setFieldValue={formik.setFieldValue}
+          />
         </ImageWrapper>
+        <AlertBox>
+          {formik.touched.avatar && Boolean(formik.errors.avatar) && (
+            <Alert severity="error">{formik.errors?.avatar}</Alert>
+          )}
+        </AlertBox>
         <DescriptionWrapper>
           <SectionName>{EditorTitles.definitionStepDescription}</SectionName>
         </DescriptionWrapper>

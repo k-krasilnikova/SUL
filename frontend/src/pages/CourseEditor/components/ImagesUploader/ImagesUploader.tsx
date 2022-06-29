@@ -8,7 +8,7 @@ import { IImagesUploader } from 'pages/CourseEditor/types';
 import { NewAvatarImageWrapper, AddImageIcon, AddImageInput, NewImageLabel } from './styled';
 
 const ImagesUploader = (
-  { avatarUrl, isUploading, handleAddCourseAvatar }: IImagesUploader,
+  { avatarUrl, isUploading, onBlur, handleAddCourseAvatar }: IImagesUploader,
   ref: ForwardedRef<HTMLInputElement>,
 ) => (
   <NewAvatarImageWrapper avatarUrl={avatarUrl}>
@@ -24,6 +24,7 @@ const ImagesUploader = (
       id="avatar"
       name="avatar"
       onChange={handleAddCourseAvatar}
+      onBlur={onBlur}
     />
     <NewImageLabel htmlFor="avatar" />
   </NewAvatarImageWrapper>
