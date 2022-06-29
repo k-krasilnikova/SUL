@@ -45,7 +45,7 @@ export interface IFormik {
     materials: {
       type: ContentElementType;
       material: string;
-      exercise: { title: string; task: string };
+      exercise?: { eN: number; title: string; task: string; code: string };
     }[];
     test: {
       title: string;
@@ -67,7 +67,7 @@ export interface IFormik {
     materials: {
       type: ContentElementType;
       material: string;
-      exercise: { title: string; task: string };
+      exercise?: { eN: number; title: string; task: string; code: string };
     }[];
     test: ITestItem;
     title: string;
@@ -133,7 +133,7 @@ export interface ILessonItemProps {
   material: {
     type: ContentElementType;
     material: string;
-    exercise?: { eN: number; title?: string; task: string; code: string };
+    exercise?: { eN: number; title?: string; task: string; code?: string };
   };
   index: number;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
