@@ -1,5 +1,6 @@
 import { ChangeEvent, ChangeEventHandler, BaseSyntheticEvent, RefObject } from 'react';
 
+import { ContentElementType } from 'enums/materials';
 import { IQuestionObject, ITestItem } from 'types/test';
 
 export interface ISkillsById {
@@ -41,7 +42,11 @@ export interface IFormQuestion {
 export interface IFormik {
   initialValues: {
     technologies: { _id: string; name: string; points: number | string; maxScore: number }[];
-    materials: { type: string; material: string }[];
+    materials: {
+      type: ContentElementType;
+      material: string;
+      exercise?: { eN: number; title: string; task: string; code: string };
+    }[];
     test: {
       title: string;
       _id: string;
@@ -60,8 +65,9 @@ export interface IFormik {
   values: {
     technologies: { _id: string; name: string; points: number | string; maxScore: number }[];
     materials: {
-      type: string;
+      type: ContentElementType;
       material: string;
+      exercise?: { eN: number; title: string; task: string; code: string };
     }[];
     test: ITestItem;
     title: string;
@@ -100,6 +106,7 @@ export interface IStepProps {
   isCreateCourseMode?: boolean;
   courseData?: ICourseEditorResponse;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
+  onLinkFieldBlur?: (event: BaseSyntheticEvent) => void;
   handleChangeDuration?: (event: ChangeEvent<HTMLInputElement>) => void;
   onSkillBlur?: (event: BaseSyntheticEvent) => void;
   onSkillPointsBlur?: (event: BaseSyntheticEvent) => void;
@@ -124,12 +131,13 @@ export interface ICourseEditorProps extends ISkillsStepProps {
 export interface ILessonItemProps {
   formik: IFormik;
   material: {
-    type: string;
+    type: ContentElementType;
     material: string;
-    exercise?: { eN: number; title?: string; task: string; code: string };
+    exercise?: { eN: number; title?: string; task: string; code?: string };
   };
   index: number;
   onFieldBlur?: (event: BaseSyntheticEvent) => void;
+  onLinkFieldBlur?: (event: BaseSyntheticEvent) => void;
 }
 
 export interface IQuestionItemProps {

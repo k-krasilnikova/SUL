@@ -19,13 +19,14 @@ export const getPointsArr = (maxPoints: number): number[] => {
   return pointsArr;
 };
 
-export const formatFieldValue = (value: string): string => {
-  let formattedValue = value.replace(TRAILING_SPACES_REGEX, ' ').trim();
-  if (formattedValue.length > EMPTY_LENGTH) {
-    formattedValue =
-      formattedValue[FIRST_LETTER_INDEX].toUpperCase() + formattedValue.slice(SECOND_LETTER_INDEX);
+export const formatValueTrim = (value: string): string =>
+  value.replace(TRAILING_SPACES_REGEX, ' ').trim();
+
+export const formatStringToFirstUppercase = (value: string): string => {
+  if (value.length > EMPTY_LENGTH) {
+    return value[FIRST_LETTER_INDEX].toUpperCase() + value.slice(SECOND_LETTER_INDEX);
   }
-  return formattedValue;
+  return value;
 };
 
 export const convertTimeoutToSeconds = (timeout: string): number => {

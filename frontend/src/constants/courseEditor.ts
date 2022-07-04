@@ -1,3 +1,5 @@
+import { ContentElementType } from 'enums/materials';
+
 export const COURSE_COMPLEXITY: { [key: string]: string | number }[] = [
   {
     value: 1,
@@ -40,6 +42,12 @@ export const LESSONS_TYPE_TITLE_MAP: { [key: string]: string } = {
   presentation: EditorContentElementType.presentation,
 };
 
+export const LESSONS_PLACEHOLDER_MAPPER = {
+  [ContentElementType.plain]: 'Write your lesson',
+  [ContentElementType.presentation]: 'Add link to google presentation',
+  [ContentElementType.video]: 'Add link for video lesson',
+};
+
 export const INITIAL_VALUES = {
   title: '',
   complexity: 1,
@@ -55,7 +63,7 @@ export const INITIAL_VALUES = {
   ],
   materials: [
     {
-      type: 'video',
+      type: ContentElementType.video,
       material: '',
     },
   ],
