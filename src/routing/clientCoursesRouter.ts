@@ -20,7 +20,7 @@ import {
   startTest,
   sendTestResults,
 } from 'controllers/tests';
-import { withAuth } from 'middlewares';
+import { assessmentSender, withAuth } from 'middlewares';
 
 const clientCoursesRouter = Router();
 
@@ -82,6 +82,7 @@ clientCoursesRouter.put(
   withAuth([USER_ROLES.MANAGER]),
   manageAssessment,
   getAchievements,
+  assessmentSender,
 );
 
 export default clientCoursesRouter;
