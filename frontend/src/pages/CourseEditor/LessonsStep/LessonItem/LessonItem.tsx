@@ -1,16 +1,17 @@
 import { FC } from 'react';
 import { MenuItem, TextField } from '@mui/material';
 
-import { ContentElementType } from 'enums/materials';
-import { ILessonItemProps } from 'pages/CourseEditor/types';
-import { Numbers } from 'enums/numbers';
 import {
   LESSONS_TYPE,
   LESSONS_TYPE_TITLE_MAP,
   EditorTitles,
-  MAX_MATERIAL_LENGTH,
   MAX_EXERCISE_TITLE_LENGTH,
+  MAX_MATERIAL_LENGTH,
+  LESSONS_PLACEHOLDER_MAPPER,
 } from 'constants/courseEditor';
+import { ContentElementType } from 'enums/materials';
+import { Numbers } from 'enums/numbers';
+import { ILessonItemProps } from 'pages/CourseEditor/types';
 import { Field, InputLengthCounter } from 'pages/CourseEditor/DefinitionStep/styled';
 
 import {
@@ -20,55 +21,49 @@ import {
   LessonInnerBox,
   LessonItemWrapper,
   MaterialFieldWrapper,
-  MaterialTextFieldWrapper,
 } from './styled';
 
-const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur }) => (
-  <LessonItemWrapper>
-    <ItemTitle>
-      {EditorTitles.lessonCount} {index + Numbers.one}
-    </ItemTitle>
-    <LessonInnerBox>
-      <Field
-        select
-        value={material.type}
-        id={`materials[${index}].type`}
-        name={`materials[${index}].type`}
-        onBlur={formik.handleBlur}
-        onChange={formik.handleChange}
-        error={
-          formik.touched.materials?.[index]?.type &&
-          Boolean(formik.errors?.materials?.[index]?.type)
-        }
-        helperText={
-          formik.touched.materials?.[index]?.type && formik.errors?.materials?.[index]?.type
-        }
-      >
-        {LESSONS_TYPE.map((type) => (
-          <MenuItem key={type.value} value={type.value}>
-            {type.label}
-          </MenuItem>
-        ))}
-      </Field>
-      <InputBox>
-        <InputTitle>{LESSONS_TYPE_TITLE_MAP[material.type]}</InputTitle>
-        {material.type === ContentElementType.presentation ||
-        material.type === ContentElementType.video ? (
-          <MaterialFieldWrapper>
+const LessonItem: FC<ILessonItemProps> = ({
+  formik,
+  material,
+  index,
+  onFieldBlur,
+  onLinkFieldBlur,
+}) => {
+  const isTextType = material.type === ContentElementType.plain;
+
+  return (
+    <LessonItemWrapper>
+      <ItemTitle>
+        {EditorTitles.lessonCount} {index + Numbers.one}
+      </ItemTitle>
+      <LessonInnerBox>
+        <Field
+          select
+          value={material.type}
+          id={`materials[${index}].type`}
+          name={`materials[${index}].type`}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+        >
+          {LESSONS_TYPE.map((type) => (
+            <MenuItem key={type.value} value={type.value}>
+              {type.label}
+            </MenuItem>
+          ))}
+        </Field>
+        <InputBox>
+          <InputTitle>{LESSONS_TYPE_TITLE_MAP[material.type]}</InputTitle>
+          <MaterialFieldWrapper isOnlyTextInput={isTextType}>
             <Field
+              multiline={isTextType}
+              isTextType={isTextType}
               id={`materials[${index}].material`}
-              name={`materials[${index}.material`}
-              placeholder={
-                material.type === ContentElementType.presentation
-                  ? 'Material presentation link'
-                  : 'Material video link'
-              }
+              name={`materials[${index}].material`}
+              placeholder={LESSONS_PLACEHOLDER_MAPPER[material.type]}
               value={material.material}
-              onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              inputProps={{
-                maxLength: MAX_MATERIAL_LENGTH,
-              }}
+              onBlur={isTextType ? onFieldBlur : onLinkFieldBlur}
               autoComplete="off"
               error={
                 Boolean(formik.errors?.materials?.[index]?.material) &&
@@ -81,69 +76,48 @@ const LessonItem: FC<ILessonItemProps> = ({ formik, material, index, onFieldBlur
             />
             <InputLengthCounter>{`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}</InputLengthCounter>
           </MaterialFieldWrapper>
-        ) : (
-          <MaterialTextFieldWrapper>
-            <TextField
-              multiline
-              id={`materials[${index}].material`}
-              name={`materials[${index}.material`}
-              placeholder="Text material"
-              value={material.material}
+          <InputTitle>{EditorTitles.exerciseTitle}</InputTitle>
+          <MaterialFieldWrapper>
+            <Field
+              id={`materials[${index}].exercise.title`}
+              name={`materials[${index}].exercise.title`}
+              placeholder="Exercise title"
+              value={material?.exercise?.title}
               onChange={formik.handleChange}
               onBlur={onFieldBlur}
-              autoComplete="off"
               inputProps={{
-                maxLength: MAX_MATERIAL_LENGTH,
+                maxLength: MAX_EXERCISE_TITLE_LENGTH,
               }}
+              autoComplete="off"
               error={
-                Boolean(formik.errors?.materials?.[index]?.material) &&
-                formik.touched.materials?.[index]?.material
+                formik.touched.materials?.[index]?.exercise?.title &&
+                Boolean(formik.errors?.materials?.[index]?.exercise?.title)
               }
-              helperText={
-                formik.touched.materials?.[index]?.material &&
-                formik.errors?.materials?.[index]?.material
-              }
+              helperText={formik.errors?.materials?.[index]?.exercise?.title}
             />
-            <InputLengthCounter>
-              {`${formik.values.materials?.[index]?.material.length}/${MAX_MATERIAL_LENGTH}`}
-            </InputLengthCounter>
-          </MaterialTextFieldWrapper>
-        )}
-        <InputTitle>{EditorTitles.exerciseTitle}</InputTitle>
-        <MaterialFieldWrapper>
-          <Field
-            id={`materials[${index}].exercise.title`}
-            name={`materials[${index}].exercise.title`}
-            placeholder="Exercise title"
-            value={material?.exercise?.title}
+            <InputLengthCounter>{`${
+              material?.exercise?.title?.length ? material?.exercise?.title?.length : Numbers.zero
+            }/${MAX_EXERCISE_TITLE_LENGTH}`}</InputLengthCounter>
+          </MaterialFieldWrapper>
+          <InputTitle>{EditorTitles.exerciseDescription}</InputTitle>
+          <TextField
+            multiline
+            placeholder="Exercise description"
+            id={`materials[${index}].exercise.task`}
+            name={`materials[${index}].exercise.task`}
+            value={material?.exercise?.task}
             onChange={formik.handleChange}
             onBlur={onFieldBlur}
-            inputProps={{
-              maxLength: MAX_EXERCISE_TITLE_LENGTH,
-            }}
-            autoComplete="off"
-            error={Boolean(formik.errors?.materials?.[index]?.exercise?.title)}
-            helperText={formik.errors?.materials?.[index]?.exercise?.title}
+            error={
+              formik.touched.materials?.[index]?.exercise?.task &&
+              Boolean(formik.errors?.materials?.[index]?.exercise?.task)
+            }
+            helperText={formik.errors?.materials?.[index]?.exercise?.task}
           />
-          <InputLengthCounter>{`${
-            material?.exercise?.title?.length ? material?.exercise?.title?.length : Numbers.zero
-          }/${MAX_EXERCISE_TITLE_LENGTH}`}</InputLengthCounter>
-        </MaterialFieldWrapper>
-        <InputTitle>{EditorTitles.exerciseDescription}</InputTitle>
-        <TextField
-          multiline
-          placeholder="Exercise description"
-          id={`materials[${index}].exercise.task`}
-          name={`materials[${index}].exercise.task`}
-          value={material?.exercise?.task}
-          onChange={formik.handleChange}
-          onBlur={onFieldBlur}
-          error={Boolean(formik.errors?.materials?.[index]?.exercise?.task)}
-          helperText={formik.errors?.materials?.[index]?.exercise?.task}
-        />
-      </InputBox>
-    </LessonInnerBox>
-  </LessonItemWrapper>
-);
+        </InputBox>
+      </LessonInnerBox>
+    </LessonItemWrapper>
+  );
+};
 
 export default LessonItem;

@@ -56,7 +56,7 @@ const LessonsStep: FC<IStepProps> = ({ formik, courseData, isCourseDataLoading, 
                             exercise: {},
                           })
                         }
-                        disabled={Boolean(formik.errors.materials)}
+                        disabled={!!formik.errors.materials}
                       >
                         {ButtonLabels.addMoreLessons}
                       </LessonButton>

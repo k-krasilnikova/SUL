@@ -2,6 +2,10 @@ import { styled, Box, Typography, TextField } from '@mui/material';
 
 import { AlertWrapper } from '../TestStep/styled';
 
+interface ICustomInput {
+  isTextType?: boolean;
+}
+
 export const FieldWrapper = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
@@ -12,21 +16,23 @@ export const FieldWrapper = styled(Box)({
   },
 });
 
-export const Field = styled(TextField)({
-  width: '350px',
-  height: '53px',
-  fontSize: '18px',
-  '& label': {
-    color: '#A2A2A2',
-  },
-  '&.MuiTextField-root > .MuiFormLabel-root.Mui-focused': {
-    color: '#2C2525',
-  },
-  '& .MuiFormHelperText-root': {
-    marginRight: '29px',
-    marginBottom: '5px',
-  },
-});
+export const Field = styled(TextField)<ICustomInput>(({ isTextType }) => ({
+  ...(!isTextType && {
+    width: '352px',
+    height: '56px',
+    fontSize: '18px',
+    '& label': {
+      color: '#A2A2A2',
+    },
+    '&.MuiTextField-root > .MuiFormLabel-root.Mui-focused': {
+      color: '#2C2525',
+    },
+    '& .MuiFormHelperText-root': {
+      marginRight: '29px',
+      marginBottom: '5px',
+    },
+  }),
+}));
 
 export const SectionWrapper = styled(Box)({
   marginTop: '30px',

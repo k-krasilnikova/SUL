@@ -18,7 +18,7 @@ const getAchievements = async (
   next: NextFunction,
 ) => {
   try {
-    const { clientCourseId } = req.body;
+    const { id: clientCourseId } = req.params;
 
     const clientCourse = await getClientCourseProvider(clientCourseId);
     const { course } = clientCourse;

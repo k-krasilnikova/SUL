@@ -4,3 +4,4 @@ export { default as errorHandlingMiddleware } from './errorHandlingMiddleware';
 export { default as handleInternalErrorMiddleware } from './handleInternalErrorMiddleware';
 export { default as loggerMiddleware } from './loggerMiddleware';
 export { default as sendMail } from './sendMail';
+export { default as assessmentSender } from './assessmentResultSender';
